@@ -1,0 +1,22 @@
+This is BibTeX, Version 0.99dThe top-level auxiliary file: DQ.aux
+The style file: abbrv.bst
+Database file #1: DQ.bib
+Warning--entry type for "bizer2011" isn't style-file defined
+--line 377 of file DQ.bib
+Warning--string name "sept" is undefined
+--line 380 of file DQ.bib
+Warning--entry type for "flemming2010" isn't style-file defined
+--line 436 of file DQ.bib
+A bad cross reference---entry "conf/jcdl/Soergel05"
+refers to entry "conf/jcdl/2005", which doesn't exist
+A bad cross reference---entry "conf/owled/SirinSW08"
+refers to entry "conf/owled/2008", which doesn't exist
+A bad cross reference---entry "conf/hicss/TaoDM09"
+refers to entry "conf/hicss/2009", which doesn't exist
+Warning--I didn't find a database entry for "conf/owled/2008"
+Warning--I didn't find a database entry for "conf/hicss/2009"
+Warning--I didn't find a database entry for "conf/jcdl/2005"
+Warning--empty institution in w3c-prov-o
+Warning--empty school in citeulike:2925559
+Warning--empty journal in Flouris2012
+(There were 3 error messages)
