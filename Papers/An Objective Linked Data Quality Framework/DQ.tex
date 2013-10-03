@@ -5,6 +5,11 @@
 \usepackage{lscape} 
 \usepackage{multirow}
 \usepackage{longtable}
+\usepackage{tikz}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{rotating}
+\def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;} 
 
 \begin{document}
 \begin{frontmatter}     
@@ -90,170 +95,33 @@ The basic idea behind Linked Data is that its usefulness increases when it is mo
 Building on these principles, we group the quality attributes into four main categories:\\
 \begin{easylist}[itemize]
 \ListProperties( Hang=true, Progressive=3ex, Style*=\tiny$\blacksquare$  )
-& {\bf Quality of the entities (EQ) }: Quality indicators that focus on the data at the instance level (i.e. syntactic checkers).
-& {\bf Quality of the dataset (DSQ)}: Quality indicators at the dataset level.
-& {\bf Quality of the semantic model (SMQ)}: Quality indicators that focus on the semantic models, vocabularies and ontologies.
-& {\bf Quality of the linking process (LQ)}: Quality indicators that focus on the inbound and outbound links between datasets.\\
+& {\bf Quality of the entities }: Quality indicators that focus on the data at the instance level (i.e. syntactic checkers).
+& {\bf Quality of the dataset}: Quality indicators at the dataset level.
+& {\bf Quality of the semantic model}: Quality indicators that focus on the semantic models, vocabularies and ontologies.
+& {\bf Quality of the linking process}: Quality indicators that focus on the inbound and outbound links between datasets.\\
 \end{easylist}
 
- In our previous work \cite{assaf2012} we have identified 24 different Linked Data quality attributes. Since these attributes are rather abstract, we should rely on quality indicators that reflect the quality of a data source \cite{flemming2010}. In this paper, we transform the quality indicators presented as a set of questions in \cite{assaf2012} into more concrete quality indicator metrics. We extend them with the the objective quality indicators listed in the systematic review done in \cite{Framework2012}.
+ In our previous work \cite{assaf2012} we have identified 24 different Linked Data quality attributes. In this paper, we refine these attributes into a condensed framework of 13 objective attributes. Since these attributes are rather abstract, we should rely on quality indicators that reflect the quality of a data source \cite{flemming2010}. In this paper, we transform the quality indicators presented as a set of questions in \cite{assaf2012} into more concrete quality indicator metrics. We extend them with the the objective quality indicators listed in the systematic review done in \cite{Framework2012}.
 
  \subsection{Completeness}
 
-data completeness can be judged in the presence of a task where the ideal set of attributes and objects are known. An entity is considered to be complete if it contains all the attributes needed for a given task, has complete language coverage \cite{Mader2012} and has documentation properties \cite{w3c_skos_rec}\cite{Mader2012}.\\ A dataset is considered to be complete if it contains all the necessary objects for a given task \cite{Mendes2012}, contains supporting structured metadata \cite{Hogan2010}, supports providing data in multiple serializations \cite{Framework2012}, includes the correct MIME-type for the content \cite{Hogan2010} contains appropriate volume of data for a particular task \cite{Framework2012}, has different queryable endpoints to access the data (i.e. SPARQL endpoint, RDF Dump, REST API, etc.) \cite{Framework2012}, has been checked against syntactic errors \cite{Hogan2010} and if the publishers use datasets description vocabularies like DCAT\footnote{http://www.w3.org/TR/vocab-dcat/} or VOID\footnote{http://www.w3.org/TR/void/} to provide descriptions about the size (using void:statItem, void:numberOfTriples or void:numberOfDocuments) and categorization (using dcterms:subject) of the dataset.\\ Links are considered to be complete if all the in-bound and out-bound links are dereferencable \cite{Hogan2010}\cite{Mader2012}\cite{Gueret2012} and have the linkage information represented in the metadata \cite{Hogan2010}.\\ Models are considered to be complete if they have a complete set of values \cite{Mader2012} and do not contain disconnected graph clusters \cite{Mader2012}. Disconnected graphs are the result of incomplete data acquisition or accidental deletion of terms that leads to deprecated terms. In addition to that, models are considered to be complete if they do not contain omitted top concepts or unidirectional related concepts \cite{Hogan2010} and if there exists some metadata about the kind and number of used vocabularies \cite{Framework2012}.
-
-\begin{table}[h]
-\centering
-\begin{tabular}{|c|c|c|}
-\hline 
-Quality Attribute & Quality Category & Quality Indicator\tabularnewline
-\hline 
-\hline 
-\multirow{19}{*}{Completeness} & \multirow{3}{*}{Entity Level} & Covers of all the attributes needed for a given task\tabularnewline
-\cline{3-3} 
- &  & Has Complete language coverage \tabularnewline
-\cline{3-3} 
- &  & Existence of documentation properties \tabularnewline
-\cline{2-3} 
- & \multirow{9}{*}{Dataset Level} & Existence of all the necessary objects for a given task \tabularnewline
-\cline{3-3} 
- &  & Existence of supporting structured metadata \tabularnewline
-\cline{3-3} 
- &  & Supports multiple serializations\tabularnewline
-\cline{3-3} 
- &  & Includes the correct MIME-type for the content\tabularnewline
-\cline{3-3} 
- &  & Contains appropriate volume of data for a particular task\tabularnewline
-\cline{3-3} 
- &  & Has different queryable endpoints to access the data\tabularnewline
-\cline{3-3} 
- &  & Checked against syntactic errors\tabularnewline
-\cline{3-3} 
- &  & Usage of datasets description vocabularies \tabularnewline
-\cline{3-3} 
- &  & Existence of descriptions about its size and categorization \tabularnewline
-\cline{2-3} 
- & \multirow{2}{*}{Links Level} & Existence of complete dereferencable in-bound and out-bound links\tabularnewline
-\cline{3-3} 
- &  & Existence of supporting linkage metadata\tabularnewline
-\cline{2-3} 
- & \multirow{5}{*}{Model Level} & Covers the complete set of values\tabularnewline
-\cline{3-3} 
- &  & Absence of disconnected graph clusters\tabularnewline
-\cline{3-3} 
- &  & Absence of omitted top concept\tabularnewline
-\cline{3-3} 
- &  & Absence of unidirectional related concepts\tabularnewline
-\cline{3-3} 
- &  & Existence of supporting metadata about the kind and number of used vocabularies \tabularnewline
-\hline 
-\end{tabular}\caption{Completeness Quality Attribute}
-\end{table}
+data completeness can be judged in the presence of a task where the ideal set of attributes and objects are known. An entity is considered to be complete if it contains all the attributes needed for a given task, has complete language coverage \cite{Mader2012} and has documentation properties \cite{w3c_skos_rec}\cite{Mader2012}.\\ A dataset is considered to be complete if it contains all the necessary objects for a given task \cite{Mendes2012}, contains supporting structured metadata \cite{Hogan2010},contains links for external data providers, supports providing data in multiple serializations \cite{Framework2012}, includes the correct MIME-type for the content \cite{Hogan2010} contains appropriate volume of data for a particular task \cite{Framework2012}, has different queryable endpoints to access the data (i.e. SPARQL endpoint, RDF Dump, REST API, etc.) \cite{Framework2012}, has been checked against syntactic errors \cite{Hogan2010} and if the publishers use datasets description vocabularies like DCAT\footnote{http://www.w3.org/TR/vocab-dcat/} or VOID\footnote{http://www.w3.org/TR/void/} to provide descriptions about the size (using void:statItem, void:numberOfTriples or void:numberOfDocuments) and categorization (using dcterms:subject) of the dataset.\\ Links are considered to be complete if all the in-bound and out-bound links are dereferencable \cite{Hogan2010}\cite{Mader2012}\cite{Gueret2012} and have the linkage information represented in the metadata \cite{Hogan2010}.\\ Models are considered to be complete if they have a complete set of values \cite{Mader2012} and do not contain disconnected graph clusters \cite{Mader2012}. Disconnected graphs are the result of incomplete data acquisition or accidental deletion of terms that leads to deprecated terms. In addition to that, models are considered to be complete if they do not contain omitted top concepts or unidirectional related concepts \cite{Hogan2010} and if there exists some metadata about the kind and number of used vocabularies \cite{Framework2012}.
 
 \subsection{Availability}
 
 The dataset is considered to be available if the publishers provide an RDF dump that can be downloaded by users \cite{flemming2010}\cite{Hogan2010} and if its queryable endpoints respond to direct queries.
 
-
-\begin{table}[h]
-\begin{tabular}{|c|c|c|}
-\hline 
-Quality Attribute & Quality Category & Quality Indicator\tabularnewline
-\hline 
-\hline 
-\multirow{2}{*}{Availability} & \multirow{2}{*}{Dataset Level} & Existence of an RDF dump that can be downloaded by users\tabularnewline
-\cline{3-3} 
- &  & Existence of queryable endpoints that respond to direct queries\tabularnewline
-\hline 
-\end{tabular}\caption{Availability Quality Attribute}
-\end{table}
-
-
 \subsection{Correctness}
 
-Correctness of the data is related to the validity of its entities. An entity is considered to be correct if there no missing or empty labels \cite{Acosta2013}\cite{Mader2012}, no incorrect data type for typed literals \cite{Hogan2010}\cite{Acosta2013}, no omitted or invalid languages tags \cite{Suominen:2012:IQS:2413941.2413985}\cite{Mader2012} and does not contain terms without any associative or hierarchical relationships ``orphan terms''\cite{journals/ires/Living10}.\\ Links are considered to be correct if they actually show related content to the subject of the RDF triple \cite{Suominen:2012:IQS:2413941.2413985}\cite{Acosta2013} and follow the HTTP URI scheme \cite{Suominen2013}. \\ Models are considered to be correct if the top concepts are marked and do not have broader concepts (for example having incoming hasTopConcept or outgoing topConceptOf relationships) \cite{Mader2012}.
-
-\begin{table}[h]
-\begin{tabular}{|c|c|c|}
-\hline 
-Quality Attribute & Quality Category & Quality Indicator\tabularnewline
-\hline 
-\hline 
-\multirow{8}{*}{Correctness} & \multirow{4}{*}{Entity Level} & Absence of missing or empty labels\tabularnewline
-\cline{3-3} 
- &  & Absence of incorrect data type for typed literals \tabularnewline
-\cline{3-3} 
- &  & Absence of omitted or invalid languages tags \tabularnewline
-\cline{3-3} 
- &  & Absence of terms without any associative or hierarchical relationships\tabularnewline
-\cline{2-3} 
- & \multirow{2}{*}{Links Level} & Existence of content related to the subject of the RDF triple\tabularnewline
-\cline{3-3} 
- &  & follow the HTTP URI scheme\tabularnewline
-\cline{2-3} 
- & \multirow{2}{*}{Model Level} & Contains marked top concepts\tabularnewline
-\cline{3-3} 
- &  & Absence of broader concepts for top concepts\tabularnewline
-\hline 
-\end{tabular}\caption{Correctness Quality Attribute}
-\end{table}
+Correctness of the data is related to the validity of its entities. An entity is considered to be correct if there no missing or empty labels \cite{Acosta2013}\cite{Mader2012}, no incorrect data type for typed literals \cite{Hogan2010}\cite{Acosta2013}, no omitted or invalid languages tags \cite{Suominen:2012:IQS:2413941.2413985}\cite{Mader2012} and does not contain terms without any associative or hierarchical relationships ``orphan terms''\cite{journals/ires/Living10}.\\ Links are considered to be correct if they actually show related content to the subject of the RDF triple \cite{Suominen:2012:IQS:2413941.2413985}\cite{Acosta2013} and are syntactically correct. \\ Models are considered to be correct if the top concepts are marked and do not have broader concepts (for example having incoming hasTopConcept or outgoing topConceptOf relationships) \cite{Mader2012}.
 
 \subsection{Conciseness}
 
-Extensional conciseness measures the number of unique objects in relation to the overall number of objects representation in the data set. Intensional conciseness measures the number of unique attributes of a dataset in relation to the overall number of attributes in a target schema \cite{ Bleiholder:2009}. \\ An entity is considered to be concise if it has intensional conciseness (it does not contain redundant attributes, which means that there is no equivalent attributes with different names) \cite{Mendes2012} and uses short URIs \cite{Framework2012}.\\ A dataset is considered to be concise if it has extensional conciseness (it does not contain redundant objects, which means that there is no equivalent objects with different identifiers) \cite{Mendes2012}.
-\begin{table}[h]
-\begin{tabular}{|c|c|c|}
-\hline 
-Quality Attribute & Quality Category & Quality Indicator\tabularnewline
-\hline 
-\hline 
-\multirow{4}{*}{Conciseness} & \multirow{2}{*}{Entity Level} & Absence of redundant attributes\tabularnewline
-\cline{3-3} 
- &  & Existence of short URIs\tabularnewline
-\cline{2-3} 
- & \multirow{2}{*}{Dataset Level} & Absence of redundant objects\tabularnewline
-\cline{3-3} 
- &  & Follows the HTTP URI scheme\tabularnewline
-\hline 
-\end{tabular}\caption{Conciseness Quality Attribute}
-
-
-\end{table}
+Extensional conciseness measures the number of unique objects in relation to the overall number of objects representation in the data set. Intensional conciseness measures the number of unique attributes of a dataset in relation to the overall number of attributes in a target schema \cite{ Bleiholder:2009}. \\ An entity is considered to be concise if it has intensional conciseness (it does not contain redundant attributes, which means that there is no equivalent attributes with different names) \cite{Mendes2012} and uses short URIs \cite{Framework2012} that follow the HTTP URI scheme \cite{Hogan:2012:ESL:2263498.2264570}\cite{Suominen2013}.\\ A dataset is considered to be concise if it has extensional conciseness (it does not contain redundant objects, which means that there is no equivalent objects with different identifiers) \cite{Mendes2012}.
 
 \subsection{Consistency}
 
-An entity is considered to be consistent if it does not contain overlapping labels such as two concepts have the same preferred lexical label in a given language when they belong to the same schema \cite{skosprimer}\cite{Mader2012}. Moreover, an entity is considered to be consistent if it does not contain disjoint labels \cite{Mader2012}, extra white spaces in labels\cite{Suominen:2012:IQS:2413941.2413985} and does not contain inconsistent preferred labels per language tag and no more than one value of skos:prefLabel without a language tag \cite{Mader2012}\cite{Suominen:2012:IQS:2413941.2413985}.\\ A dataset is considered to be consistent if it is free of conflicting information. This can be measured by considering properties with cardinality 1 that contain more than one distinct value \cite{Mendes2012}.\\ Models are considered to be consistent if they do not include atypical use of collections, containers and reification \cite{Hogan2010}, overlapping usage of owl:sameAs and owl:differentFrom \cite{Hogan2010}, overlapping usage of owl:AllDifferent and owl:distinctMembers \cite{Hogan2010}, asserted members of owl:Nothing and membership violation for disjoint classes \cite{Hogan2010}.
-\begin{table}[h]
-\begin{tabular}{|c|c|c|}
-\hline 
-Quality Attribute & Quality Category & Quality Indicator\tabularnewline
-\hline 
-\hline 
-\multirow{11}{*}{Consistency} & \multirow{5}{*}{Entity Level} & Existence of consistent preferred labels per language tag\tabularnewline
-\cline{3-3} 
- &  & Absence of overlapping labels\tabularnewline
-\cline{3-3} 
- &  & Absence of disjoint labels\tabularnewline
-\cline{3-3} 
- &  & Abscence of extra white spaces in labels\tabularnewline
-\cline{3-3} 
- &  & Existence of only one value of skos:prefLabel without a language tag\tabularnewline
-\cline{2-3} 
- & \multirow{1}{*}{Dataset Level} & Abscence of conflicting information\tabularnewline
-\cline{2-3} 
- & \multirow{5}{*}{Model Level} & Absence of atypical use of collections, containers and reification\tabularnewline
-\cline{3-3} 
- &  & Absence of overlapping usage of owl:sameAs and owl:differentFrom\tabularnewline
-\cline{3-3} 
- &  & Absence of overlapping usage of owl:AllDifferent and owl:distinctMembers\tabularnewline
-\cline{3-3} 
- &  & Absence of asserted members of owl:Nothing\tabularnewline
-\cline{3-3} 
- &  & Absence of membership violation for disjoint classes\tabularnewline
-\hline 
-\end{tabular}\caption{Consistency Quality Attribute}
-\end{table}
-
+An entity is considered to be consistent if it does not contain overlapping labels such as two concepts have the same preferred lexical label in a given language when they belong to the same schema \cite{skosprimer}\cite{Mader2012}. Moreover, an entity is considered to be consistent if it does not contain disjoint labels \cite{Mader2012}, extra white spaces in labels \cite{Suominen:2012:IQS:2413941.2413985} and does not contain inconsistent preferred labels per language tag and no more than one value of skos:prefLabel without a language tag \cite{Mader2012}\cite{Suominen:2012:IQS:2413941.2413985}.\\ A dataset is considered to be consistent if it is free of conflicting information. This can be measured by considering properties with cardinality 1 that contain more than one distinct value \cite{Mendes2012}.\\ Models are considered to be consistent if they do not include atypical use of collections, containers and reification \cite{Hogan2010}, overlapping usage of owl:sameAs and owl:differentFrom \cite{Hogan2010}, overlapping usage of owl:AllDifferent and owl:distinctMembers \cite{Hogan2010}, asserted members of owl:Nothing and membership violation for disjoint classes \cite{Hogan2010}.
 
 \subsection{Coherence}
 
@@ -264,6 +132,7 @@ A model is considered to be coherent when it does not contain:\\
 \begin{easylist}[itemize]
 \ListProperties( Hang=true, Progressive=3ex, Style*= - )
 & Usage of undefined classes and properties \cite{Hogan2010}. Many errors that are due to spelling or syntactic mistakes are resolvable through minor fixes via ontology checkers tools. However, for new terms, \cite{Hogan2010} suggests to have them defined in a separate namespace in order to allow reuse \cite{ Mader2012}.
+& Usage of blank nodes as they affect merging data from different sources \cite{Hogan:2012:ESL:2263498.2264570}.
 & Misplaced or deprecated classes or properties \cite{Hogan2010}.
 & Misuse of the owl:DataTypeProperty or owl:ObjectProperty \cite{Hogan2010}.
 & Relations and mappings clashes \cite{Suominen:2012:IQS:2413941.2413985}.
@@ -275,35 +144,6 @@ A model is considered to be coherent when it does not contain:\\
 & Valueless associative relations \cite{Mader2012}.
 \end{easylist}
 
-\begin{table}[h]
-\begin{tabular}{|c|c|c|}
-\hline 
-Quality Attribute & Quality Category & Quality Indicator\tabularnewline
-\hline 
-\hline 
-\multirow{10}{*}{Coherence} & \multirow{10}{*}{Model Level} & Absence of misplaced or deprecated classes or properties\tabularnewline
-\cline{3-3} 
- &  & Absence of misused owl:DataTypeProperty or owl:ObjectProperty\tabularnewline
-\cline{3-3} 
- &  & Absence of relations and mappings clashes\tabularnewline
-\cline{3-3} 
- &  & Absence of invalid inverse-functional values\tabularnewline
-\cline{3-3} 
- &  & Absence of cyclic hierarchical relations\tabularnewline
-\cline{3-3} 
- &  & Absence of undefined classes and properties usage\tabularnewline
-\cline{3-3} 
- &  & Absence of solely transitive related concepts\tabularnewline
-\cline{3-3} 
- &  & Absence of redefinitions of existing vocabularies\tabularnewline
-\cline{3-3} 
- &  & Absence of valueless associative relations\tabularnewline
-\cline{3-3} 
- &  & Absence of incomplete literals with datatype range\tabularnewline
-\hline 
-\end{tabular}\caption{Coherence Quality Attribute}
-\end{table}
-
 \subsection{Efficiency}
 
 Dataset efficiency is calculated by measuring how fast it can be identified \cite{Toupikov2009}. A dataset is considered to be efficient if it satisfies the following performance metrics:\\
@@ -314,134 +154,226 @@ Dataset efficiency is calculated by measuring how fast it can be identified \cit
 & Low Latency HTTP requests (average answer time of one second) \cite{Framework2012}.
 & Scalable such that the time to answer an amount of ten requests divided by ten is not longer than the time it takes to answer one request \cite{Framework2012}.
 \end{easylist}
-\begin{table}[h]
-\begin{tabular}{|c|c|c|}
-\hline 
-Quality Attribute & Quality Category & Quality Indicator\tabularnewline
-\hline 
-\hline 
-\multirow{4}{*}{Efficiency} & \multirow{4}{*}{Dataset Level} & Absence of f slash-URIs\tabularnewline
-\cline{3-3} 
- &  & Provides acceptable delay between the request and its response\tabularnewline
-\cline{3-3} 
- &  & Serves low Latency HTTP requests\tabularnewline
-\cline{3-3} 
- &  & Has the ability to scale \tabularnewline
-\hline 
-\end{tabular}\caption{Efficiency Quality Attribute}
-\end{table}
 
 \subsection{Freshness}
 
 Freshness is a measure for the recency of data. The basic assumption is that old information is more likely to be outdated and unreliable \cite{Flouris2012}. Entity freshness can be identified if it contains timestamps that can keep track of its modifications.
-\begin{table}[h]
-\begin{tabular}{|c|c|c|}
-\hline 
-Quality Attribute & Quality Category & Quality Indicator\tabularnewline
-\hline 
-\hline 
-\multirow{1}{*}{Freshness} & \multirow{1}{*}{Entity Level} & Existence of timestamps that can keep track of its modifications\tabularnewline
-\hline 
-\end{tabular}\caption{Freshness Quality Attribute}
-\end{table}
-
 
 \subsection{Accuracy}
 
 Accuracy describes the proximity of data value representations of an object related to their real world states \cite{Furber2011a}. A dataset is considered to be accurate when it does not contain outliers and attributes that do not contain useful values for data entries \cite{Framework2012}.
-\begin{table}[h]
-\begin{tabular}{|c|c|c|}
-\hline 
-Quality Attribute & Quality Category & Quality Indicator\tabularnewline
-\hline 
-\hline 
-\multirow{2}{*}{Accuracy} & \multirow{2}{*}{Dataset Level} & Absence of outliers\tabularnewline
-\cline{3-3} 
- &  & Absence of attributes that do not contain useful values for data entries\tabularnewline
-\hline 
-\end{tabular}\caption{Accuracy Quality Attribute}
-\end{table}
 
 \subsection{Provenance}
 
 Entity level provenance can be calculated by constructing decision networks informed by provenance graphs \cite{Gamble2011}. The accuracy of computing trust between two entities \cite{Framework2012} can be computed by calculating an aggregate trust value based on the combination of the propagation and aggregation algorithms on weighted mechanism \cite{j.websem208}. Provenance can be achieved at the dataset level by including metadata that describes its authoritative information (title, content and URI), ensuring the reliability and trustworthiness of the publisher \cite{Flouris2012}, verifying if the dataset uses a provenance vocabulary like PROV \cite{w3c-prov-o} and digital signatures \cite{Framework2012}. \\ Models provenance can be achieved by ensuring the trustworthiness of RDF statements \cite{Hartig09usingweb}. 
 
-\begin{table}[h]
-\begin{tabular}{|c|c|c|}
-\hline 
-Quality Attribute & Quality Category & Quality Indicator\tabularnewline
-\hline 
-\multirow{6}{*}{Provenance} & \multirow{1}{*}{Entity Level} & Able to construct decision networks informed by provenance graphs\tabularnewline
-\cline{2-3} 
- & \multirow{4}{*}{Dataset Level} & Existence of metadata that describes its authoritative information\tabularnewline
-\cline{3-3} 
- &  & Ensures the reliability and trustworthiness of the publisher\tabularnewline
-\cline{3-3} 
- &  & Uses a provenance vocabulary\tabularnewline
-\cline{3-3} 
- &  & Uses digital signatures\tabularnewline
-\cline{2-3} 
- & \multirow{1}{*}{Model Level} & Ensures the trustworthiness of RDF statements\tabularnewline
-\hline 
-\end{tabular}\caption{Provenance Quality Attribute}
-\end{table}
-
 \subsection{Security}
 
 Security is a quality attribute that is measured on the dataset level. It is identified if the publishers use login credentials, SSL or SSH to provide access to their dataset, or if they only grant access to specific users \cite{Framework2012}.
 
-\begin{table}[!h]
-\begin{tabular}{|c|c|c|}
-\hline 
-Quality Attribute & Quality Category & Quality Indicator\tabularnewline
-\hline 
-\hline 
-\multirow{3}{*}{Security} & \multirow{3}{*}{Dataset Level} & Uses login credentials to restrict access\tabularnewline
-\cline{3-3} 
- &  & Uses SSL or SSH to provide access to their dataset\tabularnewline
-\cline{3-3} 
- &  & Grants access to specific users\tabularnewline
-\hline 
-\end{tabular}\caption{Security Quality Attribute}
-\end{table}
-
 \subsection{Licensing}
 
 Licensing is a quality attribute that is measured on the dataset level. It includes the availability of machine readable license information \cite{Hogan:2012:ESL:2263498.2264570}, human readable license information in the documentation of the dataset or its source \cite{Hogan:2012:ESL:2263498.2264570} and the indication of permissions, copyrights and attributions specified by the author \cite{Framework2012}.
-\begin{table}[h]
-\begin{tabular}{|c|c|c|}
-\hline 
-Quality Attribute & Quality Category & Quality Indicator\tabularnewline
-\hline 
-\multirow{3}{*}{Licensing} & \multirow{3}{*}{Dataset Level} & Existence of machine readable license information\tabularnewline
-\cline{3-3} 
- &  & Existence of human readable license information\tabularnewline
-\cline{3-3} 
- &  & Specifies permissions, copyrights and attributions\tabularnewline
-\hline 
-\end{tabular}\caption{Licensing Quality Attribute}
-\end{table}
 
 \subsection{Comprehensibility}
 
 Comprehensibility is identified if the publisher indicates at least one exemplary URI and SPARQL query, regular expression pattern that matches the URIs of a dataset \cite{Framework2012}, provides a list of used vocabularies and an active mailing list or message board for the dataset \cite{flemming2010}. 
-\begin{table}[h]
-\begin{tabular}{|c|c|c|}
+
+\begin{landscape}
+\begin{center}
+{\footnotesize
+\begin{longtable}[h]{|c|c|c|c|}
+\caption[Objective Linked Data Quality Framework]{Objective Linked Data Quality Framework} \label{DQM} \\
+
+\hline \multicolumn{1}{|c|}{\textbf{Quality Attribute}} & \multicolumn{1}{c|}{\textbf{Quality Category}} & \multicolumn{1}{c|}{\textbf{ID}} & \multicolumn{1}{c|}{\textbf{Quality Indicator}} \\ \hline
+\endfirsthead
+
+\multicolumn{4}{c}%
+{{\bfseries \tablename\ \thetable{} Objective Linked Data Quality Framework}} \\
+\hline \multicolumn{1}{|c|}{\textbf{Quality Attribute}} &
+\multicolumn{1}{c|}{\textbf{Quality Category}} & ID &
+\multicolumn{1}{c|}{\textbf{Quality Indicator}} \\ \hline 
+\endhead
+
+\multicolumn{4}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+
+\endlastfoot
+ 
+\multirow{19}{*}{Completeness} & \multirow{3}{*}{Entity Level} & QI.1 & Covers of all the attributes needed for a given task \cite{Mendes2012}\tabularnewline
+\cline{3-4} 
+ &  & QI.2 & Has Complete language coverage \cite{Mader2012}\tabularnewline
+\cline{3-4} 
+ &  & QI.3 & Existence of documentation properties  \cite{w3c_skos_rec}\cite{Mader2012}\tabularnewline
+\cline{2-4} 
+ & \multirow{9}{*}{Dataset Level} & QI.4 & Existence of all the necessary objects for a given task \cite{Mendes2012}\tabularnewline
+\cline{3-4} 
+ &  & QI.5 & Existence of supporting structured metadata  \cite{Hogan2010}\tabularnewline
+\cline{3-4} 
+ &  & QI.6 & Supports multiple serializations \cite{Framework2012}\tabularnewline
+\cline{3-4} 
+ &  & QI.7 & Includes the correct MIME-type for the content  \cite{Hogan2010}\tabularnewline
+\cline{3-4} 
+ &  & QI.8 & Contains appropriate volume of data for a particular task \cite{Framework2012}\tabularnewline
+\cline{3-4} 
+ &  & QI.9 & Has different queryable endpoints to access the data \cite{Framework2012}\tabularnewline
+\cline{3-4} 
+ &  & QI.10 & Checked against syntactic errors \cite{Hogan2010}\tabularnewline
+\cline{3-4} 
+ &  & QI.11 & Usage of datasets description vocabularies \tabularnewline
+\cline{3-4} 
+ &  & QI.12 & Existence of descriptions about its size and categorization \tabularnewline
+\cline{2-4} 
+ & \multirow{2}{*}{Links Level} & QI.13 & Existence of complete dereferencable in-bound and out-bound links \cite{Hogan2010}\cite{Mader2012}\cite{Gueret2012}\tabularnewline
+\cline{3-4} 
+ &  & QI.14 & Existence of supporting linkage metadata  \cite{Hogan2010}\tabularnewline
+\cline{2-4} 
+ & \multirow{5}{*}{Model Level} & QI.15 & Covers the complete set of values \cite{Mader2012}\tabularnewline
+\cline{3-4} 
+ &  & QI.16 & Absence of disconnected graph clusters \cite{Mader2012}\tabularnewline
+\cline{3-4} 
+ &  & QI.17 & Absence of omitted top concept \cite{Hogan2010}\tabularnewline
+\cline{3-4} 
+ &  & QI.18 & Absence of unidirectional related concepts \cite{Hogan2010}\tabularnewline
+\cline{3-4} 
+ &  & QI.19 & Existence of supporting metadata about the kind and number of used vocabularies \cite{Framework2012}\tabularnewline
 \hline 
-Quality Attribute & Quality Category & Quality Indicator\tabularnewline
 \hline 
-\multirow{5}{*}{Comprehensibility} & \multirow{5}{*}{Dataset Level} & Existence of at least one exemplary URI\tabularnewline
-\cline{3-3} 
- &  & Existence of at least one exemplary SPARQL query\tabularnewline
-\cline{3-3} 
- &  & Existence of regular expression pattern that matches the URIs of a datasets\tabularnewline
-\cline{3-3} 
- &  & Existence a list of used vocabularies \tabularnewline
-\cline{3-3} 
- &  & Existence of a mailing list or message board\tabularnewline
+\multirow{2}{*}{Availability} & \multirow{2}{*}{Dataset Level} & QI.20 & Existence of an RDF dump that can be downloaded by users \cite{flemming2010}\cite{Hogan2010}\tabularnewline
+\cline{3-4} 
+ &  & QI.21 & Existence of queryable endpoints that respond to direct queries\tabularnewline
 \hline 
-\end{tabular}\caption{Comprehensibility Quality Attribute}
-\end{table}
+\hline 
+\multirow{8}{*}{Correctness} & \multirow{4}{*}{Entity Level} & QI.22 & Absence of missing or empty labels \cite{Acosta2013}\cite{Mader2012}\tabularnewline
+\cline{3-4} 
+ &  & QI.23 & Absence of incorrect data type for typed literals \cite{Hogan2010}\cite{Acosta2013} \tabularnewline
+\cline{3-4} 
+ &  & QI.24 & Absence of omitted or invalid languages tags \cite{Suominen:2012:IQS:2413941.2413985}\cite{Mader2012}\tabularnewline
+\cline{3-4} 
+ &  & QI.25 & Absence of terms without any associative or hierarchical relationships \cite{journals/ires/Living10}\tabularnewline
+\cline{2-4} 
+ & \multirow{2}{*}{Links Level} & QI.26 & Existence of content related to the subject of the RDF triple \cite{Suominen:2012:IQS:2413941.2413985}\cite{Acosta2013}\tabularnewline
+\cline{3-4} 
+ &  & QI.27 & Absence of syntactic errors  \cite{Suominen2013}\tabularnewline
+\cline{2-4} 
+ & \multirow{2}{*}{Model Level} & QI.28 & Contains marked top concepts \cite{Mader2012}\tabularnewline
+\cline{3-4} 
+ &  & QI.29 & Absence of broader concepts for top concepts \cite{Mader2012}\tabularnewline
+\hline 
+\hline 
+\multirow{4}{*}{Conciseness} & \multirow{2}{*}{Entity Level} & QI.30 & Absence of redundant attributes \cite{Mendes2012}\tabularnewline
+\cline{3-4} 
+ &  & QI.31 & Existence of short URIs \cite{Framework2012}\tabularnewline
+\cline{2-4} 
+ & \multirow{2}{*}{Dataset Level} & QI.32 & Absence of redundant objects \cite{Mendes2012}\tabularnewline
+\cline{3-4} 
+ &  & QI.33 & Follows the HTTP URI scheme \cite{Hogan:2012:ESL:2263498.2264570}\cite{Suominen2013}\tabularnewline
+\hline  
+\hline 
+\multirow{3}{*}{Security} & \multirow{3}{*}{Dataset Level} & QI.34 & Uses login credentials to restrict access \cite{Framework2012}\tabularnewline
+\cline{3-4} 
+ &  & QI.35 & Uses SSL or SSH to provide access to their dataset \cite{Framework2012}\tabularnewline
+\cline{3-4} 
+ &  & QI.36 & Grants access to specific users \cite{Framework2012}\tabularnewline
+\hline 
+\hline 
+\multirow{1}{*}{Freshness} & \multirow{1}{*}{Entity Level} & QI.37 & Existence of timestamps that can keep track of its modifications  \cite{Flouris2012}\tabularnewline
+\hline 
+\hline 
+\multirow{3}{*}{Licensing} & \multirow{3}{*}{Dataset Level} & QI.38 & Existence of machine readable license information \cite{Hogan:2012:ESL:2263498.2264570}\tabularnewline
+\cline{3-4} 
+ &  & QI.39 & Existence of human readable license information  \cite{Hogan:2012:ESL:2263498.2264570}\tabularnewline
+\cline{3-4} 
+ &  & QI.40 & Specifies permissions, copyrights and attributions  \cite{Framework2012}\tabularnewline
+\hline 
+\hline 
+\multirow{5}{*}{Comprehensibility} & \multirow{5}{*}{Dataset Level} & QI.41 & Existence of at least one exemplary URI \cite{Framework2012}\tabularnewline
+\cline{3-4} 
+ &  & QI.42 & Existence of at least one exemplary SPARQL query \cite{Framework2012}\tabularnewline
+\cline{3-4} 
+ &  & QI.43 & Existence of regular expression pattern that matches the URIs of a datasets \cite{Framework2012}\tabularnewline
+\cline{3-4} 
+ &  & QI.44 & Existence a list of used vocabularies \tabularnewline
+\cline{3-4} 
+ &  & QI.45 & Existence of a mailing list or message board \cite{flemming2010}\tabularnewline
+\hline 
+\multirow{11}{*}{Consistency} & \multirow{5}{*}{Entity Level} & QI.46 & Existence of consistent preferred labels per language tag \cite{skosprimer}\cite{Mader2012}\tabularnewline
+\cline{3-4} 
+ &  & QI.47 & Absence of overlapping labels\tabularnewline
+\cline{3-4} 
+ &  & QI.48 & Absence of disjoint labels \cite{Mader2012}\tabularnewline
+\cline{3-4} 
+ &  & QI.49 & Absence of extra white spaces in labels \cite{Suominen:2012:IQS:2413941.2413985}\tabularnewline
+\cline{3-4} 
+ &  & QI.50 & Existence of only one value of skos:prefLabel without a language tag  \cite{Mader2012}\cite{Suominen:2012:IQS:2413941.2413985}\tabularnewline
+\cline{2-4} 
+ & \multirow{1}{*}{Dataset Level} & QI.51 & Absence of conflicting information \cite{Mendes2012}\tabularnewline
+\cline{2-4} 
+ & \multirow{5}{*}{Model Level} & QI.52 & Absence of atypical use of collections, containers and reification \cite{Hogan2010}\tabularnewline
+\cline{3-4} 
+ &  & QI.53 & Absence of overlapping usage of owl:sameAs and owl:differentFrom  \cite{Hogan2010}\tabularnewline
+\cline{3-4} 
+ &  & QI.54 & Absence of overlapping usage of owl:AllDifferent and owl:distinctMembers  \cite{Hogan2010}\tabularnewline
+\cline{3-4} 
+ &  & QI.55 & Absence of asserted members of owl:Nothing  \cite{Hogan2010}\tabularnewline
+\cline{3-4} 
+ &  & QI.56 & Absence of membership violation for disjoint classes  \cite{Hogan2010}\tabularnewline
+\hline 
+\hline 
+\multirow{10}{*}{Coherence} & \multirow{10}{*}{Model Level} & QI.57 & Absence of misplaced or deprecated classes or properties  \cite{Hogan2010}\tabularnewline
+\cline{3-4} 
+ &  & QI.58 & Absence of misused owl:DataTypeProperty or owl:ObjectProperty  \cite{Hogan2010}\tabularnewline
+\cline{3-4} 
+ &  & QI.59 & Absence of relations and mappings clashes  \cite{Suominen:2012:IQS:2413941.2413985}\tabularnewline
+\cline{3-4}
+ &  & QI.60 & Absence or minimal usage of blank nodes \cite{Hogan:2012:ESL:2263498.2264570}\tabularnewline
+\cline{3-4} 
+ &  & QI.61 & Absence of invalid inverse-functional values \cite{Hogan2010}\tabularnewline
+\cline{3-4} 
+ &  & QI.62 & Absence of cyclic hierarchical relations \cite{conf/jcdl/Soergel05}\cite{Suominen:2012:IQS:2413941.2413985}\cite{Mader2012}\tabularnewline
+\cline{3-4} 
+ &  & QI.63 & Absence of undefined classes and properties usage \cite{Hogan2010}\tabularnewline
+\cline{3-4} 
+ &  & QI.64 & Absence of solely transitive related concepts \cite{Mader2012}\tabularnewline
+\cline{3-4} 
+ &  & QI.65 & Absence of redefinitions of existing vocabularies  \cite{Hogan2010}\tabularnewline
+\cline{3-4} 
+ &  & QI.66 & Absence of valueless associative relations  \cite{Mader2012}\tabularnewline
+\cline{3-4} 
+ &  & QI.67 & Absence of incomplete literals with datatype range \cite{Hogan2010}\tabularnewline
+\hline 
+\hline 
+\multirow{4}{*}{Efficiency} & \multirow{4}{*}{Dataset Level} & QI.68 & Absence of slash-URIs \cite{Framework2012}\tabularnewline
+\cline{3-4} 
+ &  & QI.69 & Provides acceptable delay between the request and its response \cite{citeulike:2925559}\tabularnewline
+\cline{3-4} 
+ &  & QI.70 & Serves low Latency HTTP requests \cite{Framework2012}\tabularnewline
+\cline{3-4} 
+ &  & QI.71 & Has the ability to scale \cite{Framework2012}\tabularnewline
+\hline 
+\hline 
+\multirow{2}{*}{Accuracy} & \multirow{2}{*}{Dataset Level} & QI.72 & Absence of outliers \cite{Framework2012}\tabularnewline
+\cline{3-4} 
+ &  & QI.73 & Absence of attributes that do not contain useful values for data entries \cite{Framework2012}\tabularnewline
+\hline
+\hline
+\multirow{6}{*}{Provenance} & \multirow{1}{*}{Entity Level} & QI.74 & Able to construct decision networks informed by provenance graphs \cite{Gamble2011}\tabularnewline
+\cline{2-4} 
+ & \multirow{4}{*}{Dataset Level} & QI.75 & Existence of metadata that describes its authoritative information  \cite{Flouris2012}\tabularnewline
+\cline{3-4} 
+ &  & QI.76 & Ensures the reliability and trustworthiness of the publisher \cite{Flouris2012}\tabularnewline
+\cline{3-4} 
+ &  & QI.77 & Uses a provenance vocabulary\tabularnewline
+\cline{3-4} 
+ &  & QI.78 & Uses digital signatures \cite{Framework2012}\tabularnewline
+\cline{2-4} 
+ & \multirow{1}{*}{Model Level} & QI.79 & Ensures the trustworthiness of RDF statements \cite{Hartig09usingweb}\tabularnewline
+\hline
+\end{longtable}
+}
+\end{center}
+\end{landscape}
 
 \section{Linked Data Quality Tools}
 The literature contains several tools that reflect the different aspects of LOD: modeling, ontologies and vocabularies, dataset and SPARQL end-points. In this section we present the results of our survey on these tools.
@@ -477,199 +409,205 @@ Sindice \cite{Delbru2010} uses a set of techniques to rank Web data. They use a 
 
 
 \subsection{Queryable End-point Quality}
-The availability of Linked Data is highly dependent on the performance qualities of its queryable end-points. The standard query language for Semantic Web resources is SPARQL, thus SPARQL endpoints are the main focus. In \cite{Buil-Aranda2013} the authors present their findings to measure the discoverability of SPARQL endpoints by analyzing how they are located and the metadata used to describe them. In addition to that, they also analyze endpoints interoperability by identifying features of SPARQL 1.0 and SPARQL 1.1 that are supported. The authors tackled the endpoints efficiency by testing the time taken to answer generic, content-agnostic SPARQL queries over HTTP. Finally, the authors measured endpoints reliability by monitoring the uptime of public SPARQL endpoints on a course of 27 months. The results for this work can be accessed online via the SPARQL Endpoints Status tool\footnote{http://labs.mondeca.com/sparqlEndpointsStatus/} and is queryable using their public SPARQL endpoint\footnote{http://labs.mondeca.com/sparqlEndpointsStatus/endpoint/endpoint.html}.\\
+The availability of Linked Data is highly dependent on the performance qualities of its queryable end-points. The standard query language for Semantic Web resources is SPARQL, thus SPARQL endpoints are the main focus. In \cite{Buil-Aranda2013} the authors present their findings to measure the discoverability of SPARQL endpoints by analyzing how they are located and the metadata used to describe them. In addition to that, they also analyze endpoints interoperability by identifying features of SPARQL 1.0 and SPARQL 1.1 that are supported. The authors tackled the endpoints efficiency by testing the time taken to answer generic, content-agnostic SPARQL queries over HTTP. Finally, the authors measured endpoints reliability by monitoring the uptime of public SPARQL endpoints on a course of 27 months. The results for this work can be accessed online via the SPARQL Endpoints Status tool \footnote{http://labs.mondeca.com/sparqlEndpointsStatus/} and is queryable using their public SPARQL endpoint\footnote{http://labs.mondeca.com/sparqlEndpointsStatus/endpoint/endpoint.html}. \\
 
-\begin{landscape}
+Table(2) shows the result for our evaluation of the various Linked Data tools mentioned in this paper. Due to space limitation, we have only shown the tools that can directly or indirectly assess one or more of the quality indicators listed in Table(1). Moreover, we have also grouped the Syntax Validation tools (W3C RDF Validator, RDF:about, VRP, The RDF Triple-Checker and Vapour) under one approach. We should highlight that the PoolParty tool includes qSKOS in its implementation, thus they are grouped in one tool which is the PoolParty.
+
+\newcolumntype{P}[2]{%
+  >{\begin{turn}{#1}\begin{minipage}{#2}\small\raggedright\hspace{0pt}}l%
+  <{\end{minipage}\end{turn}}%
+}
+
 \begin{center}
-\begin{longtable}[h]{|c|c|c|}
-\caption[Objective Linked Data Quality Framework]{Objective Linked Data Quality Framework} \label{DQM} \\
+{\footnotesize
+\begin{longtable}[h]{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\caption[Linked Data quality tools]{Linked Data quality tools evaluation} \label{DQMT} \\
 
-\hline \multicolumn{1}{|c|}{\textbf{Quality Attribute}} & \multicolumn{1}{c|}{\textbf{Quality Category}} & \multicolumn{1}{c|}{\textbf{Quality Indicator}} \\ \hline 
+\hline \multicolumn{1}{|c|}{\textbf{ID / Tool}} & \multicolumn{1}{P{90}{3.1cm}|}{PROLOD} & \multicolumn{1}{P{90}{3.1cm}|}{Sieve} & \multicolumn{1}{P{90}{3.1cm}|}{Flemming's Tool}& \multicolumn{1}{P{90}{3.1cm}|}{SWIQA} & \multicolumn{1}{P{90}{3.1cm}|}{Syntax Validators}& \multicolumn{1}{P{90}{3.1cm}|}{Skosify} & \multicolumn{1}{P{90}{3.1cm}|}{OOPS!} & \multicolumn{1}{P{90}{3.1cm}|}{PoolParty} & \multicolumn{1}{P{90}{3.1cm}|}{ASKOSI} & \multicolumn{1}{P{90}{3.1cm}|}{Pellet} & \multicolumn{1}{P{90}{3.1cm}|}{Eyeball} & \multicolumn{1}{P{90}{3.1cm}|}{RDF:Alerts} & \multicolumn{1}{P{90}{3.1cm}|}{TripleCheckmate} & \multicolumn{1}{P{90}{3.1cm}|}{DING} & \multicolumn{1}{P{90}{3.1cm}|}{DSNotify} & \multicolumn{1}{P{90}{3.1cm}|}{SPARQL Endpoints-Status}\\ \hline 
 \endfirsthead
 
-\multicolumn{3}{c}%
-{{\bfseries \tablename\ \thetable{} Objective Linked Data Quality Framework}} \\
-\hline \multicolumn{1}{|c|}{\textbf{Quality Attribute}} &
-\multicolumn{1}{c|}{\textbf{Quality Category}} &
-\multicolumn{1}{c|}{\textbf{Quality Indicator}} \\ \hline 
+\multicolumn{17}{c}%
+{{\bfseries \tablename\ \thetable{} Linked Data quality tools evaluation}} \\
+\hline \multicolumn{1}{|c|}{\textbf{ID / Tool}} & \multicolumn{1}{P{90}{3.1cm}|}{PROLOD} & \multicolumn{1}{P{90}{3.1cm}|}{Sieve} & \multicolumn{1}{P{90}{3.1cm}|}{Flemming's Tool}& \multicolumn{1}{P{90}{3.1cm}|}{SWIQA} & \multicolumn{1}{P{90}{3.1cm}|}{Syntax Validators}& \multicolumn{1}{P{90}{3.1cm}|}{Skosify} & \multicolumn{1}{P{90}{3.1cm}|}{OOPS!} & \multicolumn{1}{P{90}{3.1cm}|}{PoolParty} & \multicolumn{1}{P{90}{3.1cm}|}{ASKOSI} & \multicolumn{1}{P{90}{3.1cm}|}{Pellet} & \multicolumn{1}{P{90}{3.1cm}|}{Eyeball} & \multicolumn{1}{P{90}{3.1cm}|}{RDF:Alerts} & \multicolumn{1}{P{90}{3.1cm}|}{TripleCheckmate} & \multicolumn{1}{P{90}{3.1cm}|}{DING} & \multicolumn{1}{P{90}{3.1cm}|}{DSNotify} & \multicolumn{1}{P{90}{3.1cm}|}{SPARQL Endpoints-Status} \\ \hline 
 \endhead
 
-\hline \multicolumn{3}{|r|}{{Continued on next page}} \\ \hline
+\hline \multicolumn{17}{|r|}{{Continued on next page}} \\ \hline
 \endfoot
 
 \hline
 \endlastfoot
 
+
 \hline 
-\multirow{19}{*}{Completeness} & \multirow{3}{*}{Entity Level} & Covers of all the attributes needed for a given task\tabularnewline
-\cline{3-3} 
- &  & Has Complete language coverage \tabularnewline
-\cline{3-3} 
- &  & Existence of documentation properties \tabularnewline
-\cline{2-3} 
- & \multirow{9}{*}{Dataset Level} & Existence of all the necessary objects for a given task \tabularnewline
-\cline{3-3} 
- &  & Existence of supporting structured metadata \tabularnewline
-\cline{3-3} 
- &  & Supports multiple serializations\tabularnewline
-\cline{3-3} 
- &  & Includes the correct MIME-type for the content\tabularnewline
-\cline{3-3} 
- &  & Contains appropriate volume of data for a particular task\tabularnewline
-\cline{3-3} 
- &  & Has different queryable endpoints to access the data\tabularnewline
-\cline{3-3} 
- &  & Checked against syntactic errors\tabularnewline
-\cline{3-3} 
- &  & Usage of datasets description vocabularies \tabularnewline
-\cline{3-3} 
- &  & Existence of descriptions about its size and categorization \tabularnewline
-\cline{2-3} 
- & \multirow{2}{*}{Links Level} & Existence of complete dereferencable in-bound and out-bound links\tabularnewline
-\cline{3-3} 
- &  & Existence of supporting linkage metadata\tabularnewline
-\cline{2-3} 
- & \multirow{5}{*}{Model Level} & Covers the complete set of values\tabularnewline
-\cline{3-3} 
- &  & Absence of disconnected graph clusters\tabularnewline
-\cline{3-3} 
- &  & Absence of omitted top concept\tabularnewline
-\cline{3-3} 
- &  & Absence of unidirectional related concepts\tabularnewline
-\cline{3-3} 
- &  & Existence of supporting metadata about the kind and number of used vocabularies \tabularnewline
+QI.1 &  & \checkmark &  & \checkmark &  &  &  &  &  &  &  &  & \checkmark &  &  & \tabularnewline
 \hline 
+QI.2 &  &  & \checkmark &  &  & \checkmark &  & \checkmark & \checkmark &  &  &  &  &  &  & \tabularnewline
 \hline 
-\multirow{2}{*}{Availability} & \multirow{2}{*}{Dataset Level} & Existence of an RDF dump that can be downloaded by users\tabularnewline
-\cline{3-3} 
- &  & Existence of queryable endpoints that respond to direct queries\tabularnewline
+QI.3 &  &  & \checkmark &  &  &  &  & \checkmark &  &  &  &  &  &  &  & \tabularnewline
 \hline 
+QI.4 &  & \checkmark &  & \checkmark &  &  &  &  &  &  &  &  & \checkmark &  &  & \tabularnewline
 \hline 
-\multirow{8}{*}{Correctness} & \multirow{4}{*}{Entity Level} & Absence of missing or empty labels\tabularnewline
-\cline{3-3} 
- &  & Absence of incorrect data type for typed literals \tabularnewline
-\cline{3-3} 
- &  & Absence of omitted or invalid languages tags \tabularnewline
-\cline{3-3} 
- &  & Absence of terms without any associative or hierarchical relationships\tabularnewline
-\cline{2-3} 
- & \multirow{2}{*}{Links Level} & Existence of content related to the subject of the RDF triple\tabularnewline
-\cline{3-3} 
- &  & follow the HTTP URI scheme\tabularnewline
-\cline{2-3} 
- & \multirow{2}{*}{Model Level} & Contains marked top concepts\tabularnewline
-\cline{3-3} 
- &  & Absence of broader concepts for top concepts\tabularnewline
+QI.5 &  &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
 \hline 
+QI.6 &  &  & \checkmark &  &  &  &  &  &  &  &  &  &  & \checkmark &  & \tabularnewline
 \hline 
-\multirow{4}{*}{Conciseness} & \multirow{2}{*}{Entity Level} & Absence of redundant attributes\tabularnewline
-\cline{3-3} 
- &  & Existence of short URIs\tabularnewline
-\cline{2-3} 
- & \multirow{2}{*}{Dataset Level} & Absence of redundant objects\tabularnewline
-\cline{3-3} 
- &  & Follows the HTTP URI scheme\tabularnewline
+QI.7 &  &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
 \hline 
+QI.8 & \checkmark &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
 \hline 
-\multirow{11}{*}{Consistency} & \multirow{5}{*}{Entity Level} & Existence of consistent preferred labels per language tag\tabularnewline
-\cline{3-3} 
- &  & Absence of overlapping labels\tabularnewline
-\cline{3-3} 
- &  & Absence of disjoint labels\tabularnewline
-\cline{3-3} 
- &  & Abscence of extra white spaces in labels\tabularnewline
-\cline{3-3} 
- &  & Existence of only one value of skos:prefLabel without a language tag\tabularnewline
-\cline{2-3} 
- & \multirow{1}{*}{Dataset Level} & Abscence of conflicting information\tabularnewline
-\cline{2-3} 
- & \multirow{5}{*}{Model Level} & Absence of atypical use of collections, containers and reification\tabularnewline
-\cline{3-3} 
- &  & Absence of overlapping usage of owl:sameAs and owl:differentFrom\tabularnewline
-\cline{3-3} 
- &  & Absence of overlapping usage of owl:AllDifferent and owl:distinctMembers\tabularnewline
-\cline{3-3} 
- &  & Absence of asserted members of owl:Nothing\tabularnewline
-\cline{3-3} 
- &  & Absence of membership violation for disjoint classes\tabularnewline
+QI.9 &  &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
 \hline 
+QI.10 &  &  & \checkmark &  & \checkmark &  &  &  &  &  &  & \checkmark &  &  &  & \tabularnewline
 \hline 
-\multirow{10}{*}{Coherence} & \multirow{10}{*}{Model Level} & Absence of misplaced or deprecated classes or properties\tabularnewline
-\cline{3-3} 
- &  & Absence of misused owl:DataTypeProperty or owl:ObjectProperty\tabularnewline
-\cline{3-3} 
- &  & Absence of relations and mappings clashes\tabularnewline
-\cline{3-3} 
- &  & Absence of invalid inverse-functional values\tabularnewline
-\cline{3-3} 
- &  & Absence of cyclic hierarchical relations\tabularnewline
-\cline{3-3} 
- &  & Absence of undefined classes and properties usage\tabularnewline
-\cline{3-3} 
- &  & Absence of solely transitive related concepts\tabularnewline
-\cline{3-3} 
- &  & Absence of redefinitions of existing vocabularies\tabularnewline
-\cline{3-3} 
- &  & Absence of valueless associative relations\tabularnewline
-\cline{3-3} 
- &  & Absence of incomplete literals with datatype range\tabularnewline
+QI.11 & \checkmark &  &  &  &  & \checkmark & \checkmark & \checkmark & \checkmark &  & \checkmark &  &  & \checkmark &  & \checkmark\tabularnewline
 \hline 
+QI.12 & \checkmark &  & \checkmark &  &  &  &  &  &  &  &  &  &  & \checkmark &  & \tabularnewline
 \hline 
-\multirow{4}{*}{Efficiency} & \multirow{4}{*}{Dataset Level} & Absence of f slash-URIs\tabularnewline
-\cline{3-3} 
- &  & Provides acceptable delay between the request and its response\tabularnewline
-\cline{3-3} 
- &  & Serves low Latency HTTP requests\tabularnewline
-\cline{3-3} 
- &  & Has the ability to scale \tabularnewline
+QI.13 &  &  & \checkmark &  &  &  &  & \checkmark &  &  &  & \checkmark &  &  & \checkmark & \tabularnewline
 \hline 
+QI.14 &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \checkmark & \checkmark\tabularnewline
 \hline 
-\multirow{2}{*}{Accuracy} & \multirow{2}{*}{Dataset Level} & Absence of outliers\tabularnewline
-\cline{3-3} 
- &  & Absence of attributes that do not contain useful values for data entries\tabularnewline
-\hline
+QI.15 &  & \checkmark &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
 \hline 
-\multirow{6}{*}{Provenance} & \multirow{1}{*}{Entity Level} & Able to construct decision networks informed by provenance graphs\tabularnewline
-\cline{2-3} 
- & \multirow{4}{*}{Dataset Level} & Existence of metadata that describes its authoritative information\tabularnewline
-\cline{3-3} 
- &  & Ensures the reliability and trustworthiness of the publisher\tabularnewline
-\cline{3-3} 
- &  & Uses a provenance vocabulary\tabularnewline
-\cline{3-3} 
- &  & Uses digital signatures\tabularnewline
-\cline{2-3} 
- & \multirow{1}{*}{Model Level} & Ensures the trustworthiness of RDF statements\tabularnewline
+QI.16 &  &  &  &  &  &  &  & \checkmark &  &  &  &  &  &  &  & \tabularnewline
 \hline 
-\multirow{1}{*}{Freshness} & \multirow{1}{*}{Entity Level} & Existence of timestamps that can keep track of its modifications\tabularnewline
+QI.17 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
 \hline 
+QI.18 &  &  &  &  &  & \checkmark &  & \checkmark &  &  &  &  &  &  &  & \tabularnewline
 \hline 
-\multirow{3}{*}{Licensing} & \multirow{3}{*}{Dataset Level} & Existence of machine readable license information\tabularnewline
-\cline{3-3} 
- &  & Existence of human readable license information\tabularnewline
-\cline{3-3} 
- &  & Specifies permissions, copyrights and attributions\tabularnewline
-\hline  
+QI.19 &  &  & \checkmark &  &  &  & \checkmark &  &  &  &  &  &  &  &  & \tabularnewline
 \hline 
-\multirow{3}{*}{Security} & \multirow{3}{*}{Dataset Level} & Uses login credentials to restrict access\tabularnewline
-\cline{3-3} 
- &  & Uses SSL or SSH to provide access to their dataset\tabularnewline
-\cline{3-3} 
- &  & Grants access to specific users\tabularnewline
+QI.20 &  &  & \checkmark &  &  &  &  &  &  &  &  & \checkmark &  &  &  & \tabularnewline
 \hline 
+QI.21 &  &  & \checkmark &  &  &  &  &  &  &  &  & \checkmark &  &  &  & \checkmark\tabularnewline
 \hline 
-\multirow{5}{*}{Comprehensibility} & \multirow{5}{*}{Dataset Level} & Existence of at least one exemplary URI\tabularnewline
-\cline{3-3} 
- &  & Existence of at least one exemplary SPARQL query\tabularnewline
-\cline{3-3} 
- &  & Existence of regular expression pattern that matches the URIs of a datasets\tabularnewline
-\cline{3-3} 
- &  & Existence a list of used vocabularies \tabularnewline
-\cline{3-3} 
- &  & Existence of a mailing list or message board\tabularnewline
+QI.22 &  &  &  &  &  & \checkmark &  & \checkmark & \checkmark &  &  &  & \checkmark &  &  & \tabularnewline
+\hline 
+QI.23 &  &  &  &  &  &  & \checkmark &  &  & \checkmark & \checkmark &  & \checkmark &  &  & \tabularnewline
+\hline 
+QI.24 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
+\hline 
+QI.25 &  &  &  &  &  &  &  & \checkmark & \checkmark &  &  &  &  &  &  & \tabularnewline
+\hline 
+QI.26 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
+\hline 
+QI.27 &  &  & \checkmark &  &  &  &  &  &  &  & \checkmark & \checkmark &  &  & \checkmark & \tabularnewline
+\hline 
+QI.28 &  &  &  &  &  & \checkmark &  & \checkmark &  &  &  &  &  &  &  & \tabularnewline
+\hline 
+QI.29 &  &  & \checkmark &  &  & \checkmark &  & \checkmark & \checkmark &  & \checkmark & \checkmark &  &  &  & \tabularnewline
+\hline 
+QI.30 &  &  &  & \checkmark &  &  & \checkmark & \checkmark & \checkmark &  &  &  &  &  &  & \tabularnewline
+\hline 
+QI.31 &  &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
+\hline 
+QI.32 &  & \checkmark & \checkmark & \checkmark &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
+\hline 
+QI.33 &  &  & \checkmark &  &  &  &  &  &  &  &  & \checkmark &  &  &  & \tabularnewline
+\hline 
+QI.34 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
+\hline 
+QI.35 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
+\hline 
+QI.36 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
+\hline 
+QI.37 &  & \checkmark &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
+\hline 
+QI.38 &  &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
+\hline 
+QI.39 &  &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
+\hline 
+QI.40 &  &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
+\hline 
+QI.41 &  &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
+\hline 
+QI.42 &  &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
+\hline 
+QI.43 &  &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
+\hline 
+QI.44 &  &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
+\hline 
+QI.45 &  &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
+\hline 
+QI.46 &  &  &  &  &  & \checkmark &  & \checkmark & \checkmark &  &  &  &  &  &  & \tabularnewline
+\hline 
+QI.47 &  &  &  &  &  &  & \checkmark & \checkmark &  &  & \checkmark &  &  &  &  & \tabularnewline
+\hline 
+QI.48 &  &  &  &  &  & \checkmark & \checkmark & \checkmark &  &  & \checkmark &  &  &  &  & \tabularnewline
+\hline 
+QI.49 &  &  &  &  &  & \checkmark &  &  &  &  & \checkmark &  &  &  &  & \tabularnewline
+\hline 
+QI.50 &  &  &  &  &  &  &  & \checkmark & \checkmark &  &  &  &  &  &  & \tabularnewline
+\hline 
+QI.51 &  &  &  &  &  &  &  &  &  & \checkmark & \checkmark &  & \checkmark &  &  & \tabularnewline
+\hline 
+QI.52 &  &  &  &  &  &  &  &  &  &  & \checkmark &  &  &  &  & \tabularnewline
+\hline 
+QI.53 &  &  &  &  &  &  & \checkmark &  &  & \checkmark &  &  &  &  &  & \tabularnewline
+\hline 
+QI.54 &  &  &  &  &  &  &  &  &  & \checkmark &  &  &  &  &  & \tabularnewline
+\hline 
+QI.55 &  &  &  &  &  &  &  &  &  & \checkmark &  &  &  &  &  & \tabularnewline
+\hline 
+QI.56 &  &  &  &  &  & \checkmark & \checkmark & \checkmark &  & \checkmark & \checkmark &  &  &  &  & \tabularnewline
+\hline 
+QI.57 &  &  &  & \checkmark & \checkmark &  & \checkmark & \checkmark &  &  & \checkmark &  &  &  &  & \tabularnewline
+\hline 
+QI.58 &  &  &  &  &  &  & \checkmark & \checkmark &  & \checkmark & \checkmark &  &  &  &  & \tabularnewline
+\hline 
+QI.59 &  &  &  &  &  &  &  & \checkmark &  &  &  & \checkmark &  &  &  & \tabularnewline
+\hline 
+QI.60 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
+\hline 
+QI.61 &  &  &  &  &  &  & \checkmark &  &  & \checkmark &  &  &  &  &  & \tabularnewline
+\hline 
+QI.62 &  &  &  &  &  & \checkmark & \checkmark & \checkmark & \checkmark &  &  &  &  &  &  & \tabularnewline
+\hline 
+QI.63 &  &  &  &  &  &  & \checkmark & \checkmark &  & \checkmark & \checkmark &  &  &  &  & \tabularnewline
+\hline 
+QI.64 &  &  &  &  &  & \checkmark &  & \checkmark &  &  &  &  &  &  &  & \tabularnewline
+\hline 
+QI.65 &  &  & \checkmark &  &  &  &  &  &  & \checkmark & \checkmark & \checkmark &  &  &  & \tabularnewline
+\hline 
+QI.66 &  &  &  &  &  &  &  & \checkmark &  &  &  &  &  &  &  & \tabularnewline
+\hline 
+QI.67 &  &  &  & \checkmark &  &  & \checkmark & \checkmark &  & \checkmark & \checkmark &  &  &  &  & \tabularnewline
+\hline 
+QI.68 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
+\hline 
+QI.69 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \checkmark\tabularnewline
+\hline 
+QI.70 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \checkmark\tabularnewline
+\hline 
+QI.71 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \checkmark\tabularnewline
+\hline 
+QI.72 & \checkmark &  &  & \checkmark &  &  &  &  &  &  &  &  & \checkmark &  &  & \tabularnewline
+\hline 
+QI.73 &  &  &  & \checkmark &  &  &  &  &  &  &  &  & \checkmark &  &  & \tabularnewline
+\hline 
+QI.74 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
+\hline 
+QI.75 &  &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
+\hline 
+QI.76 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
+\hline 
+QI.77 & \checkmark &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
+\hline 
+QI.78 &  &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
+\hline 
+QI.79 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
 \end{longtable}
+}
 \end{center}
-\end{landscape}
+
+\section{Conclusions and Future Work}
+
+In this paper, we have presented a comprehensive objective quality framework applied to the Linked Open Data. We have refined our previous work and presented 13 different quality attributes. To measure these abstract attributes, we have identified a total of 79 quality indicators that were mapped when suitable to four main categories (entity, dataset, links, models). 
+We have also surveyed more than 25 different tools that measure different quality aspects of Linked Open Data. We evaluated these tools against our quality indicators. As a result, we have identified the need for a complete quality framework that can assess all the quality indicators. Most of the tools were designed with limited coverage to certain aspects, for example, ontology and vocabulary checkers focus mainly on the coherence, completeness and correctness at the modeling level. Flemming's tool covers several attributes like the completeness, correctness, conciseness, security, licensing and comprehensibility, but it falls short in measuring the consistency, coherence, efficiency and provenance.\\
+
+We have also noticed the lack of tools to measure certain quality indicators like the dataset's security. Moreover, to our knowledge, there are no tools that can measure all the provenance quality indicators (except for Flemming's tool that is able to check for the use of digital signatures) although the literature covers several approaches to achieve that \cite{Hartig09usingweb}\cite{Flouris2012}\cite{Harth2009}. \\
+
+We plan to develop a comprehensive objective Linked Data quality evaluation tool. The tool will be able to automatically measure the various quality indicators listed in this paper, introduce a scoring function with different weights for the various quality attributes and issue a quality certificate.
 
 \bibliographystyle{abbrv}
 \bibliography{DQ}
