@@ -1,12 +1,12 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9) (preloaded format=pdflatex 2013.6.11)  3 OCT 2013 11:38
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9) (preloaded format=pdflatex 2013.6.11)  3 OCT 2013 17:45
 entering extended mode
 **C:/Users/i070192/Dropbox/Documents/PhD*TelecomParisTech*-*EURECOM*-*France*20
-12-2015/My*PhD*Documents/Papers/An*Objective*Linked*Data*Quality*Framework/DQ.t
-ex
+12-2015/My*PhD*Documents/Papers/An*Objective*Assessment*Framework*for*Linked*Da
+ta*Quality/DQ.tex
 
 ("C:/Users/i070192/Dropbox/Documents/PhD TelecomParisTech - EURECOM - France 20
-12-2015/My PhD Documents/Papers/An Objective Linked Data Quality Framework/DQ.t
-ex"
+12-2015/My PhD Documents/Papers/An Objective Assessment Framework for Linked Da
+ta Quality/DQ.tex"
 LaTeX2e <2011/06/27>
 Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
 abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
@@ -20,8 +20,8 @@ an, tamil, telugu, turkish, turkmen, ukenglish, ukrainian, uppersorbian, usengl
 ishmax, welsh, loaded.
 
 ("C:\Users\i070192\Dropbox\Documents\PhD TelecomParisTech - EURECOM - France 20
-12-2015\My PhD Documents\Papers\An Objective Linked Data Quality Framework\iosa
-rt2c.cls"
+12-2015\My PhD Documents\Papers\An Objective Assessment Framework for Linked Da
+ta Quality\iosart2c.cls"
 Document Class: iosart2c 2010/10/28 v1.0, IOS Press
 ("C:\Program Files (x86)\MiKTeX\tex\latex\base\fleqn.clo"
 File: fleqn.clo 1998/08/17 v1.1c Standard LaTeX option (flush left equations)
@@ -465,8 +465,8 @@ Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
 \rot@mess@toks=\toks29
 )
 ("C:\Users\i070192\Dropbox\Documents\PhD TelecomParisTech - EURECOM - France 20
-12-2015\My PhD Documents\Papers\An Objective Linked Data Quality Framework\DQ.a
-ux")
+12-2015\My PhD Documents\Papers\An Objective Assessment Framework for Linked Da
+ta Quality\DQ.aux")
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 14.
 LaTeX Font Info:    ... okay on input line 14.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 14.
@@ -479,7 +479,8 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 14.
 LaTeX Font Info:    ... okay on input line 14.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 14.
 LaTeX Font Info:    ... okay on input line 14.
- ("C:\Program Files (x86)\MiKTeX\tex\context\base\supp-pdf.mkii"
+
+("C:\Program Files (x86)\MiKTeX\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count141
 \scratchdimen=\dimen177
@@ -589,114 +590,134 @@ Underfull \hbox (badness 10000) in paragraph at lines 84--85
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 91--92
+Underfull \hbox (badness 10000) in paragraph at lines 86--87
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 94--98
+Underfull \hbox (badness 10000) in paragraph at lines 93--94
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 101--102
+Underfull \hbox (badness 10000) in paragraph at lines 96--100
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 103--104
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 106--107
 
  []
 
 [4] [5]
-Underfull \hbox (badness 10000) in paragraph at lines 128--129
+Underfull \hbox (badness 10000) in paragraph at lines 132--133
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 130--134
+Underfull \hbox (badness 10000) in paragraph at lines 134--138
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 149--152
+Underfull \hbox (badness 10000) in paragraph at lines 153--156
 
  []
 
 [6] [7] [8
 
 ] [9]
-Underfull \hbox (badness 10000) in paragraph at lines 388--389
+Underfull \hbox (badness 10000) in paragraph at lines 383--384
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 393--394
 
  []
 
 [10
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 393--394
-
- []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 398--399
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 400--401
+Underfull \hbox (badness 10000) in paragraph at lines 403--404
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 405--406
 
  []
 
 [11]
-Underfull \hbox (badness 10000) in paragraph at lines 402--403
+Underfull \hbox (badness 10000) in paragraph at lines 407--408
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 404--405
+Underfull \hbox (badness 10000) in paragraph at lines 409--410
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 406--407
+Underfull \hbox (badness 10000) in paragraph at lines 411--412
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 408--409
+Underfull \hbox (badness 10000) in paragraph at lines 413--414
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 412--413
+Underfull \hbox (badness 10000) in paragraph at lines 417--418
 
  []
 
 
-Underfull \vbox (badness 10000) detected at line 481
- []
-
-[12] [13]
-Underfull \hbox (badness 10000) in paragraph at lines 605--607
+Underfull \hbox (badness 10000) in paragraph at lines 420--421
 
  []
 
-[14]
-Underfull \hbox (badness 10000) in paragraph at lines 608--609
+[12]
+Underfull \hbox (badness 10000) in paragraph at lines 422--423
 
  []
 
 
+Underfull \hbox (badness 10000) in paragraph at lines 424--425
+
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 491
+ []
+
+[13] [14]
 ("C:\Users\i070192\Dropbox\Documents\PhD TelecomParisTech - EURECOM - France 20
-12-2015\My PhD Documents\Papers\An Objective Linked Data Quality Framework\DQ.b
-bl"
+12-2015\My PhD Documents\Papers\An Objective Assessment Framework for Linked Da
+ta Quality\DQ.bbl"
 Missing character: There is no √ in font cmr8!
 Missing character: There is no ° in font cmr8!
 Missing character: There is no Ô in font cmr8!
 Missing character: There is no ¨ in font cmr8!
 Missing character: There is no Å in font cmr8!
+ [15]
 Missing character: There is no ‚ in font cmr8!
 Missing character: There is no Ä in font cmr8!
 Missing character: There is no ì in font cmr8!
 Missing character: There is no Ô in font cmr8!
 Missing character: There is no ¨ in font cmr8!
 Missing character: There is no Å in font cmr8!
- [15]
 Missing character: There is no √ in font cmr8!
 Missing character: There is no ≥ in font cmr8!
 Missing character: There is no √ in font cmr8!
@@ -710,31 +731,31 @@ Missing character: There is no ∂ in font cmr8!
 Missing character: There is no ‚ in font cmr8!
 Missing character: There is no Ä in font cmr8!
 Missing character: There is no ô in font cmr8!
-) [16]
+ [16]) [17]
 ("C:\Users\i070192\Dropbox\Documents\PhD TelecomParisTech - EURECOM - France 20
-12-2015\My PhD Documents\Papers\An Objective Linked Data Quality Framework\DQ.a
-ux") ) 
+12-2015\My PhD Documents\Papers\An Objective Assessment Framework for Linked Da
+ta Quality\DQ.aux") ) 
 Here is how much of TeX's memory you used:
  10688 strings out of 493921
- 197033 string characters out of 3146474
- 376493 words of memory out of 3000000
+ 197198 string characters out of 3146474
+ 346894 words of memory out of 3000000
  13776 multiletter control sequences out of 15000+200000
  16912 words of font info for 65 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 56i,7n,55p,2921b,500s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files (x86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmb10.pfb><
-C:/Program Files (x86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Prog
-ram Files (x86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program Fil
-es (x86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files (x86)
-/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files (x86)/MiKTeX/
-fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files (x86)/MiKTeX/fonts/ty
-pe1/public/amsfonts/cm/cmr9.pfb><C:/Program Files (x86)/MiKTeX/fonts/type1/publ
-ic/amsfonts/cm/cmti10.pfb><C:/Program Files (x86)/MiKTeX/fonts/type1/public/ams
-fonts/cm/cmti8.pfb><C:/Program Files (x86)/MiKTeX/fonts/type1/public/amsfonts/s
-ymbols/msam7.pfb>
-Output written on DQ.pdf (16 pages, 227735 bytes).
+ 56i,7n,55p,2936b,500s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Program Files (x86)/MiKTeX/fonts/type1/public/amsfonts
+/cm/cmb10.pfb><C:/Program Files (x86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmr
+10.pfb><C:/Program Files (x86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb>
+<C:/Program Files (x86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Prog
+ram Files (x86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program File
+s (x86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files (x86)/
+MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Program Files (x86)/MiKTeX/f
+onts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files (x86)/MiKTeX/fonts/t
+ype1/public/amsfonts/cm/cmti8.pfb><C:/Program Files (x86)/MiKTeX/fonts/type1/pu
+blic/amsfonts/symbols/msam7.pfb>
+Output written on DQ.pdf (17 pages, 230537 bytes).
 PDF statistics:
- 97 PDF objects out of 1000 (max. 8388607)
+ 100 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
