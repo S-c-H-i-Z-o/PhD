@@ -29,7 +29,7 @@
 The standardization of Semantic Web technologies and specifications has resulted in a staggering volume of data being published. However, data should be of good quality to be integrated properly. In this paper, we propose an objective assessment framework for data quality that issues a certificate for a given Linked Open Data repository. This framework helps on one hand data owners to rate the quality of their datasets and get some hints on possible improvements, and on the other hand data consumers to choose their data sources from a ranked set. In a previous work, we identified potential quality issues of Linked Data and listed quality principles for all stages of data management. We refine this work here with a framework composed of objective quality indicators and associated metrics. For each indicator, we selected a set of tools and systems that can be used to rate datasets according to key quality principles. This allowed us to discover that most of the tools cover only a small subset of indicators and to identify those that are not covered at all.
 \end{abstract}
 \begin{keyword}
-Data Quality\sep Linked Data\sep Quality Framework\sep Semantic Web\sep Quality Framework
+Data Quality\sep Linked Data\sep Quality Framework\sep Semantic Web
 \end{keyword}
 \end{frontmatter}
 
@@ -117,7 +117,7 @@ A dataset is considered to be available if the publishers provide an RDF dump th
 
 \subsection{Correctness}
 
-Data correctness is related to the validity of its entities. An entity is considered to be correct if there are no missing or empty labels \cite{Acosta2013}\cite{Mader2012}, no incorrect data type for typed literals \cite{Hogan2010}\cite{Acosta2013}, no omitted or invalid languages tags \cite{Suominen:2012:IQS:2413941.2413985}\cite{Mader2012} and does not contain ``orphan terms'', which are terms without any associative or hierarchical relationships \cite{journals/ires/Living10}.\\ Links are considered to be correct if they actually show related content to the subject of the RDF triple \cite{Suominen:2012:IQS:2413941.2413985}\cite{Acosta2013} and are syntactically correct. \\ Models are considered to be correct if the top concepts are marked and do not have broader concepts (for example having incoming hasTopConcept or outgoing topConceptOf relationships) \cite{Mader2012}.
+Data correctness is related to the validity of its entities. An entity is considered to be correct if there are no missing or empty labels \cite{Acosta2013}\cite{Mader2012}, no incorrect data type for typed literals \cite{Hogan2010}\cite{Acosta2013}, no omitted or invalid languages tags \cite{Suominen:2012:IQS:2413941.2413985}\cite{Mader2012} and does not contain ``orphan terms'' (orphan terms are terms without any associative or hierarchical relationships \cite{journals/ires/Living10}).\\ Links are considered to be correct if they actually show related content to the subject of the RDF triple \cite{Suominen:2012:IQS:2413941.2413985}\cite{Acosta2013} and are syntactically correct. \\ Models are considered to be correct if the top concepts are marked and do not have broader concepts (for example having incoming hasTopConcept or outgoing topConceptOf relationships) \cite{Mader2012}.
 
 \subsection{Conciseness}
 
@@ -417,11 +417,7 @@ Sindice \cite{Delbru2010} uses a set of techniques to rank Web data. They use a 
 The availability of Linked Data is highly dependent on the performance qualities of its queryable end-points. The standard query language for Semantic Web resources is SPARQL, thus SPARQL endpoints are the main focus. In \cite{Buil-Aranda2013} the authors present their findings to measure the discoverability of SPARQL endpoints by analyzing how they are located and the metadata used to describe them. In addition to that, they also analyze endpoints interoperability by identifying features of SPARQL 1.0 and SPARQL 1.1 that are supported. The authors tackled the endpoints efficiency by testing the time taken to answer generic, content-agnostic SPARQL queries over HTTP. Finally, the authors measured endpoints reliability by monitoring the uptime of public SPARQL endpoints on a course of 27 months. The results for this work can be accessed online via the SPARQL Endpoints Status tool \footnote{http://labs.mondeca.com/sparqlEndpointsStatus/} and is queryable using their public SPARQL endpoint\footnote{http://labs.mondeca.com/sparqlEndpointsStatus/endpoint/endpoint.html}. \\
 
 \section{Linked Data Quality Tools Evaluation}
-In this section, we present the results for our evaluation of the various Linked Data tools mentioned in this paper with regards to the presented framework (Table 2). Due to space limitation, we have only shown the tools that can directly or indirectly assess one or more of the quality indicators listed in Table 1. Moreover, we have also grouped the Syntax Validation tools (W3C RDF Validator, RDF:about, VRP, The RDF Triple-Checker and Vapour) under one approach. We should highlight that the PoolParty tool includes qSKOS in its implementation, thus they are grouped in one tool which is the PoolParty.\\
-
-As a result, we have identified the need for a complete quality framework that can assess all the quality indicators. Most of the tools were designed with limited coverage to certain aspects, for example, ontology and vocabulary checkers focus mainly on the coherence, completeness and correctness at the modeling level. Flemming's tool covers several attributes like the completeness, correctness, conciseness, security, licensing and comprehensibility, but it falls short in measuring the consistency, coherence, efficiency and provenance.\\
-
-We have also noticed the lack of tools to measure certain quality indicators like the dataset's security. Moreover, to our knowledge, there are no tools that can measure all the provenance quality indicators (except for Flemming's tool that is able to check for the use of digital signatures) although the literature covers several approaches to achieve that \cite{Hartig09usingweb}\cite{Flouris2012}\cite{Harth2009}. \\
+In this section, we present the results for our evaluation of the various Linked Data tools mentioned with regards to the presented framework (Table 2). Due to space limitation, we have only shown the tools that can directly or indirectly assess one or more of the quality indicators listed in Table 1. Moreover, we have also grouped the Syntax Validation tools (W3C RDF Validator, RDF:about, VRP, The RDF Triple-Checker and Vapour) under one approach. We should highlight that the PoolParty tool includes qSKOS in its implementation, thus they are grouped in one tool which is the PoolParty.\\
 
 \newcolumntype{P}[2]{%
   >{\begin{turn}{#1}\begin{minipage}{#2}\small\raggedright\hspace{0pt}}l%
@@ -451,7 +447,7 @@ We have also noticed the lack of tools to measure certain quality indicators lik
 \hline 
 QI.1 &  & \checkmark &  & \checkmark &  &  &  &  &  &  &  &  & \checkmark &  &  & \tabularnewline
 \hline 
-QI.2 &  &  & \checkmark &  &  & \checkmark &  & \checkmark & \checkmark &  &  &  &  &  &  & \tabularnewline
+QI.2 &  &  & \checkmark &  &  &  &  & \checkmark & \checkmark &  &  &  &  &  &  & \tabularnewline
 \hline 
 QI.3 &  &  & \checkmark &  &  &  &  & \checkmark &  &  &  &  &  &  &  & \tabularnewline
 \hline 
@@ -467,13 +463,13 @@ QI.8 & \checkmark &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \tabular
 \hline 
 QI.9 &  &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
 \hline 
-QI.10 &  &  & \checkmark &  & \checkmark &  &  &  &  &  &  & \checkmark &  &  &  & \tabularnewline
+QI.10 &  &  & \checkmark & \checkmark & \checkmark &  &  &  &  &  &  & \checkmark &  &  &  & \tabularnewline
 \hline 
-QI.11 & \checkmark &  &  &  &  & \checkmark & \checkmark & \checkmark & \checkmark &  & \checkmark &  &  & \checkmark &  & \checkmark\tabularnewline
+QI.11 &  &  &  &  &  &  &  &  &  &  &  &  &  & \checkmark &  & \checkmark\tabularnewline
 \hline 
 QI.12 & \checkmark &  & \checkmark &  &  &  &  &  &  &  &  &  &  & \checkmark &  & \tabularnewline
 \hline 
-QI.13 &  &  & \checkmark &  &  &  &  & \checkmark &  &  &  & \checkmark &  &  & \checkmark & \tabularnewline
+QI.13 & \checkmark &  & \checkmark & \checkmark &  &  &  & \checkmark &  &  &  & \checkmark &  &  & \checkmark & \tabularnewline
 \hline 
 QI.14 &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \checkmark & \checkmark\tabularnewline
 \hline 
@@ -481,39 +477,39 @@ QI.15 &  & \checkmark &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  & \tabula
 \hline 
 QI.16 &  &  &  &  &  &  &  & \checkmark &  &  &  &  &  &  &  & \tabularnewline
 \hline 
-QI.17 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
+QI.17 &  &  &  &  &  & \checkmark &  & \checkmark &  &  &  &  &  &  &  & \tabularnewline
 \hline 
 QI.18 &  &  &  &  &  & \checkmark &  & \checkmark &  &  &  &  &  &  &  & \tabularnewline
 \hline 
-QI.19 &  &  & \checkmark &  &  &  & \checkmark &  &  &  &  &  &  &  &  & \tabularnewline
+QI.19 &  &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
 \hline 
-QI.20 &  &  & \checkmark &  &  &  &  &  &  &  &  & \checkmark &  &  &  & \tabularnewline
+QI.20 &  &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
 \hline 
-QI.21 &  &  & \checkmark &  &  &  &  &  &  &  &  & \checkmark &  &  &  & \checkmark\tabularnewline
+QI.21 &  &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \checkmark\tabularnewline
 \hline 
-QI.22 &  &  &  &  &  & \checkmark &  & \checkmark & \checkmark &  &  &  & \checkmark &  &  & \tabularnewline
+QI.22 & \checkmark &  &  &  &  & \checkmark &  & \checkmark & \checkmark &  &  &  & \checkmark &  &  & \tabularnewline
 \hline 
-QI.23 &  &  &  &  &  &  & \checkmark &  &  & \checkmark & \checkmark &  & \checkmark &  &  & \tabularnewline
+QI.23 &  &  &  &  &  &  & \checkmark &  &  & \checkmark & \checkmark & \checkmark & \checkmark &  &  & \tabularnewline
 \hline 
-QI.24 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
+QI.24 &  &  &  &  &  & \checkmark &  & \checkmark &  &  &  &  &  &  &  & \tabularnewline
 \hline 
 QI.25 &  &  &  &  &  &  &  & \checkmark & \checkmark &  &  &  &  &  &  & \tabularnewline
 \hline 
 QI.26 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
 \hline 
-QI.27 &  &  & \checkmark &  &  &  &  &  &  &  & \checkmark & \checkmark &  &  & \checkmark & \tabularnewline
+QI.27 &  & \checkmark &  &  &  &  &  &  &  &  & \checkmark & \checkmark &  &  & \checkmark & \tabularnewline
 \hline 
 QI.28 &  &  &  &  &  & \checkmark &  & \checkmark &  &  &  &  &  &  &  & \tabularnewline
 \hline 
-QI.29 &  &  & \checkmark &  &  & \checkmark &  & \checkmark & \checkmark &  & \checkmark & \checkmark &  &  &  & \tabularnewline
+QI.29 &  &  &  &  &  &  & \checkmark & \checkmark & \checkmark &  & \checkmark &  &  &  &  & \tabularnewline
 \hline 
-QI.30 &  &  &  & \checkmark &  &  & \checkmark & \checkmark & \checkmark &  &  &  &  &  &  & \tabularnewline
+QI.30 &  & \checkmark &  & \checkmark &  &  & \checkmark &  & \checkmark &  &  &  &  &  &  & \tabularnewline
 \hline 
-QI.31 &  &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
+QI.31 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
 \hline 
-QI.32 &  & \checkmark & \checkmark & \checkmark &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
+QI.32 &  & \checkmark &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
 \hline 
-QI.33 &  &  & \checkmark &  &  &  &  &  &  &  &  & \checkmark &  &  &  & \tabularnewline
+QI.33 &  &  &  &  &  &  &  & \checkmark &  &  &  & \checkmark &  &  &  & \tabularnewline
 \hline 
 QI.34 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
 \hline 
@@ -547,9 +543,9 @@ QI.48 &  &  &  &  &  & \checkmark & \checkmark & \checkmark &  &  & \checkmark &
 \hline 
 QI.49 &  &  &  &  &  & \checkmark &  &  &  &  & \checkmark &  &  &  &  & \tabularnewline
 \hline 
-QI.50 &  &  &  &  &  &  &  & \checkmark & \checkmark &  &  &  &  &  &  & \tabularnewline
+QI.50 &  &  &  &  &  &  &  &  & \checkmark &  &  &  &  &  &  & \tabularnewline
 \hline 
-QI.51 &  &  &  &  &  &  &  &  &  & \checkmark & \checkmark &  & \checkmark &  &  & \tabularnewline
+QI.51 &  & \checkmark &  &  &  &  &  &  &  & \checkmark & \checkmark &  & \checkmark &  &  & \tabularnewline
 \hline 
 QI.52 &  &  &  &  &  &  &  &  &  &  & \checkmark &  &  &  &  & \tabularnewline
 \hline 
@@ -559,41 +555,41 @@ QI.54 &  &  &  &  &  &  &  &  &  & \checkmark &  &  &  &  &  & \tabularnewline
 \hline 
 QI.55 &  &  &  &  &  &  &  &  &  & \checkmark &  &  &  &  &  & \tabularnewline
 \hline 
-QI.56 &  &  &  &  &  & \checkmark & \checkmark & \checkmark &  & \checkmark & \checkmark &  &  &  &  & \tabularnewline
+QI.56 &  &  & \checkmark &  &  & \checkmark & \checkmark & \checkmark &  & \checkmark & \checkmark & \checkmark &  &  &  & \tabularnewline
 \hline 
-QI.57 &  &  &  & \checkmark & \checkmark &  & \checkmark & \checkmark &  &  & \checkmark &  &  &  &  & \tabularnewline
+QI.57 &  &  &  &  &  &  & \checkmark & \checkmark &  &  & \checkmark & \checkmark &  &  &  & \tabularnewline
 \hline 
-QI.58 &  &  &  &  &  &  & \checkmark & \checkmark &  & \checkmark & \checkmark &  &  &  &  & \tabularnewline
+QI.58 &  &  &  &  &  &  & \checkmark &  &  & \checkmark & \checkmark &  &  &  &  & \tabularnewline
 \hline 
-QI.59 &  &  &  &  &  &  &  & \checkmark &  &  &  & \checkmark &  &  &  & \tabularnewline
+QI.59 &  &  &  &  &  &  &  & \checkmark &  &  &  &  &  &  &  & \tabularnewline
 \hline 
 QI.60 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
 \hline 
-QI.61 &  &  &  &  &  &  & \checkmark &  &  & \checkmark &  &  &  &  &  & \tabularnewline
+QI.61 &  &  & \checkmark &  &  &  & \checkmark &  &  & \checkmark &  & \checkmark &  &  &  & \tabularnewline
 \hline 
 QI.62 &  &  &  &  &  & \checkmark & \checkmark & \checkmark & \checkmark &  &  &  &  &  &  & \tabularnewline
 \hline 
-QI.63 &  &  &  &  &  &  & \checkmark & \checkmark &  & \checkmark & \checkmark &  &  &  &  & \tabularnewline
+QI.63 &  &  & \checkmark &  &  &  & \checkmark & \checkmark &  & \checkmark & \checkmark &  &  &  &  & \tabularnewline
 \hline 
-QI.64 &  &  &  &  &  & \checkmark &  & \checkmark &  &  &  &  &  &  &  & \tabularnewline
+QI.64 &  &  &  &  &  & \checkmark & \checkmark & \checkmark &  &  &  &  &  &  &  & \tabularnewline
 \hline 
-QI.65 &  &  & \checkmark &  &  &  &  &  &  & \checkmark & \checkmark & \checkmark &  &  &  & \tabularnewline
+QI.65 &  &  & \checkmark &  &  &  & \checkmark &  &  & \checkmark & \checkmark &  &  &  &  & \tabularnewline
 \hline 
 QI.66 &  &  &  &  &  &  &  & \checkmark &  &  &  &  &  &  &  & \tabularnewline
 \hline 
-QI.67 &  &  &  & \checkmark &  &  & \checkmark & \checkmark &  & \checkmark & \checkmark &  &  &  &  & \tabularnewline
+QI.67 &  &  &  &  &  &  & \checkmark & \checkmark &  & \checkmark & \checkmark & \checkmark &  &  &  & \tabularnewline
 \hline 
-QI.68 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
+QI.68 &  &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
 \hline 
 QI.69 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \checkmark\tabularnewline
 \hline 
-QI.70 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \checkmark\tabularnewline
+QI.70 &  &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \checkmark\tabularnewline
 \hline 
 QI.71 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \checkmark\tabularnewline
 \hline 
-QI.72 & \checkmark &  &  & \checkmark &  &  &  &  &  &  &  &  & \checkmark &  &  & \tabularnewline
+QI.72 &  &  &  &  &  &  &  &  &  &  &  &  & \checkmark &  &  & \tabularnewline
 \hline 
-QI.73 &  &  &  & \checkmark &  &  &  &  &  &  &  &  & \checkmark &  &  & \tabularnewline
+QI.73 &  &  &  &  &  &  &  &  &  &  &  &  & \checkmark &  &  & \tabularnewline
 \hline 
 QI.74 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
 \hline 
@@ -601,7 +597,7 @@ QI.75 &  &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
 \hline 
 QI.76 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
 \hline 
-QI.77 & \checkmark &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
+QI.77 &  &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
 \hline 
 QI.78 &  &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
 \hline 
@@ -609,6 +605,10 @@ QI.79 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
 \end{longtable}
 }
 \end{center}
+
+As a result, we have identified the need for a complete quality framework that can assess all the quality indicators. Most of the tools were designed with limited coverage to certain aspects, for example, ontology and vocabulary checkers focus mainly on the coherence, completeness and correctness at the modeling level. Flemming's tool covers several attributes like the completeness, correctness, conciseness, security, licensing and comprehensibility, but it falls short in measuring the consistency, coherence, efficiency and provenance.\\
+
+We have also noticed the lack of tools to measure certain quality indicators like the dataset's security. Moreover, to our knowledge, there are no tools that can measure all the provenance quality indicators (except for Flemming's tool that is able to check for the use of digital signatures) although the literature covers several approaches to achieve that \cite{Hartig09usingweb}\cite{Flouris2012}\cite{Harth2009}. \\
 
 \section{Conclusions and Future Work}
 

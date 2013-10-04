@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9) (preloaded format=pdflatex 2013.6.11)  3 OCT 2013 17:45
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9) (preloaded format=pdflatex 2013.6.11)  4 OCT 2013 15:09
 entering extended mode
 **C:/Users/i070192/Dropbox/Documents/PhD*TelecomParisTech*-*EURECOM*-*France*20
 12-2015/My*PhD*Documents/Papers/An*Objective*Assessment*Framework*for*Linked*Da
@@ -689,20 +689,23 @@ Underfull \hbox (badness 10000) in paragraph at lines 420--421
  []
 
 [12]
-Underfull \hbox (badness 10000) in paragraph at lines 422--423
+Underfull \vbox (badness 10000) detected at line 487
+ []
+
+[13]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [14]
+Underfull \hbox (badness 10000) in paragraph at lines 609--610
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 424--425
+Underfull \hbox (badness 10000) in paragraph at lines 611--612
 
  []
 
 
-Underfull \vbox (badness 10000) detected at line 491
- []
-
-[13] [14]
 ("C:\Users\i070192\Dropbox\Documents\PhD TelecomParisTech - EURECOM - France 20
 12-2015\My PhD Documents\Papers\An Objective Assessment Framework for Linked Da
 ta Quality\DQ.bbl"
@@ -738,7 +741,7 @@ ta Quality\DQ.aux") )
 Here is how much of TeX's memory you used:
  10688 strings out of 493921
  197198 string characters out of 3146474
- 346894 words of memory out of 3000000
+ 343362 words of memory out of 3000000
  13776 multiletter control sequences out of 15000+200000
  16912 words of font info for 65 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
@@ -753,7 +756,7 @@ MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Program Files (x86)/MiKTeX/f
 onts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files (x86)/MiKTeX/fonts/t
 ype1/public/amsfonts/cm/cmti8.pfb><C:/Program Files (x86)/MiKTeX/fonts/type1/pu
 blic/amsfonts/symbols/msam7.pfb>
-Output written on DQ.pdf (17 pages, 230537 bytes).
+Output written on DQ.pdf (17 pages, 228965 bytes).
 PDF statistics:
  100 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
