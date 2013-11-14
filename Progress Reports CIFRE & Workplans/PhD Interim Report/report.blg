@@ -1,0 +1,69 @@
+This is BibTeX, Version 0.99dThe top-level auxiliary file: report.aux
+The style file: unsrt.bst
+Illegal, another \bibstyle command---line 276 of file report.aux
+ : \bibstyle
+ :          {amsplain}
+I'm skipping whatever remains of this command
+Database file #1: biblio.bib
+Warning--entry type for "bizer2011" isn't style-file defined
+--line 71 of file biblio.bib
+Warning--string name "sept" is undefined
+--line 74 of file biblio.bib
+Repeated entry---line 561 of file biblio.bib
+ : @online{bizer2011
+ :                  ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 568 of file biblio.bib
+ : @article{Boyd2011
+ :                  ,
+I'm skipping whatever remains of this entry
+Warning--entry type for "flemming2010" isn't style-file defined
+--line 620 of file biblio.bib
+A bad cross reference---entry "DBLP:conf/semweb/MihindukulasooriyaGG13"
+refers to entry "DBLP:conf/semweb/2013cold", which doesn't exist
+A bad cross reference---entry "DBLP:conf/esws/AssafST13"
+refers to entry "DBLP:conf/esws/2013s", which doesn't exist
+A bad cross reference---entry "cas04"
+refers to entry "www2004", which doesn't exist
+A bad cross reference---entry "DBLP:conf/otm/SilvaBCS07"
+refers to entry "DBLP:conf/otm/2007-1", which doesn't exist
+A bad cross reference---entry "conf/aaaiss/FininSMMP09"
+refers to entry "conf/aaaiss/2009-7", which doesn't exist
+A bad cross reference---entry "conf/www/HassanzadehDFKSW11"
+refers to entry "conf/www/2011c", which doesn't exist
+A bad cross reference---entry "conf/jcdl/Soergel05"
+refers to entry "conf/jcdl/2005", which doesn't exist
+A bad cross reference---entry "conf/owled/SirinSW08"
+refers to entry "conf/owled/2008", which doesn't exist
+A bad cross reference---entry "conf/hicss/TaoDM09"
+refers to entry "conf/hicss/2009", which doesn't exist
+A bad cross reference---entry "conf/chi/KangS03"
+refers to entry "conf/chi/2003a", which doesn't exist
+Warning--empty note in frischmuth2012linked
+Warning--empty booktitle in Wache01ontology-basedintegration
+Warning--empty journal in nomoneyLOD
+Name 1 in "James Manyika, Michael Chui, Diana Farrell, Steve Van Kuiken, Peter Groves, and Elizabeth Almasi Doshi" has a comma at the end for entry mckinseyreport
+while executing---line 944 of file unsrt.bst
+Too many commas in name 1 of "James Manyika, Michael Chui, Diana Farrell, Steve Van Kuiken, Peter Groves, and Elizabeth Almasi Doshi" for entry mckinseyreport
+while executing---line 944 of file unsrt.bst
+Too many commas in name 1 of "James Manyika, Michael Chui, Diana Farrell, Steve Van Kuiken, Peter Groves, and Elizabeth Almasi Doshi" for entry mckinseyreport
+while executing---line 944 of file unsrt.bst
+Too many commas in name 1 of "Steve LaValle, Eric Lesser, Rebecca Shockley, Michael S. Hopkins and Nina Kruschwitz" for entry bigData
+while executing---line 944 of file unsrt.bst
+Too many commas in name 1 of "avitha, C.; Sadasivam, G. Sudha; Shenoy, Sangeetha N" for entry OntologyBasedSemantic
+while executing---line 944 of file unsrt.bst
+Too many commas in name 1 of "Sarasi Lalithsena, Prateek Jain, Pascal Hitzler, Amit Sheth" for entry AutomaticDomainIdentification
+while executing---line 944 of file unsrt.bst
+Warning--empty school in citeulike:2925559
+Warning--empty journal in Flouris2012
+Warning--empty institution in w3c-prov-o
+Warning--there's a number but no volume in Cantador2011
+Name 1 in "{Mamoru Ohtai, Kouji Kozaki}, and Riichiro Mizoguchi" has a comma at the end for entry MamoruOhtaiKoujiKozaki2011
+while executing---line 944 of file unsrt.bst
+Warning--there's a number but no volume in Madnick2006
+Warning--there's a number but no volume in Shanks1999
+Warning--there's a number but no volume in Furber2010a
+Warning--there's a number but no volume in Ding2005
+Warning--there's a number but no volume in Furber2010b
+Warning--empty year in Oren_sindice.com:a
+(There were 20 error messages)

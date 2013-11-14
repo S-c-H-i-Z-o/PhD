@@ -1,0 +1,982 @@
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9) (preloaded format=pdflatex 2013.6.11)  14 NOV 2013 14:57
+entering extended mode
+**C:/Users/i070192/Dropbox/Documents/PhD*TelecomParisTech*-*EURECOM*-*France*20
+12-2015/My*PhD*Documents/Progress*Reports*CIFRE*&*Workplans/PhD*Interim*Report/
+report.tex
+
+("C:/Users/i070192/Dropbox/Documents/PhD TelecomParisTech - EURECOM - France 20
+12-2015/My PhD Documents/Progress Reports CIFRE & Workplans/PhD Interim Report/
+report.tex"
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
+abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
+croatian, czech, danish, dutch, esperanto, estonian, farsi, finnish, french, ga
+lician, german, german-x-2012-05-30, greek, gujarati, hindi, hungarian, iceland
+ic, indonesian, interlingua, irish, italian, kannada, kurmanji, latin, latvian,
+ lithuanian, malayalam, marathi, mongolian, mongolianlmc, monogreek, ngerman, n
+german-x-2012-05-30, nynorsk, oriya, panjabi, pinyin, polish, portuguese, roman
+ian, russian, sanskrit, serbian, slovak, slovenian, spanish, swedish, swissgerm
+an, tamil, telugu, turkish, turkmen, ukenglish, ukrainian, uppersorbian, usengl
+ishmax, welsh, loaded.
+
+("C:\Users\i070192\Dropbox\Documents\PhD TelecomParisTech - EURECOM - France 20
+12-2015\My PhD Documents\Progress Reports CIFRE & Workplans\PhD Interim Report\
+iosart2c.cls"
+Document Class: iosart2c 2010/10/28 v1.0, IOS Press
+("C:\Program Files (x86)\MiKTeX\tex\latex\base\fleqn.clo"
+File: fleqn.clo 1998/08/17 v1.1c Standard LaTeX option (flush left equations)
+\mathindent=\dimen102
+)
+Ten point
+\c@section=\count79
+\c@subsection=\count80
+\c@subsubsection=\count81
+\c@paragraph=\count82
+\c@subparagraph=\count83
+\c@figure=\count84
+\c@table=\count85
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\tablewidth=\dimen103
+\saved@tablewidth=\dimen104
+\c@algorithm=\count86
+\t@glob@notes=\toks14
+\t@loc@notes=\toks15
+\note@cnt=\count87
+\c@author=\count88
+\n@author=\count89
+\c@address=\count90
+\sv@mathsurround=\dimen105
+\sv@hyphenpenalty=\count91
+\prev@elem=\count92
+\cur@elem=\count93
+\fm@box=\box26
+\fm@size=\dimen106
+\t@abstract=\box27
+\t@keywords=\box28
+\a@title@skip=\dimen107
+\b@section@skip=\skip43
+\b@pretitle@skip=\skip44
+\t@xtheight=\dimen108
+\c@titlefootnote=\count94
+\@@topskip=\dimen109
+\b@author@skip=\dimen110
+\dp@t@keywords=\dimen111
+\@pubyear=\count95
+\@copyear=\count96
+) ("C:\Program Files (x86)\MiKTeX\tex\generic\babel\babel.sty"
+Package: babel 2008/07/08 v3.8m The Babel package
+
+*************************************
+* Local config file bblopts.cfg used
+*
+("C:\Program Files (x86)\MiKTeX\tex\latex\00miktex\bblopts.cfg"
+File: bblopts.cfg 2006/07/31 v1.0 MiKTeX 'babel' configuration
+)
+("C:\Program Files (x86)\MiKTeX\tex\generic\babel\english.ldf"
+Language: english 2005/03/30 v3.3o English support from the babel system
+
+("C:\Program Files (x86)\MiKTeX\tex\generic\babel\babel.def"
+File: babel.def 2008/07/08 v3.8m Babel common definitions
+\babel@savecnt=\count97
+\U@D=\dimen112
+)
+\l@canadian = a dialect from \language\l@american 
+\l@australian = a dialect from \language\l@british 
+\l@newzealand = a dialect from \language\l@british 
+))
+("C:\Program Files (x86)\MiKTeX\tex\latex\easylist\easylist.sty"
+Package: easylist 2010/02/28 v.1.3 Numbered items with a single command.
+\el@CounterTotal=\count98
+\el@Scratch=\count99
+\el@ControlCounter=\count100
+\el@CounterLevel=\count101
+\c@List1=\count102
+\c@List2=\count103
+\c@List3=\count104
+\c@List4=\count105
+\c@List5=\count106
+\c@List6=\count107
+\c@List7=\count108
+\c@List8=\count109
+\c@List9=\count110
+\c@List10=\count111
+\el@ProgressiveDimension=\dimen113
+\el@CounterBox=\box29
+\el@ControlBox=\box30
+\el@TotalMargin=\dimen114
+\el@LeftMove=\dimen115
+)
+("C:\Program Files (x86)\MiKTeX\tex\latex\graphics\graphicx.sty"
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+("C:\Program Files (x86)\MiKTeX\tex\latex\graphics\keyval.sty"
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks16
+)
+("C:\Program Files (x86)\MiKTeX\tex\latex\graphics\graphics.sty"
+Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+
+("C:\Program Files (x86)\MiKTeX\tex\latex\graphics\trig.sty"
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+("C:\Program Files (x86)\MiKTeX\tex\latex\00miktex\graphics.cfg"
+File: graphics.cfg 2007/01/18 v1.5 graphics configuration of teTeX/TeXLive
+)
+Package graphics Info: Driver file: pdftex.def on input line 91.
+
+("C:\Program Files (x86)\MiKTeX\tex\latex\pdftex-def\pdftex.def"
+File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
+
+("C:\Program Files (x86)\MiKTeX\tex\generic\oberdiek\infwarerr.sty"
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
+)
+("C:\Program Files (x86)\MiKTeX\tex\generic\oberdiek\ltxcmds.sty"
+Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+)
+\Gread@gobject=\count112
+))
+\Gin@req@height=\dimen116
+\Gin@req@width=\dimen117
+)
+("C:\Program Files (x86)\MiKTeX\tex\latex\pdfpages\pdfpages.sty"
+Package: pdfpages 2013/08/25 v0.4v Insert pages of external PDF documents (AM)
+
+("C:\Program Files (x86)\MiKTeX\tex\latex\base\ifthen.sty"
+Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
+)
+("C:\Program Files (x86)\MiKTeX\tex\latex\tools\calc.sty"
+Package: calc 2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count113
+\calc@Bcount=\count114
+\calc@Adimen=\dimen118
+\calc@Bdimen=\dimen119
+\calc@Askip=\skip45
+\calc@Bskip=\skip46
+LaTeX Info: Redefining \setlength on input line 76.
+LaTeX Info: Redefining \addtolength on input line 77.
+\calc@Ccount=\count115
+\calc@Cskip=\skip47
+)
+("C:\Program Files (x86)\MiKTeX\tex\latex\eso-pic\eso-pic.sty"
+Package: eso-pic 2013/10/06 v2.0d eso-pic (RN)
+
+("C:\Program Files (x86)\MiKTeX\tex\generic\oberdiek\atbegshi.sty"
+Package: atbegshi 2011/10/05 v1.16 At begin shipout hook (HO)
+
+("C:\Program Files (x86)\MiKTeX\tex\generic\oberdiek\ifpdf.sty"
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is detected.
+))
+("C:\Program Files (x86)\MiKTeX\tex\latex\xcolor\xcolor.sty"
+Package: xcolor 2007/01/21 v2.11 LaTeX color extensions (UK)
+
+("C:\Program Files (x86)\MiKTeX\tex\latex\00miktex\color.cfg"
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package xcolor Info: Driver file: pdftex.def on input line 225.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1337.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1341.
+Package xcolor Info: Model `RGB' extended on input line 1353.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1355.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1356.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1357.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1358.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1359.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1360.
+))
+("C:\Program Files (x86)\MiKTeX\tex\latex\pdfpages\pppdftex.def"
+File: pppdftex.def 2013/08/25 v0.4v Pdfpages driver for pdfTeX (AM)
+)
+\AM@pagebox=\box31
+\AM@toc@title=\toks17
+\c@AM@survey=\count116
+\AM@templatesizebox=\box32
+)
+("C:\Program Files (x86)\MiKTeX\tex\latex\fancyvrb\fancyvrb.sty"
+Package: fancyvrb 2008/02/07
+
+Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
+<2008/02/07> (tvz)
+\FV@CodeLineNo=\count117
+\FV@InFile=\read1
+\FV@TabBox=\box33
+\c@FancyVerbLine=\count118
+\FV@StepNumber=\count119
+\FV@OutFile=\write3
+)
+("C:\Program Files (x86)\MiKTeX\tex\latex\oberdiek\pdflscape.sty"
+Package: pdflscape 2008/08/11 v0.10 Display of landscape pages in PDF (HO)
+
+("C:\Program Files (x86)\MiKTeX\tex\latex\graphics\lscape.sty"
+Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
+)
+Package pdflscape Info: Auto-detected driver: pdftex on input line 80.
+
+("C:\Program Files (x86)\MiKTeX\tex\generic\ifxetex\ifxetex.sty"
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+))
+("C:\Program Files (x86)\MiKTeX\tex\latex\fancyhdr\fancyhdr.sty"
+\fancy@headwidth=\skip48
+\f@ncyO@elh=\skip49
+\f@ncyO@erh=\skip50
+\f@ncyO@olh=\skip51
+\f@ncyO@orh=\skip52
+\f@ncyO@elf=\skip53
+\f@ncyO@erf=\skip54
+\f@ncyO@olf=\skip55
+\f@ncyO@orf=\skip56
+)
+("C:\Program Files (x86)\MiKTeX\tex\latex\amsfonts\amssymb.sty"
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+("C:\Program Files (x86)\MiKTeX\tex\latex\amsfonts\amsfonts.sty"
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\@emptytoks=\toks18
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+))
+("C:\Program Files (x86)\MiKTeX\tex\latex\tools\tabularx.sty"
+Package: tabularx 1999/01/07 v2.07 `tabularx' package (DPC)
+
+("C:\Program Files (x86)\MiKTeX\tex\latex\tools\array.sty"
+Package: array 2008/09/09 v2.4c Tabular extension package (FMi)
+\col@sep=\dimen120
+\extrarowheight=\dimen121
+\NC@list=\toks19
+\extratabsurround=\skip57
+\backup@length=\skip58
+)
+\TX@col@width=\dimen122
+\TX@old@table=\dimen123
+\TX@old@col=\dimen124
+\TX@target=\dimen125
+\TX@delta=\dimen126
+\TX@cols=\count120
+\TX@ftn=\toks20
+)
+("C:\Program Files (x86)\MiKTeX\tex\latex\ltxmisc\url.sty"
+\Urlmuskip=\muskip10
+Package: url 2006/04/12  ver 3.3  Verb mode for urls, etc.
+)
+("C:\Program Files (x86)\MiKTeX\tex\latex\listings\listings.sty"
+\lst@mode=\count121
+\lst@gtempboxa=\box34
+\lst@token=\toks21
+\lst@length=\count122
+\lst@currlwidth=\dimen127
+\lst@column=\count123
+\lst@pos=\count124
+\lst@lostspace=\dimen128
+\lst@width=\dimen129
+\lst@newlines=\count125
+\lst@lineno=\count126
+\lst@maxwidth=\dimen130
+
+("C:\Program Files (x86)\MiKTeX\tex\latex\listings\lstmisc.sty"
+File: lstmisc.sty 2013/08/26 1.5b (Carsten Heinz)
+\c@lstnumber=\count127
+\lst@skipnumbers=\count128
+\lst@framebox=\box35
+)
+("C:\Program Files (x86)\MiKTeX\tex\latex\listings\listings.cfg"
+File: listings.cfg 2013/08/26 1.5b listings configuration
+))
+Package: listings 2013/08/26 1.5b (Carsten Heinz)
+
+("C:\Program Files (x86)\MiKTeX\tex\latex\multirow\multirow.sty"
+\bigstrutjot=\dimen131
+)
+("C:\Program Files (x86)\MiKTeX\tex\latex\tools\longtable.sty"
+Package: longtable 2004/02/01 v4.11 Multi-page Table package (DPC)
+\LTleft=\skip59
+\LTright=\skip60
+\LTpre=\skip61
+\LTpost=\skip62
+\LTchunksize=\count129
+\LTcapwidth=\dimen132
+\LT@head=\box36
+\LT@firsthead=\box37
+\LT@foot=\box38
+\LT@lastfoot=\box39
+\LT@cols=\count130
+\LT@rows=\count131
+\c@LT@tables=\count132
+\c@LT@chunks=\count133
+\LT@p@ftn=\toks22
+)
+("C:\Program Files (x86)\MiKTeX\tex\latex\pgf\frontendlayer\tikz.sty"
+("C:\Program Files (x86)\MiKTeX\tex\latex\pgf\basiclayer\pgf.sty"
+("C:\Program Files (x86)\MiKTeX\tex\latex\pgf\utilities\pgfrcs.sty"
+("C:\Program Files (x86)\MiKTeX\tex\generic\pgf\utilities\pgfutil-common.tex"
+\pgfutil@everybye=\toks23
+)
+("C:\Program Files (x86)\MiKTeX\tex\generic\pgf\utilities\pgfutil-latex.def"
+\pgfutil@abb=\box40
+
+("C:\Program Files (x86)\MiKTeX\tex\latex\ms\everyshi.sty"
+Package: everyshi 2001/05/15 v3.00 EveryShipout Package (MS)
+))
+("C:\Program Files (x86)\MiKTeX\tex\generic\pgf\utilities\pgfrcs.code.tex"
+Package: pgfrcs 2010/10/25 v2.10 (rcs-revision 1.24)
+))
+Package: pgf 2008/01/15 v2.10 (rcs-revision 1.12)
+
+("C:\Program Files (x86)\MiKTeX\tex\latex\pgf\basiclayer\pgfcore.sty"
+("C:\Program Files (x86)\MiKTeX\tex\latex\pgf\systemlayer\pgfsys.sty"
+("C:\Program Files (x86)\MiKTeX\tex\generic\pgf\systemlayer\pgfsys.code.tex"
+Package: pgfsys 2010/06/30 v2.10 (rcs-revision 1.37)
+
+("C:\Program Files (x86)\MiKTeX\tex\generic\pgf\utilities\pgfkeys.code.tex"
+\pgfkeys@pathtoks=\toks24
+\pgfkeys@temptoks=\toks25
+
+("C:\Program Files (x86)\MiKTeX\tex\generic\pgf\utilities\pgfkeysfiltered.code.
+tex"
+\pgfkeys@tmptoks=\toks26
+))
+\pgf@x=\dimen133
+\pgf@y=\dimen134
+\pgf@xa=\dimen135
+\pgf@ya=\dimen136
+\pgf@xb=\dimen137
+\pgf@yb=\dimen138
+\pgf@xc=\dimen139
+\pgf@yc=\dimen140
+\w@pgf@writea=\write4
+\r@pgf@reada=\read2
+\c@pgf@counta=\count134
+\c@pgf@countb=\count135
+\c@pgf@countc=\count136
+\c@pgf@countd=\count137
+ ("C:\Program Files (x86)\MiKTeX\tex\generic\pgf\systemlayer\pgf.cfg"
+File: pgf.cfg 2008/05/14  (rcs-revision 1.7)
+)
+Package pgfsys Info: Driver file for pgf: pgfsys-pdftex.def on input line 900.
+
+("C:\Program Files (x86)\MiKTeX\tex\generic\pgf\systemlayer\pgfsys-pdftex.def"
+File: pgfsys-pdftex.def 2009/05/22  (rcs-revision 1.26)
+
+("C:\Program Files (x86)\MiKTeX\tex\generic\pgf\systemlayer\pgfsys-common-pdf.d
+ef"
+File: pgfsys-common-pdf.def 2008/05/19  (rcs-revision 1.10)
+)))
+("C:\Program Files (x86)\MiKTeX\tex\generic\pgf\systemlayer\pgfsyssoftpath.code
+.tex"
+File: pgfsyssoftpath.code.tex 2008/07/18  (rcs-revision 1.7)
+\pgfsyssoftpath@smallbuffer@items=\count138
+\pgfsyssoftpath@bigbuffer@items=\count139
+)
+("C:\Program Files (x86)\MiKTeX\tex\generic\pgf\systemlayer\pgfsysprotocol.code
+.tex"
+File: pgfsysprotocol.code.tex 2006/10/16  (rcs-revision 1.4)
+))
+("C:\Program Files (x86)\MiKTeX\tex\generic\pgf\basiclayer\pgfcore.code.tex"
+Package: pgfcore 2010/04/11 v2.10 (rcs-revision 1.7)
+
+("C:\Program Files (x86)\MiKTeX\tex\generic\pgf\math\pgfmath.code.tex"
+("C:\Program Files (x86)\MiKTeX\tex\generic\pgf\math\pgfmathcalc.code.tex"
+("C:\Program Files (x86)\MiKTeX\tex\generic\pgf\math\pgfmathutil.code.tex")
+("C:\Program Files (x86)\MiKTeX\tex\generic\pgf\math\pgfmathparser.code.tex"
+\pgfmath@dimen=\dimen141
+\pgfmath@count=\count140
+\pgfmath@box=\box41
+\pgfmath@toks=\toks27
+\pgfmath@stack@operand=\toks28
+\pgfmath@stack@operation=\toks29
+)
+("C:\Program Files (x86)\MiKTeX\tex\generic\pgf\math\pgfmathfunctions.code.tex"
+
+("C:\Program Files (x86)\MiKTeX\tex\generic\pgf\math\pgfmathfunctions.basic.cod
+e.tex")
+("C:\Program Files (x86)\MiKTeX\tex\generic\pgf\math\pgfmathfunctions.trigonome
+tric.code.tex")
+("C:\Program Files (x86)\MiKTeX\tex\generic\pgf\math\pgfmathfunctions.random.co
+de.tex")
+("C:\Program Files (x86)\MiKTeX\tex\generic\pgf\math\pgfmathfunctions.compariso
+n.code.tex")
+("C:\Program Files (x86)\MiKTeX\tex\generic\pgf\math\pgfmathfunctions.base.code
+.tex")
+("C:\Program Files (x86)\MiKTeX\tex\generic\pgf\math\pgfmathfunctions.round.cod
+e.tex")
+("C:\Program Files (x86)\MiKTeX\tex\generic\pgf\math\pgfmathfunctions.misc.code
+.tex")))
+("C:\Program Files (x86)\MiKTeX\tex\generic\pgf\math\pgfmathfloat.code.tex"
+\c@pgfmathroundto@lastzeros=\count141
+))
+("C:\Program Files (x86)\MiKTeX\tex\generic\pgf\basiclayer\pgfcorepoints.code.t
+ex"
+File: pgfcorepoints.code.tex 2010/04/09  (rcs-revision 1.20)
+\pgf@picminx=\dimen142
+\pgf@picmaxx=\dimen143
+\pgf@picminy=\dimen144
+\pgf@picmaxy=\dimen145
+\pgf@pathminx=\dimen146
+\pgf@pathmaxx=\dimen147
+\pgf@pathminy=\dimen148
+\pgf@pathmaxy=\dimen149
+\pgf@xx=\dimen150
+\pgf@xy=\dimen151
+\pgf@yx=\dimen152
+\pgf@yy=\dimen153
+\pgf@zx=\dimen154
+\pgf@zy=\dimen155
+)
+("C:\Program Files (x86)\MiKTeX\tex\generic\pgf\basiclayer\pgfcorepathconstruct
+.code.tex"
+File: pgfcorepathconstruct.code.tex 2010/08/03  (rcs-revision 1.24)
+\pgf@path@lastx=\dimen156
+\pgf@path@lasty=\dimen157
+)
+("C:\Program Files (x86)\MiKTeX\tex\generic\pgf\basiclayer\pgfcorepathusage.cod
+e.tex"
+File: pgfcorepathusage.code.tex 2008/04/22  (rcs-revision 1.12)
+\pgf@shorten@end@additional=\dimen158
+\pgf@shorten@start@additional=\dimen159
+)
+("C:\Program Files (x86)\MiKTeX\tex\generic\pgf\basiclayer\pgfcorescopes.code.t
+ex"
+File: pgfcorescopes.code.tex 2010/09/08  (rcs-revision 1.34)
+\pgfpic=\box42
+\pgf@hbox=\box43
+\pgf@layerbox@main=\box44
+\pgf@picture@serial@count=\count142
+)
+("C:\Program Files (x86)\MiKTeX\tex\generic\pgf\basiclayer\pgfcoregraphicstate.
+code.tex"
+File: pgfcoregraphicstate.code.tex 2008/04/22  (rcs-revision 1.9)
+\pgflinewidth=\dimen160
+)
+("C:\Program Files (x86)\MiKTeX\tex\generic\pgf\basiclayer\pgfcoretransformatio
+ns.code.tex"
+File: pgfcoretransformations.code.tex 2009/06/10  (rcs-revision 1.11)
+\pgf@pt@x=\dimen161
+\pgf@pt@y=\dimen162
+\pgf@pt@temp=\dimen163
+)
+("C:\Program Files (x86)\MiKTeX\tex\generic\pgf\basiclayer\pgfcorequick.code.te
+x"
+File: pgfcorequick.code.tex 2008/10/09  (rcs-revision 1.3)
+)
+("C:\Program Files (x86)\MiKTeX\tex\generic\pgf\basiclayer\pgfcoreobjects.code.
+tex"
+File: pgfcoreobjects.code.tex 2006/10/11  (rcs-revision 1.2)
+)
+("C:\Program Files (x86)\MiKTeX\tex\generic\pgf\basiclayer\pgfcorepathprocessin
+g.code.tex"
+File: pgfcorepathprocessing.code.tex 2008/10/09  (rcs-revision 1.8)
+)
+("C:\Program Files (x86)\MiKTeX\tex\generic\pgf\basiclayer\pgfcorearrows.code.t
+ex"
+File: pgfcorearrows.code.tex 2008/04/23  (rcs-revision 1.11)
+)
+("C:\Program Files (x86)\MiKTeX\tex\generic\pgf\basiclayer\pgfcoreshade.code.te
+x"
+File: pgfcoreshade.code.tex 2008/11/23  (rcs-revision 1.13)
+\pgf@max=\dimen164
+\pgf@sys@shading@range@num=\count143
+)
+("C:\Program Files (x86)\MiKTeX\tex\generic\pgf\basiclayer\pgfcoreimage.code.te
+x"
+File: pgfcoreimage.code.tex 2010/03/25  (rcs-revision 1.16)
+
+("C:\Program Files (x86)\MiKTeX\tex\generic\pgf\basiclayer\pgfcoreexternal.code
+.tex"
+File: pgfcoreexternal.code.tex 2010/09/01  (rcs-revision 1.17)
+\pgfexternal@startupbox=\box45
+))
+("C:\Program Files (x86)\MiKTeX\tex\generic\pgf\basiclayer\pgfcorelayers.code.t
+ex"
+File: pgfcorelayers.code.tex 2010/08/27  (rcs-revision 1.2)
+)
+("C:\Program Files (x86)\MiKTeX\tex\generic\pgf\basiclayer\pgfcoretransparency.
+code.tex"
+File: pgfcoretransparency.code.tex 2008/01/17  (rcs-revision 1.2)
+)
+("C:\Program Files (x86)\MiKTeX\tex\generic\pgf\basiclayer\pgfcorepatterns.code
+.tex"
+File: pgfcorepatterns.code.tex 2009/07/02  (rcs-revision 1.3)
+)))
+("C:\Program Files (x86)\MiKTeX\tex\generic\pgf\modules\pgfmoduleshapes.code.te
+x"
+File: pgfmoduleshapes.code.tex 2010/09/09  (rcs-revision 1.13)
+\pgfnodeparttextbox=\box46
+)
+("C:\Program Files (x86)\MiKTeX\tex\generic\pgf\modules\pgfmoduleplot.code.tex"
+File: pgfmoduleplot.code.tex 2010/10/22  (rcs-revision 1.8)
+)
+("C:\Program Files (x86)\MiKTeX\tex\latex\pgf\compatibility\pgfcomp-version-0-6
+5.sty"
+Package: pgfcomp-version-0-65 2007/07/03 v2.10 (rcs-revision 1.7)
+\pgf@nodesepstart=\dimen165
+\pgf@nodesepend=\dimen166
+)
+("C:\Program Files (x86)\MiKTeX\tex\latex\pgf\compatibility\pgfcomp-version-1-1
+8.sty"
+Package: pgfcomp-version-1-18 2007/07/23 v2.10 (rcs-revision 1.1)
+)) ("C:\Program Files (x86)\MiKTeX\tex\latex\pgf\utilities\pgffor.sty"
+("C:\Program Files (x86)\MiKTeX\tex\latex\pgf\utilities\pgfkeys.sty"
+("C:\Program Files (x86)\MiKTeX\tex\generic\pgf\utilities\pgfkeys.code.tex"))
+("C:\Program Files (x86)\MiKTeX\tex\generic\pgf\utilities\pgffor.code.tex"
+Package: pgffor 2010/03/23 v2.10 (rcs-revision 1.18)
+\pgffor@iter=\dimen167
+\pgffor@skip=\dimen168
+\pgffor@stack=\toks30
+\pgffor@toks=\toks31
+))
+("C:\Program Files (x86)\MiKTeX\tex\generic\pgf\frontendlayer\tikz\tikz.code.te
+x"
+Package: tikz 2010/10/13 v2.10 (rcs-revision 1.76)
+
+("C:\Program Files (x86)\MiKTeX\tex\generic\pgf\libraries\pgflibraryplothandler
+s.code.tex"
+File: pgflibraryplothandlers.code.tex 2010/05/31 v2.10 (rcs-revision 1.15)
+\pgf@plot@mark@count=\count144
+\pgfplotmarksize=\dimen169
+)
+\tikz@lastx=\dimen170
+\tikz@lasty=\dimen171
+\tikz@lastxsaved=\dimen172
+\tikz@lastysaved=\dimen173
+\tikzleveldistance=\dimen174
+\tikzsiblingdistance=\dimen175
+\tikz@figbox=\box47
+\tikz@tempbox=\box48
+\tikztreelevel=\count145
+\tikznumberofchildren=\count146
+\tikznumberofcurrentchild=\count147
+\tikz@fig@count=\count148
+
+("C:\Program Files (x86)\MiKTeX\tex\generic\pgf\modules\pgfmodulematrix.code.te
+x"
+File: pgfmodulematrix.code.tex 2010/08/24  (rcs-revision 1.4)
+\pgfmatrixcurrentrow=\count149
+\pgfmatrixcurrentcolumn=\count150
+\pgf@matrix@numberofcolumns=\count151
+)
+\tikz@expandcount=\count152
+
+("C:\Program Files (x86)\MiKTeX\tex\generic\pgf\frontendlayer\tikz\libraries\ti
+kzlibrarytopaths.code.tex"
+File: tikzlibrarytopaths.code.tex 2008/06/17 v2.10 (rcs-revision 1.2)
+)))
+("C:\Program Files (x86)\MiKTeX\tex\latex\booktabs\booktabs.sty"
+Package: booktabs 2005/04/14 v1.61803 publication quality tables
+\heavyrulewidth=\dimen176
+\lightrulewidth=\dimen177
+\cmidrulewidth=\dimen178
+\belowrulesep=\dimen179
+\belowbottomsep=\dimen180
+\aboverulesep=\dimen181
+\abovetopsep=\dimen182
+\cmidrulesep=\dimen183
+\cmidrulekern=\dimen184
+\defaultaddspace=\dimen185
+\@cmidla=\count153
+\@cmidlb=\count154
+\@aboverulesep=\dimen186
+\@belowrulesep=\dimen187
+\@thisruleclass=\count155
+\@lastruleclass=\count156
+\@thisrulewidth=\dimen188
+)
+("C:\Program Files (x86)\MiKTeX\tex\latex\rotating\rotating.sty"
+Package: rotating 2009/03/28 v2.16a rotated objects in LaTeX
+\c@r@tfl@t=\count157
+\rotFPtop=\skip63
+\rotFPbot=\skip64
+\rot@float@box=\box49
+\rot@mess@toks=\toks32
+)
+("C:\Users\i070192\Dropbox\Documents\PhD TelecomParisTech - EURECOM - France 20
+12-2015\My PhD Documents\Progress Reports CIFRE & Workplans\PhD Interim Report\
+report.aux")
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+ ("C:\Program Files (x86)\MiKTeX\tex\context\base\supp-pdf.mkii"
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count158
+\scratchdimen=\dimen189
+\scratchbox=\box50
+\nofMPsegments=\count159
+\nofMParguments=\count160
+\everyMPshowfont=\toks33
+\MPscratchCnt=\count161
+\MPscratchDim=\dimen190
+\MPnumerator=\count162
+\makeMPintoPDFobject=\count163
+\everyMPtoPDFconversion=\toks34
+)
+\AtBeginShipoutBox=\box51
+\c@lstlisting=\count164
+ ABD: EveryShipout initializing macros
+<figures/EURECOM_logo_quadri.png, id=4, 191.7564pt x 92.2647pt>
+File: figures/EURECOM_logo_quadri.png Graphic file (type png)
+
+<use figures/EURECOM_logo_quadri.png>
+Package pdftex.def Info: figures/EURECOM_logo_quadri.png used on input line 42.
+
+(pdftex.def)             Requested size: 142.26378pt x 68.45218pt.
+LaTeX Font Info:    Try loading font information for U+msa on input line 57.
+
+("C:\Program Files (x86)\MiKTeX\tex\latex\amsfonts\umsa.fd"
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 57.
+
+("C:\Program Files (x86)\MiKTeX\tex\latex\amsfonts\umsb.fd"
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+Overfull \hbox (33.47046pt too wide) in paragraph at lines 57--63
+ [][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 70--71
+
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [1{C:/Users/i070192/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map} <C:/Use
+rs/i070192/Dropbox/Documents/PhD TelecomParisTech - EURECOM - France 2012-2015/
+My PhD Documents/Progress Reports CIFRE & Workplans/PhD Interim Report/figures/
+EURECOM_logo_quadri.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 72--73
+
+ []
+
+[2]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 108.
+
+ ("C:\Program Files (x86)\MiKTeX\tex\latex\base\omscmr.fd"
+File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 108.
+ [3]
+<figures/overall-architecture.png, id=23, 390.70969pt x 309.40594pt>
+File: figures/overall-architecture.png Graphic file (type png)
+
+<use figures/overall-architecture.png>
+Package pdftex.def Info: figures/overall-architecture.png used on input line 12
+5.
+(pdftex.def)             Requested size: 312.56816pt x 247.52509pt.
+ [4 <C:/Users/i070192/Dropbox/Documents/PhD TelecomParisTech - EURECOM - France
+ 2012-2015/My PhD Documents/Progress Reports CIFRE & Workplans/PhD Interim Repo
+rt/figures/overall-architecture.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 164--165
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 170--172
+
+ []
+
+[5]
+Underfull \hbox (badness 10000) in paragraph at lines 186--187
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 190--191
+
+ []
+
+[6]
+Missing character: There is no ‚ in font cmr10!
+Missing character: There is no Ä in font cmr10!
+Missing character: There is no ú in font cmr10!
+Missing character: There is no ‚ in font cmr10!
+Missing character: There is no Ä in font cmr10!
+Missing character: There is no ú in font cmr10!
+
+Underfull \hbox (badness 10000) in paragraph at lines 192--193
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 195--196
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 197--198
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 199--200
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 202--203
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 205--206
+
+ []
+
+[7]
+Underfull \hbox (badness 10000) in paragraph at lines 208--209
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 211--212
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 215--216
+
+ []
+
+[8]
+Underfull \hbox (badness 10000) in paragraph at lines 242--243
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 244--248
+
+ []
+
+[9]
+Underfull \hbox (badness 10000) in paragraph at lines 263--266
+
+ []
+
+[10] [11] [12
+
+] [13]
+Underfull \hbox (badness 10000) in paragraph at lines 493--494
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 503--504
+
+ []
+
+[14
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 505--507
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 508--509
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 510--513
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 510--513
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 514--515
+
+ []
+
+[15]
+Underfull \hbox (badness 10000) in paragraph at lines 516--517
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 518--519
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 520--521
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 522--523
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 526--527
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 529--530
+
+ []
+
+[16]
+Underfull \vbox (badness 10000) detected at line 596
+ []
+
+[17]
+Underfull \hbox (badness 10000) in paragraph at lines 718--719
+
+ []
+
+
+Underfull \vbox (badness 3460) has occurred while \output is active []
+
+ [18]
+<figures/architecture-part1.png, id=73, 408.77719pt x 143.03438pt>
+File: figures/architecture-part1.png Graphic file (type png)
+
+<use figures/architecture-part1.png>
+Package pdftex.def Info: figures/architecture-part1.png used on input line 738.
+
+(pdftex.def)             Requested size: 327.02219pt x 114.42764pt.
+ [19] [20 <C:/Users/i070192/Dropbox/Documents/PhD TelecomParisTech - EURECOM - 
+France 2012-2015/My PhD Documents/Progress Reports CIFRE & Workplans/PhD Interi
+m Report/figures/architecture-part1.png>]
+<figures/architecture-part2.png, id=81, 408.77719pt x 286.82156pt>
+File: figures/architecture-part2.png Graphic file (type png)
+
+<use figures/architecture-part2.png>
+Package pdftex.def Info: figures/architecture-part2.png used on input line 765.
+
+(pdftex.def)             Requested size: 306.58214pt x 215.11563pt.
+ [21 <C:/Users/i070192/Dropbox/Documents/PhD TelecomParisTech - EURECOM - Franc
+e 2012-2015/My PhD Documents/Progress Reports CIFRE & Workplans/PhD Interim Rep
+ort/figures/architecture-part2.png>]
+Missing character: There is no ‚ in font cmr10!
+Missing character: There is no Ä in font cmr10!
+Missing character: There is no ô in font cmr10!
+
+<figures/architecture-part3.png, id=85, 408.77719pt x 140.77594pt>
+File: figures/architecture-part3.png Graphic file (type png)
+
+<use figures/architecture-part3.png>
+Package pdftex.def Info: figures/architecture-part3.png used on input line 785.
+
+(pdftex.def)             Requested size: 327.02219pt x 112.62088pt.
+ [22]
+("C:\Users\i070192\Dropbox\Documents\PhD TelecomParisTech - EURECOM - France 20
+12-2015\My PhD Documents\Progress Reports CIFRE & Workplans\PhD Interim Report\
+report.bbl"
+Missing character: There is no √ in font cmr8!
+Missing character: There is no ∂ in font cmr8!
+Missing character: There is no √ in font cmr8!
+Missing character: There is no ∂ in font cmr8!
+Missing character: There is no √ in font cmr8!
+Missing character: There is no ü in font cmr8!
+Missing character: There is no √ in font cmr8!
+Missing character: There is no ≠ in font cmr8!
+Missing character: There is no √ in font cmr8!
+Missing character: There is no ∂ in font cmr8!
+Missing character: There is no √ in font cmr8!
+Missing character: There is no ∂ in font cmr8!
+Missing character: There is no √ in font cmr8!
+Missing character: There is no ü in font cmr8!
+ [23 <C:/Users/i070192/Dropbox/Documents/PhD TelecomParisTech - EURECOM - Franc
+e 2012-2015/My PhD Documents/Progress Reports CIFRE & Workplans/PhD Interim Rep
+ort/figures/architecture-part3.png>]
+Missing character: There is no √ in font cmr8!
+Missing character: There is no ∂ in font cmr8!
+Missing character: There is no √ in font cmr8!
+Missing character: There is no º in font cmr8!
+Missing character: There is no ‚ in font cmr8!
+Missing character: There is no Ä in font cmr8!
+Missing character: There is no ì in font cmr8!
+Missing character: There is no ‚ in font cmr8!
+Missing character: There is no Ä in font cmr8!
+Missing character: There is no ô in font cmr8!
+
+Underfull \hbox (badness 1377) in paragraph at lines 82--86
+[]\OT1/cmr/m/n/8 Fadi Maali and John Er-ick-son.  Data cat-a-log vo-cab-u-lary 
+(DCAT).  Last call WD, W3C, Au-gust 2013.
+ []
+
+Missing character: There is no Ô in font cmr8!
+Missing character: There is no ¨ in font cmr8!
+Missing character: There is no Å in font cmr8!
+Missing character: There is no ‚ in font cmr8!
+Missing character: There is no Ä in font cmr8!
+Missing character: There is no ì in font cmr8!
+[24]
+Missing character: There is no Ô in font cmr8!
+Missing character: There is no ¨ in font cmr8!
+Missing character: There is no Å in font cmr8!
+Missing character: There is no √ in font cmr8!
+Missing character: There is no ° in font cmr8!
+Missing character: There is no √ in font cmr8!
+Missing character: There is no ° in font cmr8!
+Missing character: There is no √ in font cmr8!
+Missing character: There is no ≠ in font cmr8!
+Missing character: There is no √ in font cmr8!
+Missing character: There is no ≥ in font cmr8!
+Missing character: There is no √ in font cmr8!
+Missing character: There is no ° in font cmr8!
+Missing character: There is no √ in font cmr8!
+Missing character: There is no ≥ in font cmr8!
+Missing character: There is no √ in font cmr8!
+Missing character: There is no ≥ in font cmr8!
+Missing character: There is no √ in font cmr8!
+Missing character: There is no © in font cmr8!
+Missing character: There is no √ in font cmr8!
+Missing character: There is no ∂ in font cmr8!
+Missing character: There is no ‚ in font cmr8!
+Missing character: There is no Ä in font cmr8!
+Missing character: There is no ô in font cmr8!
+Missing character: There is no √ in font cmr8!
+Missing character: There is no ∂ in font cmr8!
+ [25]
+Missing character: There is no Ô in font cmr8!
+Missing character: There is no ¨ in font cmr8!
+Missing character: There is no Å in font cmr8!
+ [26]) [27]
+("C:\Users\i070192\Dropbox\Documents\PhD TelecomParisTech - EURECOM - France 20
+12-2015\My PhD Documents\Progress Reports CIFRE & Workplans\PhD Interim Report\
+report.aux") ) 
+Here is how much of TeX's memory you used:
+ 13641 strings out of 493921
+ 241448 string characters out of 3146474
+ 427592 words of memory out of 3000000
+ 16650 multiletter control sequences out of 15000+200000
+ 13361 words of font info for 51 fonts, out of 3000000 for 9000
+ 841 hyphenation exceptions out of 8191
+ 56i,8n,55p,2929b,511s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Program Files (x86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmb
+10.pfb><C:/Program Files (x86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb>
+<C:/Program Files (x86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Pro
+gram Files (x86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Fil
+es (x86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files (x86)
+/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files (x86)/MiKTeX/
+fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Program Files (x86)/MiKTeX/fonts/ty
+pe1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files (x86)/MiKTeX/fonts/type1/pu
+blic/amsfonts/cm/cmti10.pfb><C:/Program Files (x86)/MiKTeX/fonts/type1/public/a
+msfonts/cm/cmti8.pfb><C:/Program Files (x86)/MiKTeX/fonts/type1/public/amsfonts
+/cm/cmtt10.pfb>
+Output written on report.pdf (27 pages, 318012 bytes).
+PDF statistics:
+ 141 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 38 words of extra memory for PDF output out of 10000 (max. 10000000)
+

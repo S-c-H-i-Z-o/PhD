@@ -1,0 +1,641 @@
+\begin{thebibliography}{100}
+
+\bibitem{DBLP:conf/semweb/MihindukulasooriyaGG13}
+Nandana Mihindukulasooriya, Raul Garcia-Castro, and Miguel~Esteban
+  Guti{\'e}rrez.
+\newblock Linked data platform as a novel approach for enterprise application
+  integration.
+\newblock In {\em COLD}, 2013.
+
+\bibitem{frischmuth2103a}
+Philipp Frischmuth, Sören Auer, Sebastian Tramp, Jörg Unbehauen, Kai
+  Holzweißig, and Car-Martin Marquardt.
+\newblock Towards linked data based enterprise information integration.
+\newblock In {\em Proceedings of the Workshop on Semantic Web Enterprise
+  Adoption and Best Practice (WASABI) 2013}, 2013.
+
+\bibitem{frischmuth2012linked}
+Philipp Frischmuth, Jakub Klímek, Sören Auer, Sebastian Tramp, Jörg
+  Unbehauen, Kai Holzweißig, and Carl-Martin Marquardt.
+\newblock Linked data in enterprise information integration.
+\newblock 2012.
+
+\bibitem{Wache01ontology-basedintegration}
+H.~Wache, T.~Vögele, U.~Visser, H.~Stuckenschmidt, G.~Schuster, H.~Neumann,
+  and S.~Hübner.
+\newblock Ontology-based integration of information - a survey of existing
+  approaches.
+\newblock pages 108--117, 2001.
+
+\bibitem{bizer_linked_2009}
+C.~Bizer, T.~Heath, and T.~{Berners-Lee}.
+\newblock Linked data - the story so far.
+\newblock {\em Int. J. Semantic Web Inf. Syst.}, 5(3):1–22, 2009.
+
+\bibitem{bizer2011}
+Chris Bizer, Anja Jentzsch, and Richard Cyganiak.
+\newblock State of the lod cloud, 2011.
+
+\bibitem{nomoneyLOD}
+Krzysztof~Janowicz Prateek~Jain, Pascal~Hitzler and Chitra Venkatramani.
+\newblock There’s no money in linked data.
+\newblock 2013.
+
+\bibitem{Boyd2011}
+D~Boyd and Kate Crawford.
+\newblock {Six provocations for big data}.
+\newblock {\em A Decade in Internet Time: Symposium on the Dynamics of the
+  Internet and Society}, pages 1--17, 2011.
+
+\bibitem{mckinseyreport}
+Diana Farrell Steve Van Kuiken Peter~Groves James~Manyika, Michael~Chui and
+  Elizabeth~Almasi Doshi.
+\newblock Open data: Unlocking innovation and performance with liquid
+  information.
+\newblock {\em McKinsey Business Technology Office}, 2013.
+
+\bibitem{bigData}
+Rebecca Shockley Michael S.~Hopkins Steve~LaValle, Eric~Lesser and Nina
+  Kruschwitz.
+\newblock Big data, analytics and the path from insights to value.
+\newblock {\em MIT Sloan Management Review}, 2011.
+
+\bibitem{OntologyBasedSemantic}
+G.~Sudha; Shenoy Sangeetha~N avitha, C.;~Sadasivam.
+\newblock Ontology based semantic integration of heterogeneous databases.
+\newblock {\em European Journal of Scientific Research;11/13/2011,,}, Vol.
+  64(Issue 1):p115, 2011.
+
+\bibitem{AutomaticDomainIdentification}
+Pascal Hitzler Amit~Sheth Sarasi~Lalithsena, Prateek~Jain.
+\newblock Automatic domain identification for linked open data.
+\newblock {\em IEEE/WIC/ACM International Conference on Web Intelligence},
+  2013.
+
+\bibitem{Cyganiak:11:DLD}
+Richard Cyganiak, Jun Zhao, Keith Alexander, and Michael Hausenblas.
+\newblock Describing linked datasets with the {VoID} vocabulary.
+\newblock {W3C} note, W3C, March 2011.
+\newblock http://www.w3.org/TR/2011/NOTE-void-20110303/.
+
+\bibitem{Maali:13:DCV}
+Fadi Maali and John Erickson.
+\newblock Data catalog vocabulary ({DCAT}).
+\newblock Last call {WD}, W3C, August 2013.
+\newblock http://www.w3.org/TR/2013/WD-vocab-dcat-20130801/.
+
+\bibitem{Assaf:2012:RFI:2422604.2422607}
+Ahmad Assaf, Eldad Louw, Aline Senart, Corentin Follenfant, Rapha\"{e}l Troncy,
+  and David Trastour.
+\newblock Rubix: a framework for improving data integration with linked data.
+\newblock In {\em Proceedings of the First International Workshop on Open
+  Data}, WOD '12, pages 13--21, New York, NY, USA, 2012. ACM.
+
+\bibitem{DBLP:journals/corr/abs-1205-2691}
+Ahmad Assaf, Eldad Louw, Aline Senart, Corentin Follenfant, Rapha{\"e}l Troncy,
+  and David Trastour.
+\newblock Improving schema matching with linked data.
+\newblock {\em CoRR}, abs/1205.2691, 2012.
+
+\bibitem{assaf2012}
+Ahmad Assaf and Aline Senart.
+\newblock Data quality principles in the semantic web.
+\newblock {\em CoRR}, abs/1305.4054, 2013.
+
+\bibitem{DBLP:conf/esws/AssafST13}
+Ahmad Assaf, Aline Senart, and Rapha{\"e}l Troncy.
+\newblock Snarc - an approach for aggregating and recommending contextualized
+  social content.
+\newblock In {\em ESWC (Satellite Events)}, pages 319--326, 2013.
+
+\bibitem{Furnas87thevocabulary}
+G.~W. Furnas, T.~K. Landauer, L.~M. Gomez, and S.~T. Dumais.
+\newblock The vocabulary problem in human-system communication.
+\newblock {\em COMMUNICATIONS OF THE ACM}, 30(11):964--971, 1987.
+
+\bibitem{TRank}
+Alberto Tonon, Michele Catasta, Gianluca Demartini, Philippe Cudr{\'e}-Mauroux,
+  and Karl Aberer.
+\newblock Trank: Ranking entity types using the web of data.
+\newblock In {\em ISWC}, 2013.
+
+\bibitem{DBLP:journals/debu/MillerA03}
+Ren{\'e}e~J. Miller and Periklis Andritsos.
+\newblock Schema discovery.
+\newblock {\em IEEE Data Eng. Bull.}, 26(3):40--45, 2003.
+
+\bibitem{cas04}
+Davi {de Castro Reis}, Paulo~B. Golgher, Altigran~S. da~Silva, and Alberto
+  H.~F. Laender.
+\newblock Automatic web news extraction using tree edit distance.
+\newblock In Stuart~I. Feldman, Mike Uretsky, Marc Najork, and Craig~E. Wills,
+  editors, {\em Proceedings of the Thirteenth International World Wide Web
+  Conference}, pages 502--601, New York, NY, May 2004. ACM Press.
+
+\bibitem{wang2003extraction}
+Jiying Wang and Frederick~H Lochovsky.
+\newblock {Data Extraction and Label Assignment for Web Databases}.
+\newblock {\em The World Wide Web Conference}, pages 187--196, 2003.
+
+\bibitem{DBLP:conf/otm/SilvaBCS07}
+Altigran~Soares da~Silva, Denilson Barbosa, Jo{\~a}o M.~B. Cavalcanti, and
+  Marco A.~S. Sevalho.
+\newblock Labeling data extracted from the web.
+\newblock In {\em OTM Conferences (1)}, pages 1099--1116, 2007.
+
+\bibitem{Limaye:2010:ASW:1920841.1921005}
+Girija Limaye, Sunita Sarawagi, and Soumen Chakrabarti.
+\newblock Annotating and searching web tables using entities, types and
+  relationships.
+\newblock {\em Proc. VLDB Endow.}, 3(1-2):1338--1347, September 2010.
+
+\bibitem{Syed2010Tables}
+Zareen Syed, Tim Finin, Varish Mulwad, and Anupam Joshi.
+\newblock {Exploiting a Web of Semantic Data for Interpreting Tables}.
+\newblock In {\em Proceedings of the Second Web Science Conference}, April
+  2010.
+
+\bibitem{conf/aaaiss/FininSMMP09}
+Tim Finin, Zareen Syed, James Mayfield, Paul McNamee, and Christine~D. Piatko.
+\newblock Using wikitology for cross-document entity coreference resolution.
+\newblock In {\em AAAI Spring Symposium: Learning by Reading and Learning to
+  Read}, pages 29--35. AAAI, 2009.
+
+\bibitem{conf/www/HassanzadehDFKSW11}
+Oktie Hassanzadeh, Songyun Duan, Achille Fokoue, Anastasios Kementsietsidis,
+  Kavitha Srinivas, and Michael~J. Ward.
+\newblock Helix: online enterprise data analytics.
+\newblock In Sadagopan Srinivasan, Krithi Ramamritham, Arun Kumar, M.~P.
+  Ravindra, Elisa Bertino, and Ravi Kumar, editors, {\em WWW (Companion
+  Volume)}, pages 225--228. ACM, 2011.
+
+\bibitem{Bohm2010}
+Christophe Bohm, Felix Naumann, Ziawasch Abedjan, Fenz Dandy, Toni Grutze,
+  Daniel Hefenbrock, Matthias Pohl, and David Sonnabend.
+\newblock {Proﬁling Linked Open Data with ProLOD.PDF}.
+\newblock {\em ICDE 2010}, 2010.
+
+\bibitem{Mendes2012}
+PN~Mendes, Hannes M\"{u}hleisen, and Christian Bizer.
+\newblock {Sieve: linked data quality assessment and fusion}.
+\newblock {\em LWDM2012 - Proceedings of the 2012 Joint EDBT}, 2012.
+
+\bibitem{Furber2011a}
+C~F\"{u}rber and M~Hepp.
+\newblock {SWIQA–A Semantic Web information quality assessment framework}.
+\newblock {\em ECIS 2011}, 2011.
+
+\bibitem{flemming2010}
+A~Flemming.
+\newblock Quality characteristics of linked data publishing datasources, 2010.
+
+\bibitem{Framework2012}
+Conceptual Framework, Amrapali Zaveri, Anisa Rula, Andrea Maurino, Ricardo
+  Pietrobon, and Jens Lehmann.
+\newblock {Quality Assessment Methodologies for Linked Open Data}.
+\newblock {\em Under review, Semantic Web Journal}, 1:1--5, 2012.
+
+\bibitem{Mader2012}
+Christian Mader, Bernhard Haslhofer, and Antoine Isaac.
+\newblock {Finding quality issues in SKOS vocabularies}.
+\newblock {\em Theory and Practice of Digital Libraries}, 2012.
+
+\bibitem{w3c_skos_rec}
+A.~Miles and S.~Bechhofer.
+\newblock Skos simple knowledge organization system reference. w3c
+  recommendation 18 august 2009., 2009.
+
+\bibitem{Hogan2010}
+Aidan Hogan, Andreas Harth, Alexandre Passant, Stefan Decker, and Axel
+  Polleres.
+\newblock {Weaving the pedantic web}.
+\newblock {\em LDOW 2010}, 2010.
+
+\bibitem{Gueret2012}
+Christophe Gu{\'e}ret, Paul~T. Groth, Claus Stadler, and Jens Lehmann.
+\newblock Assessing linked data mappings using network measures.
+\newblock In {\em Proceedings of the 9th Extended Semantic Web Conference},
+  volume 7295 of {\em Lecture Notes in Computer Science}, pages 87--102.
+  Springer, 2012.
+
+\bibitem{Acosta2013}
+Maribel Acosta, Amrapali Zaveri, Elena Simperl, and Dimitris Kontokostas.
+\newblock {Crowdsourcing Linked Data quality assessment}.
+\newblock {\em ISWC 2013}, 2013.
+
+\bibitem{Suominen:2012:IQS:2413941.2413985}
+Osma Suominen and Eero Hyv\"{o}nen.
+\newblock Improving the quality of skos vocabularies with skosify.
+\newblock In {\em Proceedings of the 18th international conference on Knowledge
+  Engineering and Knowledge Management}, EKAW'12, pages 383--397, Berlin,
+  Heidelberg, 2012. Springer-Verlag.
+
+\bibitem{journals/ires/Living10}
+Henry Living.
+\newblock Review of: Hedden, heather. the accidental taxonomist medford, nj:
+  Information today, inc., 2010.
+\newblock {\em Inf. Res.}, 15(2), 2010.
+
+\bibitem{Bleiholder:2009}
+Jens Bleiholder and Felix Naumann.
+\newblock Data fusion.
+\newblock {\em ACM Comput. Surv.}, 41(1):1:1--1:41, January 2009.
+
+\bibitem{Hogan:2012:ESL:2263498.2264570}
+Aidan Hogan, J\"{u}Rgen Umbrich, Andreas Harth, Richard Cyganiak, Axel
+  Polleres, and Stefan Decker.
+\newblock An empirical survey of linked data conformance.
+\newblock {\em Web Semant.}, 14:14--44, July 2012.
+
+\bibitem{Suominen2013}
+Osma Suominen and Christian Mader.
+\newblock {Assessing and Improving the Quality of SKOS Vocabularies}.
+\newblock {\em Journal on Data Semantics}, June 2013.
+
+\bibitem{skosprimer}
+Antoine Isaac and Ed~Summers.
+\newblock Skos simple knowledge organization system primer.
+\newblock World Wide Web Consortium, Working Draft WD-skos-primer-20080829,
+  August 2008.
+
+\bibitem{conf/jcdl/Soergel05}
+Dagobert Soergel.
+\newblock Thesauri and ontologies in digital libraries.
+\newblock In Mary Marlino, Tamara Sumner, and Frank M.~Shipman III, editors,
+  {\em JCDL}, page 421. ACM, 2005.
+
+\bibitem{Toupikov2009}
+Nickolai Toupikov, J~Umbrich, and Renaud Delbru.
+\newblock {DING! Dataset ranking using formal descriptions}.
+\newblock {\em WWW09}, 2009.
+
+\bibitem{citeulike:2925559}
+Christian Bizer.
+\newblock {\em {Quality-Driven Information Filtering in the Context of
+  Web-Based Information Systems}}.
+\newblock PhD thesis, March 2007.
+
+\bibitem{Flouris2012}
+Giorgos Flouris, Yannis Roussakis, and M~Poveda-Villal\'{o}n.
+\newblock {Using provenance for quality assessment and repair in linked open
+  data}.
+\newblock pages 1--12, 2012.
+
+\bibitem{Gamble2011}
+Matthew Gamble.
+\newblock {Quality, Trust, and Utility of Scientiﬁc Data on the Web: Towards
+  a Joint Model.pdf}.
+\newblock {\em WebSci'11}, 2011.
+
+\bibitem{j.websem208}
+Saeedeh Shekarpour and S.D. Katebi.
+\newblock Modeling and evaluation of trust with an extension in semantic web.
+\newblock {\em Web Semantics: Science, Services and Agents on the World Wide
+  Web}, 8(1), 2010.
+
+\bibitem{w3c-prov-o}
+Khalid Belhajjame, James Cheney, David Corsar, Daniel Garijo, Stian
+  Soiland-Reyes, Stephan Zednik, and Jun Zhao.
+\newblock Prov-o: The prov ontology.
+\newblock Technical report, 2012.
+
+\bibitem{Hartig09usingweb}
+Olaf Hartig and Jun Zhao.
+\newblock Using web data provenance for quality assessment.
+\newblock In {\em In: Proc. of the Workshop on Semantic Web and Provenance
+  Management at ISWC}, 2009.
+
+\bibitem{Berrueta08cookinghttp}
+Diego Berrueta, Sergio Fernández, and Iván Frade.
+\newblock Cooking http content negotiation with vapour.
+\newblock In {\em In Proceedings of 4th workshop on Scripting for the Semantic
+  Web 2008 (SFSW2008). co-located with ESWC2008}, 2008.
+
+\bibitem{tim:linkedata}
+Berners-Lee Tim.
+\newblock Linked data.
+\newblock Technical report, W3C, July 2006.
+\newblock http://www.w3.org/DesignIssues/LinkedData.html.
+
+\bibitem{harpring_introduction_2010}
+Patricia Harpring.
+\newblock {\em Introduction to Controlled Vocabularies: Terminology for Art,
+  Architecture, and Other Cultural Works}.
+\newblock Getty Research Institute, Los Angeles, 2010.
+
+\bibitem{oops}
+María Poveda-Villalón, MariCarmen Suárez-Figueroa, and Asunción
+  Gómez-Pérez.
+\newblock Validating ontologies with oops!
+\newblock In Annette Teije, Johanna Völker, Siegfried Handschuh, Heiner
+  Stuckenschmidt, Mathieu d’Acquin, Andriy Nikolov, Nathalie Aussenac-Gilles,
+  and Nathalie Hernandez, editors, {\em Knowledge Engineering and Knowledge
+  Management}, volume 7603 of {\em Lecture Notes in Computer Science}, pages
+  267--281. Springer Berlin Heidelberg, 2012.
+
+\bibitem{conf/owled/SirinSW08}
+Evren Sirin, Michael Smith, and Evan Wallace.
+\newblock Opening, closing worlds - on integrity constraints.
+\newblock In Catherine Dolbear, Alan Ruttenberg, and Ulrike Sattler, editors,
+  {\em OWLED}, volume 432 of {\em CEUR Workshop Proceedings}. CEUR-WS.org,
+  2008.
+
+\bibitem{conf/hicss/TaoDM09}
+Jiao Tao, Li~Ding, and Deborah~L. McGuinness.
+\newblock Instance data evaluation for semantic web-based knowledge management
+  systems.
+\newblock In {\em HICSS}, pages 1--10. IEEE Computer Society, 2009.
+
+\bibitem{bizer_dbpedia_2009}
+Christian Bizer, Jens Lehmann, Georgi Kobilarov, Sören Auer, Christian Becker,
+  Richard Cyganiak, and Sebastian Hellmann.
+\newblock {DBpedia} - a crystallization point for the web of data.
+\newblock {\em Web Semantics: Science, Services and Agents on the World Wide
+  Web}, 7(3):154--165, September 2009.
+
+\bibitem{Kontokostas2013}
+Dimitris Kontokostas, Amrapali Zaveri, S~Auer, and J~Lehmann.
+\newblock {TripleCheckMate: A Tool for Crowdsourcing the Quality Assessment of
+  Linked Data}.
+\newblock {\em 4th Conference on Knowledge Engineering and Semantic Web}, pages
+  1--8, 2013.
+
+\bibitem{Lawrence981}
+Page Lawrence, Brin Sergey, Rajeev Motwani, and Terry Winograd.
+\newblock The pagerank citation ranking: Bringing order to the web.
+\newblock Technical report, Stanford University, 1998.
+
+\bibitem{Kleinberg:1999}
+Jon~M. Kleinberg.
+\newblock Authoritative sources in a hyperlinked environment.
+\newblock {\em J. ACM}, 46(5):604--632, September 1999.
+
+\bibitem{Brin:1998}
+Sergey Brin and Lawrence Page.
+\newblock The anatomy of a large-scale hypertextual web search engine.
+\newblock In {\em Proceedings of the seventh international conference on World
+  Wide Web 7}, WWW7, pages 107--117, Amsterdam, The Netherlands, The
+  Netherlands, 1998. Elsevier Science Publishers B. V.
+
+\bibitem{Chakrabarti99miningthe}
+Soumen Chakrabarti, Byron~E. Dom, S.~Ravi Kumar, Prabhakar Raghavan, Sridhar
+  Rajagopalan, Andrew Tomkins, David Gibson, and Jon Kleinberg.
+\newblock Mining the web's link structure, 1999.
+
+\bibitem{Ding2004}
+L~Ding, Tim Finin, A~Joshi, R~Pan, and RS~Cost.
+\newblock {Swoogle: A semantic web search and metadata engine}.
+\newblock {\em CIKM04}, 2004.
+
+\bibitem{Hogan06reconrank:a}
+Aidan Hogan, Andreas Harth, and Stefan Decker.
+\newblock Reconrank: A scalable ranking method for semantic web data with
+  context.
+\newblock In {\em In 2nd Workshop on Scalable Semantic Web Knowledge Base
+  Systems}, 2006.
+
+\bibitem{cs142}
+Bernhard Haslhofer and Niko Popitsch.
+\newblock Dsnotify: Detecting and fixing broken links in linked data sets.
+\newblock In {\em 8th International Workshop on Web Semantics (WebS
+  \&\#8217;09), co-located with DEXA 2009}, Berlin, Heidelberg, August 2009.
+  Springer.
+
+\bibitem{Harth2009}
+Andreas Harth, Sheila Kinsella, and Stefan Decker.
+\newblock {Using naming authority to rank data and ontologies for web search}.
+\newblock {\em ISWC 2009}, 2, 2009.
+
+\bibitem{Delbru2010}
+Renaud Delbru.
+\newblock {Sindice at SemSearch 2010}.
+\newblock {\em WWW10}, 2010.
+
+\bibitem{Delbru2010a}
+Renaud Delbru, Nickolai Toupikov, and Michele Catasta.
+\newblock {Hierarchical link analysis for ranking web data}.
+\newblock {\em The Semantic Web: Research and Applications}, 2010.
+
+\bibitem{Buil-Aranda2013}
+C~Buil-Aranda and Aidan Hogan.
+\newblock {SPARQL Web-Querying Infrastructure: Ready for Action?}
+\newblock {\em International \ldots}, 2013.
+
+\bibitem{journals/corr/abs-1301-2086}
+Georges Gouriten and Pierre Senellart.
+\newblock Api blender: A uniform interface to social platform apis.
+\newblock {\em CoRR}, abs/1301.2086, 2013.
+
+\bibitem{conf/chi/KangS03}
+Hyunmo Kang and Ben Shneiderman.
+\newblock Mediafinder: an interface for dynamic personal media management with
+  semantic regions.
+\newblock In Gilbert Cockton and Panu Korhonen, editors, {\em CHI Extended
+  Abstracts}, pages 764--765. ACM, 2003.
+
+\bibitem{Zanardi2008}
+Valentina Zanardi and L~Capra.
+\newblock {Social ranking: uncovering relevant content using tag-based
+  recommender systems}.
+\newblock {\em ACM conference on Recommender systems}, 2008.
+
+\bibitem{Cantador2011}
+Iv\'{a}n Cantador and Alejandro Bellog\'{\i}n.
+\newblock {Semantic contextualisation of social tag-based profiles and item
+  recommendations}.
+\newblock {\em E-Commerce and Web \ldots}, (2), 2011.
+
+\bibitem{Diaz-Aviles2012}
+Ernesto Diaz-Aviles, Lucas Drumond, Lars Schmidt-Thieme, and Wolfgang Nejdl.
+\newblock {Real-time top-n recommendation in social streams}.
+\newblock In {\em Proceedings of the sixth ACM conference on Recommender
+  systems - RecSys '12}, page~59, New York, New York, USA, 2012. ACM Press.
+
+\bibitem{Preotiuc-Pietro2012}
+D~Preotiuc-Pietro and S~Samangooei.
+\newblock {Trendminer: An architecture for real time analysis of social media
+  text}.
+\newblock {\em AAAI Publications, Sixth International AAAI Conference on
+  Weblogs and Social Media}, pages 4--7, 2012.
+
+\bibitem{Stvilia2007}
+Besiki Stvilia, Les Gasser, Michael~B. Twidale, and Linda~C. Smith.
+\newblock {A framework for information quality assessment}.
+\newblock {\em Journal of the American Society for Information Science and
+  Technology}, 58(12):1720--1733, October 2007.
+
+\bibitem{MamoruOhtaiKoujiKozaki2011}
+{Mamoru Ohtai, Kouji Kozaki} and Riichiro Mizoguchi.
+\newblock {A Quality Assurance Framework for Ontology Construction and
+  Reﬁnement.pdf}.
+\newblock {\em Web Intelligence Conference (AWIC2011)}, 2011.
+
+\bibitem{Wang1996}
+RY~Wang and DM~Strong.
+\newblock {Beyond accuracy: What data quality means to data consumers}.
+\newblock {\em Journal of management information systems}, 1996.
+
+\bibitem{Moulton2001}
+Allen Moulton, S~Madnick, and M~Siegel.
+\newblock {Cross-organizational data quality and semantic integrity: learning
+  and reasoning about data semantics with context interchange mediation}.
+\newblock {\em MIT Sloan}, III(1):1--4, 2001.
+
+\bibitem{Pernici2003}
+Barbara Pernici and Monica Scannapieco.
+\newblock {Data quality in web information systems}.
+\newblock {\em Journal on Data Semantics I}, pages 48--68, 2003.
+
+\bibitem{Rula2011}
+Anisa Rula.
+\newblock {DC proposal: towards linked data assessment and linking temporal
+  facts}.
+\newblock {\em ISWC 2011}, 2011.
+
+\bibitem{D'Aquin2009}
+M~D'Aquin.
+\newblock {Formally measuring agreement and disagreement in ontologies}.
+\newblock {\em K-CAP 09}, 2009.
+
+\bibitem{Madnick2006}
+Stuart Madnick and Hongwei Zhu.
+\newblock {Improving data quality through effective use of data semantics}.
+\newblock {\em Data \& Knowledge Engineering}, (October):1--19, 2006.
+
+\bibitem{Duque-ramos2011}
+Astrid Duque-ramos, Jesualdo~Tom\'{a}s Fern\'{a}ndez-breis, Robert Stevens, and
+  Nathalie Aussenac-gilles.
+\newblock {OQuaRE : A SQuaRE-based Approach for Evaluating the Quality of
+  Ontologies}.
+\newblock {\em Journal of Research and Practice in Information Technology,
+  Software Engineering and Semantic Web Technologies}, 43(2), 2011.
+
+\bibitem{Mader2013}
+Christian Mader and Bernhard Haslhofer.
+\newblock {Perception and Relevance of Quality Issues in Web Vocabularies}.
+\newblock {\em I-SEMANTICS 2013}, 2013.
+
+\bibitem{Wood2010}
+Stephen Wood.
+\newblock {The Equation between Semantics and Data Quality}.
+\newblock {\em Other Conferences}, 2010.
+
+\bibitem{Furber2011}
+Christian F\"{u}rber and Martin Hepp.
+\newblock {Towards a vocabulary for data quality management in semantic web
+  architectures}.
+\newblock {\em Proceedings of the 1st International Workshop on Linked Web Data
+  Management - LWDM '11}, page~1, 2011.
+
+\bibitem{Shanks1999}
+Graeme Shanks and B~Corbitt.
+\newblock {Understanding data quality: Social and cultural aspects}.
+\newblock {\em Proceedings of the 10th Australasian Conference on \ldots},
+  (1998):785--797, 1999.
+
+\bibitem{Furber2010}
+Christian F\"{u}rber and Martin Hepp.
+\newblock {Using semantic web resources for data quality management}.
+\newblock {\em Knowledge Engineering and Management by the \ldots}, pages
+  1--15, 2010.
+
+\bibitem{Furber2010a}
+Christian F\"{u}rber and Martin Hepp.
+\newblock {Using SPARQL and SPIN for Data Quality Management on the Semantic
+  Web}.
+\newblock {\em Business Information Systems}, (1):1--12, 2010.
+
+\bibitem{Ding2005}
+Li~Ding, Rong Pan, Tim Finin, and Anupam Joshi.
+\newblock {Finding and ranking knowledge on the semantic web}.
+\newblock {\em ISWC 2005}, (November), 2005.
+
+\bibitem{Kahn2002}
+Beverly~K. Kahn, Diane~M. Strong, and Richard~Y. Wang.
+\newblock {Information quality benchmarks: product and service performance}.
+\newblock {\em Communications of the ACM}, 45(4ve):184--192, April 2002.
+
+\bibitem{Vandenbussche2013}
+PY~Vandenbussche, CB~Aranda, Aidan Hogan, and J~Umbrich.
+\newblock {Monitoring the Status of SPARQL Endpoints}.
+\newblock {\em ISWC 2013}, 1380(3130617):3--6, 2013.
+
+\bibitem{Tartir2005}
+Samir Tartir, I~Budak Arpinar, Michael Moore, Amit~P Sheth, and Boanerges
+  Aleman-meza.
+\newblock {OntoQA : Metric-Based Ontology Quality Analysis University of
+  Georgia}.
+\newblock {\em IEEE Workshop on Knowledge Acquisition from Distributed,
+  Autonomous, Semantically Heterogeneous Data and Knowledge Sources}, 2005.
+
+\bibitem{Furber2011b}
+Christian F\"{u}rber and Martin Hepp.
+\newblock {Towards a vocabulary for data quality management in semantic web
+  architectures}.
+\newblock {\em Proceedings of the 1st International Workshop on Linked Web Data
+  Management - LWDM '11}, page~1, 2011.
+
+\bibitem{Ding2005a}
+Li~Ding, Tim Finin, and Yun Peng.
+\newblock {Tracking rdf graph provenance using rdf molecules}.
+\newblock {\em ISWC 2005}, pages 1--2, 2005.
+
+\bibitem{Furber2010b}
+Christian F\"{u}rber and Martin Hepp.
+\newblock {Using SPARQL and SPIN for data quality management on the Semantic
+  Web}.
+\newblock {\em Business Information Systems}, (1):1--12, 2010.
+
+\bibitem{Sanchez2013}
+JLG S\'{a}nchez, Roberto Garc\'{\i}a, and JM~Brunetti.
+\newblock {Using SWET-QUM to Compare the Quality in Use of Semantic Web
+  Exploration Tools}.
+\newblock {\em Journal of Universal Computer Science}, 19(8):1025--1045, 2013.
+
+\bibitem{juran-j-1999-quality}
+Joseph.~M. Juran and A.~Blanton Godfrey.
+\newblock {\em Juran's quality handbook}.
+\newblock Juran's quality handbook, 5e. McGraw Hill, 1999.
+
+\bibitem{Agrawal94fastalgorithms}
+Rakesh Agrawal and Ramakrishnan Srikant.
+\newblock Fast algorithms for mining association rules.
+\newblock In {\em Proc. of 20th Intl. Conf. on VLDB}, pages 487--499, 1994.
+
+\bibitem{Lei:2007:FES:1298406.1298431}
+Yuangui Lei, Victoria Uren, and Enrico Motta.
+\newblock A framework for evaluating semantic metadata.
+\newblock In {\em Proceedings of the 4th international conference on Knowledge
+  capture}, K-CAP '07, pages 135--142, New York, NY, USA, 2007. ACM.
+
+\bibitem{Oren_sindice.com:a}
+Eyal Oren, Renaud Delbru, Michele Catasta, Richard Cyganiak, and Giovanni
+  Tummarello.
+\newblock Sindice.com: A document-oriented lookup index for open linked data.
+\newblock {\em International Journal of Metadata, Semantics and Ontologies},
+  3:2008.
+
+\bibitem{organization2005guidelines}
+N.I.S. Organization and National Information Standards~Organization (U.S.).
+\newblock {\em Guidelines for the Construction, Format, and Management of
+  Monolingual Controlled Vocabularies}.
+\newblock National information standards series. NISO Press, 2005.
+
+\bibitem{Bakshy2012}
+Eytan Bakshy, Itamar Rosenn, Cameron Marlow, and Lada Adamic.
+\newblock {The role of social networks in information diffusion}.
+\newblock In {\em Proceedings of the 21st international conference on World
+  Wide Web - WWW '12}, page 519, New York, New York, USA, 2012. ACM Press.
+
+\bibitem{Pennacchiotti2011}
+Marco Pennacchiotti and Siva Gurumurthy.
+\newblock {Investigating topic models for social media user recommendation}.
+\newblock In {\em WWW11}, page 101, New York, New York, USA, 2011. ACM Press.
+
+\bibitem{Khrouf2012}
+Houda Khrouf, Ghislain Atemezing, and Giuseppe Rizzo.
+\newblock {Aggregating Social Media for Enhancing Conference Experiences}.
+\newblock {\em Proceedings of the 1st Int. Workshop on Real-Time Analysis and
+  Mining of Social Streams}, 2012.
+
+\end{thebibliography}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9) (preloaded format=pdflatex 2013.6.11)  4 OCT 2013 15:09
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9) (preloaded format=pdflatex 2013.6.11)  13 NOV 2013 11:41
 entering extended mode
 **C:/Users/i070192/Dropbox/Documents/PhD*TelecomParisTech*-*EURECOM*-*France*20
 12-2015/My*PhD*Documents/Papers/An*Objective*Assessment*Framework*for*Linked*Da
@@ -505,9 +505,37 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 17.
 ("C:\Program Files (x86)\MiKTeX\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
+
+LaTeX Warning: Reference `A' on page 1 undefined on input line 18.
+
+
+LaTeX Warning: Reference `A' on page 1 undefined on input line 18.
+
 Missing character: There is no √ in font cmr10!
 Missing character: There is no ´ in font cmr10!
+
+LaTeX Warning: Reference `B' on page 1 undefined on input line 19.
+
 \c@sv@footnote=\count148
+
+LaTeX Warning: Citation `bizer2011' on page 1 undefined on input line 37.
+
+
+LaTeX Warning: Citation `Boyd2011' on page 1 undefined on input line 39.
+
+
+LaTeX Warning: Citation `Kahn2002' on page 1 undefined on input line 41.
+
+
+LaTeX Warning: Citation `Stvilia2007' on page 1 undefined on input line 41.
+
+
+LaTeX Warning: Citation `Wang1996' on page 1 undefined on input line 41.
+
+
+LaTeX Warning: Citation `juran-j-1999-quality' on page 1 undefined on input lin
+e 41.
+
 
 Underfull \hbox (badness 10000) has occurred while \output is active
 []
@@ -518,247 +546,22 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 $[]$
  []
 
-[1{C:/Users/i070192/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 45--46
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 49--50
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 54--55
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 58--59
-
- []
-
-Missing character: There is no ‚ in font cmr10!
-Missing character: There is no Ä in font cmr10!
-Missing character: There is no ú in font cmr10!
-Missing character: There is no ‚ in font cmr10!
-Missing character: There is no Ä in font cmr10!
-Missing character: There is no ú in font cmr10!
-
-Underfull \hbox (badness 10000) in paragraph at lines 60--61
-
- []
-
-[2]
-Underfull \hbox (badness 10000) in paragraph at lines 63--64
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 65--66
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 67--68
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 70--71
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 73--74
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 76--77
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 79--80
-
- []
-
-[3]
-Underfull \hbox (badness 10000) in paragraph at lines 84--85
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 86--87
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 93--94
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 96--100
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 103--104
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 106--107
-
- []
-
-[4] [5]
-Underfull \hbox (badness 10000) in paragraph at lines 132--133
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 134--138
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 153--156
-
- []
-
-[6] [7] [8
-
-] [9]
-Underfull \hbox (badness 10000) in paragraph at lines 383--384
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 393--394
-
- []
-
-[10
-
-]
-Underfull \hbox (badness 10000) in paragraph at lines 398--399
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 403--404
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 405--406
-
- []
-
-[11]
-Underfull \hbox (badness 10000) in paragraph at lines 407--408
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 409--410
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 411--412
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 413--414
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 417--418
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 420--421
-
- []
-
-[12]
-Underfull \vbox (badness 10000) detected at line 487
- []
-
-[13]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [14]
-Underfull \hbox (badness 10000) in paragraph at lines 609--610
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 611--612
-
- []
-
-
-("C:\Users\i070192\Dropbox\Documents\PhD TelecomParisTech - EURECOM - France 20
-12-2015\My PhD Documents\Papers\An Objective Assessment Framework for Linked Da
-ta Quality\DQ.bbl"
-Missing character: There is no √ in font cmr8!
-Missing character: There is no ° in font cmr8!
-Missing character: There is no Ô in font cmr8!
-Missing character: There is no ¨ in font cmr8!
-Missing character: There is no Å in font cmr8!
- [15]
-Missing character: There is no ‚ in font cmr8!
-Missing character: There is no Ä in font cmr8!
-Missing character: There is no ì in font cmr8!
-Missing character: There is no Ô in font cmr8!
-Missing character: There is no ¨ in font cmr8!
-Missing character: There is no Å in font cmr8!
-Missing character: There is no √ in font cmr8!
-Missing character: There is no ≥ in font cmr8!
-Missing character: There is no √ in font cmr8!
-Missing character: There is no ° in font cmr8!
-Missing character: There is no √ in font cmr8!
-Missing character: There is no ≥ in font cmr8!
-Missing character: There is no √ in font cmr8!
-Missing character: There is no © in font cmr8!
-Missing character: There is no √ in font cmr8!
-Missing character: There is no ∂ in font cmr8!
-Missing character: There is no ‚ in font cmr8!
-Missing character: There is no Ä in font cmr8!
-Missing character: There is no ô in font cmr8!
- [16]) [17]
-("C:\Users\i070192\Dropbox\Documents\PhD TelecomParisTech - EURECOM - France 20
-12-2015\My PhD Documents\Papers\An Objective Assessment Framework for Linked Da
-ta Quality\DQ.aux") ) 
+! I can't write on file `DQ.pdf'.
+Please type another file name for output: 
+! Emergency stop.
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.43 W
+      eb documents that are by nature unstructured and interlinked require d...
+End of file on the terminal!
+
+ 
 Here is how much of TeX's memory you used:
- 10688 strings out of 493921
- 197198 string characters out of 3146474
- 343362 words of memory out of 3000000
- 13776 multiletter control sequences out of 15000+200000
- 16912 words of font info for 65 fonts, out of 3000000 for 9000
+ 10601 strings out of 493921
+ 195109 string characters out of 3146474
+ 231332 words of memory out of 3000000
+ 13697 multiletter control sequences out of 15000+200000
+ 16560 words of font info for 64 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 56i,7n,55p,2936b,500s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files (x86)/MiKTeX/fonts/type1/public/amsfonts
-/cm/cmb10.pfb><C:/Program Files (x86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmr
-10.pfb><C:/Program Files (x86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb>
-<C:/Program Files (x86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Prog
-ram Files (x86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program File
-s (x86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files (x86)/
-MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Program Files (x86)/MiKTeX/f
-onts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files (x86)/MiKTeX/fonts/t
-ype1/public/amsfonts/cm/cmti8.pfb><C:/Program Files (x86)/MiKTeX/fonts/type1/pu
-blic/amsfonts/symbols/msam7.pfb>
-Output written on DQ.pdf (17 pages, 228965 bytes).
-PDF statistics:
- 100 PDF objects out of 1000 (max. 8388607)
- 0 named destinations out of 1000 (max. 500000)
- 13 words of extra memory for PDF output out of 10000 (max. 10000000)
-
+ 56i,7n,55p,1260b,198s stack positions out of 5000i,500n,10000p,200000b,50000s
+!  ==> Fatal error occurred, no output PDF file produced!
