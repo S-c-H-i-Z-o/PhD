@@ -18,7 +18,10 @@
 \usepackage{array}
 \usepackage{booktabs}
 \usepackage{rotating}
-
+\usepackage{titlesec}
+\usepackage{subfigure}
+\usepackage{algorithmic}
+\usepackage{algorithm}
 
 \setcounter{tocdepth}{3}
 \graphicspath{ {Figures/} }
@@ -32,6 +35,13 @@
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\footrulewidth}{0.4pt}
 
+\setcounter{secnumdepth}{4}
+
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%  Beginning of document  %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -39,11 +49,12 @@
 \begin{document}
 
 \begin{center}
-\includegraphics[width=5cm]{EURECOM_logo_quadri}
+\includegraphics[width=5cm]{EURECOM_logo_quadri}\hspace{5cm}  
+\includegraphics[width=5cm]{SAP_logo}
 \\[3cm]
 \textbf{\Huge{MidTerm Report}}
 \\[4cm]
-\textbf{\LARGE{Self-Service Data Provisioning through Semantic Enrichment of Enterprise Data}}
+\textbf{\LARGE{Self-Service Data Provisioning Through Semantic Enrichment of Data}}
 \\[0.5cm]
 \LARGE{Ahmad Assaf}
 \\[0.5cm]
@@ -51,7 +62,7 @@
 \\
 \large{Institut Mines-T\'{e}l\'{e}com}
 \\
-\large{December 15th, 2012}
+\large{April 21st, 2014}
 \\[5cm]
 \columnsep3cm
 \begin{tabular}{p{8cm} p{8.5cm}}
@@ -63,79 +74,87 @@ Rapha\"el Troncy \newline Aline Senart}
 \end{center}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%  Chapter:Research Problems %%%
+%%%  Introduction %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Introduction}
-Enterprises use a wide range of heterogeneous information systems in their business activities such as Enterprise Resource Planning (ERP), Customer Relationships Management (CRM) and Supply Chain Management (SCM) systems. An enterprise distributed IT landscape contains multiple systems using different technologies and data standards \cite{DBLP:conf/semweb/MihindukulasooriyaGG13}. In addition to this heterogeneity, the amount of information in enterprise databases and on-line data stores expands exponentially each year. Enterprise Big Data isn't big in volume only, but in the associated file formats also as the information is being stored often in unstructured and unknown formats.\\
+Enterprises use a wide range of heterogeneous information systems in their business activities such as Enterprise Resource Planning (ERP), Customer Relationships Management (CRM) and Supply Chain Management (SCM) systems. An enterprise distributed IT landscape contains multiple systems using different technologies and data standards \cite{DBLP:conf/semweb/MihindukulasooriyaGG13}. In addition to this heterogeneity, the amount of information in enterprise databases and on-line data stores expands exponentially each year. Enterprise Big Data isn't big in volume only, but in the associated file formats. The information is also often stored often in unstructured and unknown formats.\\
 
-Data Integration in large enterprises is a time and resource costly task. Various approaches have been introduced to solve this integration challenge. These approaches were primarily based on XML as the data representation syntax, Web Services to provide the data exchange protocols and Service Oriented Architecture (SOA) as a holistic approach for distributed systems architecture and communication \cite{frischmuth2103a}\cite{frischmuth2012linked}. However, it was found that these technologies are no sufficient to solve the integration problems in large enterprises. Recently, ontology-based data integration approaches have been suggested where ontologies are used to describe the data, queries and mappings between them \cite{Wache01ontology-basedintegration}. A slightly different approach is the use of the Linked Data paradigm \cite{bizer_linked_2009} for integrating enterprise data. Enterprises like Google and Microsoft are not only using the Linked Data integration paradigm for their information systems, but are also aiming at building enterprise knowledge bases ( like the Google Freebase\footnote{http://freebase.com}) that will act as a crystallization point for their structured data.\\
+Data integration is the problem of combining data residing at different sources, and providing the user with a unified view of these data \cite{Lenzerini:2002:DIT:543613.543644}. In large enterprises, it is a time and resource costly task. Various approaches have been introduced to solve this integration challenge. These approaches were primarily based on XML as the data representation syntax, Web Services to provide the data exchange protocols and Service Oriented Architecture (SOA) as a holistic approach for distributed systems architecture and communication \cite{frischmuth2103a}\cite{frischmuth2012linked}. However, it was found that these technologies are no sufficient to solve the integration problems in large enterprises. Recently, ontology-based data integration approaches have been suggested where ontologies are used to describe the data, queries and mappings between them \cite{Wache01ontology-basedintegration}. A slightly different approach is the use of the Linked Data paradigm \cite{bizer_linked_2009} for integrating enterprise data. Enterprises like Google and Microsoft are not only using the Linked Data integration paradigm for their information systems, but are also aiming at building enterprise knowledge bases ( like the Google Freebase\footnote{http://freebase.com}) that will act as a crystallization point for their structured data.\\
 
 Linked Open Data (LOD) movement has gained lots of momentum in the last years. From 12 datasets cataloged in 2007, the Linked Open Data has grown to almost 300 datasets containing almost 32 billion triples \cite{bizer2011}. Data is being published by both public and private sectors and covers a diverse set of domains from life sciences to military. This success lies in the cooperation between data publishers and consumers. Users are empowered to find, share and combine information in their applications easily. 
 
-Despite the legal issues surrounding Linked Data licenses \cite{nomoneyLOD}, it is still considered a gold mine for organizations who are trying to leverage external data sources in order to produce more informed business decisions \cite{Boyd2011}. In \cite{mckinseyreport} the authors see the potential economic effect unfolding in education, transportation, consumer products, electricity, oil and gas, health care and consumer finance. They estimate the potential annual value enabled by Open Data in these domains to reach 3 trillion US Dollars. 
+Despite the legal issues surrounding Linked Data licenses \cite{nomoneyLOD}, it is still considered a gold mine for organizations who are trying to leverage external data sources in order to produce more informed business decisions \cite{Boyd2011}. In \cite{mckinseyreport} the authors see the potential economic effect unfolding in education, transportation, consumer products, electricity, oil and gas, health care and consumer finance. They estimate the potential annual value enabled by Open Data in these domains to be 3 trillion US Dollars across seven domains. 
 
-Data becomes more useful when it is open, widely available and in shareable formats, and when advanced computing and analysis can yield from it. The quality and amount of structured knowledge available make it now feasible for companies to mine this huge amount of public data and integrate it in their next-generation enterprise information management systems. Analyzing this new type of data within the context of existing enterprise data should bring them new or more accurate business insights and allow better recognition of sales and market opportunities \cite{bigData}. 
+Data becomes more useful when it is open, widely available and in shareable formats, and when advanced computing and analysis can yield from it. The quality and amount of structured knowledge available make it now feasible for companies to mine this huge amount of public data and integrate it in their next-generation enterprise information management systems. Analyzing this new type of data within the context of existing enterprise data should bring them new or more accurate business insights and allow better recognition of sales and market opportunities \cite{bigData}.\\
+
+Business Intelligence has always been about creating new insight for business by converting data into meaning that can be shared between people to drive change in the organization. One key aspect of creating meaning is driving a common shared understanding of information also known as Semantics.
+
+Classic BI and even the newer Agile Visualization tools focus much of their selling features on attractive and unique visualizations, but preparing data for those visualizations still remains the far more challenging task in most BI projects large and small. self-service data provisioning aims at tackling this problem by providing intuitive datasets discovery, acquisition and integration techniques intuitively to the end user.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% section contributions %%%%
+%%% Challenges %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Challenges}
-Business Intelligence has always been about creating new insight for business by converting data into meaning that can be shared between people to drive change in the organization. One key aspect of creating meaning is driving a common shared understanding of information also known as Semantics.
 
-Classic BI and even the newer Agile Visualization tools focus much of their selling features on attractive and unique visualizations, but it still remains a truth that preparing data for those visualizations is the far more challenging task in most BI projects large and small. Self Service data provisioning aims at tackling this problem by providing datasets discovery, acquisition and integration techniques intuitively to the end user.
-
-In this thesis, we aim at creating a framework that will leverage Semantic Web technologies in order to enrich enterprise data in general and Business Intelligence data in particular in order to facilitate self-serviced data provisioning. In this thesis, we investigate the following research challenges:
+In this thesis, we aim at creating a framework that leverages Semantic Web technologies in order to enrich enterprise data in general and Business Intelligence data in particular in order to facilitate self-service data provisioning. We investigate the following research challenges:
 
 \begin{itemize}
-\item The enterprise heterogeneous data sources raise tremendous challenges. They have inherently different file formats, access protocols or query languages. They possess their own data model with different ways of representing and storing the data. Data across these sources may be noisy (e.g. duplicate or inconsistent), uncertain or be semantically similar yet different \cite{OntologyBasedSemantic}. Integration and provision of a unified view for these heterogeneous and complex data structures therefore require powerful tools to map and organize the data.
-\item Attaching metadata and Semantic information to instances can be tricky. An entity is usually not associated with a single generic type in the knowledge base, but rather with a set of specific types which can be relevant or not given the context. The challenging task is Finding the most relevant entity type within a given context.
-\item Even though popular datasets like DBPedia\footnote{http://dbpedia.org} and Freebase are well known and widely used, there are other hidden useful datasets not being used. Indeed these datasets may be useful for specialized domains, however without proper registry of topics, it is difficult for users to find them \cite{AutomaticDomainIdentification}.
-\item Linked Data consists of structured information supported by models, ontologies and vocabularies and contains query endpoints and links. This makes data quality assurance a challenge. Despite the fact that Linked Open Data quality is a trending and highly demanded topic, very few efforts are currently trying to standardize, track and formalize frameworks to issue scores or certificates that will help data consumers in their integration tasks.
-\item Social Networks are not just gathering Internet users into groups of common interests, they are also helping people follow breaking news, contribute to online debates or learn from others. They are transforming Web usage in terms of users' initial entry point, search, browsing and purchasing behavior. Integrating information from these Social Networks can be tricky due to the vast amount of data available which makes hard to spot what is relevant in a timely manner.
+\item {\bf Dataset Integration and Enrichment:} The enterprise heterogeneous data sources raise tremendous challenges. They have inherently different file formats, access protocols or query languages. They possess their own data model with different ways of representing and storing the data. Data across these sources may be noisy (e.g. duplicate or inconsistent), uncertain or be semantically similar yet different \cite{OntologyBasedSemantic}. Integration and provision of a unified view for these heterogeneous and complex data structures therefore require powerful tools to map and organize the data.
+\begin{itemize}
+	\item Attaching metadata and Semantic information to instances can be tricky. An entity is usually not associated with a single generic type in the knowledge base, but rather with a set of specific types which can be relevant or not given the context. The challenging task is finding the most relevant entity type within a given context.
+	\item Entities play a key role in knowledge bases in general and in the Web of Data in particular. Entities are generally described with a lot of properties, this is the case for DBpedia. It is, however, difficult to assess which ones are more ``important'' than others for particular tasks such data augmentation and visualizing the key facts of an entity.
+	\item Social Networks are not just gathering Internet users into groups of common interests, they are also helping people follow breaking news, contribute to online debates or learn from others. They are transforming Web usage in terms of users' initial entry point, search, browsing and purchasing behavior. Integrating information from these Social Networks can be tricky due to the vast amount of data available which makes hard to spot what is relevant in a timely manner.
+\end{itemize}
+\item {\bf Dataset Discovery:} Even though popular datasets like DBPedia\footnote{http://dbpedia.org} and Freebase are well known and widely used, there are other hidden useful datasets not being used. Indeed these datasets may be useful for specialized domains, however without proper registry of topics, it is difficult for users to find them \cite{AutomaticDomainIdentification}.
+\item {\bf Dataset Quality Control:} Linked Data consists of structured information supported by models, ontologies and vocabularies and contains query endpoints and links. This makes data quality assurance a challenge. Despite the fact that Linked Open Data quality is a trending and highly demanded topic, very few efforts are currently trying to standardize, track and formalize frameworks to issue scores or certificates that will help data consumers in their integration tasks.
+
 \end{itemize}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Proposal %%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \section{Proposal}
-
-
-In order to enable self serviced data provisioning, we envisage building an indexing service (see Figure 1) that will be able to provide detailed data profiles for internal and external data sources. As a first step, we plan to build a data crawler that will be able to perform the following dataset discovery tasks on internal repositories and external Linked Data hubs:
+Linked Open Data datasets are described using either the Vocabulary of Interlinked Datasets (VOID) \cite{Cyganiak:11:DLD} or the Data Catalog Vocabulary (DCAT) \cite{Maali:13:DCV}. With these standards, discovery and usage of linked datasets can be performed both effectively and efficiently. In our framework, we plan to use DCAT as the common standard for homogenizing description metadata of datasets indexed by our crawler. This choice came from the fact that the Open Data Support\footnote{http://opendatasupport.eu} is promoting the DCAT-AP (and consequently DCAT) as the standard for describing datasets and catalogs in Europe.
+In order to enable self-service data provisioning, we envisage building a framework (see Figure 1) that will be able to provide detailed DCAT descriptions for internal and external data sources. The framework is able to provide the following services:
+\begin{figure}[ht!]
+  \centering
+    \includegraphics[scale=0.5]{overall-architecture.png} 
+  \caption{Overall Architecture}
+\end{figure}
  \begin{itemize}
- \item {\bf Data Acquisition}: Be able to sample data from the various datasets.
- \item {\bf Data Preparation}: This will include data profiling and validation, de-duplicating and enhancing relevant data sets with metadata. Profiling is used to examine data to understand its content, structure and data quality dependencies. The types of profiling tasks include:
+ \item {\bf Data Acquisition}: Be able to sample data from the various structured data sources like Wikipedia tables, Open data portals, etc. While these are rich sources of information, sometimes live information streamed from the Social Networks is needed. As a result, we crawl Social Networks in order to aggregate semantically related information and connect it with the right resources. 
+ \item {\bf Data Preparation}: This includes data profiling and validation, de-duplicating and enhancing relevant data sets with metadata. Profiling is used to examine data to understand its content, structure and data quality dependencies. The types of profiling tasks include:
  \begin{itemize}
  \item Examining column data and getting statistical information such as min, max, average, median, null percentage, value distribution, pattern distribution.
  \item Dependency tasks: Finds the values in one or more dependent columns that rely on values in a primary column
  \item Redundancy tasks: Determine the degree of overlapping data values or duplication between two sets of columns
  \item Uniqueness tasks: Returns the count and percentage of rows that contain non-unique data, for the set of column(s) selected.
  \item Content type: Content type profiling provides suggested meaning based on the entities data in the columns.
+ \item Quality checks: An important aspect that we have to take into consideration while describing a dataset is its quality. For that, an objective Linked Data quality assessment framework should be created in order to issue quality profiles that extend the DCAT vocabulary. The framework helps on one hand data owners to rate the quality of their dataset and get some hints on possible improvements, and on the other hand data consumers to choose their data sources from a ranked set. 
  \end{itemize}
  \item {\bf Dataset Classification}: Classify and organize datasets based on the input from the previous tasks.
 \end{itemize}
 
-Linked Open Data datasets are described using either the Vocabulary of Interlinked Datasets (VOID) \cite{Cyganiak:11:DLD} or the Data Catalog Vocabulary (DCAT) \cite{Maali:13:DCV}. With these standards, discovery and usage of linked datasets can be performed both effectively and efficiently. In our framework, we plan to use DCAT as the common standard for homogenizing description metadata of datasets indexed by our crawler. This choice came from the fact that the Open Data Support\footnote{http://opendatasupport.eu} is promoting the DCAT-AP (and consequently DCAT) as the standard for describing datasets and catalogs in Europe.
-
-In addition to that, an important aspect that we have to take into consideration while describing a dataset is its quality. For that, an objective Linked Data quality assessment framework should be created in order to issue quality profiles that extend the DCAT vocabulary. The framework helps on one hand data owners to rate the quality of their dataset and get some hints on possible improvements, and on the other hand data consumers to choose their data sources from a ranked set. 
-
-While Linked Data is a rich source of information, sometimes live information streamed from the Social Networks is needed. In addition to the Linked Data crawler, we will need to crawl Social Networks in order to aggregate semantically related information and connect it with the right resources. 
-
-\begin{figure}[ht!]
-  \centering
-    \includegraphics[scale=0.8]{overall-architecture.png} 
-  \caption{Overall Architecture}
-\end{figure}
-
-\subsection{Contributions on Data Enrichment}
+\subsection{Contributions on Dataset Integration and Enrichment}
 Regarding this aspect of our research, we have achieved the following tasks:
  \begin{itemize}
  \item Building RUBIX which is a framework enabling mash-up of potentially noisy enterprise and external data.
  \item RUBIX improves instance and schema matching by adding Semantic metadata to data at the instance level.
  \item RUBIX improves data integration techniques by enabling clean representation of the data regardless of the languages used, existence of abbreviations, synonyms and typos. 
+ \item Build a Social crawler that queries several Social endpoints and aggregates news based on a set of defined keywords.
+ \item Build a common Semantic model to represent Web documents.
+ \item Building a Semantic Social News Aggregating service (SNARC) \cite{DBLP:conf/esws/AssafST13} that aggregates relevant Social news with regards to a Web document.
+ \item Reverse engineering of Google Knowledge Graph Panel in order to define the top properties of a selected entity.
+ \item High traction from the BI organization to integrate it as a service into various offerings.
  \item We presented RUBIX at the First International Workshop on Open Data \cite{Assaf:2012:RFI:2422604.2422607}\cite{DBLP:journals/corr/abs-1205-2691}.
+ \item SNARC has won the first place at the AI Mashup Challenge\footnote{http://aimashup.org/aimashup13} at ESWC13.
 \end{itemize}
 
-\subsection{Contributions on Linked Data Quality}
+\subsection{Contributions on Dataset Quality Control}
 Concerning our contributions on Linked Data quality assessment, we have achieved the following tasks:
 \begin{itemize}
 \item We identified five principle classes to describe the quality of a particular linked dataset. For each class, we list the principles that are involved at all stages of the data management process.
@@ -146,22 +165,97 @@ Concerning our contributions on Linked Data quality assessment, we have achieved
 \item We have evaluated the surveyed tools with regards to the suggested framework.
 \end{itemize}
 
-\subsection{Contributions on Semantic Social Data Aggregation}
-Concerning our contributions on Semantic Social data aggregation, we have achieved the following tasks:
-\begin{itemize}
-\item Build a Social crawler that queries several Social endpoints and aggregates news based on a set of defined keywords.
-\item Build a common Semantic model to represent Web documents.
-\item Building a Semantic Social News Aggregating service (SNARC) \cite{DBLP:conf/esws/AssafST13} that aggregates relevant Social news with regards to a Web document.
-\item SNARC has won the first place at the AI Mashup Challenge\footnote{http://aimashup.org/aimashup13} at ESWC13.
-\end{itemize}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% Improving Data Integration with Linked Data %%%
+%%% Dataset Integration and Enrichment %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Semantic Enrichment of Data}
-
+\section{Dataset Integration and Enrichment}
 Tagging and attaching metadata is often seen as additional work for data publishers with few paybacks. Moreover, different data creators use different terminologies which means that the same object maybe be represented using different metadata descriptions \cite{Furnas87thevocabulary}. Presenting and enterprise taxonomies requires a considerable amount of time and effort, at least in the initial creation steps \cite{frischmuth2012linked}.\\
+
+\subsection{What are the Important Properties of an Entity}
+In many knowledge bases, entities are described with numerous properties. However, not all properties have the same importance. Some properties are considered as keys for performing instance matching tasks while other properties are generally chosen for quickly providing a summary of the key facts attached to an entity. Our motivation is to provide a method enabling to select what properties should be used when depicting the summary of an entity, for example when augmenting extra columns into an existing dataset or when annotating instances with semantic tags.
+
+Our approach consists in: (i) reverse engineering the Google Knowledge Panel by extracting the properties that Google considers as sufficiently important to show (Section~\ref{sec:knowledge-graph}), and (ii) analyzing users' preferences by conducting a user survey and comparing the results (Section~\ref{sec:evaluation}).
+
+We have shown that it is possible to reveal what are the ``important'' properties of entities in a large knowledge base by reverse engineering the choices made by Google when creating knowledge graph panels and by comparing with users preferences obtained from a user survey. Our motivation is to represent this choice explicitly, using the Fresnel vocabulary, so that any application could just read this configuration file for deciding which properties of an entity is worth to visualize. We are aware that this knowledge is highly dynamic, the Google Knowledge Graph panel differing from countries and varying along the time. We have provided the code that enables to perform new calculation at run time and we aim to study the temporal evolution of what are important properties on a longer period. This knowledge which has been captured will be made available shortly in a SPARQL endpoint. We are also investigating the use of Mechanical Turk to perform a larger survey for the complete set of DBpedia classes.
+
+\subsubsection{Reverse Engineering the Google KG Panel}
+\label{sec:knowledge-graph}
+Web scraping is a technique for extracting data from Web pages. We aim at capturing the properties depicted in the Google Knowledge Panel (GKP) that are injected in search result pages~\cite{Bergman2012}. We have developed a Node.js application that queries all DBpedia concepts that have at least one instance which is \texttt{owl:sameAs} with a Freebase resource in order to increase the probability that the search engine result page (SERP) for this resource will contain a GKP. Moreover, we filter out generic concepts by excluding those who are direct subclasses of \texttt{owl:Thing} since they will trigger ambiguous queries. We obtained a list of $352$ concepts\footnote{SPARQL query: \url{http://goo.gl/EYuGm1}}.
+
+For each of these concepts, we retrieve $n$ instances. In our experiment, $n$ was equal to 100 random instances. For each of these instances, we issue a search query to Google containing the instance label. Google does not serve the GKP for all user agents and we had to mimic a browser behavior by setting the $User-Agent$ to a particular browser. We use CSS selectors to check the existence of and to extract data from a GKP. An exemple of a query selector is $.\_om$ (all elements with class name $\_om$) which returns the property DOM element(s) for the concept described in the GKP. From our experiments, we found out that we do not always get a GKP in a SERP. If this happens, we try to disambiguate the instance by issuing a new query with the concept type attached. However, if no GKP was found again, we capture that for manual inspection later on. Listing ~\ref{algoscrapping} gives the high level algorithm for extracting the GKP. The full implementation can be found at \url{https://github.com/ahmadassaf/KBE}.
+
+\begin{algorithm}[h]\scriptsize
+\caption{Google Knowledge Panel reverse engineering Algorithm} \label{algoscrapping}
+\begin{algorithmic}[1]
+    \STATE INITIALIZE $equivalentClasses(DBpedia,Freebase) $ AS $vectorClasses$
+    \STATE Upload $vectorClasses$ for querying processing
+    \STATE Set $n$ AS number-of-instances-to-query
+    \FOR { each $conceptType \in vectorClasses$}
+	\STATE SELECT $n$ instances
+	\STATE $listInstances \leftarrow$ SELECT-SPARQL($conceptType$, $n$)
+		\FOR {each $instance \in listInstances$}
+			\STATE CALL http://www.google.com/search?q=$instance$
+			\IF {$knowledgePanel$ exists}
+				\STATE SCRAP GOOGLE KNOWLEDGE PANEL
+			\ELSE
+				\STATE CALL http://www.google.com/search?q=$instance + conceptType$
+ 				\STATE SCRAP GOOGLE KNOWLEDGE PANEL
+			\ENDIF
+			\STATE $gkpProperties \leftarrow$ GetData(DOM, EXIST(GKP))
+			
+		\ENDFOR
+	\STATE COMPUTE ocurrences for each $prop \in gkpProperties$
+    \ENDFOR
+    \RETURN $gkpProperties$
+\end{algorithmic}
+\end{algorithm}
+\normalsize
+
+\subsubsection{Evaluation}
+\label{sec:evaluation}
+We conducted a user survey in order to compare what users think should be the important properties to display for a particular entity and what the GKP shows.
+
+\paragraph{\textbf{User survey}}
+\label{sec:survey}
+We set up a survey\footnote{The survey is at \url{http://eSurv.org?u=entityviz}} on February 25th, 2014 and for three weeks in order to collect the preferences of users in term of the properties they would like to be shown for a particular entity. We select one representative entity for nine classes: \texttt{TennisPlayer}, \texttt{Museum}, \texttt{Politician}, \texttt{Company}, \texttt{Country}, \texttt{City}, \texttt{Film}, \texttt{SoccerClub} and \texttt{Book}. 152 participants have provided answers, 72\% from academia, 20\% coming from the industry and 8\% having not declared their affiliation. 94\% of the respondents have heard about the Semantic Web while 35\% were not familiar with specific visualization tools. The detailed results\footnote{\url{https://github.com/ahmadassaf/KBE/blob/master/results/agreement-gkp-users.xls}} show the ranking of the top properties for each entity. We only keep the properties having received at least 10\% votes for comparing with the properties depicted in a KGP. Hence, users do not seem to be interested in the \texttt{INSEE code} identifying a French city while they expect to see the \texttt{population} or the \texttt{points of interest} of this city.
+
+\paragraph{\textbf{Comparison with the Knowledge Graphs.}}
+\label{sec:comparison}
+The results of the Google Knowledge Panel (GKP) extraction\footnote{\url{https://github.com/ahmadassaf/KBE/blob/master/results/survey.json}} clearly show a long tail distribution of the properties depicted by Google, with a top N properties (N being 4, 5 or 6 depending on the entity) counting for 98\% of the properties shown for this type. We compare those properties with the ones revealed by the user study. Table~\ref{tab:agreement} shows the agreement between the users and the choices made by Google in the GKP for the 9 classes. The highest agreement concerns the type \texttt{Museum} (66.97\%) while the lowest one is for the \texttt{TennisPlayer} (20\%) concept.
+
+\begin{table}[!htp]
+\centering{\scriptsize
+\begin{tabular}{lccccccccc}
+\hline
+ \textbf{Classes}	& TennisPlayer 	& Museum & Politician & Company & Country & City & Film & SoccerClub & Book	 \\ \hline
+ \textbf{Agr.}& 20\%  & 66.97\% & 50\% & 40\% & 60\% & 60\% & 60\% & 50\% & 60\% \\ \hline
+\end{tabular}
+\caption{Agreement on properties between the users and the Knowledge Graph Panel}
+\label{tab:agreement}
+}
+\end{table}\normalsize
+With this set of 9 concepts, we are covering $301,189$ DBpedia entities that have an existence in Freebase, and for each of them, we can now empirically define the most important properties when there is an agreement between one of the biggest knowledge base (Google) and users preferences.
+
+\paragraph{\textbf{Modeling the preferred properties with Fresnel.}}
+\label{sec:fresnel}
+Fresnel\footnote{\url{http://www.w3.org/2005/04/fresnel-info/}} is a presentation vocabulary for displaying RDF data. It specifies \textit{what} information contained in an RDF graph should be presented with the core concept \texttt{fresnel:Lens}~\cite{pietriga2006}. We use the Fresnel and PROV-O ontologies\footnote{\url{http://www.w3.org/TR/prov-o/}} to explicitly represent what properties should be depicted when displaying an entity.
+\scriptsize
+\begin{verbatim}
+:tennisPlayerGKPDefaultLens rdf:type fresnel:Lens ;
+	fresnel:purpose fresnel:defaultLens ;
+	fresnel:classLensDomain dbpedia-owl:TennisPlayer ;
+	fresnel:group :tennisPlayerGroup ;
+	fresnel:showProperties (dbpedia-owl:abstract dbpedia-owl:birthDate
+		 dbpedia-owl:birthPlace dbpprop:height dbpprop:weight
+		 dbpprop:turnedpro dbpprop:siblings) ;
+	prov:wasDerivedFrom
+	  <http://www.google.com/insidesearch/features/search/knowledge.html> .		
+\end{verbatim}	
+\normalsize
+
+
+\subsection{RUBIX to Enhance Schema Matching}
 
 RUBIX is our approach to bootstrap the process of attaching meta information to data objects. We leverage DBpedia and Freebase as knowledge bases for our annotation process. In RUBIX we assign a vector of Semantic types for every object at the instance level. For example, Orange will be represented by a vector of rich types that contain \texttt{(Organization, Organism Classification, Place ...)}. Currently, we rely on Freebase API to identify these rich types, but we have already started the effort to build an entity type ranking tool inspired by \cite{TRank}. 
 
@@ -176,12 +270,85 @@ In RUBIX we have implemented several matching algorithms (Cosine Similarity, Pea
 
 The increasing diversity of the datasets makes it difficult to annotate them with a fixed number of pre-defined tags. Moreover, manually entered tags are subjective and may not capture the essence and breadth of the dataset \cite{AutomaticDomainIdentification}. RUBIX can be used to Annotate datasets with meta information based on examining the data instances themselves. In addition to that, we can enhance our approach by applying techniques similar to \cite{AutomaticDomainIdentification} in order to identify topical domains with fine-grained classification.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  Semantic Social News Aggregation %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Semantic Social News Aggregation (SNARC)}
+
+The Internet has created a paradigm shift in how we consume and disseminate information. Data nowadays is spread over heterogeneous silos of archived and live data. People willingly share data on social media by posting news, views, presentations, pictures and videos. SNARC is a service that uses semantic web technology and combines services available on the web to aggregate social news. SNARC brings live and archived information to the user that is directly related to his active page. The key advantage is an instantaneous access to complementary information without the need to dig for it. Information appears when it is relevant enabling the user to focus on what is really important.
+
+Crawling data from these heterogeneous platforms implies the studying of related API specifications which differ in terms of use, privacy policy and described methods. Harvesting content spread over multiple platforms is a challenging task that has to ensure an easy and flexible way for integrating several social Web APIs. Tools such as API Blender \cite{journals/corr/abs-1301-2086} or Media Finder \cite{conf/chi/KangS03} provide such interface with the aim to save developers' efforts for learning each API specification. However, for in SNARC we needed services that are not available in the mentioned services. As a result, we have implemented our own Social crawler for Twitter\footnote{http://www.twitter.com}, Google+\footnote{http://plus.google.com}, YouTube\footnote{http://www.youtube.com}, Vimeo\footnote{http://www.vimeo.com}, Slideshare\footnote{http://www.slideshare.com}, Stack Exchange \footnote{http://stackexchange.com/}and the Web.
+
+\subsubsection{Underlying Mechanism}
+The back-end of SNARC consists of three major components: a document handler that creates a \"Semantic Model\" that represents any web resource, a query layer that is responsible for disseminating queries to the supported social services and a data parser which processes the search results, wraps them in a common social model and generates the desired output.
+
+\paragraph{Document Handler}
+The main idea behind SNARC is to provide a uniform model for web entities, whether they are blog entries, multimedia objects or micro-posts. To do so, SNARC creates a \"Semantic Model\" containing all the annotations and meta-data needed to query and reconcile social results. 
+\begin{figure}[ht!]
+  \centering
+    \includegraphics[scale=0.5]{architecture-part1.png} 
+  \caption{SNARC's Document Handler}
+\end{figure}
+
+The Semantic Model is created by the Document Handler (see Figure 1) which receives a web page URL and performs these three main steps:
+\begin{enumerate}
+\item {\bf Text Extraction:} Fetch the webpage that corresponds to the received URL and extract the textual content using a set of heuristics. These latter identify the main content of the page by stripping unwanted HTML tags and rank the different sections based on their semantics, class names and order. In the beginning we have used Alchemy API\footnote{http://www.alchemyapi.com} to perform text extraction; but we have chosen to implement a simpler method ourselves which saved us an extra API call. 
+\item {\bf Language Detection:} Detect the web page language using the Language Detection service of Alchemy API. This is necessary to match the desired language with compatible services like Twitter, YouTube, etc.
+\item {\bf Semantic Annotation:} Annotating the extracted text is the most important step in this process. We use Zemanta Suggest\footnote{http://developer.zemanta.com/docs/suggest/} and Alchemy API in order to extract: 
+\begin{itemize}
+\item {\bf Tags:} These are the finest-grained queryable keywords that we use to retrieve the social results. From our experiments, combining tags results in better findings than using entities or concepts. However, we plan to evaluate the combination of keywords, entities and concepts in order to find the top-queryable terms that will retrieve the most relevant results on different abstraction levels.
+\\Tags retrieved from these services are ranked by confidence values calculated by their internal algorithms, these values are normalized for each service. According to our experiments we have found that Alchemy's Keywords Extraction API returns a large set of closely related keywords (i.e. Android, Android Phone, Android Tablet, ...). To construct a good query we therefore need to provide a certain level of abstraction.We perform a cleaning process on those keywords by applying the Levenshtein distance to rule out closely related keywords by disregarding those with lower confidences. We perform a similar process on the result of the union between the keywords returned by Alchemy and Zemanta to ensure a sparse keywords set.
+\item {\bf Semantic Entities:} Entities provide a higher abstraction level of the document. They are used to reconcile the social results in order to maintain relevancy with the document. Similar to the keywords extraction services, the entities retrieved are ranked and contain outbound links to the matched entity on dbpedia, Wikipedia, Freebase, etc. A union is made between the results from Alchemy and Zemanta to ensure a wider coverage of entities. When a match is found, we merge the links from the two sources to ensure that we include all the resources that can be used to augment extra information about that entity in the document. 
+\item {\bf Categories:} These are high-level taxonomies that can generally describe the document's content. A taxonomy is used to narrow down our query scope when targeting services like YouTube. In our Semantic Document model we define two possible category sets, one retrieved from Alchemy's Text Categorization API\footnote{http://www.alchemyapi.com/api/categ/categs.html} and the other retrieved from Zemanta Suggest API that follows the DMOZ categorization scheme\footnote{http://www.dmoz.org/desc/Top}.
+\end{itemize}
+\end{enumerate}
+At the end of this process, we will have constructed the needed elements (keywords, entities and high level categories) wrapped in our Semantic Model to be passed to the query generator. For example, a summary of the Semantic Model for a web page titled \"Turkey protests: Erdogan in \'final\' warning\footnote{http://www.bbc.co.uk/news/world-europe-22889060}\"  looks like: 
+\begin{enumerate}
+\item {\bf Categories:} Culture\_Politics, Regional and Society
+\item {\bf Keywords:} Taksim Square, Protesters, Gezi Park, Mr Erdogan, Istanbul ...
+\item {\bf Entities:} Gezi Park, Recep Tayyip Erdogan, Taksim Square, Justice and Development Party (Turkey), Police of Turkey ...
+\end{enumerate}
+
+\paragraph{Query Layer}
+In this component, the calls to the social services are made. SNARC uses the extracted keywords from the Semantic Document in order to construct the queries and disseminate them to the appropriate services. Figure 2 shows the different steps in order to retrieve a set of social results.
+\begin{figure}[ht!]
+  \centering
+    \includegraphics[scale=0.5]{architecture-part2.png}
+  \caption{SNARC's Query Layer}
+\end{figure}
+
+\begin{enumerate}
+\item {\bf Query Builder:} Responsible for identifying targeted services and building tailored queries for each service. For example, if the processed document is categorized as a computer or technology related one, Stackoverflow service will be targeted with the queries constructed. However, other categories will correspond to different services from the Stack Exchange websites\footnote{http://stackexchange.com/sites}.
+\item {\bf Query Federator:} Responsible for federating the queries identified in the previous step to the corresponding services. To enhance performance, we tried to reduce the number of external calls. Yahoo Query Language (YQL)\footnote{http://developer.yahoo.com/yql/} helped us in minimizing the number of calls and batching them into a single one. It is an expressive SQL-like language that lets you query, filter, and join data across Web services. However, we have found that we cannot fully rely on YQL due to their API calls limit and the restriction on the query execution time that is set to 30 seconds. To overcome this, we have implemented a fallback mechanism that federates the queries to the selected social services and groups the result to be passed afterwards to the parser. \\
+To further optimize the number of calls, we have decided to take the top two ranked keywords. We do not apply logical operator (AND/OR) in our queries; instead, we perform one-to-one mapping between each keyword and query. Indeed, we have found that gathering keywords even if semantically related might bring up noise in the results. However, as mentioned earlier, a part of the future work will be investigating the best method to construct the most relevant queryable entity using different logical operators.
+\item {\bf Caching:}The main setback in the query layer was the variable limited number of calls we can make to external APIs. To overcome this, we have implemented a simple cache mechanism that saves the results on disk up to an hour. There are several cache levels; the first is a URL level one where the results of the parsed queries are cached. For example, if a user visited a certain article on the CNN webpage the results might take up to 15 seconds to appear, whereas a second user visiting the same article minutes afterwards will have the cached results in few seconds. The second level is keyword and service specific. This can be very helpful as users generally browse articles of related topics or interests (semantic concepts), so for each user we can end up with the same high level concepts being requested frequently. An important thing to note is that the caching is done on the server side and is disk-based.
+\end{enumerate}
+The social services queried can be grouped as follows:
+\begin{enumerate}
+\item {\bf Multimedia Services:} They include Slideshare, Vimeo and YouTube. Slideshare and YouTube allow the results to be fetched in a specific language that was detected in the previous step. In addition to that, YouTube search services are called twice; the first call is done to the YouTube V2 API\footnote{https://developers.google.com/youtube/2.0/} where we specify in addition to the keywords a high level category to be targeted. To do so, we have manually created a category mapping file that maps the high-levels categories of Alchemy’s API and DMOZ to those provided by YouTube. The second call is done to YouTube V3 API\footnote{https://developers.google.com/youtube/v3/}. The new feature provided by Google in this version is the ability to search using a semantic concept that corresponds to a Freebase concept ID; it proves to retrieve better results that the normal search. Freebase concept calls are cached for longer periods as they are less prone to changes. 
+\item {\bf Micro-posts Services:} They include Twitter, Google+ and Stackoverflow. Language filtering is done where applicable. 
+\item {\bf General Search:} This includes similar results found via Google search or those retrieved from the Zemanta API call. They are general articles or blog posts related to the current active page.
+\end{enumerate}
+\paragraph{Data Parser}
+This is the last step where the results and unified and wrapped in a single social model. Figure 3 shows the different steps needed to produce the final parsed results that will be pushed back to the front-end.
+\begin{figure}[ht!]
+  \centering
+    \includegraphics[scale=0.5]{architecture-part3.png} 
+  \caption{SNARC's Data Parser}
+\end{figure}
+
+\begin{enumerate}
+\item {\bf Live Reconciliator:} Social (or folksonomic) tagging has become a trending method to describe, search and discover content on the web. Folksonomies empower users by giving them total freedom in choosing their categories and keywords that they think describe best the content. This contrasts with taxonomies that over-impose hierarchical categorization of content \cite{Zanardi2008}. However, in services like Twitter and Google+, tagging has been abused in a way that increased noise in the stream of results. To overcome this problem, we align the incoming stream of posts with the set of semantic concepts or keywords that describe the document. There are several approaches and tools like \cite{Cantador2011,Diaz-Aviles2012,Preotiuc-Pietro2012,Zanardi2008} that aim at solving this problem. In SNARC we rely on two levels of reconciliation: one uses the high-level taxonomy (categories); and the other uses the vector of entities defined in the Semantic Document. For example, if SNARC wants to reconcile a blog post result retrieved from a general search, it constructs a Semantic Document Model for that result and applies the Cosine Similarity on the vector of ranked entities for each Semantic Model. Currently, we only reconcile against blog posts as it is very straightforward to construct a Semantic Document Model for them. However, an integral part of the future work will be the integration of SNARC's model to micro-posts and video search services.
+
+\item {\bf Social Modeler:} Every social network has its own underlying data model. To overcome this problem, we need to present the social results in a common wrapper. To do so, we have created an optimized universal social model that contains all the necessary data to model social information and can be reused in other projects. The model contains service related attributes like the service name and type, general post information like the author's name, profile link, image and geo-location information and post-specific information like the title, thumbnail, embed code, main content and link. 
+\item {\bf Time Sorter and Results Shuffler:} To better display the results on the front-end, we unify the time representation and sort the results based on it. Afterwards we pick the top N results and shuffle them to generate a random order.
+\end{enumerate}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% An Objective Assessment Framework for Linked Data Quality %%%
+%%% Dataset Quality Control %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{An Objective Assessment Framework for Linked Data Quality}
+\section{Dataset Quality Control}
 
 We are entering an era where open is the new default. Governments, universities, organizations and even individuals are publicly publishing huge amounts of open data.  This openness should be accompanied with a certain level of trust or guarantees about the quality of data.  To our knowledge, only one certificate is available to data publishers to assess the quality level of their datasets, the ODI certificate\footnote {https://certificates.theodi.org/}.\\
 
@@ -720,87 +887,12 @@ As a result, we have identified the need for a complete quality framework that c
 We have also noticed the lack of tools to measure certain quality indicators like the dataset's security. Moreover, to our knowledge, there are no tools that can measure all the provenance quality indicators (except for Flemming's tool that is able to check for the use of digital signatures) although the literature covers several approaches to achieve that \cite{Hartig09usingweb}\cite{Flouris2012}\cite{Harth2009}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%  Semantic Social News Aggregation %%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Semantic Social News Aggregation}
-
-The Internet has created a paradigm shift in how we consume and disseminate information. Data nowadays is spread over heterogeneous silos of archived and live data. People willingly share data on social media by posting news, views, presentations, pictures and videos. SNARC is a service that uses semantic web technology and combines services available on the web to aggregate social news. SNARC brings live and archived information to the user that is directly related to his active page. The key advantage is an instantaneous access to complementary information without the need to dig for it. Information appears when it is relevant enabling the user to focus on what is really important.
-
-Crawling data from these heterogeneous platforms implies the studying of related API specifications which differ in terms of use, privacy policy and described methods. Harvesting content spread over multiple platforms is a challenging task that has to ensure an easy and flexible way for integrating several social Web APIs. Tools such as API Blender \cite{journals/corr/abs-1301-2086} or Media Finder \cite{conf/chi/KangS03} provide such interface with the aim to save developers' efforts for learning each API specification. However, for in SNARC we needed services that are not available in the mentioned services. As a result, we have implemented our own Social crawler for Twitter\footnote{http://www.twitter.com}, Google+\footnote{http://plus.google.com}, YouTube\footnote{http://www.youtube.com}, Vimeo\footnote{http://www.vimeo.com}, Slideshare\footnote{http://www.slideshare.com}, Stack Exchange \footnote{http://stackexchange.com/}and the Web.
-
-\subsection{Underlying Mechanism}
-The back-end of SNARC consists of three major components: a document handler that creates a \"Semantic Model\" that represents any web resource, a query layer that is responsible for disseminating queries to the supported social services and a data parser which processes the search results, wraps them in a common social model and generates the desired output.
-
-\subsubsection{Document Handler}
-The main idea behind SNARC is to provide a uniform model for web entities, whether they are blog entries, multimedia objects or micro-posts. To do so, SNARC creates a \"Semantic Model\" containing all the annotations and meta-data needed to query and reconcile social results. 
-\begin{figure}[ht!]
-  \centering
-    \includegraphics[scale=0.8]{architecture-part1.png} 
-  \caption{SNARC's Document Handler}
-\end{figure}
-
-The Semantic Model is created by the Document Handler (see Figure 1) which receives a web page URL and performs these three main steps:
-\begin{enumerate}
-\item {\bf Text Extraction:} Fetch the webpage that corresponds to the received URL and extract the textual content using a set of heuristics. These latter identify the main content of the page by stripping unwanted HTML tags and rank the different sections based on their semantics, class names and order. In the beginning we have used Alchemy API\footnote{http://www.alchemyapi.com} to perform text extraction; but we have chosen to implement a simpler method ourselves which saved us an extra API call. 
-\item {\bf Language Detection:} Detect the web page language using the Language Detection service of Alchemy API. This is necessary to match the desired language with compatible services like Twitter, YouTube, etc.
-\item {\bf Semantic Annotation:} Annotating the extracted text is the most important step in this process. We use Zemanta Suggest\footnote{http://developer.zemanta.com/docs/suggest/} and Alchemy API in order to extract: 
-\begin{itemize}
-\item {\bf Tags:} These are the finest-grained queryable keywords that we use to retrieve the social results. From our experiments, combining tags results in better findings than using entities or concepts. However, we plan to evaluate the combination of keywords, entities and concepts in order to find the top-queryable terms that will retrieve the most relevant results on different abstraction levels.
-\\Tags retrieved from these services are ranked by confidence values calculated by their internal algorithms, these values are normalized for each service. According to our experiments we have found that Alchemy's Keywords Extraction API returns a large set of closely related keywords (i.e. Android, Android Phone, Android Tablet, ...). To construct a good query we therefore need to provide a certain level of abstraction.We perform a cleaning process on those keywords by applying the Levenshtein distance to rule out closely related keywords by disregarding those with lower confidences. We perform a similar process on the result of the union between the keywords returned by Alchemy and Zemanta to ensure a sparse keywords set.
-\item {\bf Semantic Entities:} Entities provide a higher abstraction level of the document. They are used to reconcile the social results in order to maintain relevancy with the document. Similar to the keywords extraction services, the entities retrieved are ranked and contain outbound links to the matched entity on dbpedia, Wikipedia, Freebase, etc. A union is made between the results from Alchemy and Zemanta to ensure a wider coverage of entities. When a match is found, we merge the links from the two sources to ensure that we include all the resources that can be used to augment extra information about that entity in the document. 
-\item {\bf Categories:} These are high-level taxonomies that can generally describe the document's content. A taxonomy is used to narrow down our query scope when targeting services like YouTube. In our Semantic Document model we define two possible category sets, one retrieved from Alchemy's Text Categorization API\footnote{http://www.alchemyapi.com/api/categ/categs.html} and the other retrieved from Zemanta Suggest API that follows the DMOZ categorization scheme\footnote{http://www.dmoz.org/desc/Top}.
-\end{itemize}
-\end{enumerate}
-At the end of this process, we will have constructed the needed elements (keywords, entities and high level categories) wrapped in our Semantic Model to be passed to the query generator. For example, a summary of the Semantic Model for a web page titled \"Turkey protests: Erdogan in \'final\' warning\footnote{http://www.bbc.co.uk/news/world-europe-22889060}\"  looks like: 
-\begin{enumerate}
-\item {\bf Categories:} Culture\_Politics, Regional and Society
-\item {\bf Keywords:} Taksim Square, Protesters, Gezi Park, Mr Erdogan, Istanbul ...
-\item {\bf Entities:} Gezi Park, Recep Tayyip Erdogan, Taksim Square, Justice and Development Party (Turkey), Police of Turkey ...
-\end{enumerate}
-
-\subsubsection{Query Layer}
-In this component, the calls to the social services are made. SNARC uses the extracted keywords from the Semantic Document in order to construct the queries and disseminate them to the appropriate services. Figure 2 shows the different steps in order to retrieve a set of social results.
-\begin{figure}[ht!]
-  \centering
-    \includegraphics[scale=0.75]{architecture-part2.png}
-  \caption{SNARC's Query Layer}
-\end{figure}
-
-\begin{enumerate}
-\item {\bf Query Builder:} Responsible for identifying targeted services and building tailored queries for each service. For example, if the processed document is categorized as a computer or technology related one, Stackoverflow service will be targeted with the queries constructed. However, other categories will correspond to different services from the Stack Exchange websites\footnote{http://stackexchange.com/sites}.
-\item {\bf Query Federator:} Responsible for federating the queries identified in the previous step to the corresponding services. To enhance performance, we tried to reduce the number of external calls. Yahoo Query Language (YQL)\footnote{http://developer.yahoo.com/yql/} helped us in minimizing the number of calls and batching them into a single one. It is an expressive SQL-like language that lets you query, filter, and join data across Web services. However, we have found that we cannot fully rely on YQL due to their API calls limit and the restriction on the query execution time that is set to 30 seconds. To overcome this, we have implemented a fallback mechanism that federates the queries to the selected social services and groups the result to be passed afterwards to the parser. \\
-To further optimize the number of calls, we have decided to take the top two ranked keywords. We do not apply logical operator (AND/OR) in our queries; instead, we perform one-to-one mapping between each keyword and query. Indeed, we have found that gathering keywords even if semantically related might bring up noise in the results. However, as mentioned earlier, a part of the future work will be investigating the best method to construct the most relevant queryable entity using different logical operators.
-\item {\bf Caching:}The main setback in the query layer was the variable limited number of calls we can make to external APIs. To overcome this, we have implemented a simple cache mechanism that saves the results on disk up to an hour. There are several cache levels; the first is a URL level one where the results of the parsed queries are cached. For example, if a user visited a certain article on the CNN webpage the results might take up to 15 seconds to appear, whereas a second user visiting the same article minutes afterwards will have the cached results in few seconds. The second level is keyword and service specific. This can be very helpful as users generally browse articles of related topics or interests (semantic concepts), so for each user we can end up with the same high level concepts being requested frequently. An important thing to note is that the caching is done on the server side and is disk-based.
-\end{enumerate}
-The social services queried can be grouped as follows:
-\begin{enumerate}
-\item {\bf Multimedia Services:} They include Slideshare, Vimeo and YouTube. Slideshare and YouTube allow the results to be fetched in a specific language that was detected in the previous step. In addition to that, YouTube search services are called twice; the first call is done to the YouTube V2 API\footnote{https://developers.google.com/youtube/2.0/} where we specify in addition to the keywords a high level category to be targeted. To do so, we have manually created a category mapping file that maps the high-levels categories of Alchemy’s API and DMOZ to those provided by YouTube. The second call is done to YouTube V3 API\footnote{https://developers.google.com/youtube/v3/}. The new feature provided by Google in this version is the ability to search using a semantic concept that corresponds to a Freebase concept ID; it proves to retrieve better results that the normal search. Freebase concept calls are cached for longer periods as they are less prone to changes. 
-\item {\bf Micro-posts Services:} They include Twitter, Google+ and Stackoverflow. Language filtering is done where applicable. 
-\item {\bf General Search:} This includes similar results found via Google search or those retrieved from the Zemanta API call. They are general articles or blog posts related to the current active page.
-\end{enumerate}
-\subsubsection{Data Parser}
-This is the last step where the results and unified and wrapped in a single social model. Figure 3 shows the different steps needed to produce the final parsed results that will be pushed back to the front-end.
-\begin{figure}[ht!]
-  \centering
-    \includegraphics[scale=0.8]{architecture-part3.png} 
-  \caption{SNARC's Data Parser}
-\end{figure}
-
-\begin{enumerate}
-\item {\bf Live Reconciliator:} Social (or folksonomic) tagging has become a trending method to describe, search and discover content on the web. Folksonomies empower users by giving them total freedom in choosing their categories and keywords that they think describe best the content. This contrasts with taxonomies that over-impose hierarchical categorization of content \cite{Zanardi2008}. However, in services like Twitter and Google+, tagging has been abused in a way that increased noise in the stream of results. To overcome this problem, we align the incoming stream of posts with the set of semantic concepts or keywords that describe the document. There are several approaches and tools like \cite{Cantador2011,Diaz-Aviles2012,Preotiuc-Pietro2012,Zanardi2008} that aim at solving this problem. In SNARC we rely on two levels of reconciliation: one uses the high-level taxonomy (categories); and the other uses the vector of entities defined in the Semantic Document. For example, if SNARC wants to reconcile a blog post result retrieved from a general search, it constructs a Semantic Document Model for that result and applies the Cosine Similarity on the vector of ranked entities for each Semantic Model. Currently, we only reconcile against blog posts as it is very straightforward to construct a Semantic Document Model for them. However, an integral part of the future work will be the integration of SNARC's model to micro-posts and video search services.
-
-\item {\bf Social Modeler:} Every social network has its own underlying data model. To overcome this problem, we need to present the social results in a common wrapper. To do so, we have created an optimized universal social model that contains all the necessary data to model social information and can be reused in other projects. The model contains service related attributes like the service name and type, general post information like the author's name, profile link, image and geo-location information and post-specific information like the title, thumbnail, embed code, main content and link. 
-\item {\bf Time Sorter and Results Shuffler:} To better display the results on the front-end, we unify the time representation and sort the results based on it. Afterwards we pick the top N results and shuffle them to generate a random order.
-\end{enumerate}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%  Conclusions and Future Work %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Conclusions and Future work}
 
-We have presented in this document our main contributions in some issues around Enriching Enterprise Data Towards Self-Service Data Provisioning. We have first focused on the aspect of data profiling through RUBIX. We plan to extend RUBIX to be able to work with DBpedia leveraging the planned entity type ranking module. We also plan to include data mining techniques to profile numerical data and provide statistical insights about data distribution. 
+We have presented in this document our main contributions in some issues around Enriching Enterprise Data Towards self-service Data Provisioning. We have first focused on the aspect of data profiling through RUBIX. We plan to extend RUBIX to be able to work with DBpedia leveraging the planned entity type ranking module. We also plan to include data mining techniques to profile numerical data and provide statistical insights about data distribution. 
 
 Regarding the Linked Data quality module, we plan to develop a comprehensive objective Linked Data quality evaluation tool. The tool will be able to automatically measure the various quality indicators listed in this paper, introduce a scoring function with different weights for the various quality attributes and issue a quality certificate.
 
