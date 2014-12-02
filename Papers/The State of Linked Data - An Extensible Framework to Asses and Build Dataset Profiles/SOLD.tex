@@ -1,0 +1,79 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%µ%%%%%%%%%%%%%%%%%%
+%%%  The State of Linked Data - An Extensible Framework to Asses and Build Dataset Profiles            %%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[runningheads,a4paper]{llncs}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\setcounter{tocdepth}{3}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{url}
+\usepackage{listings}
+\usepackage{subfigure}
+\usepackage{algorithmic}
+\usepackage{algorithm}
+
+\newcommand{\keywords}[1]{\par\addvspace\baselineskip
+\noindent\keywordname\enspace\ignorespaces#1}
+
+% todo macro
+\usepackage{color}
+\newtheorem{deflda}{Axiom}
+\newcommand{\todo}[1]{\noindent\textcolor{red}{{\bf \{TODO}: #1{\bf \}}}}
+
+% Language Definitions for Turtle
+\definecolor{olivegreen}{rgb}{0.2,0.8,0.5}
+\definecolor{grey}{rgb}{0.5,0.5,0.5}
+\lstdefinelanguage{ttl}{
+sensitive=true,
+morecomment=[l][\color{brown}]{@},
+morecomment=[l][\color{red}]{\#},
+morestring=[b][\color{blue}]\",
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  Beginning of document  %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+% first the title is needed
+\title{The State of Linked Data}
+\subtitle{An Extensible Framework to Asses and Build Dataset Profiles}
+
+\author{Ahmad Assaf\inst{1}\inst{2}, Aline Senart\inst{2} and Rapha\"{e}l Troncy\inst{1} }
+
+\institute{EURECOM, Sophia Antipolis, France. \email{<firstName.lastName@eurecom.fr>}
+  \and SAP Labs France. \email{<firstName.lastName@sap.com>}
+}
+
+% a short form should be given in case it is too long for the running head
+\titlerunning{The State of Linked Data - An Extensible Framework to Asses and Build Dataset Profiles}
+%\authorrunning{Assaf, Senart and Troncy}
+
+\maketitle
+
+%%%%%%%%%%%%%%%%%%
+%%%  Abstract  %%%
+%%%%%%%%%%%%%%%%%%
+
+\begin{abstract}
+Linked Open Data (LOD) has emerged as one of the largest collection of interlinked datasets on the web. Benefiting from this mine of data requires the existence of descriptive information about each dataset in the accompanying metadata. Such meta information is currently very limited to few data portals where they are provided manually, provide little or bad quality insights or not available at all. Several automatic profiling techniques are needed to generate descriptive and informative meta information. To address this issue, we propose a scalable automatic approach for extracting linked dataset meta information. This approach apply several techniques to check the validity of the attached metadata of a certain dataset as well as a whole Data Portal. Furthermore, we apply our framework on prominent Data Portals in order to analyze the general state of Linked Open Data.
+\keywords{Linked Data, Dataset Profile, Metadata, Data Quality}
+\end{abstract}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  1. Introduction  %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Introduction}
+\label{sec:introduction}
+\vspace{-0.4cm}
+
+
+\bibliographystyle{abbrv}
+\nocite{*}
+\bibliography{SOLD}
+\end{document}
