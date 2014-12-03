@@ -1,13 +1,13 @@
 # Fdb version 3
-["bibtex SOLD"] 1417536344 "SOLD.aux" "SOLD.bbl" "SOLD" 1417536485
+["bibtex SOLD"] 1417617587 "SOLD.aux" "SOLD.bbl" "SOLD" 1417620446
   "/usr/local/texlive/2013/texmf-dist/bibtex/bst/base/abbrv.bst" 1292289607 20329 b5fed53e10044d0f8112183785c759b1 ""
-  "SOLD.aux" 1417536485 400 cec01c7430afee1d743ddb81e0566a27 ""
+  "SOLD.aux" 1417620445 864 c59305e55fb40565d496aa34ff2b73f7 ""
   "SOLD.bcf" 0 -1 0 ""
-  "SOLD.bib" 1417534865 100 c4eeb25d9cd721ff59d3bd65c6a0f461 ""
+  "SOLD.bib" 1417616403 2885 3bdb8a32df9bf5c20191f88389b265c8 ""
   (generated)
   "SOLD.bbl"
   "SOLD.blg"
-["pdflatex"] 1417536484 "SOLD.tex" "SOLD.pdf" "SOLD" 1417536485
+["pdflatex"] 1417620445 "SOLD.tex" "SOLD.pdf" "SOLD" 1417620446
   "/usr/local/texlive/2013/texmf-dist/tex/context/base/supp-pdf.mkii" 1337017135 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/etexcmds.sty" 1335995445 7612 c47308d923ec19888707b0f1792b326a ""
   "/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/ifluatex.sty" 1303254447 7324 11d14f318d865f420e692d4e6c9c18c3 ""
@@ -55,11 +55,11 @@
   "/usr/local/texlive/2013/texmf-dist/tex/latex/tools/multicol.sty" 1312409015 26766 56c30c5bea3083b5a0d6fc2ce0063096 ""
   "/usr/local/texlive/2013/texmf-dist/tex/latex/tools/tabularx.sty" 1254151720 6076 90ca6002d5df607cc27699a4af5ff84e ""
   "/usr/local/texlive/2013/texmf-dist/tex/latex/url/url.sty" 1264379145 21932 e3a9cf32ee9b853b42be14c2f25b873c ""
-  "SOLD.aux" 1417536485 400 cec01c7430afee1d743ddb81e0566a27 ""
-  "SOLD.bbl" 1417536345 49 0eba253fc001332e731e8aba3f23127b "bibtex SOLD"
-  "SOLD.tex" 1417536483 3071 0ad0377f21a816c7efcfd9f071748fbe ""
+  "SOLD.aux" 1417620445 864 c59305e55fb40565d496aa34ff2b73f7 ""
+  "SOLD.bbl" 1417617587 1920 9a15e56cf0e63ceb145d801b07a202fd "bibtex SOLD"
+  "SOLD.tex" 1417620443 8232 e5ee47528186ee81c5c8574cf36badf1 ""
   "llncs.cls" 1395411889 42776 44493c38e57a29ba7e15792efea18b8f ""
   (generated)
   "SOLD.aux"
-  "SOLD.pdf"
   "SOLD.log"
+  "SOLD.pdf"
