@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%µ%%%%%%%%%%%%%%%%%%
-%%%  The State of Linked Data - An Extensible Framework to Assess and Build Dataset Profiles            %%%%
+%%%  The State of Linked Data - An Extensible Framework to Validate and Build Dataset Profiles            %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \documentclass[runningheads,a4paper]{llncs}
@@ -14,6 +14,8 @@
 \usepackage{subfigure}
 \usepackage{algorithmic}
 \usepackage{algorithm}
+
+\graphicspath{ {figures/} }
 
 \newcommand{\keywords}[1]{\par\addvspace\baselineskip
 \noindent\keywordname\enspace\ignorespaces#1}
@@ -40,8 +42,7 @@ morestring=[b][\color{blue}]\",
 \begin{document}
 
 % first the title is needed
-\title{The State of Linked Data}
-\subtitle{An Extensible Framework to Assess and Build Dataset Profiles}
+\title{An Extensible Framework to Validate and Build Dataset Profiles}
 
 \author{Ahmad Assaf\inst{1}\inst{2}, Aline Senart\inst{2} and Rapha\"{e}l Troncy\inst{1} }
 
@@ -50,7 +51,7 @@ morestring=[b][\color{blue}]\",
 }
 
 % a short form should be given in case it is too long for the running head
-\titlerunning{The State of Linked Data - An Extensible Framework to Asses and Build Dataset Profiles}
+\titlerunning{An Extensible Framework to Validate and Build Dataset Profiles}
 %\authorrunning{Assaf, Senart and Troncy}
 
 \maketitle
@@ -60,7 +61,7 @@ morestring=[b][\color{blue}]\",
 %%%%%%%%%%%%%%%%%%
 
 \begin{abstract}
-Linked Open Data (LOD) has emerged as one of the largest collection of interlinked datasets on the web. Benefiting from this mine of data requires the existence of descriptive information about each dataset in the accompanying metadata. Such meta information is currently very limited to few data portals where they are usually provided manually thus giving little or bad quality insights. To address this issue, we propose a scalable automatic approach for extracting and generating descriptive linked dataset meta information. This approach applies several techniques to check the validity of the attached metadata of a certain dataset as well as a whole data portal. Using our framework on prominent data portals shows that the general state of the Linked Open Data needs attention as most of datasets suffer from bad quality metadata and lack additional informative metrics.
+Linked Open Data (LOD) has emerged as one of the largest collection of interlinked datasets on the web. Benefiting from this mine of data requires the existence of descriptive information about each dataset in the accompanying metadata. Such meta information is currently very limited to few data portals where they are usually provided manually thus giving little or bad quality insights. To address this issue, we propose a scalable automatic approach for extracting, validating and generating descriptive linked dataset profiles. This approach applies several techniques to check the validity of the attached metadata as well as providing descriptive and statistical information of a certain dataset as well as a whole data portal. Using our framework on prominent data portals shows that the general state of the Linked Open Data needs attention as most of datasets suffer from bad quality metadata and lack additional informative metrics.
 \keywords{Linked Data, Dataset Profile, Metadata, Data Quality}
 \end{abstract}
 
@@ -77,16 +78,16 @@ The Linked Open Data is a gold mine for organizations and individuals who are tr
 The main entry point for discovering and identifying needed datasets is through public data portals like DataHub\footnote{http://datahub.io} and Europe's Public Data\footnote{http://publicdata.eu} or private ones like Quandl\footnote{https://quandl.com/} and Engima\footnote{http://enigma.io/}. Private portals harness manually curated data from various sources and expose them to users either freely or through paid plans. The data available is of higher quality but lesser quantity compared to what is available in public portals. Similarly in some public data portals, administrators manually review datasets information and attach suitable meta information. This information is mainly in form of predefined tags such as \textit{media, geography, life sciences, etc.} for organization and clustering purposes.
 However the increasing number of available datasets makes the review and curation process unsustainable even when outsourced to communities. Furthermore, the diversity of those datasets makes it hard to classify them with a fixed number of predefined tags that can be subjectively assigned without capturing the essence and breadth of the dataset \cite{6690016}.
 
-\textit{Data profiling} is the process of creating descriptive dataset metadata. It is a cardinal activity when facing an unfamiliar dataset \cite{semwebprofiling}.It helps in assessing the importance of the dataset, improving users' ability to search and reuse part of the dataset and detect irregularities to improve its quality. Data profiling typically includes several tasks:
+\textit{Data profiling} is the process of creating descriptive information about the data examined. It is a cardinal activity when facing an unfamiliar dataset \cite{semwebprofiling}.It helps in assessing the importance of the dataset, improving users' ability to search and reuse part of the dataset and detect irregularities to improve its quality. Data profiling typically includes several tasks:
 \begin{itemize}
   \item \textbf{Metadata profiling}: Provides general information on the dataset (dataset description, release and update dates, etc.), legal information (license information, openness, etc.), practical information (access points, data dumps, etc.), etc.
   \item \textbf{Statistical profiling}: Provides statistical information about data types and patterns in the dataset, i.e. properties distribution, number of entities and RDF triples, etc.
   \item \textbf{Topical profiling}: Provides descriptive knowledge on the dataset content and structure. This can be in form of tags and categories used to facilitate search and reuse.
 \end{itemize}
 
-In this work, we address the above mentioned challenges of automatic assessment and generation of descriptive datasets profiles. This paper proposes an extensible framework consisting of a processing pipeline that combines techniques for data portals identification, datasets crawling and a set of pluggable modules combining several profiling tasks. The framework assesses the provided dataset metadata against an aggregated standard set of information. Metadata fields are automatically corrected when possible i.e. missing license link. Moreover, a report is created with issues that cannot be automatically fixed and is sent to the dataset's maintainer via e-mail. There exist various statistical and topical profiling tools for both relational and Linked Data. The architecture of the framework allows to easily add them as additional profiling tasks. For this paper, we will focus on Linked Data profiling tools as we will present our findings on the overall state of Linked Data in some of the prominent data portals.
+In this work, we address the above mentioned challenges of automatic validation and generation of descriptive datasets profiles. This paper proposes an extensible framework consisting of a processing pipeline that combines techniques for data portals identification, datasets crawling and a set of pluggable modules combining several profiling tasks. The framework validates the provided dataset metadata against an aggregated standard set of information. Metadata fields are automatically corrected when possible i.e. missing license link. Moreover, a report is created with issues that cannot be automatically fixed and is sent to the dataset's maintainer via e-mail. There exist various statistical and topical profiling tools for both relational and Linked Data. The architecture of the framework allows to easily add them as additional profiling tasks. For this paper, we will focus on Linked Data profiling tools as we will present our findings on the overall state of Linked Data in some of the prominent data portals.
 
-The remainder of the paper is structured as follows. Section 2 reviews related literature. Section 3 describes the framework's architecture to assess and generate dataset profiles. Section 4 shows the results of running this tool on some of the most prominent data portals and analyzes them. Finally, Section 5 presents the conclusion and future work.
+The remainder of the paper is structured as follows. Section 2 reviews related literature. Section 3 describes the framework's architecture to validate and generate dataset profiles. Section 4 shows the results of running this tool on some of the most prominent data portals and analyzes them. Finally, Section 5 presents the conclusion and future work.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %%%  2. Related Work  %%%
@@ -104,7 +105,7 @@ Calculating statistical information on datasets is vital to applications dealing
 Topical and categorical information facilitates dataset search and reuse. Topical profiling focuses on content-wise analysis at the instances and ontological levels. GERBIL \cite{gerbil} is a general entity annotation framework that provides machine processable output allowing efficient querying. In addition, there exist several entity annotation tools and frameworks \cite{Cornolti:2013:FBE:2488388.2488411} but none of those systems are designed specifically for dataset annotation. In \cite{datafinalnd}, authors created a semantic portal to manually annotate and publish metadata about both LOD and non-RDF datasets. In \cite{6690016}, authors automatically assigned Freebase domains to extracted instance labels of some of the LOD Cloud datasets. The goal was to provide automatic domain identification, thus enabling improving datasets clustering and categorization. In \cite{Bohm:2012:LTG:2396761.2398718}, authors extracted dataset topics by exploiting the graph structure and ontological information, thus removing the dependency on textual labels. In  \cite{scalableApproach} authors generate VoID and VoL\footnote{http://data.linkededucation.org/vol }descriptions via a processing pipeline that extracts dataset topic models ranked on graphical models of selected DBpedia categories.
 
 Although the above mentioned tools are able to provide general, statistical and topical information about a dataset, there exist no approach that is able to combine them into a unified profile presented to consumers. Dataset search can be done without relying on attached metadata (tags and categories). For example, there exist several approaches to create LOD indexes. In \cite{Alexander:LDOW09}, authors used VoID descriptions to optimize query processing by determining relevant query-able datasets. In \cite{Harth:2010:DSO:1772690.1772733}, authors created an approximate index structure (QTree) and an algorithm for answering conjunctive queries over Linked Data. SchemEX \cite{Konrath:2012:SEC:2399444.2399563} is a stream-based approach leveraging type and property information of RDF instances to create schema-level indexes.\\
-Semantic search engines like Sindice \cite{Delbru2010a}, Swoogle \cite{Ding2004} and Watson \cite{d'Aquin:2011:WMS:2019470.2019476} help in entities lookup but are not designed specifically for dataset search. In \cite{whatShouldILinkTo}, authors utilized the sig.ma index \cite{Tummarello10sig.ma:live} to identify appropriate data sources for interlinking.
+Semantic search engines like Sindice \cite{Delbru2010a}, Swoogle \cite{Ding2004} and Watson \cite{d'Aquin:2011:WMS:2019470.2019476} help in entities lookup but are not designed specifically for dataset search. In \cite{whatShou]ldILinkTo}, authors utilized the sig.ma index \cite{Tummarello10sig.ma:live} to identify appropriate data sources for interlinking.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %%%  3. Profiling data portals  %%%
@@ -113,7 +114,13 @@ Semantic search engines like Sindice \cite{Delbru2010a}, Swoogle \cite{Ding2004}
 \section{Profiling Data Portals}
 \label{sec:profiling data portals}
 
-In this section, we provide an overview of the processing steps for assessing and generating dataset profiles. Figure 1 shows the main steps which are the following: (i) Data portal identification; (ii) metadata crawling and extraction; (iii) instance and resource extraction; (iv) metadata assessment and (v) dataset profile and report generation. The various steps are explained in details below.
+In this section, we provide an overview of the processing steps for validating and generating dataset profiles. Figure 1 shows the main steps which are the following: (i) Data portal identification; (ii) dataset crawler; (iii) metadata extraction; (iv) instance and resource extraction; (v) profile validation and generation (vi) report generation. The various steps are explained in details below.
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[scale=0.4]{figure-1_architecture.png}
+  \caption{Processing pipeline for validating and generating dataset profiles}
+\end{figure}
 
 \subsection{Data Portal Identification}
 
