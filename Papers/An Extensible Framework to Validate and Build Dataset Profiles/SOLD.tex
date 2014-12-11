@@ -114,7 +114,9 @@ Semantic search engines like Sindice \cite{Delbru2010a}, Swoogle \cite{Ding2004}
 \section{Profiling Data Portals}
 \label{sec:profiling data portals}
 
-In this section, we provide an overview of the processing steps for validating and generating dataset profiles. Figure 1 shows the main steps which are the following: (i) Data portal identification; (ii) dataset crawler; (iii) metadata extraction; (iv) instance and resource extraction; (v) profile validation and generation (vi) report generation. The various steps are explained in details below.
+In this section, we provide an overview of the processing steps for validating and generating dataset profiles. Figure 1 shows the main steps which are the following: (i) Data portal identification; (ii) dataset crawling; (iii) metadata extraction; (iv) instance and resource extraction; (v) profile validation and generation (vi) report generation.
+
+Our framework is built as a Command Line Interface (CLI) application using Node.js\footnote{http://nodejs.org/}. Related functions are encapsulated into modules that can be easily plugged in/out the processing pipeline. The various steps are explained in details below.
 
 \begin{figure}[h!]
   \centering
@@ -123,6 +125,20 @@ In this section, we provide an overview of the processing steps for validating a
 \end{figure}
 
 \subsection{Data Portal Identification}
+
+Data portals can be considered as data access points that provide tools facilitating data publishing, sharing, searching and visualization. CKAN\footnote{http://ckan.org} is the world's leading open-source data portal platform powering websites like the DataHub, Europe's Public Data and the U.S Government's open data\footnote{http://data.gov}. Modeled on CKAN, DKAN\footnote{http://drupal.org/project/dkan} is a standalone Drupal distribution that is used in various public data portals as well. Socrata\footnote{http://www.socrata.com} helps public sector organizations improve data-driven decision making by providing a set of solutions including an open data portal. In addition to these tradition data portals, there is a set of tools that allow exposing data directly as RESTful APIs like Datatank\footnote{http://thedatatank.com}, Database-to-API\footnote{https://github.com/project-open-data/db-to-api} and CSV-to-API\footnote{https://github.com/project-open-data/csv-to-api}.\\
+
+Identifying the underline software powering the data portal is a vital first step to understand the API calls needed for the following steps. The identification process can include a combination of the following:
+
+\begin{itemize}
+  \item \textbf{URL inspection}: Checking the existence of certain strings in the URL. For example, various CKAN based portals are hosted on subdomains of the \texttt{http://ckan.net} like CKAN Brazil\footnote{http://br.ckan.net} and CKAN Italia\footnote{http://it.ckan.net}.
+  \item \textbf{Meta tags inspection}: The \texttt{<meta>} tag provides metadata about the HTML document. They are typically used to specify page description, keywords, author, etc. Inspecting the \texttt{content} attribute can indicate the type of the data portal. For example, \texttt{meta[content*="ckan]} CSS selector can identify CKAN portals, where the \texttt{meta[content*="Drupal"]} can identify DKAN portals.
+  \item \textbf{Scripts inspection}: Checking the existence of certain injected or inline JavaScript scripts.
+\end{itemize}
+
+After those preliminary checks, we query one of the identified portal API endpoints. The successful completion of the request denotes a successful identification of the data portal type.
+
+\subsection{Dataset Crawling}
 
 \bibliographystyle{abbrv}
 \nocite{*}
