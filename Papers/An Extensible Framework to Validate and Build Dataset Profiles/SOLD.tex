@@ -114,7 +114,7 @@ Semantic search engines like Sindice \cite{Delbru2010a}, Swoogle \cite{Ding2004}
 \section{Profiling Data Portals}
 \label{sec:profiling data portals}
 
-In this section, we provide an overview of the processing steps for validating and generating dataset profiles. Figure 1 shows the main steps which are the following: (i) Data portal identification; (ii) metadata extraction; (iii) instance and resource extraction; (iv) profile validation and generation (v) report generation.
+In this section, we provide an overview of the processing steps for validating and generating dataset profiles. Figure 1 shows the main steps which are the following: (i) Data portal identification; (ii) metadata extraction; (iii) instance and resource extraction; (iv) profile validation (v) profiler and report generation.
 
 Our framework is built as a Command Line Interface (CLI) application using Node.js\footnote{http://nodejs.org/}. Related functions are encapsulated into modules that can be easily plugged in/out the processing pipeline. The various steps are explained in details below.
 
@@ -158,9 +158,11 @@ Considering that certain dataset contain large amount of resources, a sampler mo
   \item \textbf{Resource Centrality Sampling}: Weighs each resource as the ration of the number of resource types used to describe a particular resource divided by the total number of resource types in the dataset. This is specific and important to RDF datasets where important concepts tend to be more structured and linked to other concepts \cite{scalableApproach}.
 \end{itemize}
 
-\subsection{Profile Validation and Generation}
+\subsection{Profile Validation}
 
-\subsection{Report Generation}
+
+
+\subsection{Profile and Report Generation}
 
 \bibliographystyle{abbrv}
 \nocite{*}

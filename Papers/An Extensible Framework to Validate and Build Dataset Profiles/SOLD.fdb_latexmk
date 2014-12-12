@@ -1,13 +1,13 @@
 # Fdb version 3
-["bibtex SOLD"] 1418341757 "SOLD.aux" "SOLD.bbl" "SOLD" 1418342097
+["bibtex SOLD"] 1418342661 "SOLD.aux" "SOLD.bbl" "SOLD" 1418342663
   "/usr/local/texlive/2013/texmf-dist/bibtex/bst/base/abbrv.bst" 1292289607 20329 b5fed53e10044d0f8112183785c759b1 ""
-  "SOLD.aux" 1418342096 3757 0d7a7825e63952494519856ed4f5c3d0 ""
+  "SOLD.aux" 1418342663 3754 c4c4e7e983cc59bb4e483e92a507b326 ""
   "SOLD.bcf" 0 -1 0 ""
   "SOLD.bib" 1417655992 13420 e619766335891aeca3347ab3805c5c07 ""
   (generated)
-  "SOLD.bbl"
   "SOLD.blg"
-["pdflatex"] 1418342095 "SOLD.tex" "SOLD.pdf" "SOLD" 1418342097
+  "SOLD.bbl"
+["pdflatex"] 1418342662 "SOLD.tex" "SOLD.pdf" "SOLD" 1418342663
   "/usr/local/texlive/2013/texmf-dist/tex/context/base/supp-pdf.mkii" 1337017135 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/etexcmds.sty" 1335995445 7612 c47308d923ec19888707b0f1792b326a ""
   "/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/ifluatex.sty" 1303254447 7324 11d14f318d865f420e692d4e6c9c18c3 ""
@@ -55,12 +55,12 @@
   "/usr/local/texlive/2013/texmf-dist/tex/latex/tools/multicol.sty" 1312409015 26766 56c30c5bea3083b5a0d6fc2ce0063096 ""
   "/usr/local/texlive/2013/texmf-dist/tex/latex/tools/tabularx.sty" 1254151720 6076 90ca6002d5df607cc27699a4af5ff84e ""
   "/usr/local/texlive/2013/texmf-dist/tex/latex/url/url.sty" 1264379145 21932 e3a9cf32ee9b853b42be14c2f25b873c ""
-  "SOLD.aux" 1418342096 3757 0d7a7825e63952494519856ed4f5c3d0 ""
-  "SOLD.bbl" 1418341757 9783 fa0d75d7a1a895f24aede19e722bf313 "bibtex SOLD"
-  "SOLD.tex" 1418342094 20419 370dcb3150d65fe803318b825776e492 ""
-  "figures/figure-1_architecture.png" 1418341892 126728 0684d9c07596746427ff643159c3e243 ""
+  "SOLD.aux" 1418342663 3754 c4c4e7e983cc59bb4e483e92a507b326 ""
+  "SOLD.bbl" 1418342662 9783 fa0d75d7a1a895f24aede19e722bf313 "bibtex SOLD"
+  "SOLD.tex" 1418342659 20416 03a2b64c7189024b64aea411c49651c1 ""
+  "figures/figure-1_architecture.png" 1418342580 127205 9a159be218d2b83cbf5644c5b592c531 ""
   "llncs.cls" 1395411889 42776 44493c38e57a29ba7e15792efea18b8f ""
   (generated)
+  "SOLD.pdf"
   "SOLD.log"
   "SOLD.aux"
-  "SOLD.pdf"
