@@ -1,13 +1,13 @@
 # Fdb version 3
-["bibtex SOLD"] 1418683633 "SOLD.aux" "SOLD.bbl" "SOLD" 1418683635
+["bibtex SOLD"] 1418687630 "SOLD.aux" "SOLD.bbl" "SOLD" 1418687646
   "/usr/local/texlive/2013/texmf-dist/bibtex/bst/base/abbrv.bst" 1292289607 20329 b5fed53e10044d0f8112183785c759b1 ""
-  "SOLD.aux" 1418683634 3995 a6ae266eaddc33a0e991cf230afdbb9b ""
+  "SOLD.aux" 1418687646 4131 55c065c55ca421e608ac6c3c85dd62a2 ""
   "SOLD.bcf" 0 -1 0 ""
   "SOLD.bib" 1418681192 14365 3bfafadb37ca75e123cb9c6b92bb860e ""
   (generated)
   "SOLD.bbl"
   "SOLD.blg"
-["pdflatex"] 1418683633 "SOLD.tex" "SOLD.pdf" "SOLD" 1418683635
+["pdflatex"] 1418687645 "SOLD.tex" "SOLD.pdf" "SOLD" 1418687646
   "/usr/local/texlive/2013/texmf-dist/tex/context/base/supp-pdf.mkii" 1337017135 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/etexcmds.sty" 1335995445 7612 c47308d923ec19888707b0f1792b326a ""
   "/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/ifluatex.sty" 1303254447 7324 11d14f318d865f420e692d4e6c9c18c3 ""
@@ -55,12 +55,12 @@
   "/usr/local/texlive/2013/texmf-dist/tex/latex/tools/multicol.sty" 1312409015 26766 56c30c5bea3083b5a0d6fc2ce0063096 ""
   "/usr/local/texlive/2013/texmf-dist/tex/latex/tools/tabularx.sty" 1254151720 6076 90ca6002d5df607cc27699a4af5ff84e ""
   "/usr/local/texlive/2013/texmf-dist/tex/latex/url/url.sty" 1264379145 21932 e3a9cf32ee9b853b42be14c2f25b873c ""
-  "SOLD.aux" 1418683634 3995 a6ae266eaddc33a0e991cf230afdbb9b ""
-  "SOLD.bbl" 1418683633 10675 e912d5209f0a7f7b0c8c146db7450e6f "bibtex SOLD"
-  "SOLD.tex" 1418683631 26176 0b7465c2473a2ca573c2cb48f5dfc057 ""
+  "SOLD.aux" 1418687646 4131 55c065c55ca421e608ac6c3c85dd62a2 ""
+  "SOLD.bbl" 1418687630 10675 e912d5209f0a7f7b0c8c146db7450e6f "bibtex SOLD"
+  "SOLD.tex" 1418687644 27142 4f4f79a75c6f3984a03f8e32d531757f ""
   "figures/figure-1_architecture.png" 1418342580 127205 9a159be218d2b83cbf5644c5b592c531 ""
   "llncs.cls" 1395411889 42776 44493c38e57a29ba7e15792efea18b8f ""
   (generated)
   "SOLD.log"
-  "SOLD.aux"
   "SOLD.pdf"
+  "SOLD.aux"

@@ -187,6 +187,19 @@ Similar to the statistical profiler, a detailed survey of the existing tools can
 
 \subsection{Profile and Report Generation}
 
+At this point, our framework has successfully validated the dataset profile, highlighting the missing information and presenting them in a human readable report. The report can be automatically sent to the dataset maintainer email if exists in the metadata. The generated report looks like:
+
+\lstset{basicstyle=\scriptsize, backgroundcolor=\color{white}, frame=single, caption={Excerpt of a generated validation report}, label=fresnel, captionpos=b}
+\begin{lstlisting}
+relationships_as_object field exists but there is no value defined'
+private field exists but there is no value defined'
+creator_user_id field is missing'
+relationships_as_subject field exists but there is no value defined'
+isopen field exists but there is no value defined
+\end{lstlisting}
+
+In addition to the generated report, the enhanced profiles are represented in RDF using the VoID vocabulary and are publicly available according to linked data principles\footnote{SPARQL Endpoint here ?}.
+
 \bibliographystyle{abbrv}
 \nocite{*}
 \bibliography{SOLD}
