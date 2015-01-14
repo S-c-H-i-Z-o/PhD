@@ -175,12 +175,16 @@ However, the sampler is not restricted only to these strategies. Strategies like
 
 \subsection{Profile Validation}
 
-A dataset profile should include descriptive information about the data examined. In our framework, we have identified three main profiling information. However, the extensibility of our framework allows for additional profiling techniques to be plugged in easily. For example, a quality profiling module reflecting the dataset quality. The implemented profiling tasks are:\\
+A dataset profile should include descriptive information about the data examined. In our framework, we have identified three main profiling information. However, the extensibility of our framework allows for additional profiling techniques to be plugged in easily i.e. a quality profiling module reflecting the dataset quality.\\
+The implemented profiling tasks are:\\
 
 \textbf{Metadata profiling}\\
-The validation process identifies missing information and the ability to automatically correct them.
 
-Despite the legal issues surrounding Linked Data licenses \cite{nomoneyLOD}, it is still considered a gold mine for organizations who are trying to leverage external data sources in order to produce more informed business decisions \cite{Boyd2011}. In \cite{mckinseyreport} the authors see the potential economic effect unfolding in education, transportation, consumer products, electricity, oil and gas, health care and consumer finance. They estimate the potential annual value enabled by Open Data in these domains to be 3 trillion US Dollars across seven domains. As a result, validating license related information is vital. However, from our experiments, we found out that datasets' license information is noisy. The license names if found are not standardized. For example, Creative Commons CCZero can be also CC0 or CCZero. Moreover,the license URI if found and if de-referenceable can point to different reference knowledge bases e.g. \texttt{http://opendefinition.org}. To overcome this issue, we have manually created a mapping file standardizing the set of possible license names and the reference knowledge base.\\
+The validation process identifies missing information and the ability to automatically correct them. Each set of metadata (general, access, ownership and provenance) is validated and corrected automatically when possible. Each profiler task has a set of metadata fields to check against. The validation process check if each field is defined and if the value assigned is valid.
+
+There exist a bunch of special validation steps for various fields. For example, for ownership information where the maintainer email has to be defined, the validator checks if the email field is an actual valid email address. A similar process is done to URLs whenever found. However, we also issue an HTTP \texttt{HEAD} request in order to check if that URL is reachable or not. For the dataset resources, we use the \texttt{content-header} information when the request is successfull in order to extract, compare and correct further metadata values like mimetype and content size.
+
+Despite the legal issues surrounding Linked Data licenses \cite{nomoneyLOD}, it is still considered a gold mine for organizations who are trying to leverage external data sources in order to produce more informed business decisions \cite{Boyd2011}. In \cite{mckinseyreport} the authors see the potential economic effect unfolding in education, transportation, consumer products, electricity, oil and gas, health care and consumer finance. They estimate the potential annual value enabled by Open Data in these domains to be 3 trillion US Dollars across seven domains. As a result, validating license related information is vital. However, from our experiments, we found out that datasets' license information is noisy. The license names if found are not standardized. For example, Creative Commons CCZero can be also CC0 or CCZero. Moreover,the license URI if found and if de-referenceable can point to different reference knowledge bases e.g. \texttt{http://opendefinition.org}. To overcome this issue, we have manually created a mapping file standardizing the set of possible license names and the reference knowledge base. In addition, we have also used the open source and knowledge license information\footnote{https://github.com/okfn/licenses} to normalize the license information and add extra metadata like the domain, maintainer and open data conformance. \\
 
 
 \textbf{Statistical profiling}\\
@@ -193,7 +197,7 @@ Similar to the statistical profiler, a detailed survey of the existing tools can
 
 \subsection{Profile and Report Generation}
 
-At this point, our framework has successfully validated the dataset profile, highlighting the missing information and presenting them in a human readable report. The report can be automatically sent to the dataset maintainer email if exists in the metadata. The generated report looks like:
+The validation process highlights the missing information and presents them in a human readable report. The report can be automatically sent to the dataset maintainer email if exists in the metadata. The generated report looks like:
 
 \lstset{basicstyle=\scriptsize, backgroundcolor=\color{white}, frame=single, caption={Excerpt of a generated validation report}, label=fresnel, captionpos=b}
 \begin{lstlisting}
@@ -244,7 +248,15 @@ There is an access issue with one defined URL:
    - http://dbpedia.org/void/Dataset
 \end{lstlisting}
 
-In addition to the generated report, the enhanced profiles are represented in RDF using the VoID vocabulary and are publicly available according to linked data principles\footnote{SPARQL Endpoint here ?}.
+In addition to the generated report, the enhanced profiles are represented in JSON using the CKAN data model and are publicly available according to linked data principles\footnote{http://Link.to.the.results}.\\
+
+Data portal administrators need an overall knowledge of the portal datasets and their properties. Our framework has the ability to generate numerous reports of all the datasets by passing formated queries. There are two main set of aggregation tasks that can be run:
+\begin{itemize}
+  \item \textbf{Aggregating meta-field values}: Passing a string that corresponds to a valid field in the metadata. The field can be flat like \texttt{license\_title} (aggregates all the license titles used in the portal or in a specific group) or nested like \texttt{resource>resource\_type} (aggregates all the resources types for all the datasets). Such reports are important to have an overview of the possible values used for each metadata field.
+  \item \textbf{Aggregating key:object meta-field values}: Passing two meta-field values separated by a colon \texttt{:} e.g. \texttt{resources>resource\_type:resources>name}. These reports are important as you can aggregate the information needed when also having the set of values associated to it printed.
+\end{itemize}
+
+For example, the meta-field value query \texttt{resource>resource\_type} run against the LODCloud group will result in an array containing $[file,api,documentation ...]$ values. These are all the resource types used to describe all the datasets of the group. However, to be able to know also what are the datasets containing resources corresponding to each type, we issue a key:object meta-field query \texttt{resource>resource\_type:name}. The result will be a JSON object having the \texttt{resource\_type} as the key and an array of corresponding datasets titles that has a resource of that type.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %%%  3. Profiling data portals  %%%
