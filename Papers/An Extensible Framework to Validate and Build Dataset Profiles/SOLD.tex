@@ -120,7 +120,7 @@ Our framework is built as a Command Line Interface (CLI) application using Node.
 
 \begin{figure}[h!]
   \centering
-    \includegraphics[scale=0.4]{figure-1_architecture.png}
+    \includegraphics[scale=0.3]{figure-1_architecture.png}
   \caption{Processing pipeline for validating and generating dataset profiles}
 \end{figure}
 
@@ -146,13 +146,14 @@ Data portals expose a set of information about each dataset as metadata. The mod
 
 \textbf{General information}: General information about the dataset. e.g. title, description, ID, etc. This general information is manually filled by the dataset owner. This information requires manual correction, thus any missing values like the title or description will not be automatically corrected but will appear in the final report. Moreover, we find metadata about the dataset's classification in the portal (groups information) as well as the manually specified tags and keywords. The topical profiler discussed later is able to automatically extract and suggest descriptive tags.\\
 
-\textbf{Access information}: Information about the access and usage of the dataset. e.g. license information, license URL, dataset URL, etc.
+\textbf{Access information}: Information about accessing and using the dataset. This includes the dataset URL, license information i.e. license title and URL and information about the dataset's resources. Each resource has as well a set of attached metadata e.g. resource name, URL, format, size, etc.
 
 \textbf{Ownership information}: Information about the ownership of the dataset. e.g. organization details, maintainer details, author, etc.\\ The existence of this information is important to identify the authority on which the generated report and the newly corrected profile will be sent to.\\
 
 \textbf{Provenance information}: Temporal and historical information on the dataset and its resources. For example, creation and update dates, version information, version, etc. Most of this information can be automatically filled and tracked.\\
 
-After identifying the underlying portal software, we perform iterative queries to the API in order to fetch datasets metadata and persist them in a file-based cache system. Depending on the portal software we can issue specific extraction jobs. For example, in CKAN based portals, we are able to crawl and extract the metadata of a specific dataset, all the datasets in a specific group e.g. LOD Cloud or all the datasets in the portal.\\The caching process can replicate the portal's structure reflecting the various groups or hierarchies defined. Overwriting or disabling caching can be easily done by overloading the call to the extractor.
+After identifying the underlying portal software, we perform iterative queries to the API in order to fetch datasets metadata and persist them in a file-based cache system.
+Depending on the portal software we can issue specific extraction jobs. For example, in CKAN based portals, we are able to crawl and extract the metadata of a specific dataset, all the datasets in a specific group e.g. LOD Cloud or all the datasets in the portal.\\The caching process can replicate the portal's structure reflecting the various groups or hierarchies defined. Overwriting or disabling caching can be easily done by overloading the call to the extractor.
 
 \subsection{Instance and Resource Extraction}
 
@@ -196,11 +197,51 @@ At this point, our framework has successfully validated the dataset profile, hig
 
 \lstset{basicstyle=\scriptsize, backgroundcolor=\color{white}, frame=single, caption={Excerpt of a generated validation report}, label=fresnel, captionpos=b}
 \begin{lstlisting}
-relationships_as_object field exists but there is no value defined'
-private field exists but there is no value defined'
-creator_user_id field is missing'
-relationships_as_subject field exists but there is no value defined'
+=======================================================================
+                              Metadata Report
+=======================================================================
+private field exists but there is no value defined
 isopen field exists but there is no value defined
+group information is missing. Check organization information !
+is_organization field exists but there is no value defined
+The organization image_url defined for this dataset is not reachable !
+=======================================================================
+                              Tag Statistics
+=======================================================================
+There is a total of: 21 [undefined] vocabulary_id fields  100.00%
+=======================================================================
+                              License Report
+=======================================================================
+license_title information is missing for this dataset
+license_id information is missing for this dataset
+License information has been normalized !
+=======================================================================
+                              License Statistics
+=======================================================================
+There is one [missing] license_title field  100.00%
+There is one [missing] license_id field  100.00%
+=======================================================================
+                              Resource Statistics
+=======================================================================
+There is a total of: 10 [missing] url-type fields  100.00%
+There is a total of: 9 [missing] created fields  90.00%
+There is a total of: 10 [undefined] cache_last_updated fields  100.00%
+There is a total of: 10 [undefined] webstore_last_updated fields  100.00%
+There is a total of: 10 [undefined] size fields  100.00%
+There is a total of: 10 [undefined] hash fields  100.00%
+There is a total of: 10 [undefined] mimetype_inner fields  100.00%
+There is a total of: 7 [undefined] mimetype fields  70.00%
+There is a total of: 10 [undefined] cache_url fields  100.00%
+There is a total of: 6 [undefined] name fields  60.00%
+There is a total of: 9 [undefined] webstore_url fields  90.00%
+There is a total of: 9 [undefined] last_modified fields  90.00%
+There is a total of: 10 [undefined] position fields  100.00%
+There is one [undefined] format field  10.00%
+=======================================================================
+                              Resource Connectivity Issues
+=======================================================================
+There is an access issue with one defined URL:
+   - http://dbpedia.org/void/Dataset
 \end{lstlisting}
 
 In addition to the generated report, the enhanced profiles are represented in RDF using the VoID vocabulary and are publicly available according to linked data principles\footnote{SPARQL Endpoint here ?}.
