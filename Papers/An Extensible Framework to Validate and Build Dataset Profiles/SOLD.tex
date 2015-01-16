@@ -32,7 +32,7 @@
 
 % Language Definitions for JSON
 \lstdefinelanguage{json}{
-    basicstyle=\normalfont\ttfamily,
+    basicstyle=\normalfont\tiny,
     numbersep=4pt,
     showstringspaces=false,
     breaklines=true,
@@ -126,7 +126,7 @@ Our framework is built as a Command Line Interface (CLI) application using Node.
 
 \begin{figure}[!ht]
   \centering
-    \includegraphics[scale=0.3]{figure-1_architecture.png}
+    \includegraphics[scale=0.4]{figure-1_architecture.png}
   \caption{Processing pipeline for validating and generating dataset profiles}
 \end{figure}
 
@@ -192,7 +192,7 @@ There exist a bunch of special validation steps for various fields. For example,
 
 Despite the legal issues surrounding Linked Data licenses \cite{nomoneyLOD}, it is still considered a gold mine for organizations who are trying to leverage external data sources in order to produce more informed business decisions \cite{Boyd2011}. In \cite{mckinseyreport} the authors see the potential economic effect unfolding in education, transportation, consumer products, electricity, oil and gas, health care and consumer finance. They estimate the potential annual value enabled by Open Data in these domains to be 3 trillion US Dollars across seven domains. As a result, validating license related information is vital. However, from our experiments, we found out that datasets' license information is noisy. The license names if found are not standardized. For example, Creative Commons CCZero can be also CC0 or CCZero. Moreover,the license URI if found and if de-referenceable can point to different reference knowledge bases e.g. \texttt{http://opendefinition.org}. To overcome this issue, we have manually created a mapping file standardizing the set of possible license names and the reference knowledge base\footnote{https://github.com/ahmadassaf/opendata-checker/blob/master/util/licenseMappings.json}. In addition, we have also used the open source and knowledge license information\footnote{https://github.com/okfn/licenses} to normalize the license information and add extra metadata like the domain, maintainer and open data conformance. \\
 
-\lstset{basicstyle=\ttfamily\tiny, backgroundcolor=\color{white}, frame=single, caption={License mapping file sample}, label=json, captionpos=b}
+\lstset{frame=single, caption={License mapping file sample}, label=json, captionpos=b}
 \begin{lstlisting}[language=json]
 {
 	"license_id" : ["ODC-PDDL-1.0"],
@@ -217,16 +217,13 @@ Similar to the statistical profiler, a detailed survey of the existing tools can
 
 The validation process highlights the missing information and presents them in a human readable report. The report can be automatically sent to the dataset maintainer email if exists in the metadata. The generated report looks like:
 
-\lstset{basicstyle=\scriptsize, backgroundcolor=\color{white}, frame=single, caption={Excerpt of a generated validation report}, label=fresnel, captionpos=b}
+\lstset{basicstyle=\scriptsize, backgroundcolor=\color{white}, breaklines=true, frame=single, caption={Excerpt of the DBpedia validation report}, label=report, captionpos=b}
 \begin{lstlisting}
 =======================================================================
                               Metadata Report
 =======================================================================
-private field exists but there is no value defined
-isopen field exists but there is no value defined
-group information is missing. Check organization information !
-is_organization field exists but there is no value defined
-The organization image_url defined for this dataset is not reachable !
+group information is missing. Check organization information as they can be mixed sometimes
+organization_image_url field exists but there is no value defined
 =======================================================================
                               Tag Statistics
 =======================================================================
@@ -234,14 +231,7 @@ There is a total of: 21 [undefined] vocabulary_id fields  100.00%
 =======================================================================
                               License Report
 =======================================================================
-license_title information is missing for this dataset
-license_id information is missing for this dataset
 License information has been normalized !
-=======================================================================
-                              License Statistics
-=======================================================================
-There is one [missing] license_title field  100.00%
-There is one [missing] license_id field  100.00%
 =======================================================================
                               Resource Statistics
 =======================================================================
@@ -257,13 +247,13 @@ There is a total of: 10 [undefined] cache_url fields  100.00%
 There is a total of: 6 [undefined] name fields  60.00%
 There is a total of: 9 [undefined] webstore_url fields  90.00%
 There is a total of: 9 [undefined] last_modified fields  90.00%
-There is a total of: 10 [undefined] position fields  100.00%
 There is one [undefined] format field  10.00%
 =======================================================================
                               Resource Connectivity Issues
 =======================================================================
-There is an access issue with one defined URL:
+There are 2 connectivity issues with the following URLs:
    - http://dbpedia.org/void/Dataset
+   - http://dbpedia.org/page/Berlin
 \end{lstlisting}
 
 In addition to the generated report, the enhanced profiles are represented in JSON using the CKAN data model and are publicly available according to linked data principles\footnote{http://Link.to.the.results}.\\
