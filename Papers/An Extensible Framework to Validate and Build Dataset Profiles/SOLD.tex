@@ -14,6 +14,7 @@
 \usepackage{subfigure}
 \usepackage{algorithmic}
 \usepackage{algorithm}
+\usepackage{xcolor}
 
 \graphicspath{ {figures/} }
 
@@ -25,14 +26,22 @@
 \newtheorem{deflda}{Axiom}
 \newcommand{\todo}[1]{\noindent\textcolor{red}{{\bf \{TODO}: #1{\bf \}}}}
 
-% Language Definitions for Turtle
-\definecolor{olivegreen}{rgb}{0.2,0.8,0.5}
-\definecolor{grey}{rgb}{0.5,0.5,0.5}
-\lstdefinelanguage{ttl}{
-sensitive=true,
-morecomment=[l][\color{brown}]{@},
-morecomment=[l][\color{red}]{\#},
-morestring=[b][\color{blue}]\",
+\colorlet{punct}{red!60!black}
+\definecolor{background}{HTML}{FFFFFF}
+\definecolor{delim}{RGB}{20,105,176}
+
+% Language Definitions for JSON
+\lstdefinelanguage{json}{
+    basicstyle=\normalfont\ttfamily,
+    numbersep=4pt,
+    showstringspaces=false,
+    breaklines=true,
+    frame=lines,
+    literate=
+      {:}{{{\color{punct}{:}}}}{1}
+      {,}{{{\color{punct}{,}}}}{1}
+      {[}{{{\color{delim}{[}}}}{1}
+      {]}{{{\color{delim}{]}}}}{1},
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -71,12 +80,12 @@ Linked Open Data (LOD) has emerged as one of the largest collection of interlink
 
 \section{Introduction}
 \label{sec:introduction}
-From 12 datasets cataloged in 2007, the Linked Open Data cloud has grown to nearly 1000 datasets containing more than 82 billion triples\footnote{http://datahub.io/dataset?tags=lod}~\cite{BizerHeath2009}. Data is being published by both the public and private sectors and covers a diverse set of domains from life sciences to media or government data. The Linked Open Data cloud is potentially a gold mine for organizations and individuals who are trying to leverage external data sources in order to produce more informed business decisions~\cite{Boyd2011}. This success lies in the cooperation between data publishers and consumers. Consumers are empowered to find, share and combine information in their applications easily. However, the heterogeneous nature of data sources reflects directly on the data quality as these sources often contain inconsistent as well as misinterpreted and incomplete metadata information. Considering the significant variation in size, the languages used and the freshness of the data, one realized that finding useful datasets without prior knowledge is increasingly complicated. This can be clearly noticed in the LOD Cloud where few datasets such as DBPedia~\cite{Bizer:2009:DCP:1640541.1640848}, Freebase~\cite{Bollacker:2008:FCC:1376616.1376746} and YAGO~\cite{Suchanek:2007:YCS:1242572.1242667} are favored over hidden gems that may include domain specific knowledge more suitable for the tasks at hand.
+From 12 datasets cataloged in 2007, the Linked Open Data cloud has grown to nearly 1000 datasets containing more than 82 billion triples\footnote{http://datahub.io/dataset?tags=lod}~\cite{BizerHeath2009}. Data is being published by both the public and private sectors and covers a diverse set of domains from life sciences to media or government data. The Linked Open Data cloud is potentially a gold mine for organizations and individuals who are trying to leverage external data sources in order to produce more informed business decisions~\cite{Boyd2011}. This success lies in the cooperation between data publishers and consumers. Consumers are empowered to find, share and combine information in their applications easily. However, the heterogeneous nature of data sources reflects directly on the data quality as these sources often contain inconsistent as well as misinterpreted and incomplete metadata information. Considering the significant variation in size, the languages used and the freshness of the data, one realized that finding useful datasets without prior knowledge is increasingly complicated. This can be clearly noticed in the LOD Cloud where few datasets such as DBPedia~\cite{Bizer:2009:DCP:1640541.1640848}, Freebase~\cite{Bollacker:2008:FCC:1376616.1376746} and YAGO~\cite{Suchanek:2007:YCS:1242572.1242667} are favored over less popular datasets like Brazilian Politicians\footnote{http://datahub.io/dataset/brazilian-politicians} and Climb Dataincubator\footnote{http://datahub.io/dataset/data-incubator-climb} that may include domain specific knowledge more suitable for the tasks at hand. For example,
 %Raphael: what are those hidden gems? Give me an example in order to convince me. And for what tasks? Otherwise, this is just speculation
 
 The main entry point for discovering and identifying datasets is either through public data portals such as DataHub\footnote{http://datahub.io} and Europe's Public Data\footnote{http://publicdata.eu} or private search engines such as Quandl\footnote{https://quandl.com/} and Engima\footnote{http://enigma.io/}. Private portals harness manually curated data from various sources and expose them to users either freely or through paid plans. The data available is of higher quality but lesser quantity compared to what is available in public portals. Similarly, in some public data portals, administrators manually review datasets information and attach suitable metadata information. This information is mainly in the form of predefined tags such as \textit{media, geography, life sciences} for organization and clustering purposes. However, the increasing number of datasets available makes the review and curation process unsustainable even when outsourced to communities. Furthermore, the diversity of those datasets makes it harder to classify them in a fixed number of predefined tags that can be subjectively assigned without capturing the essence and breadth of the dataset~\cite{6690016}.
 
-\textit{Data profiling} is the process of creating descriptive information and collet statistics about that data. It is a cardinal activity when facing an unfamiliar dataset~\cite{semwebprofiling}. It helps in assessing the importance of the dataset, in improving users' ability to search and reuse part of the dataset and in detecting irregularities to improve its quality. Data profiling includes typically several tasks:
+\textit{Data profiling} is the process of creating descriptive information and collect statistics about that data. It is a cardinal activity when facing an unfamiliar dataset~\cite{semwebprofiling}. It helps in assessing the importance of the dataset, in improving users' ability to search and reuse part of the dataset and in detecting irregularities to improve its quality. Data profiling includes typically several tasks:
 \begin{itemize}
   \item \textbf{Metadata profiling}: Provides general information on the dataset (dataset description, release and update dates), legal information (license information, openness), practical information (access points, data dumps), etc.
   \item \textbf{Statistical profiling}: Provides statistical information about data types and patterns in the dataset, i.e. properties distribution, number of entities and RDF triples, etc.
@@ -93,9 +102,9 @@ The remainder of the paper is structured as follows. In Section~\ref{sec:related
 
 \section{Related Work}
 \label{sec:related-work}
-There exists a considerable amount of tools that tackle specific profiling tasks. However, to the best of our knowledge, this is the first effort towards extensible automatic assessment and generation of descriptive dataset profiles. For this paper, we will focus on Linked Data profiling tasks. However, one of the advantages of this framework is the ability to easily configure additional profiling tasks accommodating different data types e.g. relational.\\
+There exists a considerable amount of tools that tackle specific profiling tasks. However, to the best of our knowledge, this is the first effort towards extensible automatic validation and generation of descriptive dataset profiles. For this paper, we will focus on Linked Data profiling tasks. However, one of the advantages of this framework is the ability to easily configure additional profiling tasks accommodating different data types e.g. relational.\\
 
-\textbf{Metadata profiling}: Data Catalog Vocabulary (DCAT) \cite{Erickson:14:DCV} and the Vocabulary of Interlinked Datasets (VoID) \cite{Cyganiak:11:DLD} are concerned with metadata about RDF datasets. There exists several tools aiming at exposing dataset metadata using these vocabularies. In \cite{BoHm:2011:CVD:2030805.2031001} authors generate VoID descriptions limited to a subset of properties that can be automatically deduced from resources within the dataset. However, it still provides data consumers with interesting insights. Quality Assessment of Data Sources (Flemming's Data Quality Assessment Tool)\footnote{http://linkeddata.informatik.hu-berlin.de/LDSrcAss/datenquelle.php} provides basic metadata assessment as it calculates data quality scores based on manual user input. The user should assign weights to the predefined quality metrics and answer a series of questions regarding the dataset. These include, for example, the use of obsolete classes and properties by defining the number of described entities that are assigned disjoint classes, the usage of stable URIs and whether the publisher provides a mailing list for the dataset. The ODI certificate\footnote {https://certificates.theodi.org/} on the other hand provides a description of the published data quality in plain English. It aspires to act as a mark of approval that helps publishers understand how to publish good open data and users how to use it. It gives publishers the ability to provide assurance and support on their data while encouraging further improvements through an ascending scale. ODI comes as an online and free questionnaire for data publishers focusing on certain characteristics about their data. Although these approaches try to perform metadata profiling, they are either incomplete or manual. In our framework, we propose a more automatized and complete approach.\\
+\textbf{Metadata profiling}: Data Catalog Vocabulary (DCAT) \cite{Erickson:14:DCV} and the Vocabulary of Interlinked Datasets (VoID) \cite{Cyganiak:11:DLD} are concerned with metadata about RDF datasets. There exist several tools aiming at exposing dataset metadata using these vocabularies. In \cite{BoHm:2011:CVD:2030805.2031001} authors generate VoID descriptions limited to a subset of properties that can be automatically deduced from resources within the dataset. However, it still provides data consumers with interesting insights. Quality Assessment of Data Sources (Flemming's Data Quality Assessment Tool)\footnote{http://linkeddata.informatik.hu-berlin.de/LDSrcAss/datenquelle.php} provides basic metadata assessment as it calculates data quality scores based on manual user input. The user assigns weights to the predefined quality metrics and answer a series of questions regarding the dataset. These include, for example, the use of obsolete classes and properties by defining the number of described entities that are assigned disjoint classes, the usage of stable URIs and whether the publisher provides a mailing list for the dataset. The ODI certificate\footnote {https://certificates.theodi.org/} on the other hand provides a description of the published data quality in plain English. It aspires to act as a mark of approval that helps publishers understand how to publish good open data and users how to use it. It gives publishers the ability to provide assurance and support on their data while encouraging further improvements through an ascending scale. ODI comes as an online and free questionnaire for data publishers focusing on certain characteristics about their data. Although these approaches try to perform metadata profiling, they are either incomplete or manual. In our framework, we propose a more automatized and complete approach.\\
 
 \textbf{Statistical profiling}: Calculating statistical information on datasets is vital to applications dealing with query optimization and answering, data cleansing, schema induction and data mining \cite{profilingWebOfData} \cite{datafinland2} \cite{6690016}. Semantic sitemaps \cite{Cyganiak:2008:SSE:1789394.1789457} and RDFStats \cite{Langegger:2009:RER:1674635.1674691} where one of the first to deal with RDF data statistics and summaries. ExpLOD \cite{Khatchadourian:2010:ESE:2155278.2155300} creates statistics on the interlinking between datasets based on \texttt{owl:sameAs} links. In \cite{semwebprofiling} the author introduces a tool that induces the actual schema of the data and gather corresponding statistics accordingly. LODStats  \cite{Auer:2012:LEF:2413941.2413982} is a stream-based approach that calculates more general dataset statistics. ProLOD++ \cite{6816740} is a Web-based tool that allows LOD analysis via automatically computed hierarchical clustering \cite{5452762}. Aether \cite{makela-aether-2014} generates VoID statistical descriptions of RDF datasets. It also provides a Web interface to view and compare VoID descriptions. LODOP \cite{forchhammer_profiles_2014} is a MapReduce framework to compute, optimize and benchmark dataset profiles. The main target for this framework is to optimize the runtime costs for Linked Data profiling. In \cite{DyLDO} authors calculate certain statistical information for the purpose of observing the dynamic changes in datasets.\\
 
@@ -111,11 +120,11 @@ Semantic search engines like Sindice \cite{Delbru2010a}, Swoogle \cite{Ding2004}
 \section{Profiling Data Portals}
 \label{sec:framework}
 
-In this section, we provide an overview of the processing steps for validating and generating dataset profiles. Figure 1 shows the main steps which are the following: (i) Data portal identification; (ii) metadata extraction; (iii) instance and resource extraction; (iv) profile validation (v) profiler and report generation.
+In this section, we provide an overview of the processing steps for validating and generating dataset profiles. Figure 1 shows the main steps which are the following: (i) Data portal identification; (ii) metadata extraction; (iii) instance and resource extraction; (iv) profile validation (v) profile and report generation.
 
 Our framework is built as a Command Line Interface (CLI) application using Node.js. Related functions are encapsulated into modules that can be easily plugged in/out the processing pipeline. The various steps are explained in details below.
 
-\begin{figure}[h!]
+\begin{figure}[!ht]
   \centering
     \includegraphics[scale=0.3]{figure-1_architecture.png}
   \caption{Processing pipeline for validating and generating dataset profiles}
@@ -135,7 +144,7 @@ Identifying the software powering data portals is a vital first step to understa
 \end{itemize}
 
 The identification process for each portal can be easily customized by overriding the default function. Moreover, adding or removing steps from the identification process can be easily configured.\\
-After those preliminary checks, we try to query one of the portal's API endpoints. For example, DataHub is identified as CKAN, so we will query the API endpoint on \texttt{http://datahub.io/api/action/package\_list}. A successful request will list the names of the site's datasets, whereas a failing request will signal a possible failure of the identification process.
+After those preliminary checks, we query one of the portal's API endpoints. For example, DataHub is identified as CKAN, so we will query the API endpoint on \texttt{http://datahub.io/api/action/package\_list}. A successful request will list the names of the site's datasets, whereas a failing request will signal a possible failure of the identification process.
 
 \subsection{Metadata Extraction}
 
@@ -143,7 +152,7 @@ Data portals expose a set of information about each dataset as metadata. The mod
 
 \textbf{General information}: General information about the dataset. e.g. title, description, ID, etc. This general information is manually filled by the dataset owner. This information requires manual correction, thus any missing values like the title or description will not be automatically corrected but will appear in the final report. Moreover, we find metadata about the dataset's classification in the portal (groups information) as well as the manually specified tags and keywords. The topical profiler discussed later is able to automatically extract and suggest descriptive tags.\\
 
-\textbf{Access information}: Information about accessing and using the dataset. This includes the dataset URL, license information i.e. license title and URL and information about the dataset's resources. Each resource has as well a set of attached metadata e.g. resource name, URL, format, size, etc.
+\textbf{Access information}: Information about accessing and using the dataset. This includes the dataset URL, license information i.e. license title and URL and information about the dataset's resources. Each resource has as well a set of attached metadata e.g. resource name, URL, format, size, etc.\\
 
 \textbf{Ownership information}: Information about the ownership of the dataset. e.g. organization details, maintainer details, author, etc.\\ The existence of this information is important to identify the authority on which the generated report and the newly corrected profile will be sent to.\\
 
@@ -157,7 +166,7 @@ Depending on the portal software we can issue specific extraction jobs. For exam
 From the extracted metadata we are able to identify all the resources associated with that dataset. They can have various types like a SPARQL endpoint, API, file, visualization ,etc. However, before extracting the resource instance(s) we perform the following steps:
 
 \begin{itemize}
-  \item \textbf{Resource metadata validation and enrichment}: Check the resource attached metadata values. Similar to the dataset metadata, each resource should include information about its mimetype, name, description, format, valid de-referenceable URL, size, type and provenance. The validation process automatically fills up various missing information when possible, like the mimetype and size. However, missing fields like name and description that needs manual input are marked as missing and will appear in the generated summary report.
+  \item \textbf{Resource metadata validation and enrichment}: Check the resource attached metadata values. Similar to the dataset metadata, each resource should include information about its mimetype, name, description, format, valid de-referenceable URL, size, type and provenance. The validation process issue an HTTP request to the resource and automatically fills up various missing information when possible, like the mimetype and size by extracting them from the HTTP response header. However, missing fields like name and description that needs manual input are marked as missing and will appear in the generated summary report.
   \item \textbf{Format validation}: Validate specific resource formats against a linter or a validator. For example, node-csv\footnote{https://github.com/wdavidw/node-csv} for CSV files and n3\footnote{https://github.com/RubenVerborgh/N3.js} to validate N3 and Turtle RDF serializations.
 \end{itemize}
 
@@ -181,7 +190,19 @@ The validation process identifies missing information and the ability to automat
 
 There exist a bunch of special validation steps for various fields. For example, for ownership information where the maintainer email has to be defined, the validator checks if the email field is an actual valid email address. A similar process is done to URLs whenever found. However, we also issue an HTTP \texttt{HEAD} request in order to check if that URL is reachable or not. For the dataset resources, we use the \texttt{content-header} information when the request is successfull in order to extract, compare and correct further metadata values like mimetype and content size.
 
-Despite the legal issues surrounding Linked Data licenses \cite{nomoneyLOD}, it is still considered a gold mine for organizations who are trying to leverage external data sources in order to produce more informed business decisions \cite{Boyd2011}. In \cite{mckinseyreport} the authors see the potential economic effect unfolding in education, transportation, consumer products, electricity, oil and gas, health care and consumer finance. They estimate the potential annual value enabled by Open Data in these domains to be 3 trillion US Dollars across seven domains. As a result, validating license related information is vital. However, from our experiments, we found out that datasets' license information is noisy. The license names if found are not standardized. For example, Creative Commons CCZero can be also CC0 or CCZero. Moreover,the license URI if found and if de-referenceable can point to different reference knowledge bases e.g. \texttt{http://opendefinition.org}. To overcome this issue, we have manually created a mapping file standardizing the set of possible license names and the reference knowledge base. In addition, we have also used the open source and knowledge license information\footnote{https://github.com/okfn/licenses} to normalize the license information and add extra metadata like the domain, maintainer and open data conformance. \\
+Despite the legal issues surrounding Linked Data licenses \cite{nomoneyLOD}, it is still considered a gold mine for organizations who are trying to leverage external data sources in order to produce more informed business decisions \cite{Boyd2011}. In \cite{mckinseyreport} the authors see the potential economic effect unfolding in education, transportation, consumer products, electricity, oil and gas, health care and consumer finance. They estimate the potential annual value enabled by Open Data in these domains to be 3 trillion US Dollars across seven domains. As a result, validating license related information is vital. However, from our experiments, we found out that datasets' license information is noisy. The license names if found are not standardized. For example, Creative Commons CCZero can be also CC0 or CCZero. Moreover,the license URI if found and if de-referenceable can point to different reference knowledge bases e.g. \texttt{http://opendefinition.org}. To overcome this issue, we have manually created a mapping file standardizing the set of possible license names and the reference knowledge base\footnote{https://github.com/ahmadassaf/opendata-checker/blob/master/util/licenseMappings.json}. In addition, we have also used the open source and knowledge license information\footnote{https://github.com/okfn/licenses} to normalize the license information and add extra metadata like the domain, maintainer and open data conformance. \\
+
+\lstset{basicstyle=\ttfamily\tiny, backgroundcolor=\color{white}, frame=single, caption={License mapping file sample}, label=json, captionpos=b}
+\begin{lstlisting}[language=json]
+{
+	"license_id" : ["ODC-PDDL-1.0"],
+	"disambiguations" : ["Open Data Commons Public Domain Dedication and License (PDDL)"]
+},
+{
+	"license_id" : ["CC-BY-SA-4.0", "CC-BY-SA-3.0"],
+	"disambiguations" : ["cc-by-sa", "CC BY-SA","Creative Commons Attribution Share-Alike"]
+}
+\end{lstlisting}
 
 
 \textbf{Statistical profiling}\\
