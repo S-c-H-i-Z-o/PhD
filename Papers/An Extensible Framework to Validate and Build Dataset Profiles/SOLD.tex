@@ -32,6 +32,7 @@
 
 % Language Definitions for JSON
 \lstdefinelanguage{json}{
+		basicstyle=\tiny,
     numbersep=4pt,
     showstringspaces=false,
     breaklines=true,
@@ -162,32 +163,29 @@ Data portals expose a set of information about each dataset as metadata. The mod
 After identifying the underlying portal software, we perform iterative queries to the API in order to fetch datasets metadata and persist them in a file-based cache system.
 Depending on the portal software we can issue specific extraction jobs. For example, in CKAN based portals, we are able to crawl and extract the metadata of a specific dataset, all the datasets in a specific group e.g. LOD Cloud or all the datasets in the portal.\\The caching process can replicate the portal's structure reflecting the various groups or hierarchies defined. Overwriting or disabling caching can be easily done by overloading the call to the extractor.
 
-% \subsection{Instance and Resource Extraction}
+\subsection{Instance and Resource Extraction}
 
-% From the extracted metadata we are able to identify all the resources associated with that dataset. They can have various types like a SPARQL endpoint, API, file, visualization ,etc. However, before extracting the resource instance(s) we perform the following steps:
+From the extracted metadata we are able to identify all the resources associated with that dataset. They can have various types like a SPARQL endpoint, API, file, visualization ,etc. However, before extracting the resource instance(s) we perform the following steps:
 
-% \begin{itemize}
-%   \item \textbf{Resource metadata validation and enrichment}: Check the resource attached metadata values. Similar to the dataset metadata, each resource should include information about its mimetype, name, description, format, valid de-referenceable URL, size, type and provenance. The validation process issue an HTTP request to the resource and automatically fills up various missing information when possible, like the mimetype and size by extracting them from the HTTP response header. However, missing fields like name and description that needs manual input are marked as missing and will appear in the generated summary report.
-%   \item \textbf{Format validation}: Validate specific resource formats against a linter or a validator. For example, node-csv\footnote{https://github.com/wdavidw/node-csv} for CSV files and n3\footnote{https://github.com/RubenVerborgh/N3.js} to validate N3 and Turtle RDF serializations.
-% \end{itemize}
+\begin{itemize}
+  \item \textbf{Resource metadata validation and enrichment}: Check the resource attached metadata values. Similar to the dataset metadata, each resource should include information about its mimetype, name, description, format, valid de-referenceable URL, size, type and provenance. The validation process issue an HTTP request to the resource and automatically fills up various missing information when possible, like the mimetype and size by extracting them from the HTTP response header. However, missing fields like name and description that needs manual input are marked as missing and will appear in the generated summary report.
+  \item \textbf{Format validation}: Validate specific resource formats against a linter or a validator. For example, node-csv\footnote{https://github.com/wdavidw/node-csv} for CSV files and n3\footnote{https://github.com/RubenVerborgh/N3.js} to validate N3 and Turtle RDF serializations.
+\end{itemize}
 
-% Considering that certain dataset contains large amounts of resources and the limited computation power of some machines on which the framework might run on, a sampler module is introduced to execute various sample-based strategies. The following strategies implemented in \cite{scalableApproach} were found to generate accurate results even with comparably small sample size of 10\%.
-% \begin{itemize}
-%   \item \textbf{Random Sampling}: Randomly selects resources instances.
-%   \item \textbf{Weighted Sampling}: Weighs each resources as the ratio of the number of datatype properties used to define a resource over the maximum number of datatype properties over all the datasets resources.
-%   \item \textbf{Resource Centrality Sampling}: Weighs each resource as the ration of the number of resource types used to describe a particular resource divided by the total number of resource types in the dataset. This is specific and important to RDF datasets where important concepts tend to be more structured and linked to other concepts.
-% \end{itemize}
+Considering that certain dataset contains large amounts of resources and the limited computation power of some machines on which the framework might run on, a sampler module is introduced to execute various sample-based strategies. The following strategies implemented in \cite{scalableApproach} were found to generate accurate results even with comparably small sample size of 10\%.
+\begin{itemize}
+  \item \textbf{Random Sampling}: Randomly selects resources instances.
+  \item \textbf{Weighted Sampling}: Weighs each resources as the ratio of the number of datatype properties used to define a resource over the maximum number of datatype properties over all the datasets resources.
+  \item \textbf{Resource Centrality Sampling}: Weighs each resource as the ration of the number of resource types used to describe a particular resource divided by the total number of resource types in the dataset. This is specific and important to RDF datasets where important concepts tend to be more structured and linked to other concepts.
+\end{itemize}
 
-% However, the sampler is not restricted only to these strategies. Strategies like those introduced in \cite{Leskovec:2006:SLG:1150402.1150479} can be configured and applied in the processing pipeline.
+However, the sampler is not restricted only to these strategies. Strategies like those introduced in \cite{Leskovec:2006:SLG:1150402.1150479} can be configured and applied in the processing pipeline.
 
 \subsection{Profile Validation}
 
-A dataset profile should include descriptive information about the data examined. In our framework, we have identified three main profiling information. However, the extensibility of our framework allows for additional profiling techniques to be plugged in easily i.e. a quality profiling module reflecting the dataset quality.\\
-The implemented profiling tasks are:\\
+A dataset profile should include descriptive information about the data examined. In our framework, we have identified three main profiling information. However, the extensibility of our framework allows for additional profiling techniques to be plugged in easily i.e. a quality profiling module reflecting the dataset quality.\\ In this paper, we focus on the metadata profiling task.\\
 
-\textbf{Metadata profiling}\\
-
-The validation process identifies missing information and the ability to automatically correct them. Each set of metadata (general, access, ownership and provenance) is validated and corrected automatically when possible. Each profiler task has a set of metadata fields to check against. The validation process check if each field is defined and if the value assigned is valid.
+Metadata validation process identifies missing information and the ability to automatically correct them. Each set of metadata (general, access, ownership and provenance) is validated and corrected automatically when possible. Each profiler task has a set of metadata fields to check against. The validation process check if each field is defined and if the value assigned is valid.
 
 There exist a bunch of special validation steps for various fields. For example, for ownership information where the maintainer email has to be defined, the validator checks if the email field is an actual valid email address. A similar process is done to URLs whenever found. However, we also issue an HTTP \texttt{HEAD} request in order to check if that URL is reachable or not. For the dataset resources, we use the \texttt{content-header} information when the request is successfull in order to extract, compare and correct further metadata values like mimetype and content size.
 
@@ -216,7 +214,7 @@ Despite the legal issues surrounding Linked Data licenses \cite{nomoneyLOD}, it 
 
 \subsection{Profile and Report Generation}
 
-The validation process highlights the missing information and presents them in a human readable report. The report can be automatically sent to the dataset maintainer email if exists in the metadata. The generated report looks like:
+The validation process highlights the missing information and presents them in a human readable report. The report can be automatically sent to the dataset maintainer email if exists in the metadata. The generated report looks like:\\ \\ \\
 
 \lstset{basicstyle=\scriptsize, backgroundcolor=\color{white}, breaklines=true, frame=single, caption={Excerpt of the DBpedia validation report}, label=report, captionpos=b}
 \begin{lstlisting}
