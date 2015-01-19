@@ -71,7 +71,7 @@
 %%%%%%%%%%%%%%%%%%
 
 \begin{abstract}
-Linked Open Data (LOD) has emerged as one of the largest collection of interlinked datasets on the web. In order to benefit from this mine of data, one needs to access to descriptive information about each dataset (or metadata). Such metadata information is currently very limited to a few data portals where they are usually provided manually, thus being often incomplete and inconsistent in terms of quality. To address this issue, we propose a scalable automatic approach for extracting, validating, correcting and generating descriptive linked dataset profiles. This approach applies several techniques in order to check the validity of the metadata provided and to generate descriptive and statistical information for a particular dataset or for an entire data portal. We targeted CKAN powered data portals and  validated our framework on the Linked Open Data (LOD) cloud. The results demonstrated that the general state of LOD cloud needs more attention as most of the datasets suffer from bad quality metadata lacking some informative metrics needed to facilitate dataset search. The noisiest metadata values were access information such as licensing information, resource descriptions as well as resource reachability problems.
+Linked Open Data (LOD) has emerged as one of the largest collection of interlinked datasets on the web. In order to benefit from this mine of data, one needs to access to descriptive information about each dataset (or metadata). Such metadata information is currently very limited to a few data portals where they are usually provided manually, thus being often incomplete and inconsistent in terms of quality. To address this issue, we propose a scalable automatic approach for extracting, validating, correcting and generating descriptive linked dataset profiles. This approach applies several techniques in order to check the validity of the metadata provided and to generate descriptive and statistical information for a particular dataset or for an entire data portal. We target CKAN powered data portals and validate our framework on the Linked Open Data (LOD) cloud. The results demonstrate that the general state of LOD cloud needs more attention as most of the datasets suffer from bad quality metadata lacking some informative metrics needed to facilitate dataset search. The noisiest metadata values were access information such as licensing information, resource descriptions as well as resource reachability problems.
 \keywords{Linked Data, Dataset Profile, Metadata, Data Quality}
 \end{abstract}
 
@@ -81,7 +81,7 @@ Linked Open Data (LOD) has emerged as one of the largest collection of interlink
 
 \section{Introduction}
 \label{sec:introduction}
-From 12 datasets cataloged in 2007, the Linked Open Data cloud has grown to nearly 1000 datasets containing more than 82 billion triples\footnote{http://datahub.io/dataset?tags=lod}~\cite{BizerHeath2009}. Data is being published by both the public and private sectors and covers a diverse set of domains from life sciences to media or government data. The Linked Open Data cloud is potentially a gold mine for organizations and individuals who are trying to leverage external data sources in order to produce more informed business decisions~\cite{Boyd2011}. This success lies in the cooperation between data publishers and consumers. Consumers are empowered to find, share and combine information in their applications easily. However, the heterogeneous nature of data sources reflects directly on the data quality as these sources often contain inconsistent as well as misinterpreted and incomplete metadata information. Considering the significant variation in size, the languages used and the freshness of the data, one realized that finding useful datasets without prior knowledge is increasingly complicated. This can be clearly noticed in the LOD Cloud where few datasets such as DBPedia~\cite{Bizer:2009:DCP:1640541.1640848}, Freebase~\cite{Bollacker:2008:FCC:1376616.1376746} and YAGO~\cite{Suchanek:2007:YCS:1242572.1242667} are favored over less popular datasets that may include domain specific knowledge more suitable for the tasks at hand. For example, for the task of building context-aware recommender systems in an academic digital library over LOD cloud, popular datasets like Semantic Web Dog Food, DBLP or Yovisto can be favored over lesser know but more specific datasets like VIAF\footnote{http://datahub.io/dataset/viaf} which links authority files of 20 national libraries, list of subject headings for public libraries in Spain\footnote{http://datahub.io/dataset/lista-encabezamientos-materia} or the French dissertation search engine\footnote{http://datahub.io/dataset/thesesfr}.
+From 12 datasets cataloged in 2007, the Linked Open Data cloud has grown to nearly 1000 datasets containing more than 82 billion triples\footnote{http://datahub.io/dataset?tags=lod}~\cite{BizerHeath2009}. Data is being published by both the public and private sectors and covers a diverse set of domains from life sciences to media or government data. The Linked Open Data cloud is potentially a gold mine for organizations and individuals who are trying to leverage external data sources in order to produce more informed business decisions~\cite{Boyd2011}. This success lies in the cooperation between data publishers and consumers. Consumers are empowered to find, share and combine information in their applications easily. However, the heterogeneous nature of data sources reflects directly on the data quality as these sources often contain inconsistent as well as misinterpreted and incomplete metadata information. Considering the significant variation in size, the languages used and the freshness of the data, one realizes that finding useful datasets without prior knowledge is increasingly complicated. This can be clearly noticed in the LOD Cloud where few datasets such as DBPedia~\cite{Bizer:2009:DCP:1640541.1640848}, Freebase~\cite{Bollacker:2008:FCC:1376616.1376746} and YAGO~\cite{Suchanek:2007:YCS:1242572.1242667} are favored over less popular datasets that may include domain specific knowledge more suitable for the tasks at hand. For example, for the task of building context-aware recommender systems in an academic digital library over LOD cloud, popular datasets like Semantic Web Dog Food, DBLP or Yovisto can be favored over lesser known but more specific datasets like VIAF\footnote{http://datahub.io/dataset/viaf} which links authority files of 20 national libraries, list of subject headings for public libraries in Spain\footnote{http://datahub.io/dataset/lista-encabezamientos-materia} or the French dissertation search engine\footnote{http://datahub.io/dataset/thesesfr}.
 
 The main entry point for discovering and identifying datasets is either through public data portals such as DataHub\footnote{http://datahub.io} and Europe's Public Data\footnote{http://publicdata.eu} or private search engines such as Quandl\footnote{https://quandl.com/} and Engima\footnote{http://enigma.io/}. Private portals harness manually curated data from various sources and expose them to users either freely or through paid plans. The data available is of higher quality but lesser quantity compared to what is available in public portals. Similarly, in some public data portals, administrators manually review datasets information, validate, correct and attach suitable metadata information. This information is mainly in the form of predefined tags such as \textit{media, geography, life sciences} for organization and clustering purposes. However, the diversity of those datasets makes it harder to classify them in a fixed number of predefined tags that can be subjectively assigned without capturing the essence and breadth of the dataset~\cite{6690016}. Furthermore, the increasing number of datasets available makes the metadata review and curation process unsustainable even when outsourced to communities.
 
@@ -92,7 +92,7 @@ The main entry point for discovering and identifying datasets is either through 
   \item \textbf{Topical profiling}: Provides descriptive knowledge on the dataset content and structure. This can be in form of tags and categories used to facilitate search and reuse.
 \end{itemize}
 
-In this work, we address the challenges of automatic validation and generation of descriptive datasets profiles. This paper proposes an extensible framework consisting of a processing pipeline that combines techniques for data portals identification, datasets crawling and a set of pluggable modules combining several profiling tasks. The framework validates the provided dataset metadata against an aggregated standard set of information. Metadata fields are automatically corrected when possible, e.g. adding a missing license URL reference. Moreover, a report describing all the issues highlighting those that cannot be automatically fixed is created to be sent by email to the dataset's maintainer. There exist various statistical and topical profiling tools for both relational and Linked Data. The architecture of the framework allows to easily add them as additional profiling tasks. However, in this paper, we focus on the task of dataset metadata profiling and present our findings by running our framework on the LOD cloud. The results demonstrated that the general state of LOD cloud needs more attention as most of the datasets suffer from bad quality metadata lacking some informative metrics needed to facilitate dataset search. The noisiest metadata values were access information such as licensing information, resource descriptions as well as resource reachability problems.
+In this work, we address the challenges of automatic validation and generation of descriptive datasets profiles. This paper proposes an extensible framework consisting of a processing pipeline that combines techniques for data portals identification, datasets crawling and a set of pluggable modules combining several profiling tasks. The framework validates the provided dataset metadata against an aggregated standard set of information. Metadata fields are automatically corrected when possible, e.g. adding a missing license URL reference. Moreover, a report describing all the issues highlighting those that cannot be automatically fixed is created to be sent by email to the dataset's maintainer. There exist various statistical and topical profiling tools for both relational and Linked Data. The architecture of the framework allows to easily add them as additional profiling tasks. However, in this paper, we focus on the task of dataset metadata profiling and present our findings by running our framework on the LOD cloud. The results demonstrate that the general state of LOD cloud needs more attention as most of the datasets suffer from bad quality metadata lacking some informative metrics needed to facilitate dataset search. The noisiest metadata are the access information such as licensing information, resource descriptions as well as resource availability problems.
 
 The remainder of the paper is structured as follows. In Section~\ref{sec:related-work}, we review relevant related work. In Section~\ref{sec:framework}, we describe our proposed framework's architecture and components that validate and generate dataset profiles. In Section~\ref{sec:experiment}, we present the results when running this tool on the LOD cloud and we summarize the main issues found. Finally, we conclude and outline some future work in Section~\ref{sec:conclusion}.
 
@@ -161,7 +161,7 @@ Data portals expose a set of information about each dataset as metadata. The mod
 
 \textbf{Provenance information}: Temporal and historical information on the dataset and its resources. For example, creation and update dates, version information, version, etc. Most of this information can be automatically filled and tracked.\\
 
-Building a standard metadata model is not the scope of this paper, and since we focus on CKAN-based portals, thus we validate the extracted metadata against the CKAN standard model\footnote{http://demo.ckan.org/api/3/action/package\_show?id=adur\_district\_spending}.\\
+Building a standard metadata model is not the scope of this paper, and since we focus on CKAN-based portals, we validate the extracted metadata against the CKAN standard model\footnote{http://demo.ckan.org/api/3/action/package\_show?id=adur\_district\_spending}.\\
 After identifying the underlying portal software, we perform iterative queries to the API in order to fetch datasets metadata and persist them in a file-based cache system.
 Depending on the portal software we can issue specific extraction jobs. For example, in CKAN based portals, we are able to crawl and extract the metadata of a specific dataset, all the datasets in a specific group e.g. LOD Cloud or all the datasets in the portal.
 
@@ -229,20 +229,20 @@ Data portal administrators need an overall knowledge of the portal datasets and 
 \lstset{basicstyle=\scriptsize, backgroundcolor=\color{white}, breaklines=true, frame=single, caption={Excerpt of the DBpedia validation report}, label=report, captionpos=b}
 \begin{lstlisting}
 =======================================================================
-                              Metadata Report
+                      Metadata Report
 =======================================================================
 group information is missing. Check organization information as they can be mixed sometimes
 organization_image_url field exists but there is no value defined
 =======================================================================
-                              Tag Statistics
+                      Tag Statistics
 =======================================================================
 There is a total of: 21 [undefined] vocabulary_id fields  100.00%
 =======================================================================
-                              License Report
+                      License Report
 =======================================================================
 License information has been normalized !
 =======================================================================
-                              Resource Statistics
+                      Resource Statistics
 =======================================================================
 There is a total of: 10 [missing] url-type fields  100.00%
 There is a total of: 9 [missing] created fields  90.00%
@@ -258,10 +258,14 @@ There is a total of: 9 [undefined] webstore_url fields  90.00%
 There is a total of: 9 [undefined] last_modified fields  90.00%
 There is one [undefined] format field  10.00%
 =======================================================================
-                              Resource Connectivity Issues
+                      Resource Connectivity Issues
 =======================================================================
 There are 2 connectivity issues with the following URLs:
    - http://dbpedia.org/void/Dataset
+=======================================================================
+                      Un-Reachable URLs Types
+=======================================================================
+There are: 1 unreachable URLs of type [file]
 \end{lstlisting}
 
 For example, the meta-field value query \texttt{resource>resource\_type} run against the LODCloud group will result in an array containing $[file,api,documentation ...]$ values. These are all the resource types used to describe all the datasets of the group. However, to be able to know also what are the datasets containing resources corresponding to each type, we issue a key:object meta-field query \texttt{resource>resource\_type:name}. The result will be a JSON object having the \texttt{resource\_type} as the key and an array of corresponding datasets titles that has a resource of that type.
@@ -273,55 +277,59 @@ For example, the meta-field value query \texttt{resource>resource\_type} run aga
 \section{Experiments and Evaluation}
 \label{sec:experiment}
 
-In this section, we provide the experiments and evaluation of the proposed framework. We have run the framework on the LOD cloud containing 259 datasets at the time of writing this paper. We ran a crawling method in order to cache the metadata files for these datasets locally and ran the validation process which took around one and a half hour complete.
+In this section, we provide the experiments and evaluation of the proposed framework. We have run the framework on the LOD cloud containing 259 datasets at the time of writing this paper. We ran the instance and resource extractor in order to cache the metadata files for these datasets locally and ran the validation process which took around one and a half hour complete on a 2.6 Ghz Intel Core i7 processor with 16GB of DDR3 memory machine.
 
-We created a $key:object meta-field values$ group level report on LOD cloud with \texttt{resources>format:title}. This will aggregate the resources format information for each dataset. We found out that only 161 (62.16\%) of the datasets have SPARQL endpoints defined by \texttt{api/sparql} resource format. 92.27\% provided RDF example links and 56.3\% provide direct links to RDF down-loadable dumps.
+We created a $key:object meta-field values$ group level report on LOD cloud with \texttt{resources>format:title}. This will aggregate the resources format information for each dataset. We found out that only 161 (62.16\%) of the datasets have SPARQL endpoints defined by \texttt{api/sparql} resource format. 92.27\% provided RDF example links and 56.3\% provided direct links to RDF down-loadable dumps.
 
 \begin{figure}
-\centering
-\captionsetup{justification=centering}
-\parbox{5cm}{
-\includegraphics[width=5cm]{metadata_noise_by_section.png}
-\caption{Metadata fields error \% by section}
+
+\parbox{7cm}{\hspace*{-.2in}
+\includegraphics[width=.95\linewidth]{metadata_noise_by_section.png}
+\captionsetup{textfont=small,singlelinecheck=off,justification=centering}
+\caption{Error \% by section}
 \label{fig:2}}
 \qquad
-\begin{minipage}{5cm}
-\includegraphics[width=5cm]{metadata_noise_by_metadata_type.png}
-\caption{Metadata fields error \% by metadata information type}
+\begin{minipage}{7cm}\hspace*{-.6in}
+\includegraphics[width=.95\linewidth]{metadata_noise_by_metadata_type.png}
+\captionsetup{textfont=small,singlelinecheck=off,justification=raggedright}
+\caption{Error \% by information type}
 \label{fig:3}
 \end{minipage}
+
 \end{figure}
 
-Figures \ref{fig:2} and \ref{fig:3} show the percentage of errors found in metadata fields by section and by information type respectively. We found out that the main missing information for a dataset were ownership related as 41\% of ownership metadata were missing or undefined. 25\% of the datasets access information (being the dataset URL and any URL defined in its groups) has issues issues related to them (missing or unreachable URLs). Datasets resources have the poorest metadata. 64\% of the general metadata, all the access information and 80\% of the provenance information contained missing or undefined values. We further present and discuss the results grouped by metadata information type below:
+Figures \ref{fig:2} and \ref{fig:3} show the percentage of errors found in metadata fields by section and by information type respectively. We found out that the main missing information for a dataset were ownership related as 41\% of ownership metadata were missing or undefined. 25\% of the datasets access information (being the dataset URL and any URL defined in its groups) has issues related to them (missing or unreachable URLs). Datasets resources have the poorest metadata. 64\% of the general metadata, all the access information and 80\% of the provenance information contained missing or undefined values. We further present and discuss the results grouped by metadata information type below.
 
 \subsection{General information} 34 datasets (13.13\%) did not have valid \texttt{notes} values. \texttt{tags} information for the datasets were complete except for the \texttt{vocabulary\_id} as it was missing from all the datasets' metadata. All the datasets \texttt{groups} information were missing \texttt{display\_name, description, title, image\_display\_url, id, name}. After manual examination, we noticed a clear overlap between group and organization information. Many datasets like \texttt{event-media} used the organization field to show group related information (being in LOD Cloud) instead of the publishers details.\\
 
 \subsection{Access information} On the dataset level, three (1.15\%) did not have a URL defined (tip, uniprot\-databases, uniprot\-citations) while 45 datasets (17.3\%) defined URLs were not accessible at the time writing this paper. One dataset did not have resources information (bio2rdf\-chebi) while the other datasets had a total of 1068 defined resources.\\
 On the datasets resources level, we noticed wrong or inconsistent values in the \texttt{size} and \texttt{mimetype} fields. 20 (1.87\%) resources had incorrect \texttt{mimetype} defined, while 52 (4.82\%) had incorrect \texttt{size} values. These values have been automatically fixed based on the values defined in the HTTP response header. However, 44 datasets have valid \texttt{size} field values and 54 have valid \texttt{mimetype} field values where they were not reachable, thus providing incorrect information.\\
 Figure \ref{fig:4} details the completeness levels of all the other access metadata where 15 (68\%) fields have missing or undefined values. Looking closely, we noticed that most of these problems can be easily fixed automatically by tools that can be plugged to the data portal. For example, the top six missing fields are the \texttt{cache\_last\_updated}, \texttt{cache\_url}, \texttt{url\-type}, \texttt{webstore\_last\_updated}, \texttt{mimetype\-\_inner} and \texttt{hash} which can be computed and filled automatically. However, the most important missing information which require manual entry are the dataset's \texttt{name} and \texttt{description} were missing from 817 (76.49\%) and 98 (9.17\%) resources respectively.\\
-A total of 334 resources (31.27\%) URLs were not reachable, thus affecting highly the availability of these datasets. CKAN resources can be of various predefined types $(file, file.upload, api, visualization, code and documentation)$. Figure \ref{fig:5} shows the breakdown of these unreachable resources according to their types, where 211 (63.17\%) did not have valid \texttt{resrouce\_type}, 112 (33.53\%) were files, 8 (2.39\%) and one (0.029\%) metadata, example and documentation types.\\
+A total of 334 resources (31.27\%) URLs were not reachable, thus affecting highly the availability of these datasets. CKAN resources can be of various predefined types $(file, file.upload, api, visualization, code and documentation)$. Figure \ref{fig:5} shows the breakdown of these unreachable resources according to their types, where 211 (63.17\%) did not have valid \texttt{resource\_type}, 112 (33.53\%) were files, 8 (2.39\%) and one (0.029\%) metadata, example and documentation types.\\
 
 \begin{figure}
-\centering
-\captionsetup{justification=centering}
-\parbox{5cm}{
-\includegraphics[width=5cm]{access_information.png}
-\caption{Access metadata information error \% by field}
+
+\parbox{7cm}{\hspace*{-.2in}
+\includegraphics[width=.95\linewidth]{access_information.png}
+\captionsetup{textfont=small,singlelinecheck=off,justification=raggedright}
+\caption{Access information error \% by field}
 \label{fig:4}}
 \qquad
-\begin{minipage}{5cm}
-\includegraphics[width=5cm]{unreachable_type.png}
-\caption{Unreachable resource URLs by resource format}
+\begin{minipage}{7cm}\hspace*{-.6in}
+\includegraphics[width=.95\linewidth]{unreachable_type.png}
+\captionsetup{textfont=small,singlelinecheck=off,justification=raggedright}
+\caption{Unreachable URLs by format}
 \label{fig:5}
 \end{minipage}
+
 \end{figure}
 
 The noisiest part of the access metadata was license information. A total of 43 datasets (16.6\%) did not have a defined \texttt{license\_title} and \texttt{license\_id} fields, where 141 (54.44\%) had missing \texttt{license\_url} field. However, we managed to normalize 123 (47.49\%) of the datasets' license information using the manual mapping file.
 
-\subsection{Ownership information} Ownership information is divided into direct ownership (author and maintainer) and organization information. Four fields (66.66\%) of the direct ownership information were missing or undefined. The breakdown for the missing information is: 55.21\% \texttt{maintainer\_email}, 51.35\% \texttt{maintainer}, 15.06\% \texttt{author\_email}, 2.32\% \texttt{author}. Moreover, our framework performs checks to check the validity of existing email values. 11 (0.05\%) and 6 (0.05\%) of the defined \texttt{author\_email} and \texttt{maintainer\_email} fields were not valid email addresses respectively.\\
-For the organization information, two field values (16.6\%) were missing or undefined. 1.16\% of the \texttt{organization\_description} and 10.81\% of the \texttt{organization\-\_image\_url} information with two out of these URLs being unreachable.
+\subsection{Ownership information} Ownership information is divided into direct ownership (author and maintainer) and organization information. Four fields (66.66\%) of the direct ownership information were missing or undefined. The breakdown for the missing information is: 55.21\% \texttt{maintainer\_email}, 51.35\% \texttt{maintainer}, 15.06\% \texttt{author\_email}, 2.32\% \texttt{author}. Moreover, our framework performs checks to validate existing email values. 11 (0.05\%) and 6 (0.05\%) of the defined \texttt{author\_email} and \texttt{maintainer\_email} fields were not valid email addresses respectively.\\
+For the organization information, two field values (16.6\%) were missing or undefined. 1.16\% of the \texttt{organization\_description} and 10.81\% of the \texttt{organization\-\_image\_url} information with two out of these URLs were unreachable.
 
-\subsection{Provenance information} Provenance information is mainly computed automatically by the data portal \texttt{(revision\_id, metadata\_created, metadata\_modified, revision\_timestamp, revision\_id)}, only the \texttt{version} field was missing from 60.23\% of the datasets.
+\subsection{Provenance information} Provenance information is mainly computed automatically by the data portal \texttt{(revision\_id, metadata\_created, metadata\_modified, revision\_timestamp, revision\_id)}, only the \texttt{version} field was missing for 60.23\% of the datasets.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%  5. Conclusion and Future Work  %%%
