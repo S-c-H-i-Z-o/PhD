@@ -5,12 +5,9 @@
 \graphicspath{ {figures/} }
 
 \begin{document}
-%
-% --- Author Metadata here ---
+
 \conferenceinfo{WWW}{'15 Florence, Italy}
-%\CopyrightYear{2007} % Allows default copyright year (20XX) to be over-ridden - IF NEED BE.
-%\crdata{0-12345-67-8/90/01}  % Allows default copyright data (0-89791-88-6/97/05) to be over-ridden - IF NEED BE.
-% --- End of Author Metadata ---
+
 
 \title{Observing The State of Linked Open Data Cloud Metadata}
 
@@ -25,10 +22,10 @@
 \keywords{Metadata, Dataset Profile, LOD Cloud}
 
 \section{Introduction}
-From 12 datasets cataloged in 2007, the Linked Open Data cloud has grown to nearly 1000 datasets containing more than 82 billion triples\footnote{http://datahub.io/dataset?tags=lod}~\cite{BizerHeath2009}. Data is being published by both the public and private sectors and covers a diverse set of domains from life sciences to media or government data. The Linked Open Data cloud is potentially a gold mine for organizations and individuals who are trying to leverage external data sources in order to produce more informed business decisions~\cite{Boyd2011}. However, the heterogeneous nature of data sources reflects directly on the data quality as these sources often contain inconsistent as well as misinterpreted and incomplete metadata information. Considering the significant variation in size, the languages used and the freshness of the data, one realizes that finding useful datasets without prior knowledge is increasingly complicated.\\
-\textit{Data profiling} is the process of creating descriptive information and collect statistics about that data. It is a cardinal activity when facing an unfamiliar dataset~\cite{semwebprofiling}. \textit{Metadata profiling} is a sub-process focusedd on profiling the general information of the dataset (dataset description, release and update dates), legal information (license information, openness), practical information (access points, data dumps), etc.\\
+From 12 datasets cataloged in 2007, the Linked Open Data cloud\footnote{http://datahub.io/dataset?tags=lod} has grown to nearly 1000 datasets containing more than 82 billion triples \cite{BizerHeath2009}. Data is being published by both public and private sectors and covers a diverse set of domains from life sciences to media or government data. The Linked Open Data cloud is potentially a gold mine for organizations and individuals who are trying to leverage external data sources in order to produce more informed business decisions~\cite{Boyd2011}. However, the heterogeneous nature of data sources reflects directly on the data quality as these sources often contain inconsistent as well as misinterpreted and incomplete metadata information. Considering the significant variation in size, the languages used and the freshness of the data, one realizes that finding useful datasets without prior knowledge is increasingly complicated.\\
+\textit{Data profiling} is the process of creating descriptive information and collect statistics about that data. It is a cardinal activity when facing an unfamiliar dataset~\cite{semwebprofiling}. \textit{Metadata profiling} is a sub-process focused on profiling the general information of the dataset (dataset description, release and update dates), legal information (license information, openness), practical information (access points, data dumps), etc.
 
-In this paper, we present the results of running our tool which automatically validates, corrects and generates dataset metadata on the Linked Open Data (LOD) cloud hosted on CKAN\footnote{http://ckan.org}. The results demonstrate that the general state of LOD cloud needs more attention as most of the datasets suffer from bad quality metadata lacking some informative metrics needed to facilitate dataset search. The noisiest metadata values were access information such as licensing information, resource descriptions as well as resource reachability problems.
+In this paper, we present the results of running our tool\footnote{https://github.com/ahmadassaf/opendata-checker} which was created specifically to automatically validates, corrects and generates dataset metadata on the Linked Open Data (LOD) cloud hosted. The results demonstrate that the general state of LOD cloud needs more attention as most of the datasets suffer from bad quality metadata lacking some informative metrics needed to facilitate dataset search. The noisiest metadata values were access information such as licensing information, resource descriptions as well as resource reachability problems.
 
 \section{Metadata Profiling}
 
@@ -39,7 +36,7 @@ Data portals expose a set of information about each dataset as metadata. The mod
 \textbf{Provenance information}: Temporal and historical information on the dataset and its resources. For example, creation and update dates, version information, version, etc. Most of this information can be automatically filled and tracked.
 
 \section{Experiment Details}
-The results disccussed below are based on the LOD cloud containing 259 datasets at the time of writing this paper. The profiling process took around one and a half hour on a 2.6 Ghz Intel Core i7 processor with 16GB of DDR3 memory machine.\\
+The results disccussed below are based on the LOD cloud hosted on CKAN\footnote{http://ckan.org}. It contained 259 datasets at the time of writing this paper. The profiling process took around one and a half hour on a 2.6 Ghz Intel Core i7 processor with 16GB of DDR3 memory machine.\\
 A CKAN dataset metadata describes three main sections in addition to the core dataset's properties. Those are the groups, tags and resources. Each section contains a set of metadata corresponding to one or more metadata type. For example, a dataset resource will have general information such as the resource name, access information such as the resource url and provenance information such as creation date. The framework generates a report aggregating all the problems in all these sections, fixing field values when possible. Errors can be the result of missing metadata fields, undefined field values or field value errors e.g. unreachable URL or incorrect email address.
 
 \section{Results and Evaluation}
