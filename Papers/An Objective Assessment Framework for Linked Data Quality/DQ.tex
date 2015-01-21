@@ -30,12 +30,12 @@ The standardization of Semantic Web technologies and specifications has resulted
 \end{abstract}
 
 \begin{keyword}
-Data Quality\sep Linked Data\sep Quality Framework\sep Semantic Web
+Data Quality\sep Linked Data\sep Quality Framework\sep Semantic Web\sep Objective Quality
 \end{keyword}
 \end{frontmatter}
 
 \section{Introduction}
-In the last few years the Semantic Web gained a momentum supported by the introduction of many related initiatives like the Linked Open Data (LOD)\footnote{http://lod-cloud.net}. From 12 datasets cataloged in 2007, the Linked Open Data has grown to almost 300 datasets containing almost 32 billion triples \cite{bizer2011}. Data is being published by both public and private sectors and covers a diverse set of domains from life sciences to military. This success lies in the cooperation between data publishers and consumers. Users are empowered to find, share and combine information in their applications easily.
+In the last few years the Semantic Web gained a momentum supported by the introduction of many related initiatives like the Linked Open Data (LOD)\footnote{http://lod-cloud.net}. From 12 datasets cataloged in 2007, the Linked Open Data cloud has grown to nearly 1000 datasets containing more than 82 billion triples. Data is being published by both public and private sectors and covers a diverse set of domains from life sciences to military. This success lies in the cooperation between data publishers and consumers where users are empowered to find, share and combine information in their applications easily.
 
 The Linked Open Data is a gold mine for organizations who are trying to leverage external data sources in order to produce more informed business decisions \cite{Boyd2011}. However, the heterogeneous nature of data sources reflects directly on the data quality as these sources often contain inconsistent as well as misinterpreted and incomplete information.
 
@@ -43,15 +43,20 @@ Traditional data quality is a thoroughly researched field with several benchmark
 
 Web documents that are by nature unstructured and interlinked require different quality metrics and assessment techniques than traditional datasets. For example, the importance and quality of Web documents can be automatically calculated via algorithms like Page Rank \cite{ Lawrence981}.
 
-Assuring data quality in Linked Open Data is much more complex. It consists of structured information supported by models, ontologies and vocabularies and contains query endpoints and links. This makes data quality assurance a challenge. Despite the fact that Linked Open Data quality is a trending and highly demanded topic, very few efforts are currently trying to standardize, track and formalize frameworks to issue scores or certificates that will help data consumers in their integration tasks.\\
+Assuring data quality in Linked Open Data is much more complex. It consists of structured information supported by models, ontologies and vocabularies and contains queryable endpoints and links. This makes data quality assurance a challenge. Despite the fact that Linked Open Data quality is a trending and highly demanded topic, very few efforts are currently trying to standardize, track and formalize frameworks to issue scores or certificates that will help data consumers in their integration tasks.\\
 
-In this paper, we propose a comprehensive objective framework to evaluate the quality of Linked Data sources. The framework helps on one hand data owners to rate the quality of their dataset and get some hints on possible improvements, and on the other hand data consumers to choose their data sources from a ranked set. The aim of this paper is to provide researchers and practitioners with a comprehensive understanding of the objective issues surrounding Linked Data quality.
+Data quality assessment is the process of evaluating if a piece of data meets the consumers need in a specific use case \cite{Bizer:2009:QIF:1482178.1482280}. The dimensionality of data quality makes it dependent on the task, thus the users requirements. In this paper, we propose a comprehensive objective framework to evaluate the quality of Linked Data sources. The framework helps on one hand data owners to rate the quality of their dataset and get some hints on possible improvements, and on the other hand data consumers to choose their data sources from a ranked set. The aim of this paper is to provide researchers and practitioners with a comprehensive understanding of the objective issues surrounding Linked Data quality.
 
-The framework we propose is based on a refinement of the data quality principles proposed in our previous work \cite{assaf2012}. Some attributes have been grouped for more detailed quality assessments. We have also extended the framework by adding for each attribute a set of objective indicators. These indicators are measures that provide users with quality performance. We finally propose when possible existing tools and frameworks that can be used to evaluate and improve each indicator. These tools and frameworks have been identified from an extensive survey that we conducted.\\
+The framework we propose is based on a refinement of the data quality principles proposed in our previous work \cite{assaf2012} and those in \cite{Framework2012}. Some attributes have been grouped for more detailed quality assessments. We have also extended our framework by adding for each attribute a set of objective indicators. These indicators are measures that provide users with quality performance. Those indicators should be measurable automatically by tools regardless of the task. We surveyed the landscape of Linked Data quality tools to discover that they only cover a subset of the proposed quality indicators. We further present an extensible quality measurement tool and evaluate it against the LOD cloud. The results demonstrate that the general quality of LOD cloud needs more attention as most of the datasets suffer from various quality issues.
 
 This paper is structured as follows: Section 2 presents the related work, Section 3 presents the framework with the findings of the related work survey and the classification of the new objective framework; Section 4 defines the existing tools and framework in the Linked Open Data quality landscape; Section 5 presents the evaluation of the quality tools with regards to the presented framework; Section 6 presents concluding remarks and identifies future work.
 
 \section{Related Work}
+
+
+In \cite{DBLP:conf/i-semantics/RulaZ14}, authors propose a methodology for assessing Linked Data quality by analyzing the use case details provided by the user se cas. The methodology \\
+
+
 We are entering an era where open is the new default. Governments, universities, organizations and even individuals are publicly publishing huge amounts of open data.  This openness should be accompanied with a certain level of trust or guarantees about the quality of data.  To our knowledge, only one certificate is available to data publishers to assess the quality level of their datasets, the ODI certificate\footnote {https://certificates.theodi.org/}.\\
 
 This certificate provides a description of the published data quality in plain English. It aspires to act as a mark of approval that helps publishers understand how to publish good open data and users how to use it. It gives publishers the ability to provide assurance and support on their data while encouraging further improvements through an ascending scale.
