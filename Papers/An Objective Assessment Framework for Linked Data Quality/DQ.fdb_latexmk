@@ -1,12 +1,13 @@
 # Fdb version 3
-["bibtex DQ"] 1396303145 "DQ.aux" "DQ.bbl" "DQ" 1396303147
+["bibtex DQ"] 1421855886 "DQ.aux" "DQ.bbl" "DQ" 1421855888
   "/usr/local/texlive/2013/texmf-dist/bibtex/bst/base/abbrv.bst" 1292289607 20329 b5fed53e10044d0f8112183785c759b1 ""
-  "DQ.aux" 1396303146 7715 4f585a7d1fc9435ad460585f916b576f ""
+  "DQ.aux" 1421855888 7715 723f483470f5023d6da5f46e014e780f ""
   "DQ.bcf" 0 -1 0 ""
   "DQ.bib" 1380237612 42671 821fa685a3cf9f6eb795876a74405382 ""
   (generated)
+  "DQ.blg"
   "DQ.bbl"
-["pdflatex"] 1396303145 "DQ.tex" "DQ.pdf" "DQ" 1396303147
+["pdflatex"] 1421855887 "DQ.tex" "DQ.pdf" "DQ" 1421855888
   "/usr/local/texlive/2013/texmf-dist/tex/context/base/supp-pdf.mkii" 1337017135 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/etexcmds.sty" 1335995445 7612 c47308d923ec19888707b0f1792b326a ""
   "/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/ifluatex.sty" 1303254447 7324 11d14f318d865f420e692d4e6c9c18c3 ""
@@ -99,11 +100,11 @@
   "/usr/local/texlive/2013/texmf-dist/tex/latex/tools/array.sty" 1254151720 13146 3e38b06d6e7ca62ce1bdb63b0d6148a5 ""
   "/usr/local/texlive/2013/texmf-dist/tex/latex/tools/longtable.sty" 1254151720 11948 81a7677988a1aa6fe0c169167e78a0d7 ""
   "/usr/local/texlive/2013/texmf-dist/tex/latex/xcolor/xcolor.sty" 1169481954 55224 a43bab84e0ac5e6efcaf9a98bde73a94 ""
-  "DQ.aux" 1396303146 7715 4f585a7d1fc9435ad460585f916b576f ""
-  "DQ.bbl" 1396303145 10318 288557adf844dff4c323e966115babe6 "bibtex DQ"
-  "DQ.tex" 1380892169 59619 60b1e45ff45e38acf4dd37dc0068ac94 ""
+  "DQ.aux" 1421855888 7715 723f483470f5023d6da5f46e014e780f ""
+  "DQ.bbl" 1421855887 10318 288557adf844dff4c323e966115babe6 "bibtex DQ"
+  "DQ.tex" 1421855884 60082 e5ad23a3e0182e40603fff72bc45a600 ""
   "iosart2c.cls" 1288345468 38620 72f08c58e520f99dcef26bb50781a51f ""
   (generated)
   "DQ.aux"
-  "DQ.pdf"
   "DQ.log"
+  "DQ.pdf"

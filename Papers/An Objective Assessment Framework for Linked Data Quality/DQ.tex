@@ -1,22 +1,22 @@
 \documentclass[onecolumn, crcready]{iosart2c}
 \usepackage{graphicx}
 \usepackage[ampersand]{easylist}
-\usepackage{amssymb} 
-\usepackage{lscape} 
+\usepackage{amssymb}
+\usepackage{lscape}
 \usepackage{multirow}
 \usepackage{longtable}
 \usepackage{tikz}
 \usepackage{array}
 \usepackage{booktabs}
 \usepackage{rotating}
-\def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;} 
+\def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;}
 
 \begin{document}
-\begin{frontmatter}     
+\begin{frontmatter}
 
-\title{An Objective Assessment Framework for Linked Data Quality} 
+\title{An Objective Assessment Framework for Linked Data Quality}
 \author[A]{Ahmad Assaf},\author[A]{Aline Senart} and
-\author[B]{Raphaël Troncy} 
+\author[B]{Raphaël Troncy}
 \address[A]{SAP Research, SAP Labs France SAS,\\
 805 avenue du Dr. Maurice Donat, BP 1216, 06254 Mougins Cedex, France\\
 \email{first.last@sap.com}}
@@ -26,8 +26,9 @@
 
 
 \begin{abstract}
-The standardization of Semantic Web technologies and specifications has resulted in a staggering volume of data being published. However, data should be of good quality to be integrated properly. In this paper, we propose an objective assessment framework for data quality that issues a certificate for a given Linked Open Data repository. This framework helps on one hand data owners to rate the quality of their datasets and get some hints on possible improvements, and on the other hand data consumers to choose their data sources from a ranked set. In a previous work, we identified potential quality issues of Linked Data and listed quality principles for all stages of data management. We refine this work here with a framework composed of objective quality indicators and associated metrics. For each indicator, we selected a set of tools and systems that can be used to rate datasets according to key quality principles. This allowed us to discover that most of the tools cover only a small subset of indicators and to identify those that are not covered at all.
+The standardization of Semantic Web technologies and specifications has resulted in a staggering volume of data being published. The Linked Open Data (LOD) is a gold mine for organizations trying to leverage external data sources in order to produce more informed business decisions. However, the heterogeneous nature of data sources reflects directly on the data quality as these sources often contain inconsistent as well as misinterpreted and incomplete information. Traditional data quality is a thoroughly researched field with several benchmarks and frameworks to grasp its dimensions. Assuring data quality in Linked Open Data is much more complex. It consists of structured information supported by models, ontologies and vocabularies and contains queryable endpoints and links. In this paper, we propose an objective assessment framework for Linked Data quality. This framework helps on one hand data owners to rate the quality of their datasets and get some hints on possible improvements, and on the other hand data consumers to choose their data sources from a ranked set. In a previous work, we identified potential quality issues of Linked Data and listed quality principles for all stages of data management. We refine this work here to include only the objective quality indicators based on metrics that can be automatically measured. We surveyed the landscape of Linked Data quality tools to discover that they only cover a subset of these quality indicators. We further propose an extensible quality measurement framework and evaluate it against the LOD cloud. The results demonstrate that the general quality of LOD cloud needs more attention as most of the datasets suffer from various quality issues.
 \end{abstract}
+
 \begin{keyword}
 Data Quality\sep Linked Data\sep Quality Framework\sep Semantic Web
 \end{keyword}
@@ -129,7 +130,7 @@ An entity is considered to be consistent if it does not contain overlapping labe
 
 \subsection{Coherence}
 
-Coherence is the ability to interpret data as expected by the publisher or vocabulary maintainer \cite{Hogan2010}. It is mainly associated with the modeling quality.\\ 
+Coherence is the ability to interpret data as expected by the publisher or vocabulary maintainer \cite{Hogan2010}. It is mainly associated with the modeling quality.\\
 
 \noindent
 A model is considered to be coherent when it does not contain:\\
@@ -169,7 +170,7 @@ Accuracy describes the proximity of data value representations of an object rela
 
 \subsection{Provenance}
 
-Entity level provenance can be calculated by constructing decision networks informed by provenance graphs \cite{Gamble2011}. The accuracy of computing trust between two entities \cite{Framework2012} can be computed by calculating an aggregate trust value based on the combination of the propagation and aggregation algorithms on weighted mechanism \cite{j.websem208}. Provenance can be achieved at the dataset level by including metadata that describes its authoritative information (title, content and URI), ensuring the reliability and trustworthiness of the publisher \cite{Flouris2012}, verifying if the dataset uses a provenance vocabulary like PROV \cite{w3c-prov-o} and uses digital signatures \cite{Framework2012}. \\ Models provenance can be achieved by ensuring the trustworthiness of RDF statements \cite{Hartig09usingweb}. 
+Entity level provenance can be calculated by constructing decision networks informed by provenance graphs \cite{Gamble2011}. The accuracy of computing trust between two entities \cite{Framework2012} can be computed by calculating an aggregate trust value based on the combination of the propagation and aggregation algorithms on weighted mechanism \cite{j.websem208}. Provenance can be achieved at the dataset level by including metadata that describes its authoritative information (title, content and URI), ensuring the reliability and trustworthiness of the publisher \cite{Flouris2012}, verifying if the dataset uses a provenance vocabulary like PROV \cite{w3c-prov-o} and uses digital signatures \cite{Framework2012}. \\ Models provenance can be achieved by ensuring the trustworthiness of RDF statements \cite{Hartig09usingweb}.
 
 \subsection{Security}
 
@@ -181,7 +182,7 @@ Licensing is a quality attribute that is measured on the dataset level. It inclu
 
 \subsection{Comprehensibility}
 
-Comprehensibility is identified if the publisher indicates at least one exemplary URI and SPARQL query, regular expression pattern that matches the URIs of a dataset \cite{Framework2012} and if he provides a list of used vocabularies and an active mailing list or message board for the dataset \cite{flemming2010}. 
+Comprehensibility is identified if the publisher indicates at least one exemplary URI and SPARQL query, regular expression pattern that matches the URIs of a dataset \cite{Framework2012} and if he provides a list of used vocabularies and an active mailing list or message board for the dataset \cite{flemming2010}.
 
 \begin{landscape}
 \begin{center}
@@ -196,7 +197,7 @@ Comprehensibility is identified if the publisher indicates at least one exemplar
 {{\bfseries \tablename\ \thetable{} Objective Assessment Framework for Linked Data Quality}} \\
 \hline \multicolumn{1}{|c|}{\textbf{Quality Attribute}} &
 \multicolumn{1}{c|}{\textbf{Quality Category}} & \textbf{ID} &
-\multicolumn{1}{c|}{\textbf{Quality Indicator}} \\ \hline 
+\multicolumn{1}{c|}{\textbf{Quality Indicator}} \\ \hline
 \endhead
 
 \multicolumn{4}{|r|}{{Continued on next page}} \\ \hline
@@ -204,174 +205,174 @@ Comprehensibility is identified if the publisher indicates at least one exemplar
 
 
 \endlastfoot
- 
+
 \multirow{19}{*}{Completeness} & \multirow{3}{*}{Entity Level} & QI.1 & Covers of all the attributes needed for a given task \cite{Mendes2012}\tabularnewline
-\cline{3-4} 
+\cline{3-4}
  &  & QI.2 & Has complete language coverage \cite{Mader2012}\tabularnewline
-\cline{3-4} 
+\cline{3-4}
  &  & QI.3 & Existence of documentation properties  \cite{w3c_skos_rec}\cite{Mader2012}\tabularnewline
-\cline{2-4} 
+\cline{2-4}
  & \multirow{9}{*}{Dataset Level} & QI.4 & Existence of all the necessary objects for a given task \cite{Mendes2012}\tabularnewline
-\cline{3-4} 
+\cline{3-4}
  &  & QI.5 & Existence of supporting structured metadata  \cite{Hogan2010}\tabularnewline
-\cline{3-4} 
+\cline{3-4}
  &  & QI.6 & Supports multiple serializations \cite{Framework2012}\tabularnewline
-\cline{3-4} 
+\cline{3-4}
  &  & QI.7 & Includes the correct MIME-type for the content  \cite{Hogan2010}\tabularnewline
-\cline{3-4} 
+\cline{3-4}
  &  & QI.8 & Contains appropriate volume of data for a particular task \cite{Framework2012}\tabularnewline
-\cline{3-4} 
+\cline{3-4}
  &  & QI.9 & Has different queryable endpoints to access the data \cite{Framework2012}\tabularnewline
-\cline{3-4} 
+\cline{3-4}
  &  & QI.10 & Checked against syntactic errors \cite{Hogan2010}\tabularnewline
-\cline{3-4} 
+\cline{3-4}
  &  & QI.11 & Usage of datasets description vocabularies \tabularnewline
-\cline{3-4} 
+\cline{3-4}
  &  & QI.12 & Existence of descriptions about its size and categorization \tabularnewline
-\cline{2-4} 
+\cline{2-4}
  & \multirow{2}{*}{Links Level} & QI.13 & Existence of complete dereferenceable in-bound and out-bound links \cite{Hogan2010}\cite{Mader2012}\cite{Gueret2012}\tabularnewline
-\cline{3-4} 
+\cline{3-4}
  &  & QI.14 & Existence of supporting linkage metadata  \cite{Hogan2010}\tabularnewline
-\cline{2-4} 
+\cline{2-4}
  & \multirow{5}{*}{Model Level} & QI.15 & Covers the complete set of values \cite{Mader2012}\tabularnewline
-\cline{3-4} 
+\cline{3-4}
  &  & QI.16 & Absence of disconnected graph clusters \cite{Mader2012}\tabularnewline
-\cline{3-4} 
+\cline{3-4}
  &  & QI.17 & Absence of omitted top concept \cite{Hogan2010}\tabularnewline
-\cline{3-4} 
+\cline{3-4}
  &  & QI.18 & Absence of unidirectional related concepts \cite{Hogan2010}\tabularnewline
-\cline{3-4} 
+\cline{3-4}
  &  & QI.19 & Existence of supporting metadata about the kind and number of used vocabularies \cite{Framework2012}\tabularnewline
-\hline 
-\hline 
+\hline
+\hline
 \multirow{2}{*}{Availability} & \multirow{2}{*}{Dataset Level} & QI.20 & Existence of an RDF dump that can be downloaded by users \cite{flemming2010}\cite{Hogan2010}\tabularnewline
-\cline{3-4} 
+\cline{3-4}
  &  & QI.21 & Existence of queryable endpoints that respond to direct queries\tabularnewline
-\hline 
-\hline 
+\hline
+\hline
 \multirow{8}{*}{Correctness} & \multirow{4}{*}{Entity Level} & QI.22 & Absence of missing or empty labels \cite{Acosta2013}\cite{Mader2012}\tabularnewline
-\cline{3-4} 
+\cline{3-4}
  &  & QI.23 & Absence of incorrect data type for typed literals \cite{Hogan2010}\cite{Acosta2013} \tabularnewline
-\cline{3-4} 
+\cline{3-4}
  &  & QI.24 & Absence of omitted or invalid languages tags \cite{Suominen:2012:IQS:2413941.2413985}\cite{Mader2012}\tabularnewline
-\cline{3-4} 
+\cline{3-4}
  &  & QI.25 & Absence of terms without any associative or hierarchical relationships \cite{journals/ires/Living10}\tabularnewline
-\cline{2-4} 
+\cline{2-4}
  & \multirow{2}{*}{Links Level} & QI.26 & Existence of content related to the subject of the RDF triple \cite{Suominen:2012:IQS:2413941.2413985}\cite{Acosta2013}\tabularnewline
-\cline{3-4} 
+\cline{3-4}
  &  & QI.27 & Absence of syntactic errors  \cite{Suominen2013}\tabularnewline
-\cline{2-4} 
+\cline{2-4}
  & \multirow{2}{*}{Model Level} & QI.28 & Contains marked top concepts \cite{Mader2012}\tabularnewline
-\cline{3-4} 
+\cline{3-4}
  &  & QI.29 & Absence of broader concepts for top concepts \cite{Mader2012}\tabularnewline
-\hline 
-\hline 
+\hline
+\hline
 \multirow{4}{*}{Conciseness} & \multirow{2}{*}{Entity Level} & QI.30 & Absence of redundant attributes \cite{Mendes2012}\tabularnewline
-\cline{3-4} 
+\cline{3-4}
  &  & QI.31 & Existence of short URIs \cite{Framework2012}\tabularnewline
-\cline{2-4} 
+\cline{2-4}
  & \multirow{2}{*}{Dataset Level} & QI.32 & Absence of redundant objects \cite{Mendes2012}\tabularnewline
-\cline{3-4} 
+\cline{3-4}
  &  & QI.33 & Follows the HTTP URI scheme \cite{Hogan:2012:ESL:2263498.2264570}\cite{Suominen2013}\tabularnewline
-\hline  
-\hline 
+\hline
+\hline
 \multirow{3}{*}{Security} & \multirow{3}{*}{Dataset Level} & QI.34 & Uses login credentials to restrict access \cite{Framework2012}\tabularnewline
-\cline{3-4} 
+\cline{3-4}
  &  & QI.35 & Uses SSL or SSH to provide access to their dataset \cite{Framework2012}\tabularnewline
-\cline{3-4} 
+\cline{3-4}
  &  & QI.36 & Grants access to specific users \cite{Framework2012}\tabularnewline
-\hline 
-\hline 
+\hline
+\hline
 \multirow{1}{*}{Freshness} & \multirow{1}{*}{Entity Level} & QI.37 & Existence of timestamps that can keep track of its modifications  \cite{Flouris2012}\tabularnewline
-\hline 
-\hline 
+\hline
+\hline
 \multirow{3}{*}{Licensing} & \multirow{3}{*}{Dataset Level} & QI.38 & Existence of machine readable license information \cite{Hogan:2012:ESL:2263498.2264570}\tabularnewline
-\cline{3-4} 
+\cline{3-4}
  &  & QI.39 & Existence of human readable license information  \cite{Hogan:2012:ESL:2263498.2264570}\tabularnewline
-\cline{3-4} 
+\cline{3-4}
  &  & QI.40 & Specifies permissions, copyrights and attributions  \cite{Framework2012}\tabularnewline
-\hline 
-\hline 
+\hline
+\hline
 \multirow{5}{*}{Comprehensibility} & \multirow{5}{*}{Dataset Level} & QI.41 & Existence of at least one exemplary URI \cite{Framework2012}\tabularnewline
-\cline{3-4} 
+\cline{3-4}
  &  & QI.42 & Existence of at least one exemplary SPARQL query \cite{Framework2012}\tabularnewline
-\cline{3-4} 
+\cline{3-4}
  &  & QI.43 & Existence of regular expression pattern that matches the URIs of a dataset \cite{Framework2012}\tabularnewline
-\cline{3-4} 
+\cline{3-4}
  &  & QI.44 & Existence of a list of used vocabularies \tabularnewline
-\cline{3-4} 
+\cline{3-4}
  &  & QI.45 & Existence of a mailing list or message board \cite{flemming2010}\tabularnewline
-\hline 
+\hline
 \multirow{11}{*}{Consistency} & \multirow{5}{*}{Entity Level} & QI.46 & Existence of consistent preferred labels per language tag \cite{skosprimer}\cite{Mader2012}\tabularnewline
-\cline{3-4} 
+\cline{3-4}
  &  & QI.47 & Absence of overlapping labels\tabularnewline
-\cline{3-4} 
+\cline{3-4}
  &  & QI.48 & Absence of disjoint labels \cite{Mader2012}\tabularnewline
-\cline{3-4} 
+\cline{3-4}
  &  & QI.49 & Absence of extra white spaces in labels \cite{Suominen:2012:IQS:2413941.2413985}\tabularnewline
-\cline{3-4} 
+\cline{3-4}
  &  & QI.50 & Existence of only one value of skos:prefLabel without a language tag  \cite{Mader2012}\cite{Suominen:2012:IQS:2413941.2413985}\tabularnewline
-\cline{2-4} 
+\cline{2-4}
  & \multirow{1}{*}{Dataset Level} & QI.51 & Absence of conflicting information \cite{Mendes2012}\tabularnewline
-\cline{2-4} 
+\cline{2-4}
  & \multirow{5}{*}{Model Level} & QI.52 & Absence of atypical use of collections, containers and reification \cite{Hogan2010}\tabularnewline
-\cline{3-4} 
+\cline{3-4}
  &  & QI.53 & Absence of overlapping usage of owl:sameAs and owl:differentFrom  \cite{Hogan2010}\tabularnewline
-\cline{3-4} 
+\cline{3-4}
  &  & QI.54 & Absence of overlapping usage of owl:AllDifferent and owl:distinctMembers  \cite{Hogan2010}\tabularnewline
-\cline{3-4} 
+\cline{3-4}
  &  & QI.55 & Absence of asserted members of owl:Nothing  \cite{Hogan2010}\tabularnewline
-\cline{3-4} 
+\cline{3-4}
  &  & QI.56 & Absence of membership violations for disjoint classes  \cite{Hogan2010}\tabularnewline
-\hline 
-\hline 
+\hline
+\hline
 \multirow{10}{*}{Coherence} & \multirow{10}{*}{Model Level} & QI.57 & Absence of misplaced or deprecated classes or properties  \cite{Hogan2010}\tabularnewline
-\cline{3-4} 
+\cline{3-4}
  &  & QI.58 & Absence of misused owl:DataTypeProperty or owl:ObjectProperty  \cite{Hogan2010}\tabularnewline
-\cline{3-4} 
+\cline{3-4}
  &  & QI.59 & Absence of relation and mappings clashes  \cite{Suominen:2012:IQS:2413941.2413985}\tabularnewline
 \cline{3-4}
  &  & QI.60 & Absence or minimal usage of blank nodes \cite{Hogan:2012:ESL:2263498.2264570}\tabularnewline
-\cline{3-4} 
+\cline{3-4}
  &  & QI.61 & Absence of invalid inverse-functional values \cite{Hogan2010}\tabularnewline
-\cline{3-4} 
+\cline{3-4}
  &  & QI.62 & Absence of cyclic hierarchical relations \cite{conf/jcdl/Soergel05}\cite{Suominen:2012:IQS:2413941.2413985}\cite{Mader2012}\tabularnewline
-\cline{3-4} 
+\cline{3-4}
  &  & QI.63 & Absence of undefined classes and properties usage \cite{Hogan2010}\tabularnewline
-\cline{3-4} 
+\cline{3-4}
  &  & QI.64 & Absence of solely transitive related concepts \cite{Mader2012}\tabularnewline
-\cline{3-4} 
+\cline{3-4}
  &  & QI.65 & Absence of redefinitions of existing vocabularies  \cite{Hogan2010}\tabularnewline
-\cline{3-4} 
+\cline{3-4}
  &  & QI.66 & Absence of valueless associative relations  \cite{Mader2012}\tabularnewline
-\cline{3-4} 
+\cline{3-4}
  &  & QI.67 & Absence of incomplete literals with datatype range \cite{Hogan2010}\tabularnewline
-\hline 
-\hline 
+\hline
+\hline
 \multirow{4}{*}{Efficiency} & \multirow{4}{*}{Dataset Level} & QI.68 & Absence of slash-URIs \cite{Framework2012}\tabularnewline
-\cline{3-4} 
+\cline{3-4}
  &  & QI.69 & Acceptable delay between the request and its response \cite{citeulike:2925559}\tabularnewline
-\cline{3-4} 
+\cline{3-4}
  &  & QI.70 & Low Latency HTTP requests \cite{Framework2012}\tabularnewline
-\cline{3-4} 
+\cline{3-4}
  &  & QI.71 & Ability to scale \cite{Framework2012}\tabularnewline
-\hline 
-\hline 
+\hline
+\hline
 \multirow{2}{*}{Accuracy} & \multirow{2}{*}{Dataset Level} & QI.72 & Absence of outliers \cite{Framework2012}\tabularnewline
-\cline{3-4} 
+\cline{3-4}
  &  & QI.73 & Absence of attributes that do not contain useful values for data entries \cite{Framework2012}\tabularnewline
 \hline
 \hline
 \multirow{6}{*}{Provenance} & \multirow{1}{*}{Entity Level} & QI.74 & Ability to construct decision networks informed by provenance graphs \cite{Gamble2011}\tabularnewline
-\cline{2-4} 
+\cline{2-4}
  & \multirow{4}{*}{Dataset Level} & QI.75 & Existence of metadata that describes its authoritative information  \cite{Flouris2012}\tabularnewline
-\cline{3-4} 
+\cline{3-4}
  &  & QI.76 & Reliability and Trustworthiness of the publisher \cite{Flouris2012}\tabularnewline
-\cline{3-4} 
+\cline{3-4}
  &  & QI.77 & Usage of a provenance vocabulary\tabularnewline
-\cline{3-4} 
+\cline{3-4}
  &  & QI.78 & Usage of digital signatures \cite{Framework2012}\tabularnewline
-\cline{2-4} 
+\cline{2-4}
  & \multirow{1}{*}{Model Level} & QI.79 & Trustworthiness of RDF statements \cite{Hartig09usingweb}\tabularnewline
 \hline
 \end{longtable}
@@ -387,7 +388,7 @@ In this section, we present the results of our survey on the Linked Data quality
 RDF is the standard to model information in the Semantic Web. Linked Data publishers can pick from a plethora of tools that can check their RDF files for quality problems\footnote{http://www.w3.org/2001/sw/wiki/SWValidators}. Syntactic RDF checkers are able to detect errors in RDF documents like the W3C RDF Validator\footnote{http://www.w3.org/RDF/Validator/}, RDF:about validator and Converter\footnote{http://rdfabout.com/demo/validator/} and The Validating RDF Parser (VRP)\footnote{http://139.91.183.30:9090/RDF/VRP/index.html}. The RDF Triple-Checker\footnote{http://graphite.ecs.soton.ac.uk/checker/} is an online tool that helps find typos and common errors in RDF data. Vapour\footnote{http://validator.linkeddata.org/vapour} \cite{Berrueta08cookinghttp} is a validation service to check whether semantic Web data is correctly published according to the current best practices\cite{tim:linkedata}.
 
 \subsection {Ontologies and Vocabularies Quality}
-Reusing existing ontologies is a common practice that Linked Data publishers are always trying to adopt. However, ontologies and vocabularies development is often a long error-prone process especially when many contributors are working consecutively or collaboratively \cite{Suominen2013}. This can introduce deficiencies such as redundant concepts or conflicting relationships \cite{harpring_introduction_2010}. Getting to choose the right ontology or vocabulary is vital to ensure modeling correctness and consistency.\\ qSKOS\footnote{https://github.com/cmader/qSKOS} \cite{Mader2012} scans SKOS vocabularies to provide reports on vocabulary resources and relations that are problematic. Skosify \cite{Suominen:2012:IQS:2413941.2413985} supports OWL and RDFS ontologies by converting them into well-structured SKOS vocabularies. Skosify includes automatic correction abilities for quality issues that have been observed by reviewing vocabularies on the Web. The OOPS! pitfall scanner \cite{oops} evaluates OWL ontologies against a rules catalog and provides the user with a set of guidelines to solve them. PoolParty checker\footnote{http://www.poolparty.biz/} highlights quality issues in OWL, RDFS and SKOS ontologies and vocabularies, the latest version supports qSKOS to indicate the quality of controlled vocabularies on the Web. ASKOSI\footnote{http://www.w3.org/2001/sw/wiki/ASKOSI} retrieves vocabularies from different sources, stores and displays the usage frequency of the different concepts used by different applications. It promotes reusing existing information systems by providing better management and presentation tools.\\ Some errors in RDF will only appear after reasoning (incorrect inferences). In \cite{conf/owled/SirinSW08}\cite{conf/hicss/TaoDM09} the authors perform quality checking on OWL ontologies using integrity constraints involving the Unique Name Assumption (UNA) and the Closed World Assumption (CWA). Pellet\footnote{http://clarkparsia.com/pellet} provides reasoning services for OWL ontologies. It incorporates a number of heuristics to detect and repair quality issues among disjoint properties, negative property assertions and reflexive, irreflexive, symmetric, and anti-symmetric properties. Eyeball\footnote{http://jena.sourceforge.net/Eyeball/} provides quality inspection for RDF models (including OWL). It provides checks for a variety of problems including the usage of unknown predicates, classes, poorly formed namespaces, literal syntax validation, type consistency and other heuristics. RDF:Alerts\footnote{http://swse.deri.org/RDFAlerts/} provides validation for many issues highlighted in \cite{Hogan2010} like misplaced, undefined or deprecated classes or properties. 
+Reusing existing ontologies is a common practice that Linked Data publishers are always trying to adopt. However, ontologies and vocabularies development is often a long error-prone process especially when many contributors are working consecutively or collaboratively \cite{Suominen2013}. This can introduce deficiencies such as redundant concepts or conflicting relationships \cite{harpring_introduction_2010}. Getting to choose the right ontology or vocabulary is vital to ensure modeling correctness and consistency.\\ qSKOS\footnote{https://github.com/cmader/qSKOS} \cite{Mader2012} scans SKOS vocabularies to provide reports on vocabulary resources and relations that are problematic. Skosify \cite{Suominen:2012:IQS:2413941.2413985} supports OWL and RDFS ontologies by converting them into well-structured SKOS vocabularies. Skosify includes automatic correction abilities for quality issues that have been observed by reviewing vocabularies on the Web. The OOPS! pitfall scanner \cite{oops} evaluates OWL ontologies against a rules catalog and provides the user with a set of guidelines to solve them. PoolParty checker\footnote{http://www.poolparty.biz/} highlights quality issues in OWL, RDFS and SKOS ontologies and vocabularies, the latest version supports qSKOS to indicate the quality of controlled vocabularies on the Web. ASKOSI\footnote{http://www.w3.org/2001/sw/wiki/ASKOSI} retrieves vocabularies from different sources, stores and displays the usage frequency of the different concepts used by different applications. It promotes reusing existing information systems by providing better management and presentation tools.\\ Some errors in RDF will only appear after reasoning (incorrect inferences). In \cite{conf/owled/SirinSW08}\cite{conf/hicss/TaoDM09} the authors perform quality checking on OWL ontologies using integrity constraints involving the Unique Name Assumption (UNA) and the Closed World Assumption (CWA). Pellet\footnote{http://clarkparsia.com/pellet} provides reasoning services for OWL ontologies. It incorporates a number of heuristics to detect and repair quality issues among disjoint properties, negative property assertions and reflexive, irreflexive, symmetric, and anti-symmetric properties. Eyeball\footnote{http://jena.sourceforge.net/Eyeball/} provides quality inspection for RDF models (including OWL). It provides checks for a variety of problems including the usage of unknown predicates, classes, poorly formed namespaces, literal syntax validation, type consistency and other heuristics. RDF:Alerts\footnote{http://swse.deri.org/RDFAlerts/} provides validation for many issues highlighted in \cite{Hogan2010} like misplaced, undefined or deprecated classes or properties.
 
 \subsection {Dataset Quality}
 Considering the large amount of available datasets in the Linked Open Data, users have a hard time trying to identify appropriate datasets that suit certain tasks. There are two approaches to rank datasets, a manual and an automatic approach. The manual approach depends on the wisdom of the crowd to highlight specific quality issues. The automatic approach has several implementations. The most adopted ones are based on link assessment. Provenance-based approaches and entity-based approaches are also used to compute not only dataset rankings, but also rankings on the entity level.\\
@@ -429,12 +430,12 @@ In this section, we present the results for our evaluation of the various Linked
 \begin{longtable}[h]{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
 \caption[Linked Data quality tools]{Evaluation of Linked Data quality tools for each quality indicator} \label{DQMT} \\
 
-\hline \multicolumn{1}{|c|}{\textbf{}} & \multicolumn{1}{P{90}{3.1cm}|}{PROLOD} & \multicolumn{1}{P{90}{3.1cm}|}{Sieve} & \multicolumn{1}{P{90}{3.1cm}|}{Flemming's Tool}& \multicolumn{1}{P{90}{3.1cm}|}{SWIQA} & \multicolumn{1}{P{90}{3.1cm}|}{Syntax Validators}& \multicolumn{1}{P{90}{3.1cm}|}{Skosify} & \multicolumn{1}{P{90}{3.1cm}|}{OOPS!} & \multicolumn{1}{P{90}{3.1cm}|}{PoolParty} & \multicolumn{1}{P{90}{3.1cm}|}{ASKOSI} & \multicolumn{1}{P{90}{3.1cm}|}{Pellet} & \multicolumn{1}{P{90}{3.1cm}|}{Eyeball} & \multicolumn{1}{P{90}{3.1cm}|}{RDF:Alerts} & \multicolumn{1}{P{90}{3.1cm}|}{TripleCheckmate} & \multicolumn{1}{P{90}{3.1cm}|}{DING} & \multicolumn{1}{P{90}{3.1cm}|}{DSNotify} & \multicolumn{1}{P{90}{3.1cm}|}{SPARQL Endpoints-Status}\\ \hline 
+\hline \multicolumn{1}{|c|}{\textbf{}} & \multicolumn{1}{P{90}{3.1cm}|}{PROLOD} & \multicolumn{1}{P{90}{3.1cm}|}{Sieve} & \multicolumn{1}{P{90}{3.1cm}|}{Flemming's Tool}& \multicolumn{1}{P{90}{3.1cm}|}{SWIQA} & \multicolumn{1}{P{90}{3.1cm}|}{Syntax Validators}& \multicolumn{1}{P{90}{3.1cm}|}{Skosify} & \multicolumn{1}{P{90}{3.1cm}|}{OOPS!} & \multicolumn{1}{P{90}{3.1cm}|}{PoolParty} & \multicolumn{1}{P{90}{3.1cm}|}{ASKOSI} & \multicolumn{1}{P{90}{3.1cm}|}{Pellet} & \multicolumn{1}{P{90}{3.1cm}|}{Eyeball} & \multicolumn{1}{P{90}{3.1cm}|}{RDF:Alerts} & \multicolumn{1}{P{90}{3.1cm}|}{TripleCheckmate} & \multicolumn{1}{P{90}{3.1cm}|}{DING} & \multicolumn{1}{P{90}{3.1cm}|}{DSNotify} & \multicolumn{1}{P{90}{3.1cm}|}{SPARQL Endpoints-Status}\\ \hline
 \endfirsthead
 
 \multicolumn{17}{c}%
 {{\bfseries \tablename\ \thetable{} Evaluation of Linked Data quality tools for each quality indicator}} \\
-\hline \multicolumn{1}{|c|}{\textbf{}} & \multicolumn{1}{P{90}{3.1cm}|}{PROLOD} & \multicolumn{1}{P{90}{3.1cm}|}{Sieve} & \multicolumn{1}{P{90}{3.1cm}|}{Flemming's Tool}& \multicolumn{1}{P{90}{3.1cm}|}{SWIQA} & \multicolumn{1}{P{90}{3.1cm}|}{Syntax Validators}& \multicolumn{1}{P{90}{3.1cm}|}{Skosify} & \multicolumn{1}{P{90}{3.1cm}|}{OOPS!} & \multicolumn{1}{P{90}{3.1cm}|}{PoolParty} & \multicolumn{1}{P{90}{3.1cm}|}{ASKOSI} & \multicolumn{1}{P{90}{3.1cm}|}{Pellet} & \multicolumn{1}{P{90}{3.1cm}|}{Eyeball} & \multicolumn{1}{P{90}{3.1cm}|}{RDF:Alerts} & \multicolumn{1}{P{90}{3.1cm}|}{TripleCheckmate} & \multicolumn{1}{P{90}{3.1cm}|}{DING} & \multicolumn{1}{P{90}{3.1cm}|}{DSNotify} & \multicolumn{1}{P{90}{3.1cm}|}{SPARQL Endpoints-Status} \\ \hline 
+\hline \multicolumn{1}{|c|}{\textbf{}} & \multicolumn{1}{P{90}{3.1cm}|}{PROLOD} & \multicolumn{1}{P{90}{3.1cm}|}{Sieve} & \multicolumn{1}{P{90}{3.1cm}|}{Flemming's Tool}& \multicolumn{1}{P{90}{3.1cm}|}{SWIQA} & \multicolumn{1}{P{90}{3.1cm}|}{Syntax Validators}& \multicolumn{1}{P{90}{3.1cm}|}{Skosify} & \multicolumn{1}{P{90}{3.1cm}|}{OOPS!} & \multicolumn{1}{P{90}{3.1cm}|}{PoolParty} & \multicolumn{1}{P{90}{3.1cm}|}{ASKOSI} & \multicolumn{1}{P{90}{3.1cm}|}{Pellet} & \multicolumn{1}{P{90}{3.1cm}|}{Eyeball} & \multicolumn{1}{P{90}{3.1cm}|}{RDF:Alerts} & \multicolumn{1}{P{90}{3.1cm}|}{TripleCheckmate} & \multicolumn{1}{P{90}{3.1cm}|}{DING} & \multicolumn{1}{P{90}{3.1cm}|}{DSNotify} & \multicolumn{1}{P{90}{3.1cm}|}{SPARQL Endpoints-Status} \\ \hline
 \endhead
 
 \hline \multicolumn{17}{|r|}{{Continued on next page}} \\ \hline
@@ -444,163 +445,163 @@ In this section, we present the results for our evaluation of the various Linked
 \endlastfoot
 
 
-\hline 
+\hline
 QI.1 &  & \checkmark &  & \checkmark &  &  &  &  &  &  &  &  & \checkmark &  &  & \tabularnewline
-\hline 
+\hline
 QI.2 &  &  & \checkmark &  &  &  &  & \checkmark & \checkmark &  &  &  &  &  &  & \tabularnewline
-\hline 
+\hline
 QI.3 &  &  & \checkmark &  &  &  &  & \checkmark &  &  &  &  &  &  &  & \tabularnewline
-\hline 
+\hline
 QI.4 &  & \checkmark &  & \checkmark &  &  &  &  &  &  &  &  & \checkmark &  &  & \tabularnewline
-\hline 
+\hline
 QI.5 &  &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
-\hline 
+\hline
 QI.6 &  &  & \checkmark &  &  &  &  &  &  &  &  &  &  & \checkmark &  & \tabularnewline
-\hline 
+\hline
 QI.7 &  &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
-\hline 
+\hline
 QI.8 & \checkmark &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
-\hline 
+\hline
 QI.9 &  &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
-\hline 
+\hline
 QI.10 &  &  & \checkmark & \checkmark & \checkmark &  &  &  &  &  &  & \checkmark &  &  &  & \tabularnewline
-\hline 
+\hline
 QI.11 &  &  &  &  &  &  &  &  &  &  &  &  &  & \checkmark &  & \checkmark\tabularnewline
-\hline 
+\hline
 QI.12 & \checkmark &  & \checkmark &  &  &  &  &  &  &  &  &  &  & \checkmark &  & \tabularnewline
-\hline 
+\hline
 QI.13 & \checkmark &  & \checkmark & \checkmark &  &  &  & \checkmark &  &  &  & \checkmark &  &  & \checkmark & \tabularnewline
-\hline 
+\hline
 QI.14 &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \checkmark & \checkmark\tabularnewline
-\hline 
+\hline
 QI.15 &  & \checkmark &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
-\hline 
+\hline
 QI.16 &  &  &  &  &  &  &  & \checkmark &  &  &  &  &  &  &  & \tabularnewline
-\hline 
+\hline
 QI.17 &  &  &  &  &  & \checkmark &  & \checkmark &  &  &  &  &  &  &  & \tabularnewline
-\hline 
+\hline
 QI.18 &  &  &  &  &  & \checkmark &  & \checkmark &  &  &  &  &  &  &  & \tabularnewline
-\hline 
+\hline
 QI.19 &  &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
-\hline 
+\hline
 QI.20 &  &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
-\hline 
+\hline
 QI.21 &  &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \checkmark\tabularnewline
-\hline 
+\hline
 QI.22 & \checkmark &  &  &  &  & \checkmark &  & \checkmark & \checkmark &  &  &  & \checkmark &  &  & \tabularnewline
-\hline 
+\hline
 QI.23 &  &  &  &  &  &  & \checkmark &  &  & \checkmark & \checkmark & \checkmark & \checkmark &  &  & \tabularnewline
-\hline 
+\hline
 QI.24 &  &  &  &  &  & \checkmark &  & \checkmark &  &  &  &  &  &  &  & \tabularnewline
-\hline 
+\hline
 QI.25 &  &  &  &  &  &  &  & \checkmark & \checkmark &  &  &  &  &  &  & \tabularnewline
-\hline 
+\hline
 QI.26 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
-\hline 
+\hline
 QI.27 &  & \checkmark &  &  &  &  &  &  &  &  & \checkmark & \checkmark &  &  & \checkmark & \tabularnewline
-\hline 
+\hline
 QI.28 &  &  &  &  &  & \checkmark &  & \checkmark &  &  &  &  &  &  &  & \tabularnewline
-\hline 
+\hline
 QI.29 &  &  &  &  &  &  & \checkmark & \checkmark & \checkmark &  & \checkmark &  &  &  &  & \tabularnewline
-\hline 
+\hline
 QI.30 &  & \checkmark &  & \checkmark &  &  & \checkmark &  & \checkmark &  &  &  &  &  &  & \tabularnewline
-\hline 
+\hline
 QI.31 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
-\hline 
+\hline
 QI.32 &  & \checkmark &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
-\hline 
+\hline
 QI.33 &  &  &  &  &  &  &  & \checkmark &  &  &  & \checkmark &  &  &  & \tabularnewline
-\hline 
+\hline
 QI.34 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
-\hline 
+\hline
 QI.35 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
-\hline 
+\hline
 QI.36 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
-\hline 
+\hline
 QI.37 &  & \checkmark &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
-\hline 
+\hline
 QI.38 &  &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
-\hline 
+\hline
 QI.39 &  &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
-\hline 
+\hline
 QI.40 &  &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
-\hline 
+\hline
 QI.41 &  &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
-\hline 
+\hline
 QI.42 &  &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
-\hline 
+\hline
 QI.43 &  &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
-\hline 
+\hline
 QI.44 &  &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
-\hline 
+\hline
 QI.45 &  &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
-\hline 
+\hline
 QI.46 &  &  &  &  &  & \checkmark &  & \checkmark & \checkmark &  &  &  &  &  &  & \tabularnewline
-\hline 
+\hline
 QI.47 &  &  &  &  &  &  & \checkmark & \checkmark &  &  & \checkmark &  &  &  &  & \tabularnewline
-\hline 
+\hline
 QI.48 &  &  &  &  &  & \checkmark & \checkmark & \checkmark &  &  & \checkmark &  &  &  &  & \tabularnewline
-\hline 
+\hline
 QI.49 &  &  &  &  &  & \checkmark &  &  &  &  & \checkmark &  &  &  &  & \tabularnewline
-\hline 
+\hline
 QI.50 &  &  &  &  &  &  &  &  & \checkmark &  &  &  &  &  &  & \tabularnewline
-\hline 
+\hline
 QI.51 &  & \checkmark &  &  &  &  &  &  &  & \checkmark & \checkmark &  & \checkmark &  &  & \tabularnewline
-\hline 
+\hline
 QI.52 &  &  &  &  &  &  &  &  &  &  & \checkmark &  &  &  &  & \tabularnewline
-\hline 
+\hline
 QI.53 &  &  &  &  &  &  & \checkmark &  &  & \checkmark &  &  &  &  &  & \tabularnewline
-\hline 
+\hline
 QI.54 &  &  &  &  &  &  &  &  &  & \checkmark &  &  &  &  &  & \tabularnewline
-\hline 
+\hline
 QI.55 &  &  &  &  &  &  &  &  &  & \checkmark &  &  &  &  &  & \tabularnewline
-\hline 
+\hline
 QI.56 &  &  & \checkmark &  &  & \checkmark & \checkmark & \checkmark &  & \checkmark & \checkmark & \checkmark &  &  &  & \tabularnewline
-\hline 
+\hline
 QI.57 &  &  &  &  &  &  & \checkmark & \checkmark &  &  & \checkmark & \checkmark &  &  &  & \tabularnewline
-\hline 
+\hline
 QI.58 &  &  &  &  &  &  & \checkmark &  &  & \checkmark & \checkmark &  &  &  &  & \tabularnewline
-\hline 
+\hline
 QI.59 &  &  &  &  &  &  &  & \checkmark &  &  &  &  &  &  &  & \tabularnewline
-\hline 
+\hline
 QI.60 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
-\hline 
+\hline
 QI.61 &  &  & \checkmark &  &  &  & \checkmark &  &  & \checkmark &  & \checkmark &  &  &  & \tabularnewline
-\hline 
+\hline
 QI.62 &  &  &  &  &  & \checkmark & \checkmark & \checkmark & \checkmark &  &  &  &  &  &  & \tabularnewline
-\hline 
+\hline
 QI.63 &  &  & \checkmark &  &  &  & \checkmark & \checkmark &  & \checkmark & \checkmark &  &  &  &  & \tabularnewline
-\hline 
+\hline
 QI.64 &  &  &  &  &  & \checkmark & \checkmark & \checkmark &  &  &  &  &  &  &  & \tabularnewline
-\hline 
+\hline
 QI.65 &  &  & \checkmark &  &  &  & \checkmark &  &  & \checkmark & \checkmark &  &  &  &  & \tabularnewline
-\hline 
+\hline
 QI.66 &  &  &  &  &  &  &  & \checkmark &  &  &  &  &  &  &  & \tabularnewline
-\hline 
+\hline
 QI.67 &  &  &  &  &  &  & \checkmark & \checkmark &  & \checkmark & \checkmark & \checkmark &  &  &  & \tabularnewline
-\hline 
+\hline
 QI.68 &  &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
-\hline 
+\hline
 QI.69 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \checkmark\tabularnewline
-\hline 
+\hline
 QI.70 &  &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \checkmark\tabularnewline
-\hline 
+\hline
 QI.71 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \checkmark\tabularnewline
-\hline 
+\hline
 QI.72 &  &  &  &  &  &  &  &  &  &  &  &  & \checkmark &  &  & \tabularnewline
-\hline 
+\hline
 QI.73 &  &  &  &  &  &  &  &  &  &  &  &  & \checkmark &  &  & \tabularnewline
-\hline 
+\hline
 QI.74 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
-\hline 
+\hline
 QI.75 &  &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
-\hline 
+\hline
 QI.76 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
-\hline 
+\hline
 QI.77 &  &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
-\hline 
+\hline
 QI.78 &  &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
-\hline 
+\hline
 QI.79 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
 \end{longtable}
 }
@@ -612,8 +613,8 @@ We have also noticed the lack of tools to measure certain quality indicators lik
 
 \section{Conclusions and Future Work}
 
-In this paper, we have presented a comprehensive objective quality framework applied to the Linked Open Data. We have refined our previous work and presented 13 different quality attributes. To measure these abstract attributes, we have identified a total of 79 quality indicators that were mapped when suitable to four main categories (entity, dataset, links, models). 
-We have also surveyed more than 25 different tools that measure different quality aspects of Linked Open Data. We evaluated these tools against our quality indicators. As a result, we identified several gaps in the current tools and identified the need for a comprehensive evaluation and assessment framework. 
+In this paper, we have presented a comprehensive objective quality framework applied to the Linked Open Data. We have refined our previous work and presented 13 different quality attributes. To measure these abstract attributes, we have identified a total of 79 quality indicators that were mapped when suitable to four main categories (entity, dataset, links, models).
+We have also surveyed more than 25 different tools that measure different quality aspects of Linked Open Data. We evaluated these tools against our quality indicators. As a result, we identified several gaps in the current tools and identified the need for a comprehensive evaluation and assessment framework.
 
 In future work, we plan to develop a comprehensive objective Linked Data quality evaluation tool. The tool will be able to automatically measure the various quality indicators listed in this paper, introduce a scoring function with different weights for the various quality attributes and issue a quality certificate.
 
