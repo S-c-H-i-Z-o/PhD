@@ -95,11 +95,11 @@ ProLOD \cite{Bohm2010}, ProLOD++\cite{6816740}, Aether \cite{makela-aether-2014}
 
 LinkQA \cite{Gueret2012} is a fully automated approach which takes a set of RDF triples as an input and analyses it to extract topological measures (links quality). The authors described five metrics to determine the quality of data (degree, clustering coefficient, centrality, sameAs chains and descriptive richness through sameAs).\\
 
-We further survey the landscape of data quality tools in details in section 4. We try to map those tools to the set of objective quality indicators suggested in section 3. However, despite all the recent efforts in providing frameworks and tools for data quality in Linked Open Data, there is still no automatic framework for the objective assessment of Linked Data quality taking into account all aspects of Linked Open Data.
+We further survey the landscape of data quality tools in details in section 4. We map those tools to the set of objective quality indicators suggested in section 3. However, despite all the recent efforts in providing frameworks and tools for data quality in Linked Open Data, there is still no automatic framework for the objective assessment of Linked Data quality taking into account all aspects of Linked Open Data.
 
 \section{Objective Linked Data Quality Classification}
 
-In this section, we present the objective Linked Data quality framework based on the refinement of our previous work \cite{assaf2012}.\\
+In this section, we present the objective Linked Data quality framework based on the refinement of our previous work \cite{assaf2012} and those surveyed in \cite{Framework2012}.\\
 
 The basic idea behind Linked Data is that its usefulness increases when it is more interlinked with other datasets. Tim Berners-Lee defined four main principles for publishing data that can ensure a certain level of uniformity reflecting directly data's usability \cite{tim:linkedata}:\\
 
@@ -127,7 +127,10 @@ Table(1) lists the refined attributes along with their quality indicators. These
 
  \subsection{Completeness}
 
-Data completeness can be judged in the presence of a task where the ideal set of attributes and objects are known. It is generally a subjective measure depending highly on the scenario and use-case in hand. For example, An entity is considered to be complete if it contains all the attributes needed for a given task, has complete language coverage \cite{Mader2012} and has documentation properties \cite{w3c_skos_rec}\cite{Mader2012}.\\ However, dataset completeness has some objective measures. A dataset is considered to be complete if it contains supporting structured metadata \cite{Hogan2010}, contains links for external data providers, supports providing data in multiple serializations \cite{Framework2012}, includes the correct MIME-type for the content \cite{Hogan2010}, has different queryable endpoints to access the data (i.e. SPARQL endpoint, RDF Dump, REST API, etc.) \cite{Framework2012}, has been checked against syntactic errors \cite{Hogan2010}, uses datasets description vocabularies like DCAT\footnote{http://www.w3.org/TR/vocab-dcat/} or VOID\footnote{http://www.w3.org/TR/void/} and if the publishers provide descriptions about the size (e.g. \texttt{void:statItem}, \texttt{void:numberOfTriples} or \texttt{void:numberOfDocuments}) and categorization (e.g. \texttt{dcterms:subject}) of the dataset.\\ Links are considered to be complete if all the in-bound and out-bound links are dereferenceable \cite{Hogan2010}\cite{Mader2012}\cite{Gueret2012} and have the linkage information represented in the metadata \cite{Hogan2010}.\\ Models are considered to be complete if they do not contain disconnected graph clusters \cite{Mader2012}. Disconnected graphs are the result of incomplete data acquisition or accidental deletion of terms that leads to deprecated terms. In addition to that, models are considered to be complete if they do not contain omitted top concepts or unidirectional related concepts \cite{Hogan2010} and if there exists metadata information about the kind and number of used vocabularies \cite{Framework2012}.
+Data completeness can be judged in the presence of a task where the ideal set of attributes and objects are known. It is generally a subjective measure depending highly on the scenario and use-case in hand. For example, An entity is considered to be complete if it contains all the attributes needed for a given task, has complete language coverage \cite{Mader2012} and has documentation properties \cite{w3c_skos_rec}\cite{Mader2012}.\\
+However, dataset completeness has some objective measures. A dataset is considered to be complete if it contains supporting structured metadata \cite{Hogan2010}, supports providing data in multiple serializations \cite{Framework2012}, includes the correct MIME-type for the content \cite{Hogan2010}, has different queryable endpoints to access the data (i.e. SPARQL endpoint, RDF Dump, REST API, etc.) \cite{Framework2012}, has been checked against syntactic errors \cite{Hogan2010}, uses datasets description vocabularies like DCAT\footnote{http://www.w3.org/TR/vocab-dcat/} or VOID\footnote{http://www.w3.org/TR/void/} and if the publishers provide descriptions about the size (e.g. \texttt{void:statItem}, \texttt{void:numberOfTriples} or \texttt{void:numberOfDocuments}) and categorization (e.g. \texttt{dcterms:subject}) of the dataset.\\
+Links are considered to be complete if all the in-bound and out-bound links are dereferenceable \cite{Hogan2010}\cite{Mader2012}\cite{Gueret2012} and have the linkage information represented in the metadata \cite{Hogan2010}.\\
+Models are considered to be complete if they do not contain disconnected graph clusters \cite{Mader2012}. Disconnected graphs are the result of incomplete data acquisition or accidental deletion of terms that leads to deprecated terms. In addition to that, models are considered to be complete if they do not contain omitted top concepts or unidirectional related concepts \cite{Hogan2010} and if there exists metadata information about the kind and number of used vocabularies \cite{Framework2012}.
 
 \subsection{Availability}
 
@@ -135,7 +138,9 @@ A dataset is considered to be available if the publishers provide data dumps e.g
 
 \subsection{Correctness}
 
-Data correctness is related to the validity of its entities. An entity is considered to be correct if there are no missing or empty labels \cite{Acosta2013}\cite{Mader2012}, no incorrect data type for typed literals \cite{Hogan2010}\cite{Acosta2013}, no omitted or invalid languages tags \cite{Suominen:2012:IQS:2413941.2413985}\cite{Mader2012} and does not contain ``orphan terms'' (orphan terms are terms without any associative or hierarchical relationships \cite{journals/ires/Living10}).\\ Links are considered to be correct if they are syntactically correct. \\ Models are considered to be correct if the top concepts are marked and do not have broader concepts (for example having incoming hasTopConcept or outgoing topConceptOf relationships) \cite{Mader2012}.
+Data correctness is related to the validity of its entities. An entity is considered to be correct if there are no missing or empty labels \cite{Acosta2013}\cite{Mader2012}, no incorrect data type for typed literals \cite{Hogan2010}\cite{Acosta2013}, no omitted or invalid languages tags \cite{Suominen:2012:IQS:2413941.2413985}\cite{Mader2012} and does not contain ``orphan terms'' (orphan terms are terms without any associative or hierarchical relationships \cite{journals/ires/Living10}).\\
+Links are considered to be correct if they are syntactically correct.\\
+Models are considered to be correct if the top concepts are marked and do not have broader concepts (for example having incoming hasTopConcept or outgoing topConceptOf relationships) \cite{Mader2012}.
 
 \subsection{Conciseness}
 
@@ -143,14 +148,13 @@ Extensional conciseness measures the number of unique objects in relation to the
 
 \subsection{Consistency}
 
-An entity is considered to be consistent if it does not contain overlapping labels such as two concepts have the same preferred lexical label in a given language when they belong to the same schema \cite{skosprimer}\cite{Mader2012}. Moreover, an entity is considered to be consistent if it does not contain disjoint labels \cite{Mader2012}, extra white spaces in labels \cite{Suominen:2012:IQS:2413941.2413985} and does not contain inconsistent preferred labels per language tag \cite{Mader2012}\cite{Suominen:2012:IQS:2413941.2413985}.\\ Models are considered to be consistent if they do not include atypical use of collections, containers and reification \cite{Hogan2010}, overlapping usage of owl:sameAs and owl:differentFrom \cite{Hogan2010}, overlapping usage of owl:AllDifferent and owl:distinctMembers \cite{Hogan2010}, asserted members of owl:Nothing and membership violation for disjoint classes \cite{Hogan2010}.
+An entity is considered to be consistent if it does not contain overlapping labels such as two concepts have the same preferred lexical label in a given language when they belong to the same schema \cite{skosprimer}\cite{Mader2012}. Moreover, an entity is considered to be consistent if it does not contain disjoint labels \cite{Mader2012}, extra white spaces in labels \cite{Suominen:2012:IQS:2413941.2413985} and does not contain inconsistent preferred labels per language tag \cite{Mader2012}\cite{Suominen:2012:IQS:2413941.2413985}.\\
+Models are considered to be consistent if they do not include atypical use of collections, containers and reification \cite{Hogan2010}, overlapping usage of owl:sameAs and owl:differentFrom \cite{Hogan2010}, overlapping usage of owl:AllDifferent and owl:distinctMembers \cite{Hogan2010}, asserted members of owl:Nothing and membership violation for disjoint classes \cite{Hogan2010}.
 
 \subsection{Coherence}
 
-Coherence is the ability to interpret data as expected by the publisher or vocabulary maintainer \cite{Hogan2010}. The objective coherent measures are mainly associated with the modeling quality.\\
+Coherence is the ability to interpret data as expected by the publisher or vocabulary maintainer \cite{Hogan2010}. The objective coherent measures are mainly associated with the modeling quality. A model is considered to be coherent when it does not contain:\\
 
-\noindent
-A model is considered to be coherent when it does not contain:\\
 \begin{easylist}[itemize]
 \ListProperties( Hang=true, Progressive=3ex, Style*= - )
 & Usage of undefined classes and properties \cite{Hogan2010}. Many errors that are due to spelling or syntactic mistakes are resolvable through minor fixes via ontology checkers tools. However, for new terms, \cite{Hogan2010} suggests to have them defined in a separate namespace in order to allow reuse \cite{ Mader2012}.
@@ -179,11 +183,12 @@ A model is considered to be coherent when it does not contain:\\
 
 \subsection{Freshness}
 
-Freshness is a measure for the recency of data. The basic assumption is that old information is more likely to be outdated and unreliable \cite{Flouris2012}. Entity freshness can be identified if it contains timestamps that can keep track of its modifications. Data freshness can be considered as a subjective measure as it highly depends on the task on hand. However, our concern is the existence of temporal information allowing dataset consumers to subjectively decide its freshness for their scenario.
+Freshness is a measure for the recency of data. The basic assumption is that old information is more likely to be outdated and unreliable \cite{Flouris2012}. Entity freshness can be identified if it contains timestamps that can keep track of its modifications. Data freshness can be considered as a subjective measure. However, our concern is the existence of temporal information allowing dataset consumers to subjectively decide its freshness for their scenario.
 
 \subsection{Provenance}
 
-Entity level provenance can be calculated by constructing decision networks informed by provenance graphs \cite{Gamble2011}. The accuracy of computing trust between two entities \cite{Framework2012} can be computed by calculating an aggregate trust value based on the combination of the propagation and aggregation algorithms on weighted mechanism \cite{j.websem208}. Provenance can be achieved at the dataset level by including metadata that describes its authoritative information (title, content and URI), verifying if the dataset uses a provenance vocabulary like PROV \cite{w3c-prov-o} and uses digital signatures \cite{Framework2012}. \\ Models provenance can be achieved by ensuring the trustworthiness of RDF statements \cite{Hartig09usingweb}.
+Entity level provenance can be calculated by constructing decision networks informed by provenance graphs \cite{Gamble2011}. The accuracy of computing trust between two entities \cite{Framework2012} can be computed by calculating an aggregate trust value based on the combination of the propagation and aggregation algorithms on weighted mechanism \cite{j.websem208}.
+Provenance can be achieved at the dataset level by including metadata that describes its authoritative information (title, content and URI), verifying if the dataset uses a provenance vocabulary like PROV \cite{w3c-prov-o} and uses digital signatures \cite{Framework2012}.\\
 
 \subsection{Security}
 
