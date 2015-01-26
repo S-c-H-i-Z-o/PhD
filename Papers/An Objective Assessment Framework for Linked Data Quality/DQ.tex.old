@@ -144,9 +144,9 @@ A dataset is considered to be correct if it includes the correct MIME-type for t
 Links are considered to be correct if they are syntactically correct.\\
 Models are considered to be correct if the top concepts are marked and do not have broader concepts (for example having incoming \texttt{hasTopConcept} or outgoing \texttt{topConceptOf} relationships) \cite{Mader2012}.
 
-% \subsection{Conciseness}
+\subsection{Conciseness}
 
-% Extensional conciseness measures the number of unique objects in relation to the overall number of objects representation in the dataset. Intensional conciseness measures the number of unique attributes of a dataset in relation to the overall number of attributes in a target schema \cite{ Bleiholder:2009}. \\ An entity is considered to be concise if it has intensional conciseness (it does not contain redundant attributes, which means that there is no equivalent attributes with different names) \cite{Mendes2012} and uses short URIs \cite{Framework2012} that follow the HTTP URI scheme \cite{Hogan:2012:ESL:2263498.2264570}\cite{Suominen2013}.\\ A dataset is considered to be concise if it has extensional conciseness (it does not contain redundant objects, which means that there is no equivalent objects with different identifiers) \cite{Mendes2012}.
+Extensional conciseness measures the number of unique objects in relation to the overall number of objects representation in the dataset. Intensional conciseness measures the number of unique attributes of a dataset in relation to the overall number of attributes in a target schema \cite{ Bleiholder:2009}. \\ An entity is considered to be concise if it has intensional conciseness (it does not contain redundant attributes, which means that there is no equivalent attributes with different names) \cite{Mendes2012} and uses short URIs \cite{Framework2012} that follow the HTTP URI scheme \cite{Hogan:2012:ESL:2263498.2264570}\cite{Suominen2013}.\\ A dataset is considered to be concise if it has extensional conciseness (it does not contain redundant objects, which means that there is no equivalent objects with different identifiers) \cite{Mendes2012}.
 
 \subsection{Consistency}
 
@@ -172,16 +172,16 @@ Coherence is the ability to interpret data as expected by the publisher or vocab
 & Valueless associative relations \cite{Mader2012}.
 \end{easylist}
 
-% \subsection{Efficiency}
+\subsection{Efficiency}
 
-% Dataset efficiency is calculated by measuring how fast it can be identified \cite{Toupikov2009}. A dataset is considered to be efficient if it satisfies the following performance metrics:\\
-% \begin{easylist}[itemize]
-% \ListProperties( Hang=false, Progressive=3ex, Style*= - )
-% & No usage of slash-URIs where large amounts of data is provided \cite{Framework2012}.
-% & Acceptable delay between the request and its response \cite{citeulike:2925559}.
-% & Low Latency HTTP requests (average answer time of one second) \cite{Framework2012}.
-% & Scalable such that the time to answer an amount of ten requests divided by ten is not longer than the time it takes to answer one request \cite{Framework2012}.
-% \end{easylist}
+Dataset efficiency is calculated by measuring how fast it can be identified \cite{Toupikov2009}. A dataset is considered to be efficient if it satisfies the following performance metrics:\\
+\begin{easylist}[itemize]
+\ListProperties( Hang=false, Progressive=3ex, Style*= - )
+& No usage of slash-URIs where large amounts of data is provided \cite{Framework2012}.
+& Acceptable delay between the request and its response \cite{citeulike:2925559}.
+& Low Latency HTTP requests (average answer time of one second) \cite{Framework2012}.
+& Scalable such that the time to answer an amount of ten requests divided by ten is not longer than the time it takes to answer one request \cite{Framework2012}.
+\end{easylist}
 
 \subsection{Freshness}
 
@@ -189,7 +189,7 @@ Freshness is a measure for the recency of data. The basic assumption is that old
 
 \subsection{Provenance}
 
-% Entity level provenance can be calculated by constructing decision networks informed by provenance graphs \cite{Gamble2011}. The accuracy of computing trust between two entities \cite{Framework2012} can be computed by calculating an aggregate trust value based on the combination of the propagation and aggregation algorithms on weighted mechanism \cite{j.websem208}.
+Entity level provenance can be calculated by constructing decision networks informed by provenance graphs \cite{Gamble2011}. The accuracy of computing trust between two entities \cite{Framework2012} can be computed by calculating an aggregate trust value based on the combination of the propagation and aggregation algorithms on weighted mechanism \cite{j.websem208}.
 Provenance can be achieved at the dataset level by including metadata that describes its authoritative information (author, maintainer, creation date, etc.), verifying if the dataset uses a provenance vocabulary like PROV \cite{w3c-prov-o} and uses digital signatures \cite{Framework2012}.\\
 
 \subsection{Security}
@@ -202,7 +202,7 @@ Licensing is a quality attribute that is measured on the dataset level. It inclu
 
 \subsection{Comprehensibility}
 
-Comprehensibility is identified if the dataset publisher provides a title, description and URI for the dataset. If he indicates at least one exemplary URI and SPARQL query, RDF file and if he provides a list of used vocabularies and an active mailing list or message board for the dataset \cite{flemming2010}.
+Comprehensibility is identified if the dataset publisher provides a title, description and URI for the dataset. If he indicates at least one exemplary URI and SPARQL query, RDF file and if he provides a list of used vocabularies and an active mailing list, message board or point-of-contact for the dataset \cite{flemming2010}.
 
 \begin{landscape}
 \begin{center}

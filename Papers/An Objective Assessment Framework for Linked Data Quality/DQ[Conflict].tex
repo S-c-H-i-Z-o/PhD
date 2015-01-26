@@ -165,12 +165,33 @@ Coherence is the ability to interpret data as expected by the publisher or vocab
 & Incomplete literals with datatype range \cite{Hogan2010}.
 & Solely transitive related concepts \cite{Mader2012}.
 & Redefinitions of existing vocabularies \cite{Hogan2010}.
-& Valueless associative relations \cite{Mader2012}.\\ \\
+& Valueless associative relations \cite{Mader2012}.
 \end{easylist}
 
+\subsection{Freshness}
+
+Freshness is a measure for the recency of data. The basic assumption is that old information is more likely to be outdated and unreliable \cite{Flouris2012}. Entity freshness can be identified if it contains timestamps that can keep track of its modifications. Data freshness can be considered as a subjective measure. However, our concern is the existence of temporal information allowing dataset consumers to subjectively decide its freshness for their scenario.
+
+\subsection{Provenance}
+
+Provenance can be achieved at the dataset level by including metadata that describes its authoritative information (author, maintainer, creation date, etc.), verifying if the dataset uses a provenance vocabulary like PROV \cite{w3c-prov-o} and uses digital signatures \cite{Framework2012}.\\
+
+\subsection{Security}
+
+Security is a quality attribute that is measured on the dataset level. It is identified if the publishers use login credentials, SSL or SSH to provide access to their dataset, or if they only grant access to specific users \cite{Framework2012}.
+
+\subsection{Licensing}
+
+Licensing is a quality attribute that is measured on the dataset level. It includes the availability of machine readable license information \cite{Hogan:2012:ESL:2263498.2264570}, human readable license information in the documentation of the dataset or its source \cite{Hogan:2012:ESL:2263498.2264570} and the indication of permissions, copyrights and attributions specified by the author \cite{Framework2012}.
+
+\subsection{Comprehensibility}
+
+Comprehensibility is identified if the dataset publisher provides a title, description and URI for the dataset. If he indicates at least one exemplary URI and SPARQL query, RDF file and if he provides a list of used vocabularies and an active mailing list or message board for the dataset \cite{flemming2010}.
+
+\begin{landscape}
 \begin{center}
 {\footnotesize
-\begin{longtable}[h]{|c|c|c|l|}
+\begin{longtable}[h]{|c|c|c|c|}
 \caption[Objective Assessment Framework for Linked Data Quality]{Objective Assessment Framework for Linked Data Quality} \label{DQM} \\
 
 \hline \multicolumn{1}{|c|}{\textbf{Quality Attribute}} & \multicolumn{1}{c|}{\textbf{Quality Category}} & \multicolumn{1}{c|}{\textbf{ID}} & \multicolumn{1}{c|}{\textbf{Quality Indicator}} \\ \hline
@@ -186,10 +207,11 @@ Coherence is the ability to interpret data as expected by the publisher or vocab
 \multicolumn{4}{|r|}{{Continued on next page}} \\ \hline
 \endfoot
 
+
 \endlastfoot
 
 \multirow{9}{*}{Completeness}
- & \multirow{5}{*}{Dataset Level} & QI.5 & Existence of supporting structured metadata  \cite{Hogan2010}\tabularnewline
+ & \multirow{6}{*}{Dataset Level} & QI.5 & Existence of supporting structured metadata  \cite{Hogan2010}\tabularnewline
 \cline{3-4}
  &  & QI.6 & Supports multiple serializations \cite{Framework2012}\tabularnewline
 \cline{3-4}
@@ -257,12 +279,27 @@ Coherence is the ability to interpret data as expected by the publisher or vocab
 \cline{3-4}
  &  & QI.45 & Existence of a mailing list, message board or point of contact \cite{flemming2010}\tabularnewline
 \hline
-\hline
-\multirow{3}{*}{Provenance} & \multirow{1}{*}{Entity Level} & QI.74 & Ability to construct decision networks informed by provenance graphs \cite{Gamble2011}\tabularnewline
-\cline{2-4}
- & \multirow{2}{*}{Dataset Level} & QI.75 & Existence of metadata that describes its authoritative information  \cite{Flouris2012}\tabularnewline
+\multirow{11}{*}{Consistency} & \multirow{5}{*}{Entity Level} & QI.46 & Existence of consistent preferred labels per language tag \cite{skosprimer}\cite{Mader2012}\tabularnewline
 \cline{3-4}
- &  & QI.77 & Usage of a provenance vocabulary\tabularnewline
+ &  & QI.47 & Absence of overlapping labels\tabularnewline
+\cline{3-4}
+ &  & QI.48 & Absence of disjoint labels \cite{Mader2012}\tabularnewline
+\cline{3-4}
+ &  & QI.49 & Absence of extra white spaces in labels \cite{Suominen:2012:IQS:2413941.2413985}\tabularnewline
+\cline{3-4}
+ &  & QI.50 & Existence of only one value of skos:prefLabel without a language tag  \cite{Mader2012}\cite{Suominen:2012:IQS:2413941.2413985}\tabularnewline
+\cline{2-4}
+ & \multirow{1}{*}{Dataset Level} & QI.51 & Absence of conflicting information \cite{Mendes2012}\tabularnewline
+\cline{2-4}
+ & \multirow{5}{*}{Model Level} & QI.52 & Absence of atypical use of collections, containers and reification \cite{Hogan2010}\tabularnewline
+\cline{3-4}
+ &  & QI.53 & Absence of overlapping usage of owl:sameAs and owl:differentFrom  \cite{Hogan2010}\tabularnewline
+\cline{3-4}
+ &  & QI.54 & Absence of overlapping usage of owl:AllDifferent and owl:distinctMembers  \cite{Hogan2010}\tabularnewline
+\cline{3-4}
+ &  & QI.55 & Absence of asserted members of owl:Nothing  \cite{Hogan2010}\tabularnewline
+\cline{3-4}
+ &  & QI.56 & Absence of membership violations for disjoint classes  \cite{Hogan2010}\tabularnewline
 \hline
 \hline
 \multirow{10}{*}{Coherence} & \multirow{10}{*}{Model Level} & QI.57 & Absence of misplaced or deprecated classes or properties  \cite{Hogan2010}\tabularnewline
@@ -271,7 +308,7 @@ Coherence is the ability to interpret data as expected by the publisher or vocab
 \cline{3-4}
  &  & QI.59 & Absence of relation and mappings clashes  \cite{Suominen:2012:IQS:2413941.2413985}\tabularnewline
 \cline{3-4}
- &  & QI.60 & Absence of blank nodes \cite{Hogan:2012:ESL:2263498.2264570}\tabularnewline
+ &  & QI.60 & Absence or minimal usage of blank nodes \cite{Hogan:2012:ESL:2263498.2264570}\tabularnewline
 \cline{3-4}
  &  & QI.61 & Absence of invalid inverse-functional values \cite{Hogan2010}\tabularnewline
 \cline{3-4}
@@ -284,52 +321,31 @@ Coherence is the ability to interpret data as expected by the publisher or vocab
  &  & QI.65 & Absence of redefinitions of existing vocabularies  \cite{Hogan2010}\tabularnewline
 \cline{3-4}
  &  & QI.66 & Absence of valueless associative relations  \cite{Mader2012}\tabularnewline
+\cline{3-4}
+ &  & QI.67 & Absence of incomplete literals with datatype range \cite{Hogan2010}\tabularnewline
 \hline
 \hline
-\multirow{10}{*}{Consistency} & \multirow{5}{*}{Entity Level} & QI.46 & Existence of consistent preferred labels per language tag \cite{skosprimer}\cite{Mader2012}\tabularnewline
+\multirow{2}{*}{Accuracy} & \multirow{2}{*}{Dataset Level} & QI.72 & Absence of outliers \cite{Framework2012}\tabularnewline
 \cline{3-4}
- &  & QI.47 & Absence of overlapping labels\tabularnewline
-\cline{3-4}
- &  & QI.48 & Absence of disjoint labels \cite{Mader2012}\tabularnewline
-\cline{3-4}
- &  & QI.49 & Absence of extra white spaces in labels \cite{Suominen:2012:IQS:2413941.2413985}\tabularnewline
-\cline{3-4}
- &  & QI.50 & Existence of only one value of skos:prefLabel without a language tag  \cite{Mader2012}\cite{Suominen:2012:IQS:2413941.2413985}\tabularnewline
+ &  & QI.73 & Absence of attributes that do not contain useful values for data entries \cite{Framework2012}\tabularnewline
+\hline
+\hline
+\multirow{6}{*}{Provenance} & \multirow{1}{*}{Entity Level} & QI.74 & Ability to construct decision networks informed by provenance graphs \cite{Gamble2011}\tabularnewline
 \cline{2-4}
- & \multirow{5}{*}{Model Level} & QI.52 & Absence of atypical use of collections, containers and reification \cite{Hogan2010}\tabularnewline
+ & \multirow{4}{*}{Dataset Level} & QI.75 & Existence of metadata that describes its authoritative information  \cite{Flouris2012}\tabularnewline
 \cline{3-4}
- &  & QI.53 & Absence of overlapping usage of owl:sameAs and owl:differentFrom  \cite{Hogan2010}\tabularnewline
+ &  & QI.76 & Reliability and Trustworthiness of the publisher \cite{Flouris2012}\tabularnewline
 \cline{3-4}
- &  & QI.54 & Absence of overlapping usage of owl:AllDifferent and owl:distinctMembers  \cite{Hogan2010}\tabularnewline
+ &  & QI.77 & Usage of a provenance vocabulary\tabularnewline
 \cline{3-4}
- &  & QI.55 & Absence of asserted members of owl:Nothing  \cite{Hogan2010}\tabularnewline
-\cline{3-4}
- &  & QI.56 & Absence of membership violations for disjoint classes  \cite{Hogan2010}\tabularnewline
+ &  & QI.78 & Usage of digital signatures \cite{Framework2012}\tabularnewline
+\cline{2-4}
+ & \multirow{1}{*}{Model Level} & QI.79 & Trustworthiness of RDF statements \cite{Hartig09usingweb}\tabularnewline
 \hline
 \end{longtable}
 }
 \end{center}
-
-\subsection{Freshness}
-
-Freshness is a measure for the recency of data. The basic assumption is that old information is more likely to be outdated and unreliable \cite{Flouris2012}. Entity freshness can be identified if it contains timestamps that can keep track of its modifications. Data freshness can be considered as a subjective measure. However, our concern is the existence of temporal information allowing dataset consumers to subjectively decide its freshness for their scenario.
-
-\subsection{Provenance}
-
-Provenance can be achieved at the dataset level by including metadata that describes its authoritative information (author, maintainer, creation date, etc.), verifying if the dataset uses a provenance vocabulary like PROV \cite{w3c-prov-o} and uses digital signatures \cite{Framework2012}.\\
-
-\subsection{Security}
-
-Security is a quality attribute that is measured on the dataset level. It is identified if the publishers use login credentials, SSL or SSH to provide access to their dataset, or if they only grant access to specific users \cite{Framework2012}.
-
-\subsection{Licensing}
-
-Licensing is a quality attribute that is measured on the dataset level. It includes the availability of machine readable license information \cite{Hogan:2012:ESL:2263498.2264570}, human readable license information in the documentation of the dataset or its source \cite{Hogan:2012:ESL:2263498.2264570} and the indication of permissions, copyrights and attributions specified by the author \cite{Framework2012}.
-
-\subsection{Comprehensibility}
-
-Comprehensibility is identified if the dataset publisher provides a title, description and URI for the dataset. If he indicates at least one exemplary URI and SPARQL query, RDF file and if he provides a list of used vocabularies and an active mailing list or message board for the dataset \cite{flemming2010}.
-
+\end{landscape}
 
 \section{Linked Data Quality Tools}
 In this section, we present the results of our survey on the Linked Data quality tools that reflect the different aspects of LOD: modeling, ontologies and vocabularies, dataset and SPARQL end-points.\\
