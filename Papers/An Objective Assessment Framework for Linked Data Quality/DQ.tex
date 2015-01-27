@@ -27,7 +27,7 @@
 
 
 \begin{abstract}
-The standardization of Semantic Web technologies and specifications has resulted in a staggering volume of data being published. The Linked Open Data (LOD) is a gold mine for organizations trying to leverage external data sources in order to produce more informed business decisions. However, the heterogeneous nature of data sources reflects directly on the data quality as these sources often contain inconsistent as well as misinterpreted and incomplete information. Traditional data quality is a thoroughly researched field with several benchmarks and frameworks to grasp its dimensions. Assuring data quality in Linked Open Data is much more complex. It consists of structured information supported by models, ontologies and vocabularies and contains queryable endpoints and links. In this paper, we propose an objective assessment framework for Linked Data quality. This framework helps on one hand data owners to rate the quality of their datasets and get some hints on possible improvements, and on the other hand data consumers to choose their data sources from a ranked set. In a previous work, we identified potential quality issues of Linked Data and listed quality principles for all stages of data management. In this paper, we refine this work to include only the objective quality indicators based on metrics that can be automatically measured. We surveyed the landscape of Linked Data quality tools to discover that they only cover a subset of these quality indicators. We further present an extensible quality measurement tool and evaluate it by measuring the quality of the LOD cloud. The results demonstrate that the general quality of LOD cloud needs more attention as most of the datasets suffer from various quality issues.
+The standardization of Semantic Web technologies and specifications has resulted in a staggering volume of data being published. The Linked Open Data (LOD) is a gold mine for organizations trying to leverage external data sources in order to produce more informed business decisions. However, the heterogeneous nature of data sources reflects directly on the data quality as these sources often contain inconsistent as well as misinterpreted and incomplete information. Traditional data quality is a thoroughly researched field with several benchmarks and frameworks to grasp its dimensions. Assuring data quality in Linked Open Data is much more complex. It consists of structured information supported by models, ontologies and vocabularies and contains queryable endpoints and links. In this paper, we propose an objective assessment framework for Linked Data quality. This framework helps on one hand data owners to rate the quality of their datasets and get some hints on possible improvements, and on the other hand data consumers to choose their data sources from a ranked set. In a previous work, we identified potential quality issues of Linked Data and listed quality principles for all stages of data management. In this paper, we refine this work to include only the objective quality indicators based on metrics that can be automatically measured. We surveyed the landscape of Linked Data quality tools to discover that they only cover a subset of these quality indicators. We further present an extensible quality measurement tool and evaluate it by measuring the quality of the various data portals and the LOD cloud. The results demonstrate that the general quality of LOD cloud compared to various data portals needs more attention as most of the datasets suffer from various quality issues.
 \end{abstract}
 
 \begin{keyword}
@@ -52,7 +52,7 @@ The framework we propose is based on a refinement of the data quality principles
 
 Furthermore, we surveyed the landscape of Linked Data quality tools to discover that they only cover a subset of the proposed objective quality indicators. As a result, we present an extensible quality measurement tool and evaluate it by measuring the quality of the LOD cloud datasets. The results demonstrate that the general quality of LOD cloud needs more attention as most of the datasets suffer from various quality issues.\\
 
-This paper is structured as follows: Section 2 presents the related work, Section 3 presents the framework with the findings of the related work survey and the classification of the new objective framework; Section 4 defines the existing tools and framework in the Linked Open Data quality landscape; Section 5 presents the evaluation of the quality tools with regards to the presented framework; Section 6 presents concluding remarks and identifies future work.
+This paper is structured as follows: Section 2 presents the related work, Section 3 presents the framework with the findings of the related work survey and the classification of the new objective framework; Section 4 defines the existing tools and framework in the Linked Open Data quality landscape; Section 5 presents our tool for evaluating objective Linked Data quality indicators; Section 6 presented our evaluation and experiments running this tool on CKAN based data portals; Section 7 presents concluding remarks and identifies future work.
 
 \section{Related Work}
 
@@ -70,7 +70,261 @@ The Data Hub LOD Validator\footnote{http://validator.lod-cloud.net/} gives an ov
 In \cite{DBLP:conf/i-semantics/RulaZ14}, the authors propose a methodology for assessing Linked Data quality. It consists of three main steps: (1) requirement analysis, (2) quality assessment and (3) quality improvement. Considering the multidimensionality of data quality, the methodology requires users to provide the details of a use case or a scenario that describes the intended usage of the data. Moreover, quality issues identification is done with the help of a checklist. The user is manually involved where he/she must have prior knowledge about the details of the data The methodology in order to fill this list.\\
 Tools implementing the proposed methodology will be able to generate comprehensive quality measures. However, they will require heavy manual intervention and deep knowledge on the data examined. These issues highly affect detecting quality issue on large scale.\\
 
-In addition to the initiatives mentioned above, there exists a number of data quality frameworks and tools that are either standalone or implemented as modules in data integration tools. These approaches can be classified into automatic, semi-automatic, manual or crowd sourced approaches.
+We further survey the landscape of data quality tools in details in section 4. We map those tools to the set of objective quality indicators suggested in section 3. However, despite all the recent efforts in providing frameworks and tools for data quality in Linked Open Data, there is still no automatic framework for the objective assessment of Linked Data quality.
+
+\section{Objective Linked Data Quality Classification}
+
+In this section, we present the objective Linked Data quality framework based on the refinement of our previous work \cite{assaf2012} and those surveyed in \cite{Framework2012}.\\
+
+The basic idea behind Linked Data is that its usefulness increases when it is more interlinked with other datasets. Tim Berners-Lee defined four main principles for publishing data that can ensure a certain level of uniformity reflecting directly data's usability \cite{tim:linkedata}:\\
+
+\begin{easylist}[itemize]
+\ListProperties( Hang=true, Progressive=3ex, Style*=\tiny$\blacksquare$  )
+& {\bf Make the data available on the Web}: assign URIs to identify things.
+& {\bf Make the data machine readable}: use HTTP URIs so that looking up these names is easy.
+& {\bf Use publishing standards}: when the lookup is done provide useful information using standards like RDF.
+& {\bf Link your data}: include links to other resources to enable users to discover more things.\\
+\end{easylist}
+
+\noindent
+Building on these principles, we group the quality attributes into four main categories:\\
+\begin{easylist}[itemize]
+\ListProperties( Hang=true, Progressive=3ex, Style*=\tiny$\blacksquare$  )
+& {\bf Quality of the entities }: quality indicators that focus on the data at the instance level.
+& {\bf Quality of the dataset}: quality indicators at the dataset level.
+& {\bf Quality of the semantic model}: quality indicators that focus on the semantic models, vocabularies and ontologies.
+& {\bf Quality of the linking process}: quality indicators that focus on the inbound and outbound links between datasets.\\
+\end{easylist}
+
+In our previous work \cite{assaf2012} we have identified 24 different Linked Data quality attributes. In this paper, we refine these attributes into a condensed framework of 9 objective measures. Since these measures are rather abstract, we should rely on quality indicators that reflect data quality \cite{flemming2010}. In this paper, we transform the quality indicators presented as a set of questions in \cite{assaf2012} into more concrete quality indicator metrics. We extend them with the the objective quality indicators listed in the systematic review done in \cite{Framework2012}. Independent indicators for entity quality are mainly subjective e.g. the degree to which all the real-world objects are represented, the scope and level of details, etc. However, since entities are governed by the underlying model, we have grouped their indicators with those of the modeling quality. Table(1) lists the refined measures alongside their quality indicators. These attributes are: \\
+
+ \subsection{Completeness}
+
+Data completeness can be judged in the presence of a task where the ideal set of attributes and objects are known. It is generally a subjective measure depending highly on the scenario and use-case in hand. For example, An entity is considered to be complete if it contains all the attributes needed for a given task, has complete language coverage \cite{Mader2012} and has documentation properties \cite{w3c_skos_rec}\cite{Mader2012}.\\
+Dataset completeness has some objective measures which we include in our framework. A dataset is considered to be complete if it contains supporting structured metadata \cite{Hogan2010}, supports providing data in multiple serializations \cite{Framework2012}, has different queryable endpoints to access the data (i.e. SPARQL endpoint, RDF Dump, REST API, etc.) \cite{Framework2012}, uses datasets description vocabularies like DCAT\footnote{http://www.w3.org/TR/vocab-dcat/} or VOID\footnote{http://www.w3.org/TR/void/} and if the publishers provide descriptions about the size (e.g. \texttt{void:statItem}, \texttt{void:numberOfTriples} or \texttt{void:numberOfDocuments}) and categorization (e.g. \texttt{dcterms:subject}) of the dataset and if there exists metadata information about the kind and number of used vocabularies \cite{Framework2012}.\\
+Links are considered to be complete if all the in-bound and out-bound links are de-referenceable \cite{Hogan2010}\cite{Mader2012}\cite{Gueret2012}.\\
+Models are considered to be complete if they do not contain disconnected graph clusters \cite{Mader2012}. Disconnected graphs are the result of incomplete data acquisition or accidental deletion of terms that leads to deprecated terms. In addition to that, models are considered to be complete if they have complete language coverage (each concept labeled in each of the languages that are also used on the other concepts) \cite{Mader2012}, do not contain omitted top concepts or unidirectional related concepts \cite{Hogan2010} and if they are not missing labels \cite{Mader2012}, equivalent properties, inverse relationships, domain or range values in properties \cite{DBLP:conf/ic3k/KeetSP13}.
+
+\subsection{Availability}
+
+A dataset is considered to be available if the publishers provide data dumps e.g. RDF dump, that can be downloaded by users \cite{flemming2010}\cite{Hogan2010} and if its queryable endpoints e.g. SPARQL endpoint, are reachable and respond to direct queries.
+
+\subsection{Correctness}
+
+A dataset is considered to be correct if it includes the correct MIME-type for the content \cite{Hogan2010} and doesn't contain syntactic errors \cite{Hogan2010}.\\
+Links are considered to be correct if they lack syntactic errors and use the HTTP URI scheme (avoid using URNs or DOIs) \cite{Mader2012}.\\
+Models are considered to be correct if the top concepts are marked and do not have broader concepts (for example having incoming \texttt{hasTopConcept} or outgoing \texttt{topConceptOf} relationships) \cite{Mader2012}. Moreover, if they don't contain incorrect data type for typed literals \cite{Hogan2010}\cite{Acosta2013}, no omitted or invalid languages tags \cite{Suominen:2012:IQS:2413941.2413985}\cite{Mader2012}, does not contain ``orphan terms'' (orphan terms are terms without any associative or hierarchical relationships \cite{journals/ires/Living10}) and if the labels are not empty and do not contain unprintable characters \cite{Acosta2013}\cite{Mader2012} or extra white spaces \cite{Suominen:2012:IQS:2413941.2413985}.
+
+\subsection{Consistency}
+
+Consistency implies lack of contradictions and conflicts. The objective indicators are mainly associated with the modeling quality. A model is considered to be consistent if it does not contain:\\
+
+\begin{easylist}[itemize]
+\ListProperties( Hang=true, Progressive=3ex, Style*= - )
+& Overlapping labels such as two concepts have the same preferred lexical label in a given language when they belong to the same schema \cite{skosprimer}\cite{Mader2012}.
+& Consistent preferred labels per language tag \cite{Mader2012}\cite{Suominen:2012:IQS:2413941.2413985}.
+& Atypical use of collections, containers and reification \cite{Hogan2010}.
+& Wrong equivalent, symmetric or transitive relationships \cite{DBLP:conf/ic3k/KeetSP13}.
+& Consistent naming criteria in the model \cite{Mader2012}\cite{DBLP:conf/ic3k/KeetSP13}
+& Overlapping labels in a given language for concepts in the same scheme \cite{Mader2012}.
+& Membership violations for disjoint classes \cite{Hogan2010}\cite{DBLP:conf/ic3k/KeetSP13}.
+\end{easylist}
+
+
+\subsection{Freshness}
+
+Freshness is a measure for the recency of data. The basic assumption is that old information is more likely to be outdated and unreliable \cite{Flouris2012}. Dataset freshness can be identified if it contains timestamps that can keep track of its modifications. Data freshness can be considered as a subjective measure. However, our concern is the existence of temporal information allowing dataset consumers to subjectively decide its freshness for their scenario.
+
+\subsection{Provenance}
+
+Provenance can be achieved at the dataset level by including metadata that describes its authoritative information (author, maintainer, creation date, etc.), verifying if the dataset uses a provenance vocabulary like PROV \cite{w3c-prov-o} and uses digital signatures \cite{Framework2012}.\\
+
+\subsection{Licensing}
+
+Licensing is a quality attribute that is measured on the dataset level. It includes the availability of machine readable license information \cite{Hogan:2012:ESL:2263498.2264570}, human readable license information in the documentation of the dataset or its source \cite{Hogan:2012:ESL:2263498.2264570} and the indication of permissions, copyrights and attributions specified by the author \cite{Framework2012}.
+
+\subsection{Comprehensibility}
+
+Dataset comprehensibility is identified if the publisher provides a title, description and URI for the dataset. Moreover, if he indicates at least one exemplary URI and SPARQL query, RDF file and if he provides a list of used vocabularies and an active mailing list or message board for the dataset \cite{flemming2010}.\\ A model is considered to be comprehensible if there is no misuse of ontology annotations and that all the concepts are documented and annotated \cite{Mader2012}\cite{DBLP:conf/ic3k/KeetSP13}.
+
+\subsection{Coherence}
+
+Coherence is the ability to interpret data as expected by the publisher or vocabulary maintainer \cite{Hogan2010}. The objective coherent measures are mainly associated with the modeling quality. A model is considered to be coherent when it does not contain:\\
+
+\begin{easylist}[itemize]
+\ListProperties( Hang=true, Progressive=3ex, Style*= - )
+& Usage of undefined classes and properties \cite{Hogan2010}. Many errors that are due to spelling or syntactic mistakes are resolvable through minor fixes via ontology checkers tools. However, for new terms, \cite{Hogan2010} suggests to have them defined in a separate namespace in order to allow reuse \cite{ Mader2012}.
+& Usage of blank nodes \cite{Hogan:2012:ESL:2263498.2264570}.
+& Deprecated classes or properties \cite{Hogan2010}.
+& Relations and mappings clashes \cite{Suominen:2012:IQS:2413941.2413985}.
+& Invalid inverse-functional values \cite{Hogan2010}.
+& Cyclic hierarchical relations \cite{conf/jcdl/Soergel05}\cite{Suominen:2012:IQS:2413941.2413985}\cite{Mader2012}.
+& Solely transitive related concepts \cite{Mader2012}.
+& Redefinitions of existing vocabularies \cite{Hogan2010}.
+& Valueless associative relations \cite{Mader2012}.
+\end{easylist}
+
+
+\begin{center}
+{\footnotesize
+\begin{longtable}[h]{|c|c|c|l|}
+\caption[Objective Assessment Framework for Linked Data Quality]{Objective Assessment Framework for Linked Data Quality} \label{DQM} \\
+
+\hline \multicolumn{1}{|c|}{\textbf{Quality Attribute}} & \multicolumn{1}{c|}{\textbf{Quality Category}} & \multicolumn{1}{c|}{\textbf{ID}} & \multicolumn{1}{c|}{\textbf{Quality Indicator}} \\ \hline
+\endfirsthead
+
+\multicolumn{4}{c}%
+{{\bfseries \tablename\ \thetable{} Objective Assessment Framework for Linked Data Quality}} \\
+\hline \multicolumn{1}{|c|}{\textbf{Quality Attribute}} &
+\multicolumn{1}{c|}{\textbf{Quality Category}} & \textbf{ID} &
+\multicolumn{1}{c|}{\textbf{Quality Indicator}} \\ \hline
+\endhead
+
+\multicolumn{4}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\endlastfoot
+
+\multirow{15}{*}{Completeness}
+ & \multirow{5}{*}{Dataset Level} & QI.1 & Existence of supporting structured metadata  \cite{Hogan2010}\tabularnewline
+\cline{3-4}
+ &  & QI.2 & Supports multiple serializations \cite{Framework2012}\tabularnewline
+\cline{3-4}
+ &  & QI.3 & Has different queryable endpoints to access the data \cite{Framework2012}\tabularnewline
+\cline{3-4}
+ &  & QI.4 & Uses datasets description vocabularies \tabularnewline
+\cline{3-4}
+ &  & QI.5 & Existence of descriptions about its size and categorization \tabularnewline
+ \cline{3-4}
+ &  & QI.6 & Existence of information about the kind and number of used vocabularies \cite{Framework2012}\tabularnewline
+\cline{2-4}
+ & \multirow{1}{*}{Links Level} & QI.7 & Existence of dereferenceable in-bound and out-bound links \cite{Hogan2010}\cite{Mader2012}\cite{Gueret2012}\tabularnewline
+\cline{2-4}
+ & \multirow{4}{*}{Model Level} & QI.8 & Absence of disconnected graph clusters \cite{Mader2012}\tabularnewline
+\cline{3-4}
+ &  & QI.9 & Absence of omitted top concept \cite{Hogan2010}\tabularnewline
+ \cline{3-4}
+ &  & QI.10 & Has complete language coverage \cite{Mader2012}\tabularnewline
+\cline{3-4}
+ &  & QI.11 & Absence of unidirectional related concepts \cite{Hogan2010}\tabularnewline
+ \cline{3-4}
+ &  & QI.11 & Absence of missing labels \cite{Mader2012}\tabularnewline
+ \cline{3-4}
+ &  & QI.11 & Absence of missing equivalent properties \cite{DBLP:conf/ic3k/KeetSP13}\tabularnewline
+ \cline{3-4}
+ &  & QI.11 & Absence of missing inverse relationships \cite{DBLP:conf/ic3k/KeetSP13}\tabularnewline
+ \cline{3-4}
+ &  & QI.11 & Absence of missing domain or range values in properties \cite{DBLP:conf/ic3k/KeetSP13}\tabularnewline
+\hline
+\hline
+\multirow{2}{*}{Availability} & \multirow{2}{*}{Dataset Level} & QI.12 & Existence of an RDF dump that can be downloaded by users \cite{flemming2010}\cite{Hogan2010}\tabularnewline
+\cline{3-4}
+ &  & QI.13 & Existence of queryable endpoints that respond to direct queries\tabularnewline
+\hline
+\hline
+\multirow{11}{*}{Correctness}  & \multirow{2}{*}{Dataset Level} & QI.18 & Includes the correct MIME-type for the content  \cite{Hogan2010}\tabularnewline
+\cline{3-4}
+ &  & QI.19 & Absence of syntactic errors \cite{Hogan2010}\tabularnewline
+\cline{2-4}
+ & \multirow{2}{*}{Links Level} & QI.20 & Absence of syntactic errors  \cite{Suominen2013}\tabularnewline
+ & & QI.14 & Use the HTTP URI scheme (avoid using URNs or DOIs) \cite{Mader2012}\tabularnewline
+\cline{3-4}
+\cline{2-4}
+ & \multirow{7}{*}{Model Level} & QI.21 & Contains marked top concepts \cite{Mader2012}\tabularnewline
+\cline{3-4}
+ &  & QI.22 & Absence of broader concepts for top concepts \cite{Mader2012}\tabularnewline
+ \cline{3-4}
+ & & QI.14 & Absence of missing or empty labels \cite{Acosta2013}\cite{Mader2012}\tabularnewline
+  \cline{3-4}
+ & & QI.14 & Absence of unprintable characters \cite{Acosta2013}\cite{Mader2012} or extra white spaces in labels \cite{Suominen:2012:IQS:2413941.2413985}\tabularnewline
+\cline{3-4}
+ &  & QI.15 & Absence of incorrect data type for typed literals \cite{Hogan2010}\cite{Acosta2013} \tabularnewline
+\cline{3-4}
+ &  & QI.16 & Absence of omitted or invalid languages tags \cite{Suominen:2012:IQS:2413941.2413985}\cite{Mader2012}\tabularnewline
+\cline{3-4}
+ &  & QI.17 & Absence of terms without any associative or hierarchical relationships \cite{journals/ires/Living10}\tabularnewline
+\hline
+\hline
+\multirow{1}{*}{Freshness} & \multirow{1}{*}{Dataset Level} & QI.25 & Existence of timestamps that can keep track of its modifications  \cite{Flouris2012}\tabularnewline
+\hline
+\hline
+\multirow{3}{*}{Licensing} & \multirow{3}{*}{Dataset Level} & QI.26 & Existence of human and machine readable license information \cite{Hogan:2012:ESL:2263498.2264570}\tabularnewline
+\cline{3-4}
+ &  & QI.39 & Existence of de-referenceable links to the full license information  \cite{Hogan:2012:ESL:2263498.2264570}\tabularnewline
+\cline{3-4}
+ &  & QI.40 & Specifies permissions, copyrights and attributions  \cite{Framework2012}\tabularnewline
+\hline
+\hline
+\multirow{7}{*}{Comprehensibility} & \multirow{4}{*}{Dataset Level} & QI.41 & Existence of at least one exemplary URI \cite{Framework2012}\tabularnewline
+\cline{3-4}
+ &  & QI.42 & Existence of at least one exemplary SPARQL query \cite{Framework2012}\tabularnewline
+ \cline{3-4}
+ &  & QI.45 &  Existence of a title, description and URI for the dataset \tabularnewline
+\cline{3-4}
+ &  & QI.45 & Existence of a mailing list, message board or point of contact \cite{flemming2010}\tabularnewline
+ \cline{2-4}
+ & \multirow{3}{*}{Model Level} & QI.20 & Absence of misuse of ontology annotations \cite{Mader2012}\cite{DBLP:conf/ic3k/KeetSP13}\tabularnewline
+  \cline{3-4}
+ & & QI.14 & Existence of annotations for concepts \cite{DBLP:conf/ic3k/KeetSP13}\tabularnewline
+ \cline{3-4}
+ & & QI.14 & Existence of documentation for concepts \cite{Mader2012}\cite{DBLP:conf/ic3k/KeetSP13}\tabularnewline
+\hline
+\hline
+\multirow{3}{*}{Provenance} & \multirow{2}{*}{Dataset Level} & QI.75 & Existence of metadata that describes its authoritative information  \cite{Flouris2012}\tabularnewline
+\cline{3-4}
+ &  & QI.77 & Usage of a provenance vocabulary\tabularnewline
+\hline
+\hline
+\multirow{10}{*}{Coherence} & \multirow{10}{*}{Model Level} & QI.57 & Absence of misplaced or deprecated classes or properties  \cite{Hogan2010}\tabularnewline
+\cline{3-4}
+ &  & QI.59 & Absence of relation and mappings clashes  \cite{Suominen:2012:IQS:2413941.2413985}\tabularnewline
+\cline{3-4}
+ &  & QI.60 & Absence of blank nodes \cite{Hogan:2012:ESL:2263498.2264570}\tabularnewline
+\cline{3-4}
+ &  & QI.61 & Absence of invalid inverse-functional values \cite{Hogan2010}\tabularnewline
+\cline{3-4}
+ &  & QI.62 & Absence of cyclic hierarchical relations \cite{conf/jcdl/Soergel05}\cite{Suominen:2012:IQS:2413941.2413985}\cite{Mader2012}\tabularnewline
+\cline{3-4}
+ &  & QI.63 & Absence of undefined classes and properties usage \cite{Hogan2010}\tabularnewline
+\cline{3-4}
+ &  & QI.64 & Absence of solely transitive related concepts \cite{Mader2012}\tabularnewline
+\cline{3-4}
+ &  & QI.65 & Absence of redefinitions of existing vocabularies  \cite{Hogan2010}\tabularnewline
+\cline{3-4}
+ &  & QI.66 & Absence of valueless associative relations  \cite{Mader2012}\tabularnewline
+\hline
+\hline
+\multirow{7}{*}{Consistency}
+ & \multirow{7}{*}{Model Level}
+
+& QI.46 & Consistent usage of preferred labels per language tag \cite{skosprimer}\cite{Mader2012}\tabularnewline
+ \cline{3-4}
+ & & QI.14 & Consistent usage of naming criteria for concepts \cite{DBLP:conf/ic3k/KeetSP13}\tabularnewline
+\cline{3-4}
+ &  & QI.47 & Absence of overlapping labels\tabularnewline
+\cline{3-4}
+ &  & QI.48 & Absence of disjoint labels \cite{Mader2012}\tabularnewline
+\cline{3-4}
+ & & QI.52 & Absence of atypical use of collections, containers and reification \cite{Hogan2010}\tabularnewline
+\cline{3-4}
+ &  & QI.53 & Absence of wrong equivalent, symmetric or transitive relationships \cite{DBLP:conf/ic3k/KeetSP13}\tabularnewline
+\cline{3-4}
+ &  & QI.56 & Absence of membership violations for disjoint classes \cite{Hogan2010}\tabularnewline
+\hline
+\end{longtable}
+}
+\end{center}
+
+\section{Linked Data Quality Tools}
+In this section, we present the results of our survey on the Linked Data quality tools. There exists a number of data quality frameworks and tools that are either standalone or implemented as modules in data integration tools. These approaches can be classified into automatic, semi-automatic, manual or crowd sourced approaches.
+
+\subsection{Information Modeling Quality}
+
+RDF is the standard to model information in the Semantic Web. Linked Data publishers can pick from a plethora of tools that can automatically check their RDF files for quality problems\footnote{http://www.w3.org/2001/sw/wiki/SWValidators}. Syntactic RDF checkers are able to detect errors in RDF documents like the W3C RDF Validator\footnote{http://www.w3.org/RDF/Validator/}, RDF:about validator and Converter\footnote{http://rdfabout.com/demo/validator/} and The Validating RDF Parser (VRP)\footnote{http://139.91.183.30:9090/RDF/VRP/index.html}. The RDF Triple-Checker\footnote{http://graphite.ecs.soton.ac.uk/checker/} is an online tool that helps find typos and common errors in RDF data. Vapour\footnote{http://validator.linkeddata.org/vapour} \cite{Berrueta08cookinghttp} is a validation service to check whether semantic Web data is correctly published according to the current best practices\cite{tim:linkedata}.\\
+
+Reusing existing ontologies is a common practice that Linked Data publishers are always trying to adopt. However, ontologies and vocabularies development is often a long error-prone process especially when many contributors are working consecutively or collaboratively \cite{Suominen2013}. This can introduce deficiencies such as redundant concepts or conflicting relationships \cite{harpring_introduction_2010}. Getting to choose the right ontology or vocabulary is vital to ensure modeling correctness and consistency.\\
+
+\textbf{Automatic Tools:} qSKOS\footnote{https://github.com/cmader/qSKOS} \cite{Mader2012} scans SKOS vocabularies to provide reports on vocabulary resources and relations that are problematic. PoolParty checker\footnote{http://www.poolparty.biz/} is an online service based on qSKOS. Skosify \cite{Suominen:2012:IQS:2413941.2413985} supports OWL and RDFS ontologies by converting them into well-structured SKOS vocabularies. It includes automatic correction abilities for quality issues that have been observed by reviewing vocabularies on the Web. The OOPS! pitfall scanner \cite{oops} evaluates OWL ontologies against a rules catalog and provides the user with a set of guidelines to solve them. ASKOSI\footnote{http://www.w3.org/2001/sw/wiki/ASKOSI} retrieves vocabularies from different sources, stores and displays the usage frequency of the different concepts used by different applications. It promotes reusing existing information systems by providing better management and presentation tools.\\ Some errors in RDF will only appear after reasoning (incorrect inferences). In \cite{conf/owled/SirinSW08}\cite{conf/hicss/TaoDM09} the authors perform quality checking on OWL ontologies using integrity constraints involving the Unique Name Assumption (UNA) and the Closed World Assumption (CWA). Pellet\footnote{http://clarkparsia.com/pellet} provides reasoning services for OWL ontologies. It incorporates a number of heuristics to detect and repair quality issues among disjoint properties, negative property assertions and reflexive, irreflexive, symmetric, and anti-symmetric properties. Eyeball\footnote{http://jena.sourceforge.net/Eyeball/} provides quality inspection for RDF models (including OWL). It provides checks for a variety of problems including the usage of unknown predicates, classes, poorly formed namespaces, literal syntax validation, type consistency and other heuristics. RDF:Alerts\footnote{http://swse.deri.org/RDFAlerts/} provides validation for many issues highlighted in \cite{Hogan2010} like misplaced, undefined or deprecated classes or properties.
 
 \subsection{Manual Approaches}
 
@@ -96,250 +350,6 @@ ProLOD \cite{Bohm2010}, ProLOD++\cite{6816740}, Aether \cite{makela-aether-2014}
 
 LinkQA \cite{Gueret2012} is a fully automated approach which takes a set of RDF triples as an input and analyses it to extract topological measures (links quality). The authors described five metrics to determine the quality of data (degree, clustering coefficient, centrality, sameAs chains and descriptive richness through sameAs).\\
 
-We further survey the landscape of data quality tools in details in section 4. We map those tools to the set of objective quality indicators suggested in section 3. However, despite all the recent efforts in providing frameworks and tools for data quality in Linked Open Data, there is still no automatic framework for the objective assessment of Linked Data quality.
-
-\section{Objective Linked Data Quality Classification}
-
-In this section, we present the objective Linked Data quality framework based on the refinement of our previous work \cite{assaf2012} and those surveyed in \cite{Framework2012}.\\
-
-The basic idea behind Linked Data is that its usefulness increases when it is more interlinked with other datasets. Tim Berners-Lee defined four main principles for publishing data that can ensure a certain level of uniformity reflecting directly data's usability \cite{tim:linkedata}:\\
-
-\begin{easylist}[itemize]
-\ListProperties( Hang=true, Progressive=3ex, Style*=\tiny$\blacksquare$  )
-& {\bf Make the data available on the Web}: assign URIs to identify things.
-& {\bf Make the data machine readable}: use HTTP URIs so that looking up these names is easy.
-& {\bf Use publishing standards}: when the lookup is done provide useful information using standards like RDF.
-& {\bf Link your data}: include links to other resources to enable users to discover more things.\\
-\end{easylist}
-
-\noindent
-Building on these principles, we group the quality attributes into four main categories:\\
-\begin{easylist}[itemize]
-\ListProperties( Hang=true, Progressive=3ex, Style*=\tiny$\blacksquare$  )
-& {\bf Quality of the entities }: quality indicators that focus on the data at the instance level (i.e. syntactic checkers).
-& {\bf Quality of the dataset}: quality indicators at the dataset level.
-& {\bf Quality of the semantic model}: quality indicators that focus on the semantic models, vocabularies and ontologies.
-& {\bf Quality of the linking process}: quality indicators that focus on the inbound and outbound links between datasets.\\
-\end{easylist}
-
-In our previous work \cite{assaf2012} we have identified 24 different Linked Data quality attributes. In this paper, we refine these attributes into a condensed framework of 13 objective attributes. Since these attributes are rather abstract, we should rely on quality indicators that reflect data quality \cite{flemming2010}. In this paper, we transform the quality indicators presented as a set of questions in \cite{assaf2012} into more concrete quality indicator metrics. We extend them with the the objective quality indicators listed in the systematic review done in \cite{Framework2012}.\\
-
-Table(1) lists the refined attributes along with their quality indicators. These attributes are:
-
- \subsection{Completeness}
-
-Data completeness can be judged in the presence of a task where the ideal set of attributes and objects are known. It is generally a subjective measure depending highly on the scenario and use-case in hand. For example, An entity is considered to be complete if it contains all the attributes needed for a given task, has complete language coverage \cite{Mader2012} and has documentation properties \cite{w3c_skos_rec}\cite{Mader2012}.\\
-Dataset completeness has some objective measures which we include in our framework. A dataset is considered to be complete if it contains supporting structured metadata \cite{Hogan2010}, supports providing data in multiple serializations \cite{Framework2012}, has different queryable endpoints to access the data (i.e. SPARQL endpoint, RDF Dump, REST API, etc.) \cite{Framework2012}, uses datasets description vocabularies like DCAT\footnote{http://www.w3.org/TR/vocab-dcat/} or VOID\footnote{http://www.w3.org/TR/void/} and if the publishers provide descriptions about the size (e.g. \texttt{void:statItem}, \texttt{void:numberOfTriples} or \texttt{void:numberOfDocuments}) and categorization (e.g. \texttt{dcterms:subject}) of the dataset and if there exists metadata information about the kind and number of used vocabularies \cite{Framework2012}.\\
-Links are considered to be complete if all the in-bound and out-bound links are de-referenceable \cite{Hogan2010}\cite{Mader2012}\cite{Gueret2012}.\\
-Models are considered to be complete if they do not contain disconnected graph clusters \cite{Mader2012}. Disconnected graphs are the result of incomplete data acquisition or accidental deletion of terms that leads to deprecated terms. In addition to that, models are considered to be complete if they do not contain omitted top concepts or unidirectional related concepts \cite{Hogan2010}.
-
-\subsection{Availability}
-
-A dataset is considered to be available if the publishers provide data dumps e.g. RDF dump, that can be downloaded by users \cite{flemming2010}\cite{Hogan2010} and if its queryable endpoints e.g. SPARQL endpoint, are reachable and respond to direct queries.
-
-\subsection{Correctness}
-
-Data correctness is related to the validity of its entities. An entity is considered to be correct if there are no missing or empty labels \cite{Acosta2013}\cite{Mader2012}, no incorrect data type for typed literals \cite{Hogan2010}\cite{Acosta2013}, no omitted or invalid languages tags \cite{Suominen:2012:IQS:2413941.2413985}\cite{Mader2012} and does not contain ``orphan terms'' (orphan terms are terms without any associative or hierarchical relationships \cite{journals/ires/Living10}).\\
-A dataset is considered to be correct if it includes the correct MIME-type for the content \cite{Hogan2010} and doesn't contain syntactic errors \cite{Hogan2010}.
-Links are considered to be correct if they are syntactically correct.\\
-Models are considered to be correct if the top concepts are marked and do not have broader concepts (for example having incoming \texttt{hasTopConcept} or outgoing \texttt{topConceptOf} relationships) \cite{Mader2012}.
-
-\subsection{Consistency}
-
-An entity is considered to be consistent if it does not contain overlapping labels such as two concepts have the same preferred lexical label in a given language when they belong to the same schema \cite{skosprimer}\cite{Mader2012}. Moreover, an entity is considered to be consistent if it does not contain disjoint labels \cite{Mader2012}, extra white spaces in labels \cite{Suominen:2012:IQS:2413941.2413985} and does not contain inconsistent preferred labels per language tag \cite{Mader2012}\cite{Suominen:2012:IQS:2413941.2413985}.\\
-Models are considered to be consistent if they do not include atypical use of collections, containers and reification \cite{Hogan2010}, overlapping usage of owl:sameAs and owl:differentFrom \cite{Hogan2010}, overlapping usage of owl:AllDifferent and owl:distinctMembers \cite{Hogan2010}, asserted members of owl:Nothing and membership violation for disjoint classes \cite{Hogan2010}.
-
-\subsection{Coherence}
-
-Coherence is the ability to interpret data as expected by the publisher or vocabulary maintainer \cite{Hogan2010}. The objective coherent measures are mainly associated with the modeling quality. A model is considered to be coherent when it does not contain:\\
-
-\begin{easylist}[itemize]
-\ListProperties( Hang=true, Progressive=3ex, Style*= - )
-& Usage of undefined classes and properties \cite{Hogan2010}. Many errors that are due to spelling or syntactic mistakes are resolvable through minor fixes via ontology checkers tools. However, for new terms, \cite{Hogan2010} suggests to have them defined in a separate namespace in order to allow reuse \cite{ Mader2012}.
-& Usage of blank nodes \cite{Hogan:2012:ESL:2263498.2264570}.
-& Deprecated classes or properties \cite{Hogan2010}.
-& Misuse of the owl:DataTypeProperty or owl:ObjectProperty \cite{Hogan2010}.
-& Relations and mappings clashes \cite{Suominen:2012:IQS:2413941.2413985}.
-& Invalid inverse-functional values \cite{Hogan2010}.
-& Cyclic hierarchical relations \cite{conf/jcdl/Soergel05}\cite{Suominen:2012:IQS:2413941.2413985}\cite{Mader2012}.
-& Incomplete literals with datatype range \cite{Hogan2010}.
-& Solely transitive related concepts \cite{Mader2012}.
-& Redefinitions of existing vocabularies \cite{Hogan2010}.
-& Valueless associative relations \cite{Mader2012}.\\ \\
-\end{easylist}
-
-\begin{center}
-{\footnotesize
-\begin{longtable}[h]{|c|c|c|l|}
-\caption[Objective Assessment Framework for Linked Data Quality]{Objective Assessment Framework for Linked Data Quality} \label{DQM} \\
-
-\hline \multicolumn{1}{|c|}{\textbf{Quality Attribute}} & \multicolumn{1}{c|}{\textbf{Quality Category}} & \multicolumn{1}{c|}{\textbf{ID}} & \multicolumn{1}{c|}{\textbf{Quality Indicator}} \\ \hline
-\endfirsthead
-
-\multicolumn{4}{c}%
-{{\bfseries \tablename\ \thetable{} Objective Assessment Framework for Linked Data Quality}} \\
-\hline \multicolumn{1}{|c|}{\textbf{Quality Attribute}} &
-\multicolumn{1}{c|}{\textbf{Quality Category}} & \textbf{ID} &
-\multicolumn{1}{c|}{\textbf{Quality Indicator}} \\ \hline
-\endhead
-
-\multicolumn{4}{|r|}{{Continued on next page}} \\ \hline
-\endfoot
-
-\endlastfoot
-
-\multirow{9}{*}{Completeness}
- & \multirow{5}{*}{Dataset Level} & QI.5 & Existence of supporting structured metadata  \cite{Hogan2010}\tabularnewline
-\cline{3-4}
- &  & QI.6 & Supports multiple serializations \cite{Framework2012}\tabularnewline
-\cline{3-4}
- &  & QI.9 & Has different queryable endpoints to access the data \cite{Framework2012}\tabularnewline
-\cline{3-4}
- &  & QI.11 & Usage of datasets description vocabularies \tabularnewline
-\cline{3-4}
- &  & QI.12 & Existence of descriptions about its size and categorization \tabularnewline
- \cline{3-4}
- &  & QI.12 & Existence of information about the kind and number of used vocabularies \cite{Framework2012}\tabularnewline
-\cline{2-4}
- & \multirow{1}{*}{Links Level} & QI.13 & Existence of dereferenceable in-bound and out-bound links \cite{Hogan2010}\cite{Mader2012}\cite{Gueret2012}\tabularnewline
-\cline{2-4}
- & \multirow{3}{*}{Model Level} & QI.16 & Absence of disconnected graph clusters \cite{Mader2012}\tabularnewline
-\cline{3-4}
- &  & QI.17 & Absence of omitted top concept \cite{Hogan2010}\tabularnewline
-\cline{3-4}
- &  & QI.18 & Absence of unidirectional related concepts \cite{Hogan2010}\tabularnewline
-\hline
-\hline
-\multirow{2}{*}{Availability} & \multirow{2}{*}{Dataset Level} & QI.20 & Existence of an RDF dump that can be downloaded by users \cite{flemming2010}\cite{Hogan2010}\tabularnewline
-\cline{3-4}
- &  & QI.21 & Existence of queryable endpoints that respond to direct queries\tabularnewline
-\hline
-\hline
-\multirow{9}{*}{Correctness} & \multirow{4}{*}{Entity Level} & QI.22 & Absence of missing or empty labels \cite{Acosta2013}\cite{Mader2012}\tabularnewline
-\cline{3-4}
- &  & QI.23 & Absence of incorrect data type for typed literals \cite{Hogan2010}\cite{Acosta2013} \tabularnewline
-\cline{3-4}
- &  & QI.24 & Absence of omitted or invalid languages tags \cite{Suominen:2012:IQS:2413941.2413985}\cite{Mader2012}\tabularnewline
-\cline{3-4}
- &  & QI.25 & Absence of terms without any associative or hierarchical relationships \cite{journals/ires/Living10}\tabularnewline
-\cline{2-4}
- & \multirow{2}{*}{Dataset Level} & QI.26 & Includes the correct MIME-type for the content  \cite{Hogan2010}\tabularnewline
-\cline{3-4}
- &  & QI.27 & Checked against syntactic errors \cite{Hogan2010}\tabularnewline
-\cline{2-4}
- & \multirow{1}{*}{Links Level} & QI.27 & Absence of syntactic errors  \cite{Suominen2013}\tabularnewline
-\cline{2-4}
- & \multirow{2}{*}{Model Level} & QI.28 & Contains marked top concepts \cite{Mader2012}\tabularnewline
-\cline{3-4}
- &  & QI.29 & Absence of broader concepts for top concepts \cite{Mader2012}\tabularnewline
-\hline
-\hline
-\multirow{2}{*}{Security} & \multirow{2}{*}{Dataset Level} & QI.34 & Uses login credentials to restrict access \cite{Framework2012}\tabularnewline
-\cline{3-4}
- &  & QI.35 & Uses SSL or SSH to provide access to their dataset \cite{Framework2012}\tabularnewline
-\hline
-\hline
-\multirow{1}{*}{Freshness} & \multirow{1}{*}{Entity Level} & QI.37 & Existence of timestamps that can keep track of its modifications  \cite{Flouris2012}\tabularnewline
-\hline
-\hline
-\multirow{3}{*}{Licensing} & \multirow{3}{*}{Dataset Level} & QI.38 & Existence of human and machine readable license information \cite{Hogan:2012:ESL:2263498.2264570}\tabularnewline
-\cline{3-4}
- &  & QI.39 & Existence of de-referenceable links to the full license information  \cite{Hogan:2012:ESL:2263498.2264570}\tabularnewline
-\cline{3-4}
- &  & QI.40 & Specifies permissions, copyrights and attributions  \cite{Framework2012}\tabularnewline
-\hline
-\hline
-\multirow{4}{*}{Comprehensibility} & \multirow{4}{*}{Dataset Level} & QI.41 & Existence of at least one exemplary URI \cite{Framework2012}\tabularnewline
-\cline{3-4}
- &  & QI.42 & Existence of at least one exemplary SPARQL query \cite{Framework2012}\tabularnewline
- \cline{3-4}
- &  & QI.45 &  Existence of a title, description and URI for the dataset \tabularnewline
-\cline{3-4}
- &  & QI.45 & Existence of a mailing list, message board or point of contact \cite{flemming2010}\tabularnewline
-\hline
-\hline
-\multirow{3}{*}{Provenance} & \multirow{1}{*}{Entity Level} & QI.74 & Ability to construct decision networks informed by provenance graphs \cite{Gamble2011}\tabularnewline
-\cline{2-4}
- & \multirow{2}{*}{Dataset Level} & QI.75 & Existence of metadata that describes its authoritative information  \cite{Flouris2012}\tabularnewline
-\cline{3-4}
- &  & QI.77 & Usage of a provenance vocabulary\tabularnewline
-\hline
-\hline
-\multirow{10}{*}{Coherence} & \multirow{10}{*}{Model Level} & QI.57 & Absence of misplaced or deprecated classes or properties  \cite{Hogan2010}\tabularnewline
-\cline{3-4}
- &  & QI.58 & Absence of misused owl:DataTypeProperty or owl:ObjectProperty  \cite{Hogan2010}\tabularnewline
-\cline{3-4}
- &  & QI.59 & Absence of relation and mappings clashes  \cite{Suominen:2012:IQS:2413941.2413985}\tabularnewline
-\cline{3-4}
- &  & QI.60 & Absence of blank nodes \cite{Hogan:2012:ESL:2263498.2264570}\tabularnewline
-\cline{3-4}
- &  & QI.61 & Absence of invalid inverse-functional values \cite{Hogan2010}\tabularnewline
-\cline{3-4}
- &  & QI.62 & Absence of cyclic hierarchical relations \cite{conf/jcdl/Soergel05}\cite{Suominen:2012:IQS:2413941.2413985}\cite{Mader2012}\tabularnewline
-\cline{3-4}
- &  & QI.63 & Absence of undefined classes and properties usage \cite{Hogan2010}\tabularnewline
-\cline{3-4}
- &  & QI.64 & Absence of solely transitive related concepts \cite{Mader2012}\tabularnewline
-\cline{3-4}
- &  & QI.65 & Absence of redefinitions of existing vocabularies  \cite{Hogan2010}\tabularnewline
-\cline{3-4}
- &  & QI.66 & Absence of valueless associative relations  \cite{Mader2012}\tabularnewline
-\hline
-\hline
-\multirow{10}{*}{Consistency} & \multirow{5}{*}{Entity Level} & QI.46 & Existence of consistent preferred labels per language tag \cite{skosprimer}\cite{Mader2012}\tabularnewline
-\cline{3-4}
- &  & QI.47 & Absence of overlapping labels\tabularnewline
-\cline{3-4}
- &  & QI.48 & Absence of disjoint labels \cite{Mader2012}\tabularnewline
-\cline{3-4}
- &  & QI.49 & Absence of extra white spaces in labels \cite{Suominen:2012:IQS:2413941.2413985}\tabularnewline
-\cline{3-4}
- &  & QI.50 & Existence of only one value of skos:prefLabel without a language tag  \cite{Mader2012}\cite{Suominen:2012:IQS:2413941.2413985}\tabularnewline
-\cline{2-4}
- & \multirow{5}{*}{Model Level} & QI.52 & Absence of atypical use of collections, containers and reification \cite{Hogan2010}\tabularnewline
-\cline{3-4}
- &  & QI.53 & Absence of overlapping usage of owl:sameAs and owl:differentFrom  \cite{Hogan2010}\tabularnewline
-\cline{3-4}
- &  & QI.54 & Absence of overlapping usage of owl:AllDifferent and owl:distinctMembers  \cite{Hogan2010}\tabularnewline
-\cline{3-4}
- &  & QI.55 & Absence of asserted members of owl:Nothing  \cite{Hogan2010}\tabularnewline
-\cline{3-4}
- &  & QI.56 & Absence of membership violations for disjoint classes  \cite{Hogan2010}\tabularnewline
-\hline
-\end{longtable}
-}
-\end{center}
-
-\subsection{Freshness}
-
-Freshness is a measure for the recency of data. The basic assumption is that old information is more likely to be outdated and unreliable \cite{Flouris2012}. Entity freshness can be identified if it contains timestamps that can keep track of its modifications. Data freshness can be considered as a subjective measure. However, our concern is the existence of temporal information allowing dataset consumers to subjectively decide its freshness for their scenario.
-
-\subsection{Provenance}
-
-Provenance can be achieved at the dataset level by including metadata that describes its authoritative information (author, maintainer, creation date, etc.), verifying if the dataset uses a provenance vocabulary like PROV \cite{w3c-prov-o} and uses digital signatures \cite{Framework2012}.\\
-
-\subsection{Security}
-
-Security is a quality attribute that is measured on the dataset level. It is identified if the publishers use login credentials, SSL or SSH to provide access to their dataset, or if they only grant access to specific users \cite{Framework2012}.
-
-\subsection{Licensing}
-
-Licensing is a quality attribute that is measured on the dataset level. It includes the availability of machine readable license information \cite{Hogan:2012:ESL:2263498.2264570}, human readable license information in the documentation of the dataset or its source \cite{Hogan:2012:ESL:2263498.2264570} and the indication of permissions, copyrights and attributions specified by the author \cite{Framework2012}.
-
-\subsection{Comprehensibility}
-
-Comprehensibility is identified if the dataset publisher provides a title, description and URI for the dataset. If he indicates at least one exemplary URI and SPARQL query, RDF file and if he provides a list of used vocabularies and an active mailing list or message board for the dataset \cite{flemming2010}.
-
-
-\section{Linked Data Quality Tools}
-In this section, we present the results of our survey on the Linked Data quality tools that reflect the different aspects of LOD: modeling, ontologies and vocabularies, dataset and SPARQL end-points.\\
-
-
-\subsection{Information Modeling Quality}
-RDF is the standard to model information in the Semantic Web. Linked Data publishers can pick from a plethora of tools that can check their RDF files for quality problems\footnote{http://www.w3.org/2001/sw/wiki/SWValidators}. Syntactic RDF checkers are able to detect errors in RDF documents like the W3C RDF Validator\footnote{http://www.w3.org/RDF/Validator/}, RDF:about validator and Converter\footnote{http://rdfabout.com/demo/validator/} and The Validating RDF Parser (VRP)\footnote{http://139.91.183.30:9090/RDF/VRP/index.html}. The RDF Triple-Checker\footnote{http://graphite.ecs.soton.ac.uk/checker/} is an online tool that helps find typos and common errors in RDF data. Vapour\footnote{http://validator.linkeddata.org/vapour} \cite{Berrueta08cookinghttp} is a validation service to check whether semantic Web data is correctly published according to the current best practices\cite{tim:linkedata}.
-
-\subsection {Ontologies and Vocabularies Quality}
-Reusing existing ontologies is a common practice that Linked Data publishers are always trying to adopt. However, ontologies and vocabularies development is often a long error-prone process especially when many contributors are working consecutively or collaboratively \cite{Suominen2013}. This can introduce deficiencies such as redundant concepts or conflicting relationships \cite{harpring_introduction_2010}. Getting to choose the right ontology or vocabulary is vital to ensure modeling correctness and consistency.\\ qSKOS\footnote{https://github.com/cmader/qSKOS} \cite{Mader2012} scans SKOS vocabularies to provide reports on vocabulary resources and relations that are problematic. Skosify \cite{Suominen:2012:IQS:2413941.2413985} supports OWL and RDFS ontologies by converting them into well-structured SKOS vocabularies. Skosify includes automatic correction abilities for quality issues that have been observed by reviewing vocabularies on the Web. The OOPS! pitfall scanner \cite{oops} evaluates OWL ontologies against a rules catalog and provides the user with a set of guidelines to solve them. PoolParty checker\footnote{http://www.poolparty.biz/} highlights quality issues in OWL, RDFS and SKOS ontologies and vocabularies, the latest version supports qSKOS to indicate the quality of controlled vocabularies on the Web. ASKOSI\footnote{http://www.w3.org/2001/sw/wiki/ASKOSI} retrieves vocabularies from different sources, stores and displays the usage frequency of the different concepts used by different applications. It promotes reusing existing information systems by providing better management and presentation tools.\\ Some errors in RDF will only appear after reasoning (incorrect inferences). In \cite{conf/owled/SirinSW08}\cite{conf/hicss/TaoDM09} the authors perform quality checking on OWL ontologies using integrity constraints involving the Unique Name Assumption (UNA) and the Closed World Assumption (CWA). Pellet\footnote{http://clarkparsia.com/pellet} provides reasoning services for OWL ontologies. It incorporates a number of heuristics to detect and repair quality issues among disjoint properties, negative property assertions and reflexive, irreflexive, symmetric, and anti-symmetric properties. Eyeball\footnote{http://jena.sourceforge.net/Eyeball/} provides quality inspection for RDF models (including OWL). It provides checks for a variety of problems including the usage of unknown predicates, classes, poorly formed namespaces, literal syntax validation, type consistency and other heuristics. RDF:Alerts\footnote{http://swse.deri.org/RDFAlerts/} provides validation for many issues highlighted in \cite{Hogan2010} like misplaced, undefined or deprecated classes or properties.
 
 \subsection {Dataset Quality}
 Considering the large amount of available datasets in the Linked Open Data, users have a hard time trying to identify appropriate datasets that suit certain tasks. There are two approaches to rank datasets, a manual and an automatic approach. The manual approach depends on the wisdom of the crowd to highlight specific quality issues. The automatic approach has several implementations. The most adopted ones are based on link assessment. Provenance-based approaches and entity-based approaches are also used to compute not only dataset rankings, but also rankings on the entity level.\\

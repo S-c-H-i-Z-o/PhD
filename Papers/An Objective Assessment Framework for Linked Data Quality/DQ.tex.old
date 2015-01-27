@@ -202,7 +202,7 @@ Licensing is a quality attribute that is measured on the dataset level. It inclu
 
 \subsection{Comprehensibility}
 
-Comprehensibility is identified if the dataset publisher provides a title, description and URI for the dataset. If he indicates at least one exemplary URI and SPARQL query, RDF file and if he provides a list of used vocabularies and an active mailing list, message board or point-of-contact for the dataset \cite{flemming2010}.
+Comprehensibility is identified if the dataset publisher provides a title, description and URI for the dataset. If he indicates at least one exemplary URI and SPARQL query, RDF file and if he provides a list of used vocabularies and an active mailing list, message board or point of contact for the dataset \cite{flemming2010}.
 
 \begin{landscape}
 \begin{center}
@@ -285,15 +285,15 @@ Comprehensibility is identified if the dataset publisher provides a title, descr
  & \multirow{2}{*}{Model Level} & QI.28 & Contains marked top concepts \cite{Mader2012}\tabularnewline
 \cline{3-4}
  &  & QI.29 & Absence of broader concepts for top concepts \cite{Mader2012}\tabularnewline
-% \hline
-% \hline
-% \multirow{4}{*}{Conciseness} & \multirow{2}{*}{Entity Level} & QI.30 & Absence of redundant attributes \cite{Mendes2012}\tabularnewline
-% \cline{3-4}
-%  &  & QI.31 & Existence of short URIs \cite{Framework2012}\tabularnewline
-% \cline{2-4}
-%  & \multirow{2}{*}{Dataset Level} & QI.32 & Absence of redundant objects \cite{Mendes2012}\tabularnewline
-% \cline{3-4}
-%  &  & QI.33 & Follows the HTTP URI scheme \cite{Hogan:2012:ESL:2263498.2264570}\cite{Suominen2013}\tabularnewline
+\hline
+\hline
+\multirow{4}{*}{Conciseness} & \multirow{2}{*}{Entity Level} & QI.30 & Absence of redundant attributes \cite{Mendes2012}\tabularnewline
+\cline{3-4}
+ &  & QI.31 & Existence of short URIs \cite{Framework2012}\tabularnewline
+\cline{2-4}
+ & \multirow{2}{*}{Dataset Level} & QI.32 & Absence of redundant objects \cite{Mendes2012}\tabularnewline
+\cline{3-4}
+ &  & QI.33 & Follows the HTTP URI scheme \cite{Hogan:2012:ESL:2263498.2264570}\cite{Suominen2013}\tabularnewline
 \hline
 \hline
 \multirow{3}{*}{Security} & \multirow{3}{*}{Dataset Level} & QI.34 & Uses login credentials to restrict access \cite{Framework2012}\tabularnewline
@@ -367,15 +367,15 @@ Comprehensibility is identified if the dataset publisher provides a title, descr
  &  & QI.66 & Absence of valueless associative relations  \cite{Mader2012}\tabularnewline
 \cline{3-4}
  &  & QI.67 & Absence of incomplete literals with datatype range \cite{Hogan2010}\tabularnewline
-% \hline
-% \hline
-% \multirow{4}{*}{Efficiency} & \multirow{4}{*}{Dataset Level} & QI.68 & Absence of slash-URIs \cite{Framework2012}\tabularnewline
-% \cline{3-4}
-%  &  & QI.69 & Acceptable delay between the request and its response \cite{citeulike:2925559}\tabularnewline
-% \cline{3-4}
-%  &  & QI.70 & Low Latency HTTP requests \cite{Framework2012}\tabularnewline
-% \cline{3-4}
-%  &  & QI.71 & Ability to scale \cite{Framework2012}\tabularnewline
+\hline
+\hline
+\multirow{4}{*}{Efficiency} & \multirow{4}{*}{Dataset Level} & QI.68 & Absence of slash-URIs \cite{Framework2012}\tabularnewline
+\cline{3-4}
+ &  & QI.69 & Acceptable delay between the request and its response \cite{citeulike:2925559}\tabularnewline
+\cline{3-4}
+ &  & QI.70 & Low Latency HTTP requests \cite{Framework2012}\tabularnewline
+\cline{3-4}
+ &  & QI.71 & Ability to scale \cite{Framework2012}\tabularnewline
 \hline
 \hline
 \multirow{2}{*}{Accuracy} & \multirow{2}{*}{Dataset Level} & QI.72 & Absence of outliers \cite{Framework2012}\tabularnewline
