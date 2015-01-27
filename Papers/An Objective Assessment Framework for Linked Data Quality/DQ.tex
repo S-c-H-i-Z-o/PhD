@@ -164,6 +164,9 @@ Coherence is the ability to interpret data as expected by the publisher or vocab
 & Valueless associative relations \cite{Mader2012}.
 \end{easylist}
 
+\subsection{Security}
+
+Security is a quality attribute that is measured on the dataset level. It is identified if the publishers use login credentials, SSL or SSH to provide access to their dataset, or if they only grant access to specific users \cite{Framework2012}.
 
 \begin{center}
 {\footnotesize
@@ -208,108 +211,112 @@ Coherence is the ability to interpret data as expected by the publisher or vocab
 \cline{3-4}
  &  & QI.11 & Absence of unidirectional related concepts \cite{Hogan2010}\tabularnewline
  \cline{3-4}
- &  & QI.11 & Absence of missing labels \cite{Mader2012}\tabularnewline
+ &  & QI.12 & Absence of missing labels \cite{Mader2012}\tabularnewline
  \cline{3-4}
- &  & QI.11 & Absence of missing equivalent properties \cite{DBLP:conf/ic3k/KeetSP13}\tabularnewline
+ &  & QI.13 & Absence of missing equivalent properties \cite{DBLP:conf/ic3k/KeetSP13}\tabularnewline
  \cline{3-4}
- &  & QI.11 & Absence of missing inverse relationships \cite{DBLP:conf/ic3k/KeetSP13}\tabularnewline
+ &  & QI.14 & Absence of missing inverse relationships \cite{DBLP:conf/ic3k/KeetSP13}\tabularnewline
  \cline{3-4}
- &  & QI.11 & Absence of missing domain or range values in properties \cite{DBLP:conf/ic3k/KeetSP13}\tabularnewline
+ &  & QI.15 & Absence of missing domain or range values in properties \cite{DBLP:conf/ic3k/KeetSP13}\tabularnewline
 \hline
 \hline
-\multirow{2}{*}{Availability} & \multirow{2}{*}{Dataset Level} & QI.12 & Existence of an RDF dump that can be downloaded by users \cite{flemming2010}\cite{Hogan2010}\tabularnewline
+\multirow{2}{*}{Availability} & \multirow{2}{*}{Dataset Level} & QI.16 & Existence of an RDF dump that can be downloaded by users \cite{flemming2010}\cite{Hogan2010}\tabularnewline
 \cline{3-4}
- &  & QI.13 & Existence of queryable endpoints that respond to direct queries\tabularnewline
+ &  & QI.17 & Existence of queryable endpoints that respond to direct queries\tabularnewline
 \hline
 \hline
-\multirow{11}{*}{Correctness}  & \multirow{2}{*}{Dataset Level} & QI.18 & Includes the correct MIME-type for the content  \cite{Hogan2010}\tabularnewline
+\multirow{3}{*}{Licensing} & \multirow{3}{*}{Dataset Level} & QI.18 & Existence of human and machine readable license information \cite{Hogan:2012:ESL:2263498.2264570}\tabularnewline
 \cline{3-4}
- &  & QI.19 & Absence of syntactic errors \cite{Hogan2010}\tabularnewline
+ &  & QI.19 & Existence of de-referenceable links to the full license information  \cite{Hogan:2012:ESL:2263498.2264570}\tabularnewline
+\cline{3-4}
+ &  & QI.20 & Specifies permissions, copyrights and attributions  \cite{Framework2012}\tabularnewline
+\hline
+\hline
+\multirow{1}{*}{Freshness} & \multirow{1}{*}{Dataset Level} & QI.21 & Existence of timestamps that can keep track of its modifications  \cite{Flouris2012}\tabularnewline
+\hline
+\hline
+\multirow{11}{*}{Correctness}  & \multirow{2}{*}{Dataset Level} & QI.22 & Includes the correct MIME-type for the content  \cite{Hogan2010}\tabularnewline
+\cline{3-4}
+ &  & QI.23 & Absence of syntactic errors \cite{Hogan2010}\tabularnewline
 \cline{2-4}
- & \multirow{2}{*}{Links Level} & QI.20 & Absence of syntactic errors  \cite{Suominen2013}\tabularnewline
- & & QI.14 & Use the HTTP URI scheme (avoid using URNs or DOIs) \cite{Mader2012}\tabularnewline
-\cline{3-4}
-\cline{2-4}
- & \multirow{7}{*}{Model Level} & QI.21 & Contains marked top concepts \cite{Mader2012}\tabularnewline
-\cline{3-4}
- &  & QI.22 & Absence of broader concepts for top concepts \cite{Mader2012}\tabularnewline
+ & \multirow{2}{*}{Links Level} & QI.24 & Absence of syntactic errors  \cite{Suominen2013}\tabularnewline
  \cline{3-4}
- & & QI.14 & Absence of missing or empty labels \cite{Acosta2013}\cite{Mader2012}\tabularnewline
+ &  & QI.25 & Use the HTTP URI scheme (avoid using URNs or DOIs) \cite{Mader2012}\tabularnewline
+\cline{2-4}
+ & \multirow{7}{*}{Model Level} & QI.26 & Contains marked top concepts \cite{Mader2012}\tabularnewline
+\cline{3-4}
+ &  & QI.27 & Absence of broader concepts for top concepts \cite{Mader2012}\tabularnewline
+ \cline{3-4}
+ & & QI.28 & Absence of missing or empty labels \cite{Acosta2013}\cite{Mader2012}\tabularnewline
   \cline{3-4}
- & & QI.14 & Absence of unprintable characters \cite{Acosta2013}\cite{Mader2012} or extra white spaces in labels \cite{Suominen:2012:IQS:2413941.2413985}\tabularnewline
+ & & QI.29 & Absence of unprintable characters \cite{Acosta2013}\cite{Mader2012} or extra white spaces in labels \cite{Suominen:2012:IQS:2413941.2413985}\tabularnewline
 \cline{3-4}
- &  & QI.15 & Absence of incorrect data type for typed literals \cite{Hogan2010}\cite{Acosta2013} \tabularnewline
+ &  & QI.30 & Absence of incorrect data type for typed literals \cite{Hogan2010}\cite{Acosta2013} \tabularnewline
 \cline{3-4}
- &  & QI.16 & Absence of omitted or invalid languages tags \cite{Suominen:2012:IQS:2413941.2413985}\cite{Mader2012}\tabularnewline
+ &  & QI.31 & Absence of omitted or invalid languages tags \cite{Suominen:2012:IQS:2413941.2413985}\cite{Mader2012}\tabularnewline
 \cline{3-4}
- &  & QI.17 & Absence of terms without any associative or hierarchical relationships \cite{journals/ires/Living10}\tabularnewline
+ &  & QI.32 & Absence of terms without any associative or hierarchical relationships \cite{journals/ires/Living10}\tabularnewline
 \hline
 \hline
-\multirow{1}{*}{Freshness} & \multirow{1}{*}{Dataset Level} & QI.25 & Existence of timestamps that can keep track of its modifications  \cite{Flouris2012}\tabularnewline
-\hline
-\hline
-\multirow{3}{*}{Licensing} & \multirow{3}{*}{Dataset Level} & QI.26 & Existence of human and machine readable license information \cite{Hogan:2012:ESL:2263498.2264570}\tabularnewline
+\multirow{7}{*}{Comprehensibility} & \multirow{4}{*}{Dataset Level} & QI.33 & Existence of at least one exemplary URI \cite{Framework2012}\tabularnewline
 \cline{3-4}
- &  & QI.39 & Existence of de-referenceable links to the full license information  \cite{Hogan:2012:ESL:2263498.2264570}\tabularnewline
-\cline{3-4}
- &  & QI.40 & Specifies permissions, copyrights and attributions  \cite{Framework2012}\tabularnewline
-\hline
-\hline
-\multirow{7}{*}{Comprehensibility} & \multirow{4}{*}{Dataset Level} & QI.41 & Existence of at least one exemplary URI \cite{Framework2012}\tabularnewline
-\cline{3-4}
- &  & QI.42 & Existence of at least one exemplary SPARQL query \cite{Framework2012}\tabularnewline
+ &  & QI.34 & Existence of at least one exemplary SPARQL query \cite{Framework2012}\tabularnewline
  \cline{3-4}
- &  & QI.45 &  Existence of a title, description and URI for the dataset \tabularnewline
+ &  & QI.35 &  Existence of a title, description and URI for the dataset \tabularnewline
 \cline{3-4}
- &  & QI.45 & Existence of a mailing list, message board or point of contact \cite{flemming2010}\tabularnewline
+ &  & QI.36 & Existence of a mailing list, message board or point of contact \cite{flemming2010}\tabularnewline
  \cline{2-4}
- & \multirow{3}{*}{Model Level} & QI.20 & Absence of misuse of ontology annotations \cite{Mader2012}\cite{DBLP:conf/ic3k/KeetSP13}\tabularnewline
+ & \multirow{3}{*}{Model Level} & QI.37 & Absence of misuse of ontology annotations \cite{Mader2012}\cite{DBLP:conf/ic3k/KeetSP13}\tabularnewline
   \cline{3-4}
- & & QI.14 & Existence of annotations for concepts \cite{DBLP:conf/ic3k/KeetSP13}\tabularnewline
+ & & QI.38 & Existence of annotations for concepts \cite{DBLP:conf/ic3k/KeetSP13}\tabularnewline
  \cline{3-4}
- & & QI.14 & Existence of documentation for concepts \cite{Mader2012}\cite{DBLP:conf/ic3k/KeetSP13}\tabularnewline
+ & & QI.39 & Existence of documentation for concepts \cite{Mader2012}\cite{DBLP:conf/ic3k/KeetSP13}\tabularnewline
 \hline
 \hline
-\multirow{3}{*}{Provenance} & \multirow{2}{*}{Dataset Level} & QI.75 & Existence of metadata that describes its authoritative information  \cite{Flouris2012}\tabularnewline
+\multirow{3}{*}{Provenance} & \multirow{2}{*}{Dataset Level} & QI.40 & Existence of metadata that describes its authoritative information  \cite{Flouris2012}\tabularnewline
 \cline{3-4}
- &  & QI.77 & Usage of a provenance vocabulary\tabularnewline
+ &  & QI.41 & Usage of a provenance vocabulary\tabularnewline
 \hline
 \hline
-\multirow{10}{*}{Coherence} & \multirow{10}{*}{Model Level} & QI.57 & Absence of misplaced or deprecated classes or properties  \cite{Hogan2010}\tabularnewline
+\multirow{10}{*}{Coherence} & \multirow{10}{*}{Model Level} & QI.42 & Absence of misplaced or deprecated classes or properties  \cite{Hogan2010}\tabularnewline
 \cline{3-4}
- &  & QI.59 & Absence of relation and mappings clashes  \cite{Suominen:2012:IQS:2413941.2413985}\tabularnewline
+ &  & QI.43 & Absence of relation and mappings clashes  \cite{Suominen:2012:IQS:2413941.2413985}\tabularnewline
 \cline{3-4}
- &  & QI.60 & Absence of blank nodes \cite{Hogan:2012:ESL:2263498.2264570}\tabularnewline
+ &  & QI.44 & Absence of blank nodes \cite{Hogan:2012:ESL:2263498.2264570}\tabularnewline
 \cline{3-4}
- &  & QI.61 & Absence of invalid inverse-functional values \cite{Hogan2010}\tabularnewline
+ &  & QI.45 & Absence of invalid inverse-functional values \cite{Hogan2010}\tabularnewline
 \cline{3-4}
- &  & QI.62 & Absence of cyclic hierarchical relations \cite{conf/jcdl/Soergel05}\cite{Suominen:2012:IQS:2413941.2413985}\cite{Mader2012}\tabularnewline
+ &  & QI.46 & Absence of cyclic hierarchical relations \cite{conf/jcdl/Soergel05}\cite{Suominen:2012:IQS:2413941.2413985}\cite{Mader2012}\tabularnewline
 \cline{3-4}
- &  & QI.63 & Absence of undefined classes and properties usage \cite{Hogan2010}\tabularnewline
+ &  & QI.47 & Absence of undefined classes and properties usage \cite{Hogan2010}\tabularnewline
 \cline{3-4}
- &  & QI.64 & Absence of solely transitive related concepts \cite{Mader2012}\tabularnewline
+ &  & QI.48 & Absence of solely transitive related concepts \cite{Mader2012}\tabularnewline
 \cline{3-4}
- &  & QI.65 & Absence of redefinitions of existing vocabularies  \cite{Hogan2010}\tabularnewline
+ &  & QI.49 & Absence of redefinitions of existing vocabularies  \cite{Hogan2010}\tabularnewline
 \cline{3-4}
- &  & QI.66 & Absence of valueless associative relations  \cite{Mader2012}\tabularnewline
+ &  & QI.50 & Absence of valueless associative relations  \cite{Mader2012}\tabularnewline
 \hline
 \hline
 \multirow{7}{*}{Consistency}
  & \multirow{7}{*}{Model Level}
-
-& QI.46 & Consistent usage of preferred labels per language tag \cite{skosprimer}\cite{Mader2012}\tabularnewline
+& QI.51 & Consistent usage of preferred labels per language tag \cite{skosprimer}\cite{Mader2012}\tabularnewline
  \cline{3-4}
- & & QI.14 & Consistent usage of naming criteria for concepts \cite{DBLP:conf/ic3k/KeetSP13}\tabularnewline
+ & & QI.52 & Consistent usage of naming criteria for concepts \cite{DBLP:conf/ic3k/KeetSP13}\tabularnewline
 \cline{3-4}
- &  & QI.47 & Absence of overlapping labels\tabularnewline
+ &  & QI.53 & Absence of overlapping labels\tabularnewline
 \cline{3-4}
- &  & QI.48 & Absence of disjoint labels \cite{Mader2012}\tabularnewline
+ &  & QI.54 & Absence of disjoint labels \cite{Mader2012}\tabularnewline
 \cline{3-4}
- & & QI.52 & Absence of atypical use of collections, containers and reification \cite{Hogan2010}\tabularnewline
+ & & QI.55 & Absence of atypical use of collections, containers and reification \cite{Hogan2010}\tabularnewline
 \cline{3-4}
- &  & QI.53 & Absence of wrong equivalent, symmetric or transitive relationships \cite{DBLP:conf/ic3k/KeetSP13}\tabularnewline
+ &  & QI.56 & Absence of wrong equivalent, symmetric or transitive relationships \cite{DBLP:conf/ic3k/KeetSP13}\tabularnewline
 \cline{3-4}
- &  & QI.56 & Absence of membership violations for disjoint classes \cite{Hogan2010}\tabularnewline
+ &  & QI.57 & Absence of membership violations for disjoint classes \cite{Hogan2010}\tabularnewline
+\hline
+\hline
+\multirow{2}{*}{Security} & \multirow{2}{*}{Dataset Level} & QI.58 & Uses login credentials to restrict access \cite{Framework2012}\tabularnewline
+\cline{3-4}
+ &  & QI.59 & Uses SSL or SSH to provide access to their dataset \cite{Framework2012}\tabularnewline
 \hline
 \end{longtable}
 }
@@ -318,258 +325,78 @@ Coherence is the ability to interpret data as expected by the publisher or vocab
 \section{Linked Data Quality Tools}
 In this section, we present the results of our survey on the Linked Data quality tools. There exists a number of data quality frameworks and tools that are either standalone or implemented as modules in data integration tools. These approaches can be classified into automatic, semi-automatic, manual or crowd sourced approaches.
 
-\subsection{Information Modeling Quality}
+\subsection{Information Quality}
 
 RDF is the standard to model information in the Semantic Web. Linked Data publishers can pick from a plethora of tools that can automatically check their RDF files for quality problems\footnote{http://www.w3.org/2001/sw/wiki/SWValidators}. Syntactic RDF checkers are able to detect errors in RDF documents like the W3C RDF Validator\footnote{http://www.w3.org/RDF/Validator/}, RDF:about validator and Converter\footnote{http://rdfabout.com/demo/validator/} and The Validating RDF Parser (VRP)\footnote{http://139.91.183.30:9090/RDF/VRP/index.html}. The RDF Triple-Checker\footnote{http://graphite.ecs.soton.ac.uk/checker/} is an online tool that helps find typos and common errors in RDF data. Vapour\footnote{http://validator.linkeddata.org/vapour} \cite{Berrueta08cookinghttp} is a validation service to check whether semantic Web data is correctly published according to the current best practices\cite{tim:linkedata}.\\
+ProLOD \cite{Bohm2010}, ProLOD++\cite{6816740}, Aether \cite{makela-aether-2014} and LODStats\cite{demter-2012-ekaw} are not purely quality assessment tools. They are Linked Data profiling tools providing clustering and labeling capabilities, schema discovery and statistics about data types and patterns. The statistics are about properties distribution, link-to-literal ratio, number of entities and RDF triples, average properties per entity and average error.
+
+\subsection{Modeling Quality}
 
 Reusing existing ontologies is a common practice that Linked Data publishers are always trying to adopt. However, ontologies and vocabularies development is often a long error-prone process especially when many contributors are working consecutively or collaboratively \cite{Suominen2013}. This can introduce deficiencies such as redundant concepts or conflicting relationships \cite{harpring_introduction_2010}. Getting to choose the right ontology or vocabulary is vital to ensure modeling correctness and consistency.\\
 
-\textbf{Automatic Tools:} qSKOS\footnote{https://github.com/cmader/qSKOS} \cite{Mader2012} scans SKOS vocabularies to provide reports on vocabulary resources and relations that are problematic. PoolParty checker\footnote{http://www.poolparty.biz/} is an online service based on qSKOS. Skosify \cite{Suominen:2012:IQS:2413941.2413985} supports OWL and RDFS ontologies by converting them into well-structured SKOS vocabularies. It includes automatic correction abilities for quality issues that have been observed by reviewing vocabularies on the Web. The OOPS! pitfall scanner \cite{oops} evaluates OWL ontologies against a rules catalog and provides the user with a set of guidelines to solve them. ASKOSI\footnote{http://www.w3.org/2001/sw/wiki/ASKOSI} retrieves vocabularies from different sources, stores and displays the usage frequency of the different concepts used by different applications. It promotes reusing existing information systems by providing better management and presentation tools.\\ Some errors in RDF will only appear after reasoning (incorrect inferences). In \cite{conf/owled/SirinSW08}\cite{conf/hicss/TaoDM09} the authors perform quality checking on OWL ontologies using integrity constraints involving the Unique Name Assumption (UNA) and the Closed World Assumption (CWA). Pellet\footnote{http://clarkparsia.com/pellet} provides reasoning services for OWL ontologies. It incorporates a number of heuristics to detect and repair quality issues among disjoint properties, negative property assertions and reflexive, irreflexive, symmetric, and anti-symmetric properties. Eyeball\footnote{http://jena.sourceforge.net/Eyeball/} provides quality inspection for RDF models (including OWL). It provides checks for a variety of problems including the usage of unknown predicates, classes, poorly formed namespaces, literal syntax validation, type consistency and other heuristics. RDF:Alerts\footnote{http://swse.deri.org/RDFAlerts/} provides validation for many issues highlighted in \cite{Hogan2010} like misplaced, undefined or deprecated classes or properties.
+\subsubsection{Semi-automatic Approaches}
 
-\subsection{Manual Approaches}
+DL-Learner \cite{Lehmann_dl-learner:learning} uses supervised machine learning techniques to learn concepts from user-provided examples. CROCUS \cite{wasabi_crocus} applies a cluster-based approach for instance-level error detection. It validates identified errors by non-expert users and iterate to reach higher quality ontologies that can be safely used in industrial environments.
+
+\subsubsection{Automatic Approaches}
+
+qSKOS\footnote{https://github.com/cmader/qSKOS} \cite{Mader2012} scans SKOS vocabularies to provide reports on vocabulary resources and relations that are problematic. PoolParty checker\footnote{http://www.poolparty.biz/} is an online service based on qSKOS. Skosify \cite{Suominen:2012:IQS:2413941.2413985} supports OWL and RDFS ontologies by converting them into well-structured SKOS vocabularies. It includes automatic correction abilities for quality issues that have been observed by reviewing vocabularies on the Web. The OOPS! pitfall scanner \cite{oops} evaluates OWL ontologies against a rules catalog and provides the user with a set of guidelines to solve them. ASKOSI\footnote{http://www.w3.org/2001/sw/wiki/ASKOSI} retrieves vocabularies from different sources, stores and displays the usage frequency of the different concepts used by different applications. It promotes reusing existing information systems by providing better management and presentation tools.\\ Some errors in RDF will only appear after reasoning (incorrect inferences). In \cite{conf/owled/SirinSW08}\cite{conf/hicss/TaoDM09} the authors perform quality checking on OWL ontologies using integrity constraints involving the Unique Name Assumption (UNA) and the Closed World Assumption (CWA). Pellet\footnote{http://clarkparsia.com/pellet} provides reasoning services for OWL ontologies. It incorporates a number of heuristics to detect and repair quality issues among disjoint properties, negative property assertions and reflexive, irreflexive, symmetric, and anti-symmetric properties. Eyeball\footnote{http://jena.sourceforge.net/Eyeball/} provides quality inspection for RDF models (including OWL). It provides checks for a variety of problems including the usage of unknown predicates, classes, poorly formed namespaces, literal syntax validation, type consistency and other heuristics. RDF:Alerts\footnote{http://swse.deri.org/RDFAlerts/} provides validation for many issues highlighted in \cite{Hogan2010} like misplaced, undefined or deprecated classes or properties.\\
+
+
+\subsection{Dataset Quality}
+Considering the large amount of available datasets in the Linked Open Data, users have a hard time trying to identify appropriate datasets that suit certain tasks. The most adopted approached are based on link assessment. Provenance-based approaches and entity-based approaches are also used to compute not only dataset rankings, but also rankings on the entity level.\\
+
+\subsubsection{Manual Ranking Approaches}
 
 Sieve \cite{Mendes2012} is a framework for expressing quality assessment and fusion methods. It is implemented as a component of the Linked Data Integration Framework (LDIF)\footnote{http://ldif.wbsg.de/}. Sieve leverages the LDIF provenance metadata as quality indicators to produce quality assessment scores. However, despite its nice features, it is only targeted to perform data fusion based on user-configurable conflict resolution tasks. Moreover, since Sieve main input is provenance metadata, it is only limited to domains that can provide such metadata associated with their data.
 
 SWIQA \cite{Furber2011a} is a framework providing policies or formulas controlling information quality assessment. It is composed of three layers: data acquisition, query and ontology layers. It uses query templates based on the SPARQL Inferencing Notation (SPIN)\footnote{http://spinrdf.org/} to express quality requirements. The queries are built to compute weighted and unweighted quality scores. At the end of the assessment, it uses vocabulary elements to annotate important values of properties and classes, assigning inferred quality scores to ontology elements and classifying the identified data quality problems.
 
-\subsection{Crowd-sourcing Approaches}
+\subsubsection{Crowd-sourcing Approaches}
+
+There are several quality issues that can be difficult to spot and fix automatically. In \cite{Acosta2013} the authors highlight the fact that the RDFification process of some data can be more challenging than others, leading to errors in the Linked Data provisioning process that needs manual intervention. This can be more visible in datasets that have been semi-automatically translated to RDF from their primary source (the best example for this case is DBpedia \cite{bizer_dbpedia_2009}). The authors introduce a methodology to adjust crowdsourcing input from two types of audience: 1) Linked Data experts, researchers and enthusiasts through a contest to find and classify erroneous RDF triples and 2) Crowd-sourcing through the Amazon Mechanical Turk\footnote{https://www.mturk.com/}.
 
 TripleCheckMate \cite{Kontokostas2013} is a crowd-sourcing tool used by the authors to run out their assessment supported by a semi-automatic quality verification metrics. The tool allows users to select resources, identify and classify possible issues according to a pre-defined taxonomy of quality problems. It measures inter-rater agreements, meaning that the resources defined are checked multiple times. These features turn out to be extremely useful to analyze the performance of users and allow better identification of potential quality problems. TripleCheckMate is used to identify accuracy issues in the object extraction (completeness of the extraction value for object values and datatypes), relevancy of the extracted information, representational consistency and interlinking with other datasets.
 
-\subsection{Semi-automatic Approaches}
+\subsubsection{Semi-automatic Approaches}
 
 Luzzu \cite{DBLP:journals/corr/DebattistaLLA14} is a generic Linked Data quality assessment framework. It can be easily extended through a declarative interface to integrate domain specific quality measures. The framework consists of three stages closely corresponding to the methodology in \cite{DBLP:conf/i-semantics/RulaZ14}. They believe that data quality cannot be tackled in isolation. As a result, they require domain experts to identify quality assessment metrics in a schema layer. Luzzu is ontology driven. The core vocabulary for the schema layer is the Dataset Quality Ontology (daQ) \cite{DBLP:conf/www/Debattista0A14}. Any additional quality metrics added to the framework should extend it.
+
+RDFUnit\footnote{http://github.com/AKSW/RDFUnit} is a tool centered around the definition of data quality integrity constraints \cite{Kontokostas:2014:TEL:2566486.2568002}. The input is a defined set of test cases (which can be generated manually or automatically) presented in SPRAQL query templates. One of the main advantages for this approach is the ability to discover quality problems beyond conventional quality heuristics by encoding domain specific semantics in the test cases.
+
+LiQuate \cite{conf/otm/RuckhausBV13} is based on probabilistic models to analyze the quality of data and links. It consists of two main components: A Bayesian Network builder and an ambiguity detector. They rely on data experts to represent probabilistic rules. LiQuate identifies redundancies (redundant label names for a given resource), incompleteness (incomplete links among a given set of resources) and inconsistencies (inconsistent links).
 
 Quality Assessment of Data Sources (Flemming's Data Quality Assessment Tool)\footnote{http://linkeddata.informatik.hu-berlin.de/LDSrcAss/datenquelle.php} calculates data quality scores based on manual user input. The user should assign weights to the predefined quality metrics and answer a series of questions regarding the dataset. These include, for example, the use of obsolete classes and properties by defining the number of described entities that are assigned disjoint classes, the usage of stable URIs and whether the publisher provides a mailing list for the dataset. The main disadvantage for using this tool is the manual intervention which requires deep knowledge in the dataset examined. Moreover, the tool lacks support for several quality concerns like completeness or consistency.
 
 LODGRefine \cite{conf/i-semantics/Verlic12} is the Open Refine\footnote{http://openrefine.org/} of Linked Data. It does not act as a quality assessment tool, but it is powerful in cleaning and refining raw instance data. LODGRefine can help detect duplicates, empty values, spot inconsistencies, extract Named Entities, discover patterns and more. LODGRefine helps in improving the quality of the dataset by improving the quality of the data at the instance level.\\
 
-\subsection{Automatic Approaches}
+\subsubsection{Automatic Ranking Approaches}
 
-ProLOD \cite{Bohm2010}, ProLOD++\cite{6816740}, Aether \cite{makela-aether-2014} and LODStats\cite{demter-2012-ekaw} are not purely quality assessment tools. They are Linked Data profiling tools providing clustering and labeling capabilities, schema discovery and statistics about data types and patterns. The statistics are about properties distribution, link-to-literal ratio, number of entities and RDF triples, average properties per entity and average error.
+{\bf Link-based Approaches}\\
 
-LinkQA \cite{Gueret2012} is a fully automated approach which takes a set of RDF triples as an input and analyses it to extract topological measures (links quality). The authors described five metrics to determine the quality of data (degree, clustering coefficient, centrality, sameAs chains and descriptive richness through sameAs).\\
+The basic idea behind link assessment tools is to provide rankings for datasets based on the cardinality and types of the relationships with other datasets. Traditional link analysis has proven to be an effective way to measure the quality of Web documents search. Algorithms like PageRank \cite{Lawrence981} and HITS \cite{Kleinberg:1999} became successful based on the assumption that a certain Web document is considered to have higher importance or rank if it has more incoming links that other Web documents \cite{Brin:1998}\cite{Chakrabarti99miningthe}.\\ However, the basic assumption that links are equivalent does not suit the heterogeneous nature of links in the Linked Open Data. Thus, the previous approaches fall short to provide reliable rankings as the types of the links can have a direct impact on the ranking computation \cite{Toupikov2009}.\\ The first adaption of PageRank for Semantic Web resources was the Ontology Rank algorithm implemented in the Swoogle search engine \cite{Ding2004}. They use a rational random surfing model that takes into account the different types of links between discovered sets and compute rankings based on three levels of granularity: documents, terms and RDF graphs. ReConRank \cite{Hogan06reconrank:a} rankings are computed at query time based on two levels of granularity: resources and context graphs. DING \cite{Toupikov2009} adapted the PageRank to rank datasets based on their interconnections. DING can also automatically assign weights to different link types based on the nature of the predicate involved in the link.\\Broken links are a major threat to Linked Data. They occur when resources are removed, moved or updated. DSNotify\footnote{http://www.cibiv.at/~niko/dsnotify/}\cite{cs142} is a framework that informs data consumers about the various types of events that occur on data sources. Their approach is based on an indexing infrastructure that extracts feature vectors and stores them to an index. A monitoring module detects events on sources and write them to a central event log which pushes notifications to registered applications.\\ LinkQA \cite{Gueret2012} is a fully automated approach which takes a set of RDF triples as an input and analyses it to extract topological measures (links quality). The authors described five metrics to determine the quality of data (degree, clustering coefficient, centrality, sameAs chains and descriptive richness through sameAs).\\
 
+{\bf Provenance-based Approaches}\\
 
-\subsection {Dataset Quality}
-Considering the large amount of available datasets in the Linked Open Data, users have a hard time trying to identify appropriate datasets that suit certain tasks. There are two approaches to rank datasets, a manual and an automatic approach. The manual approach depends on the wisdom of the crowd to highlight specific quality issues. The automatic approach has several implementations. The most adopted ones are based on link assessment. Provenance-based approaches and entity-based approaches are also used to compute not only dataset rankings, but also rankings on the entity level.\\
+Provenance-based assessment methods are an important step towards transparency of data quality in the Semantic Web. In \cite{Hartig09usingweb}\footnote{http://trdf.sourceforge.net} the authors use a provenance model as an assessment method to evaluate the timeliness of Web data. Their model identifies types of ``provenance elements'' and the relationships between them. Provenance elements are classified into three types: actors, executions and artifacts. The assessment procedure is divided into three steps: 1) Creating provenance graph based on the defined model 2) Annotating the graph with impact values 3) Calculating the information quality score. In \cite{Flouris2012} the authors describe a set of provenance-based assessment metrics to support quality assessment and repair in Linked Open Data. They rely on both data and metadata and use indicators like the source reputation, freshness and plausibility. In \cite{Harth2009} the authors introduce the notion of naming authority which connects an identifier with the source to establish a connection to it's provenance. They construct a naming authority graph that acts as input to derive PageRank scores for the data sources.\\
 
+{\bf Entity-based Approaches}\\
 
-\subsubsection {Manual Ranking Tools}
-
-There are several quality issues that can be difficult to spot and fix automatically. In \cite{Acosta2013} the authors highlight the fact that the RDFification process of some data can be more challenging than others, leading to errors in the Linked Data provisioning process that needs manual intervention. This can be more visible in datasets that have been semi-automatically translated to RDF from their primary source (the best example for this case is DBpedia \cite{bizer_dbpedia_2009}). The authors introduce a methodology to adjust crowdsourcing input from two types of audience: 1) Linked Data experts, researchers and enthusiasts through a contest to find and classify erroneous RDF triples and 2) Crowd-sourcing through the Amazon Mechanical Turk\footnote{https://www.mturk.com/}.\\
-
-\subsubsection {Automatic Ranking Tools}
-
-{\bf Links Based Approach}\\
-
-The basic idea behind link assessment tools is to provide rankings for datasets based on the cardinality and types of the relationships with other datasets. Traditional link analysis has proven to be an effective way to measure the quality of Web documents search. Algorithms like PageRank \cite{Lawrence981} and HITS \cite{Kleinberg:1999} became successful based on the assumption that a certain Web document is considered to have higher importance or rank if it has more incoming links that other Web documents \cite{Brin:1998}\cite{Chakrabarti99miningthe}.\\ However, the basic assumption that links are equivalent does not suit the heterogeneous nature of links in the Linked Open Data. Thus, the previous approaches fall short to provide reliable rankings as the types of the links can have a direct impact on the ranking computation \cite{Toupikov2009}.\\ The first adaption of PageRank for Semantic Web resources was the Ontology Rank algorithm implemented in the Swoogle search engine \cite{Ding2004}. They use a rational random surfing model that takes into account the different types of links between discovered sets and compute rankings based on three levels of granularity: documents, terms and RDF graphs. ReConRank \cite{Hogan06reconrank:a} rankings are computed at query time based on two levels of granularity: resources and context graphs. DING \cite{Toupikov2009} adapted the PageRank to rank datasets based on their interconnections. DING can also automatically assign weights to different link types based on the nature of the predicate involved in the link.\\Broken links are a major threat to Linked Data. They occur when resources are removed, moved or updated. DSNotify\footnote{http://www.cibiv.at/~niko/dsnotify/}\cite{cs142} is a framework that informs data consumers about the various types of events that occur on data sources. Their approach is based on an indexing infrastructure that extracts feature vectors and stores them to an index. A monitoring module detects events on sources and write them to a central event log which pushes notifications to registered applications.\\
-
-{\bf Provenance-based Approach}\\
-
-Provenance-based assessment methods are an important step towards transparency of data quality in the Semantic Web. In \cite{Hartig09usingweb} the authors use a provenance model as an assessment method to evaluate the timeliness of Web data. Their model identifies types of ``provenance elements'' and the relationships between them. Provenance elements are classified into three types: actors, executions and artifacts. The assessment procedure is divided into three steps: 1) Creating provenance graph based on the defined model 2) Annotating the graph with impact values 3) Calculating the information quality score. In \cite{Flouris2012} the authors describe a set of provenance-based assessment metrics to support quality assessment and repair in Linked Open Data. They rely on both data and metadata and use indicators like the source reputation, freshness and plausibility. In \cite{Harth2009} the authors introduce the notion of naming authority which connects an identifier with the source to establish a connection to it's provenance. They construct a naming authority graph that acts as input to derive PageRank scores for the data sources.\\
-
-{\bf Entity-based Approach}\\
-
-Sindice \cite{Delbru2010} uses a set of techniques to rank Web data. They use a combination of query dependent and query independent rankings implemented in the Semantic Information Retrieval Engine (SIREn)\footnote{http://siren.sindice.com/} to produce a final entity rank. Their query dependent approach rates individual entities by aggregating the the score of the matching terms with a term frequency - inverse subject frequency (tf-isf) algorithm. Their query independent ranking is done using hierarchical links analysis algorithms \cite{Delbru2010a}. The combination of these two approaches is used to generate a global weighted rank based on the dataset, entities and links ranks. \\
-
+Sindice \cite{Delbru2010} uses a set of techniques to rank Web data. They use a combination of query dependent and query independent rankings implemented in the Semantic Information Retrieval Engine (SIREn)\footnote{http://siren.sindice.com/} to produce a final entity rank. Their query dependent approach rates individual entities by aggregating the the score of the matching terms with a term frequency - inverse subject frequency (tf-isf) algorithm. Their query independent ranking is done using hierarchical links analysis algorithms \cite{Delbru2010a}. The combination of these two approaches is used to generate a global weighted rank based on the dataset, entities and links ranks.\\
 
 \subsection{Queryable End-point Quality}
-The availability of Linked Data is highly dependent on the performance qualities of its queryable end-points. The standard query language for Semantic Web resources is SPARQL, thus SPARQL endpoints are the main focus. In \cite{Buil-Aranda2013} the authors present their findings to measure the discoverability of SPARQL endpoints by analyzing how they are located and the metadata used to describe them. In addition to that, they also analyze endpoints interoperability by identifying features of SPARQL 1.0 and SPARQL 1.1 that are supported. The authors tackled the endpoints efficiency by testing the time taken to answer generic, content-agnostic SPARQL queries over HTTP. Finally, the authors measured endpoints reliability by monitoring the uptime of public SPARQL endpoints on a course of 27 months. The results for this work can be accessed online via the SPARQL Endpoints Status tool \footnote{http://labs.mondeca.com/sparqlEndpointsStatus/} and is queryable using their public SPARQL endpoint\footnote{http://labs.mondeca.com/sparqlEndpointsStatus/endpoint/endpoint.html}. \\
 
-\section{Linked Data Quality Tools Evaluation}
-In this section, we present the results for our evaluation of the various Linked Data tools mentioned with regards to the presented framework (Table 2). Due to space limitation, we have only shown the tools that can directly or indirectly assess one or more of the quality indicators listed in Table 1. Moreover, we have also grouped the Syntax Validation tools (W3C RDF Validator, RDF:about, VRP, The RDF Triple-Checker and Vapour) under one approach. We should highlight that the PoolParty tool includes qSKOS in its implementation, thus they are grouped in one tool which is the PoolParty.\\
+The availability of Linked Data is highly dependent on the performance qualities of its queryable end-points. The standard query language for Semantic Web resources is SPARQL, thus SPARQL endpoints are the main focus. In \cite{Buil-Aranda2013}\footnote{http://labs.mondeca.com/sparqlEndpointsStatus/} the authors present their findings to measure the discoverability of SPARQL endpoints by analyzing how they are located and the metadata used to describe them. In addition to that, they also analyze endpoints interoperability by identifying features of SPARQL 1.0 and SPARQL 1.1 that are supported. The authors tackled the endpoints efficiency by testing the time taken to answer generic, content-agnostic SPARQL queries over HTTP.\\
 
-\newcolumntype{P}[2]{%
-  >{\begin{turn}{#1}\begin{minipage}{#2}\small\raggedright\hspace{0pt}}l%
-  <{\end{minipage}\end{turn}}%
-}
-
-\begin{center}
-{\footnotesize
-\begin{longtable}[h]{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
-\caption[Linked Data quality tools]{Evaluation of Linked Data quality tools for each quality indicator} \label{DQMT} \\
-
-\hline \multicolumn{1}{|c|}{\textbf{}} & \multicolumn{1}{P{90}{3.1cm}|}{PROLOD} & \multicolumn{1}{P{90}{3.1cm}|}{Sieve} & \multicolumn{1}{P{90}{3.1cm}|}{Flemming's Tool}& \multicolumn{1}{P{90}{3.1cm}|}{SWIQA} & \multicolumn{1}{P{90}{3.1cm}|}{Syntax Validators}& \multicolumn{1}{P{90}{3.1cm}|}{Skosify} & \multicolumn{1}{P{90}{3.1cm}|}{OOPS!} & \multicolumn{1}{P{90}{3.1cm}|}{PoolParty} & \multicolumn{1}{P{90}{3.1cm}|}{ASKOSI} & \multicolumn{1}{P{90}{3.1cm}|}{Pellet} & \multicolumn{1}{P{90}{3.1cm}|}{Eyeball} & \multicolumn{1}{P{90}{3.1cm}|}{RDF:Alerts} & \multicolumn{1}{P{90}{3.1cm}|}{TripleCheckmate} & \multicolumn{1}{P{90}{3.1cm}|}{DING} & \multicolumn{1}{P{90}{3.1cm}|}{DSNotify} & \multicolumn{1}{P{90}{3.1cm}|}{SPARQL Endpoints-Status}\\ \hline
-\endfirsthead
-
-\multicolumn{17}{c}%
-{{\bfseries \tablename\ \thetable{} Evaluation of Linked Data quality tools for each quality indicator}} \\
-\hline \multicolumn{1}{|c|}{\textbf{}} & \multicolumn{1}{P{90}{3.1cm}|}{PROLOD} & \multicolumn{1}{P{90}{3.1cm}|}{Sieve} & \multicolumn{1}{P{90}{3.1cm}|}{Flemming's Tool}& \multicolumn{1}{P{90}{3.1cm}|}{SWIQA} & \multicolumn{1}{P{90}{3.1cm}|}{Syntax Validators}& \multicolumn{1}{P{90}{3.1cm}|}{Skosify} & \multicolumn{1}{P{90}{3.1cm}|}{OOPS!} & \multicolumn{1}{P{90}{3.1cm}|}{PoolParty} & \multicolumn{1}{P{90}{3.1cm}|}{ASKOSI} & \multicolumn{1}{P{90}{3.1cm}|}{Pellet} & \multicolumn{1}{P{90}{3.1cm}|}{Eyeball} & \multicolumn{1}{P{90}{3.1cm}|}{RDF:Alerts} & \multicolumn{1}{P{90}{3.1cm}|}{TripleCheckmate} & \multicolumn{1}{P{90}{3.1cm}|}{DING} & \multicolumn{1}{P{90}{3.1cm}|}{DSNotify} & \multicolumn{1}{P{90}{3.1cm}|}{SPARQL Endpoints-Status} \\ \hline
-\endhead
-
-\hline \multicolumn{17}{|r|}{{Continued on next page}} \\ \hline
-\endfoot
-
-\hline
-\endlastfoot
-
-
-\hline
-QI.1 &  & \checkmark &  & \checkmark &  &  &  &  &  &  &  &  & \checkmark &  &  & \tabularnewline
-\hline
-QI.2 &  &  & \checkmark &  &  &  &  & \checkmark & \checkmark &  &  &  &  &  &  & \tabularnewline
-\hline
-QI.3 &  &  & \checkmark &  &  &  &  & \checkmark &  &  &  &  &  &  &  & \tabularnewline
-\hline
-QI.4 &  & \checkmark &  & \checkmark &  &  &  &  &  &  &  &  & \checkmark &  &  & \tabularnewline
-\hline
-QI.5 &  &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
-\hline
-QI.6 &  &  & \checkmark &  &  &  &  &  &  &  &  &  &  & \checkmark &  & \tabularnewline
-\hline
-QI.7 &  &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
-\hline
-QI.8 & \checkmark &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
-\hline
-QI.9 &  &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
-\hline
-QI.10 &  &  & \checkmark & \checkmark & \checkmark &  &  &  &  &  &  & \checkmark &  &  &  & \tabularnewline
-\hline
-QI.11 &  &  &  &  &  &  &  &  &  &  &  &  &  & \checkmark &  & \checkmark\tabularnewline
-\hline
-QI.12 & \checkmark &  & \checkmark &  &  &  &  &  &  &  &  &  &  & \checkmark &  & \tabularnewline
-\hline
-QI.13 & \checkmark &  & \checkmark & \checkmark &  &  &  & \checkmark &  &  &  & \checkmark &  &  & \checkmark & \tabularnewline
-\hline
-QI.14 &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \checkmark & \checkmark\tabularnewline
-\hline
-QI.15 &  & \checkmark &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
-\hline
-QI.16 &  &  &  &  &  &  &  & \checkmark &  &  &  &  &  &  &  & \tabularnewline
-\hline
-QI.17 &  &  &  &  &  & \checkmark &  & \checkmark &  &  &  &  &  &  &  & \tabularnewline
-\hline
-QI.18 &  &  &  &  &  & \checkmark &  & \checkmark &  &  &  &  &  &  &  & \tabularnewline
-\hline
-QI.19 &  &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
-\hline
-QI.20 &  &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
-\hline
-QI.21 &  &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \checkmark\tabularnewline
-\hline
-QI.22 & \checkmark &  &  &  &  & \checkmark &  & \checkmark & \checkmark &  &  &  & \checkmark &  &  & \tabularnewline
-\hline
-QI.23 &  &  &  &  &  &  & \checkmark &  &  & \checkmark & \checkmark & \checkmark & \checkmark &  &  & \tabularnewline
-\hline
-QI.24 &  &  &  &  &  & \checkmark &  & \checkmark &  &  &  &  &  &  &  & \tabularnewline
-\hline
-QI.25 &  &  &  &  &  &  &  & \checkmark & \checkmark &  &  &  &  &  &  & \tabularnewline
-\hline
-QI.26 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
-\hline
-QI.27 &  & \checkmark &  &  &  &  &  &  &  &  & \checkmark & \checkmark &  &  & \checkmark & \tabularnewline
-\hline
-QI.28 &  &  &  &  &  & \checkmark &  & \checkmark &  &  &  &  &  &  &  & \tabularnewline
-\hline
-QI.29 &  &  &  &  &  &  & \checkmark & \checkmark & \checkmark &  & \checkmark &  &  &  &  & \tabularnewline
-\hline
-QI.30 &  & \checkmark &  & \checkmark &  &  & \checkmark &  & \checkmark &  &  &  &  &  &  & \tabularnewline
-\hline
-QI.31 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
-\hline
-QI.32 &  & \checkmark &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
-\hline
-QI.33 &  &  &  &  &  &  &  & \checkmark &  &  &  & \checkmark &  &  &  & \tabularnewline
-\hline
-QI.34 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
-\hline
-QI.35 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
-\hline
-QI.36 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
-\hline
-QI.37 &  & \checkmark &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
-\hline
-QI.38 &  &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
-\hline
-QI.39 &  &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
-\hline
-QI.40 &  &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
-\hline
-QI.41 &  &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
-\hline
-QI.42 &  &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
-\hline
-QI.43 &  &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
-\hline
-QI.44 &  &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
-\hline
-QI.45 &  &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
-\hline
-QI.46 &  &  &  &  &  & \checkmark &  & \checkmark & \checkmark &  &  &  &  &  &  & \tabularnewline
-\hline
-QI.47 &  &  &  &  &  &  & \checkmark & \checkmark &  &  & \checkmark &  &  &  &  & \tabularnewline
-\hline
-QI.48 &  &  &  &  &  & \checkmark & \checkmark & \checkmark &  &  & \checkmark &  &  &  &  & \tabularnewline
-\hline
-QI.49 &  &  &  &  &  & \checkmark &  &  &  &  & \checkmark &  &  &  &  & \tabularnewline
-\hline
-QI.50 &  &  &  &  &  &  &  &  & \checkmark &  &  &  &  &  &  & \tabularnewline
-\hline
-QI.51 &  & \checkmark &  &  &  &  &  &  &  & \checkmark & \checkmark &  & \checkmark &  &  & \tabularnewline
-\hline
-QI.52 &  &  &  &  &  &  &  &  &  &  & \checkmark &  &  &  &  & \tabularnewline
-\hline
-QI.53 &  &  &  &  &  &  & \checkmark &  &  & \checkmark &  &  &  &  &  & \tabularnewline
-\hline
-QI.54 &  &  &  &  &  &  &  &  &  & \checkmark &  &  &  &  &  & \tabularnewline
-\hline
-QI.55 &  &  &  &  &  &  &  &  &  & \checkmark &  &  &  &  &  & \tabularnewline
-\hline
-QI.56 &  &  & \checkmark &  &  & \checkmark & \checkmark & \checkmark &  & \checkmark & \checkmark & \checkmark &  &  &  & \tabularnewline
-\hline
-QI.57 &  &  &  &  &  &  & \checkmark & \checkmark &  &  & \checkmark & \checkmark &  &  &  & \tabularnewline
-\hline
-QI.58 &  &  &  &  &  &  & \checkmark &  &  & \checkmark & \checkmark &  &  &  &  & \tabularnewline
-\hline
-QI.59 &  &  &  &  &  &  &  & \checkmark &  &  &  &  &  &  &  & \tabularnewline
-\hline
-QI.60 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
-\hline
-QI.61 &  &  & \checkmark &  &  &  & \checkmark &  &  & \checkmark &  & \checkmark &  &  &  & \tabularnewline
-\hline
-QI.62 &  &  &  &  &  & \checkmark & \checkmark & \checkmark & \checkmark &  &  &  &  &  &  & \tabularnewline
-\hline
-QI.63 &  &  & \checkmark &  &  &  & \checkmark & \checkmark &  & \checkmark & \checkmark &  &  &  &  & \tabularnewline
-\hline
-QI.64 &  &  &  &  &  & \checkmark & \checkmark & \checkmark &  &  &  &  &  &  &  & \tabularnewline
-\hline
-QI.65 &  &  & \checkmark &  &  &  & \checkmark &  &  & \checkmark & \checkmark &  &  &  &  & \tabularnewline
-\hline
-QI.66 &  &  &  &  &  &  &  & \checkmark &  &  &  &  &  &  &  & \tabularnewline
-\hline
-QI.67 &  &  &  &  &  &  & \checkmark & \checkmark &  & \checkmark & \checkmark & \checkmark &  &  &  & \tabularnewline
-\hline
-QI.68 &  &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
-\hline
-QI.69 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \checkmark\tabularnewline
-\hline
-QI.70 &  &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \checkmark\tabularnewline
-\hline
-QI.71 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \checkmark\tabularnewline
-\hline
-QI.72 &  &  &  &  &  &  &  &  &  &  &  &  & \checkmark &  &  & \tabularnewline
-\hline
-QI.73 &  &  &  &  &  &  &  &  &  &  &  &  & \checkmark &  &  & \tabularnewline
-\hline
-QI.74 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
-\hline
-QI.75 &  &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
-\hline
-QI.76 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
-\hline
-QI.77 &  &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
-\hline
-QI.78 &  &  & \checkmark &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
-\hline
-QI.79 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
-\end{longtable}
-}
-\end{center}
+We notice that there is a plethora of tools that automatically checks the quality of  information. These tools are either syntactic checkers or statistical profiling tools covering the objective indicators.
 
 As a result, we have identified the need for a complete quality framework that can assess all the quality indicators. Most of the tools were designed with limited coverage to certain aspects, for example, ontology and vocabulary checkers focus mainly on the coherence, completeness and correctness at the modeling level. Flemming's tool covers several attributes like the completeness, correctness, conciseness, security, licensing and comprehensibility, but it falls short in measuring the consistency, coherence, efficiency and provenance.\\
 
 We have also noticed the lack of tools to measure certain quality indicators like the dataset's security. Moreover, to our knowledge, there are no tools that can measure all the provenance quality indicators (except for Flemming's tool that is able to check for the use of digital signatures) although the literature covers several approaches to achieve that \cite{Hartig09usingweb}\cite{Flouris2012}\cite{Harth2009}. \\
+
+\section{An Extensible Objective Quality Assessment Tool}
+
+\section{Experiments and Evaluation}
 
 \section{Conclusions and Future Work}
 
