@@ -14,6 +14,7 @@
 \begin{document}
 \begin{frontmatter}
 
+
 \title{An Objective Assessment Framework for Linked Data Quality}
 \subtitle{Automatic Detection of Linked Data Quality Problems}
 \author[A,B]{Ahmad Assaf},\author[A]{Aline Senart} and
@@ -222,7 +223,7 @@ Security is a quality attribute that is measured on the dataset level. It is ide
 \hline
 \multirow{2}{*}{Availability} & \multirow{2}{*}{Dataset Level} & QI.16 & Existence of an RDF dump that can be downloaded by users \cite{flemming2010}\cite{Hogan2010}\tabularnewline
 \cline{3-4}
- &  & QI.17 & Existence of queryable endpoints that respond to direct queries\tabularnewline
+ &  & QI.17 & Existence of a SPARQL endpoint and that all queryable endpoints respond to direct queries \tabularnewline
 \hline
 \hline
 \multirow{3}{*}{Licensing} & \multirow{3}{*}{Dataset Level} & QI.18 & Existence of human and machine readable license information \cite{Hogan:2012:ESL:2263498.2264570}\tabularnewline
@@ -372,29 +373,30 @@ LODGRefine \cite{conf/i-semantics/Verlic12} is the Open Refine\footnote{http://o
 
 \subsubsection{Automatic Ranking Approaches}
 
-{\bf Link-based Approaches}\\
+\indent \\{\bf Link-based Approaches}
 
 The basic idea behind link assessment tools is to provide rankings for datasets based on the cardinality and types of the relationships with other datasets. Traditional link analysis has proven to be an effective way to measure the quality of Web documents search. Algorithms like PageRank \cite{Lawrence981} and HITS \cite{Kleinberg:1999} became successful based on the assumption that a certain Web document is considered to have higher importance or rank if it has more incoming links that other Web documents \cite{Brin:1998}\cite{Chakrabarti99miningthe}.\\ However, the basic assumption that links are equivalent does not suit the heterogeneous nature of links in the Linked Open Data. Thus, the previous approaches fall short to provide reliable rankings as the types of the links can have a direct impact on the ranking computation \cite{Toupikov2009}.\\ The first adaption of PageRank for Semantic Web resources was the Ontology Rank algorithm implemented in the Swoogle search engine \cite{Ding2004}. They use a rational random surfing model that takes into account the different types of links between discovered sets and compute rankings based on three levels of granularity: documents, terms and RDF graphs. ReConRank \cite{Hogan06reconrank:a} rankings are computed at query time based on two levels of granularity: resources and context graphs. DING \cite{Toupikov2009} adapted the PageRank to rank datasets based on their interconnections. DING can also automatically assign weights to different link types based on the nature of the predicate involved in the link.\\Broken links are a major threat to Linked Data. They occur when resources are removed, moved or updated. DSNotify\footnote{http://www.cibiv.at/~niko/dsnotify/}\cite{cs142} is a framework that informs data consumers about the various types of events that occur on data sources. Their approach is based on an indexing infrastructure that extracts feature vectors and stores them to an index. A monitoring module detects events on sources and write them to a central event log which pushes notifications to registered applications.\\ LinkQA \cite{Gueret2012} is a fully automated approach which takes a set of RDF triples as an input and analyses it to extract topological measures (links quality). The authors described five metrics to determine the quality of data (degree, clustering coefficient, centrality, sameAs chains and descriptive richness through sameAs).\\
 
-{\bf Provenance-based Approaches}\\
+\noindent{\bf Provenance-based Approaches}
 
 Provenance-based assessment methods are an important step towards transparency of data quality in the Semantic Web. In \cite{Hartig09usingweb}\footnote{http://trdf.sourceforge.net} the authors use a provenance model as an assessment method to evaluate the timeliness of Web data. Their model identifies types of ``provenance elements'' and the relationships between them. Provenance elements are classified into three types: actors, executions and artifacts. The assessment procedure is divided into three steps: 1) Creating provenance graph based on the defined model 2) Annotating the graph with impact values 3) Calculating the information quality score. In \cite{Flouris2012} the authors describe a set of provenance-based assessment metrics to support quality assessment and repair in Linked Open Data. They rely on both data and metadata and use indicators like the source reputation, freshness and plausibility. In \cite{Harth2009} the authors introduce the notion of naming authority which connects an identifier with the source to establish a connection to it's provenance. They construct a naming authority graph that acts as input to derive PageRank scores for the data sources.\\
 
-{\bf Entity-based Approaches}\\
+\noindent{\bf Entity-based Approaches}
 
 Sindice \cite{Delbru2010} uses a set of techniques to rank Web data. They use a combination of query dependent and query independent rankings implemented in the Semantic Information Retrieval Engine (SIREn)\footnote{http://siren.sindice.com/} to produce a final entity rank. Their query dependent approach rates individual entities by aggregating the the score of the matching terms with a term frequency - inverse subject frequency (tf-isf) algorithm. Their query independent ranking is done using hierarchical links analysis algorithms \cite{Delbru2010a}. The combination of these two approaches is used to generate a global weighted rank based on the dataset, entities and links ranks.\\
 
 \subsection{Queryable End-point Quality}
 
-The availability of Linked Data is highly dependent on the performance qualities of its queryable end-points. The standard query language for Semantic Web resources is SPARQL, thus SPARQL endpoints are the main focus. In \cite{Buil-Aranda2013}\footnote{http://labs.mondeca.com/sparqlEndpointsStatus/} the authors present their findings to measure the discoverability of SPARQL endpoints by analyzing how they are located and the metadata used to describe them. In addition to that, they also analyze endpoints interoperability by identifying features of SPARQL 1.0 and SPARQL 1.1 that are supported. The authors tackled the endpoints efficiency by testing the time taken to answer generic, content-agnostic SPARQL queries over HTTP.\\
+The availability of Linked Data is highly dependent on the performance qualities of its queryable end-points. The standard query language for Semantic Web resources is SPARQL, thus SPARQL endpoints are the main focus. In \cite{Buil-Aranda2013}\footnote{http://labs.mondeca.com/sparqlEndpointsStatus/} the authors present their findings to measure the discoverability of SPARQL endpoints by analyzing how they are located and the metadata used to describe them. In addition to that, they also analyze endpoints interoperability by identifying features of SPARQL 1.0 and SPARQL 1.1 that are supported. The authors tackled the endpoints efficiency by testing the time taken to answer generic, content-agnostic SPARQL queries over HTTP.\\\\\\
 
-We notice that there is a plethora of tools that automatically checks the quality of  information. These tools are either syntactic checkers or statistical profiling tools covering the objective indicators.
+\noindent
 
-As a result, we have identified the need for a complete quality framework that can assess all the quality indicators. Most of the tools were designed with limited coverage to certain aspects, for example, ontology and vocabulary checkers focus mainly on the coherence, completeness and correctness at the modeling level. Flemming's tool covers several attributes like the completeness, correctness, conciseness, security, licensing and comprehensibility, but it falls short in measuring the consistency, coherence, efficiency and provenance.\\
+\textbf{Summary}
+\indent \\\\
+\indent We notice that there is a plethora of tools (syntactic checkers or statistical profilers) that automatically check the quality of information at the entities level. Moreover, various tools can automatically check the models against the objective quality indicators mentioned. OOPS! covers all of them with additional support for the other common modeling pitfalls in \cite{DBLP:conf/ic3k/KeetSP13}. PoolParty covers also a wide set of those indicators but it targets SKOS vocabularies only. However, we notice a lack in automatic tools to check the dataset quality especially in its completeness, licensing and provenance measures.\\
+As a result, we have identified the need for a complete quality framework that can automatically assess all the objective quality indicators. In section 5, we propose an extensible framework were existing tools that can automatically measure the quality of various sections (entities and models) can be plugged in as well the introduction of our dataset quality checker that covers all the mentioned dataset and links quality indicators.
 
-We have also noticed the lack of tools to measure certain quality indicators like the dataset's security. Moreover, to our knowledge, there are no tools that can measure all the provenance quality indicators (except for Flemming's tool that is able to check for the use of digital signatures) although the literature covers several approaches to achieve that \cite{Hartig09usingweb}\cite{Flouris2012}\cite{Harth2009}. \\
-
-\section{An Extensible Objective Quality Assessment Tool}
+\section{An Extensible Objective Quality Assessment Framework}
 
 \section{Experiments and Evaluation}
 
