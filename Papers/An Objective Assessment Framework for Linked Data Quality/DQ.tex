@@ -96,13 +96,178 @@ Building on these principles, we group the quality attributes into four main cat
 & {\bf Quality of the linking process}: quality indicators that focus on the inbound and outbound links between datasets.\\
 \end{easylist}
 
-In our previous work \cite{assaf2012} we have identified 24 different Linked Data quality attributes. In this paper, we refine these attributes into a condensed framework of 9 objective measures. Since these measures are rather abstract, we should rely on quality indicators that reflect data quality \cite{flemming2010}. In this paper, we transform the quality indicators presented as a set of questions in \cite{assaf2012} into more concrete quality indicator metrics. We extend them with the the objective quality indicators listed in the systematic review done in \cite{Framework2012}. Independent indicators for entity quality are mainly subjective e.g. the degree to which all the real-world objects are represented, the scope and level of details, etc. However, since entities are governed by the underlying model, we have grouped their indicators with those of the modeling quality. Table(1) lists the refined measures alongside their quality indicators. These attributes are: \\
+In our previous work \cite{assaf2012} we have identified 24 different Linked Data quality attributes. In this paper, we refine these attributes into a condensed framework of 9 objective measures. Since these measures are rather abstract, we should rely on quality indicators that reflect data quality \cite{flemming2010}. In this paper, we transform the quality indicators presented as a set of questions in \cite{assaf2012} into more concrete quality indicator metrics. Our proposed tool supports data quality assessment for datasets hosted on CKAN\footnote{http://ckan.org} powered data portals. As a result, we support the suggestion of quality indicators with examples based on the CKAN standard dataset model\footnote{http://demo.ckan.org/api/3/action/package\_show?id=adur\_district\_spending}.\\
+Independent indicators for entity quality are mainly subjective e.g. the degree to which all the real-world objects are represented, the scope and level of details, etc. However, since entities are governed by the underlying model, we have grouped their indicators with those of the modeling quality. Table 1 lists the refined measures alongside their quality indicators. These attributes are presented in the following sections. \\
+
+\begin{center}
+{\footnotesize
+\begin{longtable}[h]{|c|c|c|l|}
+\caption[Objective Linked Data Quality Framework]{Objective Linked Data Quality Framework} \label{DQM} \\
+
+\hline \multicolumn{1}{|c|}{\textbf{Quality Attribute}} & \multicolumn{1}{c|}{\textbf{Quality Category}} & \multicolumn{1}{c|}{\textbf{ID}} & \multicolumn{1}{c|}{\textbf{Quality Indicator}} \\ \hline
+\endfirsthead
+
+\multicolumn{4}{c}%
+{{\bfseries \tablename\ \thetable{} Objective Linked Data Quality Framework}} \\
+\hline \multicolumn{1}{|c|}{\textbf{Quality Attribute}} &
+\multicolumn{1}{c|}{\textbf{Quality Category}} & \textbf{ID} &
+\multicolumn{1}{c|}{\textbf{Quality Indicator}} \\ \hline
+\endhead
+
+\multicolumn{4}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\endlastfoot
+
+\multirow{15}{*}{Completeness}
+ & \multirow{5}{*}{Dataset Level} & QI.1 & Existence of supporting structured metadata  \cite{Hogan2010}\tabularnewline
+\cline{3-4}
+ &  & QI.2 & Supports multiple serializations \cite{Framework2012}\tabularnewline
+\cline{3-4}
+ &  & QI.3 & Has different data access points \tabularnewline
+\cline{3-4}
+ &  & QI.4 & Uses datasets description vocabularies \tabularnewline
+\cline{3-4}
+ &  & QI.5 & Existence of descriptions about its size categorization \tabularnewline
+ \cline{3-4}
+ &  & QI.6 & Existence of descriptions about its structure (MIME Type, Format) \tabularnewline
+ \cline{3-4}
+ &  & QI.7 & Existence of descriptions about its organization and categorization \tabularnewline
+ \cline{3-4}
+ &  & QI.8 & Existence of information about the kind and number of used vocabularies \cite{Framework2012}\tabularnewline
+\cline{2-4}
+ & \multirow{1}{*}{Links Level} & QI.9 & Existence of dereferencable links for the dataset \cite{Hogan2010}\cite{Mader2012}\cite{Gueret2012}\tabularnewline
+\cline{2-4}
+ & \multirow{4}{*}{Model Level} & QI.10 & Absence of disconnected graph clusters \cite{Mader2012}\tabularnewline
+\cline{3-4}
+ &  & QI.11 & Absence of omitted top concept \cite{Hogan2010}\tabularnewline
+ \cline{3-4}
+ &  & QI.12 & Has complete language coverage \cite{Mader2012}\tabularnewline
+\cline{3-4}
+ &  & QI.13 & Absence of unidirectional related concepts \cite{Hogan2010}\tabularnewline
+ \cline{3-4}
+ &  & QI.14 & Absence of missing labels \cite{Mader2012}\tabularnewline
+ \cline{3-4}
+ &  & QI.15 & Absence of missing equivalent properties \cite{DBLP:conf/ic3k/KeetSP13}\tabularnewline
+ \cline{3-4}
+ &  & QI.16 & Absence of missing inverse relationships \cite{DBLP:conf/ic3k/KeetSP13}\tabularnewline
+ \cline{3-4}
+ &  & QI.17 & Absence of missing domain or range values in properties \cite{DBLP:conf/ic3k/KeetSP13}\tabularnewline
+\hline
+\hline
+\multirow{2}{*}{Availability} & \multirow{2}{*}{Dataset Level} & QI.18 & Existence of an RDF dump that can be downloaded by users \cite{flemming2010}\cite{Hogan2010}\tabularnewline
+\cline{3-4}
+ &  & QI.19 & Existence of a queryable endpoint that responds to direct queries \tabularnewline
+\cline{3-4}
+ &  & QI.20 & Existence of valid dereferencable URLs (respond to HTTP request) \tabularnewline
+\hline
+\hline
+\multirow{3}{*}{Licensing} & \multirow{3}{*}{Dataset Level} & QI.21 & Existence of human and machine readable license information \cite{Hogan:2012:ESL:2263498.2264570}\tabularnewline
+\cline{3-4}
+ &  & QI.22 & Existence of de-referenceable links to the full license information  \cite{Hogan:2012:ESL:2263498.2264570}\tabularnewline
+\cline{3-4}
+ &  & QI.23 & Specifies permissions, copyrights and attributions  \cite{Framework2012}\tabularnewline
+\hline
+\hline
+\multirow{1}{*}{Freshness} & \multirow{1}{*}{Dataset Level} & QI.24 & Existence of timestamps that can keep track of its modifications  \cite{Flouris2012}\tabularnewline
+\hline
+\hline
+\multirow{11}{*}{Correctness}  & \multirow{2}{*}{Dataset Level} & QI.25 & Includes the correct MIME-type for the content  \cite{Hogan2010}\tabularnewline
+\cline{3-4}
+ &  & QI.26 & Includes the correct size for the content \tabularnewline
+ \cline{3-4}
+ &  & QI.27 & Absence of syntactic errors on the instance level \cite{Hogan2010}\tabularnewline
+\cline{2-4}
+ & \multirow{2}{*}{Links Level} & QI.28 & Absence of syntactic errors  \cite{Suominen2013}\tabularnewline
+ \cline{3-4}
+ &  & QI.29 & Use the HTTP URI scheme (avoid using URNs or DOIs) \cite{Mader2012}\tabularnewline
+\cline{2-4}
+ & \multirow{7}{*}{Model Level} & QI.30 & Contains marked top concepts \cite{Mader2012}\tabularnewline
+\cline{3-4}
+ &  & QI.31 & Absence of broader concepts for top concepts \cite{Mader2012}\tabularnewline
+ \cline{3-4}
+ & & QI.32 & Absence of missing or empty labels \cite{Acosta2013}\cite{Mader2012}\tabularnewline
+  \cline{3-4}
+ & & QI.33 & Absence of unprintable characters \cite{Acosta2013}\cite{Mader2012} or extra white spaces in labels \cite{Suominen:2012:IQS:2413941.2413985}\tabularnewline
+\cline{3-4}
+ &  & QI.34 & Absence of incorrect data type for typed literals \cite{Hogan2010}\cite{Acosta2013} \tabularnewline
+\cline{3-4}
+ &  & QI.35 & Absence of omitted or invalid languages tags \cite{Suominen:2012:IQS:2413941.2413985}\cite{Mader2012}\tabularnewline
+\cline{3-4}
+ &  & QI.36 & Absence of terms without any associative or hierarchical relationships \cite{journals/ires/Living10}\tabularnewline
+\hline
+\hline
+\multirow{7}{*}{Comprehensibility} & \multirow{4}{*}{Dataset Level} & QI.37 & Existence of at least one exemplary URI \cite{Framework2012}\tabularnewline
+\cline{3-4}
+ &  & QI.38 & Existence of at least one exemplary SPARQL query \cite{Framework2012}\tabularnewline
+ \cline{3-4}
+ &  & QI.39 &  Existence of general information (title, URL, description) for the dataset \tabularnewline
+\cline{3-4}
+ &  & QI.40 & Existence of a mailing list, message board or point of contact \cite{flemming2010}\tabularnewline
+ \cline{2-4}
+ & \multirow{3}{*}{Model Level} & QI.41 & Absence of misuse of ontology annotations \cite{Mader2012}\cite{DBLP:conf/ic3k/KeetSP13}\tabularnewline
+  \cline{3-4}
+ & & QI.42 & Existence of annotations for concepts \cite{DBLP:conf/ic3k/KeetSP13}\tabularnewline
+ \cline{3-4}
+ & & QI.43 & Existence of documentation for concepts \cite{Mader2012}\cite{DBLP:conf/ic3k/KeetSP13}\tabularnewline
+\hline
+\hline
+\multirow{3}{*}{Provenance} & \multirow{2}{*}{Dataset Level} & QI.44 & Existence of metadata that describes its authoritative information  \cite{Flouris2012}\tabularnewline
+\cline{3-4}
+ &  & QI.45 & Usage of a provenance vocabulary\tabularnewline
+ \cline{3-4}
+ &  & QI.46 & Usage of a provenance timestamps\tabularnewline
+\hline
+\hline
+\multirow{10}{*}{Coherence} & \multirow{10}{*}{Model Level} & QI.47 & Absence of misplaced or deprecated classes or properties  \cite{Hogan2010}\tabularnewline
+\cline{3-4}
+ &  & QI.48 & Absence of relation and mappings clashes  \cite{Suominen:2012:IQS:2413941.2413985}\tabularnewline
+\cline{3-4}
+ &  & QI.49 & Absence of blank nodes \cite{Hogan:2012:ESL:2263498.2264570}\tabularnewline
+\cline{3-4}
+ &  & QI.50 & Absence of invalid inverse-functional values \cite{Hogan2010}\tabularnewline
+\cline{3-4}
+ &  & QI.51 & Absence of cyclic hierarchical relations \cite{conf/jcdl/Soergel05}\cite{Suominen:2012:IQS:2413941.2413985}\cite{Mader2012}\tabularnewline
+\cline{3-4}
+ &  & QI.52 & Absence of undefined classes and properties usage \cite{Hogan2010}\tabularnewline
+\cline{3-4}
+ &  & QI.53 & Absence of solely transitive related concepts \cite{Mader2012}\tabularnewline
+\cline{3-4}
+ &  & QI.54 & Absence of redefinitions of existing vocabularies  \cite{Hogan2010}\tabularnewline
+\cline{3-4}
+ &  & QI.55 & Absence of valueless associative relations  \cite{Mader2012}\tabularnewline
+\hline
+\hline
+\multirow{7}{*}{Consistency}
+ & \multirow{7}{*}{Model Level}
+& QI.56 & Consistent usage of preferred labels per language tag \cite{skosprimer}\cite{Mader2012}\tabularnewline
+ \cline{3-4}
+ & & QI.57 & Consistent usage of naming criteria for concepts \cite{DBLP:conf/ic3k/KeetSP13}\tabularnewline
+\cline{3-4}
+ &  & QI.58 & Absence of overlapping labels\tabularnewline
+\cline{3-4}
+ &  & QI.59 & Absence of disjoint labels \cite{Mader2012}\tabularnewline
+\cline{3-4}
+ & & QI.60 & Absence of atypical use of collections, containers and reification \cite{Hogan2010}\tabularnewline
+\cline{3-4}
+ &  & QI.61 & Absence of wrong equivalent, symmetric or transitive relationships \cite{DBLP:conf/ic3k/KeetSP13}\tabularnewline
+\cline{3-4}
+ &  & QI.62 & Absence of membership violations for disjoint classes \cite{Hogan2010}\tabularnewline
+\hline
+\hline
+\multirow{2}{*}{Security} & \multirow{2}{*}{Dataset Level} & QI.63 & Uses login credentials to restrict access \cite{Framework2012}\tabularnewline
+\cline{3-4}
+ &  & QI.64 & Uses SSL or SSH to provide access to their dataset \cite{Framework2012}\tabularnewline
+\hline
+\end{longtable}
+}
+\end{center}
 
  \subsection{Completeness}
 
 Data completeness can be judged in the presence of a task where the ideal set of attributes and objects are known. It is generally a subjective measure depending highly on the scenario and use-case in hand. For example, An entity is considered to be complete if it contains all the attributes needed for a given task, has complete language coverage \cite{Mader2012} and has documentation properties \cite{w3c_skos_rec}\cite{Mader2012}.\\
 Dataset completeness has some objective measures which we include in our framework. A dataset is considered to be complete if it contains supporting structured metadata \cite{Hogan2010}, supports providing data in multiple serializations \cite{Framework2012}, has different queryable endpoints to access the data (i.e. SPARQL endpoint, RDF Dump, REST API, etc.) \cite{Framework2012}, uses datasets description vocabularies like DCAT\footnote{http://www.w3.org/TR/vocab-dcat/} or VOID\footnote{http://www.w3.org/TR/void/} and if the publishers provide descriptions about the size (e.g. \texttt{void:statItem}, \texttt{void:numberOfTriples} or \texttt{void:numberOfDocuments}) and categorization (e.g. \texttt{dcterms:subject}) of the dataset and if there exists metadata information about the kind and number of used vocabularies \cite{Framework2012}.\\
-Links are considered to be complete if all the in-bound and out-bound links are de-referenceable \cite{Hogan2010}\cite{Mader2012}\cite{Gueret2012}.\\
+Links are considered to be complete if all the inbound and outbound links are de-referenceable \cite{Hogan2010}\cite{Mader2012}\cite{Gueret2012}.\\
 Models are considered to be complete if they do not contain disconnected graph clusters \cite{Mader2012}. Disconnected graphs are the result of incomplete data acquisition or accidental deletion of terms that leads to deprecated terms. In addition to that, models are considered to be complete if they have complete language coverage (each concept labeled in each of the languages that are also used on the other concepts) \cite{Mader2012}, do not contain omitted top concepts or unidirectional related concepts \cite{Hogan2010} and if they are not missing labels \cite{Mader2012}, equivalent properties, inverse relationships, domain or range values in properties \cite{DBLP:conf/ic3k/KeetSP13}.
 
 \subsection{Availability}
@@ -167,160 +332,6 @@ Coherence is the ability to interpret data as expected by the publisher or vocab
 \subsection{Security}
 
 Security is a quality attribute that is measured on the dataset level. It is identified if the publishers use login credentials, SSL or SSH to provide access to their dataset, or if they only grant access to specific users \cite{Framework2012}.
-
-\begin{center}
-{\footnotesize
-\begin{longtable}[h]{|c|c|c|l|}
-\caption[Objective Assessment Framework for Linked Data Quality]{Objective Assessment Framework for Linked Data Quality} \label{DQM} \\
-
-\hline \multicolumn{1}{|c|}{\textbf{Quality Attribute}} & \multicolumn{1}{c|}{\textbf{Quality Category}} & \multicolumn{1}{c|}{\textbf{ID}} & \multicolumn{1}{c|}{\textbf{Quality Indicator}} \\ \hline
-\endfirsthead
-
-\multicolumn{4}{c}%
-{{\bfseries \tablename\ \thetable{} Objective Assessment Framework for Linked Data Quality}} \\
-\hline \multicolumn{1}{|c|}{\textbf{Quality Attribute}} &
-\multicolumn{1}{c|}{\textbf{Quality Category}} & \textbf{ID} &
-\multicolumn{1}{c|}{\textbf{Quality Indicator}} \\ \hline
-\endhead
-
-\multicolumn{4}{|r|}{{Continued on next page}} \\ \hline
-\endfoot
-
-\endlastfoot
-
-\multirow{15}{*}{Completeness}
- & \multirow{5}{*}{Dataset Level} & QI.1 & Existence of supporting structured metadata  \cite{Hogan2010}\tabularnewline
-\cline{3-4}
- &  & QI.2 & Supports multiple serializations \cite{Framework2012}\tabularnewline
-\cline{3-4}
- &  & QI.3 & Has different queryable endpoints to access the data \cite{Framework2012}\tabularnewline
-\cline{3-4}
- &  & QI.4 & Uses datasets description vocabularies \tabularnewline
-\cline{3-4}
- &  & QI.5 & Existence of descriptions about its size and categorization \tabularnewline
- \cline{3-4}
- &  & QI.6 & Existence of information about the kind and number of used vocabularies \cite{Framework2012}\tabularnewline
-\cline{2-4}
- & \multirow{1}{*}{Links Level} & QI.7 & Existence of dereferenceable in-bound and out-bound links \cite{Hogan2010}\cite{Mader2012}\cite{Gueret2012}\tabularnewline
-\cline{2-4}
- & \multirow{4}{*}{Model Level} & QI.8 & Absence of disconnected graph clusters \cite{Mader2012}\tabularnewline
-\cline{3-4}
- &  & QI.9 & Absence of omitted top concept \cite{Hogan2010}\tabularnewline
- \cline{3-4}
- &  & QI.10 & Has complete language coverage \cite{Mader2012}\tabularnewline
-\cline{3-4}
- &  & QI.11 & Absence of unidirectional related concepts \cite{Hogan2010}\tabularnewline
- \cline{3-4}
- &  & QI.12 & Absence of missing labels \cite{Mader2012}\tabularnewline
- \cline{3-4}
- &  & QI.13 & Absence of missing equivalent properties \cite{DBLP:conf/ic3k/KeetSP13}\tabularnewline
- \cline{3-4}
- &  & QI.14 & Absence of missing inverse relationships \cite{DBLP:conf/ic3k/KeetSP13}\tabularnewline
- \cline{3-4}
- &  & QI.15 & Absence of missing domain or range values in properties \cite{DBLP:conf/ic3k/KeetSP13}\tabularnewline
-\hline
-\hline
-\multirow{2}{*}{Availability} & \multirow{2}{*}{Dataset Level} & QI.16 & Existence of an RDF dump that can be downloaded by users \cite{flemming2010}\cite{Hogan2010}\tabularnewline
-\cline{3-4}
- &  & QI.17 & Existence of a SPARQL endpoint and all endpoints respond to direct queries \tabularnewline
-\hline
-\hline
-\multirow{3}{*}{Licensing} & \multirow{3}{*}{Dataset Level} & QI.18 & Existence of human and machine readable license information \cite{Hogan:2012:ESL:2263498.2264570}\tabularnewline
-\cline{3-4}
- &  & QI.19 & Existence of de-referenceable links to the full license information  \cite{Hogan:2012:ESL:2263498.2264570}\tabularnewline
-\cline{3-4}
- &  & QI.20 & Specifies permissions, copyrights and attributions  \cite{Framework2012}\tabularnewline
-\hline
-\hline
-\multirow{1}{*}{Freshness} & \multirow{1}{*}{Dataset Level} & QI.21 & Existence of timestamps that can keep track of its modifications  \cite{Flouris2012}\tabularnewline
-\hline
-\hline
-\multirow{11}{*}{Correctness}  & \multirow{2}{*}{Dataset Level} & QI.22 & Includes the correct MIME-type for the content  \cite{Hogan2010}\tabularnewline
-\cline{3-4}
- &  & QI.23 & Absence of syntactic errors \cite{Hogan2010}\tabularnewline
-\cline{2-4}
- & \multirow{2}{*}{Links Level} & QI.24 & Absence of syntactic errors  \cite{Suominen2013}\tabularnewline
- \cline{3-4}
- &  & QI.25 & Use the HTTP URI scheme (avoid using URNs or DOIs) \cite{Mader2012}\tabularnewline
-\cline{2-4}
- & \multirow{7}{*}{Model Level} & QI.26 & Contains marked top concepts \cite{Mader2012}\tabularnewline
-\cline{3-4}
- &  & QI.27 & Absence of broader concepts for top concepts \cite{Mader2012}\tabularnewline
- \cline{3-4}
- & & QI.28 & Absence of missing or empty labels \cite{Acosta2013}\cite{Mader2012}\tabularnewline
-  \cline{3-4}
- & & QI.29 & Absence of unprintable characters \cite{Acosta2013}\cite{Mader2012} or extra white spaces in labels \cite{Suominen:2012:IQS:2413941.2413985}\tabularnewline
-\cline{3-4}
- &  & QI.30 & Absence of incorrect data type for typed literals \cite{Hogan2010}\cite{Acosta2013} \tabularnewline
-\cline{3-4}
- &  & QI.31 & Absence of omitted or invalid languages tags \cite{Suominen:2012:IQS:2413941.2413985}\cite{Mader2012}\tabularnewline
-\cline{3-4}
- &  & QI.32 & Absence of terms without any associative or hierarchical relationships \cite{journals/ires/Living10}\tabularnewline
-\hline
-\hline
-\multirow{7}{*}{Comprehensibility} & \multirow{4}{*}{Dataset Level} & QI.33 & Existence of at least one exemplary URI \cite{Framework2012}\tabularnewline
-\cline{3-4}
- &  & QI.34 & Existence of at least one exemplary SPARQL query \cite{Framework2012}\tabularnewline
- \cline{3-4}
- &  & QI.35 &  Existence of a title, description and URI for the dataset \tabularnewline
-\cline{3-4}
- &  & QI.36 & Existence of a mailing list, message board or point of contact \cite{flemming2010}\tabularnewline
- \cline{2-4}
- & \multirow{3}{*}{Model Level} & QI.37 & Absence of misuse of ontology annotations \cite{Mader2012}\cite{DBLP:conf/ic3k/KeetSP13}\tabularnewline
-  \cline{3-4}
- & & QI.38 & Existence of annotations for concepts \cite{DBLP:conf/ic3k/KeetSP13}\tabularnewline
- \cline{3-4}
- & & QI.39 & Existence of documentation for concepts \cite{Mader2012}\cite{DBLP:conf/ic3k/KeetSP13}\tabularnewline
-\hline
-\hline
-\multirow{3}{*}{Provenance} & \multirow{2}{*}{Dataset Level} & QI.40 & Existence of metadata that describes its authoritative information  \cite{Flouris2012}\tabularnewline
-\cline{3-4}
- &  & QI.41 & Usage of a provenance vocabulary\tabularnewline
-\hline
-\hline
-\multirow{10}{*}{Coherence} & \multirow{10}{*}{Model Level} & QI.42 & Absence of misplaced or deprecated classes or properties  \cite{Hogan2010}\tabularnewline
-\cline{3-4}
- &  & QI.43 & Absence of relation and mappings clashes  \cite{Suominen:2012:IQS:2413941.2413985}\tabularnewline
-\cline{3-4}
- &  & QI.44 & Absence of blank nodes \cite{Hogan:2012:ESL:2263498.2264570}\tabularnewline
-\cline{3-4}
- &  & QI.45 & Absence of invalid inverse-functional values \cite{Hogan2010}\tabularnewline
-\cline{3-4}
- &  & QI.46 & Absence of cyclic hierarchical relations \cite{conf/jcdl/Soergel05}\cite{Suominen:2012:IQS:2413941.2413985}\cite{Mader2012}\tabularnewline
-\cline{3-4}
- &  & QI.47 & Absence of undefined classes and properties usage \cite{Hogan2010}\tabularnewline
-\cline{3-4}
- &  & QI.48 & Absence of solely transitive related concepts \cite{Mader2012}\tabularnewline
-\cline{3-4}
- &  & QI.49 & Absence of redefinitions of existing vocabularies  \cite{Hogan2010}\tabularnewline
-\cline{3-4}
- &  & QI.50 & Absence of valueless associative relations  \cite{Mader2012}\tabularnewline
-\hline
-\hline
-\multirow{7}{*}{Consistency}
- & \multirow{7}{*}{Model Level}
-& QI.51 & Consistent usage of preferred labels per language tag \cite{skosprimer}\cite{Mader2012}\tabularnewline
- \cline{3-4}
- & & QI.52 & Consistent usage of naming criteria for concepts \cite{DBLP:conf/ic3k/KeetSP13}\tabularnewline
-\cline{3-4}
- &  & QI.53 & Absence of overlapping labels\tabularnewline
-\cline{3-4}
- &  & QI.54 & Absence of disjoint labels \cite{Mader2012}\tabularnewline
-\cline{3-4}
- & & QI.55 & Absence of atypical use of collections, containers and reification \cite{Hogan2010}\tabularnewline
-\cline{3-4}
- &  & QI.56 & Absence of wrong equivalent, symmetric or transitive relationships \cite{DBLP:conf/ic3k/KeetSP13}\tabularnewline
-\cline{3-4}
- &  & QI.57 & Absence of membership violations for disjoint classes \cite{Hogan2010}\tabularnewline
-\hline
-\hline
-\multirow{2}{*}{Security} & \multirow{2}{*}{Dataset Level} & QI.58 & Uses login credentials to restrict access \cite{Framework2012}\tabularnewline
-\cline{3-4}
- &  & QI.59 & Uses SSL or SSH to provide access to their dataset \cite{Framework2012}\tabularnewline
-\hline
-\end{longtable}
-}
-\end{center}
 
 \section{Linked Data Quality Tools}
 In this section, we present the results of our survey on the Linked Data quality tools. There exists a number of data quality frameworks and tools that are either standalone or implemented as modules in data integration tools. These approaches can be classified into automatic, semi-automatic, manual or crowd sourced approaches.
