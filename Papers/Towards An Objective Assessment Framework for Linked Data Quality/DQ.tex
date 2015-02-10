@@ -9,6 +9,7 @@
 \usepackage{array}
 \usepackage{booktabs}
 \usepackage{rotating}
+\usepackage{listings}
 \def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;}
 
 \graphicspath{ {figures/} }
@@ -97,7 +98,7 @@ Building on these principles, we group the quality attributes into four main cat
 & {\bf Quality of the linking process}: quality indicators that focus on the inbound and outbound links between datasets.\\
 \end{easylist}
 
-In our previous work \cite{assaf2012} we have identified 24 different Linked Data quality attributes. In this paper, we refine these attributes into a condensed framework of 9 objective measures. Since these measures are rather abstract, we should rely on quality indicators that reflect data quality \cite{flemming2010}. In this paper, we transform the quality indicators presented as a set of questions in \cite{assaf2012} into more concrete quality indicator metrics.\\
+In our previous work \cite{assaf2012} we have identified 24 different Linked Data quality attributes. In this paper, we refine these attributes into a condensed framework of 10 objective measures. Since these measures are rather abstract, we should rely on quality indicators that reflect data quality \cite{flemming2010}. In this paper, we transform the quality indicators presented as a set of questions in \cite{assaf2012} into more concrete quality indicator metrics.\\
 Independent indicators for entity quality are mainly subjective e.g. the degree to which all the real-world objects are represented, the scope and level of details, etc. However, since entities are governed by the underlying model, we have grouped their indicators with those of the modeling quality. Table 1 lists the refined measures alongside their quality indicators. These attributes are presented in the following sections. \\
 
 \begin{center}
@@ -198,7 +199,7 @@ Independent indicators for entity quality are mainly subjective e.g. the degree 
  &  & QI.36 & Absence of terms without any associative or hierarchical relationships \cite{journals/ires/Living10}\tabularnewline
 \hline
 \hline
-\multirow{7}{*}{Comprehensibility} & \multirow{4}{*}{Dataset Level} & QI.37 & Existence of at least one exemplary URI \cite{Framework2012}\tabularnewline
+\multirow{7}{*}{Comprehensibility} & \multirow{4}{*}{Dataset Level} & QI.37 & Existence of at least one exemplary RDF file \cite{Framework2012}\tabularnewline
 \cline{3-4}
  &  & QI.38 & Existence of at least one exemplary SPARQL query \cite{Framework2012}\tabularnewline
  \cline{3-4}
@@ -312,7 +313,7 @@ Licensing is a quality attribute that is measured on the dataset level. It inclu
 
 \subsection{Comprehensibility}
 
-Dataset comprehensibility is identified if the publisher provides general information about the dataset e.g.title, description, URI, etc. In addition, if he indicates at least one exemplary URI and SPARQL query and provides an active communication channel (mailing list, message board or e-mail)\cite{flemming2010}.\\ A model is considered to be comprehensible if there is no misuse of ontology annotations and that all the concepts are documented and annotated \cite{Mader2012}\cite{DBLP:conf/ic3k/KeetSP13}.
+Dataset comprehensibility is identified if the publisher provides general information about the dataset e.g.title, description, URI, etc. In addition, if he indicates at least one exemplary RDF file and SPARQL query and provides an active communication channel (mailing list, message board or e-mail)\cite{flemming2010}.\\ A model is considered to be comprehensible if there is no misuse of ontology annotations and that all the concepts are documented and annotated \cite{Mader2012}\cite{DBLP:conf/ic3k/KeetSP13}.
 
 \subsection{Coherence}
 
@@ -340,6 +341,7 @@ We have identified that most of the dataset quality issues can be assessed by ex
 
 \begin{center}
 {
+\small
 \begin{tabular}{|c|L|}
 
 \hline
@@ -378,7 +380,7 @@ QI.25 & Check if the \texttt{content-type} extracted from the a valid HTTP reque
 \hline
 QI.26 & Check if the \texttt{content-length} extracted from the a valid HTTP request is equal to the corresponding \texttt{size} field.\tabularnewline
 \hline
-QI.28 & Check that all the links are valid HTTP scheme URIs\tabularnewline
+QI.28,29 & Check that all the links are valid HTTP scheme URIs\tabularnewline
 \hline
 QI.37 & Check if there is at least one resource with a \texttt{format} value corresponding to one of \texttt{example/rdf+xml, example/turtle, example/ntriples, example/x-quads, example/rdfa, example/x-trig}\tabularnewline
 \hline
@@ -395,7 +397,50 @@ QI.46 & Check if the dataset contain and its resources contain versioning inform
 }
 \end{center}
 
+In our framework, we have presented 30 objective quality indicators related to dataset and links quality. Our tool is able to assess and score 23 of them. We excluded security related quality indicators as LOD cloud group members should not restrict access to their datasets. Our tool is not able to check the existence of information about the kind and number of used vocabularies (QI.8), license permissions, copyrights and attributes (QI.23), exemplary SPARQL query (QI.38), usage of provenance vocabulary (QI.45) and is not able to check the dataset for syntactic errors (QI.27).\\These shortcomings are mainly due to the limitations in the CKAN dataset model. However, syntactic checkers and additional modules to examine vocabularies usage could be easily integrated in our framework to fix QI.27, QI.8 and QI.45. Our metadata quality profiler presented as part of our framework can fix QI.23 as we have manually created a mapping file standardizing the set of possible license names and their information\footnote{https://github.com/ahmadassaf/opendata-checker/blob/master/util/licenseMappings.json}. We have also used the open source and knowledge license information\footnote{https://github.com/okfn/licenses} to normalize license information and add extra metadata like the domain, maintainer and open data conformance.
+
+\subsection{Quality Score Calculation}
+
+A CKAN dataset metadata describes three main sections in addition to the core dataset's properties. Those are the groups, tags and resources. Each section contains a set of metadata corresponding to one or more metadata type.
+
+\lstset{basicstyle=\small, backgroundcolor=\color{white}, breaklines=false, frame=single, caption={Excerpt of the LOD cloud group quality report}, label=report, captionpos=b}
+\begin{lstlisting}
+   ============================================================================
+                            Dataset Quality Report
+   ============================================================================
+   completeness quality Score      :   77.76%
+   availability quality Score      :   74.50%
+   licensing quality Score         :   60.88%
+   freshness quality Score         :   45.90%
+   correctness quality Score       :   53.96%
+   comprehensibility quality Score :   60.78%
+   provenance quality Score        :   49.38%
+   Average total quality Score     :   60.45%
+   ============================================================================
+                            Data Quality Problems
+   ============================================================================
+   Supports multiple serializations : 88.65%
+   Has different data access points : 80.69%
+   Uses datasets description vocabularies : 88.80%
+   Existence of descriptions about its organization and categorization : 41.67%
+   Existence of information about the kind and number of used vocabularies : 0%
+   Existence of an RDF dump that can be downloaded by users : 84.17%
+   Existence of queryable endpoints that respond to direct queries : 96.14%
+\end{lstlisting}
+
 \section{Experiments and Evaluation}
+
+In this section, we provide the experiments and evaluation of the proposed framework. All the experiments are reproducible by our tool and their results are available on the its Github repository.\\
+We have run the framework on the LOD cloud containing 259 datasets at the time of writing this paper. We ran the instance and resource extractor in order to cache the metadata files for these datasets locally and ran the quality assessment process which took around two hours and a half hour on a 2.6 Ghz Intel Core i7 processor with 16GB of DDR3 memory machine.\\
+
+Figure \ref{fig:2} shows the average errors percentage in quality indicators grouped by the corresponding measures. We found out that completeness and availability are the two dominant quality issues.  information for the dataset core information were ownership related as 41\% were missing or undefined. Datasets resources have the poorest metadata. 64\% of the general metadata, all the access information and 80\% of the provenance information contained missing or undefined values.
+
+\begin{figure}[ht!]
+  \centering
+    \includegraphics[height=7cm, width=13cm]{LOD_quality_indicators_grouped.png}
+  \caption{Average quality score per quality indicator for LOD group}
+  \label{fig:2}
+\end{figure}
 
 \section{Linked Data Quality Tools}
 In this section, we present the results of our survey on the Linked Data quality tools. There exists a number of data quality frameworks and tools that are either standalone or implemented as modules in data integration tools. These approaches can be classified into automatic, semi-automatic, manual or crowd sourced approaches.
