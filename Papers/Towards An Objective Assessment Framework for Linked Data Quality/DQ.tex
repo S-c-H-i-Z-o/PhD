@@ -12,13 +12,14 @@
 \def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;}
 
 \graphicspath{ {figures/} }
+\newcolumntype{L}{>{\arraybackslash}m{13cm}}
 
 \begin{document}
 \begin{frontmatter}
 
 
-\title{Towards An Objective Assessment Framework for Linked Data Quality}
-\subtitle{A Tool for Automatic Detection of Linked Data Quality Problems}
+\title{An Objective Assessment Framework \& Tool for Linked Data Quality}
+\subtitle{Enriching Dataset Profiles with Quality Indicators}
 \author[A,B]{Ahmad Assaf}, \author[A]{Aline Senart} and
 \author[B]{Rapha\"{e}l Troncy}
 \address[A]{SAP Research, SAP Labs France SAS,\\
@@ -54,9 +55,9 @@ The framework we propose is based on a refinement of the data quality principles
 
 Furthermore, we surveyed the landscape of Linked Data quality tools to discover that they only cover a subset of the proposed objective quality indicators. As a result, we present an extensible quality measurement tool and evaluate it by measuring the quality of the LOD cloud datasets. The results demonstrate that the general quality of LOD cloud needs more attention as most of the datasets suffer from various quality issues.\\
 
-This paper is structured as follows: Section 2 presents the related work, Section 3 presents the framework (objective quality measures and indicators); Section 4 reviews the existing tools and framework in the Linked Open Data quality landscape; Section 5 presents our tool for evaluating objective Linked Data quality indicators; Section 6 presents our evaluation and experiments running this tool on LOD; Section 7 presents concluding remarks and identifies future work.
+This paper is structured as follows: Section 2 presents the various quality assessment methodologies and frameworks, Section 3 presents our framework (objective quality measures and indicators); Section 4 presents our tool for evaluating objective Linked Data quality indicators; Section 5 presents our evaluation and experiments running this tool on LOD; Section 6 reviews the existing tools and framework in the Linked Open Data quality landscape; Section 7 presents concluding remarks and identifies future work.
 
-\section{Related Work}
+\section{Data Quality Assessment}
 
 In \cite{Framework2012}, the authors present a comprehensive systematic review of data quality assessment methodologies applied to LOD. They have extracted 26 quality dimensions and a total of 110 objective and subjective quality indicators. However, some of those objective indicators are dependent on the use case thus there is no clear separation on what can be automatically measured. For example, data completeness is generally a subjective dimension. However, the authors specified that the detection of the degree on which all the real-world objects are represented, detection of number of missing values for specific property and detection of the degree to which instances in the dataset are interlinked are considered as objective indicators given the presence of a gold standard or the original data source to compare with. Moreover, lots of the defined performance dimensions like low latency, high throughput or scalability of a data source were defined as objective but are still dependent on multiple subjective factors like network congestion. In addition, there were some missing objective indicators vital to the quality of LOD e.g. indication of the openness of the dataset.\\
 
@@ -66,8 +67,6 @@ ODI comes as an online and free questionnaire for data publishers focusing on ce
 Although ODI is a great initiative, the issued certificates are “self-certified“. ODI does not verify or review submissions but retains the right to revoke a certificate at any time. The dynamicity of Linked Data  makes it also very difficult to update the certificates manually, especially when these changes are frequent and affect multiple categories. There is clearly a need for automatic certification which can be supplemented with some manual input for categories that cannot be processed by machines.\\
 
 The emerging critical need for large, distributed, heterogeneous, and complex structured datasets identified the necessity to establish industry cooperation between vendors of RDF and Graph database technologies in developing, endorsing, and publishing reliable and insightful benchmark results. The Linked Data Benchmark Council (LDBC)\footnote{http://ldbc.eu/} aims to bridge the gap between the industry and the new trending stack of semantic technologies and their vendors. \\ LDBC more specifically aims at developing new benchmarks that will lead to significant progress in scalability, storage, indexing and query optimization techniques to become the de facto standard for publishing performance results. LDBC is a promising initiative, but it is still work in progress with the final report expected on the first quarter of 2015.\\
-
-The Data Hub LOD Validator\footnote{http://validator.lod-cloud.net/} gives an overview of Linked Data sources cataloged on the Data Hub. It offers a step-by-step validator guidance to check a dataset completeness level for inclusion in the LOD cloud. The results are divided into four different compliance levels from basic to reviewed and included in the LOD cloud. Although it is an excellent tool to monitor LOD compliance, it still lacks the ability to give detailed insights about the completeness of the metadata and overview on the state of the whole LOD cloud group and is very specific to the LOD cloud group rules and regulations.\\
 
 In \cite{DBLP:conf/i-semantics/RulaZ14}, the authors propose a methodology for assessing Linked Data quality. It consists of three main steps: (1) requirement analysis, (2) quality assessment and (3) quality improvement. Considering the multidimensionality of data quality, the methodology requires users to provide the details of a use case or a scenario that describes the intended usage of the data. Moreover, quality issues identification is done with the help of a checklist. The user must have prior knowledge about the details of the data in order to fill this list.\\
 Tools implementing the proposed methodology should be able to generate comprehensive quality measures. However, they will require heavy manual intervention and deep knowledge on the data examined. These issues highly affect detecting quality issue on large scale.\\
@@ -98,7 +97,7 @@ Building on these principles, we group the quality attributes into four main cat
 & {\bf Quality of the linking process}: quality indicators that focus on the inbound and outbound links between datasets.\\
 \end{easylist}
 
-In our previous work \cite{assaf2012} we have identified 24 different Linked Data quality attributes. In this paper, we refine these attributes into a condensed framework of 9 objective measures. Since these measures are rather abstract, we should rely on quality indicators that reflect data quality \cite{flemming2010}. In this paper, we transform the quality indicators presented as a set of questions in \cite{assaf2012} into more concrete quality indicator metrics. Our proposed tool supports data quality assessment for datasets hosted on CKAN\footnote{http://ckan.org} powered data portals. As a result, we support the suggestion of quality indicators with examples based on the CKAN standard dataset model\footnote{http://demo.ckan.org/api/3/action/package\_show?id=adur\_district\_spending}.\\
+In our previous work \cite{assaf2012} we have identified 24 different Linked Data quality attributes. In this paper, we refine these attributes into a condensed framework of 9 objective measures. Since these measures are rather abstract, we should rely on quality indicators that reflect data quality \cite{flemming2010}. In this paper, we transform the quality indicators presented as a set of questions in \cite{assaf2012} into more concrete quality indicator metrics.\\
 Independent indicators for entity quality are mainly subjective e.g. the degree to which all the real-world objects are represented, the scope and level of details, etc. However, since entities are governed by the underlying model, we have grouped their indicators with those of the modeling quality. Table 1 lists the refined measures alongside their quality indicators. These attributes are presented in the following sections. \\
 
 \begin{center}
@@ -218,7 +217,7 @@ Independent indicators for entity quality are mainly subjective e.g. the degree 
 \cline{3-4}
  &  & QI.45 & Usage of a provenance vocabulary\tabularnewline
  \cline{3-4}
- &  & QI.46 & Usage of a provenance timestamps\tabularnewline
+ &  & QI.46 & Usage of a versioning\tabularnewline
 \hline
 \hline
 \multirow{10}{*}{Coherence} & \multirow{10}{*}{Model Level} & QI.47 & Absence of misplaced or deprecated classes or properties  \cite{Hogan2010}\tabularnewline
@@ -268,17 +267,30 @@ Independent indicators for entity quality are mainly subjective e.g. the degree 
  \subsection{Completeness}
 
 Data completeness can be judged in the presence of a task where the ideal set of attributes and objects are known. It is generally a subjective measure depending highly on the scenario and use-case in hand. For example, an entity is considered to be complete if it contains all the attributes needed for a given task, has complete language coverage \cite{Mader2012} and has documentation properties \cite{w3c_skos_rec}\cite{Mader2012}.\\
-Dataset completeness has some objective measures which we include in our framework. A dataset is considered to be complete if it contains supporting structured metadata \cite{Hogan2010}, provides data in multiple serializations ()\cite{Framework2012}, has different queryable endpoints to access the data (i.e. SPARQL endpoint, REST API, etc.) \cite{Framework2012}, uses datasets description vocabularies like DCAT\footnote{http://www.w3.org/TR/vocab-dcat/} or VOID\footnote{http://www.w3.org/TR/void/}, and if the publishers provide descriptions about the size (e.g. \texttt{void:statItem}, \texttt{void:numberOfTriples} or \texttt{void:numberOfDocuments}) and categorization (e.g. \texttt{dcterms:subject}) of the dataset and if there exists metadata information about the kind and number of used vocabularies \cite{Framework2012}.\\
-Links are considered to be complete if all the inbound and outbound links are de-referenceable \cite{Hogan2010}\cite{Mader2012}\cite{Gueret2012}.\\
+Dataset completeness has some objective measures which we include in our framework. A dataset is considered to be complete if it:\\
+
+\begin{easylist}[itemize]
+\ListProperties( Hang=true, Progressive=3ex, Style*= - )
+& Contains supporting structured metadata \cite{Hogan2010}.
+& Provides data in multiple serializations (N3, Turtle, etc.) \cite{Framework2012}.
+& Contains different data access points. These can either be a queryable endpoint (i.e. SPARQL endpoint, REST API, etc.) or a data dump file.
+& Uses datasets description vocabularies like DCAT\footnote{http://www.w3.org/TR/vocab-dcat/} or VOID\footnote{http://www.w3.org/TR/void/}.
+& Provides descriptions about its size e.g. \texttt{void:statItem}, \texttt{void:numberOfTriples} or \texttt{void:numberOf\-Documents}.
+& Existence of descriptions about its format.
+& Contains information about its organization and categorization e.g. \texttt{dcterms:subject}.
+& Contains information about the kind and number of used vocabularies \cite{Framework2012}.\\
+\end{easylist}
+
+Links are considered to be complete if the dataset and all its resources have defined links \cite{Hogan2010}\cite{Mader2012}\cite{Gueret2012}.\\
 Models are considered to be complete if they do not contain disconnected graph clusters \cite{Mader2012}. Disconnected graphs are the result of incomplete data acquisition or accidental deletion of terms that leads to deprecated terms. In addition to that, models are considered to be complete if they have complete language coverage (each concept labeled in each of the languages that are also used on the other concepts) \cite{Mader2012}, do not contain omitted top concepts or unidirectional related concepts \cite{Hogan2010} and if they are not missing labels \cite{Mader2012}, equivalent properties, inverse relationships, domain or range values in properties \cite{DBLP:conf/ic3k/KeetSP13}.
 
 \subsection{Availability}
 
-A dataset is considered to be available if the publishers provide data dumps e.g. RDF dump, that can be downloaded by users \cite{flemming2010}\cite{Hogan2010} and if its queryable endpoints e.g. SPARQL endpoint, are reachable and respond to direct queries.
+A dataset is considered to be available if the publisher provides data dumps e.g. RDF dump, that can be downloaded by users \cite{flemming2010}\cite{Hogan2010}, its queryable endpoints e.g. SPARQL endpoint, are reachable and respond to direct queries and if all of its inbound and outbound links are dereferencable.
 
 \subsection{Correctness}
 
-A dataset is considered to be correct if it includes the correct MIME-type for the content \cite{Hogan2010} and doesn't contain syntactic errors \cite{Hogan2010}.\\
+A dataset is considered to be correct if it includes the correct MIME-type and size for the content \cite{Hogan2010} and doesn't contain syntactic errors \cite{Hogan2010}.\\
 Links are considered to be correct if they lack syntactic errors and use the HTTP URI scheme (avoid using URNs or DOIs) \cite{Mader2012}.\\
 Models are considered to be correct if the top concepts are marked and do not have broader concepts (for example having incoming \texttt{hasTopConcept} or outgoing \texttt{topConceptOf} relationships) \cite{Mader2012}. Moreover, if they don't contain incorrect data type for typed literals \cite{Hogan2010}\cite{Acosta2013}, no omitted or invalid languages tags \cite{Suominen:2012:IQS:2413941.2413985}\cite{Mader2012}, does not contain ``orphan terms'' (orphan terms are terms without any associative or hierarchical relationships \cite{journals/ires/Living10}) and if the labels are not empty, do not contain unprintable characters \cite{Acosta2013}\cite{Mader2012} or extra white spaces \cite{Suominen:2012:IQS:2413941.2413985}.
 
@@ -292,7 +304,7 @@ Freshness is a measure for the recency of data. The basic assumption is that old
 
 \subsection{Provenance}
 
-Provenance can be achieved at the dataset level by including metadata that describes its authoritative information (author, maintainer, creation date, etc.), verifying if the dataset uses a provenance vocabulary like PROV \cite{w3c-prov-o} and uses digital signatures \cite{Framework2012}.\\
+Provenance can be achieved at the dataset level by including metadata that describes its authoritative information (author, maintainer, creation date, etc.), versioning information and verifying if the dataset uses a provenance vocabulary like PROV \cite{w3c-prov-o}.\\
 
 \subsection{Licensing}
 
@@ -300,7 +312,7 @@ Licensing is a quality attribute that is measured on the dataset level. It inclu
 
 \subsection{Comprehensibility}
 
-Dataset comprehensibility is identified if the publisher provides a title, description and URI for the dataset. Moreover, if he indicates at least one exemplary URI and SPARQL query, RDF file and if he provides a list of used vocabularies and an active mailing list or message board for the dataset \cite{flemming2010}.\\ A model is considered to be comprehensible if there is no misuse of ontology annotations and that all the concepts are documented and annotated \cite{Mader2012}\cite{DBLP:conf/ic3k/KeetSP13}.
+Dataset comprehensibility is identified if the publisher provides general information about the dataset e.g.title, description, URI, etc. In addition, if he indicates at least one exemplary URI and SPARQL query and provides an active communication channel (mailing list, message board or e-mail)\cite{flemming2010}.\\ A model is considered to be comprehensible if there is no misuse of ontology annotations and that all the concepts are documented and annotated \cite{Mader2012}\cite{DBLP:conf/ic3k/KeetSP13}.
 
 \subsection{Coherence}
 
@@ -309,6 +321,81 @@ Coherence is the ability to interpret data as expected by the publisher or vocab
 \subsection{Security}
 
 Security is a quality attribute that is measured on the dataset level. It is identified if the publishers use login credentials, SSL or SSH to provide access to their dataset, or if they only grant access to specific users \cite{Framework2012}.
+
+\section{An Extensible Objective Quality Assessment Framework}
+
+Our framework is built as a Command Line Interface (CLI) application using Node.js. Instructions on installing and running the framework are available on its public Github repository\footnote{https://github.com/ahmadassaf/opendata-checker}. Related functions are encapsulated into modules that can be easily plugged in/out the processing pipeline. Figure \ref{fig:1} shows the main steps which are the following: (i) Data portal identification; (ii) metadata extraction; (iii) instance and resource extraction; (iv) profile validation (v) profile and report generation.
+
+\begin{figure}[!ht]
+  \centering
+    \includegraphics[scale=0.4]{figure-1_architecture.png}
+  \caption{Processing pipeline for objective dataset quality assessment}
+  \label{fig:1}
+\end{figure}
+
+For this paper, we have extended the framework with a new quality module to measure datasets quality. We have implemented 7 submodules that will check various dataset quality indicators. Various additional quality measures can be easily plugged in/out.\\
+
+Data portals can be considered as data access points providing tools to facilitate data publishing, sharing, searching and visualization. CKAN\footnote{http://ckan.org} is the world's leading open-source data portal platform powering websites and the target of our tool.\\
+We have identified that most of the dataset quality issues can be assessed by examining the accompanying dataset metadata. Building a standard metadata model is not the scope of this paper, and since we focus on CKAN-based portals, we assess the quality issues using the CKAN standard model\footnote{http://demo.ckan.org/api/3/action/package\_show?id=adur\_district\_spending}. Table 2 shows the various quality indicators checked by our tool.
+
+\begin{center}
+{
+\begin{tabular}{|c|L|}
+
+\hline
+Quality Indicator & Assessment Method\tabularnewline
+\hline
+\hline
+QI.1 & Check if there is a valid metadata file by issuing a \texttt{package\_show} request to the CKAN API\tabularnewline
+\hline
+QI.2 & Check if the \texttt{format} field for the dataset resources is defined and valid\tabularnewline
+\hline
+QI.3 & Check the \texttt{resource\_type} field with the following possible values \texttt{file, file.upload, api, visualization, code, documentation}\tabularnewline
+\hline
+QI.4 & Check the resources \texttt{format} field for \texttt{meta/void} value\tabularnewline
+\hline
+QI.5 & Check the resources \texttt{size} or the \texttt{triples} extras fields\tabularnewline
+\hline
+QI.6 & Check the \texttt{format} and \texttt{mimetype} fields for resources\tabularnewline
+\hline
+QI.7 & Check if the dataset has a \texttt{topic} tag and if it is part of a valid group in CKAN\tabularnewline
+\hline
+QI.9 & Check if the dataset and all its resources have has a valid URI \tabularnewline
+\hline
+QI.18 & Check if there is a dereferencable resource with a description containing string \textit{dump}\tabularnewline
+\hline
+QI.19 & Check if there is a dereferencable resource with \texttt{resource\_type} of type \texttt{api}\tabularnewline
+\hline
+QI.20 & Check if all the links assigned to the dataset and its resources are dereferencable\tabularnewline
+\hline
+QI.21 & Check if the dataset contains valid \texttt{license\_id} and \texttt{license\_title}\tabularnewline
+\hline
+QI.22 & Check if the \texttt{license\_url} is dereferencable\tabularnewline
+\hline
+QI.24 & Check if the dataset and its resources contain the following metadata fields \texttt{metadata\_created, metadata\_modified, revision\_timestamp, cache\_last\_updated}\tabularnewline
+\hline
+QI.25 & Check if the \texttt{content-type} extracted from the a valid HTTP request is equal to the corresponding \texttt{mimetype} field.\tabularnewline
+\hline
+QI.26 & Check if the \texttt{content-length} extracted from the a valid HTTP request is equal to the corresponding \texttt{size} field.\tabularnewline
+\hline
+QI.28 & Check that all the links are valid HTTP scheme URIs\tabularnewline
+\hline
+QI.37 & Check if there is at least one resource with a \texttt{format} value corresponding to one of \texttt{example/rdf+xml, example/turtle, example/ntriples, example/x-quads, example/rdfa, example/x-trig}\tabularnewline
+\hline
+QI.39 & Check if the dataset and its tags and resources contain general metadata
+\texttt{id, name, type, title, description, URL, display\_name, format}\tabularnewline
+\hline
+QI.40 & Check if the dataset contain valid \texttt{author\_email} or \texttt{maintainer\_email} fields\tabularnewline
+\hline
+QI.44 & Check if the dataset and its resources contain provenance metadata \texttt{maintainer, owner\_org, organization, author, maintainer\_email, author\_email}\tabularnewline
+\hline
+QI.46 & Check if the dataset contain and its resources contain versioning information \texttt{version, revision\_id} \tabularnewline
+\hline
+\end{tabular}
+}
+\end{center}
+
+\section{Experiments and Evaluation}
 
 \section{Linked Data Quality Tools}
 In this section, we present the results of our survey on the Linked Data quality tools. There exists a number of data quality frameworks and tools that are either standalone or implemented as modules in data integration tools. These approaches can be classified into automatic, semi-automatic, manual or crowd sourced approaches.
@@ -344,7 +431,7 @@ SWIQA \cite{Furber2011a} is a framework providing policies or formulas controlli
 
 There are several quality issues that can be difficult to spot and fix automatically. In \cite{Acosta2013} the authors highlight the fact that the RDFification process of some data can be more challenging than others, leading to errors in the Linked Data provisioning process that needs manual intervention. This can be more visible in datasets that have been semi-automatically translated to RDF from their primary source (the best example for this case is DBpedia \cite{bizer_dbpedia_2009}). The authors introduce a methodology to adjust crowdsourcing input from two types of audience: 1) Linked Data experts, researchers and enthusiasts through a contest to find and classify erroneous RDF triples and 2) Crowd-sourcing through the Amazon Mechanical Turk\footnote{https://www.mturk.com/}.
 
-TripleCheckMate \cite{Kontokostas2013} is a crowd-sourcing tool used by the authors to run out their assessment supported by a semi-automatic quality verification metrics. The tool allows users to select resources, identify and classify possible issues according to a pre-defined taxonomy of quality problems. It measures inter-rater agreements, meaning that the resources defined are checked multiple times. These features turn out to be extremely useful to analyze the performance of users and allow better identification of potential quality problems. TripleCheckMate is used to identify accuracy issues in the object extraction (completeness of the extraction value for object values and datatypes), relevancy of the extracted information, representational consistency and interlinking with other datasets.
+TripleCheckMate \cite{Kontokostas2013} is a crowd-sourcing tool used by the authors to run out their assessment supported by a semi-automatic quality verification metrics. The tool allows users to select resources, identify and classify possible issues according to a pre-defined taxonomy of quality problems. It measures inter-rater agreements, meaning that the resources defined are checked multiple times. These features turn out to be extremely useful to analyze the performance of users and allow better identification of potential quality problems. TripleCheckMate is used to identify accuracy issues in the object extraction (completeness of the extraction value for object values and data types), relevancy of the extracted information, representational consistency and interlinking with other datasets.
 
 \subsubsection{Semi-automatic Approaches}
 
@@ -359,6 +446,8 @@ Quality Assessment of Data Sources (Flemming's Data Quality Assessment Tool)\foo
 LODGRefine \cite{conf/i-semantics/Verlic12} is the Open Refine\footnote{http://openrefine.org/} of Linked Data. It does not act as a quality assessment tool, but it is powerful in cleaning and refining raw instance data. LODGRefine can help detect duplicates, empty values, spot inconsistencies, extract Named Entities, discover patterns and more. LODGRefine helps in improving the quality of the dataset by improving the quality of the data at the instance level.\\
 
 \subsubsection{Automatic Ranking Approaches}
+
+The Data Hub LOD Validator\footnote{http://validator.lod-cloud.net/} gives an overview of Linked Data sources cataloged on the Data Hub. It offers a step-by-step validator guidance to check a dataset completeness level for inclusion in the LOD cloud. The results are divided into four different compliance levels from basic to reviewed and included in the LOD cloud. Although it is an excellent tool to monitor LOD compliance, it still lacks the ability to give detailed insights about the completeness of the metadata and overview on the state of the whole LOD cloud group and is very specific to the LOD cloud group rules and regulations.\\
 
 \indent \\{\bf Link-based Approaches}
 
@@ -381,18 +470,7 @@ The availability of Linked Data is highly dependent on the performance qualities
 \textbf{Summary}
 \indent \\\\
 \indent We notice that there is a plethora of tools (syntactic checkers or statistical profilers) that automatically check the quality of information at the entities level. Moreover, various tools can automatically check the models against the objective quality indicators mentioned. OOPS! covers all of them with additional support for the other common modeling pitfalls in \cite{DBLP:conf/ic3k/KeetSP13}. PoolParty covers also a wide set of those indicators but it targets SKOS vocabularies only. However, we notice a lack in automatic tools to check the dataset quality especially in its completeness, licensing and provenance measures.\\
-As a result, we have identified the need for a complete quality framework that can automatically assess all the objective quality indicators. In section 5, we propose an extensible framework were existing tools that can automatically measure the quality of various sections (entities and models) can be plugged in as well the introduction of our dataset quality checker that covers all the mentioned dataset and links quality indicators.
-
-\section{An Extensible Objective Quality Assessment Framework}
-
-\begin{figure}[!ht]
-  \centering
-    \includegraphics[scale=0.4]{figure-1_architecture.png}
-  \caption{Processing pipeline for objective dataset quality assessment}
-  \label{fig:1}
-\end{figure}
-
-\section{Experiments and Evaluation}
+As a result, we have identified the need for a complete quality framework that can automatically assess all the objective quality indicators. In section 5, we propose an extensible framework were existing tools that can automatically measure the quality of various sections (entities and models) can be plugged in as well the introduction of our dataset quality checker that covers most of the mentioned dataset and links quality indicators.
 
 \section{Conclusions and Future Work}
 
