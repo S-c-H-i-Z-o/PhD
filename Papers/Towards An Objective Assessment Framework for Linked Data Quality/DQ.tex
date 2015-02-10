@@ -11,6 +11,8 @@
 \usepackage{rotating}
 \def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;}
 
+\graphicspath{ {figures/} }
+
 \begin{document}
 \begin{frontmatter}
 
@@ -266,7 +268,7 @@ Independent indicators for entity quality are mainly subjective e.g. the degree 
  \subsection{Completeness}
 
 Data completeness can be judged in the presence of a task where the ideal set of attributes and objects are known. It is generally a subjective measure depending highly on the scenario and use-case in hand. For example, an entity is considered to be complete if it contains all the attributes needed for a given task, has complete language coverage \cite{Mader2012} and has documentation properties \cite{w3c_skos_rec}\cite{Mader2012}.\\
-Dataset completeness has some objective measures which we include in our framework. A dataset is considered to be complete if it contains supporting structured metadata \cite{Hogan2010}, provides data in multiple serializations \cite{Framework2012}, has different queryable endpoints to access the data (i.e. SPARQL endpoint, REST API, etc.) \cite{Framework2012}, uses datasets description vocabularies like DCAT\footnote{http://www.w3.org/TR/vocab-dcat/} or VOID\footnote{http://www.w3.org/TR/void/}, and if the publishers provide descriptions about the size (e.g. \texttt{void:statItem}, \texttt{void:numberOfTriples} or \texttt{void:numberOfDocuments}) and categorization (e.g. \texttt{dcterms:subject}) of the dataset and if there exists metadata information about the kind and number of used vocabularies \cite{Framework2012}.\\
+Dataset completeness has some objective measures which we include in our framework. A dataset is considered to be complete if it contains supporting structured metadata \cite{Hogan2010}, provides data in multiple serializations ()\cite{Framework2012}, has different queryable endpoints to access the data (i.e. SPARQL endpoint, REST API, etc.) \cite{Framework2012}, uses datasets description vocabularies like DCAT\footnote{http://www.w3.org/TR/vocab-dcat/} or VOID\footnote{http://www.w3.org/TR/void/}, and if the publishers provide descriptions about the size (e.g. \texttt{void:statItem}, \texttt{void:numberOfTriples} or \texttt{void:numberOfDocuments}) and categorization (e.g. \texttt{dcterms:subject}) of the dataset and if there exists metadata information about the kind and number of used vocabularies \cite{Framework2012}.\\
 Links are considered to be complete if all the inbound and outbound links are de-referenceable \cite{Hogan2010}\cite{Mader2012}\cite{Gueret2012}.\\
 Models are considered to be complete if they do not contain disconnected graph clusters \cite{Mader2012}. Disconnected graphs are the result of incomplete data acquisition or accidental deletion of terms that leads to deprecated terms. In addition to that, models are considered to be complete if they have complete language coverage (each concept labeled in each of the languages that are also used on the other concepts) \cite{Mader2012}, do not contain omitted top concepts or unidirectional related concepts \cite{Hogan2010} and if they are not missing labels \cite{Mader2012}, equivalent properties, inverse relationships, domain or range values in properties \cite{DBLP:conf/ic3k/KeetSP13}.
 
@@ -282,19 +284,7 @@ Models are considered to be correct if the top concepts are marked and do not ha
 
 \subsection{Consistency}
 
-Consistency implies lack of contradictions and conflicts. The objective indicators are mainly associated with the modeling quality. A model is considered to be consistent if it does not contain:\\
-
-\begin{easylist}[itemize]
-\ListProperties( Hang=true, Progressive=3ex, Style*= - )
-& Overlapping labels such as two concepts have the same preferred lexical label in a given language when they belong to the same schema \cite{skosprimer}\cite{Mader2012}.
-& Consistent preferred labels per language tag \cite{Mader2012}\cite{Suominen:2012:IQS:2413941.2413985}.
-& Atypical use of collections, containers and reification \cite{Hogan2010}.
-& Wrong equivalent, symmetric or transitive relationships \cite{DBLP:conf/ic3k/KeetSP13}.
-& Consistent naming criteria in the model \cite{Mader2012}\cite{DBLP:conf/ic3k/KeetSP13}
-& Overlapping labels in a given language for concepts in the same scheme \cite{Mader2012}.
-& Membership violations for disjoint classes \cite{Hogan2010}\cite{DBLP:conf/ic3k/KeetSP13}.
-\end{easylist}
-
+Consistency implies lack of contradictions and conflicts. The objective indicators are mainly associated with the modeling quality. A model is considered to be consistent if it does not contain overlapping labels (two concepts having the same preferred lexical label in a given language when they belong to the same schema) \cite{skosprimer}\cite{Mader2012}, consistent preferred labels per language tag \cite{Mader2012}\cite{Suominen:2012:IQS:2413941.2413985}, atypical use of collections, containers and reification \cite{Hogan2010}, wrong equivalent, symmetric or transitive relationships \cite{DBLP:conf/ic3k/KeetSP13}, consistent naming criteria in the model \cite{Mader2012}\cite{DBLP:conf/ic3k/KeetSP13}, overlapping labels in a given language for concepts in the same scheme \cite{Mader2012} and membership violations for disjoint classes \cite{Hogan2010}\cite{DBLP:conf/ic3k/KeetSP13}.
 
 \subsection{Freshness}
 
@@ -314,20 +304,7 @@ Dataset comprehensibility is identified if the publisher provides a title, descr
 
 \subsection{Coherence}
 
-Coherence is the ability to interpret data as expected by the publisher or vocabulary maintainer \cite{Hogan2010}. The objective coherence measures are mainly associated with the modeling quality. A model is considered to be coherent when it does not contain:\\
-
-\begin{easylist}[itemize]
-\ListProperties( Hang=true, Progressive=3ex, Style*= - )
-& Usage of undefined classes and properties \cite{Hogan2010}. Many errors that are due to spelling or syntactic mistakes are resolvable through minor fixes via ontology checkers tools. However, for new terms, \cite{Hogan2010} suggests to have them defined in a separate namespace in order to allow reuse \cite{ Mader2012}.
-& Usage of blank nodes \cite{Hogan:2012:ESL:2263498.2264570}.
-& Deprecated classes or properties \cite{Hogan2010}.
-& Relations and mappings clashes \cite{Suominen:2012:IQS:2413941.2413985}.
-& Invalid inverse-functional values \cite{Hogan2010}.
-& Cyclic hierarchical relations \cite{conf/jcdl/Soergel05}\cite{Suominen:2012:IQS:2413941.2413985}\cite{Mader2012}.
-& Solely transitive related concepts \cite{Mader2012}.
-& Redefinitions of existing vocabularies \cite{Hogan2010}.
-& Valueless associative relations \cite{Mader2012}.
-\end{easylist}
+Coherence is the ability to interpret data as expected by the publisher or vocabulary maintainer \cite{Hogan2010}. The objective coherence measures are mainly associated with the modeling quality. A model is considered to be coherent when it does not contain undefined classes and properties \cite{Hogan2010}, blank nodes \cite{Hogan:2012:ESL:2263498.2264570}, deprecated classes or properties \cite{Hogan2010}, relations and mappings clashes \cite{Suominen:2012:IQS:2413941.2413985}, invalid inverse-functional values \cite{Hogan2010}, cyclic hierarchical relations \cite{conf/jcdl/Soergel05}\cite{Suominen:2012:IQS:2413941.2413985}\cite{Mader2012}, solely transitive related concepts \cite{Mader2012}, redefinitions of existing vocabularies \cite{Hogan2010} and valueless associative relations \cite{Mader2012}.
 
 \subsection{Security}
 
@@ -407,6 +384,13 @@ The availability of Linked Data is highly dependent on the performance qualities
 As a result, we have identified the need for a complete quality framework that can automatically assess all the objective quality indicators. In section 5, we propose an extensible framework were existing tools that can automatically measure the quality of various sections (entities and models) can be plugged in as well the introduction of our dataset quality checker that covers all the mentioned dataset and links quality indicators.
 
 \section{An Extensible Objective Quality Assessment Framework}
+
+\begin{figure}[!ht]
+  \centering
+    \includegraphics[scale=0.4]{figure-1_architecture.png}
+  \caption{Processing pipeline for objective dataset quality assessment}
+  \label{fig:1}
+\end{figure}
 
 \section{Experiments and Evaluation}
 
