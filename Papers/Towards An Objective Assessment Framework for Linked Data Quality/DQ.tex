@@ -57,7 +57,7 @@ The framework we propose is based on a refinement of the data quality principles
 
 Furthermore, we surveyed the landscape of Linked Data quality tools to discover that they only cover a subset of the proposed objective quality indicators. As a result, we extend Roomba\footnote{https://github.com/ahmadassaf/opendata-checker} which is a framework to assess and build dataset profiles with an extensible quality measurement tool and evaluate it by measuring the quality of the LOD cloud group. The results demonstrate that the general quality of LOD cloud needs more attention as most of the datasets suffer from various quality issues.\\
 
-This paper is structured as follows: Section 2 presents the various data quality assessment methodologies, Section 3 presents our framework with its objective quality measures and indicators; Section 4 presents our tool for evaluating those indicators; Section 5 presents our evaluation and experiments running this tool on the LOD cloud group; Section 6 reviews the existing tools and frameworks in the Linked Open Data quality landscape; Section 7 presents concluding remarks and identifies future work.
+This paper is structured as follows: Section 2 presents the various data quality assessment methodologies, Section 3 presents our framework with its objective quality measures and indicators; Section 4 presents our tool for evaluating those indicators; Section 5 reviews the existing tools and frameworks in the Linked Open Data quality landscape; Section 6 presents concluding remarks and identifies future work.
 
 \section{Data Quality Assessment}
 
@@ -443,7 +443,7 @@ $Q\textrm{ weightedscore}$ is an error ratio. A quality measure score should ref
  Quality Indicator : Existence of descriptions about its structure: 83.67%
 \end{lstlisting}
 
-\section{Experiments and Evaluation}
+\subsection{Experiments and Analysis}
 
 In this section, we provide the experiments and evaluation of the proposed framework. All the experiments are reproducible by our tool and their results are available on the its Github repository.\\
 We have run the framework on the LOD cloud containing 259 datasets at the time of writing this paper. We ran the instance and resource extractor in order to cache the metadata files for these datasets locally and ran the quality assessment process which took around two hours and a half hour on a 2.6 Ghz Intel Core i7 processor with 16GB of DDR3 memory machine.\\
