@@ -33,7 +33,7 @@
 
 
 \begin{abstract}
-The standardization of Semantic Web technologies and specifications has resulted in a staggering volume of data being published. The Linked Open Data (LOD) is a gold mine for organizations trying to leverage external data sources in order to produce more informed business decisions. However, the heterogeneous nature of data sources reflects directly on the data quality as these sources often contain inconsistent as well as misinterpreted and incomplete information. Traditional data quality is a thoroughly researched field with several benchmarks and frameworks to grasp its dimensions. Ensuring data quality in Linked Open Data is much more complex. It consists of structured information supported by models, ontologies and vocabularies and contains queryable endpoints and links. In this paper, we first propose an objective assessment framework for Linked Data quality. In a previous work, we identified potential quality issues of Linked Data and listed quality principles for all stages of data management. In this paper, we build upon this work but focus only on the objective quality indicators based on metrics that can be automatically measured. Secondly, we surveyed the landscape of Linked Data quality tools to discover that they only cover a subset of the proposed quality indicators. As a result, we present an extensible quality measurement tool that helps on one hand data owners to rate the quality of their datasets and get some hints on possible improvements, and on the other hand data consumers to choose their data sources from a ranked set. We evaluate this tool by measuring the quality of the LOD cloud. The results demonstrate that the general quality of LOD cloud compared to various data portals needs more attention as most of the datasets suffer from various quality issues.
+The standardization of Semantic Web technologies and specifications has resulted in a staggering volume of data being published. The Linked Open Data (LOD) is a gold mine for organizations trying to leverage external data sources in order to produce more informed business decisions. However, the heterogeneous nature of data sources reflects directly on the data quality as these sources often contain inconsistent as well as misinterpreted and incomplete information. Traditional data quality is a thoroughly researched field with several benchmarks and frameworks to grasp its dimensions. Ensuring data quality in Linked Open Data is much more complex. It consists of structured information supported by models, ontologies and vocabularies and contains queryable endpoints and links. In this paper, we first propose an objective assessment framework for Linked Data quality. In a previous work, we identified potential quality issues of Linked Data and listed quality principles for all stages of data management. In this paper, we build upon this work but focus only on the objective quality indicators based on metrics that can be automatically measured. Secondly, we surveyed the landscape of Linked Data quality tools to discover that they only cover a subset of the proposed quality indicators. As a result, we present an extensible quality measurement tool that helps on one hand data owners to rate the quality of their datasets and get some hints on possible improvements, and on the other hand data consumers to choose their data sources from a ranked set. We evaluate this tool by measuring the quality of the LOD cloud. The results demonstrate that the general state of the datasets needs attention as they mostly have low completeness, provenance, licensing and comprehensibility quality scores.
 \end{abstract}
 
 \begin{keyword}
@@ -425,23 +425,22 @@ $Q\textrm{ weightedscore}$ is an error ratio. A quality measure score should ref
  =================================================================================
                              Dataset Quality Report
  =================================================================================
- completeness quality Score     :   76.39%
- availability quality Score     :   62.81%
- licensing quality Score        :   68.24%
- freshness quality Score        :   79.10%
- correctness quality Score      :   71.92%
- comprehensibility quality Score:   97.39%
- provenance quality Score       :   73.68%
- Average total quality Score    :   75.65%
+ completeness quality Score      :   50.22%
+ availability quality Score      :   26.22%
+ licensing quality Score         :   19.59%
+ freshness quality Score         :   79.49%
+ correctness quality Score       :   72.06%
+ comprehensibility quality Score :   31.62%
+ provenance quality Score        :   74.07%
+ Average total quality Score     :   50.47%
  =================================================================================
                          Quality Indicators Average Error %
  =================================================================================
- Quality Indicator : Existence of supporting structured metadata: 0.39%
- Quality Indicator : Supports multiple serializations: 11.74%
- Quality Indicator : Has different data access points: 19.69%
- Quality Indicator : Uses datasets description vocabularies: 11.97%
- Quality Indicator : Existence of descriptions about its size: 86.68%
- Quality Indicator : Existence of descriptions about its structure: 84.05%
+ Quality Indicator : Supports multiple serializations: 11.35%
+ Quality Indicator : Has different data access points: 19.31%
+ Quality Indicator : Uses datasets description vocabularies: 88.80%
+ Quality Indicator : Existence of descriptions about its size: 86.30%
+ Quality Indicator : Existence of descriptions about its structure: 83.67%
 \end{lstlisting}
 
 \section{Experiments and Evaluation}
@@ -449,14 +448,19 @@ $Q\textrm{ weightedscore}$ is an error ratio. A quality measure score should ref
 In this section, we provide the experiments and evaluation of the proposed framework. All the experiments are reproducible by our tool and their results are available on the its Github repository.\\
 We have run the framework on the LOD cloud containing 259 datasets at the time of writing this paper. We ran the instance and resource extractor in order to cache the metadata files for these datasets locally and ran the quality assessment process which took around two hours and a half hour on a 2.6 Ghz Intel Core i7 processor with 16GB of DDR3 memory machine.\\
 
-Figure \ref{fig:2} shows the average errors percentage in quality indicators grouped by the corresponding measures. We found out that completeness and availability are the two dominant quality issues.  information for the dataset core information were ownership related as 41\% were missing or undefined. Datasets resources have the poorest metadata. 64\% of the general metadata, all the access information and 80\% of the provenance information contained missing or undefined values.
+We found out that licensing, availability and comprehensibility had the worst quality measures scores: 19.59\%, 26.22\% and 31.62\% respectively. On the other hand, the LOD cloud datasets have good quality scores for freshness, correctness and provenance as most of the datasets have an average of ~75\% for each one of those measures.
 
-\begin{figure}[ht!]
+\begin{figure}[ht]
   \centering
-    \includegraphics[height=7cm, width=13cm]{LOD_quality_indicators_grouped.png}
+    \includegraphics[height=6.5cm, width=12cm]{LOD_quality_indicators_grouped.png}
   \caption{Average quality score per quality indicator for LOD group}
   \label{fig:2}
 \end{figure}
+
+Figure \ref{fig:2} shows the average errors percentage in quality indicators grouped by the corresponding measures. After examining the results, we notice that the worst quality indicators scores are for the comprehensibility measure where 99.61\% of the datasets did not have valid exemplary RDF file (QI.37) and did not define valid point of contact (QI.40). Moreover, we noticed that 96.41\% of the datasets queryable endpoints (SPARQL endpoints) failed to respond to direct queries (QI.19). After careful examination, we found that the cause was incorrect assignment for metadata fields. Data publishers specified the resource \texttt{format} field as an \texttt{api} instead of the specifying the \texttt{resource\_type} field.\\
+
+To drill down more on the availability issues, we generated a metadata profile assessment report using Roomba's metadata profiler. We found out that 25\% of the datasets access information (being the dataset URL and any URL defined in its groups) has issues related to them (missing or unreachable URLs).
+Three datasets (1.15\%) did not have a URL defined while 45 datasets (17.3\%) defined URLs were not accessible at the time writing this paper. Out of the 1068 defined resources 31.27\% were not reachable. All these issues resulted in a 26.22\% average availability score. This can highly affect the usability of those datasets especially in an enterprise context.
 
 \section{Linked Data Quality Tools}
 In this section, we present the results of our survey on the Linked Data quality tools. There exists a number of data quality frameworks and tools that are either standalone or implemented as modules in data integration tools. These approaches can be classified into automatic, semi-automatic, manual or crowd sourced approaches.
@@ -531,7 +535,7 @@ The availability of Linked Data is highly dependent on the performance qualities
 
 \textbf{Summary}
 \indent \\\\
-\indent We notice that there is a plethora of tools (syntactic checkers or statistical profilers) that automatically check the quality of information at the entities level. Moreover, various tools can automatically check the models against the objective quality indicators mentioned. OOPS! covers all of them with additional support for the other common modeling pitfalls in \cite{DBLP:conf/ic3k/KeetSP13}. PoolParty covers also a wide set of those indicators but it targets SKOS vocabularies only. However, we notice a lack in automatic tools to check the dataset quality especially in its completeness, licensing and provenance measures. Table 3 summarizes the automatic dataset quality approaches that have implemented tools (full circle denotes full quality indicator assessment, while half circle denoted partial assessment). As can be seen in this table Roomba fills with its focus on completeness, correctness provenance and licensing. Roomba is not able to check the existence of information about the kind and number of used vocabularies (QI.8), license permissions, copyrights and attributes (QI.23), exemplary SPARQL query (QI.38), usage of provenance vocabulary (QI.45) and is not able to check the dataset for syntactic errors (QI.27).\\These shortcomings are mainly due to the limitations in the CKAN dataset model. However, syntactic checkers and additional modules to examine vocabularies usage could be easily integrated in Roomba to fix QI.27, QI.8 and QI.45. Roomba's metadata quality profiler can fix QI.23 as we have manually created a mapping file standardizing the set of possible license names and their information\footnote{https://github.com/ahmadassaf/opendata-checker/blob/master/util/licenseMappings.json}. We have also used the open source and knowledge license information\footnote{https://github.com/okfn/licenses} to normalize license information and add extra metadata like the domain, maintainer and open data conformance.
+\indent We notice that there is a plethora of tools (syntactic checkers or statistical profilers) that automatically check the quality of information at the entities level. Moreover, various tools can automatically check the models against the objective quality indicators mentioned. OOPS! covers all of them with additional support for the other common modeling pitfalls in \cite{DBLP:conf/ic3k/KeetSP13}. PoolParty covers also a wide set of those indicators but it targets SKOS vocabularies only. However, we notice a lack in automatic tools to check the dataset quality especially in its completeness, licensing and provenance measures. Table 3 summarizes the automatic dataset quality approaches that have implemented tools (full circle denotes full quality indicator assessment, while half circle denoted partial assessment). As can be seen in this table Roomba covers most of the quality indicators with its focus on completeness, correctness provenance and licensing. Roomba is not able to check the existence of information about the kind and number of used vocabularies (QI.8), license permissions, copyrights and attributes (QI.23), exemplary SPARQL query (QI.38), usage of provenance vocabulary (QI.45) and is not able to check the dataset for syntactic errors (QI.27).\\These shortcomings are mainly due to the limitations in the CKAN dataset model. However, syntactic checkers and additional modules to examine vocabularies usage could be easily integrated in Roomba to fix QI.27, QI.8 and QI.45. Roomba's metadata quality profiler can fix QI.23 as we have manually created a mapping file standardizing the set of possible license names and their information\footnote{https://github.com/ahmadassaf/opendata-checker/blob/master/util/licenseMappings.json}. We have also used the open source and knowledge license information\footnote{https://github.com/okfn/licenses} to normalize license information and add extra metadata like the domain, maintainer and open data conformance.
 
 \begin{table}[htp]
 \centering
@@ -560,7 +564,7 @@ Roomba & \ding{108} & \ding{108} & \ding{108} & \ding{108} & \ding{108} & \ding{
 \section{Conclusions and Future Work}
 
 In this paper, we have presented a comprehensive objective quality framework applied to the Linked Open Data. We have built upon our previous work to focus on objective data quality measures. We have identified a total of 64 quality indicators that were mapped when suitable to four main categories (entity, dataset, links, models). We have also surveyed more than 30 different tools that measure different quality aspects of Linked Open Data. We identified several gaps in the current tools and identified the need for a comprehensive evaluation and assessment framework and specifically for measuring quality on the dataset level. As a result, we presented an extension of Roomba (An extensible tool to assess and generate dataset profiles) that covers 82\% of the suggested datasets objective quality indicators.\\
-Based on our experiments running Roomba on the LOD cloud, we discovered that the general state of the datasets needs attention as most of them have low completeness, provenance, licensing and correctness quality scores.\\
+Based on our experiments running Roomba on the LOD cloud, we discovered that the general state of the datasets needs attention as most of them have low completeness, provenance, licensing and comprehensibility quality scores.\\
 In future work, we plan to integrate tools assessing models quality in addition to syntactic checkers with Roomba. This will provide a complete coverage of the proposed quality indicators. We also intend to suggest ranked quality indicators to improve the quality report. We also plan to run this tool on various CKAN based data portals and schedule periodic reports to monitor their quality evolution. Finally, at some stage, we plan to extend this tool for other data portal types like DKAN and Socrata.
 
 \bibliographystyle{abbrv}
