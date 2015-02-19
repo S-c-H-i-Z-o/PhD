@@ -1,0 +1,8 @@
+why those 259 datasets have been selected -> this is the result of the CKAN API call to fetch the old cloud group information.
+Talk about the scalability and how easy it is to add extra profilers -> the processes in the pipeline provide the preliminary steps needed to achieve further profiling techniques. We need to do statistics then we have the instance data or we can hit the SPARQL endpoint. we need to do topical then we have the instances extracted ... etc.
+The ability to have an overall view of the dataset is not available yet and there is no technique to check the dataset metadata.
+
+the paper allows research such as http://planet-data.org/sites/default/files/publications/SchmachtenbergBizerPaulheim-AdoptionOfLinkedDataBestPractices.pdf to be done as it allows aggregation of information over a set of datasets.
+
+
+what is the clear contribution (framework or the results) 
