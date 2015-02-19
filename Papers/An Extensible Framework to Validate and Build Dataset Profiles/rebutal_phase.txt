@@ -1,8 +1,6 @@
-why those 259 datasets have been selected -> this is the result of the CKAN API call to fetch the old cloud group information.
-Talk about the scalability and how easy it is to add extra profilers -> the processes in the pipeline provide the preliminary steps needed to achieve further profiling techniques. We need to do statistics then we have the instance data or we can hit the SPARQL endpoint. we need to do topical then we have the instances extracted ... etc.
-The ability to have an overall view of the dataset is not available yet and there is no technique to check the dataset metadata.
 
-the paper allows research such as http://planet-data.org/sites/default/files/publications/SchmachtenbergBizerPaulheim-AdoptionOfLinkedDataBestPractices.pdf to be done as it allows aggregation of information over a set of datasets.
-
-
-what is the clear contribution (framework or the results) 
+In this paper, we highlight the need for structured and complete dataset profiles to facilitate dataset search and data integration. We want to highlight two facts: 1) While existing solutions tackle different aspects (statistical, topical), there exist no complete solution that is able to provide an aggregate and complete dataset profile 2) There is no automatic solution that is able to profile and examine the dataset metadata on a large scale.
+We present all the steps needed in order to extend the framework to either integrate new profilers or new dataset portals. We have focused on CKAN data portals for their wide adoption. However, we are currently investigating a harmonized dataset profile model that will enable us to easily extend the framework to support other data portals.
+The framework has been evaluated against a manually created dataset profile, following strictly the CKAN model as well as a selected "golden standard" of 20 datasets from the LOD cloud and other CKAN based portals. However, we felt that running our tool on LOD and analyzing the results will highlight the need for such approaches and emphasize the importance of our framework. 
+The framework paves the way to deeply examine the state of LOD datasets and compare it against other open data portals. We have ran the framework on various portals (the results are published on the tool's Github repo). However, due to space limitations we were not able to publish our findings.
+The LOD cloud datasets have been fetched through querying the datahub CKAN API. Until this moment, the group_show API endpoint is not updated to include all the newly added datasets thus we were only able to run it on 259 datasets. 
