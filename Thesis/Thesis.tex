@@ -1,0 +1,149 @@
+\documentclass[a4paper,11pt,twoside]{ThesisStyle}
+
+
+\include{util/format}
+\include{util/definitions}
+
+\makeatletter
+\g@addto@macro{\UrlBreaks}{\UrlOrds}
+\makeatother
+
+\newcommand{\myparagraph}[1]{\paragraph{#1}\mbox{} \vspace{2mm}\\}
+\usepackage{footnote}
+\newcommand{\nofootnote}[1]{~(#1)}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\usepackage{fancyvrb}
+\usepackage[ampersand]{easylist}
+\usepackage{pifont}
+\usepackage{multirow}
+\usepackage{color}
+\usepackage{caption}
+\usepackage{longtable}
+\usepackage{newverbs,xcolor}
+\definecolor{cverbbg}{gray}{0.97}
+\newenvironment{cverbatim}
+ {\SaveVerbatim{cverb}}
+ {\endSaveVerbatim
+  \flushleft\fboxrule=0pt\fboxsep=.5em
+  \colorbox{cverbbg}{\BUseVerbatim{cverb}}%
+  \endflushleft
+}
+
+\def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;}
+
+\newcolumntype{L}{>{\arraybackslash}m{13cm}}
+
+\newcommand\Hash{\footnotesize{\#}\normalsize}
+\renewcommand\And{\textbf{and}}
+
+\newcommand{\keywords}[1]{\par\addvspace\baselineskip
+\noindent\keywordname\enspace\ignorespaces#1}
+
+\colorlet{punct}{red!60!black}
+\definecolor{background}{HTML}{FFFFFF}
+\definecolor{delim}{RGB}{20,105,176}
+
+% Language Definitions for JSON
+\lstdefinelanguage{json}{
+    basicstyle=\tiny,
+    numbersep=4pt,
+    showstringspaces=false,
+    breaklines=true,
+    frame=lines,
+    literate=
+      {:}{{{\color{punct}{:}}}}{1}
+      {,}{{{\color{punct}{,}}}}{1}
+      {[}{{{\color{delim}{[}}}}{1}
+      {]}{{{\color{delim}{]}}}}{1},
+}
+
+\setstretch{1.11}
+\setlength{\parindent}{0.2in}
+
+\begin{document}
+
+\pagenumbering{roman}
+
+\include{util/title}
+\vspace{3cm}
+
+\cleardoublepage
+
+
+% Acknowledgements
+\addcontentsline{toc}{section}{Acknowledgements}
+\markboth{Acknowledgements}{Acknowledgements}
+\input{acknowledgement/ack}
+
+%% Abstract
+\addcontentsline{toc}{section}{Abstract}
+\markboth{Abstract}{Abstract}
+\input{abstract/abstract}
+
+
+\addcontentsline{toc}{section}{Contents}
+\markboth{Contents}{Contents}
+
+\tableofcontents
+
+
+%% List of Figures
+\addcontentsline{toc}{section}{List of Figures}
+\listoffigures
+\cleardoublepage
+
+%% List of Tables
+\addcontentsline{toc}{section}{List of Tables}
+\listoftables
+\cleardoublepage
+
+%% Acronyms
+\addcontentsline{toc}{section}{Acronyms}
+\markboth{Acronyms}{Acronyms}
+\include{acronyms/acronyms}
+\mainmatter
+
+%% Introduction
+\input{Introduction/intro}
+\clearpage
+
+%% Background
+\input{background/background}
+\clearpage
+
+%% Part 1
+\part{Structuring and Linking Event-centric Data on the Web} \label{pa:part1}
+\input{Part1/intro1}
+\input{Part1/Chapter1/ch1}
+\input{Part1/Chapter2/ch2}
+\input{Part1/conclusion1}
+
+% Part 2
+\part{Exploring the Event Landscape: Applications, Recommendation and Community Detection} \label{pa:part2}
+\input{Part2/intro2}
+\input{Part2/Chapter1/ch1}
+\input{Part2/Chapter2/ch2}
+\input{Part2/Chapter3/ch3}
+\input{Part2/conclusion2}
+
+
+\input{conclusions/conclusions}
+
+\appendix
+\input{appendix/publications}
+\input{appendix/optimization}
+\input{appendix/similarity}
+\input{appendix/recommender}
+
+
+
+\bibliographystyle{plain}
+\bibliography{thesis}
+
+\chapter*{}
+\chaptermark{}
+%\section*{}
+%\sectionmark{}
+\vspace{-15ex}
+%\appendix
+\end{document}
