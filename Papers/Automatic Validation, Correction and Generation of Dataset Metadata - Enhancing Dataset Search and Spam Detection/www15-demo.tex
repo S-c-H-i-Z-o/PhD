@@ -115,7 +115,7 @@ From the extracted metadata we are able to identify all the resources associated
 
 \begin{itemize}
   \item \textbf{Resource metadata validation and enrichment}: Check the resource attached metadata values. Similar to the dataset metadata, each resource should include information about its mimetype, name, description, format, valid de-referenceable URL, size, type and provenance. The validation process issue an HTTP request to the resource and automatically fills up various missing information when possible, like the mimetype and size by extracting them from the HTTP response header. However, missing fields like name and description that needs manual input are marked as missing and will appear in the generated summary report.
-  \item \textbf{Format validation}: Validate specific resource formats against a linter or a validator. For example, node-csv\footnote{https://github.com/wdavidw/node-csv} for CSV files and n3\footnote{https://github.com/RubenVerborgh/N3.js} to validate N3 and Turtle RDF serializations.
+  \item \textbf{Format validation}: Validate specific resource formats against a linter or a validator.
 \end{itemize}
 
 Considering that certain dataset contains large amounts of resources and the limited computation power of some machines on which Roomba might run on, a sampler module is introduced to execute various sample-based strategies discussed in \cite{scalableApproach} and were found to generate accurate results even with comparably small sample size of 10\%.
