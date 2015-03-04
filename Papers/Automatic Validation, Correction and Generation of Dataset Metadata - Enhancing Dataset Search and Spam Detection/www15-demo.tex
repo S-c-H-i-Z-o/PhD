@@ -128,44 +128,6 @@ There exist a bunch of special validation steps for various fields. For example,
 
 From our experiments, we found out that datasets' license information is noisy. The license names if found are not standardized. For example, Creative Commons CCZero can be also CC0 or CCZero. Moreover,the license URI if found and if de-referenceable can point to different reference knowledge bases e.g. \texttt{http://opendefinition.org}. To overcome this issue, we have manually created a mapping file standardizing the set of possible license names and the reference knowledge base\footnote{https://github.com/ahmadassaf/opendata-checker/blob/master/util/licenseMappings.json}. In addition, we have also used the open source and knowledge license information\footnote{https://github.com/okfn/licenses} to normalize the license information and add extra metadata like the domain, maintainer and open data conformance.
 
-\lstset{basicstyle=\tiny, backgroundcolor=\color{white}, breaklines=true, frame=single, caption={Excerpt of the DBpedia validation report}, label=report, captionpos=b}
-\begin{lstlisting}
-===========================================================
-                   Metadata Report
-===========================================================
-group information is missing
-organization_image_url field exists with no value defined
-===========================================================
-                   Tag Statistics
-===========================================================
-21 [undefined] vocabulary_id fields  100.00%
-===========================================================
-                   License Report
-===========================================================
-License information has been normalized !
-===========================================================
-                  Resource Statistics
-===========================================================
-10 [missing] url-type fields  100.00%
-9 [missing] created fields  90.00%
-10 [undefined] size fields  100.00%
-10 [undefined] hash fields  100.00%
-7 [undefined] mimetype fields  70.00%
-10 [undefined] cache_url fields  100.00%
-6 [undefined] name fields  60.00%
-9 [undefined] last_modified fields  90.00%
-one [undefined] format field  10.00%
-===========================================================
-                Resource Connectivity Issues
-===========================================================
-There are 2 connectivity issues with the following URLs:
-   - http://dbpedia.org/void/Dataset
-===========================================================
-                  Un-Reachable URLs Types
-===========================================================
-There are: 1 unreachable URLs of type [file]
-\end{lstlisting}
-
 \subsection{Profile and Report Generation}
 
 The validation process highlights the missing information and presents them in a human readable report. The report can be automatically sent to the dataset maintainer email if exists in the metadata.
