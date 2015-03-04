@@ -114,7 +114,7 @@ Depending on the portal software we can issue specific extraction jobs. For exam
 From the extracted metadata we are able to identify all the resources associated with that dataset. They can have various types like a SPARQL endpoint, API, file, visualization ,etc. However, before extracting the resource instance(s) we perform the following steps:
 
 \begin{itemize}
-  \item \textbf{Resource metadata validation and enrichment}: Check the resource attached metadata values. Similar to the dataset metadata, each resource should include information about its mimetype, name, description, format, valid de-referenceable URL, size, type and provenance. The validation process issue an HTTP request to the resource and automatically fills up various missing information when possible, like the mimetype and size by extracting them from the HTTP response header. However, missing fields like name and description that needs manual input are marked as missing and will appear in the generated summary report.
+  \item \textbf{Resource metadata validation and enrichment}: Check the resource attached metadata values. The validation process issue an HTTP request to the resource and automatically fills up various missing information when possible, like the mimetype and size by extracting them from the HTTP response header.
   \item \textbf{Format validation}: Validate specific resource formats against a linter or a validator.
 \end{itemize}
 
