@@ -1,15 +1,1 @@
-*.mp4
-*.blg
-*.log
-*.bbl
-*.aux
-*.gz
-*.fdb_latexmk
-*.brf
-*.lof
-*.maf
-*.mtc
-*.mtc0
-*.nlo
-*.out
-*.toc
+/Users/ahmadassaf/Dropbox/Projects/Configurations/gitignore/TeX.gitignore
