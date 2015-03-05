@@ -30,46 +30,14 @@ The jury president must be Professor.
 == Final Jury ==
 ================
 
-* Rapporteur 1: Geert-Jan Houben, <g.j.p.m.houben@tudelft.nl>, http://www.wis.ewi.tudelft.nl/houben/
-  (Full Professor @ Web Information Systems, Delft University, NL)
-  YES
-
-* Rapporteur 2: Catherine Faron Zucker <faron@polytech.unice.fr>, http://www.i3s.unice.fr/~faron/
-  (Assistant Professor @ University of Nice Sophia Antipolis, FR)
-  YES
-  
-* Examinateur 1: John Domingue, <j.b.domingue@open.ac.uk>, http://people.kmi.open.ac.uk/domingue/
-  (Full Professor @ Knowledge Media Institute, Open University, UK)
-  YES
-  
-* Examinateur 2: Tommaso Di Noia, <t.dinoia@poliba.it>, http://sisinflab.poliba.it/dinoia/
-  (Assistant Professor @ Information Systems Research Group, Politecnico di Bari, IT)
-  YES
-  
-* Examinateur 3: Talel Abdessalem, <Talel.Abdessalem@telecom-paristech.fr>, http://www.infres.enst.fr/~talel/
-  (Full Professor @ DBWeb, Télécom ParisTech, FR)
-  YES
-
 * PhD Advisor: Raphaël Troncy
 
 ===========
 == Dates ==
 ===========
 
-* 30 June 2014, 14:00 CET
+* Date:
 
 ===========================
 == Declined Jury Members ==
 ===========================
-
-* Rapporteur 2: Chantal Reynaud <Chantal.Reynaud@lri.fr>, https://www.lri.fr/~cr/
-  (Full Professor and head of the LaHDAK team, http://lahdak.lri.fr/?q=node/10, Université Paris-Sud 11, FR
-  Couldn't make it because of numerous McF and Prof jury at this period
-
-* Examinateur 1: Harith Alani, <h.alani@open.ac.uk>, http://people.kmi.open.ac.uk/harith/
-  (Senior Lecturer @ Knowledge Media Institute, Open University, UK)
-  Couldn't make it because of the Web Science conference
-
-* Examinateur 1: Enrico Motta, <e.motta@open.ac.uk>, http://people.kmi.open.ac.uk/motta/
-  (Full Professor @ Knowledge Media Institute, Open University, UK)
-  Couldn't make it on June 30th
