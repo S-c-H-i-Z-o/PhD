@@ -5,3 +5,11 @@
 *.aux
 *.gz
 *.fdb_latexmk
+*.brf
+*.lof
+*.maf
+*.mtc
+*.mtc0
+*.nlo
+*.out
+*.toc
