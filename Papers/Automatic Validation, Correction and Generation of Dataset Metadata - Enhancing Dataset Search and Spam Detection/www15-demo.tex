@@ -26,6 +26,15 @@
       {]}{{{\color{delim}{]}}}}{1},
 }
 
+\permission{Copyright is held by the International World Wide Web Conference Committee (IW3C2). IW3C2 reserves the right to provide a hyperlink to the author's site if the Material is used in electronic media.}
+\conferenceinfo{WWW 2015 Companion,}{May 18--22, 2015, Florence, Italy.}
+\copyrightetc{ACM \the\acmcopyr}
+\crdata{978-1-4503-3473-0/15/05. \\
+http://dx.doi.org/10.1145/2740908.2742827}
+
+\clubpenalty=10000
+\widowpenalty = 10000
+
 \begin{document}
 
 \conferenceinfo{WWW}{'15 Florence, Italy}
@@ -42,7 +51,7 @@
 \maketitle
 \begin{figure*}[t!]
   \centering
-    \includegraphics[scale=0.4]{figure-1_architecture.png}
+    \includegraphics[scale=0.39]{figure-1_architecture.png}
   \caption{Processing pipeline for validating and generating dataset profiles}
   \label{fig:1}
 \end{figure*}
@@ -53,10 +62,12 @@ Data is being published by both the public and private sectors and covers a dive
 \keywords{Dataset Profile, Metadata, Data Quality, Linked Data}
 
 \section{Introduction}
-The main entry point for discovering and identifying datasets is either through public data portals such as DataHub\footnote{http://datahub.io} and Europe's Public Data\footnote{http://publicdata.eu} or private data search engines such as Quandl\footnote{https://quandl.com/} and Engima\footnote{http://enigma.io/}. Data on public portals is checked manually as administrators review, validate and correct datasets information and attach suitable metadata when available. The increasing number of datasets hinders the scalability of this process, affecting the correct and efficient spotting of datasets spam.
-CKAN powered data portals rely on attached metadata to provide dataset search features as they run a Solr index on the metadata schemas. Having missing or inconsistent information will affect the search results quality.
 \textit{Data profiling} is the process of creating descriptive information and collect statistics about that data. It is a cardinal activity when facing an unfamiliar dataset~\cite{semwebprofiling}. It helps in assessing the importance of the dataset, in improving users' ability to search and reuse part of the dataset and in detecting irregularities to improve its quality. Data profiling includes typically several tasks:
 \textbf{Metadata profiling}: Provides general information on the dataset (dataset description, release and update dates), legal information (license information, openness), practical information (access points, data dumps), etc. \textbf{Statistical profiling}: Provides statistical information about data types and patterns in the dataset, i.e. properties distribution, number of entities and RDF triples, etc. \textbf{Topical profiling}: Provides descriptive knowledge on the dataset content and structure. This can be in form of tags and categories used to facilitate search and reuse.
+
+The main entry point for discovering and identifying data\-sets is either through public data portals such as DataHub\footnote{http://datahub.io} and Europe's Public Data\footnote{http://publicdata.eu} or private data search engines such as Quandl\footnote{https://quandl.com/} and Engima\footnote{http://enigma.io/}. Data on public portals is checked manually as administrators review, validate and correct datasets information and attach suitable metadata when available. The increasing number of datasets hinders the scalability of this process, affecting the correct and efficient spotting of datasets spam.
+CKAN powered data portals rely on attached metadata to provide dataset search features as they run a Solr index on the metadata schemas. Having missing or inconsistent information will affect the search results quality.
+
 In this paper, we propose Roomba, a scalable automatic approach for extracting, validating, correcting and generating descriptive linked dataset profiles. We address the challenges of automatic validation and generation of descriptive datasets profiles. This paper proposes Roomba, an extensible framework consisting of a processing pipeline that combines techniques for data portals identification, datasets crawling and a set of pluggable modules combining several profiling tasks. Roomba validates the provided dataset metadata against an aggregated standard set of information. Metadata fields are automatically corrected when possible, e.g. adding a missing license URL reference. Moreover, a report describing all the issues highlighting those that cannot be automatically fixed is created to be sent by email to the dataset's maintainer. There exist various statistical and topical profiling tools for both relational and Linked Data. The architecture of the Roomba allows to easily add them as additional profiling tasks. However, in this paper, we focus on the task of dataset metadata profiling and present our findings by running Roomba on the LOD cloud\footnote{http://datahub.io/dataset?tags=lod}. The results demonstrate that the general state of LOD cloud needs more attention as most of the datasets suffer from bad quality metadata lacking some informative metrics needed to facilitate dataset search. The noisiest metadata are the access information such as licensing information, resource descriptions as well as resource availability problems.
 
 \section{Related Work}
@@ -65,7 +76,8 @@ Semantic sitemaps \cite{Cyganiak:2008:SSE:1789394.1789457} and RDFStats \cite{La
 
 Topical and categorical information facilitates dataset search and reuse. Topical profiling focuses on content-wise analysis at the instances and ontological levels. In \cite{6690016,Bohm:2012:LTG:2396761.2398718,scalableApproach}, authors try to automatically infer information about the underlying dataset depending on external knowledge bases or the dataset's internal structure and ontological information.
 
-The Project Open Data Dashboard\footnote{http://labs.data.gov/dashboard/} tracks and measures how US government websites implement the Open Data principles to understand the progress and current status of their public data listings. A validator analyzes machine readable files e.g. JSON files for automated metrics like the resolved URLs, HTTP status and content-type. However, deep schema information about the metadata is missing like description, license information or tags. Similarly on the LOD cloud, the Data Hub LOD Validator\footnote{http://validator.lod-cloud.net/} gives an overview of Linked Data sources cataloged on the Data Hub. It offers a step-by-step validator guidance to check a dataset completeness level for inclusion in the LOD cloud. The results are divided into four different compliance levels from basic to reviewed and included in the LOD cloud. Although it is an excellent tool to monitor LOD compliance, it still lacks the ability to give detailed insights about the completeness of the metadata and overview on the state of the whole LOD cloud group and is very specific to the LOD cloud group rules and regulations.\\
+The Project Open Data Dashboard\footnote{http://labs.data.gov/dashboard/} tracks and measures how US government websites implement the Open Data principles to understand the progress and current status of their public data listings. A validator analyzes machine readable files e.g. JSON files for automated metrics like the resolved URLs, HTTP status and content-type. However, deep schema information about the metadata is missing like description, license information or tags. Similarly on the LOD cloud, the Data Hub LOD Validator\footnote{http://validator.lod-cloud.net/} gives an overview of Linked Data sources cataloged on the Data Hub. It offers a step-by-step validator guidance to check a dataset completeness level for inclusion in the LOD cloud. The results are divided into four different compliance levels from basic to reviewed and included in the LOD cloud. Although it is an excellent tool to monitor LOD compliance, it still lacks the ability to give detailed insights about the completeness of the metadata and overview on the state of the whole LOD cloud group and is very specific to the LOD cloud group rules and regulations.
+
 Although the above mentioned tools are able to provide various information about a dataset, there exist no approach that is extensible to combine further information coming from various profiling tools.
 
 \section{Framework Architecture}
@@ -78,7 +90,7 @@ Roomba is built as a Command Line Interface (CLI) application using Node.js. Ins
 
 \subsection{Data Portal Identification}
 
-Data portals can be considered as data access points providing tools to facilitate data publishing, sharing, searching and visualization. CKAN\footnote{http://ckan.org} is the world's leading open-source data portal platform powering websites like the DataHub, Europe's Public Data and the U.S Government's open data. Modeled on CKAN, DKAN\footnote{http://drupal.org/project/dkan} is a standalone Drupal distribution that is used in various public data portals as well.
+Data portals can be considered as data access points providing tools to facilitate data publishing, sharing, searching and visualization. CKAN is the world's leading open-source data portal platform powering websites like the DataHub, Europe's Public Data and the U.S Government's open data. Modeled on CKAN, DKAN is a standalone Drupal distribution that is used in various public data portals as well.
 Identifying the software powering data portals is a vital first step to understand the API calls structure. Web scraping is a technique for extracting data from Web pages. We rely on several scraping techniques in the identification process which includes a combination of the following:
 
 \begin{itemize}
