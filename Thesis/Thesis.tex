@@ -1,0 +1,82 @@
+\documentclass[a4paper,11pt,twoside]{ThesisStyle}
+
+\include{util/formatAndDefs}
+\include{util/myDefinitions}
+
+\makeatletter
+\g@addto@macro{\UrlBreaks}{\UrlOrds}
+\makeatother
+
+\setstretch{1.11}
+\setlength{\parindent}{0.2in}
+
+\begin{document}
+
+\pagenumbering{roman}
+
+\include{util/title}
+\vspace{3cm}
+
+\cleardoublepage
+
+
+% Acknowledgements
+\addcontentsline{toc}{section}{Acknowledgements}
+\markboth{Acknowledgements}{Acknowledgements}
+\input{acknowledgement/acknowledgement}
+
+%% Abstract
+\addcontentsline{toc}{section}{Abstract}
+\markboth{Abstract}{Abstract}
+\input{abstract/abstract}
+
+\addcontentsline{toc}{section}{Contents}
+\markboth{Contents}{Contents}
+
+\tableofcontents
+\cleardoublepage
+
+%% List of Figures
+\addcontentsline{toc}{section}{List of Figures}
+\listoffigures
+\cleardoublepage
+
+%% List of Tables
+\addcontentsline{toc}{section}{List of Tables}
+\listoftables
+\cleardoublepage
+
+%% Acronyms
+\addcontentsline{toc}{section}{Acronyms}
+\markboth{Acronyms}{Acronyms}
+\include{acronyms/acronyms}
+\mainmatter
+
+%% Introduction
+\input{introduction/introduction}
+\clearpage
+
+%% Background
+\input{Background/background}
+\clearpage
+
+%% Part 1
+\part{Structuring and Linking Event-centric Data on the Web} \label{pa:part1}
+\input{Part1/introduction}
+\input{Part1/Chapter1/ch1}
+\input{Part1/conclusion}
+
+
+\input{conclusions/conclusions}
+
+
+\appendix
+\input{appendix/publications}
+
+\bibliographystyle{plain}
+\bibliography{thesis}
+
+\chapter*{}
+\chaptermark{}
+\vspace{-15ex}
+\end{document}

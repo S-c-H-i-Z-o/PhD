@@ -1,0 +1,10 @@
+A scenario that happens very often while browsing the web is that you come across an interesting article somewhere and you want to get more information about certain parts of it. You will end up with few tabs opened; some are social media searches, some are google search pages, trying to know what certain things are on wikipedia and so on. 
+
+SNARC is a smart serivce that solves this issue; it accept a page URL as an input; extract the plain text from it and uses services like zemanta and alchemy in order to annotate the document -> we end up with a semantic document model that identifies keywords, concepts and entities as well as high level cateogrization of the document itself.
+
+SNARC queries social nedpoint with the keywords extracted and tries to reconcile results based upon the extracted entities. Different document categories results in different social end point ot be queried; for example for a tech document we will target stackoverflow as a question/answer service where as for historical document we will query stack echange history.
+
+We do something similar with youtube; we map the document category with the catgories of youtube to narrow down the search as much as possible; this resulted in more accurate video results.
+
+as a possible UI implementatiopn we have impelemeted a chrome extensoion; it offers an intuitive experince that allw us easily to try SNARC on any webpage 
+
