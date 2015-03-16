@@ -30,9 +30,17 @@ Rapha\"el Troncy \\
 }
 \maketitle
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  Beginning of document  %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \begin{abstract}
 With today's public data sets containing billions of data items, more and more companies are looking to integrate external data with their traditional enterprise data to improve business intelligence analysis. These distributed data sources however exhibit heterogeneous data formats and terminologies and may contain noisy data. In this paper, we present a novel framework that enables business users to semi-automatically perform data integration on potentially noisy tabular data. This framework offers an extension to Google Refine with novel schema matching algorithms leveraging Freebase rich types. First experiments show that using Linked Data to map cell values with instances and column headers with types improves significantly the quality of the matching results and therefore should lead to more informed decisions.
 \end{abstract}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  Introduction  %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Introduction}
 
@@ -50,6 +58,9 @@ First experiments show that Linked Data increases significantly the number of ma
 
 The rest of the paper is organized as follows. Section 2 presents some related work. Section 3 describes the framework that we have designed for business users to combine data from heterogeneous sources. Section 4 validates our approach and shows the value of the framework through experiments. Finally, Section 5 concludes the paper and discusses future work.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  Related Work  %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Related Work}
 
@@ -59,11 +70,19 @@ In the past, some work has tried to improve existing data schemas \cite{ DBLP:jo
 
 With the emergence of the Semantic Web, new work in the area has tried to exploit Linked Data repositories. The authors of \cite{Syed2010Tables} present techniques to automatically infer a semantic model on tabular data by getting top candidates from Wikitology \cite{conf/aaaiss/FininSMMP09} and classifying them with the Google page ranking algorithm. Since the authors' goal is to export the resulting table data as Linked Data and not to improve schema matching, some columns can be labeled incorrectly, and acronyms and languages are not well handled \cite{Syed2010Tables}. In the Helix project \cite{conf/www/HassanzadehDFKSW11}, a tagging mechanism is used to add semantic information on tabular data. A sample of instances values for each column is taken and a set of tags with scores are gathered from online sources such as Freebase \footnote{http://www.freebase.com/}. Tags are then correlated to infer annotations for the column. The mechanism is quite similar to ours but the resulting tags for the column are independent of the existing column name and sampling might not always provide a representative population of the instance values.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  Proposition  %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \section{Proposition}
 
 Google Refine (formerly Freebase Gridworks) is a tool designed to quickly and efficiently process, clean and eventually enrich large amounts of data with existing knowledge bases such as Freebase. The tool has however some limitations: it was initially designed for data cleansing on only one data set at a time, with no possibility to compose columns from different data sets. Moreover, Google Refine has some strict assumptions over the input of spreadsheets which makes it difficult to identify primitive and complex data types.
 The AMC is a novel framework that supports the construction and execution of new matching components or algorithms. AMC contains several matching components that can be plugged and used, like string matchers (Levenshtein, JaroWinkler \dots  etc.), data types matchers and path matchers. It also provides a set of combination and selection algorithms to produce optimized results (weighted average, average, sigmoid \dots  etc.).
 In this section, we describe in detail our framework allowing data mashup from several sources. We first present our framework architecture, then the activity flow and finally our approach to schema matching.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  Framework Architecture  %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Framework Architecture}
 Google Refine makes use of a modular web application framework similar to OSGi called Butterfly \footnote{http://code.google.com/p/simile-butterfly/}. The server-side written in Java maintains states of the data (undo/redo history, long-running processes, etc.) while the client-side implemented in Javascript maintains states of the user interface (facets and their selections, view pagination, etc.). Communication between the client and server is done through REST web services.
@@ -165,6 +184,10 @@ Here $\hat{p}$ is the average score for each rich type, n is the total number of
 \subsection{Handling Non-String Values}
 So far, we have covered several methods to identify the similarity between ``String'' values, but how about other numeral values such as dates, money, distance,etc.? For this purpose, we have implemented some basic type identifier that can recognize dates, money, numerical values, numerals used as identifiers. This will help us in better match corresponding entries. Adjusting AMC's combination algorithms can be of great importance at this stage. For example, assigning weights to different matchers and tweaking the configuration can yield more accurate results.
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  Experiments  %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Experiments}
 We present in this section results from experiments we conducted using the different methods described above. To appreciate the value of our approach, we have used a real life scenario that exposes common problems faced by the management in SAP. The data we have used come from two different SAP systems: the Event tracker and the Travel Expense Manager.
@@ -372,6 +395,10 @@ M/Km & Total Miles/Km & 0.55 \\ \hline
 \end{tabular}
 
 We notice that now we have an increased number of matches (15 compared to 14 in the previous trials). The column \{Trip, Trip Destination\} is matched again and the newly previously matched column \{Trip Country/Group, Ctr2\} has a higher similarity score. We have found that combining matching algorithms resulted in higher number of matches. Several tuning methods can be applied in order to enhance the similarity score as well. Trying other combination algorithms instead of the na�ve average will be an essential part of our future work.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  Conclusion and Future Work  %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Conclusion and Future Work}
 In this paper, we presented a framework enabling mashup of potentially noisy enterprise and external data. The implementation is based on Google Refine and uses Freebase to annotate data with rich types. As a result, the matching process of heterogeneous data sources is improved. Our preliminary evaluation shows that for datasets where mappings were relevant yet not proposed, our framework provides higher quality matching results. Additionally, the number of matches discovered is increased when Linked Data is used in most datasets. We plan in future work to evaluate the framework on larger datasets using rigorous statistical analysis of \cite{Fawcett}. We also consider integrating additional linked open data sources of semantic types such as DBpedia \cite{Auer07dbpedia:a} or YAGO \cite{Suchanek:2007:YCS:1242572.1242667} and evaluate our matching results against instance-based ontology alignment benchmarks such as OAEI\footnote{http://oaei.ontologymatching.org/2011/instance/index.html} or ISLab \footnote{http://islab.dico.unimi.it/iimb/}. Another future work will be to generalize our approach on data schemas to data classification. The same way the AMC helps identifying the best matches for two datasets, we plan to use it for identifying the best statistical classifiers for a sole dataset, based on normalized scores.
