@@ -96,7 +96,7 @@ The main entry point for discovering and identifying datasets is either through 
 
 In this work, we address the challenges of automatic validation and generation of descriptive datasets profiles. This paper proposes an extensible framework consisting of a processing pipeline that combines techniques for data portals identification, datasets crawling and a set of pluggable modules combining several profiling tasks. The framework validates the provided dataset metadata against an aggregated standard set of information. Metadata fields are automatically corrected when possible, e.g., adding a missing license URL reference. Moreover, a report describing all the issues highlighting those that cannot be automatically fixed is created to be sent by email to the dataset's maintainer. There exist various statistical and topical profiling tools for both relational and Linked Data. The architecture of the framework allows to easily add them as additional profiling tasks. However, in this paper, we focus on the task of dataset metadata profiling and present our findings by running our framework on the LOD cloud. The results demonstrate that the general state of LOD cloud needs more attention as most of the datasets suffer from bad quality metadata lacking some informative metrics needed to facilitate dataset search. The noisiest metadata are the access information such as licensing information, resource descriptions as well as resource availability problems.
 
-The remainder of the paper is structured as follows. In Section~\ref{sec:related-work}, we review relevant related work. In Section~\ref{sec:framework}, we describe our proposed framework's architecture and components that validate and generate dataset profiles. In Section~\ref{sec:experiment}, we present the results when running this tool on the LOD cloud and we summarize the main issues found. Finally, we conclude and outline some future work in Section~\ref{sec:conclusion}.
+The remainder of the paper is structured as follows. In Section~\ref{sec:motivation}, we present the motivation behind our framework. In Section~\ref{sec:related-work}, we review relevant related work. In Section~\ref{sec:framework}, we describe our proposed framework's architecture and components that validate and generate dataset profiles. In Section~\ref{sec:experiment}, we evaluate the framework and we finally conclude and outline some future work in Section~\ref{sec:conclusion}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %%%  2. Motivation  %%%
@@ -104,8 +104,13 @@ The remainder of the paper is structured as follows. In Section~\ref{sec:related
 \section{Motivation}
 \label{sec:motivation}
 
-Metadata contain the information needed to effectively understand and use datasets. This information includes the dataset license, provenance, context, structure and accessibility.
+Datasets should contain the metadata needed to effectively understand and use them. This information includes the dataset's license, provenance, context, structure and accessibility. The ability to automatically check this metadata helps in:
 
+\begin{itemize}
+  \item \textbf{Delaying data entropy}: \textit{Information entropy} refers to the degradation or loss which limits the information content in raw or metadata. As a consequence of information entropy, data complexity and dynamicity, the life span of data can be very short. Even when the raw data is properly maintained, it is often rendered useless when the attached metadata is missing, incomplete or unavailable. Comprehensive high quality metadata can counteract these factors and increase dataset longevity~\cite{GTOS}.
+  \item \textbf{Enhancing data discovery, exploration and reuse}: Metadata is the first information source to inquire about the nature and content of a dataset. Users who are unfamiliar with a dataset require detailed metadata to interpret and analyze accurately unfamiliar datasets. Moreover, several prominent data portals rely on metadata attached to datasets that enable search as they run a Solr index on the metadata schemas. Having missing or inconsistent information will affect the search results quality.
+  \item \textbf{Enhancing spam detection}: Portals hosting public open data like The Datahub allow anyone to freely publish datasets. Even with security measures like captchas and anti-spam devices, detecting spam is increasingly difficult. In addition to that, the increasing number of datasets hinders the scalability of this process, affecting the correct and efficient spotting of datasets spam.
+\end{itemize}
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %%%  2. Related Work  %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%
@@ -243,44 +248,44 @@ For example, the meta-field value query \texttt{resource>resource\_type} run aga
 
 \lstset{basicstyle=\scriptsize, backgroundcolor=\color{white}, breaklines=true, frame=single, caption={Excerpt of the DBpedia validation report}, label=report, captionpos=b}
 \begin{lstlisting}
-=======================================================================
-                      Metadata Report
-=======================================================================
-group information is missing. Check organization information as they can be mixed sometimes
-organization_image_url field exists but there is no value defined
-=======================================================================
-                      Tag Statistics
-=======================================================================
-There is a total of: 21 [undefined] vocabulary_id fields  100.00%
-=======================================================================
-                      License Report
-=======================================================================
-License information has been normalized !
-=======================================================================
-                      Resource Statistics
-=======================================================================
-There is a total of: 10 [missing] url-type fields  100.00%
-There is a total of: 9 [missing] created fields  90.00%
-There is a total of: 10 [undefined] cache_last_updated fields  100.00%
-There is a total of: 10 [undefined] webstore_last_updated fields  100.00%
-There is a total of: 10 [undefined] size fields  100.00%
-There is a total of: 10 [undefined] hash fields  100.00%
-There is a total of: 10 [undefined] mimetype_inner fields  100.00%
-There is a total of: 7 [undefined] mimetype fields  70.00%
-There is a total of: 10 [undefined] cache_url fields  100.00%
-There is a total of: 6 [undefined] name fields  60.00%
-There is a total of: 9 [undefined] webstore_url fields  90.00%
-There is a total of: 9 [undefined] last_modified fields  90.00%
-There is one [undefined] format field  10.00%
-=======================================================================
-                      Resource Connectivity Issues
-=======================================================================
-There are 2 connectivity issues with the following URLs:
-   - http://dbpedia.org/void/Dataset
-=======================================================================
-                      Un-Reachable URLs Types
-=======================================================================
-There are: 1 unreachable URLs of type [file]
+ =======================================================================
+                       Metadata Report
+ =======================================================================
+  group information is missing. Check organization information as they can be mixed sometimes
+  organization_image_url field exists but there is no value defined
+ =======================================================================
+                       Tag Statistics
+ =======================================================================
+  There is a total of: 21 [undefined] vocabulary_id fields  100.00%
+ =======================================================================
+                       License Report
+ =======================================================================
+  License information has been normalized !
+ =======================================================================
+                       Resource Statistics
+ =======================================================================
+  There is a total of: 10 [missing] url-type fields  100.00%
+  There is a total of: 9 [missing] created fields  90.00%
+  There is a total of: 10 [undefined] cache_last_updated fields  100.00%
+  There is a total of: 10 [undefined] webstore_last_updated fields  100.00%
+  There is a total of: 10 [undefined] size fields  100.00%
+  There is a total of: 10 [undefined] hash fields  100.00%
+  There is a total of: 10 [undefined] mimetype_inner fields  100.00%
+  There is a total of: 7 [undefined] mimetype fields  70.00%
+  There is a total of: 10 [undefined] cache_url fields  100.00%
+  There is a total of: 6 [undefined] name fields  60.00%
+  There is a total of: 9 [undefined] webstore_url fields  90.00%
+  There is a total of: 9 [undefined] last_modified fields  90.00%
+  There is one [undefined] format field  10.00%
+ =======================================================================
+                       Resource Connectivity Issues
+ =======================================================================
+  There are 2 connectivity issues with the following URLs:
+    - http://dbpedia.org/void/Dataset
+ =======================================================================
+                       Un-Reachable URLs Types
+ =======================================================================
+  There are: 1 unreachable URLs of type [file]
 \end{lstlisting}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
