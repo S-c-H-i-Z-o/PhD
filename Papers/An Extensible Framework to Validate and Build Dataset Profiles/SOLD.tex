@@ -299,100 +299,23 @@ For example, the meta-field value query \texttt{resource>resource\_type} run aga
 \section{Experiments and Evaluation}
 \label{sec:experiment}
 
-% In this section, we provide the experiments and evaluation of the proposed framework. All the experiments are reproducible by our tool and their results are available on the its Github repository.\\
-% We have run the framework on the LOD cloud containing 259 datasets at the time of writing this paper. We ran the instance and resource extractor in order to cache the metadata files for these datasets locally and ran the validation process which took around one and a half hour on a 2.6 Ghz Intel Core i7 processor with 16GB of DDR3 memory machine.\\
-% A CKAN dataset metadata describes three main sections in addition to the core dataset's properties. Those are the groups, tags and resources. Each section contains a set of metadata corresponding to one or more metadata type. For example, a dataset resource will have general information such as the resource name, access information such as the resource url and provenance information such as creation date. The framework generates a report aggregating all the problems in all these sections, fixing field values when possible. Errors can be the result of missing metadata fields, undefined field values or field value errors e.g., unreachable URL or incorrect email address.
+In this section, we provide the experiments and evaluation of the proposed framework. All the experiments are reproducible by our tool and their results are available on the its Github repository.
 
-% Figures \ref{fig:2} and \ref{fig:3} show the percentage of errors found in metadata fields by section and by information type respectively. We found out that the most erroneous information for the dataset core information were ownership related as 41\% were missing or undefined. Datasets resources have the poorest metadata. 64\% of the general metadata, all the access information and 80\% of the provenance information contained missing or undefined values. Table \ref{tab:main} shows the top metadata fields errors in each metadata information type.
+A CKAN dataset metadata describes three main sections in addition to the core dataset's properties. Those are the groups, tags and resources. Each section contains a set of metadata corresponding to one or more metadata type. For example, a dataset resource will have general information such as the resource name, access information such as the resource url and provenance information such as creation date. The framework generates a report aggregating all the problems in all these sections, fixing field values when possible. Errors can be the result of missing metadata fields, undefined field values or field value errors e.g., unreachable URL or incorrect email address.
 
-% \begin{center}
-% \begin{tabular}{|c|c|c|c|c|c|}
+We ran our tool on two CAKN-based data portals, The LOD cloud group hosted on The Datahub and the Amsterdam Open Data portal\footnote{http://data.amsterdamopendata.nl/}. At the time of running this tool, the CKAN API returned 259 datasets for the tag name \"lodcloud\" with a total of 1068 resources. Amsterdam data portal contained 172 datasets with a total of 480 resources.
 
-% \hline
-% \multicolumn{2}{|c|}{Metadata Field} & Error \% & Section & Error Type & Auto Fix\tabularnewline
-% \hline
-% \hline
-% \multirow{6}{*}{General } & group & 100\% & Dataset & Missing & -\tabularnewline
-% \cline{2-6}
-%  & vocabulary\_id & 100\% & Tag & Undefined & -\tabularnewline
-% \cline{2-6}
-%  & url-type & 96.82\% & Resource & Missing & -\tabularnewline
-% \cline{2-6}
-%  & mimetype\_inner & 95.88\% & Resource & Undefined & Yes\tabularnewline
-% \cline{2-6}
-%  & hash & 95.51\% & Resource & Undefined & Yes\tabularnewline
-% \cline{2-6}
-%  & size & 81.55\% & Resource & Undefined & Yes\tabularnewline
-% \hline
-% \multirow{5}{*}{Access } & cahce\_url & 96.9\% & Resource & Undefined & -\tabularnewline
-% \cline{2-6}
-%  & webstore\_url & 91.29\% & Resource & Undefined & -\tabularnewline
-% \cline{2-6}
-%  & license\_url & 54.44\% & Dataset & Missing & Yes\tabularnewline
-% \cline{2-6}
-%  & url & 30.89\% & Resource & Unreachable & -\tabularnewline
-% \cline{2-6}
-%  & license\_title & 16.6\% & Dataset & Undefined & Yes\tabularnewline
-% \hline
-% \multirow{5}{*}{Provenance } & cache\_last\_updated & 96.91\% & Resource & Undefined & Yes\tabularnewline
-% \cline{2-6}
-%  & webstore\_last\_updated & 95.88\% & Resource & Undefined & Yes\tabularnewline
-% \cline{2-6}
-%  & created & 86.8\% & Resource & Missing & Yes\tabularnewline
-% \cline{2-6}
-%  & last\_modified & 79.87\% & Resource & Undefined & Yes\tabularnewline
-% \cline{2-6}
-%  & version & 60.23\% & Dataset & Undefined & -\tabularnewline
-% \hline
-% \multirow{5}{*}{Ownership } & maintainer\_email & 55.21\% & Dataset & Undefined & -\tabularnewline
-% \cline{2-6}
-%  & maintainer & 51.35\% & Dataset & Undefined & -\tabularnewline
-% \cline{2-6}
-%  & author\_email & 15.06\% & Dataset & Undefined & -\tabularnewline
-% \cline{2-6}
-%  & organization\_image\_url & 10.81\% & Dataset & Undefined & -\tabularnewline
-% \cline{2-6}
-%  & author & 2.32\% & Dataset & Undefined & -\tabularnewline
-% \hline
-% \end{tabular}
-% \captionof{table}{Top metadata fields error \% by type} \label{tab:main}
-% \end{center}
+In our evaluation, we focused on two aspects: i) \textit{profiling correctness} which assesses the validity of the errors generated in report manually, and ii) \textit{profiling completeness} which assesses if the profilers cover all the errors in the datasets metadata.
 
-% \begin{figure}
+\subsection{Profiling Correctness}
 
-% \parbox{7cm}{\hspace*{-.2in}
-% \includegraphics[width=.95\linewidth]{metadata_noise_by_section.png}
-% \captionsetup{textfont=small,singlelinecheck=off,justification=centering}
-% \caption{Error \% by section}
-% \label{fig:2}}
-% \qquad
-% \begin{minipage}{7cm}\hspace*{-.6in}
-% \includegraphics[width=.95\linewidth]{metadata_noise_by_metadata_type.png}
-% \captionsetup{textfont=small,singlelinecheck=off,justification=raggedright}
-% \caption{Error \% by information type}
-% \label{fig:3}
-% \end{minipage}
+The Amsterdam Open Data portal has a total of 18 groups defined. To measure the profiling correctness, we manually evaluated the results generated for 5 of those groups (bestuur-en-organisatie, bevolking, energie, geografie, verkiezingen) containing a total of 29 datasets. The choice was made to cover groups in various domains that contain a moderate number of datasets that can be checked manually (between 2-9 datasets).
 
-% \end{figure}
+After examining the results, we found out that our framework provides 100\% correct results on the individual dataset level and on the aggregation level over groups. Since our portal level aggregation is extended from the group aggregation we can infer that the portal level aggregation also produces complete correct profiles. However, the lack of a standard way to create and manage collections of datasets was the source of some errors when comparing the results from these two portals. For example, in The Datahub, we noticed that all the datasets \texttt{groups} information were missing, while in the Amsterdam Open Data portal, all the \texttt{organisation} information was missing. Although the error detection is correct, the overlap in the usage of group and organization can give a false indication about the metadata quality.
 
-% We notice that 42.85\% of the top metadata problems can be fixed automatically. 44.44\% of these problems can be fixed by our tool while the others need tools that are plugged into the data portal. We further present and discuss the results grouped by metadata information type below.
+\subsection{Profiling Completeness}
 
-% \subsection{General information} 34 datasets (13.13\%) did not have valid \texttt{notes} values. \texttt{tags} information for the datasets were complete except for the \texttt{vocabulary\_id} as it was missing from all the datasets' metadata. All the datasets \texttt{groups} information were missing \texttt{display\_name, description, title, image\_display\_url, id, name}. After \\manual examination, we noticed a clear overlap between group and organization information. Many datasets like \texttt{event-media} used the organization field to show group related information (being in LOD Cloud) instead of the publishers details.\\
-
-% \subsection{Access information} 25\% of the datasets access information (being the dataset URL and any URL defined in its groups) has issues related to them (missing or unreachable URLs).
-% Three datasets (1.15\%) did not have a URL defined (tip, uniprot\-databases, uniprot\-citations) while 45 datasets (17.3\%) defined URLs were not accessible at the time writing this paper. One dataset did not have resources information (bio2rdf\-chebi) while the other datasets had a total of 1068 defined resources.\\
-% On the datasets resources level, we noticed wrong or inconsistent values in the \texttt{size} and \texttt{mimetype} fields. 20 (1.87\%) resources had incorrect \texttt{mimetype} defined, while 52 (4.82\%) had incorrect \texttt{size} values. These values have been automatically fixed based on the values defined in the HTTP response header. However, 44 datasets have valid \texttt{size} field values and 54 have valid \texttt{mimetype} field values where they were not reachable, thus providing incorrect information.\\
-% 15 (68\%) fields of all the other access metadata are missing or have undefined values. Looking closely, we noticed that most of these problems can be easily fixed automatically by tools that can be plugged to the data portal. For example, the top six missing fields are the \texttt{cache\_last\_updated}, \texttt{cache\_url}, \texttt{url\-type}, \texttt{webstore\_last\_updated}, \texttt{mimetype\-\_inner} and \texttt{hash} which can be computed and filled automatically. However, the most important missing information which require manual entry are the dataset's \texttt{name} and \texttt{description} were missing from 817 (76.49\%) and 98 (9.17\%) resources respectively.
-% A total of 334 resources (31.27\%) URLs were not reachable, thus affecting highly the availability of these datasets. CKAN resources can be of various predefined types $(file, file.upload, api, visualization, code and documentation)$. The frameowork also breaks down these unreachable resources according to their types. 211 (63.17\%) resources did not have valid \texttt{resource\_type}, 112 (33.53\%) were files, 8 (2.39\%) and one (0.029\%) metadata, example and documentation types.
-
-% To have more details about the resources URL types, we created a $key:object meta-field values$ group level report on LOD cloud with \texttt{resources>\\format:title}. This will aggregate the resources format information for each dataset. We found out that only 161 (62.16\%) of the datasets valid URLs have SPARQL endpoints defined by \texttt{api/sparql} resource format. 92.27\% provided RDF example links and 56.3\% provided direct links to RDF down-loadable dumps.
-
-% The noisiest part of the access metadata was license information. A total of 43 datasets (16.6\%) did not have a defined \texttt{license\_title} and \texttt{license\_id} fields, where 141 (54.44\%) had missing \texttt{license\_url} field. However, we managed to normalize 123 (47.49\%) of the datasets' license information using the manual mapping file.
-
-% \subsection{Ownership information} Ownership information is divided into direct ownership (author and maintainer) and organization information. Four fields (66.66\%) of the direct ownership information were missing or undefined. The breakdown for the missing information is: 55.21\% \texttt{maintainer\_email}, 51.35\% \texttt{maintainer}, 15.06\% \texttt{author\_email}, 2.32\% \texttt{author}. Moreover, our framework performs checks to validate existing email values. 11 (0.05\%) and 6 (0.05\%) of the defined \texttt{author\_email} and \texttt{maintainer\_email} fields were not valid email addresses respectively.\\
-% For the organization information, two field values (16.6\%) were missing or undefined. 1.16\% of the \texttt{organization\_description} and 10.81\% of the \texttt{organization\-\_image\_url} information with two out of these URLs were unreachable.
-
-% \subsection{Provenance information} 80\% of the resources provenance information were missing or undefined. However, most of the provenance information e.g., \texttt{metadata\_created, \\metadata\_modified)} can be computed automatically by tools plugged into the data portal. The only field requiring manual entry is the \texttt{version} field which was found to be missing from 60.23\% of the datasets.
+We analyzed the completeness of our framework by manually constructing a set of profiles that act as a golden standard. These profiles cover the range of problems that can occur in a certain dataset\footnote{https://github.com/ahmadassaf/opendata-checker/tree/master/test}. After running our framework at each of these profiles, we measured the completeness and correcteness of the results. We found out that our framework covers indeed all the metadata problems that can be found in a CKAN standard model correctly.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%  6. Conclusion and Future Work  %%%
@@ -402,7 +325,7 @@ For example, the meta-field value query \texttt{resource>resource\_type} run aga
 
 In this paper, we proposed a scalable automatic approach for extracting, validating, correcting and generating descriptive linked dataset profiles. This approach applies several techniques in order to check the validity of the metadata provided and to generate descriptive and statistical information for a particular dataset or for an entire data portal. Based on our experiments running the tool on the LOD cloud, we discovered that the general state of the datasets needs attention as most of them lack informative access information and their resources suffer low availability. These two metrics are of high importance for enterprises looking to integrate and use external linked data.
 
-It has been noticed that the issues surrounding metadata quality affect directly dataset search as data portals rely on such information to power their search index. We noted the need for tools that are able to identify various issues in this metadata and correct them automatically. We found out that 32.25\% of all the metadata information can be automatically fixed, on which 50\%of them can be directly fixed by our framework. The rest are mainly provenance information that requires special treatment.
+It has been noticed that the issues surrounding metadata quality affect directly dataset search as data portals rely on such information to power their search index. We noted the need for tools that are able to identify various issues in this metadata and correct them automatically. We evaluated our framework manually against two prominent data portals and proved that we can automatically scale the validation of datasets metadata profiles completely and correctly.
 
 As part of our future work, we plan to introduce workflows that will be able to correct the rest of the metadata either automatically or through intuitive manually-driven interfaces. We also plan to integrate statistical and topical profilers to be able to generate full comprehensive profiles. We also intend to suggest a ranked standard metadata model that will help generate more accurate and scored metadata quality profiles. We also plan to run this tool on various CKAN based data portals, schedule periodic reports to monitor the evolvement of datasets metadata. Finally, at some stage, we plan to extend this tool for other data portal types like DKAN and Socrata.
 
