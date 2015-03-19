@@ -1,0 +1,113 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%µ%%%%%%%%%%%
+%%%  The State of Linked Data - An Extensible Framework to Validate and Build Dataset Profiles  %%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[runningheads,a4paper]{llncs}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\setcounter{tocdepth}{3}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{url}
+\usepackage{listings}
+\usepackage{subfigure}
+\usepackage{algorithmic}
+\usepackage{algorithm}
+\usepackage{xcolor}
+\usepackage{multirow}
+
+
+\graphicspath{ {figures/} }
+
+\newcommand{\keywords}[1]{\par\addvspace\baselineskip
+\noindent\keywordname\enspace\ignorespaces#1}
+
+% todo macro
+\usepackage{color}
+\newtheorem{deflda}{Axiom}
+\newcommand{\todo}[1]{\noindent\textcolor{red}{{\bf \{TODO}: #1{\bf \}}}}
+
+\colorlet{punct}{red!60!black}
+\definecolor{background}{HTML}{FFFFFF}
+\definecolor{delim}{RGB}{20,105,176}
+
+% Language Definitions for JSON
+\lstdefinelanguage{json}{
+    basicstyle=\tiny,
+    numbersep=4pt,
+    showstringspaces=false,
+    breaklines=true,
+    frame=lines,
+    literate=
+      {:}{{{\color{punct}{:}}}}{1}
+      {,}{{{\color{punct}{,}}}}{1}
+      {[}{{{\color{delim}{[}}}}{1}
+      {]}{{{\color{delim}{]}}}}{1},
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  Beginning of document  %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+% first the title is needed
+\title{Towards a Harmonized Dataset Model}
+
+\author{Ahmad Assaf\inst{1}\inst{2}, Aline Senart\inst{2} and Rapha\"{e}l Troncy\inst{1} }
+
+\institute{EURECOM, Sophia Antipolis, France. \email{<firstName.lastName@eurecom.fr>}
+  \and SAP Labs France. \email{<firstName.lastName@sap.com>}
+}
+
+% a short form should be given in case it is too long for the running head
+\titlerunning{Towards a Harmonized Dataset Model}
+%\authorrunning{Assaf, Senart and Troncy}
+
+\maketitle
+
+%%%%%%%%%%%%%%%%%%
+%%%  Abstract  %%%
+%%%%%%%%%%%%%%%%%%
+
+\begin{abstract}
+
+The Open Data movement triggered an unprecedented amount of data published in a wide range of domains. Governments and corporations around the world are encouraged to publish, share, use and integrate Open Data. There are many areas where we can see the value of Open Data, from transparency and self-empowerment to improving efficiency, effectiveness and decision making. The growing amount of data constitutes the need for rich metadata attached to it. This metadata enables dataset discovery, comprehension and maintenance. Data portals, which are considered to be datasets' access points, present their metadata in various models. In this paper, we propose a harmonized dataset based on the analysis of seven prominent dataset models (CKAN, DKAT, Public Open Data, Socrata, VoID, DCAT, Schema.org). We further present use cases that show the benefits of providing rich metadata to enable dataset discovery, search and spam detection.
+
+\keywords{Dataset, Dataset Profile, Metadata, Dataset Model}
+\end{abstract}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  1. Introduction  %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Introduction}
+\label{sec:introduction}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  2. Dataset Models  %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Dataset Models}
+\label{sec:models}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  3. Towards A Harmonised Model  %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Towards A Harmonised Model}
+\label{sec:hdl}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  Acknowledgments  %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Acknowledgments}
+This research has been partially funded by the European Union's 7th Framework Programme via the project Apps4EU (GA No. 325090).
+\vspace{0.5cm}
+
+\bibliographystyle{abbrv}
+\nocite{*}
+\bibliography{HDL}
+\end{document}
