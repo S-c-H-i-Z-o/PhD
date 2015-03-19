@@ -141,9 +141,9 @@ Although the above mentioned tools are able to provide various types of informat
 \section{Profiling Data Portals}
 \label{sec:framework}
 
-In this section, we provide an overview of the processing steps for validating and generating dataset profiles. Figure \ref{fig:1} shows the main steps which are the following: (i) data portal identification; (ii) metadata extraction; (iii) instance and resource extraction; (iv) profile validation (v) profile and report generation.
+In this section, we provide an overview of Roomba's architecture and the processing steps for validating and generating dataset profiles. Figure \ref{fig:1} shows the main steps which are the following: (i) data portal identification; (ii) metadata extraction; (iii) instance and resource extraction; (iv) profile validation (v) profile and report generation.
 
-Our framework is built as a Command Line Interface (CLI) application using Node.js. Instructions on installing and running the framework are available on its public Github repository\footnote{https://github.com/ahmadassaf/opendata-checker}. Related functions are encapsulated into modules that can be easily plugged in/out the processing pipeline. The various steps are explained in detail below.
+Roomba is built as a Command Line Interface (CLI) application using Node.js. Instructions on installing and running the framework are available on its public Github repository\footnote{https://github.com/ahmadassaf/opendata-checker}. The various steps are explained in detail below.
 
 \begin{figure}[!ht]
   \centering
@@ -195,15 +195,15 @@ From the extracted metadata we are able to identify all the resources associated
   \item \textbf{Format validation}: Validate specific resource formats against a linter or a validator. For example, node-csv\footnote{https://github.com/wdavidw/node-csv} for CSV files and n3\footnote{https://github.com/RubenVerborgh/N3.js} to validate N3 and Turtle RDF serializations.
 \end{itemize}
 
-Considering that certain datasets contain large amounts of resources and the limited computation power of some machines on which the framework might run on, a sampler module is introduced to execute various sample-based strategies detailed in \cite{scalableApproach} where they were found to generate accurate results even with comparably small sample size of 10\%.
+Considering that certain datasets contain large amounts of resources and the limited computation power of some machines on which the framework might run on, a sampler module can be introduced to execute various sample-based strategies detailed as they were found to generate accurate results even with comparably small sample size of 10\%. These strategies introduced in \cite{scalableApproach} are:
 
-% \begin{itemize}
-%   \item \textbf{Random Sampling}: Randomly selects resources instances.
-%   \item \textbf{Weighted Sampling}: Weighs each resources as the ratio of the number of datatype properties used to define a resource over the maximum number of datatype properties over all the datasets resources.
-%   \item \textbf{Resource Centrality Sampling}: Weighs each resource as the ration of the number of resource types used to describe a particular resource divided by the total number of resource types in the dataset. This is specific and important to RDF datasets where important concepts tend to be more structured and linked to other concepts.
-% \end{itemize}
+\begin{itemize}
+  \item \textbf{Random Sampling}: Randomly selects resources instances.
+  \item \textbf{Weighted Sampling}: Weighs each resources as the ratio of the number of datatype properties used to define a resource over the maximum number of datatype properties over all the datasets resources.
+  \item \textbf{Resource Centrality Sampling}: Weighs each resource as the ration of the number of resource types used to describe a particular resource divided by the total number of resource types in the dataset. This is specific and important to RDF datasets where important concepts tend to be more structured and linked to other concepts.
+\end{itemize}
 
-% However, the sampler is not restricted only to these strategies. Strategies like those introduced in \cite{Leskovec:2006:SLG:1150402.1150479} can be configured and applied in the processing pipeline.
+However, the sampler is not restricted only to these strategies. Strategies like those introduced in \cite{Leskovec:2006:SLG:1150402.1150479} can be configured and plugged in the processing pipeline.
 
 \subsection{Profile Validation}
 
