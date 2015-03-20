@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%µ%%%%%%%%%%%
-%%%  The State of Linked Data - An Extensible Framework to Validate and Build Dataset Profiles  %%%%
+%%%  HDL - Towards a Harmonized Dataset Model  %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \documentclass[runningheads,a4paper]{llncs}
@@ -53,7 +53,7 @@
 \begin{document}
 
 % first the title is needed
-\title{Towards a Harmonized Dataset Model}
+\title{HDL - Towards a Harmonized Dataset Model}
 
 \author{Ahmad Assaf\inst{1}\inst{2}, Aline Senart\inst{2} and Rapha\"{e}l Troncy\inst{1} }
 
@@ -62,7 +62,7 @@
 }
 
 % a short form should be given in case it is too long for the running head
-\titlerunning{Towards a Harmonized Dataset Model}
+\titlerunning{HDL - Towards a Harmonized Dataset Model}
 %\authorrunning{Assaf, Senart and Troncy}
 
 \maketitle
@@ -73,7 +73,7 @@
 
 \begin{abstract}
 
-The Open Data movement triggered an unprecedented amount of data published in a wide range of domains. Governments and corporations around the world are encouraged to publish, share, use and integrate Open Data. There are many areas where we can see the value of Open Data, from transparency and self-empowerment to improving efficiency, effectiveness and decision making. The growing amount of data constitutes the need for rich metadata attached to it. This metadata enables dataset discovery, comprehension and maintenance. Data portals, which are considered to be datasets' access points, present their metadata in various models. In this paper, we propose a harmonized dataset based on the analysis of seven prominent dataset models (CKAN, DKAT, Public Open Data, Socrata, VoID, DCAT, Schema.org). We further present use cases that show the benefits of providing rich metadata to enable dataset discovery, search and spam detection.
+The Open Data movement triggered an unprecedented amount of data published in a wide range of domains. Governments and corporations around the world are encouraged to publish, share, use and integrate Open Data. There are many areas where we can see the value of Open Data, from transparency and self-empowerment to improving efficiency, effectiveness and decision making. The growing amount of data constitutes the need for rich metadata attached to it. This metadata enables dataset discovery, comprehension and maintenance. Data portals, which are considered to be datasets' access points, present their metadata in various models. In this paper, we propose HDL, a harmonized dataset model based on the analysis of seven prominent dataset models (CKAN, DKAT, Public Open Data, Socrata, VoID, DCAT and Schema.org). We further present use cases that show the benefits of providing rich metadata to enable dataset discovery, search and spam detection.
 
 \keywords{Dataset, Dataset Profile, Metadata, Dataset Model}
 \end{abstract}
@@ -84,6 +84,54 @@ The Open Data movement triggered an unprecedented amount of data published in a 
 
 \section{Introduction}
 \label{sec:introduction}
+
+Open data is the data that can be easily discovered, reused and redistributed by anyone. It can include anything from statistics, geographical data, meteorological data to digitized books from libraries. Open data should have both legal and technical dimensions. It should be placed in the public domain under liberal terms of use with minimal restrictions and should be available in electronic formats that are non-proprietary and machine readable. Open Data has major benefits for citizens, businesses, society and governments. It increases transparency and enable self-empowerment by improving the visibility of previously inaccessible information and allowing citizens to be more informed about policies, public spendings and track activities in the law making processes. Moreover, and despite of the legal issues surrounding Linked Data licenses \cite{nomoneyLOD}, it is still considered a gold mine for organizations who are trying to leverage external data sources in order to produce more informed business decisions \cite{Boyd2011}.
+
+Datasets should contain the metadata needed to effectively understand and use them. It is one of the Linked Data publishing best practices mentioned in~\cite{Bizer:2011:EWG:2075914.2075915}. The ability to automatically check this metadata helps in:
+
+\begin{itemize}
+  \item \textbf{Delaying data entropy}: \textit{Information entropy} is the degradation or loss that limits the information content in raw or metadata. Information entropy, data complexity and dynamicity can shorten the life span of data. Even when the raw data is properly maintained, it is often rendered useless when the attached metadata is missing, incomplete or unavailable. Comprehensive high quality metadata can counteract these factors and increase dataset longevity~\cite{GTOS}.
+  \item \textbf{Enhancing data discovery, exploration and reuse}: Users who are unfamiliar with a dataset require detailed metadata to interpret and analyze accurately raw data. Moreover, several prominent data portals rely on the metadata to enable search and filtering.
+  \item \textbf{Enhancing spam detection}: Detecting spam in public data portals is increasingly difficult  even with security measures like captchas and anti-spam devices. Good dataset metadata quality reflects highly on the quality of its raw data.
+\end{itemize}
+
+The value of Open Data is recognized when it is used. To ensure that, publishers need to enable people to find datasets easily. Data portals are specifically designed for this purpose. They make it easy for individuals and organizations to store, publish and discover datasets. The data portals can be be public like DataHub\footnote{http://datahub.io} and Europe's Public Data\footnote{http://publicdata.eu} or private like Quandl\footnote{https://quandl.com/} or Engima\footnote{http://enigma.io/}. The data available in private portals is of higher quality as it is manually curated but in lesser quantity compared to what is available in public portals. Similarly, in some public data portals, administrators manually review datasets information, validate, correct and attach suitable metadata information.
+
+Data models vary across portals. Surveying the models landscape, we did not find any that offers enough granularity to completely describe complex datasets facilitating search, discovery and recommendation. For example, the DataHub\footnote{http://datahub.io} uses an extension of the Data Catalog Vocabulary (DCAT)~\cite{Erickson:14:DCV}. This data model prohibits a semantically rich representation of complex datasets like DBpedia\footnote{http://dbpedia.org} where it has multiple endpoits and thousands of dump files with various contents in several languages~\cite{Brummer:2014:DTS:2660517.2660538}. Moreover, to properly integrate Open Data into business, a dataset should include the following information: i)Access information: The dataset is rendered useless if it does not contain accessible data dumps or queryable endpoints. ii)License information: Businesses are always concerned with the legal implications of using external content. As a result, datasets should include both machine and human readable license information that indicates permissions, copyrights and attributions. iii)Provenance information: Depending on the dataset license, the data might not be legally usable if there are no information describing its authoritative and versioning information. Current models underspecified these main aspects limiting the usability of many datasets.
+
+In this paper, we propose HDL, a harmonized dataset model that addresses the shortcomings of existing dataset models by based analyzing seven prominent dataset models (CKAN, DKAT, Public Open Data, Socrata, VoID, DCAT and Schema.org). We further present use cases that show the benefits of providing rich metadata to enable dataset discovery, search and spam detection.
+
+The remainder of the paper is structured as follows. In Section~\ref{sec:metadata}, we present our classification for the different metadata information. In Section~\ref{sec:models}, we present the existing dataset models used by various data portals. In Section~\ref{sec:hdl}, we describe our proposed model and suggest a set of best practices to ensure proper metadata presentation and we finally conclude and outline some future work in Section~\ref{sec:conclusion}.
+
+\section{Dataset Metadata}
+\label{sec:metadata}
+
+A standard dataset metadata model should contain information about:
+
+\begin{itemize}
+  \item \textbf{Resources}: the distributable parts holding the actual raw data, they come in various formats (JSON, XML, RDF, etc.) and can be downloaded or accessed directly (REST API, SPARQL endpoint).
+  \item \textbf{Tags}:
+  \item \textbf{Groups}:
+  \item \textbf{Organizations}:
+\end{itemize}
+
+Metadata models vary across portals and can be of different levels:
+
+\begin{itemize}
+  \item \textbf{Discovery metadata}:
+  \item \textbf{Exploration metadata}:
+  \item \textbf{Exploitation metadata}:
+\end{itemize}
+
+We divided the metadata information into the following:
+
+\textbf{General information}: General information about the dataset. e.g., title, description, ID, etc. This general information is manually filled by the dataset owner. In addition to that, tags and group information is required for classification and enhancing dataset discoverability. This information can be entered manually or inferred modules plugged into the topical profiler.
+
+\textbf{Access information}: Information about accessing and using the dataset. This includes the dataset URL, license information i.e., license title and URL and information about the dataset's resources. Each resource has as well a set of attached metadata e.g., resource name, URL, format, size, etc.
+
+\textbf{Ownership information}: Information about the ownership of the dataset. e.g., organization details, maintainer details, author, etc. The existence of this information is important to identify the authority on which the generated report and the newly corrected profile will be sent to.
+
+\textbf{Provenance information}: Temporal and historical information on the dataset and its resources. For example, creation and update dates, version information, version, etc. Most of this information can be automatically filled and tracked.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %%%  2. Dataset Models  %%%
@@ -98,6 +146,13 @@ The Open Data movement triggered an unprecedented amount of data published in a 
 
 \section{Towards A Harmonised Model}
 \label{sec:hdl}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  4. Conclusion & Future Work  %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Conclusion and Future Work}
+\label{sec:conclusion}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %%%  Acknowledgments  %%%
