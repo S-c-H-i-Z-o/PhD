@@ -16,9 +16,12 @@
 \usepackage{algorithm}
 \usepackage{xcolor}
 \usepackage{multirow}
+\usepackage{changepage}
 
 
 \graphicspath{ {figures/} }
+
+\addtolength{\parskip}{-0.5mm}
 
 \newcommand{\keywords}[1]{\par\addvspace\baselineskip
 \noindent\keywordname\enspace\ignorespaces#1}
@@ -252,25 +255,24 @@ For example, the meta-field value query \texttt{resource>resource\_type} run aga
 \lstset{basicstyle=\scriptsize, backgroundcolor=\color{white}, breaklines=true, frame=single, caption={Excerpt of the DBpedia validation report}, label=report, captionpos=b}
 \begin{lstlisting}
  =======================================================================
-                       Metadata Report
+                          Metadata Report
  =======================================================================
   group information is missing. Check organization information as they can be mixed sometimes
   organization_image_url field exists but there is no value defined
  =======================================================================
-                       Tag Statistics
+                          Tag Statistics
  =======================================================================
   There is a total of: 21 [undefined] vocabulary_id fields  100.00%
  =======================================================================
-                       License Report
+                          License Report
  =======================================================================
   License information has been normalized !
  =======================================================================
-                       Resource Statistics
+                        Resource Statistics
  =======================================================================
   There is a total of: 10 [missing] url-type fields  100.00%
   There is a total of: 9 [missing] created fields  90.00%
   There is a total of: 10 [undefined] cache_last_updated fields  100.00%
-  There is a total of: 10 [undefined] webstore_last_updated fields  100.00%
   There is a total of: 10 [undefined] size fields  100.00%
   There is a total of: 10 [undefined] hash fields  100.00%
   There is a total of: 10 [undefined] mimetype_inner fields  100.00%
@@ -281,12 +283,12 @@ For example, the meta-field value query \texttt{resource>resource\_type} run aga
   There is a total of: 9 [undefined] last_modified fields  90.00%
   There is one [undefined] format field  10.00%
  =======================================================================
-                       Resource Connectivity Issues
+                   Resource Connectivity Issues
  =======================================================================
   There are 2 connectivity issues with the following URLs:
     - http://dbpedia.org/void/Dataset
  =======================================================================
-                       Un-Reachable URLs Types
+                     Un-Reachable URLs Types
  =======================================================================
   There are: 1 unreachable URLs of type [file]
 \end{lstlisting}
@@ -313,7 +315,7 @@ Each of these sections contains a set of metadata corresponding to one or more t
 
 \subsection{Experimental Setup}
 
-We ran our tool on two CAKN-based data portals. The first is the Datahub targeting specifically the LOD cloud group. The current state of the LOD cloud report~\cite{DBLP:conf/semweb/SchmachtenbergBP14} indicates that the LOD cloud contains 1014 datasets. They were harvested via an LDSpider crawler~\cite{conf/semweb/IseleUBH10} seeded with 560 thousands URIs. Roomba on the other hand, fetches datasets hosted in data portals where datasets have attached relevant metadata. As a result, we relied on the information provided by the Datahub CKAN API. Examining the tags available, we found two candidate groups. The first tagged with "lodcloud" returned 259 datasets, while the second tagged with "lod" returned only 75 datasets. After manually examining the two lists, we found out the datasets grouped with the tag "lodcloud" are the correct ones. The second portal is the Amsterdam data portal \footnote{http://data.amsterdamopendata.nl/}.
+We ran our tool on two CAKN-based data portals. The first is the Datahub targeting specifically the LOD cloud group. The current state of the LOD cloud report~\cite{DBLP:conf/semweb/SchmachtenbergBP14} indicates that the LOD cloud contains 1014 datasets. They were harvested via an LDSpider crawler~\cite{conf/semweb/IseleUBH10} seeded with 560 thousands URIs. Roomba on the other hand, fetches datasets hosted in data portals where datasets have attached relevant metadata. As a result, we relied on the information provided by the Datahub CKAN API. Examining the tags available, we found two candidate groups. The first tagged with "lodcloud" returned 259 datasets, while the second tagged with "lod" returned only 75 datasets. After manually examining the two lists, we found out the datasets grouped with the tag "lodcloud" are the correct ones. To qualify other CKAN-based portals for the experiments, we used \texttt{dataportals.org}, which contains a comprehensive list of Open Data portals from around the world. In the end, we chose the Amsterdam data portal \footnote{http://data.amsterdamopendata.nl/}. The portal was commissioned in 2012 by the Amsterdam Economic Board Open Data Exchange (ODE), and covers a wide range of information domains (energy, economy, education, urban development, etc.) about Amsterdam metropolitan region.
 
 We ran the instance and resource extractors in order to cache the metadata files for these datasets locally and ran the validation process. The experiments were executed on a 2.6 Ghz Intel Core i7 processor with 16GB of DDR3 memory machine. The approximate execution time alongside  the summary of the datasets' properties are presented in table \ref{tab:dataportals}.
 
@@ -333,13 +335,58 @@ In our evaluation, we focused on two aspects: i)\textit{profiling correctness} w
 
 \subsection{Profiling Correctness}
 
-The Amsterdam Open Data portal has a total of 18 groups defined. To measure the profiling correctness, we manually evaluated the results generated for 5 of those groups (bestuur-en-organisatie, bevolking, energie, geografie, verkiezingen) containing a total of 29 datasets. The choice was made to cover groups in various domains that contain a moderate number of datasets that can be checked manually (between 2-9 datasets).
+To measure profile correctness, we need to make sure that the issues reported by Roomba are valid on the dataset, group and portal levels.
 
-After examining the results, we found out that our framework provides 100\% correct results on the individual dataset level and on the aggregation level over groups. Since our portal level aggregation is extended from the group aggregation we can infer that the portal level aggregation also produces complete correct profiles. However, the lack of a standard way to create and manage collections of datasets was the source of some errors when comparing the results from these two portals. For example, in Datahub, we noticed that all the datasets \texttt{groups} information were missing, while in the Amsterdam Open Data portal, all the \texttt{organisation} information was missing. Although the error detection is correct, the overlap in the usage of group and organization can give a false indication about the metadata quality.
+On the dataset level, we choose three datasets from both the LOD Cloud and the Amsterdam data portal. The datasets details are shown in table \ref{tab:datasesExperiment}.
+
+\begin{table}[ht]
+\centering
+\footnotesize\setlength{\tabcolsep}{1.5pt}
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\textbf{Dataset Name}          & \multicolumn{1}{l|}{\textbf{Data Portal}} & \multicolumn{1}{l|}{\textbf{Group ID}} & \multicolumn{1}{l|}{\textbf{Resources}} & \multicolumn{1}{l|}{\textbf{Tags}} \\ \hline
+dbpedia                        & Datahub                                   & lodcloud                               & 10                                      & 21                                 \\ \hline
+event-media                    & Datahub                                   & lodcloud                               & 9                                       & 15                                 \\ \hline
+bbc-music                      & Datahub                                   & lodcloud                               & 2                                       & 14                                 \\ \hline
+bevolking\_cijfers\_amsterdam  & Amsterdam                                 & bevolking                              & 6                                       & 12                                 \\ \hline
+bevolking-prognoses-amsterdam  & Amsterdam                                 & bevolking                              & 1                                       & 3                                  \\ \hline
+religieuze\_samenkomstlocaties & Amsterdam                                 & bevolking                              & 1                                       & 8                                  \\ \hline
+\end{tabular}
+\caption{Datasets chosen for the correctness evaluation}
+\label{tab:datasesExperiment}
+\end{table}
+
+To measure the profiling correctness on the groups level, we selected four groups from the Amsterdam data portal containing a total of 25 datasets. The choice was made to cover groups in various domains that contain a moderate number of datasets that can be checked manually (between 3-9 datasets). Table \ref{tab:groups} summarizes the groups chosen for the evaluation.
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\textbf{Group Name}      & \textbf{Domain}        & \multicolumn{1}{l|}{\textbf{Datasets}} & \multicolumn{1}{l|}{\textbf{Resources}} & \multicolumn{1}{l|}{\textbf{Tags}} \\ \hline
+bestuur-en-organisatie   & Management             & 9                                      & 45                                      & 101                                \\ \hline
+bevolking                & Population             & 3                                      & 8                                       & 23                                 \\ \hline
+geografie                & Geography              & 8                                      & 16                                      & 56                                 \\ \hline
+openbare-orde-veiligheid & Public Order \& Safety & 5                                      & 19                                      & 34                                 \\ \hline
+\end{tabular}
+\caption{Groups chosen for the correctness evaluation}
+\label{tab:groups}
+\end{table}
+
+After running Roomba and examining the results on the selected datasets and groups, we found out that our framework provides 100\% correct results on the individual dataset level and on the aggregation level over groups. Since our portal level aggregation is extended from the group aggregation we can infer that the portal level aggregation also produces complete correct profiles. However, the lack of a standard way to create and manage collections of datasets was the source of some errors when comparing the results from these two portals. For example, in Datahub, we noticed that all the datasets \texttt{groups} information were missing, while in the Amsterdam Open Data portal, all the \texttt{organisation} information was missing. Although the error detection is correct, the overlap in the usage of group and organization can give a false indication about the metadata quality.
 
 \subsection{Profiling Completeness}
 
-We analyzed the completeness of our framework by manually constructing a set of profiles that act as a golden standard. These profiles cover the range of problems that can occur in a certain dataset\footnote{https://github.com/ahmadassaf/opendata-checker/tree/master/test}. After running our framework at each of these profiles, we measured the completeness and correcteness of the results. We found out that our framework covers indeed all the metadata problems that can be found in a CKAN standard model correctly.
+We analyzed the completeness of our framework by manually constructing a set of profiles that act as a golden standard. These profiles cover the range of uncommon problems that can occur in a certain dataset\footnote{https://github.com/ahmadassaf/opendata-checker/tree/master/test}. These errors are:
+
+\begin{itemize}
+\item Incorrect \texttt{mimetype} or \texttt{size} for resources
+\item Invalid number of tags or resources defined
+\item Check if the license information can be normalized via the \texttt{license\_id} or the \texttt{license\_title} as well as the normalization result.
+\item Syntacticly invalid \texttt{author\_email} or \texttt{maintainer\_email}.
+\end{itemize}
+
+
+After running our framework at each of these profiles, we measured the completeness and correcteness of the results. We found out that our framework covers indeed all the metadata problems that can be found in a CKAN standard model correctly.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%  6. Conclusion and Future Work  %%%
