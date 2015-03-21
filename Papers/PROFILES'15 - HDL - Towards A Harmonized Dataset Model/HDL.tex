@@ -99,33 +99,9 @@ The value of Open Data is recognized when it is used. To ensure that, publishers
 
 Data models vary across portals. Surveying the models landscape, we did not find any that offers enough granularity to completely describe complex datasets facilitating search, discovery and recommendation. For example, the DataHub\footnote{\url{http://datahub.io}} uses an extension of the Data Catalog Vocabulary (DCAT)~\cite{Erickson:14:DCV}. This data model prohibits a semantically rich representation of complex datasets like DBpedia\footnote{\url{http://dbpedia.org}} where it has multiple endpoits and thousands of dump files with various contents in several languages~\cite{Brummer:2014:DTS:2660517.2660538}. Moreover, to properly integrate Open Data into business, a dataset should include the following information: i)Access information: The dataset is rendered useless if it does not contain accessible data dumps or queryable endpoints. ii)License information: Businesses are always concerned with the legal implications of using external content. As a result, datasets should include both machine and human readable license information that indicates permissions, copyrights and attributions. iii)Provenance information: Depending on the dataset license, the data might not be legally usable if there are no information describing its authoritative and versioning information. Current models underspecified these main aspects limiting the usability of many datasets.
 
-In this paper, we propose HDL, a harmonized dataset model that addresses the shortcomings of existing dataset models based on analyzing seven prominent dataset models (CKAN, DKAT, Public Open Data, Socrata, VoID, DCAT and Schema.org). We further present use cases that show the benefits of providing rich metadata to enable dataset discovery, search and spam detection.
+In this paper, we survey the landscape of existing dataset models used (CKAN, DKAT, Public Open Data, Socrata, VoID, DCAT and Schema.org). We further analyze these models and suggest a classification for metadata information. Based on this classification, we propose HDL, a harmonized dataset model that addresses the shortcomings of existing dataset models based on analyzing seven prominent dataset models.
 
-The remainder of the paper is structured as follows. In Section~\ref{sec:metadata}, we present our classification for the different metadata information. In Section~\ref{sec:models}, we present the existing dataset models used by various data portals. In Section~\ref{sec:hdl}, we describe our proposed model and suggest a set of best practices to ensure proper metadata presentation and we finally conclude and outline some future work in Section~\ref{sec:conclusion}.
-
-\section{Metadata Classification}
-\label{sec:metadata}
-
-A standard dataset metadata model should contain information about four sections:
-
-\begin{itemize}
-  \item \textbf{Resources}: Distributable parts containing the actual raw data. They can come in various formats (JSON, XML, RDF, etc.) and can be downloaded or accessed directly (REST API, SPARQL endpoint).
-  \item \textbf{Tags}: Provide descriptive knowledge on the dataset content and structure. They are used mainly to facilitate search and reuse.
-  \item \textbf{Groups}: A dataset can belong to one or more group that share common semantics. A group can be seen as a cluster or a curation of datasets based on shared categories or themes.
-  \item \textbf{Organizations}: A dataset can belong to one or more organization controlled by a set of users. Organizations are different from groups as they are not constructed by shared semantics or properties, but solely on their association to a specific administration party.
-\end{itemize}
-
-Upon examining the various data models, we grouped the metadata information into four main types. Each section discussed above should contain one or more of these types. For example, resources have general, access, ownership and provenance information while tags have general and provenance information only. The four types are:
-
-\begin{itemize}
-\item \textbf{General information}: General information about the dataset. e.g., title, description, ID. This general information is manually filled by the dataset owner. In addition to that, tags and group information is required for classification and enhancing dataset discoverability. This information can be entered manually or inferred modules plugged into the topical profiler.
-
-\item \textbf{Access information}: Information about accessing and using the dataset. This includes the dataset URL, license information i.e., license title and URL and information about the dataset's resources. Each resource has as well a set of attached metadata e.g., resource name, URL, format, size.
-
-\item \textbf{Ownership information}: Information about the ownership of the dataset. e.g., organization details, maintainer details, author. The existence of this information is important to identify the authority on which the generated report and the newly corrected profile will be sent to.
-
-\item \textbf{Provenance information}: Temporal and historical information on the dataset and its resources. For example, creation and update dates, version information, version, etc. Most of this information can be automatically filled and tracked.
-\end{itemize}
+The remainder of the paper is structured as follows. In Section~\ref{sec:models}, we present the existing dataset models used by various data portals. In Section~\ref{sec:metadata}, we present our classification for the different metadata information. In Section~\ref{sec:hdl}, we describe our proposed model and suggest a set of best practices to ensure proper metadata presentation and we finally conclude and outline some future work in Section~\ref{sec:conclusion}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%  2. Dataset Models  %%%
@@ -169,16 +145,43 @@ It is a collection of schemas (in RDF/Microdata format) that webmasters can use 
 \subsection{Project Open Data}
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  3. Dataset Models  %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Metadata Classification}
+\label{sec:metadata}
+
+A standard dataset metadata model should contain information about four sections:
+
+\begin{itemize}
+  \item \textbf{Resources}: Distributable parts containing the actual raw data. They can come in various formats (JSON, XML, RDF, etc.) and can be downloaded or accessed directly (REST API, SPARQL endpoint).
+  \item \textbf{Tags}: Provide descriptive knowledge on the dataset content and structure. They are used mainly to facilitate search and reuse.
+  \item \textbf{Groups}: A dataset can belong to one or more group that share common semantics. A group can be seen as a cluster or a curation of datasets based on shared categories or themes.
+  \item \textbf{Organizations}: A dataset can belong to one or more organization controlled by a set of users. Organizations are different from groups as they are not constructed by shared semantics or properties, but solely on their association to a specific administration party.
+\end{itemize}
+
+Upon examining the various data models, we grouped the metadata information into four main types. Each section discussed above should contain one or more of these types. For example, resources have general, access, ownership and provenance information while tags have general and provenance information only. The four types are:
+
+\begin{itemize}
+\item \textbf{General information}: General information about the dataset. e.g., title, description, ID. This general information is manually filled by the dataset owner. In addition to that, tags and group information is required for classification and enhancing dataset discoverability. This information can be entered manually or inferred modules plugged into the topical profiler.
+
+\item \textbf{Access information}: Information about accessing and using the dataset. This includes the dataset URL, license information i.e., license title and URL and information about the dataset's resources. Each resource has as well a set of attached metadata e.g., resource name, URL, format, size.
+
+\item \textbf{Ownership information}: Information about the ownership of the dataset. e.g., organization details, maintainer details, author. The existence of this information is important to identify the authority on which the generated report and the newly corrected profile will be sent to.
+
+\item \textbf{Provenance information}: Temporal and historical information on the dataset and its resources. For example, creation and update dates, version information, version, etc. Most of this information can be automatically filled and tracked.
+\end{itemize}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%  3. Towards A Harmonised Model  %%%
+%%%  4. Towards A Harmonised Model  %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Towards A Harmonised Model}
 \label{sec:hdl}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%  4. Conclusion & Future Work  %%%
+%%%  5. Conclusion & Future Work  %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Conclusion and Future Work}
