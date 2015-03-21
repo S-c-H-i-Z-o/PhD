@@ -13,10 +13,15 @@
 \usepackage{listings}
 \usepackage{pifont}
 \usepackage{url}
+
 \def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;}
 
 \graphicspath{ {figures/} }
 \newcolumntype{L}{>{\arraybackslash}m{13cm}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  Beginning of document  %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
 \begin{frontmatter}
@@ -32,6 +37,10 @@
 % 2229 route des cretes, 06560 Sophia Antipolis, France\\
 % \email{first.last@eurecom.fr}}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%         Abstract        %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \begin{abstract}
 The standardization of Semantic Web technologies and specifications has resulted in a staggering volume of data being published. The Linked Open Data (LOD) is a gold mine for organizations trying to leverage external data sources in order to produce more informed business decisions. However, the heterogeneous nature of data sources reflects directly on the data quality as these sources often contain inconsistent as well as misinterpreted and incomplete information. Traditional data quality is a thoroughly researched field with several benchmarks and frameworks to grasp its dimensions. Ensuring data quality in Linked Open Data is much more complex. It consists of structured information supported by models, ontologies and vocabularies and contains queryable endpoints and links. In this paper, we first propose an objective assessment framework for Linked Data quality. Previous efforts have identified potential quality issues of Linked Data and listed quality principles for all stages of data management. We build upon these efforts but focus only on the objective quality indicators based on metrics that can be automatically measured. Secondly, we surveyed the landscape of Linked Data quality tools to discover that they only cover a subset of the proposed quality indicators. As a result, we present an extensible quality measurement tool that helps on one hand data owners to rate the quality of their datasets and get some hints on possible improvements, and on the other hand data consumers to choose their data sources from a ranked set. We evaluate this tool by measuring the quality of the LOD cloud. The results demonstrate that the general state of the datasets needs attention as they mostly have low completeness, provenance, licensing and comprehensibility quality scores.
 \end{abstract}
@@ -40,6 +49,10 @@ The standardization of Semantic Web technologies and specifications has resulted
 Data Quality\sep Linked Data\sep Quality Framework\sep Semantic Web\sep Dataset Profile \sep Profile Generation
 \end{keyword}
 \end{frontmatter}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%     1.Introduction      %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Introduction}
 \label{sec:introduction}
@@ -59,6 +72,10 @@ Furthermore, we surveyed the landscape of Linked Data quality tools to discover 
 
 This paper is structured as follows: Section~\ref{sec:data-quality-assessment} presents the various data quality assessment methodologies. Section~\ref{sec:data-quality-classification} presents our framework with its objective quality measures and indicators. Section~\ref{sec:assessment-framework} presents our tool for evaluating those indicators. Section~\ref{sec:quality-tools} reviews the existing tools and frameworks in the Linked Open Data quality landscape. Section~\ref{sec:conclusion} presents concluding remarks and identifies future work.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% 2. Data quality Assessment   %%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \section{Data Quality Assessment}
 \label{sec:data-quality-assessment}
 In~\cite{Framework2012}, the authors present a comprehensive systematic review of data quality assessment methodologies applied to LOD. They have extracted 26 quality dimensions and a total of 110 objective and subjective quality indicators. However, some of those objective indicators are dependent on the use case thus there is no clear separation on what can be automatically measured. For example, data completeness is generally a subjective dimension. However, the authors specified that the detection of the degree on which all the real-world objects are represented, detection of number of missing values for specific property and detection of the degree to which instances in the dataset are interlinked are considered as objective indicators given the presence of a gold standard or the original data source to compare with. Moreover, lots of the defined performance dimensions like low latency, high throughput or scalability of a data source were defined as objective but are still dependent on multiple subjective factors like network congestion. In addition, there were some missing objective indicators vital to the quality of LOD e.g. indication of the openness of the dataset.
@@ -74,6 +91,10 @@ The emerging critical need for large, distributed, heterogeneous, and complex st
 In~\cite{DBLP:conf/i-semantics/RulaZ14}, the authors propose a methodology for assessing Linked Data quality. It consists of three main steps: (1) requirement analysis, (2) quality assessment and (3) quality improvement. Considering the multidimensionality of data quality, the methodology requires users to provide the details of a use case or a scenario that describes the intended usage of the data. Moreover, quality issues identification is done with the help of a checklist. The user must have prior knowledge about the details of the data in order to fill this list. Tools implementing the proposed methodology should be able to generate comprehensive quality measures. However, they will require heavy manual intervention and deep knowledge on the data examined. These issues highly affect detecting quality issue on large scale.
 
 Despite all the recent efforts in providing frameworks and tools for data quality in Linked Open Data, there is still no automatic framework for the objective assessment of Linked Data quality.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%    3.Objective Linked Data Quality Classification      %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Objective Linked Data Quality Classification}
 \label{sec:data-quality-classification}
@@ -306,15 +327,20 @@ Coherence is the ability to interpret data as expected by the publisher or vocab
 \subsection{Security}
 Security is a quality attribute that is measured on the dataset level. It is identified if the publishers use login credentials, SSL or SSH to provide access to their dataset, or if they only grant access to specific users~\cite{Framework2012}.
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%     4.An Extensible Objective Quality Assessment Framework      %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \section{An Extensible Objective Quality Assessment Framework}
 \label{sec:assessment-framework}
-Roomba is built as a Command Line Interface (CLI) application using Node.js. Instructions on installing and running the framework are available on its public Github repository. Related functions are encapsulated into modules that can be easily plugged in/out the processing pipeline. Figure \ref{fig:architecture} shows the main steps which are the following: (i) Data portal identification; (ii) metadata extraction; (iii) instance and resource extraction; (iv) profile validation (v) profile and report generation.
+Roomba is built as a Command Line Interface (CLI) application using Node.js. Instructions on installing and running the framework are available on its public Github repository. Related functions are encapsulated into modules that can be easily plugged in/out the processing pipeline. Figure \ref{fig:Roomba_architecture} shows the main steps which are the following: (i) Data portal identification; (ii) metadata extraction; (iii) instance and resource extraction; (iv) profile validation (v) profile and report generation.
 
 \begin{figure}[!ht]
   \centering
     \includegraphics[scale=0.4]{figure-1_architecture.png}
   \caption{Processing pipeline for objective dataset quality assessment}
-  \label{fig:architecture}
+  \label{fig:Roomba_architecture}
 \end{figure}
 
 For this paper, we have extended Roomba with a new quality module to measure datasets quality. We have implemented 7 submodules that will check various dataset quality indicators. Various additional quality measures can be easily plugged in/out.
@@ -441,6 +467,10 @@ Figure \ref{fig:average-error-lod-group} shows the average errors percentage in 
 To drill down more on the availability issues, we generated a metadata profile assessment report using Roomba's metadata profiler. We found out that 25\% of the datasets access information (being the dataset URL and any URL defined in its groups) has issues related to them (missing or unreachable URLs).
 Three datasets (1.15\%) did not have a URL defined while 45 datasets (17.3\%) defined URLs were not accessible at the time writing this paper. Out of the 1068 defined resources 31.27\% were not reachable. All these issues resulted in a 26.22\% average availability score. This can highly affect the usability of those datasets especially in an enterprise context.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%       5.Linked Data Quality Tools      %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \section{Linked Data Quality Tools}
 \label{sec:quality-tools}
 In this section, we present the results of our survey on the Linked Data quality tools. There exists a number of data quality frameworks and tools that are either standalone or implemented as modules in data integration tools. These approaches can be classified into automatic, semi-automatic, manual or crowdsourced approaches.
@@ -536,6 +566,10 @@ Roomba & \ding{108} & \ding{108} & \ding{108} & \ding{108} & \ding{108} & \ding{
 \end{tabular}
 \caption{Functional Comparison of Automatic Linked Data quality Tools}
 \end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%       6.Conclusions and Future Work     %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Conclusions and Future Work}
 \label{sec:conclusion}
