@@ -7,6 +7,7 @@
 \usepackage{amssymb}
 \usepackage{amsmath}
 \usepackage{graphicx}
+\usepackage{tabularx}
 \graphicspath{ {Figures/} }
 
 
@@ -68,7 +69,7 @@ While schema matching has always been an active research area in data integratio
 
 In the past, some work has tried to improve existing data schemas~\cite{ DBLP:journals/debu/MillerA03} but literature mainly covers automatic or semi-automatic labeling of anonymous data sets through Web extraction. Examples include~\cite{cas04} that automatically labels news articles with a tree structure analysis or~\cite{wang2003extraction} that defines heuristics based on distance and alignment of a data value and its label. These approaches are however restricting label candidates to Web content from which the data was extracted.~\cite{DBLP:conf/otm/SilvaBCS07} goes a step further by launching speculative queries to standard Web search engines to enlarge the set of potential candidate labels. More recently,~\cite{Limaye:2010:ASW:1920841.1921005} applies machine learning techniques to respectively annotate table rows as entities, columns as their types and pairs of columns as relationships, referring to the YAGO ontology. The work presented aims however at leveraging such annotations to assist semantic search queries construction and not at improving schema matching.
 
-With the emergence of the Semantic Web, new work in the area has tried to exploit Linked Data repositories. The authors of~\cite{Syed2010Tables} present techniques to automatically infer a semantic model on tabular data by getting top candidates from Wikitology~\cite{conf/aaaiss/FininSMMP09} and classifying them with the Google page ranking algorithm. Since the authors' goal is to export the resulting table data as Linked Data and not to improve schema matching, some columns can be labeled incorrectly, and acronyms and languages are not well handled~\cite{Syed2010Tables}. In the Helix project~\cite{conf/www/HassanzadehDFKSW11}, a tagging mechanism is used to add semantic information on tabular data. A sample of instances values for each column is taken and a set of tags with scores are gathered from online sources such as Freebase \footnote{http://www.freebase.com/}. Tags are then correlated to infer annotations for the column. The mechanism is quite similar to ours but the resulting tags for the column are independent of the existing column name and sampling might not always provide a representative population of the instance values.
+With the emergence of the Semantic Web, new work in the area has tried to exploit Linked Data repositories. The authors of~\cite{Syed2010Tables} present techniques to automatically infer a semantic model on tabular data by getting top candidates from Wikitology~\cite{conf/aaaiss/FininSMMP09} and classifying them with the Google page ranking algorithm. Since the authors' goal is to export the resulting table data as Linked Data and not to improve schema matching, some columns can be labeled incorrectly, and acronyms and languages are not well handled~\cite{Syed2010Tables}. In the Helix project~\cite{conf/www/HassanzadehDFKSW11}, a tagging mechanism is used to add semantic information on tabular data. A sample of instances values for each column is taken and a set of tags with scores are gathered from online sources such as Freebase\footnote{http://www.freebase.com/}. Tags are then correlated to infer annotations for the column. The mechanism is quite similar to ours but the resulting tags for the column are independent of the existing column name and sampling might not always provide a representative population of the instance values.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%  Proposition  %%%
@@ -77,7 +78,7 @@ With the emergence of the Semantic Web, new work in the area has tried to exploi
 \section{Proposition}
 
 Google Refine (formerly Freebase Gridworks) is a tool designed to quickly and efficiently process, clean and eventually enrich large amounts of data with existing knowledge bases such as Freebase. The tool has however some limitations: it was initially designed for data cleansing on only one data set at a time, with no possibility to compose columns from different data sets. Moreover, Google Refine has some strict assumptions over the input of spreadsheets which makes it difficult to identify primitive and complex data types.
-The AMC is a novel framework that supports the construction and execution of new matching components or algorithms. AMC contains several matching components that can be plugged and used, like string matchers (Levenshtein, JaroWinkler \dots  etc.), data types matchers and path matchers. It also provides a set of combination and selection algorithms to produce optimized results (weighted average, average, sigmoid \dots  etc.).
+The AMC is a novel framework that supports the construction and execution of new matching components or algorithms. AMC contains several matching components that can be plugged and used, like string matchers (Levenshtein, JaroWinkler\dots  etc.), data types matchers and path matchers. It also provides a set of combination and selection algorithms to produce optimized results (weighted average, average, sigmoid\dots  etc.).
 In this section, we describe in detail our framework allowing data mashup from several sources. We first present our framework architecture, then the activity flow and finally our approach to schema matching.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -85,52 +86,32 @@ In this section, we describe in detail our framework allowing data mashup from s
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Framework Architecture}
-Google Refine makes use of a modular web application framework similar to OSGi called Butterfly \footnote{http://code.google.com/p/simile-butterfly/}. The server-side written in Java maintains states of the data (undo/redo history, long-running processes, etc.) while the client-side implemented in Javascript maintains states of the user interface (facets and their selections, view pagination, etc.). Communication between the client and server is done through REST web services.
+Google Refine makes use of a modular web application framework similar to OSGi called Butterfly\footnote{http://code.google.com/p/simile-butterfly/}. The server-side written in Java maintains states of the data (undo/redo history, long-running processes, etc.) while the client-side implemented in Javascript maintains states of the user interface (facets and their selections, view pagination, etc.). Communication between the client and server is done through REST web services.
 
 \begin{figure}[ht!]
   \centering
     \includegraphics[scale=0.6]{architecture-1.png}
   \caption{Framework Architecture}
-  \label{fig:1}
+  \label{fig:framework_architecture}
 \end{figure}
 
-As depicted in \ref{fig:1}, our framework leverages Google Refine and defines three new Butterfly modules to extend the server's functionality (namely Match, Merge and Aggregate modules) and one JavaScript extension to capture user interaction with these new data matching capabilities.
+As depicted in \ref{fig:framework_architecture}, our framework leverages Google Refine and defines three new Butterfly modules to extend the server's functionality (namely Match, Merge and Aggregate modules) and one JavaScript extension to capture user interaction with these new data matching capabilities.
 
 \subsection{Activity Flow}
-This section presents the sequence of activities and interdependencies between these activities when using our framework. \ref{fig:2} gives an outline of these activities.
+This section presents the sequence of activities and interdependencies between these activities when using our framework. \ref{fig:Activity_workflow} gives an outline of these activities.
 
 \begin{figure}[ht!]
   \centering
     \includegraphics[scale=0.4]{architecture-2.png}
-  \caption{Framework Architecture}
-  \label{fig:2}
+  \caption{Activity Workflow}
+  \label{fig:Activity_workflow}
 \end{figure}
 
 The data sets to match can be contained in files (e.g. csv, Excel spreadsheets, etc.) or defined in Google Refine projects (step 1). The inputs for the match module are the source and target files and/or projects that contain the data sets. These projects are imported into the internal data structure (called schema) of the AMC~\cite{5767940} (step 2). The AMC then uses a set of built-in algorithms to calculate similarities between the source and target schemas on an element basis, i.e. column names in the case of spreadsheets or relational databases. The output is a set of similarities, each containing a triple consisting of source schema element, target element, and similarity between the two.
 
 These results are presented to the user in tabular form (step 3) such that s/he can check, correct, and potentially complete the mappings (step 4).
 
-\begin{figure}[ht!]
-  \centering
-    \includegraphics[scale=0.6]{1.jpg}
-  \caption{Framework Architecture}
-  \label{fig:3}
-\end{figure}
-
-\begin{figure}[ht!]
-  \centering
-    \includegraphics[scale=0.6]{2.jpg}
-  \caption{Data Selection}
-  \label{fig:3}
-\end{figure}
-
 Once the user has completed the matching of columns, the merge information is sent back to Google Refine, which calls the merge module. This module creates a new project, which contains a union of the two projects where the matched columns of the target project are appended to the corresponding source columns (step 5). The user can then select the columns that s/he wants to merge and visualize by dragging and dropping the required columns onto the fields that represent the x and y axes (step 6).
-
-\begin{figure}[ht!]
-  \centering
-    \includegraphics[scale=0.6]{3.jpg}
-  \caption{Data Selection}
-\end{figure}
 
 Once the selection has been performed, the aggregation module merges the filtered columns and the result can then be visualized (step 7). As aggregation operations can quickly become complex, our default aggregation module can be replaced by more advanced analytics on tabular data. The integration of such a tool is part of future work.
 
@@ -237,11 +218,11 @@ The data used in our evaluation consists of around 60 columns and more than 1000
 
 By manually examining the two data sets, we have found out that most of the column headers in the source table exist and adequately present the data. However, we have noticed few missing labels in the target table and few ambiguous column headers. We have detected several entries in several languages: the main language is English but we have also identified French, German. Destination field had entries in several formats: we have noticed airport names, airports by their IATA code, country codes, and cities.
 
-Running AMC with its default matchers returns the matching results shown in Table 1.
+Running AMC with its default matchers returns the matching results shown in Table \ref{tab:Similarity_Scores_Using_the_AMC_Default_Matching_Algorithms}.
 
-
-
-\begin{tabular}{|p{0.7in}|p{0.8in}|p{0.8in}|} \hline
+\begin{table}[ht]
+\centering
+\begin{tabular}{|c|c|c|} \hline
 \textbf{Source Column} & \textbf{Target Column} & \textbf{Similarity Score} \\ \hline
 Reason for Trip & Reason for Trip & 1 \\ \hline
 Begins On & Trip Begins On & 0.8333334 \\ \hline
@@ -256,16 +237,17 @@ M/Km & Total Miles/Km & 0.55 \\ \hline
 Curr. & Currency & 0.5 \\ \hline
 Crcy & Currency & 0.5 \\ \hline
 \end{tabular}
-
-
-
-\textbf{Table 1. Similarity Scores Using the AMC Default Matching Algorithms}
+\caption{Similarity Scores Using the AMC Default Matching Algorithms}
+\label{tab:Similarity_Scores_Using_the_AMC_Default_Matching_Algorithms}
+\end{table}
 
 The AMC has perfectly matched the two columns labeled ``Reason for Trip'' using name and data type similarity calculations (the type here was identified as a String). Moreover, it has computed several similarities for columns based on the pre-implemented String matchers that were applied on the column headers and the primitive data types of the cells (Integer, Double, Float, etc.). However, there is no alignment found between the other columns since their headers are not related to each other, although the actual cell values can be similar. AMC's default configuration has a threshold of 50\%, so any similarity score below that will not be shown.
 
-The Cosine Similarity algorithm combined with the AMC default matchers produces the results shown in Table 2.
+The Cosine Similarity algorithm combined with the AMC default matchers produces the results shown in Table \ref{tab:Similarity_Scores_Using_the_AMC_Default_Matching_Algorithms_+_Cosine_Similarity_Method}.
 
-\begin{tabular}{|p{0.7in}|p{0.8in}|p{0.8in}|} \hline
+\begin{table}[ht]
+\centering
+\begin{tabular}{|c|c|c|} \hline
 \textbf{Source Column} & \textbf{Target Column} & \textbf{Similarity Score} \\ \hline
 Reason for Trip & Reason for Trip & 1 \\ \hline
 tr\_dst &  & 0.9496432 \\ \hline
@@ -282,18 +264,20 @@ Trip & Trip Number & 0.6666667 \\ \hline
 Pers.No. & Sequential no. & 0.5555556 \\ \hline
 M/Km & Total Miles/Km & 0.55 \\ \hline
 \end{tabular}
+\caption{Similarity Scores Using the AMC Default Matching Algorithms + Cosine Similarity Method}
+\label{tab:Similarity_Scores_Using_the_AMC_Default_Matching_Algorithms_+_Cosine_Similarity_Method}
+\end{table}
 
-
-
-\textbf{Table 2. Similarity Scores Using the AMC Default Matching Algorithms + Cosine Similarity Method}
 
 We notice that we have an increased number of matches (+2), and that the similarity score for several matches has improved. For example, the ``tr\_dst'' column is now aligned to the blank header. This shows that our approach allows performing schema matching on columns with no headers.
 
 For simplicity reason we have used the default combination algorithm for AMC which is an average of the applied algorithms (AMC's native and Cosine). We should also note that we have configured AMC's matchers to identify a ``SIMILARTY\_UNKOWN'' value for columns that could not be matched successfully, which will allow other matchers to perform better. For example, our semantic matchers will skip columns that do not convey semantic meaning thus not affecting the score of other matchers. Moreover, the relatively high similarity score of ``tr\_dst'' column is explained by the fact that the native AMC matching algorithm has skipped that column as it does not have a valid header, and the results are solely those of the Cosine matcher. Likewise, the Cosine matcher skips checking the ``Cost'' columns as they contain numeric values, and the implemented numerical matchers with the AMC's native matcher results are taken into account. Our numerical matchers' implementation gives a perfect similarity score for columns that are identified as date or money or IDs. However, this can be improved in the future as we can have different date hierarchy and numbers as IDs can present different entities. Combining this approach with the semantic and string matchers was found to yield good matching results.
 
-The (PPMCC) Similarity algorithm combined with the AMC default matchers produces the results shown in Table 3.
+The (PPMCC) Similarity algorithm combined with the AMC default matchers produces the results shown in Table \ref{tab:Similarity_Scores_Using_the_AMC_Default_Matching_Algorithms+__the_PPMCC_Similarity_Method}.
 
-\begin{tabular}{|p{0.7in}|p{0.8in}|p{0.8in}|} \hline
+\begin{table}[ht]
+\centering
+\begin{tabular}{|c|c|c|}\hline
 \textbf{Source Column} & \textbf{Target Column} & \textbf{Similarity Score} \\ \hline
 Reason for Trip & Reason for Trip & 1 \\ \hline
 tr\_dst &  & 0.97351624 \\ \hline
@@ -310,12 +294,13 @@ Trip & Trip Number & 0.6666667 \\ \hline
 Pers.No. & Sequential no. & 0.5555556 \\ \hline
 M/Km & Total Miles/Km & 0.55 \\ \hline
 \end{tabular}
+\caption{Similarity Scores Using the AMC Default Matching Algorithms+  the PPMCC Similarity Method}
+\label{tab:Similarity_Scores_Using_the_AMC_Default_Matching_Algorithms+__the_PPMCC_Similarity_Method}
+\end{table}
 
-\textbf{Table 3. Similarity Scores Using the AMC Default Matching Algorithms+  the PPMCC Similarity Method}
-
-372213305The Spearman Similarity algorithm combined with the AMC default matchers produces the results shown in Table 4.372213305ttroncy372213305-2028243878Here, there are 10 matches, we lost one ... which one? Why?
-
-\begin{tabular}{|p{0.7in}|p{0.8in}|p{0.8in}|} \hline
+\begin{table}[ht]
+\centering
+\begin{tabular}{|c|c|c|} \hline
 \textbf{Source Column} & \textbf{Target Column} & \textbf{Similarity Score} \\ \hline
 Reason for Trip & Reason for Trip & 1 \\ \hline
 Begins On & Trip Begins On & 0.8333334 \\ \hline
@@ -328,23 +313,25 @@ Trip & Trip Number & 0.6666667 \\ \hline
 Pers.No. & Sequential no. & 0.5555556 \\ \hline
 M/Km & Total Miles/Km & 0.55 \\ \hline
 \end{tabular}
-
-\textbf{Table 4. Similarity Scores Using the AMC Default Matching Algorithms + Spearman Similarity Method}
+\caption{ Similarity Scores Using the AMC Default Matching Algorithms + Spearman Similarity Method}
+\label{tab:Similarity_Scores_Using_the_AMC_Default_Matching_Algorithms_+_Spearman_Similarity_Method}
+\end{table}
 
 We notice that by plugging the Spearman method, the number of matches and similarity results have decreased (-4). After Several experiments we have found that this method does not work well with noisy data sets. For instance, the similarity results returned by Cosine, Pearson's and Spearman's matchers for the \{tr\_dst, empty header\} pair is much higher: 95\%, 97\% and 43\% respectively.
 
-To properly measure the impact of each algorithm, we have tested the three algorithms (Cosine, PPMCC and Spearman) alone by de-activating the AMC's default matchers on the above data set. The result is shown in Figure 3. We have noticed that generally, the Cosine and PPMCC matchers perform well, resulting in more matching and better similarity score. However, the Spearman method was successful in finding more matches but with a lower similarity score than the others.
+To properly measure the impact of each algorithm, we have tested the three algorithms (Cosine, PPMCC and Spearman) alone by de-activating the AMC's default matchers on the above data set. We have noticed that generally, the Cosine and PPMCC matchers perform well, resulting in more matching and better similarity score. However, the Spearman method was successful in finding more matches but with a lower similarity score than the others.
 
-To better evaluate the three algorithms, we have tested them on four different data sets extracted from the Travel Expense Manager and Event Tracker systems. We ensured that the different experiments will cover all the cases needed to properly evaluate the matcher dealing with all the problems mentioned earlier. The results of our findings are shown in Figure 4.
-
+To better evaluate the three algorithms, we have tested them on four different data sets extracted from the Travel Expense Manager and Event Tracker systems. We ensured that the different experiments will cover all the cases needed to properly evaluate the matcher dealing with all the problems mentioned earlier.
 
 We have found that generally the Cosine method is the best performing algorithm compared to the other two especially when dealing with noisy data sets. This was noticed particularly in our fourth experiment as the Cosine algorithm performed around 20\% better than the other two methods. After investigating the dataset, we have found that several columns contained noisy and unrelated data. For example, in a ``City'' column, we had values such as ``reference book'' or ``NOT\_KNOWN''.
 
 To gain better similarity results we decided to combine several matching algorithms together. By doing so, we would benefit from the power of the AMC's string matchers that will work on column headers and our numeral and semantic matchers.
 
-The Cosine and PPMCC Similarity algorithms combined with the AMC default matchers produces the results shown in Table 5.
+The Cosine and PPMCC Similarity algorithms combined with the AMC default matchers produces the results shown in Table \ref{tab:Similarity_Scores_Using_the_AMC_Default_Matching_Algorithms_+_Spearman_Similarity_Method}.
 
-\begin{tabular}{|p{0.7in}|p{0.8in}|p{0.8in}|} \hline
+\begin{table}[ht]
+\centering
+\begin{tabular}{|c|c|c|} \hline
 \textbf{Source Column} & \textbf{Target Column} & \textbf{Similarity Score} \\ \hline
 Reason for Trip & Reason for Trip & 1 \\ \hline
 tr\_dst &  & 0.96351624 \\ \hline
@@ -361,14 +348,17 @@ Trip & Trip Number & 0.6666667 \\ \hline
 Pers.No. & Sequential no. & 0.5555556 \\ \hline
 M/Km & Total Miles/Km & 0.55 \\ \hline
 \end{tabular}
-
-\textbf{Table 5. Similarity Scores Using the Combination of Cosine, PPMCC and AMC's defaults}
+\caption{Similarity Scores Using the Combination of Cosine, PPMCC and AMC's defaults}
+\label{tab:Similarity_Scores_Using_the_Combination_of_Cosine,_PPMCC_and_AMC's_defaults}
+\end{table}
 
 The combination of the above mentioned algorithms have enhanced generally the similarity scores for the group. Moreover, we notice that the column ``Trip Country/Group'' was matched with ``Ctr2''. This match was not computed singularly by any of the previous algorithms. However, we notice that the match \{Trip, Trip Destination\} is now missing, probably as the similarity score is below the defined threshold.
 
-Now, we will try and group all the mentioned algorithms. The combination of all Similarity algorithms with the AMC default matchers produces the results shown in Table 6.
+Now, we will try and group all the mentioned algorithms. The combination of all Similarity algorithms with the AMC default matchers produces the results shown in Table \ref{tab:Similarity_Scores_Using_the_Combination_of_Cosine,_PPMCC_and_AMC's_defaults}.
 
-\begin{tabular}{|p{0.7in}|p{0.8in}|p{0.8in}|} \hline
+\begin{table}[ht]
+\centering
+\begin{tabular}{|c|c|c|} \hline
 \textbf{Source Column} & \textbf{Target Column} & \textbf{Similarity Score} \\ \hline
 Reason for Trip & Reason for Trip & 1 \\ \hline
 tr\_dst &  & 0.8779132 \\ \hline
@@ -386,15 +376,17 @@ Trip & Trip Number & 0.6666667 \\ \hline
 Pers.No. & Sequential no. & 0.5555556 \\ \hline
 M/Km & Total Miles/Km & 0.55 \\ \hline
 \end{tabular}
+\end{table}
 
-We notice that now we have an increased number of matches (15 compared to 14 in the previous trials). The column \{Trip, Trip Destination\} is matched again and the newly previously matched column \{Trip Country/Group, Ctr2\} has a higher similarity score. We have found that combining matching algorithms resulted in higher number of matches. Several tuning methods can be applied in order to enhance the similarity score as well. Trying other combination algorithms instead of the na�ve average will be an essential part of our future work.
+We notice that now we have an increased number of matches (15 compared to 14 in the previous trials). The column \{Trip, Trip Destination\} is matched again and the newly previously matched column \{Trip Country/Group, Ctr2\} has a higher similarity score. We have found that combining matching algorithms resulted in higher number of matches. Several tuning methods can be applied in order to enhance the similarity score as well. Trying other combination algorithms instead of the naiive average will be an essential part of our future work. \\ \\
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%  Conclusion and Future Work  %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Conclusion and Future Work}
-In this paper, we presented a framework enabling mashup of potentially noisy enterprise and external data. The implementation is based on Google Refine and uses Freebase to annotate data with rich types. As a result, the matching process of heterogeneous data sources is improved. Our preliminary evaluation shows that for datasets where mappings were relevant yet not proposed, our framework provides higher quality matching results. Additionally, the number of matches discovered is increased when Linked Data is used in most datasets. We plan in future work to evaluate the framework on larger datasets using rigorous statistical analysis of~\cite{Fawcett}. We also consider integrating additional linked open data sources of semantic types such as DBpedia~\cite{Auer07dbpedia:a} or YAGO~\cite{Suchanek:2007:YCS:1242572.1242667} and evaluate our matching results against instance-based ontology alignment benchmarks such as OAEI\footnote{http://oaei.ontologymatching.org/2011/instance/index.html} or ISLab \footnote{http://islab.dico.unimi.it/iimb/}. Another future work will be to generalize our approach on data schemas to data classification. The same way the AMC helps identifying the best matches for two datasets, we plan to use it for identifying the best statistical classifiers for a sole dataset, based on normalized scores.
+
+In this paper, we presented a framework enabling mashup of potentially noisy enterprise and external data. The implementation is based on Google Refine and uses Freebase to annotate data with rich types. As a result, the matching process of heterogeneous data sources is improved. Our preliminary evaluation shows that for datasets where mappings were relevant yet not proposed, our framework provides higher quality matching results. Additionally, the number of matches discovered is increased when Linked Data is used in most datasets. We plan in future work to evaluate the framework on larger datasets using rigorous statistical analysis of~\cite{Fawcett}. We also consider integrating additional linked open data sources of semantic types such as DBpedia~\cite{Auer07dbpedia:a} or YAGO~\cite{Suchanek:2007:YCS:1242572.1242667} and evaluate our matching results against instance-based ontology alignment benchmarks such as OAEI\footnote{http://oaei.ontologymatching.org/2011/instance/index.html} or ISLab\footnote{http://islab.dico.unimi.it/iimb/}. Another future work will be to generalize our approach on data schemas to data classification. The same way the AMC helps identifying the best matches for two datasets, we plan to use it for identifying the best statistical classifiers for a sole dataset, based on normalized scores.
 
 \nocite{*}
 \bibliographystyle{abbrv}
