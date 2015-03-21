@@ -122,16 +122,11 @@ The current state of the LOD cloud report~\cite{DBLP:conf/semweb/SchmachtenbergB
 \subsection{Results and Evaluation}
 CKAN dataset metadata includes three main sections in addition to the core dataset's properties. Those are the \textbf{groups}, \textbf{tags} and \textbf{resources}. Each section contains a set of metadata corresponding to one or more metadata type. For example, a dataset resource will have general information such as the resource name, access information such as the resource url and provenance information such as creation date. The framework generates a report aggregating all the problems in all these sections, fixing field values when possible. Errors can be the result of missing metadata fields, undefined field values or field value errors (e.g. unreachable URL or incorrect email address).
 
-Figures \ref{fig:2} and \ref{fig:3} show the percentage of errors found in metadata fields by section and by information type respectively. We observe that the most erroneous information for the dataset core information is related to ownership since this information is missing or undefined for 41\% of the datasets. Datasets resources have the poorest metadata. 64\% of the general metadata, all the access information and 80\% of the provenance information contain missing or undefined values. Table~\ref{tab:main} shows the top metadata fields errors for each metadata information type.
-
-We notice that 42.85\% of the top metadata problems can be fixed automatically. Among them, 44.44\% of these problems can be fixed by our tool while the others need tools that are plugged into the data portal. We further present and discuss the results grouped by metadata information type in the following sub-sections.
-
-\subsection{General information}
-34 datasets (13.13\%) do not have valid \texttt{notes} values. \texttt{tags} information for the datasets are complete except for the \texttt{vocabulary\_id} as this is missing from all the datasets' metadata. All the datasets \texttt{groups} information are missing \texttt{display\_name, description, title, image\_display\_url, id, name}. After manual examination, we observe a clear overlap between group and organization information. Many datasets like \texttt{event-media} use the organization field to show group related information (being in the LOD Cloud) instead of the publishers details.
+Figures \ref{fig:metadata_noise_by_metadata_type} and \ref{fig:metadata_noise_by_metadata_type} show the percentage of errors found in metadata fields by section and by information type respectively. We observe that the most erroneous information for the dataset core information is related to ownership since this information is missing or undefined for 41\% of the datasets. Datasets resources have the poorest metadata. 64\% of the general metadata, all the access information and 80\% of the provenance information contain missing or undefined values. Table \ref{tab:top_metadata_fields_errors} shows the top metadata fields errors for each metadata information type.
 
 \begin{table}
- \begin{center}
- \begin{tabular}{|c|c|c|c|c|c|}
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|}
 \hline
 \multicolumn{2}{|c|}{Metadata Field} & Error \% & Section & Error Type & Auto Fix\tabularnewline
 \hline
@@ -179,10 +174,15 @@ We notice that 42.85\% of the top metadata problems can be fixed automatically. 
  & author & 2.32\% & Dataset & Undefined & -\tabularnewline
 \hline
 \end{tabular}
- \caption{Top metadata fields error \% by type} 
- \label{tab:main}
- \end{center}
+\captionof{table}{Top metadata fields error \% by type}
+\label{tab:top_metadata_fields_errors}
+\end{center}
 \end{table}
+
+We notice that 42.85\% of the top metadata problems can be fixed automatically. Among them, 44.44\% of these problems can be fixed by our tool while the others need tools that are plugged into the data portal. We further present and discuss the results grouped by metadata information type in the following sub-sections.
+
+\subsection{General information}
+34 datasets (13.13\%) do not have valid \texttt{notes} values. \texttt{tags} information for the datasets are complete except for the \texttt{vocabulary\_id} as this is missing from all the datasets' metadata. All the datasets \texttt{groups} information are missing \texttt{display\_name, description, title, image\_display\_url, id, name}. After manual examination, we observe a clear overlap between group and organization information. Many datasets like \texttt{event-media} use the organization field to show group related information (being in the LOD Cloud) instead of the publishers details.
 
 \subsection{Access information}
 25\% of the datasets access information (being the dataset URL and any URL defined in its groups) have issues: generally missing or unreachable URLs. 3 datasets (1.15\%) do not have a URL defined (tip, uniprot\-databases, uniprot\-citations) while 45 datasets (17.3\%) defined URLs are not accessible at the time of writing this paper. One dataset does not have resources information (bio2rdf\-chebi) while the other datasets have a total of 1068 defined resources.
@@ -194,22 +194,22 @@ To have more details about the resources URL types, we created a $key:object met
 The noisiest part of the access metadata is about license information. A total of 43 datasets (16.6\%) does not have a defined \texttt{license\_title} and \texttt{license\_id} fields, where 141 (54.44\%) have missing \texttt{license\_url} field.
 
 \begin{figure}
- \parbox{7cm}{\hspace*{-.2in}
- \includegraphics[width=.95\linewidth]{metadata_noise_by_section.png}
- \captionsetup{textfont=small,singlelinecheck=off,justification=centering}
- \caption{Error \% by section}
- \label{fig:2}}
- \qquad
- \begin{minipage}{7cm}\hspace*{-.6in}
- \includegraphics[width=.95\linewidth]{metadata_noise_by_metadata_type.png}
- \captionsetup{textfont=small,singlelinecheck=off,justification=raggedright}
- \caption{Error \% by information type}
- \label{fig:3}
- \end{minipage}
+\parbox{7cm}{\hspace*{-.2in}
+\includegraphics[width=.95\linewidth]{metadata_noise_by_section.png}
+\captionsetup{textfont=small,singlelinecheck=off,justification=centering}
+\caption{Error \% by section}
+\label{fig:metadata_noise_by_section}}
+\qquad
+\begin{minipage}{7cm}\hspace*{-.6in}
+\includegraphics[width=.95\linewidth]{metadata_noise_by_metadata_type.png}
+\captionsetup{textfont=small,singlelinecheck=off,justification=raggedright}
+\caption{Error \% by information type}
+\label{fig:metadata_noise_by_metadata_type}
+\end{minipage}
 \end{figure}
 
 \subsection{Ownership information}
-Ownership information is divided into direct ownership (author and maintainer) and organization information. Four fields (66.66\%) of the direct ownership information are missing or undefined. The breakdown for the missing information is: 55.21\% \texttt{maintainer\_email}, 51.35\% \texttt{maintainer}, 15.06\% \texttt{author\_email}, 2.32\% \texttt{author}. Moreover, our framework performs checks to validate existing email values. 11 (0.05\%) and 6 (0.05\%) of the defined \texttt{author\_email} and \texttt{maintainer\_email} fields are not valid email addresses respectively. For the organization information, two field values (16.6\%) were missing or undefined. 1.16\% of the \texttt{organization\_description} and 10.81\% of the \texttt{organization\-\_image\_url} information with two out of these URLs are unreachable.
+Ownership information is divided into direct ownership (author and maintainer) and organization information. Four fields (66.66\%) of the direct ownership information are missing or undefined. The breakdown for the missing information is: 55.21\% \texttt{maintainer\_email}, 51.35\% \texttt{maintainer}, 15.06\% \texttt{author\_email}, 2.32\% \texttt{author}. Moreover, our framework performs checks to validate existing email values. 11 (0.05\%) and 6 (0.05\%) of the defined \texttt{author\_email} and \texttt{maintainer\_email} fields are not valid email addresses respectively. For the organization information, two field values (16.6\%) were missing or undefined. 1.16\% of the \\\texttt{organization\_description} and 10.81\% of the \texttt{organization\-\_image\_url} information with two out of these URLs are unreachable.
 
 \subsection{Provenance information}
 80\% of the resources provenance information are missing or undefined. However, most of the provenance information (e.g. \texttt{metadata\_created, metadata\_modified}) can be computed automatically by tools plugged into the data portal. The only field requiring manual entry is the \texttt{version} field which was found to be missing in 60.23\% of the datasets.
