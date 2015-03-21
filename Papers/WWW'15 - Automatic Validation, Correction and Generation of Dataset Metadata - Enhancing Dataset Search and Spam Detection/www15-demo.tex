@@ -92,7 +92,7 @@ In this paper, we propose Roomba, a scalable automatic approach for extracting, 
   \centering
   \includegraphics[scale=0.39]{figure-1_architecture.png}
   \caption{Processing pipeline for validating and generating dataset profiles}
-  \label{fig:architecture}
+  \label{fig:Roomba_architecture}
 \end{figure*}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
@@ -113,7 +113,7 @@ The Open Data Dashboard project\footnote{\url{http://labs.data.gov/dashboard/}} 
 
 \section{Framework Architecture}
 \label{sec:framework}
-In this section, we provide an overview of the processing steps for validating and generating dataset profiles. Figure~\ref{fig:architecture} shows the main steps: (i) data portal identification; (ii) metadata extraction; (iii) instance and resource extraction; (iv) profile validation and (v) profile and report generation.
+In this section, we provide an overview of the processing steps for validating and generating dataset profiles. Figure~\ref{fig:Roomba_architecture} shows the main steps: (i) data portal identification; (ii) metadata extraction; (iii) instance and resource extraction; (iv) profile validation and (v) profile and report generation.
 
 \subsection{System Overview}
 Roomba is built as a Command Line Interface (CLI) application using Node.js. Instructions on installing and running Roomba are available on its public Github repository\footnote{\url{https://github.com/ahmadassaf/opendata-checker}} and explained in this short screencast\footnote{\url{http://youtu.be/p7Y-mDN_Y2s}}. Related functions are encapsulated into modules that can be easily plugged in/out the processing pipeline.

@@ -60,8 +60,8 @@
 
 \author{Ahmad Assaf\inst{1,2}, Rapha\"{e}l Troncy\inst{1} and Aline Senart\inst{2}}
 
-\institute{EURECOM, Sophia Antipolis, France. \email{<firstName.lastName@eurecom.fr>}
-  \and SAP Labs France. \email{<firstName.lastName@sap.com>}
+\institute{EURECOM, Sophia Antipolis, France, \email{<firstName.lastName@eurecom.fr>}
+  \and SAP Labs France, \email{<firstName.lastName@sap.com>}
 }
 
 \maketitle
@@ -140,7 +140,7 @@ Although the above mentioned tools are able to provide various types of informat
 \section{Profiling Data Portals}
 \label{sec:framework}
 
-In this section, we provide an overview of Roomba's architecture and the processing steps for validating and generating dataset profiles. Figure \ref{fig:1} shows the main steps which are the following: (i) data portal identification; (ii) metadata extraction; (iii) instance and resource extraction; (iv) profile validation (v) profile and report generation.
+In this section, we provide an overview of Roomba's architecture and the processing steps for validating and generating dataset profiles. Figure \ref{fig:Roomba_architecture} shows the main steps which are the following: (i) data portal identification; (ii) metadata extraction; (iii) instance and resource extraction; (iv) profile validation (v) profile and report generation.
 
 Roomba is built as a Command Line Interface (CLI) application using Node.js. Instructions on installing and running the framework are available on its public Github repository\footnote{\url{https://github.com/ahmadassaf/opendata-checker}}. The various steps are explained in detail below.
 
@@ -148,7 +148,7 @@ Roomba is built as a Command Line Interface (CLI) application using Node.js. Ins
   \centering
     \includegraphics[scale=0.4]{figure-1_architecture.png}
   \caption{Processing pipeline for validating and generating dataset profiles}
-  \label{fig:1}
+  \label{fig:Roomba_architecture}
 \end{figure}
 
 \subsection{Data Portal Identification}
@@ -313,7 +313,7 @@ Each of these sections contains a set of metadata corresponding to one or more t
 
 We ran our tool on two CAKN-based data portals. The first is the Datahub targeting specifically the LOD cloud group. The current state of the LOD cloud report~\cite{DBLP:conf/semweb/SchmachtenbergBP14} indicates that the LOD cloud contains 1014 datasets. They were harvested via an LDSpider crawler~\cite{conf/semweb/IseleUBH10} seeded with 560 thousands URIs. Roomba on the other hand, fetches datasets hosted in data portals where datasets have attached relevant metadata. As a result, we relied on the information provided by the Datahub CKAN API. Examining the tags available, we found two candidate groups. The first tagged with "lodcloud" returned 259 datasets, while the second tagged with "lod" returned only 75 datasets. After manually examining the two lists, we found out the datasets grouped with the tag "lodcloud" are the correct ones. To qualify other CKAN-based portals for the experiments, we used \texttt{dataportals.org}, which contains a comprehensive list of Open Data portals from around the world. In the end, we chose the Amsterdam data portal \footnote{\url{http://data.amsterdamopendata.nl/}}. The portal was commissioned in 2012 by the Amsterdam Economic Board Open Data Exchange (ODE), and covers a wide range of information domains (energy, economy, education, urban development, etc.) about Amsterdam metropolitan region.
 
-We ran the instance and resource extractors in order to cache the metadata files for these datasets locally and ran the validation process. The experiments were executed on a 2.6 Ghz Intel Core i7 processor with 16GB of DDR3 memory machine. The approximate execution time alongside  the summary of the datasets' properties are presented in table \ref{tab:dataportals}.
+We ran the instance and resource extractors in order to cache the metadata files for these datasets locally and ran the validation process. The experiments were executed on a 2.6 Ghz Intel Core i7 processor with 16GB of DDR3 memory machine. The approximate execution time alongside  the summary of the datasets' properties are presented in table \ref{tab:data_portals_experiments
 
 \begin{table}[ht]
 \centering
@@ -324,7 +324,7 @@ LOD Cloud           & 259                               & N/A                   
 Amsterdam Open Data & 172                               & 18                             & 480                                & ~35 mins                             \\ \hline
 \end{tabular}
 \caption{Summary of the experiments details}
-\label{tab:dataportals}
+\label{tab:data_portals_experiments}
 \end{table}
 
 In our evaluation, we focused on two aspects: i)\textit{profiling correctness} which assesses the validity of the errors generated in report manually, and ii)\textit{profiling completeness} which assesses if the profilers cover all the errors in the datasets metadata.
@@ -333,7 +333,7 @@ In our evaluation, we focused on two aspects: i)\textit{profiling correctness} w
 
 To measure profile correctness, we need to make sure that the issues reported by Roomba are valid on the dataset, group and portal levels.
 
-On the dataset level, we choose three datasets from both the LOD Cloud and the Amsterdam data portal. The datasets details are shown in table \ref{tab:datasesExperiment}.
+On the dataset level, we choose three datasets from both the LOD Cloud and the Amsterdam data portal. The datasets details are shown in table \ref{tab:datases_experiment}.
 
 \begin{table}[ht]
 \centering
@@ -349,10 +349,10 @@ bevolking-prognoses-amsterdam  & Amsterdam                                 & bev
 religieuze\_samenkomstlocaties & Amsterdam                                 & bevolking                              & 1                                       & 8                                  \\ \hline
 \end{tabular}
 \caption{Datasets chosen for the correctness evaluation}
-\label{tab:datasesExperiment}
+\label{tab:datases_experiment}
 \end{table}
 
-To measure the profiling correctness on the groups level, we selected four groups from the Amsterdam data portal containing a total of 25 datasets. The choice was made to cover groups in various domains that contain a moderate number of datasets that can be checked manually (between 3-9 datasets). Table \ref{tab:groups} summarizes the groups chosen for the evaluation.
+To measure the profiling correctness on the groups level, we selected four groups from the Amsterdam data portal containing a total of 25 datasets. The choice was made to cover groups in various domains that contain a moderate number of datasets that can be checked manually (between 3-9 datasets). Table \ref{tab:groups_experiment} summarizes the groups chosen for the evaluation.
 
 \begin{table}[ht]
 \centering
@@ -365,7 +365,7 @@ geografie                & Geography              & 8                           
 openbare-orde-veiligheid & Public Order \& Safety & 5                                      & 19                                      & 34                                 \\ \hline
 \end{tabular}
 \caption{Groups chosen for the correctness evaluation}
-\label{tab:groups}
+\label{tab:groups_experiment}
 \end{table}
 
 After running Roomba and examining the results on the selected datasets and groups, we found out that our framework provides 100\% correct results on the individual dataset level and on the aggregation level over groups. Since our portal level aggregation is extended from the group aggregation we can infer that the portal level aggregation also produces complete correct profiles. However, the lack of a standard way to create and manage collections of datasets was the source of some errors when comparing the results from these two portals. For example, in Datahub, we noticed that all the datasets \texttt{groups} information were missing, while in the Amsterdam Open Data portal, all the \texttt{organisation} information was missing. Although the error detection is correct, the overlap in the usage of group and organization can give a false indication about the metadata quality.
