@@ -127,44 +127,66 @@ Upon examining the various data models, we grouped the metadata information into
 \item \textbf{Provenance information}: Temporal and historical information on the dataset and its resources. For example, creation and update dates, version information, version, etc. Most of this information can be automatically filled and tracked.
 \end{itemize}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%  2. Dataset Models  %%%
-%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Dataset Models}
 \label{sec:models}
 
-\subsection{CKAN}
-
-\subsection{DKAN}
-
-\subsection{Socrata}
-
-\subsection{Schema.org}
-
-\subsection{Project Open Data}
+There are many data portals hosting a large number of private and public datasets. Each portal present the data based on the model used by the underlying software. In this section, we present the result of our landscape survey of prominent data portals and their models.
 
 \subsection{DCAT}
 
+Data Catalog Vocabulary (DCAT), a W3C recommendation established designed to facilitate interoperability between data catalogs published on Web~\cite{Erickson:14:DCV}. The goal behind DCAT is to increase datasets discoverability enabling applications to easily consume metadata coming from multiple sources. Moreover, they foresee that aggregated DCAT metadata can facilitate digital preservation and enable decentralized publishing and federated search.
+
+DCAT is an RDF vocabulary defining three main classes (\texttt{dcat:Catalog}, \texttt{dcat:Dataset} and \texttt{dcat:Distribution}). We are interested in: 1)\texttt{dcat:Dataset} class which is a collection of data that can be available for download in one or more formats and 2)\texttt{dcat:Distribution} class which represents the accessible form of a dataset e.g., RSS feed, REST API, SPARQL endpoint, etc..
+
+The DCAT application profile for data portals in Europe (DCAT-AP)\footnote{https://joinup.ec.europa.eu/asset/dcat_application_profile/description} is a specification based on DCAT specified to describe public section datasets in Europe. The main goal behind it is to enable cross-portal search and enhance discoverability. DCAT-AP has been promoted by the Open Data Support\footnote{http://opendatasupport.eu} to be the standard for describing datasets and catalogs in Europe.
+
+that re-uses terms from DCAT, ADMS, etc., and adds more specificity by identifying mandatory, recommended and optional elements to be used for a particular open data catalogue. Studies conducted by EU commission (Vickery, 2011) have shown that businesses and citizens are facing difficulties in searching and reusing data sets from public sector. Therefore, the availability of a unified method to describe data sets in a machine-readable format with a small number of commonly agreed metadata could largely improve the co-referencing and interoperability among different data catalogues. DCAT-AP is developed under this context and is expected to be applied across Open Data portals in EU countries.
+
 \subsection{VoID}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%
+VoID is an “RDF Schema vocabulary for describing metadata about RDF data sets. Its primary purpose is to bridge the gap between data publishers and data consumers using an exclusive vocabulary to describe different data set attributes. The core concepts related to open data sets are: void:Dataset, void:Linkset, void:subset.
+
+\subsection{CKAN}
+
+CKAN is currently the most widely used open source data management system that helps users from different levels and domains (national and regional governments, companies and organisations) to make their data openly available. CKAN has been adopted by various levels of Open Data portals, and a few poplular CKAN instances include publicdata.eu, data.gov.uk and data.gouv.fr. CKAN provides tools to ease the workflow of data publishing, sharing, searching and management. Each data set is given its own page with a rich collection of metadata. Users can publish their data sets via an import feature or through a web interface, and then the data sets can be searched by keywords or tags with exact or fuzzy-matching queries. CKAN provides a rich set of visualisation tools, such as interactive tables, graphs and maps. Moreover, the dashboard function will help administrators to monitor the statistics and usage metrics for the data sets. Federating networks with other CKAN nodes is also supported, as well as the possibility to build a community with extensions that allow users to comment on and follow data sets. Finally, CKAN provides a rich RESTful JSON API for querying and retrieving data set information.
+
+\subsection{DKAN}
+
+DKAN29 is a Drupal-based open data platform with a full suite of cataloguing, publishing and visualisation features. Compared with CKAN, DKAN is seamlessly integrated with Drupal30 content management system, thus it can be easily deployed with Drupal and customised using different Druapl themes. The actual data sets in DKAN can be stored either within DKAN or on external sites, and it is possible to manage access control and version history with rollback. DKAN provides user analytics and data users can upload, tag, search and group data sets via a web front-end or APIs. In addition, they can also collaborate, comment, and share information via social network integration.
+
+\subsection{Socrata}
+
+Socrata provides a commercial platform to streamline data publishing, management, analysis and reusing. It integrates many useful features for both portal administrators and end users to manage, access and visualise data sets. For example, The Chicago26 and New York City27 The platform comprises a series of tools, including an open data portal which stores data in the cloud for users to access, visualise, and share. All the data sets hosted in Socrata can be accessed using RESTful API. This is accompanied by the developer site which documents how to use the Socrata API, including search and filter data sets. In Socrata, usershave the ability to to customise the data set metadata according to individual’s requirements.
+
+\subsection{Schema.org}
+
+It is a collection of schemas (in RDF/Microdata format) that webmasters can use to markup HTML pages in ways recognised by major search engines. Schema.org covers many domains and there are classes and properties defined as DataCatalog and Dataset. The metadata harvester withinthe ODM project can make use of schema.org vocabulary to discover the data sets and data catalogs hosted in a certain website
+
+\subsection{Project Open Data}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%  3. Towards A Harmonised Model  %%%
-%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Towards A Harmonised Model}
 \label{sec:hdl}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%  4. Conclusion & Future Work  %%%
-%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Conclusion and Future Work}
 \label{sec:conclusion}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%  Acknowledgments  %%%
-%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section*{Acknowledgments}
 This research has been partially funded by the European Union's 7th Framework Programme via the project Apps4EU (GA No. 325090).
