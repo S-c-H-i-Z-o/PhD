@@ -59,8 +59,8 @@
 
 \author{Ahmad Assaf\inst{1}\inst{2}, Aline Senart\inst{2} and Rapha\"{e}l Troncy\inst{1} }
 
-\institute{EURECOM, Sophia Antipolis, France. \email{<firstName.lastName@eurecom.fr>}
-  \and SAP Labs France. \email{<firstName.lastName@sap.com>}
+\institute{EURECOM, Sophia Antipolis, France, \email{<firstName.lastName@eurecom.fr>}
+  \and SAP Labs France, \email{<firstName.lastName@sap.com>}
 }
 
 % a short form should be given in case it is too long for the running head
@@ -114,26 +114,24 @@ The \textit{State of the LOD Cloud Report}~\cite{SOLOD} measures the adoption of
 
 \section{Experiments and Evaluation}
 \label{sec:experiment}
-
-In this section, we provide the experiments and evaluation of Roomba. All the experiments are reproducible by our tool and their results are available on the its Github repository\footnote{https://github.com/ahmadassaf/opendata-checker}.
+In this section, we describe our experiments when running the Roomba tool on the LOD cloud. All the experiments are reproducible by our tool and their results are available on its Github repository at \url{https://github.com/ahmadassaf/opendata-checker}.
 
 \subsection{Experimental Setup}
-
-The current state of the LOD cloud report~\cite{DBLP:conf/semweb/SchmachtenbergBP14} indicates that we have more than 1014 datasets available. These datasets were harvested via LDSpider crawler~\cite{conf/semweb/IseleUBH10} seeded with 560 thousands URIs. However, since Roomba requires the datasets to be hosted in a data portal where either the dataset publisher or the portal administrator can attach relevant metadata to it, we relied on the information provided by the Datahub CKAN API. We examined two possible groups, the first tagged with "lodcloud" returned 259 datasets. The second tagged with "lod" returned only 75 datasets. We examined manually the two lists and found out the API result for the tag "lodcloud" is the correct one. The 259 datasets contained a total of 1068 resources. We ran the instance and resource extractor in order to cache the metadata files for these datasets locally and ran the validation process which took around two and a half hours on a 2.6 Ghz Intel Core i7 processor with 16GB of DDR3 memory machine.
+The current state of the LOD cloud report~\cite{DBLP:conf/semweb/SchmachtenbergBP14} indicates that there are more than 1014 datasets available. These datasets have been harvested by the LDSpider crawler~\cite{conf/semweb/IseleUBH10} seeded with 560 thousands URIs. However, since Roomba requires the datasets metadata to be hosted in a data portal where either the dataset publisher or the portal administrator can attach relevant metadata to it, we rely on the information provided by the Datahub CKAN API. We consider two possible groups: the first one tagged with ``lodcloud'' returns 259 datasets, while the second one tagged with ``lod'' returns only 75 datasets. We manually inspect these two lists and find out that the API result for the tag ``lodcloud'' is the correct one. The 259 datasets contain a total of 1068 resources. We run the instance and resource extractor from Roomba in order to cache the metadata files for these datasets locally and we launch the validation process which takes around two and a half hours on a 2.6 Ghz Intel Core i7 processor with 16GB of DDR3 memory machine.
 
 \subsection{Results and Evaluation}
+CKAN dataset metadata includes three main sections in addition to the core dataset's properties. Those are the \textbf{groups}, \textbf{tags} and \textbf{resources}. Each section contains a set of metadata corresponding to one or more metadata type. For example, a dataset resource will have general information such as the resource name, access information such as the resource url and provenance information such as creation date. The framework generates a report aggregating all the problems in all these sections, fixing field values when possible. Errors can be the result of missing metadata fields, undefined field values or field value errors (e.g. unreachable URL or incorrect email address).
 
-A CKAN dataset metadata describes three main sections in addition to the core dataset's properties. Those are the \textbf{groups}, \textbf{tags} and \textbf{resources}. Each section contains a set of metadata corresponding to one or more metadata type. For example, a dataset resource will have general information such as the resource name, access information such as the resource url and provenance information such as creation date. The framework generates a report aggregating all the problems in all these sections, fixing field values when possible. Errors can be the result of missing metadata fields, undefined field values or field value errors e.g., unreachable URL or incorrect email address.
+Figures \ref{fig:2} and \ref{fig:3} show the percentage of errors found in metadata fields by section and by information type respectively. We observe that the most erroneous information for the dataset core information is related to ownership since this information is missing or undefined for 41\% of the datasets. Datasets resources have the poorest metadata. 64\% of the general metadata, all the access information and 80\% of the provenance information contain missing or undefined values. Table~\ref{tab:main} shows the top metadata fields errors for each metadata information type.
 
-Figures \ref{fig:2} and \ref{fig:3} show the percentage of errors found in metadata fields by section and by information type respectively. We found out that the most erroneous information for the dataset core information were ownership related as 41\% were missing or undefined. Datasets resources have the poorest metadata. 64\% of the general metadata, all the access information and 80\% of the provenance information contained missing or undefined values. Table \ref{tab:main} shows the top metadata fields errors in each metadata information type.
+We notice that 42.85\% of the top metadata problems can be fixed automatically. Among them, 44.44\% of these problems can be fixed by our tool while the others need tools that are plugged into the data portal. We further present and discuss the results grouped by metadata information type in the following sub-sections.
 
-We notice that 42.85\% of the top metadata problems can be fixed automatically. 44.44\% of these problems can be fixed by our tool while the others need tools that are plugged into the data portal. We further present and discuss the results grouped by metadata information type below.
+\subsection{General information}
+34 datasets (13.13\%) do not have valid \texttt{notes} values. \texttt{tags} information for the datasets are complete except for the \texttt{vocabulary\_id} as this is missing from all the datasets' metadata. All the datasets \texttt{groups} information are missing \texttt{display\_name, description, title, image\_display\_url, id, name}. After manual examination, we observe a clear overlap between group and organization information. Many datasets like \texttt{event-media} use the organization field to show group related information (being in the LOD Cloud) instead of the publishers details.
 
-\subsection{General information} 34 datasets (13.13\%) did not have valid \texttt{notes} values. \texttt{tags} information for the datasets were complete except for the \texttt{vocabulary\_id} as it was missing from all the datasets' metadata. All the datasets \texttt{groups} information were missing \texttt{display\_name, description, title, image\_display\_url, id, name}. After \\manual examination, we noticed a clear overlap between group and organization information. Many datasets like \texttt{event-media} used the organization field to show group related information (being in LOD Cloud) instead of the publishers details.\\
-
-\begin{center}
-\begin{tabular}{|c|c|c|c|c|c|}
-
+\begin{table}
+ \begin{center}
+ \begin{tabular}{|c|c|c|c|c|c|}
 \hline
 \multicolumn{2}{|c|}{Metadata Field} & Error \% & Section & Error Type & Auto Fix\tabularnewline
 \hline
@@ -181,63 +179,59 @@ We notice that 42.85\% of the top metadata problems can be fixed automatically. 
  & author & 2.32\% & Dataset & Undefined & -\tabularnewline
 \hline
 \end{tabular}
-\captionof{table}{Top metadata fields error \% by type} \label{tab:main}
-\end{center}
+ \caption{Top metadata fields error \% by type} 
+ \label{tab:main}
+ \end{center}
+\end{table}
 
+\subsection{Access information}
+25\% of the datasets access information (being the dataset URL and any URL defined in its groups) have issues: generally missing or unreachable URLs. 3 datasets (1.15\%) do not have a URL defined (tip, uniprot\-databases, uniprot\-citations) while 45 datasets (17.3\%) defined URLs are not accessible at the time of writing this paper. One dataset does not have resources information (bio2rdf\-chebi) while the other datasets have a total of 1068 defined resources.
 
-\subsection{Access information} 25\% of the datasets access information (being the dataset URL and any URL defined in its groups) has issues related to them (missing or unreachable URLs).
-Three datasets (1.15\%) did not have a URL defined (tip, uniprot\-databases, uniprot\-citations) while 45 datasets (17.3\%) defined URLs were not accessible at the time writing this paper. One dataset did not have resources information (bio2rdf\-chebi) while the other datasets had a total of 1068 defined resources.\\
-On the datasets resources level, we noticed wrong or inconsistent values in the \texttt{size} and \texttt{mimetype} fields. However, 44 datasets have valid \texttt{size} field values and 54 have valid \texttt{mimetype} field values where they were not reachable, thus providing incorrect information.\\
-15 (68\%) fields of all the other access metadata are missing or have undefined values. Looking closely, we noticed that most of these problems can be easily fixed automatically by tools that can be plugged to the data portal. For example, the top six missing fields are the \texttt{cache\_last\_updated}, \texttt{cache\_url}, \texttt{url\-type}, \texttt{webstore\_last\_updated}, \texttt{mimetype\-\_inner} and \texttt{hash} which can be computed and filled automatically. However, the most important missing information which require manual entry are the dataset's \texttt{name} and \texttt{description} were missing from 817 (76.49\%) and 98 (9.17\%) resources respectively.
-A total of 334 resources (31.27\%) URLs were not reachable, thus affecting highly the availability of these datasets. CKAN resources can be of various predefined types $(file, file.upload, api, visualization, code and documentation)$. The frameowork also breaks down these unreachable resources according to their types. 211 (63.17\%) resources did not have valid \texttt{resource\_type}, 112 (33.53\%) were files, 8 (2.39\%) and one (0.029\%) metadata, example and documentation types.
+On the datasets resources level, we notice wrong or inconsistent values in the \texttt{size} and \texttt{mimetype} fields. However, 44 datasets have valid \texttt{size} field values and 54 have valid \texttt{mimetype} field values but they were not reachable, thus providing incorrect information. 15 fields (68\%) of all the other access metadata are missing or have undefined values. Looking closely, we notice that most of these problems can be easily fixed automatically by tools that can be plugged to the data portal. For example, the top six missing fields are the \texttt{cache\_last\_updated}, \texttt{cache\_url}, \texttt{url\-type}, \texttt{webstore\_last\_updated}, \texttt{mimetype\-\_inner} and \texttt{hash} which can be computed and filled automatically. However, the most important missing information which require manual entry are the dataset's \texttt{name} and \texttt{description} which are missing from 817 (76.49\%) and 98 (9.17\%) resources respectively. A total of 334 resources (31.27\%) URLs were not reachable, thus affecting highly the availability of these datasets. CKAN resources can be of various predefined types $(file, file.upload, api, visualization, code and documentation)$. Roomba also breaks down these unreachable resources according to their types: 211 (63.17\%) resources do not have valid \texttt{resource\_type}, 112 (33.53\%) are files, 8 (2.39\%) a re metadata and one (0.029\%) are example and documentation types.
 
-To have more details about the resources URL types, we created a $key:object meta-field values$ group level report on LOD cloud with \texttt{resources>\\format:title}. This will aggregate the resources format information for each dataset. We found out that only 161 (62.16\%) of the datasets valid URLs have SPARQL endpoints defined by \texttt{api/sparql} resource format. 92.27\% provided RDF example links and 56.3\% provided direct links to RDF down-loadable dumps.
+To have more details about the resources URL types, we created a $key:object meta-field values$ group level report on the LOD cloud with \texttt{resources>\\format:title}. This will aggregate the resources format information for each dataset. We observe that only 161 (62.16\%) of the datasets valid URLs have SPARQL endpoints defined using the \texttt{api/sparql} resource format. 92.27\% provided RDF example links and 56.3\% provided direct links to RDF down-loadable dumps.
 
-The noisiest part of the access metadata was license information. A total of 43 datasets (16.6\%) did not have a defined \texttt{license\_title} and \texttt{license\_id} fields, where 141 (54.44\%) had missing \texttt{license\_url} field.
+The noisiest part of the access metadata is about license information. A total of 43 datasets (16.6\%) does not have a defined \texttt{license\_title} and \texttt{license\_id} fields, where 141 (54.44\%) have missing \texttt{license\_url} field.
 
 \begin{figure}
-
-\parbox{7cm}{\hspace*{-.2in}
-\includegraphics[width=.95\linewidth]{metadata_noise_by_section.png}
-\captionsetup{textfont=small,singlelinecheck=off,justification=centering}
-\caption{Error \% by section}
-\label{fig:2}}
-\qquad
-\begin{minipage}{7cm}\hspace*{-.6in}
-\includegraphics[width=.95\linewidth]{metadata_noise_by_metadata_type.png}
-\captionsetup{textfont=small,singlelinecheck=off,justification=raggedright}
-\caption{Error \% by information type}
-\label{fig:3}
-\end{minipage}
-
+ \parbox{7cm}{\hspace*{-.2in}
+ \includegraphics[width=.95\linewidth]{metadata_noise_by_section.png}
+ \captionsetup{textfont=small,singlelinecheck=off,justification=centering}
+ \caption{Error \% by section}
+ \label{fig:2}}
+ \qquad
+ \begin{minipage}{7cm}\hspace*{-.6in}
+ \includegraphics[width=.95\linewidth]{metadata_noise_by_metadata_type.png}
+ \captionsetup{textfont=small,singlelinecheck=off,justification=raggedright}
+ \caption{Error \% by information type}
+ \label{fig:3}
+ \end{minipage}
 \end{figure}
 
-\subsection{Ownership information} Ownership information is divided into direct ownership (author and maintainer) and organization information. Four fields (66.66\%) of the direct ownership information were missing or undefined. The breakdown for the missing information is: 55.21\% \texttt{maintainer\_email}, 51.35\% \texttt{maintainer}, 15.06\% \texttt{author\_email}, 2.32\% \texttt{author}. Moreover, our framework performs checks to validate existing email values. 11 (0.05\%) and 6 (0.05\%) of the defined \texttt{author\_email} and \texttt{maintainer\_email} fields were not valid email addresses respectively.\\
-For the organization information, two field values (16.6\%) were missing or undefined. 1.16\% of the \texttt{organization\_description} and 10.81\% of the \texttt{organization\-\_image\_url} information with two out of these URLs were unreachable.
+\subsection{Ownership information}
+Ownership information is divided into direct ownership (author and maintainer) and organization information. Four fields (66.66\%) of the direct ownership information are missing or undefined. The breakdown for the missing information is: 55.21\% \texttt{maintainer\_email}, 51.35\% \texttt{maintainer}, 15.06\% \texttt{author\_email}, 2.32\% \texttt{author}. Moreover, our framework performs checks to validate existing email values. 11 (0.05\%) and 6 (0.05\%) of the defined \texttt{author\_email} and \texttt{maintainer\_email} fields are not valid email addresses respectively. For the organization information, two field values (16.6\%) were missing or undefined. 1.16\% of the \texttt{organization\_description} and 10.81\% of the \texttt{organization\-\_image\_url} information with two out of these URLs are unreachable.
 
-\subsection{Provenance information} 80\% of the resources provenance information were missing or undefined. However, most of the provenance information e.g., \texttt{metadata\_created, \\metadata\_modified)} can be computed automatically by tools plugged into the data portal. The only field requiring manual entry is the \texttt{version} field which was found to be missing from 60.23\% of the datasets.
+\subsection{Provenance information}
+80\% of the resources provenance information are missing or undefined. However, most of the provenance information (e.g. \texttt{metadata\_created, metadata\_modified}) can be computed automatically by tools plugged into the data portal. The only field requiring manual entry is the \texttt{version} field which was found to be missing in 60.23\% of the datasets.
 
 \subsection{Enriched Profiles}
+Roomba can automatically fix, when possible, the license information (title, url and id) as well as the resources mimetype and size.
 
-Roomba can automatically fix when possible the license information (title, url and id) as well as the resources mimetype and size.
+20 resources (1.87\%) have incorrect \texttt{mimetype} defined, while 52 resources (4.82\%) have incorrect \texttt{size} values. These values have been automatically fixed based on the values defined in the HTTP response header.
 
-20 (1.87\%) resources had incorrect \texttt{mimetype} defined, while 52 (4.82\%) had incorrect \texttt{size} values. These values have been automatically fixed based on the values defined in the HTTP response header.
+We have noticed that most of the issues surrounding license information are related to ambiguous entries. To resolve that, we manually created a mapping file\footnote{\url{https://github.com/ahmadassaf/opendata-checker/blob/master/util/licenseMappings.json}} standardizing the set of possible license names and urls using the open source and knowledge license information\footnote{\url{https://github.com/okfn/licenses}}. As a result, we managed to normalize 123 (47.49\%) of the datasets' license information.
 
-We have noticed that most of the issues surrounding license information are related to ambiguous entries. To resolve that, we manually created a mapping file\footnote{https://github.com/ahmadassaf/opendata-checker/blob/master/util/licenseMappings.json} standardizing the set of possible license names and urls using the open source and knowledge license information\footnote{https://github.com/okfn/licenses}. As a result, we managed to normalize 123 (47.49\%) of the datasets' license information.
+To check the impact of the corrected fields, we seeded Roomba with the enriched profiles. Since Roomba uses file based cache system, we simply replaced all the datasets \texttt{json} files in the \texttt{\textbackslash cache\textbackslash datahub.io\textbackslash datasets} folder with those generated in \texttt{\textbackslash cache\textbackslash datahub.io\textbackslash enriched}. After running Roomba again on the enriched profiles, we observe that the errors percentage for missing \texttt{size} fields decreased by 32.02\% and for \texttt{mimetype} fields by 50.93\%. We also notice that the error percentage for missing \texttt{license\_urls} decreased by 2.32\%.
 
-To check the impact of corrected fields, we seeded Roomba with the enriched profiles. Since Roomba uses file based cache system, we simply replaced all the datasets \texttt{json} files in the \texttt{\textbackslash cache\textbackslash datahub.io\textbackslash datasets} folder with the those generated in \texttt{\textbackslash cache\textbackslash datahub.io\textbackslash enriched}. After running Roomba again on the enriched profiles we noticed that the errors percentage for missing \texttt{size} fields decreased by 32.02\% and for \texttt{mimetype} fields by 50.93\%. We also noticed that the error percentage for missing \texttt{license\_urls} decreased by 2.32\%.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  4. Conclusion and Future Work  %%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%  5. Conclusion and Future Work  %%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusion and Future Work}
 \label{sec:conclusion}
+In this paper, we presented the results of running Roomba over the LOD cloud group hosted in the Datahub. We discovered that the general state of the examined datasets needs attention as most of them lack informative access information and their resources suffer low availability. These two metrics are of high importance for enterprises looking to integrate and use external linked data. We found out that the most erroneous information for the dataset core information are ownership related since this information is missing or undefined for 41\% of the datasets. Datasets resources have the poorest metadata: 64\% of the general metadata, all the access information and 80\% of the provenance information contained missing or undefined values.
 
-In this paper, we presented the results of running Roomba over the LOD cloud group hosted in the Datahub. We discovered that the general state of the examined datasets needs attention as most of them lack informative access information and their resources suffer low availability. These two metrics are of high importance for enterprises looking to integrate and use external linked data. We found out that the most erroneous information for the dataset core information were ownership related as 41\% were missing or undefined. Datasets resources have the poorest metadata. 64\% of the general metadata, all the access information and 80\% of the provenance information contained missing or undefined values.
-
-We also showed that the automatic correction process can effectively enhance the quality of some information. We also noticed the need to have a community effort to manually correct missing important information like ownership information (maintainer, author, and maintainer and author emails).
-
-As part of our future work, we plan to run Roomba on various data portals and perform a detailed comaprison to check the metadata health of LOD datasets against those in other prominent data portals.
+We also show that the automatic correction process can effectively enhance the quality of some information. We believe there is a need to have a community effort to manually correct missing important information like ownership information (maintainer, author, and maintainer and author emails). As part of our future work, we plan to run Roomba on various data portals and perform a detailed comparison to check the metadata health of LOD datasets against those in other prominent data portals.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %%%  Acknowledgments  %%%
@@ -245,7 +239,6 @@ As part of our future work, we plan to run Roomba on various data portals and pe
 
 \section*{Acknowledgments}
 This research has been partially funded by the European Union's 7th Framework Programme via the project Apps4EU (GA No. 325090).
-\vspace{0.5cm}
 
 \bibliographystyle{abbrv}
 \nocite{*}
