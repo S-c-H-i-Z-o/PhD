@@ -22,6 +22,7 @@
 \usepackage{afterpage}
 \usepackage[pass]{geometry}
 \usepackage{pdflscape}
+\usepackage{xcolor,colortbl}
 
 \graphicspath{ {figures/} }
 
@@ -50,6 +51,10 @@
       {[}{{{\color{delim}{[}}}}{1}
       {]}{{{\color{delim}{]}}}}{1},
 }
+
+\makeatletter
+  \newcommand\tinyv{\@setfontsize\tinyv{7.5pt}{6.5}}
+\makeatother
 
 \makeatletter
 \newcommand*{\gmshow@textheight}{\textheight}
@@ -194,7 +199,7 @@ A standard dataset metadata model should contain sufficient information so that 
 
 \begin{itemize}
   \item \textbf{Resources}: The actual raw data that can be downloaded or accessed directly via queryable endpoints. Resources can come in various formats e.g., JSON, XML, RDF.
-  \item \textbf{Tags}:  Descriptive knowledge about the dataset content and structure. They can range from simple textual representation to semantically rich controlled terms. Tags are the basis for datasets search and discovery.
+  \item \textbf{Tags}: Descriptive knowledge about the dataset content and structure. They can range from simple textual representation to semantically rich controlled terms. Tags are the basis for datasets search and discovery.
   \item \textbf{Groups}: Groups act as organizational units that share common semantics. They can be seen as a cluster or a curation of datasets based on shared categories or themes.
   \item \textbf{Organizations}: Organizations are another way to arrange datasets. However, they differ from groups as they are not constructed by shared semantics or properties, but solely on the dataset's association to a specific administration party.
 \end{itemize}
@@ -203,13 +208,27 @@ Upon examining the various data models, we grouped the metadata information into
 
 \begin{itemize}
 \item \textbf{General information}: The core information about the dataset (e.g., title, description, ID).
-\item \textbf{Access information}: Information about dataset access and usage (e.g., URL, license title and license URL).
+
+\item \textbf{Access information}: Information about dataset access and usage (e.g., URL, license title and license URL). In addition to that models discussed above, there are several vocabularies designed to specify access right e.g., Linked Data Rights\footnote{\url{http://oeg-dev.dia.fi.upm.es/licensius/static/ldr/}}, The Open Digital Rights Language (ODRL)\footnote{\url{http://www.w3.org/ns/odrl/2/}}.
+
 \item \textbf{Ownership information}: Authoritative information about the dataset (e.g., author, maintainer and organization).
+
 \item \textbf{Provenance information}: Temporal and historical information about the dataset creation and update records, in addition to versioning information (e.g. creation data, metadata update data, latest version).
-\item \textbf{Quality information}: Information that indicates the quality of the dataset on the metadata and instance levels. In addition to that, a dataset should include an openness score that measures its alignment with the Linked Data publishing standards~\cite{tim:linkedata}.
+
 \item \textbf{Geospatial information}: Information reflecting the geographical coverage of the dataset (e.g., coordinates, polygon).
+
+There are some additional models and extensions that are specifically designed to express geographical information. The Infrastructure for Spatial Information in the European Community (INSPIRE) directive\footnote{\url{http://inspire.ec.europa.eu/}} aims at establishing an infrastructure for spatial information. Mappings have been made between DCAT-AP and the INSPIRE metadata. CKAN provides as well a spatial extension\footnote{\url{https://github.com/ckan/ckanext-spatial}} to add geospatial capabilities. It allows importing geospatial metadata from other resources and supports various standards (e.g.,ISO 19139) and formats (e.g. GeoJSON).
+
 \item \textbf{Temporal information}: Information reflecting the temporal coverage of the dataset (e.g. from data, to date).
+There has been some notable work on extending CKAN to include temporal information. \texttt{govdata.de}, an Open Data portal in Germany, extending the CKAN data model to include information like \texttt{temporal\_granularity}, \texttt{temporal\_coverage\_to} and \\\texttt{temporal\_granularity\_from}.
+
 \item \textbf{Statistical information}: Statistical information about the data types and patterns in datasets (e.g., properties distribution, number of entities and RDF triples). This information is particularly useful to explore a dataset as it gives detailed insights about the raw data when provided properly.
+
+VoID is the only model that provides statistical information about a dataset. VoID defines properties to express different statistical characteristics of datasets like the total number of triples, total number of entities, total number of distinct classes, etc. However, there are other vocabularies like SCOVO~\cite{Hausenblas:09:ESWC} that can model and publish statistical data about datasets.
+
+\item \textbf{Quality information}: Information that indicates the quality of the dataset on the metadata and instance levels. In addition to that, a dataset should include an openness score that measures its alignment with the Linked Data publishing standards~\cite{tim:linkedata}.
+
+Quality information is only expressed in the POD metadata. However, \texttt{govdata.de} extends the CKAN model also to include a \texttt{ratings\_average} field. Moreover, there are various other vocabularies like daQ~\cite{Debattista:14:www} that can be used to express datasets quality. The RDF Review Vocabulary\footnote{\url{http://vocab.org/review/}} can be also used to express reviews and ratings about the dataset or its resources.
 \end{itemize}
 
 
@@ -226,11 +245,11 @@ Upon examining the various data models, we grouped the metadata information into
 \Huge
 \noindent
 \setlength\LTleft{-1.7cm}
-{\footnotesize
-\noindent\begin{longtable}{|p{1cm}|m{3.4cm}|m{3cm}|m{2.7cm}|p{3.8cm}|m{3.8cm}|m{5cm}|m{2.5cm}|}
+{\tinyv
+\noindent\begin{longtable}{|p{1cm}|m{2.9cm}|m{2.4cm}|m{2.6cm}|p{3.8cm}|m{3.8cm}|m{6.5cm}|m{2.5cm}|}
 \caption[Harmonized Dataset Models Mappings]{Harmonized Dataset Models Mappings} \label{tab:harmonized_dataset_models_mappings} \\
 
-\hline \multicolumn{1}{|p{2cm}}{\textbf{Data Model}} & \multicolumn{1}{|c|}{\textbf{CKAN}} & \multicolumn{1}{c|}{\textbf{DKAN}} & \multicolumn{1}{c|}{\textbf{POD}} & \multicolumn{1}{m{3cm}|}{\textbf{DCAT}} & \multicolumn{1}{c|}{\textbf{VoID}} & \multicolumn{1}{c|}{\textbf{Schema.org}} & \multicolumn{1}{c|}{\textbf{Socrata}}\\ \hline
+\hline \multicolumn{1}{|p{2cm}}{\textbf{Data Model}} & \multicolumn{1}{|c|}{\textbf{CKAN}} & \multicolumn{1}{c|}{\textbf{DKAN}} & \multicolumn{1}{c|}{\textbf{POD}} & \multicolumn{1}{c|}{\textbf{DCAT}} & \multicolumn{1}{c|}{\textbf{VoID}} & \multicolumn{1}{c|}{\textbf{Schema.org}} & \multicolumn{1}{c|}{\textbf{Socrata}}\\ \hline
 \endfirsthead
 
 \multicolumn{8}{c}%
@@ -239,7 +258,7 @@ Upon examining the various data models, we grouped the metadata information into
 \multicolumn{1}{c|}{\textbf{CKAN}} &
 \multicolumn{1}{c|}{\textbf{DKAN}} &
 \multicolumn{1}{c|}{\textbf{POD}} &
-\multicolumn{1}{m{3cm}|}{\textbf{DCAT}} &
+\multicolumn{1}{c|}{\textbf{DCAT}} &
 \multicolumn{1}{c|}{\textbf{VoID}} &
 \multicolumn{1}{c|}{\textbf{Schema.org}} &
 \multicolumn{1}{c|}{\textbf{Socrata}} \\ \hline
@@ -299,7 +318,6 @@ Upon examining the various data models, we grouped the metadata information into
  & metadata\_modified & metadata\_modified & modified & dcat:Distribution$\rightarrow$ dct:modified & void:Dataset$\rightarrow$ dct:modified & CreativeWork:dateModified & \tabularnewline
 \cline{2-8}
  & revision\_timestamp & revision\_timestamp &  &  &  &  & \tabularnewline
-\hline
 \cline{2-8}
  &  &  & issued & dcat:Distribution$\rightarrow$ dct:issued & void:Dataset$\rightarrow$ dct:issued & CreativeWork:datePublished & \tabularnewline
 \cline{2-8}
@@ -353,7 +371,7 @@ Upon examining the various data models, we grouped the metadata information into
 \hline
 Quality & ratings\_average &  & dataQuality &  &  & CreativeWork:aggregateRating & \tabularnewline
 \hline
-\multicolumn{8}{|c|}{organization}\tabularnewline
+\multicolumn{8}{|c|}{\cellcolor{blue!25}\textbf{Organization}}\tabularnewline
 \hline
 \multirow{10}{2cm}{General Information} & title &  & name & dcat:Dataset$\rightarrow$ dct:creator$\rightarrow$ foaf:Organization:givenName & void:Dataset$\rightarrow$ dct:creator$\rightarrow$ foaf:Organization:givenName & CreativeWork:sourceOrganization:LegalName & \tabularnewline
 \cline{2-8}
@@ -374,12 +392,11 @@ Quality & ratings\_average &  & dataQuality &  &  & CreativeWork:aggregateRating
  & approval\_status &  &  &  &  &  & \tabularnewline
 \cline{2-8}
  &  &  & subOrganizationOf &  &  & CreativeWork:sourceOrganization:subOrganization & \tabularnewline
-\hline
 \multirow{2}{2cm}{provenance} & revision\_timestamp &  &  &  &  &  & \tabularnewline
 \cline{2-8}
  & revision\_id &  &  &  &  &  & \tabularnewline
 \hline
-\multicolumn{8}{|c|}{Resources}\tabularnewline
+\multicolumn{8}{|c|}{\cellcolor{blue!25}\textbf{Resources}}\tabularnewline
 \hline
 \multirow{15}{2cm}{general} & resource\_group\_id & resource\_group\_id &  &  &  &  & \tabularnewline
 \cline{2-8}
@@ -391,7 +408,7 @@ Quality & ratings\_average &  & dataQuality &  &  & CreativeWork:aggregateRating
 \cline{2-8}
  & hash &  &  &  &  &  & \tabularnewline
 \cline{2-8}
- & description & description & description & dcat:Distribution$\rightarrow$ dct:description &  & Dataset:distribution$\rightarrow$ DataDownload>Thing:description & \tabularnewline
+ & description & description & description & dcat:Distribution$\rightarrow$ dct:description &  & Dataset:distribution$\rightarrow$ DataDownload$\rightarrow$ Thing:description & \tabularnewline
 \cline{2-8}
  & format & format & format & dcat:Distribution$\rightarrow$ dct:format & void:Dataset$\rightarrow$ dct:format & Dataset:distribution$\rightarrow$ DataDownload$\rightarrow$ MediaObject:encodingFormat & \tabularnewline
 \cline{2-8}
@@ -399,16 +416,15 @@ Quality & ratings\_average &  & dataQuality &  &  & CreativeWork:aggregateRating
 \cline{2-8}
  & mimetype\_inner &  &  &  &  &  & \tabularnewline
 \cline{2-8}
- & name & name & title & dcat:Distribution$\rightarrow$ dct:title &  & Dataset:distribution$\rightarrow$ DataDownload>Thing:name & filename / name\tabularnewline
+ & name & name & title & dcat:Distribution$\rightarrow$ dct:title &  & Dataset:distribution$\rightarrow$ DataDownload$\rightarrow$ Thing:name & filename / name\tabularnewline
 \cline{2-8}
  & position &  &  &  &  &  & \tabularnewline
 \cline{2-8}
- & resource\_type &  &  &  &  & Dataset:distribution$\rightarrow$ DataDownload>Thing:additionalType & \tabularnewline
+ & resource\_type &  &  &  &  & Dataset:distribution$\rightarrow$ DataDownload$\rightarrow$Thing:additionalType & \tabularnewline
 \cline{2-8}
  &  &  & describedBy &  &  &  & \tabularnewline
 \cline{2-8}
  &  &  & describedByType &  &  &  & \tabularnewline
- \hline
 \cline{2-8}
  &  &  & conformsTo &  &  &  & \tabularnewline
 \hline
@@ -434,7 +450,7 @@ Quality & ratings\_average &  & dataQuality &  &  & CreativeWork:aggregateRating
 \cline{2-8}
  & revision\_id & revision\_id &  &  &  &  & \tabularnewline
 \hline
-\multicolumn{8}{|c|}{Groups}\tabularnewline
+\multicolumn{8}{|c|}{\cellcolor{blue!25}\textbf{Groups}}\tabularnewline
 \hline
 \multirow{7}{2cm}{General} & display\_name & display\_name &  &  &  &  & \tabularnewline
 \cline{2-8}
@@ -450,7 +466,7 @@ Quality & ratings\_average &  & dataQuality &  &  & CreativeWork:aggregateRating
 \cline{2-8}
  & subgroups &  &  &  &  &  & \tabularnewline
 \hline
-\multicolumn{8}{|c|}{Tags}\tabularnewline
+\multicolumn{8}{|c|}{\cellcolor{blue!25}\textbf{Tags}}\tabularnewline
 \hline
 \multirow{5}{2cm}{General} & vocabulary\_id & vocabulary\_id &  & dcat:Dataset$\rightarrow$ dcat:theme$\rightarrow$ skos:ConceptScheme &  &  & \tabularnewline
 \cline{2-8}
