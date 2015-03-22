@@ -94,10 +94,9 @@
 %%%%%%%%%%%%%%%%%%
 
 \begin{abstract}
+The Open Data movement triggered an unprecedented amount of data published in a wide range of domains. Governments and corporations around the world are encouraged to publish, share, use and integrate Open Data. There are many areas where one can see the added value of Open Data, from transparency and self-empowerment to improving efficiency, effectiveness and decision making. This growing amount of data requires rich metadata in order to reach its full potential. This metadata enables dataset discovery, understanding, integration and maintenance. Data portals, which are considered to be datasets' access points, offer metadata represented in different and heterogenous models. In this paper, we first conduct a unique and comprehensive survey of the following metadata models: CKAN, DKAT, Public Open Data, Socrata, VoID, DCAT and Schema.org. Next, we propose HDL, an harmonized dataset model based on this survey. We describe use cases that show the benefits of providing rich metadata to enable dataset discovery, search and spam detection.
 
-The Open Data movement triggered an unprecedented amount of data published in a wide range of domains. Governments and corporations around the world are encouraged to publish, share, use and integrate Open Data. There are many areas where we can see the value of Open Data, from transparency and self-empowerment to improving efficiency, effectiveness and decision making. The growing amount of data constitutes the need for rich metadata attached to it. This metadata enables dataset discovery, comprehension and maintenance. Data portals, which are considered to be datasets' access points, present their metadata in various models. In this paper, we propose HDL, a harmonized dataset model based on the analysis of seven prominent dataset models (CKAN, DKAT, Public Open Data, Socrata, VoID, DCAT and Schema.org). We further present use cases that show the benefits of providing rich metadata to enable dataset discovery, search and spam detection.
-
-\keywords{Dataset, Dataset Profile, Metadata, Dataset Model}
+\keywords{Dataset Metadata, Dataset Profile, Dataset Model, Data Quality}
 \end{abstract}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
@@ -106,13 +105,11 @@ The Open Data movement triggered an unprecedented amount of data published in a 
 
 \section{Introduction}
 \label{sec:introduction}
+Open data is the data that can be easily discovered, reused and redistributed by anyone. It can include anything from statistics, geographical data, meteorological data to digitized books from libraries. Open data should have both legal and technical dimensions. It should be placed in the public domain under liberal terms of use with minimal restrictions and should be available in electronic formats that are non-proprietary and machine readable. Open Data has major benefits for citizens, businesses, society and governments: it increases transparency and enables self-empowerment by improving the visibility of previously inaccessible information; it allows citizens to be better informed about policies, public spending and activities in the law making processes. Moreover, it is still considered as a gold mine for organizations which are trying to leverage external data sources in order to produce more informed business decisions~\cite{Boyd2011}, despite the legal issues surrounding Linked Data licenses~\cite{nomoneyLOD}.
 
-Open data is the data that can be easily discovered, reused and redistributed by anyone. It can include anything from statistics, geographical data, meteorological data to digitized books from libraries. Open data should have both legal and technical dimensions. It should be placed in the public domain under liberal terms of use with minimal restrictions and should be available in electronic formats that are non-proprietary and machine readable. Open Data has major benefits for citizens, businesses, society and governments. It increases transparency and enable self-empowerment by improving the visibility of previously inaccessible information and allowing citizens to be more informed about policies, public spendings and track activities in the law making processes. Moreover, and despite of the legal issues surrounding Linked Data licenses \cite{nomoneyLOD}, it is still considered a gold mine for organizations who are trying to leverage external data sources in order to produce more informed business decisions \cite{Boyd2011}.
-
-Linked Data publishing best practices~\cite{Bizer:2011:EWG:2075914.2075915} specifies that datasets should contain metadata needed to effectively understand and use them. \textit{Metadata} is structured information that describes, explains, locates, or otherwise makes it easier to retrieve, use, or manage an information resource~\cite{NISO:04}. Having rich metadata helps in enabling:
-
+The Linked Data publishing best practices~\cite{Bizer:2011:EWG:2075914.2075915} specifies that datasets should contain metadata needed to effectively understand and use them. \textit{Metadata} is structured information that describes, explains, locates, or otherwise makes it easier to retrieve, use, or manage an information resource~\cite{NISO:04}. Having rich metadata helps in enabling:
 \begin{itemize}
-  \item \textbf{Data discovery, exploration and reuse}: In~\cite{Graham:11}, it was found that users are facing difficulties finding and reusing publicly available datasets. Metadata provides an overview of the whole datasets making them more searchable and accessible. High quality metadata can be at times more important than the actual raw data especially when the costs of publishing and maintaining such data is high.
+  \item \textbf{Data discovery, exploration and reuse}: In~\cite{Graham:11}, it was found that users are facing difficulties finding and reusing publicly available datasets. Metadata provides an overview of datasets making them more searchable and accessible. High quality metadata can be at times more important than the actual raw data especially when the costs of publishing and maintaining such data is high.
   \item \textbf{Organization and identification}: The increasing number of datasets being published makes it hard to track, organize and present them to users efficiently. Attached metadata helps in bringing similar resources together and distinguish useful links.
   \item \textbf{Archiving and preservation}: There is a growing concern that digital resources will not survive in usable forms to the future~\cite{NISO:04}. Metadata can ensure resources survival and continuous accessibility by providing clear provenance information to track the lineage of digital resources and detail their physical characteristics.
 \end{itemize}
@@ -125,13 +122,12 @@ In this paper, we survey the landscape of existing data portals and dataset mode
 
 The remainder of the paper is structured as follows. In Section~\ref{sec:models}, we present the existing dataset models used by various data portals. In Section~\ref{sec:metadata}, we present our classification for the different metadata information. In Section~\ref{sec:hdl}, we describe our proposed model and suggest a set of best practices to ensure proper metadata presentation and we finally conclude and outline some future work in Section~\ref{sec:conclusion}.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%  2. Data Portals and Dataset Models  %%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Data Portals and Dataset Models}
 \label{sec:models}
-
 There are many data portals hosting a large number of private and public datasets. Each portal present the data based on the model used by the underlying software. In this section, we present the results of our landscape survey of prominent data portals and dataset models.
 
 \subsection{DCAT}
