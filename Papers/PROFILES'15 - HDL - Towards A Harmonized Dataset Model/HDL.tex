@@ -19,11 +19,8 @@
 \usepackage{xcolor}
 \usepackage{multirow}
 \usepackage{lscape}
-\usepackage{array}
 
 \graphicspath{ {figures/} }
-
-\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
 
 \newcommand{\keywords}[1]{\par\addvspace\baselineskip
 \noindent\keywordname\enspace\ignorespaces#1}
@@ -92,12 +89,12 @@ The Open Data movement triggered an unprecedented amount of data published in a 
 
 Open data is the data that can be easily discovered, reused and redistributed by anyone. It can include anything from statistics, geographical data, meteorological data to digitized books from libraries. Open data should have both legal and technical dimensions. It should be placed in the public domain under liberal terms of use with minimal restrictions and should be available in electronic formats that are non-proprietary and machine readable. Open Data has major benefits for citizens, businesses, society and governments. It increases transparency and enable self-empowerment by improving the visibility of previously inaccessible information and allowing citizens to be more informed about policies, public spendings and track activities in the law making processes. Moreover, and despite of the legal issues surrounding Linked Data licenses \cite{nomoneyLOD}, it is still considered a gold mine for organizations who are trying to leverage external data sources in order to produce more informed business decisions \cite{Boyd2011}.
 
-Linked Data publishing best practices~\cite{Bizer:2011:EWG:2075914.2075915} specifies that datasets should contain metadata needed to effectively understand and use them. \textit{Metadata} is structured information that describes, explains, locates, or otherwise makes it easier to retrieve, use, or manage an information resource~\cite{NISO:04}. Having rich metadata helps in:
+Linked Data publishing best practices~\cite{Bizer:2011:EWG:2075914.2075915} specifies that datasets should contain metadata needed to effectively understand and use them. \textit{Metadata} is structured information that describes, explains, locates, or otherwise makes it easier to retrieve, use, or manage an information resource~\cite{NISO:04}. Having rich metadata helps in enabling:
 
 \begin{itemize}
-  \item \textbf{Delaying data entropy}: \textit{Information entropy} is the degradation or loss that limits the information content in raw or metadata. The existence of high quality metadata can counteract information entropy and abstract the raw data complexity and dynamicity leading to  increased dataset longevity~\cite{GTOS}.
-  \item \textbf{Enhancing data discovery, exploration and reuse}: In~\cite{Graham:11}, it was found that users are facing difficulties finding and reusing publicly available datasets. Metadata provides an overview of the whole datasets making them more searchable and accessible. High quality metadata can be at times more important than the actual raw data especially when the costs of publishing and maintaining such data is high.
-  \item \textbf{Enhancing spam detection}: Detecting spam in public data portals is increasingly difficult  even with security measures like captchas and anti-spam devices. Good dataset metadata quality reflects highly on the quality of its raw data.
+  \item \textbf{Data discovery, exploration and reuse}: In~\cite{Graham:11}, it was found that users are facing difficulties finding and reusing publicly available datasets. Metadata provides an overview of the whole datasets making them more searchable and accessible. High quality metadata can be at times more important than the actual raw data especially when the costs of publishing and maintaining such data is high.
+  \item \textbf{Organization and identification}: The increasing number of datasets being published makes it hard to track, organize and present them to users efficiently. Attached metadata helps in bringing similar resources together and distinguish useful links.
+  \item \textbf{Archiving and preservation}: There is a growing concern that digital resources will not survive in usable forms to the future~\cite{NISO:04}. Metadata can ensure resources survival and continuous accessibility by providing clear provenance information to track the lineage of digital resources and detail their physical characteristics.
 \end{itemize}
 
 The value of Open Data is recognized when it is used. To ensure that, publishers need to enable people to find datasets easily. Data portals are specifically designed for this purpose. They make it easy for individuals and organizations to store, publish and discover datasets. The data portals can be be public like DataHub\footnote{\url{http://datahub.io}} and Europe's Public Data\footnote{\url{http://publicdata.eu}} or private like Quandl\footnote{\url{https://quandl.com/}} or Engima\footnote{\url{http://enigma.io/}}. The data available in private portals is of higher quality as it is manually curated but in lesser quantity compared to what is available in public portals. Similarly, in some public data portals, administrators manually review datasets information, validate, correct and attach suitable metadata information.
@@ -204,12 +201,11 @@ Upon examining the various data models, we grouped the metadata information into
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%  4. Towards A Harmonised Model  %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\begin{landscape}
+%\newgeometry{left=2cm,top=10cm}
+\setlength\LTleft{-1.7in}
 {\footnotesize
-\setlength\LTleft{-1in}
-\setlength\LTright{-1in plus 2 fill}
-\setlength\tabcolsep{4pt}
-\noindent\begin{longtable}{|p{1.5cm}|l|l|l|p{3cm}|m{3cm}|m{3cm}|c|}
+\noindent\begin{longtable}{|p{1cm}|m{2.3cm}|m{2.2cm}|m{2.5cm}|p{3.6cm}|m{3.6cm}|m{3.6cm}|m{2.5cm}|}
 \caption[Harmonized Dataset Models Mappings]{Harmonized Dataset Models Mappings} \label{tab:harmonized_dataset_models_mappings} \\
 
 \hline \multicolumn{1}{|p{2cm}}{\textbf{Data Model}} & \multicolumn{1}{c|}{\textbf{CKAN}} & \multicolumn{1}{c|}{\textbf{DKAN}} & \multicolumn{1}{c|}{\textbf{POD}} & \multicolumn{1}{m{3cm}|}{\textbf{DCAT}} & \multicolumn{1}{c|}{\textbf{VoID}} & \multicolumn{1}{c|}{\textbf{Schema.org}} & \multicolumn{1}{c|}{\textbf{Socrata}}\\ \hline
@@ -232,7 +228,7 @@ Upon examining the various data models, we grouped the metadata information into
 
 \endlastfoot
 
-\multirow{13}{2cm}{General Information} & id & id & identifier & dcat:Dataset$\rightarrow$dct:identifier &  &  & id/externalId\tabularnewline
+\multirow{13}{2cm}{General Information} & id & id & identifier & dcat:Dataset$\rightarrow$ dct:identifier &  &  & id/externalId\tabularnewline
 \cline{2-8}
  & private & private & accessLevel &  &  &  & privateMetadata\tabularnewline
 \cline{2-8}
@@ -244,66 +240,63 @@ Upon examining the various data models, we grouped the metadata information into
 \cline{2-8}
  & isopen &  &  &  &  &  & \tabularnewline
 \cline{2-8}
- & notes & notes & description & dcat:Dataset$\rightarrow$dct:description & void:Dataset$\rightarrow$dct:description & Thing:description & description\tabularnewline
+ & notes & notes & description & dcat:Dataset$\rightarrow$ dct:description & void:Dataset$\rightarrow$ dct:description & Thing:description & description\tabularnewline
 \cline{2-8}
- & title & title & title & dcat:Dataset$\rightarrow$dct:title & void:Dataset$\rightarrow$dc:title & Thing:name & name\tabularnewline
+ & title & title & title & dcat:Dataset$\rightarrow$ dct:title & void:Dataset$\rightarrow$ dc:title & Thing:name & name\tabularnewline
 \cline{2-8}
- & num\_resources &  &  &  & void:Dataset$\rightarrow$void:documents &  & \tabularnewline
+ & num\_resources &  &  &  & void:Dataset$\rightarrow$ void:documents &  & \tabularnewline
 \cline{2-8}
  & num\_tags &  &  &  &  &  & \tabularnewline
 \cline{2-8}
- &  &  & conformsTo & dcat:Dataset$\rightarrow$dct:conformsTo & void:Dataset$\rightarrow$dct:conformsTo &  & \tabularnewline
+ &  &  & conformsTo & dcat:Dataset$\rightarrow$ dct:conformsTo & void:Dataset$\rightarrow$ dct:conformsTo &  & \tabularnewline
 \cline{2-8}
- &  &  & language & dcat:Dataset$\rightarrow$dct:language & void:Dataset$\rightarrow$dct:language & CreativeWork:inLanguage & \tabularnewline
+ &  &  & language & dcat:Dataset$\rightarrow$ dct:language & void:Dataset$\rightarrow$ dct:language & CreativeWork:inLanguage & \tabularnewline
 \cline{2-8}
- &  &  & accuralPeriodicity & dcat:Dataset$\rightarrow$dct:accuralPeriodicity & void:Dataset$\rightarrow$dct:accuralPeriodicity &  & \tabularnewline
+ &  &  & accuralPeriodicity & dcat:Dataset$\rightarrow$ dct:accuralPeriodicity & void:Dataset$\rightarrow$ dct:accuralPeriodicity &  & \tabularnewline
 \hline
-\hline
-\multirow{7}{2cm}{access information} & license\_title & license\_title & license & dcat:Distribution$\rightarrow$dct:license & void:Dataset$\rightarrow$dct:license &  & license $\rightarrow$ name\tabularnewline
+\multirow{7}{2cm}{access information} & license\_title & license\_title & license & dcat:Distribution$\rightarrow$ dct:license & void:Dataset$\rightarrow$ dct:license &  & license$\rightarrow$  name\tabularnewline
 \cline{2-8}
  & license\_id &  &  &  &  &  & licenseId\tabularnewline
 \cline{2-8}
- & license\_url &  &  &  &  & CreativeWork:license & license $\rightarrow$ termsLink\tabularnewline
+ & license\_url &  &  &  &  & CreativeWork:license & license $\rightarrow$  termsLink\tabularnewline
 \cline{2-8}
- & url & url & landingPage & dcat:Dataset$\rightarrow$dcat:landingPage &  & Thing:url & \tabularnewline
+ & url & url & landingPage & dcat:Dataset$\rightarrow$ dcat:landingPage &  & Thing:url & \tabularnewline
 \cline{2-8}
- &  &  & rights & dcat:Distribution$\rightarrow$dct:rights & void:Dataset$\rightarrow$dct:rights &  & \tabularnewline
+ &  &  & rights & dcat:Distribution$\rightarrow$  dct:rights & void:Dataset$\rightarrow$ dct:rights &  & \tabularnewline
 \cline{2-8}
  & attribution\_text &  &  &  &  &  & attribution\tabularnewline
 \cline{2-8}
  &  &  &  &  &  &  & attributionLink\tabularnewline
 \hline
-\hline
 \multirow{7}{2cm}{provenance} & version &  &  &  &  & CreativeWork:version & \tabularnewline
 \cline{2-8}
  & revision\_id &  &  &  &  &  & \tabularnewline
 \cline{2-8}
- & metadata\_created & metadata\_created &  & dcat:Distribution$\rightarrow$dct:created & void:Dataset$\rightarrow$dct:created & CreativeWork:dateCreated & \tabularnewline
+ & metadata\_created & metadata\_created &  & dcat:Distribution$\rightarrow$ dct:created & void:Dataset$\rightarrow$ dct:created & CreativeWork:dateCreated & \tabularnewline
 \cline{2-8}
- & metadata\_modified & metadata\_modified & modified & dcat:Distribution$\rightarrow$dct:modified & void:Dataset$\rightarrow$dct:modified & CreativeWork:dateModified & \tabularnewline
+ & metadata\_modified & metadata\_modified & modified & dcat:Distribution$\rightarrow$ dct:modified & void:Dataset$\rightarrow$ dct:modified & CreativeWork:dateModified & \tabularnewline
 \cline{2-8}
  & revision\_timestamp & revision\_timestamp &  &  &  &  & \tabularnewline
 \cline{2-8}
- &  &  & issued & dcat:Distribution$\rightarrow$dct:issued & void:Dataset$\rightarrow$dct:issued & CreativeWork:datePublished & \tabularnewline
+ &  &  & issued & dcat:Distribution$\rightarrow$ dct:issued & void:Dataset$\rightarrow$ dct:issued & CreativeWork:datePublished & \tabularnewline
 \cline{2-8}
- &  &  & temporal & dcat:Dataset$\rightarrow$dct:temporal & void:Dataset$\rightarrow$dct:temporal & Dataset:temporal & \tabularnewline
+ &  &  & temporal & dcat:Dataset$\rightarrow$ dct:temporal & void:Dataset$\rightarrow$ dct:temporal & Dataset:temporal & \tabularnewline
 \hline
-\hline
-\multirow{14}{2cm}{ownership} & maintainer & maintainer & contactPoint$\rightarrow$fn & dcat:Dataset$\rightarrow$dcat:contactPoint$\rightarrow$vcard:fn &  & CreativeWork:producer$\rightarrow$Thing:name & owner$\rightarrow$displayName / owner$\rightarrow$ScreenName\tabularnewline
+\multirow{14}{2cm}{ownership} & maintainer & maintainer & contactPoint$\rightarrow$ fn & dcat:Dataset$\rightarrow$ dcat:contactPoint$\rightarrow$ vcard:fn &  & CreativeWork:producer$\rightarrow$ Thing:name & owner$\rightarrow$ displayName / owner$\rightarrow$ ScreenName\tabularnewline
 \cline{2-8}
- & maintainer\_email & maintainer\_email & contactPoint$\rightarrow$hasEmail & dcat:Dataset$\rightarrow$dcat:contactPoint$\rightarrow$vcard:hasEmail &  & CreativeWork:producer$\rightarrow$Person:email & \tabularnewline
+ & maintainer\_email & maintainer\_email & contactPoint$\rightarrow$ hasEmail & dcat:Dataset$\rightarrow$ dcat:contactPoint$\rightarrow$ vcard:hasEmail &  & CreativeWork:producer$\rightarrow$ Person:email & \tabularnewline
 \cline{2-8}
  & owner\_org &  &  &  &  & CreativeWork:sourceOrganization:LegalName & \tabularnewline
 \cline{2-8}
- & author &  &  & dcat:Dataset$\rightarrow$dct:creator$\rightarrow$foaf:Person:givenName & void:Dataset$\rightarrow$dct:creator$\rightarrow$foaf:Person:givenName & CreativeWork:author$\rightarrow$Thing:name & \tabularnewline
+ & author &  &  & dcat:Dataset$\rightarrow$ dct:creator$\rightarrow$ foaf:Person:givenName & void:Dataset$\rightarrow$ dct:creator$\rightarrow$ foaf:Person:givenName & CreativeWork:author$\rightarrow$ Thing:name & \tabularnewline
 \cline{2-8}
- & author\_email & author\_email &  & dcat:Dataset$\rightarrow$dct:creator$\rightarrow$foaf:Person:mbox & void:Dataset$\rightarrow$dct:creator$\rightarrow$foaf:Person:mbox & CreativeWork:author$\rightarrow$Person:email & \tabularnewline
+ & author\_email & author\_email &  & dcat:Dataset$\rightarrow$ dct:creator$\rightarrow$ foaf:Person:mbox & void:Dataset$\rightarrow$ dct:creator$\rightarrow$ foaf:Person:mbox & CreativeWork:author$\rightarrow$ Person:email & \tabularnewline
 \cline{2-8}
  &  &  & bureauCode &  &  &  & \tabularnewline
 \cline{2-8}
  &  &  & programCode &  &  &  & \tabularnewline
 \cline{2-8}
- & description &  &  &  &  & CreativeWork:sourceOrganization$\rightarrow$Thing:description & \tabularnewline
+ & description &  &  &  &  & CreativeWork:sourceOrganization$\rightarrow$ Thing:description & \tabularnewline
 \cline{2-8}
  &  &  & isPartOf &  &  & CreativeWork:isPartOf & \tabularnewline
 \cline{2-8}
@@ -317,8 +310,7 @@ Upon examining the various data models, we grouped the metadata information into
 \cline{2-8}
  &  &  & describedByType &  &  &  & \tabularnewline
 \hline
-\hline
-\multirow{6}{2cm}{GeoSpatial} & spatial-text &  & spatial & dcat:Dataset$\rightarrow$dct:spatial & void:Dataset$\rightarrow$dct:spatial & Dataset:spatial & \tabularnewline
+\multirow{6}{2cm}{GeoSpatial} & spatial-text &  & spatial & dcat:Dataset$\rightarrow$ dct:spatial & void:Dataset$\rightarrow$ dct:spatial & Dataset:spatial & \tabularnewline
 \cline{2-8}
  & geographical\_granularity &  &  &  &  &  & \tabularnewline
 \cline{2-8}
@@ -330,8 +322,7 @@ Upon examining the various data models, we grouped the metadata information into
 \cline{2-8}
  &  &  &  &  &  &  & namespace\tabularnewline
 \hline
-\hline
-\multirow{4}{2cm}{Temporal} &  &  & temporal & dcat:Dataset$\rightarrow$dct:temporal & void:Dataset$\rightarrow$dct:temporal & Dataset:temporal & \tabularnewline
+\multirow{4}{2cm}{Temporal} &  &  & temporal & dcat:Dataset$\rightarrow$ dct:temporal & void:Dataset$\rightarrow$ dct:temporal & Dataset:temporal & \tabularnewline
 \cline{2-8}
  & temporal\_granularity &  &  &  &  &  & \tabularnewline
 \cline{2-8}
@@ -339,22 +330,19 @@ Upon examining the various data models, we grouped the metadata information into
 \cline{2-8}
  & temporal\_coverage\_from &  &  &  &  &  & \tabularnewline
 \hline
-\hline
 Quality & ratings\_average &  & dataQuality &  &  & CreativeWork:aggregateRating & \tabularnewline
-\hline
 \hline
 \multicolumn{8}{|c|}{organization}\tabularnewline
 \hline
-\hline
-\multirow{10}{2cm}{General Information} & title &  & name & dcat:Dataset$\rightarrow$dct:creator$\rightarrow$foaf:Organization:givenName & void:Dataset$\rightarrow$dct:creator$\rightarrow$foaf:Organization:givenName & CreativeWork:sourceOrganization:LegalName & \tabularnewline
+\multirow{10}{2cm}{General Information} & title &  & name & dcat:Dataset$\rightarrow$ dct:creator$\rightarrow$ foaf:Organization:givenName & void:Dataset$\rightarrow$ dct:creator$\rightarrow$ foaf:Organization:givenName & CreativeWork:sourceOrganization:LegalName & \tabularnewline
 \cline{2-8}
- & description &  &  &  &  & CreativeWork:sourceOrganization$\rightarrow$Thing:description & \tabularnewline
+ & description &  &  &  &  & CreativeWork:sourceOrganization$\rightarrow$ Thing:description & \tabularnewline
 \cline{2-8}
  & id &  &  &  &  &  & \tabularnewline
 \cline{2-8}
- & type &  &  &  &  & CreativeWork:sourceOrganization$\rightarrow$Thing:additionalType & \tabularnewline
+ & type &  &  &  &  & CreativeWork:sourceOrganization$\rightarrow$ Thing:additionalType & \tabularnewline
 \cline{2-8}
- & name &  &  &  &  & CreativeWork:sourceOrganization$\rightarrow$Thing:name & \tabularnewline
+ & name &  &  &  &  & CreativeWork:sourceOrganization$\rightarrow$ Thing:name & \tabularnewline
 \cline{2-8}
  & image\_url &  &  &  &  &  & \tabularnewline
 \cline{2-8}
@@ -366,38 +354,35 @@ Quality & ratings\_average &  & dataQuality &  &  & CreativeWork:aggregateRating
 \cline{2-8}
  &  &  & subOrganizationOf &  &  & CreativeWork:sourceOrganization:subOrganization & \tabularnewline
 \hline
-\hline
 \multirow{2}{2cm}{provenance} & revision\_timestamp &  &  &  &  &  & \tabularnewline
 \cline{2-8}
  & revision\_id &  &  &  &  &  & \tabularnewline
 \hline
-\hline
 \multicolumn{8}{|c|}{Resources}\tabularnewline
-\hline
 \hline
 \multirow{15}{2cm}{general} & resource\_group\_id & resource\_group\_id &  &  &  &  & \tabularnewline
 \cline{2-8}
  & id & id &  &  &  &  & blobId\tabularnewline
 \cline{2-8}
- & size & size &  & dcat:Distribution$\rightarrow$dcat:byteSize &  & Dataset:distribution$\rightarrow$DataDownload$\rightarrow$MediaObject:contentSize & \tabularnewline
+ & size & size &  & dcat:Distribution$\rightarrow$ dcat:byteSize &  & Dataset:distribution$\rightarrow$ DataDownload$\rightarrow$ MediaObject:contentSize & \tabularnewline
 \cline{2-8}
  & state & state &  &  &  &  & \tabularnewline
 \cline{2-8}
  & hash &  &  &  &  &  & \tabularnewline
 \cline{2-8}
- & description & description & description & dcat:Distribution$\rightarrow$dct:description &  & Dataset:distribution$\rightarrow$DataDownload>Thing:description & \tabularnewline
+ & description & description & description & dcat:Distribution$\rightarrow$ dct:description &  & Dataset:distribution$\rightarrow$ DataDownload>Thing:description & \tabularnewline
 \cline{2-8}
- & format & format & format & dcat:Distribution$\rightarrow$dct:format & void:Dataset$\rightarrow$dct:format & Dataset:distribution$\rightarrow$DataDownload$\rightarrow$MediaObject:encodingFormat & \tabularnewline
+ & format & format & format & dcat:Distribution$\rightarrow$ dct:format & void:Dataset$\rightarrow$ dct:format & Dataset:distribution$\rightarrow$ DataDownload$\rightarrow$ MediaObject:encodingFormat & \tabularnewline
 \cline{2-8}
- & mimetype & mimetype & mediaType & dcat:Distribution$\rightarrow$dcat:mediaType &  &  & \tabularnewline
+ & mimetype & mimetype & mediaType & dcat:Distribution$\rightarrow$ dcat:mediaType &  &  & \tabularnewline
 \cline{2-8}
  & mimetype\_inner &  &  &  &  &  & \tabularnewline
 \cline{2-8}
- & name & name & title & dcat:Distribution$\rightarrow$dct:title &  & Dataset:distribution$\rightarrow$DataDownload>Thing:name & filename / name\tabularnewline
+ & name & name & title & dcat:Distribution$\rightarrow$ dct:title &  & Dataset:distribution$\rightarrow$ DataDownload>Thing:name & filename / name\tabularnewline
 \cline{2-8}
  & position &  &  &  &  &  & \tabularnewline
 \cline{2-8}
- & resource\_type &  &  &  &  & Dataset:distribution$\rightarrow$DataDownload>Thing:additionalType & \tabularnewline
+ & resource\_type &  &  &  &  & Dataset:distribution$\rightarrow$ DataDownload>Thing:additionalType & \tabularnewline
 \cline{2-8}
  &  &  & describedBy &  &  &  & \tabularnewline
 \cline{2-8}
@@ -405,17 +390,15 @@ Quality & ratings\_average &  & dataQuality &  &  & CreativeWork:aggregateRating
 \cline{2-8}
  &  &  & conformsTo &  &  &  & \tabularnewline
 \hline
-\hline
 \multirow{5}{2cm}{access information} & cache\_url &  &  &  &  &  & \tabularnewline
 \cline{2-8}
  & url-type &  &  &  &  &  & \tabularnewline
 \cline{2-8}
- & url & url & downloadURL & dcat:Distribution$\rightarrow$dcat:downloadURL & void:Dataset$\rightarrow$void:dataDump & Dataset:distribution$\rightarrow$DataDownload$\rightarrow$Thing:url & \tabularnewline
+ & url & url & downloadURL & dcat:Distribution$\rightarrow$ dcat:downloadURL & void:Dataset$\rightarrow$ void:dataDump & Dataset:distribution$\rightarrow$ DataDownload$\rightarrow$ Thing:url & \tabularnewline
 \cline{2-8}
- &  &  & accessURL & dcat:Distribution$\rightarrow$dcat:accessURL &  & Dataset:distribution$\rightarrow$DataDownload$\rightarrow$MediaObject:contentUrl & accessPoints\tabularnewline
+ &  &  & accessURL & dcat:Distribution$\rightarrow$ dcat:accessURL &  & Dataset:distribution$\rightarrow$ DataDownload$\rightarrow$ MediaObject:contentUrl & accessPoints\tabularnewline
 \cline{2-8}
  & webstore\_url &  &  &  &  &  & \tabularnewline
-\hline
 \hline
 \multirow{6}{2cm}{provenance} & cache\_last\_updated &  &  &  &  &  & \tabularnewline
 \cline{2-8}
@@ -423,15 +406,13 @@ Quality & ratings\_average &  & dataQuality &  &  & CreativeWork:aggregateRating
 \cline{2-8}
  & webstore\_last\_updated &  &  &  &  &  & \tabularnewline
 \cline{2-8}
- & created & created &  &  &  & Dataset:distribution$\rightarrow$DataDownload$\rightarrow$CreativeWork:dataCreated & created\_at\tabularnewline
+ & created & created &  &  &  & Dataset:distribution$\rightarrow$ DataDownload$\rightarrow$ CreativeWork:dataCreated & created\_at\tabularnewline
 \cline{2-8}
- & last\_modified & last\_modified &  &  &  & Dataset:distribution$\rightarrow$DataDownload$\rightarrow$CreativeWork:dataModified & updated\_at\tabularnewline
+ & last\_modified & last\_modified &  &  &  & Dataset:distribution$\rightarrow$ DataDownload$\rightarrow$ CreativeWork:dataModified & updated\_at\tabularnewline
 \cline{2-8}
  & revision\_id & revision\_id &  &  &  &  & \tabularnewline
 \hline
-\hline
 \multicolumn{8}{|c|}{Groups}\tabularnewline
-\hline
 \hline
 \multirow{7}{2cm}{General} & display\_name & display\_name &  &  &  &  & \tabularnewline
 \cline{2-8}
@@ -447,25 +428,23 @@ Quality & ratings\_average &  & dataQuality &  &  & CreativeWork:aggregateRating
 \cline{2-8}
  & subgroups &  &  &  &  &  & \tabularnewline
 \hline
-\hline
 \multicolumn{8}{|c|}{Tags}\tabularnewline
 \hline
-\hline
-\multirow{5}{2cm}{General} & vocabulary\_id & vocabulary\_id &  & dcat:Dataset$\rightarrow$dcat:theme$\rightarrow$skos:ConceptScheme &  &  & \tabularnewline
+\multirow{5}{2cm}{General} & vocabulary\_id & vocabulary\_id &  & dcat:Dataset$\rightarrow$ dcat:theme$\rightarrow$ skos:ConceptScheme &  &  & \tabularnewline
 \cline{2-8}
- & display\_name &  &  & dcat:Dataset$\rightarrow$dcat:keyword &  &  & \tabularnewline
+ & display\_name &  &  & dcat:Dataset$\rightarrow$ dcat:keyword &  &  & \tabularnewline
 \cline{2-8}
- & name & name &  & dcat:Dataset$\rightarrow$dcat:theme$\rightarrow$skos:Concept &  &  & \tabularnewline
+ & name & name &  & dcat:Dataset$\rightarrow$ dcat:theme$\rightarrow$ skos:Concept &  &  & \tabularnewline
 \cline{2-8}
  & state &  &  &  &  &  & \tabularnewline
 \cline{2-8}
  & id & id &  &  &  &  & \tabularnewline
 \hline
-\hline
 Provenance & revision\_timestamp &  &  &  &  &  & \tabularnewline
 \hline
 \end{longtable}
 }
+\end{landscape}
 
 \section{Towards A Harmonised Model}
 \label{sec:hdl}
