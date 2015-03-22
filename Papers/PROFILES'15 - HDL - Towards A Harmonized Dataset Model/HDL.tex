@@ -207,17 +207,21 @@ A standard dataset metadata model should contain sufficient information so that 
 Upon examining the various data models, we grouped the metadata information into eight main types. Each section discussed above should contain one or more of these types. For example, resources have general, access, ownership and provenance information while tags have general and provenance information only. The eight information types are:
 
 \begin{itemize}
-\item \textbf{General information}: The core information about the dataset (e.g., title, description, ID).
+\item \textbf{General information}: The core information about the dataset (e.g., title, description, ID). The most common vocabulary used to describe this information is Dublin Core\footnote{\url{http://dublincore.org/documents/dcmi-terms/}}.
+\item \textbf{Access information}: Information about dataset access and usage (e.g., URL, license title and license URL).
 
-\item \textbf{Access information}: Information about dataset access and usage (e.g., URL, license title and license URL). In addition to that models discussed above, there are several vocabularies designed to specify access right e.g., Linked Data Rights\footnote{\url{http://oeg-dev.dia.fi.upm.es/licensius/static/ldr/}}, The Open Digital Rights Language (ODRL)\footnote{\url{http://www.w3.org/ns/odrl/2/}}.
+In addition to the properties in the models discussed above, there are several vocabularies designed specially to describe data access right e.g., Linked Data Rights\footnote{\url{http://oeg-dev.dia.fi.upm.es/licensius/static/ldr/}}, The Open Digital Rights Language (ODRL)\footnote{\url{http://www.w3.org/ns/odrl/2/}}.
 
 \item \textbf{Ownership information}: Authoritative information about the dataset (e.g., author, maintainer and organization).
+The common vocabularies used to expose ownership information are Friend-of-Friend (FOAF)\footnote{\url{http://xmlns.com/foaf/spec/}} for people and relationships, vCard~\cite{vCard:14:W3C} for people and organizations and the Organization ontology~\cite{org:14:W3C} designed specifically to describe organizational structures.
 
 \item \textbf{Provenance information}: Temporal and historical information about the dataset creation and update records, in addition to versioning information (e.g. creation data, metadata update data, latest version).
 
+Provenance information coverage varies across the modeled surveyed. However, its great importance lead to the development of various special vocabularies like the Open Provenance Model\footnote{\url{http://open-biomed.sourceforge.net/opmv/}} and PROV-O~\cite{PROV:13:W3C}. DataID~\cite{Brummer:2014:DTS:2660517.2660538} is an effort to provide semantically rich metadata with focus on providing detailed provenance, license and access information.
+
 \item \textbf{Geospatial information}: Information reflecting the geographical coverage of the dataset (e.g., coordinates, polygon).
 
-There are some additional models and extensions that are specifically designed to express geographical information. The Infrastructure for Spatial Information in the European Community (INSPIRE) directive\footnote{\url{http://inspire.ec.europa.eu/}} aims at establishing an infrastructure for spatial information. Mappings have been made between DCAT-AP and the INSPIRE metadata. CKAN provides as well a spatial extension\footnote{\url{https://github.com/ckan/ckanext-spatial}} to add geospatial capabilities. It allows importing geospatial metadata from other resources and supports various standards (e.g.,ISO 19139) and formats (e.g. GeoJSON).
+There are several additional models and extensions specifically designed to express geographical information. The Infrastructure for Spatial Information in the European Community (INSPIRE) directive\footnote{\url{http://inspire.ec.europa.eu/}} aims at establishing an infrastructure for spatial information. Mappings have been made between DCAT-AP and the INSPIRE metadata. CKAN provides as well a spatial extension\footnote{\url{https://github.com/ckan/ckanext-spatial}} to add geospatial capabilities. It allows importing geospatial metadata from other resources and supports various standards (e.g.,ISO 19139) and formats (e.g. GeoJSON).
 
 \item \textbf{Temporal information}: Information reflecting the temporal coverage of the dataset (e.g. from data, to date).
 There has been some notable work on extending CKAN to include temporal information. \texttt{govdata.de}, an Open Data portal in Germany, extending the CKAN data model to include information like \texttt{temporal\_granularity}, \texttt{temporal\_coverage\_to} and \\\texttt{temporal\_granularity\_from}.
@@ -493,6 +497,11 @@ Provenance & revision\_timestamp &  &  &  &  &  & \tabularnewline
 
 \section{Conclusion and Future Work}
 \label{sec:conclusion}
+
+In this paper, we surveyed the landscape of various models and vocabularies that described datasets on the web. Since establishing a common vocabulary or model is the key to communication, we identified the need for a standard dataset metadata model containing sufficient information so that consumers can easily understand and process datasets. We have identified four main sections that should be included in the model (resources, groups, tags and organizations) and classified the information to be included into eight types. In the end, we proposed HDL, a harmonized dataset model that takes the best out of these models and extends them to ensure complete metadata coverage to enable data discovery, exploration and reuse.
+
+At the moment, HDL is available as a hierarchical JSON file. As part of our future work, we plan to refine HDL and present it as a fully fledged OWL ontology. We also plan to capture the possible values representations (e.g., resource types) and present them as enumerations, ensuring a fine-grained representation of a dataset. We further plan to create mappings between HDL and all the various models to ensure full compatibility. These mappings can be used to for example to extend Roomba allowing it to perform metadata profiling on other portals like DKAN. Finally, we plan to create a set of supporting tools that allow validation of generation of HDL profiles.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%  Acknowledgments  %%%
