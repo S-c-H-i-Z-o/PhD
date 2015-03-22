@@ -269,6 +269,9 @@ organization                        & organization                       & publi
 
 The first task is to map the four main information sections across those models. Table~\ref{tab:models_section_mappings} shows the mappings when found. For the ontologies (DCAT, VoID), the first part represents the class and the part after $\rightarrow$ represents the property. For Schema.org, the first part refers to the schema and the second part after $:$ refers to the property.
 
+Table \ref{tab:harmonized_dataset_models_mappings} presents the full mappings between the models across the information groups. Similar to the sections mappings, for the ontologies (DCAT, VoID), the first part represents the class and the part after $\rightarrow$ represents the property. However, sometimes the part after $\rightarrow$ refers to another resource. For example, to describe the dataset's maintainer email in DCAT, the information should be presented in the \texttt{dcat:Dataset} Class using the \texttt{dcat:contactPoint} property. However, the range of this property is a resource of type \texttt{vcard} which has the property \texttt{hasEmail}.
+
+For Schema.org, similarly to the sections mapping, the first part refers to the schema and the second part after $:$ refers to the property. However, if the property is inherited from another schema we denote that by $\rightarrow$ as well. For example, the size of a dataset is a property for a \texttt{Dataset} schema specified in its \texttt{distribution} property. However, the type of \texttt{distribution} is \texttt{dataDownload} which is inherited from the \texttt{MediaObject} schema. The size for \texttt{MediaObject} is defined in its \texttt{contentSize} property which makes the mapping string \texttt{Dataset:distribution$\rightarrow$ DataDownload$\rightarrow$ MediaObject:contentSize}.
 \afterpage{
 \newgeometry{outer=25mm,inner=5mm,vmargin=10mm,includehead,includefoot,headheight=20pt}
 \begin{landscape}
