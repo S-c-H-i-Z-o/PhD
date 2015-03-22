@@ -87,11 +87,11 @@ The Open Data movement triggered an unprecedented amount of data published in a 
 
 Open data is the data that can be easily discovered, reused and redistributed by anyone. It can include anything from statistics, geographical data, meteorological data to digitized books from libraries. Open data should have both legal and technical dimensions. It should be placed in the public domain under liberal terms of use with minimal restrictions and should be available in electronic formats that are non-proprietary and machine readable. Open Data has major benefits for citizens, businesses, society and governments. It increases transparency and enable self-empowerment by improving the visibility of previously inaccessible information and allowing citizens to be more informed about policies, public spendings and track activities in the law making processes. Moreover, and despite of the legal issues surrounding Linked Data licenses \cite{nomoneyLOD}, it is still considered a gold mine for organizations who are trying to leverage external data sources in order to produce more informed business decisions \cite{Boyd2011}.
 
-Linked Data publishing best practices~\cite{Bizer:2011:EWG:2075914.2075915} specifies that datasets should contain the metadata needed to effectively understand and use them. This metadata helps in:
+Linked Data publishing best practices~\cite{Bizer:2011:EWG:2075914.2075915} specifies that datasets should contain metadata needed to effectively understand and use them. \textit{Metadata} is structured information that describes, explains, locates, or otherwise makes it easier to retrieve, use, or manage an information resource~\cite{NISO:04}. Having rich metadata helps in:
 
 \begin{itemize}
   \item \textbf{Delaying data entropy}: \textit{Information entropy} is the degradation or loss that limits the information content in raw or metadata. The existence of high quality metadata can counteract information entropy and abstract the raw data complexity and dynamicity leading to  increased dataset longevity~\cite{GTOS}.
-  \item \textbf{Enhancing data discovery, exploration and reuse}: In~\cite{Graham:11:}, it was found that users are facing difficulties finding and reusing publicly available datasets. Metadata provides an overview of the whole datasets making them more searchable and accessible. High quality metadata can be at times more important than the actual raw data especially when the costs of publishing and maintaining such data is high.
+  \item \textbf{Enhancing data discovery, exploration and reuse}: In~\cite{Graham:11}, it was found that users are facing difficulties finding and reusing publicly available datasets. Metadata provides an overview of the whole datasets making them more searchable and accessible. High quality metadata can be at times more important than the actual raw data especially when the costs of publishing and maintaining such data is high.
   \item \textbf{Enhancing spam detection}: Detecting spam in public data portals is increasingly difficult  even with security measures like captchas and anti-spam devices. Good dataset metadata quality reflects highly on the quality of its raw data.
 \end{itemize}
 
@@ -99,18 +99,18 @@ The value of Open Data is recognized when it is used. To ensure that, publishers
 
 Data models vary across portals. Surveying the models landscape, we did not find any that offers enough granularity to completely describe complex datasets facilitating search, discovery and recommendation. For example, the DataHub\footnote{\url{http://datahub.io}} uses an extension of the Data Catalog Vocabulary (DCAT)~\cite{Erickson:14:DCV}. This data model prohibits a semantically rich representation of complex datasets like DBpedia\footnote{\url{http://dbpedia.org}} where it has multiple endpoits and thousands of dump files with various contents in several languages~\cite{Brummer:2014:DTS:2660517.2660538}. Moreover, to properly integrate Open Data into business, a dataset should include the following information: i)Access information: The dataset is rendered useless if it does not contain accessible data dumps or queryable endpoints. ii)License information: Businesses are always concerned with the legal implications of using external content. As a result, datasets should include both machine and human readable license information that indicates permissions, copyrights and attributions. iii)Provenance information: Depending on the dataset license, the data might not be legally usable if there are no information describing its authoritative and versioning information. Current models underspecified these main aspects limiting the usability of many datasets.
 
-In this paper, we survey the landscape of existing dataset models used (CKAN, DKAT, Public Open Data, Socrata, VoID, DCAT and Schema.org). We further analyze these models and suggest a classification for metadata information. Based on this classification, we propose HDL, a harmonized dataset model that addresses the shortcomings of existing dataset models based on analyzing seven prominent dataset models.
+In this paper, we survey the landscape of existing data portals and dataset models (e.g., CKAN, DKAT, Public Open Data, Socrata, VoID, DCAT and Schema.org). We further analyze these models and suggest a classification for metadata information. Based on this classification, we propose HDL, a harmonized dataset model that addresses the shortcomings of existing dataset models based on analyzing seven prominent dataset models.
 
 The remainder of the paper is structured as follows. In Section~\ref{sec:models}, we present the existing dataset models used by various data portals. In Section~\ref{sec:metadata}, we present our classification for the different metadata information. In Section~\ref{sec:hdl}, we describe our proposed model and suggest a set of best practices to ensure proper metadata presentation and we finally conclude and outline some future work in Section~\ref{sec:conclusion}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%  2. Dataset Models  %%%
+%%%  2. Data Portals and Dataset Models  %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Dataset Models}
+\section{Data Portals and Dataset Models}
 \label{sec:models}
 
-There are many data portals hosting a large number of private and public datasets. Each portal present the data based on the model used by the underlying software. In this section, we present the result of our landscape survey of prominent data portals and their models.
+There are many data portals hosting a large number of private and public datasets. Each portal present the data based on the model used by the underlying software. In this section, we present the results of our landscape survey of prominent data portals and dataset models.
 
 \subsection{DCAT}
 
@@ -120,34 +120,56 @@ DCAT is an RDF vocabulary defining three main classes (\texttt{dcat:Catalog}, \t
 
 \subsection{DCAT-AP}
 
-The DCAT application profile for data portals in Europe (DCAT-AP)\footnote{\url{https://joinup.ec.europa.eu/asset/dcat\_application\_profile/description}} is a specification based on DCAT specified to describe public section datasets in Europe. The main goal behind it is to enable cross-portal search and enhance discoverability. DCAT-AP has been promoted by the Open Data Support\footnote{\url{http://opendatasupport.eu}} to be the standard for describing datasets and catalogs in Europe.
+The DCAT application profile for data portals in Europe (DCAT-AP)\footnote{\url{https://joinup.ec.europa.eu/asset/dcat\_application\_profile/description}} is a specification based on DCAT specified to describe public section datasets in Europe. It defines a minimal set that should be included in a dataset profile by specifying mandatory and optional properties. The main goal behind it is to enable cross-portal search and enhance discoverability. DCAT-AP has been promoted by the Open Data Support\footnote{\url{http://opendatasupport.eu}} to be the standard for describing datasets and catalogs in Europe.
+
+\subsection{ADMS}
+
+The Asset Description Metadata Schema (ADMS)~\cite{ADMS:13:W3C} is also a profile of DCAT. It is used to semantically describe assets. They define an asset broadly as something that can be opened and read using familiar desktop software (e.g., code lists, taxonomies, dictionaries, vocabularies) as opposed to something that needs to be processed like raw data. While DCAT is designed to facilitate interoperability between data catalogs, ADMS is focused on the assets within a catalog.
 
 \subsection{VoID}
 
-VoID is an “RDF Schema vocabulary for describing metadata about RDF data sets. Its primary purpose is to bridge the gap between data publishers and data consumers using an exclusive vocabulary to describe different data set attributes. The core concepts related to open data sets are: void:Dataset, void:Linkset, void:subset.
+VoID~\cite{BoHm:2011:CVD:2030805.2031001} is another RDF vocabulary designed specifically to describe linked RDF datasets and bridge the gap between data publishers and data consumers. In addition to dataset metadata, VoID describes the links between datasets.
+
+VoID defines three main classes (\texttt{void:Dataset}, \texttt{void:Linkset} and \texttt{void:subset}). We are specifically interested in the \texttt{void:Dataset} concept. VoID conceptualizes a dataset with a social dimension. A VoID dataset is a collection of raw data, talking about one or more topics, originates from a certain source or process and accessible on the web.
 
 \subsection{CKAN}
 
-CKAN is currently the most widely used open source data management system that helps users from different levels and domains (national and regional governments, companies and organisations) to make their data openly available. CKAN has been adopted by various levels of Open Data portals, and a few poplular CKAN instances include publicdata.eu, data.gov.uk and data.gouv.fr. CKAN provides tools to ease the workflow of data publishing, sharing, searching and management. Each data set is given its own page with a rich collection of metadata. Users can publish their data sets via an import feature or through a web interface, and then the data sets can be searched by keywords or tags with exact or fuzzy-matching queries. CKAN provides a rich set of visualisation tools, such as interactive tables, graphs and maps. Moreover, the dashboard function will help administrators to monitor the statistics and usage metrics for the data sets. Federating networks with other CKAN nodes is also supported, as well as the possibility to build a community with extensions that allow users to comment on and follow data sets. Finally, CKAN provides a rich RESTful JSON API for querying and retrieving data set information.
+CKAN\footnote{\url{http://ckan.org}} is the world's leading open-source data management system (DMS). It helps users from different domains (national and regional governments, companies and organizations) to easily publish their data through a set of workflows to publish, share, search and manage datasets. CKAN is the portal powering web sites like DataHub\footnote{\url{http://datahub.io}}, Europe's Public Data\footnote{\url{http://publicdata.eu}} and the U.S Government's open data\footnote{\url{http://data.gov}}.
+
+CKAN is a complete catalog system with an integrated data storage and powerful RESTful JSON API. It offers a rich set of visualization tools (e.g., maps, tables, charts) as well as an administration dashboard to monitor datasets usage and statistics. CKAN allows publishing datasets either via an import feature or through a web interface. Relevant metadata describing the dataset and its resources as well as organization related information can be added. A Solr\footnote{\url{http://lucene.apache.org/solr/}} index is built on top of this metadata to enable a search and filtering.
+
+The CKAN data model\footnote{http://docs.ckan.org/en/ckan-1.8/domain-model.html} contains information to describe a set of entities (dataset, resource, group, tag and vocabulary). CKAN keeps the core metadata restricted as a JSON file, but allows for additional information to be added via ``extra'' arbitrary key/value fields. CKAN supports Linked Data and RDF as it provides a complete and functional mapping of its model to Linked Data formats.
 
 \subsection{DKAN}
 
-DKAN29 is a Drupal-based open data platform with a full suite of cataloguing, publishing and visualisation features. Compared with CKAN, DKAN is seamlessly integrated with Drupal30 content management system, thus it can be easily deployed with Drupal and customised using different Druapl themes. The actual data sets in DKAN can be stored either within DKAN or on external sites, and it is possible to manage access control and version history with rollback. DKAN provides user analytics and data users can upload, tag, search and group data sets via a web front-end or APIs. In addition, they can also collaborate, comment, and share information via social network integration.
+DKAN\footnote{\url{http://nucivic.com/dkan/}} is a Drupal-based DMS with a full suite of cataloging, publishing and visualization features. Built on Drupal, DKAN can be easily customized and extended. The actual data sets in DKAN can be stored either within DKAN or on external sites. DKAN users are able to explore, search and describe datasets through the web interface or a RESTful API.
+
+The DKAN data model\footnote{\url{http://docs.getdkan.com/dkan-documentation/dkan-developers/dataset-technical-field-reference/}} is very similar to that of CKAN, containing information to describe datasets, resources, groups and tags.
 
 \subsection{Socrata}
 
-Socrata provides a commercial platform to streamline data publishing, management, analysis and reusing. It integrates many useful features for both portal administrators and end users to manage, access and visualise data sets. For example, The Chicago26 and New York City27 The platform comprises a series of tools, including an open data portal which stores data in the cloud for users to access, visualise, and share. All the data sets hosted in Socrata can be accessed using RESTful API. This is accompanied by the developer site which documents how to use the Socrata API, including search and filter data sets. In Socrata, usershave the ability to to customise the data set metadata according to individual’s requirements.
+Socrata\footnote{\url{http://socrata.com}} is a commercial platform to streamline data publishing, management, analysis and reusing. It empowers users to review, compare, visualize and analyze data in real time. Datasets hosted in Socrata can be accessed using RESTful API that facilitates search and data filtering.
+
+Socrata allows flexible data management by implementing various data governance models and ensuring compliance with metadata schema standards. It also enables administrators to track data usage and consumption through dashboards with real-time reporting. Socrata is very flexible when it comes to customizations. It has a consumer-friendly experience giving users the opportunity to tell their story with data.
+
+Socrata API returns the raw data serialized as JSON instead of the dataset's metadata. As a result, to examine the data model we had to investigate Socrata's API source code\footnote{https://github.com/socrata/soda-java/tree/master/src/main/java/com/socrata/model}. The data model is mainly based to represent tabular data, it covers a set basic core metadata and has good support for geospatial data.
 
 \subsection{Schema.org}
 
-It is a collection of schemas (in RDF/Microdata format) that webmasters can use to markup HTML pages in ways recognised by major search engines. Schema.org covers many domains and there are classes and properties defined as DataCatalog and Dataset. The metadata harvester withinthe ODM project can make use of schema.org vocabulary to discover the data sets and data catalogs hosted in a certain website
+Schema.org\footnote{\url{http://schema.org}} is a collection of schemas used to markup HTML pages with structured data. This structured data allows many applications like search engines to understand the information on Web pages, thus improving the display of search results and making it easier for people to find relevant data.
+
+Schema.org covers many domains. We are specifically interested in the \texttt{Dataset} schema. However, there are many classes and properties that can be used to describe organizations, authors, etc.
 
 \subsection{Project Open Data}
 
+Project Open Data (POD)\footnote{\url{http://project-open-data.cio.gov/}} is an online collection of best practices and case studies to help data publishers. It is a collaborative project that aims to evolve as a community resource to facilitate adoption of open data practices and facilitate collaboration and partnership between both private and public data publishers.
+
+The POD metadata model\footnote{\url{https://project-open-data.cio.gov/v1.1/schema/}} is based on DCAT. Similarily to DCAT-AP, POD additionally defines three types of metadata elements: Required, Required-if(conditionally required) and Expanded (optional). The metadata model is presented in JSON format and encourages publishers to extend their metadata descriptions using elements from the ``Expanded Fields'' list, or from any well-known vocabulary.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%  3. Dataset Models  %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \section{Metadata Classification}
 \label{sec:metadata}
 
