@@ -11,12 +11,14 @@
 \usepackage{tabularx}
 \usepackage{url}
 \usepackage{listings}
+\usepackage{longtable}
+\usepackage{booktabs}
 \usepackage{subfigure}
 \usepackage{algorithmic}
 \usepackage{algorithm}
 \usepackage{xcolor}
 \usepackage{multirow}
-
+\usepackage{lscape}
 
 \graphicspath{ {figures/} }
 
@@ -186,7 +188,7 @@ Upon examining the various data models, we grouped the metadata information into
 
 \begin{itemize}
 \item \textbf{General information}: The core information about the dataset (e.g., title, description, ID).
-\item \textbf{Access information}: Information about dataset access and usage (e.g., URL, license information i.e., license title and license URL).
+\item \textbf{Access information}: Information about dataset access and usage (e.g., URL, license title and license URL).
 \item \textbf{Ownership information}: Authoritative information about the dataset (e.g., author, maintainer and organization).
 \item \textbf{Provenance information}: Temporal and historical information about the dataset creation and update records, in addition to versioning information (e.g. creation data, metadata update data, latest version).
 \item \textbf{Quality information}: Information that indicates the quality of the dataset on the metadata and instance levels. In addition to that, a dataset should include an openness score that measures its alignment with the Linked Data publishing standards~\cite{tim:linkedata}.
@@ -199,6 +201,298 @@ Upon examining the various data models, we grouped the metadata information into
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%  4. Towards A Harmonised Model  %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setlength\tabcolsep{4pt}
+\begin{longtable}{|c|c|c|p{5cm}|}
+\caption{A simple longtable example}\\
+\hline
+\textbf{First entry} & \textbf{Second entry} & \textbf{Third entry} & \textbf{Fourth    entry} \\
+\hline
+\endfirsthead
+\multicolumn{4}{c}%
+{\tablename\ \thetable\ -- \textit{Continued from previous page}} \\
+\hline
+\textbf{First entry} & \textbf{Second entry} & \textbf{Third entry} & \textbf{Fourth entry} \\
+\hline
+\endhead
+\hline \multicolumn{4}{r}{\textit{Continued on next page}} \\
+\endfoot
+\hline
+\endlastfoot
+1 & 2 & 3 & 4dddddddddddd asdfdasfasdf asödflkjasdf asdfasdfasdf \\ 1 & 2 & 3 & 4 \\ 1   & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\
+1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\
+1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\
+1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\
+1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\
+1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\
+1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\
+1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\
+1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\
+1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\
+1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\
+1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\
+\end{longtable}
+
+{\footnotesize
+\setlength\LTleft{-1in}
+\setlength\LTright{-1in plus 2 fill}
+\setlength\tabcolsep{4pt}
+\begin{longtable}{|p{2cm}|c|c|c|p{5cm}|c|c|c|}
+\caption[Harmonized Dataset Models Mappings]{Harmonized Dataset Models Mappings} \label{tab:harmonized_dataset_models_mappings} \\
+
+\hline \multicolumn{1}{|p{2cm}}{\textbf{Data Model}} & \multicolumn{1}{c|}{\textbf{CKAN}} & \multicolumn{1}{c|}{\textbf{DKAN}} & \multicolumn{1}{c|}{\textbf{POD}} & \multicolumn{1}{c|}{\textbf{DCAT}} & \multicolumn{1}{c|}{\textbf{VoID}} & \multicolumn{1}{c|}{\textbf{Schema.org}} & \multicolumn{1}{c|}{\textbf{Socrata}}\\ \hline
+\endfirsthead
+
+\multicolumn{8}{c}%
+{{\bfseries \tablename\ \thetable{} Harmonized Dataset Models Mappings}} \\
+\hline \multicolumn{1}{|p{2cm}}{\textbf{Data Model}} &
+\multicolumn{1}{c|}{\textbf{CKAN}} &
+\multicolumn{1}{c|}{\textbf{DKAN}} &
+\multicolumn{1}{c|}{\textbf{POD}} &
+\multicolumn{1}{c|}{\textbf{DCAT}} &
+\multicolumn{1}{c|}{\textbf{VoID}} &
+\multicolumn{1}{c|}{\textbf{Schema.org}} &
+\multicolumn{1}{c|}{\textbf{Socrata}} \\ \hline
+\endhead
+
+\multicolumn{8}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\endlastfoot
+
+\multirow{13}{*}{General Information} & id & id & identifier & dcat:Dataset->dct:identifier &  &  & id/externalId\tabularnewline
+\cline{2-8}
+ & private & private & accessLevel &  &  &  & privateMetadata\tabularnewline
+\cline{2-8}
+ & state & state &  &  &  &  & publicationStage\tabularnewline
+\cline{2-8}
+ & type & type &  &  &  & Thing:additionalType & \tabularnewline
+\cline{2-8}
+ & name & name &  &  &  & Thing:name & name\tabularnewline
+\cline{2-8}
+ & isopen &  &  &  &  &  & \tabularnewline
+\cline{2-8}
+ & notes & notes & description & dcat:Dataset->dct:description & void:Dataset->dct:description & Thing:description & description\tabularnewline
+\cline{2-8}
+ & title & title & title & dcat:Dataset->dct:title & void:Dataset->dc:title & Thing:name & name\tabularnewline
+\cline{2-8}
+ & num\_resources &  &  &  & void:Dataset->void:documents &  & \tabularnewline
+\cline{2-8}
+ & num\_tags &  &  &  &  &  & \tabularnewline
+\cline{2-8}
+ &  &  & conformsTo & dcat:Dataset->dct:conformsTo & void:Dataset->dct:conformsTo &  & \tabularnewline
+\cline{2-8}
+ &  &  & language & dcat:Dataset->dct:language & void:Dataset->dct:language & CreativeWork:inLanguage & \tabularnewline
+\cline{2-8}
+ &  &  & accuralPeriodicity & dcat:Dataset->dct:accuralPeriodicity & void:Dataset->dct:accuralPeriodicity &  & \tabularnewline
+\hline
+\hline
+\multirow{7}{*}{access information} & license\_title & license\_title & license & dcat:Distribution->dct:license & void:Dataset->dct:license &  & license -> name\tabularnewline
+\cline{2-8}
+ & license\_id &  &  &  &  &  & licenseId\tabularnewline
+\cline{2-8}
+ & license\_url &  &  &  &  & CreativeWork:license & license -> termsLink\tabularnewline
+\cline{2-8}
+ & url & url & landingPage & dcat:Dataset->dcat:landingPage &  & Thing:url & \tabularnewline
+\cline{2-8}
+ &  &  & rights & dcat:Distribution->dct:rights & void:Dataset->dct:rights &  & \tabularnewline
+\cline{2-8}
+ & attribution\_text &  &  &  &  &  & attribution\tabularnewline
+\cline{2-8}
+ &  &  &  &  &  &  & attributionLink\tabularnewline
+\hline
+\hline
+\multirow{7}{*}{provenance} & version &  &  &  &  & CreativeWork:version & \tabularnewline
+\cline{2-8}
+ & revision\_id &  &  &  &  &  & \tabularnewline
+\cline{2-8}
+ & metadata\_created & metadata\_created &  & dcat:Distribution->dct:created & void:Dataset->dct:created & CreativeWork:dateCreated & \tabularnewline
+\cline{2-8}
+ & metadata\_modified & metadata\_modified & modified & dcat:Distribution->dct:modified & void:Dataset->dct:modified & CreativeWork:dateModified & \tabularnewline
+\cline{2-8}
+ & revision\_timestamp & revision\_timestamp &  &  &  &  & \tabularnewline
+\cline{2-8}
+ &  &  & issued & dcat:Distribution->dct:issued & void:Dataset->dct:issued & CreativeWork:datePublished & \tabularnewline
+\cline{2-8}
+ &  &  & temporal & dcat:Dataset->dct:temporal & void:Dataset->dct:temporal & Dataset:temporal & \tabularnewline
+\hline
+\hline
+\multirow{14}{*}{ownership} & maintainer & maintainer & contactPoint->fn & dcat:Dataset->dcat:contactPoint->vcard:fn &  & CreativeWork:producer->Thing:name & owner->displayName / owner->ScreenName\tabularnewline
+\cline{2-8}
+ & maintainer\_email & maintainer\_email & contactPoint->hasEmail & dcat:Dataset->dcat:contactPoint->vcard:hasEmail &  & CreativeWork:producer->Person:email & \tabularnewline
+\cline{2-8}
+ & owner\_org &  &  &  &  & CreativeWork:sourceOrganization:LegalName & \tabularnewline
+\cline{2-8}
+ & author &  &  & dcat:Dataset->dct:creator->foaf:Person:givenName & void:Dataset->dct:creator->foaf:Person:givenName & CreativeWork:author->Thing:name & \tabularnewline
+\cline{2-8}
+ & author\_email & author\_email &  & dcat:Dataset->dct:creator->foaf:Person:mbox & void:Dataset->dct:creator->foaf:Person:mbox & CreativeWork:author->Person:email & \tabularnewline
+\cline{2-8}
+ &  &  & bureauCode &  &  &  & \tabularnewline
+\cline{2-8}
+ &  &  & programCode &  &  &  & \tabularnewline
+\cline{2-8}
+ & description &  &  &  &  & CreativeWork:sourceOrganization->Thing:description & \tabularnewline
+\cline{2-8}
+ &  &  & isPartOf &  &  & CreativeWork:isPartOf & \tabularnewline
+\cline{2-8}
+ &  &  &  &  &  & CreativeWork:hasPart & \tabularnewline
+\cline{2-8}
+ &  &  & systemOfRecords &  &  &  & \tabularnewline
+\cline{2-8}
+ &  &  & primaryITInvestmentUI &  &  &  & \tabularnewline
+\cline{2-8}
+ &  &  & describedBy &  &  &  & \tabularnewline
+\cline{2-8}
+ &  &  & describedByType &  &  &  & \tabularnewline
+\hline
+\hline
+\multirow{6}{*}{GeoSpatial} & spatial-text &  & spatial & dcat:Dataset->dct:spatial & void:Dataset->dct:spatial & Dataset:spatial & \tabularnewline
+\cline{2-8}
+ & geographical\_granularity &  &  &  &  &  & \tabularnewline
+\cline{2-8}
+ &  &  &  &  &  &  & bbox\tabularnewline
+\cline{2-8}
+ &  &  &  &  &  &  & layers\tabularnewline
+\cline{2-8}
+ &  &  &  &  &  &  & bboxCrs\tabularnewline
+\cline{2-8}
+ &  &  &  &  &  &  & namespace\tabularnewline
+\hline
+\hline
+\multirow{4}{*}{Temporal} &  &  & temporal & dcat:Dataset->dct:temporal & void:Dataset->dct:temporal & Dataset:temporal & \tabularnewline
+\cline{2-8}
+ & temporal\_granularity &  &  &  &  &  & \tabularnewline
+\cline{2-8}
+ & temporal\_coverage\_to &  &  &  &  &  & \tabularnewline
+\cline{2-8}
+ & temporal\_coverage\_from &  &  &  &  &  & \tabularnewline
+\hline
+\hline
+Quality & ratings\_average &  & dataQuality &  &  & CreativeWork:aggregateRating & \tabularnewline
+\hline
+\hline
+\multicolumn{8}{|c|}{organization}\tabularnewline
+\hline
+\hline
+\multirow{10}{*}{General Information} & title &  & name & dcat:Dataset->dct:creator->foaf:Organization:givenName & void:Dataset->dct:creator->foaf:Organization:givenName & CreativeWork:sourceOrganization:LegalName & \tabularnewline
+\cline{2-8}
+ & description &  &  &  &  & CreativeWork:sourceOrganization->Thing:description & \tabularnewline
+\cline{2-8}
+ & id &  &  &  &  &  & \tabularnewline
+\cline{2-8}
+ & type &  &  &  &  & CreativeWork:sourceOrganization->Thing:additionalType & \tabularnewline
+\cline{2-8}
+ & name &  &  &  &  & CreativeWork:sourceOrganization->Thing:name & \tabularnewline
+\cline{2-8}
+ & image\_url &  &  &  &  &  & \tabularnewline
+\cline{2-8}
+ & state &  &  &  &  &  & \tabularnewline
+\cline{2-8}
+ & is\_organization &  &  &  &  &  & \tabularnewline
+\cline{2-8}
+ & approval\_status &  &  &  &  &  & \tabularnewline
+\cline{2-8}
+ &  &  & subOrganizationOf &  &  & CreativeWork:sourceOrganization:subOrganization & \tabularnewline
+\hline
+\hline
+\multirow{2}{*}{provenance} & revision\_timestamp &  &  &  &  &  & \tabularnewline
+\cline{2-8}
+ & revision\_id &  &  &  &  &  & \tabularnewline
+\hline
+\hline
+\multicolumn{8}{|c|}{Resources}\tabularnewline
+\hline
+\hline
+\multirow{15}{*}{general} & resource\_group\_id & resource\_group\_id &  &  &  &  & \tabularnewline
+\cline{2-8}
+ & id & id &  &  &  &  & blobId\tabularnewline
+\cline{2-8}
+ & size & size &  & dcat:Distribution->dcat:byteSize &  & Dataset:distribution->DataDownload->MediaObject:contentSize & \tabularnewline
+\cline{2-8}
+ & state & state &  &  &  &  & \tabularnewline
+\cline{2-8}
+ & hash &  &  &  &  &  & \tabularnewline
+\cline{2-8}
+ & description & description & description & dcat:Distribution->dct:description &  & Dataset:distribution->DataDownload>Thing:description & \tabularnewline
+\cline{2-8}
+ & format & format & format & dcat:Distribution->dct:format & void:Dataset->dct:format & Dataset:distribution->DataDownload->MediaObject:encodingFormat & \tabularnewline
+\cline{2-8}
+ & mimetype & mimetype & mediaType & dcat:Distribution->dcat:mediaType &  &  & \tabularnewline
+\cline{2-8}
+ & mimetype\_inner &  &  &  &  &  & \tabularnewline
+\cline{2-8}
+ & name & name & title & dcat:Distribution->dct:title &  & Dataset:distribution->DataDownload>Thing:name & filename / name\tabularnewline
+\cline{2-8}
+ & position &  &  &  &  &  & \tabularnewline
+\cline{2-8}
+ & resource\_type &  &  &  &  & Dataset:distribution->DataDownload>Thing:additionalType & \tabularnewline
+\cline{2-8}
+ &  &  & describedBy &  &  &  & \tabularnewline
+\cline{2-8}
+ &  &  & describedByType &  &  &  & \tabularnewline
+\cline{2-8}
+ &  &  & conformsTo &  &  &  & \tabularnewline
+\hline
+\hline
+\multirow{5}{*}{access information} & cache\_url &  &  &  &  &  & \tabularnewline
+\cline{2-8}
+ & url-type &  &  &  &  &  & \tabularnewline
+\cline{2-8}
+ & url & url & downloadURL & dcat:Distribution->dcat:downloadURL & void:Dataset->void:dataDump & Dataset:distribution->DataDownload->Thing:url & \tabularnewline
+\cline{2-8}
+ &  &  & accessURL & dcat:Distribution->dcat:accessURL &  & Dataset:distribution->DataDownload->MediaObject:contentUrl & accessPoints\tabularnewline
+\cline{2-8}
+ & webstore\_url &  &  &  &  &  & \tabularnewline
+\hline
+\hline
+\multirow{6}{*}{provenance} & cache\_last\_updated &  &  &  &  &  & \tabularnewline
+\cline{2-8}
+ & revision\_timestamp & revision\_timestamp &  &  &  &  & \tabularnewline
+\cline{2-8}
+ & webstore\_last\_updated &  &  &  &  &  & \tabularnewline
+\cline{2-8}
+ & created & created &  &  &  & Dataset:distribution->DataDownload->CreativeWork:dataCreated & created\_at\tabularnewline
+\cline{2-8}
+ & last\_modified & last\_modified &  &  &  & Dataset:distribution->DataDownload->CreativeWork:dataModified & updated\_at\tabularnewline
+\cline{2-8}
+ & revision\_id & revision\_id &  &  &  &  & \tabularnewline
+\hline
+\hline
+\multicolumn{8}{|c|}{Groups}\tabularnewline
+\hline
+\hline
+\multirow{7}{*}{General} & display\_name & display\_name &  &  &  &  & \tabularnewline
+\cline{2-8}
+ & description & description &  &  &  &  & \tabularnewline
+\cline{2-8}
+ & title & title &  &  &  &  & \tabularnewline
+\cline{2-8}
+ & image\_display\_url & image\_display\_url &  &  &  &  & \tabularnewline
+\cline{2-8}
+ & id & id &  &  &  &  & \tabularnewline
+\cline{2-8}
+ & name & name &  &  &  &  & \tabularnewline
+\cline{2-8}
+ & subgroups &  &  &  &  &  & \tabularnewline
+\hline
+\hline
+\multicolumn{8}{|c|}{Tags}\tabularnewline
+\hline
+\hline
+\multirow{5}{*}{General} & vocabulary\_id & vocabulary\_id &  & dcat:Dataset->dcat:theme->skos:ConceptScheme &  &  & \tabularnewline
+\cline{2-8}
+ & display\_name &  &  & dcat:Dataset->dcat:keyword &  &  & \tabularnewline
+\cline{2-8}
+ & name & name &  & dcat:Dataset->dcat:theme->skos:Concept &  &  & \tabularnewline
+\cline{2-8}
+ & state &  &  &  &  &  & \tabularnewline
+\cline{2-8}
+ & id & id &  &  &  &  & \tabularnewline
+\hline
+\hline
+Provenance & revision\_timestamp &  &  &  &  &  & \tabularnewline
+\hline
+\end{longtable}
+}
 
 \section{Towards A Harmonised Model}
 \label{sec:hdl}
