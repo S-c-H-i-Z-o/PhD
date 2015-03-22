@@ -1,6 +1,6 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%  HDL - Towards a Harmonized Dataset Model  %%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  HDL - Towards a Harmonized Dataset Model for Open Data Portals  %%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \documentclass[runningheads,a4paper]{llncs}
 
@@ -75,7 +75,7 @@
 \begin{document}
 
 % first the title is needed
-\title{HDL - Towards a Harmonized Dataset Model}
+\title{HDL - Towards a Harmonized Dataset Model for Open Data Portals}
 
 \author{Ahmad Assaf\inst{1,2}, Rapha\"{e}l Troncy\inst{1} and Aline Senart\inst{2}}
 
@@ -94,7 +94,7 @@
 %%%%%%%%%%%%%%%%%%
 
 \begin{abstract}
-The Open Data movement triggered an unprecedented amount of data published in a wide range of domains. Governments and corporations around the world are encouraged to publish, share, use and integrate Open Data. There are many areas where one can see the added value of Open Data, from transparency and self-empowerment to improving efficiency, effectiveness and decision making. This growing amount of data requires rich metadata in order to reach its full potential. This metadata enables dataset discovery, understanding, integration and maintenance. Data portals, which are considered to be datasets' access points, offer metadata represented in different and heterogenous models. In this paper, we first conduct a unique and comprehensive survey of the following metadata models: CKAN, DKAT, Public Open Data, Socrata, VoID, DCAT and Schema.org. Next, we propose HDL, an harmonized dataset model based on this survey. We describe use cases that show the benefits of providing rich metadata to enable dataset discovery, search and spam detection.
+The Open Data movement triggered an unprecedented amount of data published in a wide range of domains. Governments and corporations around the world are encouraged to publish, share, use and integrate Open Data. There are many areas where one can see the added value of Open Data, from transparency and self-empowerment to improving efficiency, effectiveness and decision making. This growing amount of data requires rich metadata in order to reach its full potential. This metadata enables dataset discovery, understanding, integration and maintenance. Data portals, which are considered to be datasets' access points, offer metadata represented in different and heterogenous models. In this paper, we first conduct a unique and comprehensive survey of seven metadata models: CKAN, DKAT, Public Open Data, Socrata, VoID, DCAT and Schema.org. Next, we propose HDL, an harmonized dataset model based on this survey. We describe use cases that show the benefits of providing rich metadata to enable dataset discovery, search and spam detection.
 
 \keywords{Dataset Metadata, Dataset Profile, Dataset Model, Data Quality}
 \end{abstract}
@@ -114,13 +114,16 @@ The Linked Data publishing best practices~\cite{Bizer:2011:EWG:2075914.2075915} 
   \item \textbf{Archiving and preservation}: There is a growing concern that digital resources will not survive in usable forms to the future~\cite{NISO:04}. Metadata can ensure resources survival and continuous accessibility by providing clear provenance information to track the lineage of digital resources and detail their physical characteristics.
 \end{itemize}
 
-The value of Open Data is recognized when it is used. To ensure that, publishers need to enable people to find datasets easily. Data portals are specifically designed for this purpose. They make it easy for individuals and organizations to store, publish and discover datasets. The data portals can be be public like DataHub\footnote{\url{http://datahub.io}} and Europe's Public Data\footnote{\url{http://publicdata.eu}} or private like Quandl\footnote{\url{https://quandl.com/}} or Engima\footnote{\url{http://enigma.io/}}. The data available in private portals is of higher quality as it is manually curated but in lesser quantity compared to what is available in public portals. Similarly, in some public data portals, administrators manually review datasets information, validate, correct and attach suitable metadata information.
+The value of Open Data is recognized when it is used. To ensure that, publishers need to enable people to find datasets easily. Data portals are specifically designed for this purpose. They make it easy for individuals and organizations to store, publish and discover datasets. The data portals can be public like Datahub\footnote{\url{http://datahub.io}} and the Europe's Public Data portal\footnote{\url{http://publicdata.eu}} or private like Quandl\footnote{\url{https://quandl.com/}} and Engima\footnote{\url{http://enigma.io/}}. The data available in private portals is of higher quality as it is manually curated but in lesser quantity compared to what is available in public portals. Similarly, in some public data portals, administrators manually review datasets information, validate, correct and attach suitable metadata information.
 
-Data models vary across portals. Surveying the models landscape, we did not find any that offers enough granularity to completely describe complex datasets facilitating search, discovery and recommendation. For example, the DataHub\footnote{\url{http://datahub.io}} uses an extension of the Data Catalog Vocabulary (DCAT)~\cite{Erickson:14:DCV}. This data model prohibits a semantically rich representation of complex datasets like DBpedia\footnote{\url{http://dbpedia.org}} where it has multiple endpoits and thousands of dump files with various contents in several languages~\cite{Brummer:2014:DTS:2660517.2660538}. Moreover, to properly integrate Open Data into business, a dataset should include the following information: i)Access information: The dataset is rendered useless if it does not contain accessible data dumps or queryable endpoints. ii)License information: Businesses are always concerned with the legal implications of using external content. As a result, datasets should include both machine and human readable license information that indicates permissions, copyrights and attributions. iii)Provenance information: Depending on the dataset license, the data might not be legally usable if there are no information describing its authoritative and versioning information. Current models underspecified these main aspects limiting the usability of many datasets.
+Data models vary across data portals. While exhaustively surveying the range of data models, we did not find any that offers enough granularity to completely describe complex datasets facilitating search, discovery and recommendation. For example, the Datahub uses an extension of the Data Catalog Vocabulary (DCAT)~\cite{Erickson:14:DCV} which prohibits a semantically rich representation of complex datasets like DBpedia\footnote{\url{http://dbpedia.org}} that has multiple endpoints and thousands of dump files with content in several languages~\cite{Brummer:2014:DTS:2660517.2660538}. Moreover, to properly integrate Open Data into business, a dataset should include the following information:
+\begin{itemize}
+ \item \emph{access information}: a dataset is useless if it does not contain accessible data dumps or query-able endpoints;
+ \item \emph{license information}: businesses are always concerned with the legal implications of using external content. As a result, datasets should include both machine and human readable license information that indicates permissions, copyrights and attributions;
+ \item \emph{provenance information}: depending on the dataset license, the data might not be legally usable if there are no information describing its authoritative and versioning information. Current models under-specify these aspects limiting the usability of many datasets.
+ \end{itemize}
 
-In this paper, we survey the landscape of existing data portals and dataset models (e.g., CKAN, DKAT, Public Open Data, Socrata, VoID, DCAT and Schema.org). We further analyze these models and suggest a classification for metadata information. Based on this classification, we propose HDL, a harmonized dataset model that addresses the shortcomings of existing dataset models based on analyzing seven prominent dataset models.
-
-The remainder of the paper is structured as follows. In Section~\ref{sec:models}, we present the existing dataset models used by various data portals. In Section~\ref{sec:metadata}, we present our classification for the different metadata information. In Section~\ref{sec:hdl}, we describe our proposed model and suggest a set of best practices to ensure proper metadata presentation and we finally conclude and outline some future work in Section~\ref{sec:conclusion}.
+In this paper, we perform a comprehensive survey of the main data portals and dataset models, that is: CKAN, DKAT, Public Open Data, Socrata, VoID, DCAT and Schema.org. We further analyze these models and suggest a classification for metadata information. Based on this classification, we propose HDL, an harmonized dataset model that addresses the shortcomings of existing dataset models. The remainder of the paper is structured as follows. In Section~\ref{sec:models}, we present the existing dataset models used by various data portals. In Section~\ref{sec:metadata}, we present our classification for the different metadata information. In Section~\ref{sec:hdl}, we describe our proposed model and suggest a set of best practices to ensure proper metadata presentation and we finally conclude and outline some future work in Section~\ref{sec:conclusion}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%  2. Data Portals and Dataset Models  %%%
@@ -184,9 +187,9 @@ Project Open Data (POD)\footnote{\url{http://project-open-data.cio.gov/}} is an 
 
 The POD metadata model\footnote{\url{https://project-open-data.cio.gov/v1.1/schema/}} is based on DCAT. Similarily to DCAT-AP, POD additionally defines three types of metadata elements: Required, Required-if(conditionally required) and Expanded (optional). The metadata model is presented in JSON format and encourages publishers to extend their metadata descriptions using elements from the ``Expanded Fields'' list, or from any well-known vocabulary.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%  3. Dataset Models  %%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  3. Metadata Classification  %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Metadata Classification}
 \label{sec:metadata}
@@ -231,14 +234,12 @@ VoID is the only model that provides statistical information about a dataset. Vo
 Quality information is only expressed in the POD metadata. However, \texttt{govdata.de} extends the CKAN model also to include a \texttt{ratings\_average} field. Moreover, there are various other vocabularies like daQ~\cite{Debattista:14:www} that can be used to express datasets quality. The RDF Review Vocabulary\footnote{\url{http://vocab.org/review/}} can be also used to express reviews and ratings about the dataset or its resources.
 \end{itemize}
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%  4. Towards A Harmonised Model  %%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Towards A Harmonized Model}
 \label{sec:hdl}
-
 Since establishing a common vocabulary or model is the key to communication, we identified the need for a standard dataset metadata model containing sufficient information so that consumers can easily understand and process datasets.
 
 To create the mappings between the different models, we performed various steps:
@@ -533,21 +534,19 @@ Provenance & revision\_timestamp &  &  &  &  &  & \tabularnewline
 \restoregeometry
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%  5. Conclusion & Future Work  %%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Conclusion and Future Work}
 \label{sec:conclusion}
-
 In this paper, we surveyed the landscape of various models and vocabularies that described datasets on the web. Since establishing a common vocabulary or model is the key to communication, we identified the need for a standard dataset metadata model containing sufficient information so that consumers can easily understand and process datasets. We have identified four main sections that should be included in the model (resources, groups, tags and organizations) and classified the information to be included into eight types. In the end, we proposed HDL, a harmonized dataset model that takes the best out of these models and extends them to ensure complete metadata coverage to enable data discovery, exploration and reuse.
 
 At the moment, HDL is available as a hierarchical JSON file. As part of our future work, we plan to refine HDL and present it as a fully fledged OWL ontology. At the moment, HDL contains some values that were frequently defined in CKAN extras fields. However, we plan to broaden our analysis of these values by running Roomba on additional portals and present the top results as enumerations, ensuring a fine-grained representation of a dataset. We further plan to create mappings between HDL and all the various models to ensure full compatibility. These mappings for example, can be used to extend Roomba allowing it to perform metadata profiling on other portals like DKAN. Finally, we plan to create a set of supporting tools that allow validation of generation of HDL profiles.
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%  Acknowledgments  %%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section*{Acknowledgments}
 This research has been partially funded by the European Union's 7th Framework Programme via the project Apps4EU (GA No. 325090).
