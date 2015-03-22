@@ -173,25 +173,26 @@ The POD metadata model\footnote{\url{https://project-open-data.cio.gov/v1.1/sche
 \section{Metadata Classification}
 \label{sec:metadata}
 
-A standard dataset metadata model should contain information about four sections:
+A standard dataset metadata model should contain sufficient information so that consumers can easily understand and process the described data. After examining the mentioned models, we found out that a dataset can contain four main sections:
 
 \begin{itemize}
-  \item \textbf{Resources}: Distributable parts containing the actual raw data. They can come in various formats (JSON, XML, RDF, etc.) and can be downloaded or accessed directly (REST API, SPARQL endpoint).
-  \item \textbf{Tags}: Provide descriptive knowledge on the dataset content and structure. They are used mainly to facilitate search and reuse.
-  \item \textbf{Groups}: A dataset can belong to one or more group that share common semantics. A group can be seen as a cluster or a curation of datasets based on shared categories or themes.
-  \item \textbf{Organizations}: A dataset can belong to one or more organization controlled by a set of users. Organizations are different from groups as they are not constructed by shared semantics or properties, but solely on their association to a specific administration party.
+  \item \textbf{Resources}: The actual raw data that can be downloaded or accessed directly via queryable endpoints. Resources can come in various formats e.g., JSON, XML, RDF.
+  \item \textbf{Tags}:  Descriptive knowledge about the dataset content and structure. They can range from simple textual representation to semantically rich controlled terms. Tags are the basis for datasets search and discovery.
+  \item \textbf{Groups}: Groups act as organizational units that share common semantics. They can be seen as a cluster or a curation of datasets based on shared categories or themes.
+  \item \textbf{Organizations}: Organizations are another way to arrange datasets. However, they differ from groups as they are not constructed by shared semantics or properties, but solely on the dataset's association to a specific administration party.
 \end{itemize}
 
-Upon examining the various data models, we grouped the metadata information into four main types. Each section discussed above should contain one or more of these types. For example, resources have general, access, ownership and provenance information while tags have general and provenance information only. The four types are:
+Upon examining the various data models, we grouped the metadata information into eight main types. Each section discussed above should contain one or more of these types. For example, resources have general, access, ownership and provenance information while tags have general and provenance information only. The eight information types are:
 
 \begin{itemize}
-\item \textbf{General information}: General information about the dataset. e.g., title, description, ID. This general information is manually filled by the dataset owner. In addition to that, tags and group information is required for classification and enhancing dataset discoverability. This information can be entered manually or inferred modules plugged into the topical profiler.
-
-\item \textbf{Access information}: Information about accessing and using the dataset. This includes the dataset URL, license information i.e., license title and URL and information about the dataset's resources. Each resource has as well a set of attached metadata e.g., resource name, URL, format, size.
-
-\item \textbf{Ownership information}: Information about the ownership of the dataset. e.g., organization details, maintainer details, author. The existence of this information is important to identify the authority on which the generated report and the newly corrected profile will be sent to.
-
-\item \textbf{Provenance information}: Temporal and historical information on the dataset and its resources. For example, creation and update dates, version information, version, etc. Most of this information can be automatically filled and tracked.
+\item \textbf{General information}: The core information about the dataset (e.g., title, description, ID).
+\item \textbf{Access information}: Information about dataset access and usage (e.g., URL, license information i.e., license title and license URL).
+\item \textbf{Ownership information}: Authoritative information about the dataset (e.g., author, maintainer and organization).
+\item \textbf{Provenance information}: Temporal and historical information about the dataset creation and update records, in addition to versioning information (e.g. creation data, metadata update data, latest version).
+\item \textbf{Quality information}: Information that indicates the quality of the dataset on the metadata and instance levels. In addition to that, a dataset should include an openness score that measures its alignment with the Linked Data publishing standards~\cite{tim:linkedata}.
+\item \textbf{Geospatial information}: Information reflecting the geographical coverage of the dataset (e.g., coordinates, polygon).
+\item \textbf{Temporal information}: Information reflecting the temporal coverage of the dataset (e.g. from data, to date).
+\item \textbf{Statistical information}: Statistical information about the data types and patterns in datasets (e.g., properties distribution, number of entities and RDF triples). This information is particularly useful to explore a dataset as it gives detailed insights about the raw data when provided properly.
 \end{itemize}
 
 
