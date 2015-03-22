@@ -174,7 +174,7 @@ Socrata\footnote{\url{http://socrata.com}} is a commercial platform to streamlin
 
 Socrata allows flexible data management by implementing various data governance models and ensuring compliance with metadata schema standards. It also enables administrators to track data usage and consumption through dashboards with real-time reporting. Socrata is very flexible when it comes to customizations. It has a consumer-friendly experience giving users the opportunity to tell their story with data.
 
-Socrata API returns the raw data serialized as JSON instead of the dataset's metadata. As a result, to examine the data model we had to investigate Socrata's API source code\footnote{https://github.com/socrata/soda-java/tree/master/src/main/java/com/socrata/model}. The data model is mainly based to represent tabular data, it covers a set basic core metadata and has good support for geospatial data.
+Socrata's data model is designed basically to represent tabular data, it covers a set basic core metadata and has good support for geospatial data.
 
 \subsection{Schema.org}
 
@@ -244,6 +244,30 @@ Quality information is only expressed in the POD metadata. However, \texttt{govd
 \label{sec:hdl}
 
 Since establishing a common vocabulary or model is the key to communication, we identified the need for a standard dataset metadata model containing sufficient information so that consumers can easily understand and process datasets.
+
+To create the mappings between the different models, we performed various steps:
+\begin{itemize}
+  \item Examine the model/vocabulary specification and documentation.
+  \item Examine existing datasets using these models and vocabularies. \texttt{dataportals.org} provides a comprehensive list of Open Data Portals from around the world. It was our entry point to find out portals using CKAN or DKAN as their underlying DMS. We also investigated portals known to be using specific DMS. Socrata for example, maintain a list of Open Data portals using their software on their homepage e.g., \texttt{pencolorado.org} and \texttt{data.maryland.gov}.
+  \item Examine the source code of some portals. This was specifically the case for Socrata as their API returns the raw data serialized as JSON rather than the dataset's metadata. As a consequence, we had to investigate the Socrata Open Data API (SODA) source code\footnote{https://github.com/socrata/soda-java/tree/master/src/main/java/com/socrata/model} and check the different classes and interfaces.
+\end{itemize}
+
+\begin{table}[!ht]
+\centering
+\tiny
+\begin{tabular}{|l|l|l|l|l|l|l|}
+\hline
+\multicolumn{1}{|c|}{\textbf{CKAN}} & \multicolumn{1}{c|}{\textbf{DKAN}} & \multicolumn{1}{c|}{\textbf{POD}} & \multicolumn{1}{c|}{\textbf{DCAT}}     & \multicolumn{1}{c|}{\textbf{VoID}}     & \multicolumn{1}{c|}{\textbf{Schema.org}} & \multicolumn{1}{c|}{\textbf{Socrata}} \\ \hline
+resources                           & resources                          & distribution                      & dcat:Distribution                      & void:Dataset$\rightarrow$ void:dataDump & CreativeWork:keywords                    & attachments                           \\ \hline
+tags                                & tags                               & keyword                           & dcat:Dataset$\rightarrow$ :keyword   & void:Dataset$\rightarrow$ :keyword   & Dataset:distribution                     & tags                                  \\ \hline
+groups                              & groups                             & theme                             & dcat:Dataset$\rightarrow$ :theme     &   \multicolumn{1}{c|}{-}                                      & CreativeWork:about                       & category                              \\ \hline
+organization                        & organization                       & publisher                         & dcat:Dataset$\rightarrow$ :publisher &   void:Dataset$\rightarrow$ :publisher                                     & \multicolumn{1}{c|}{-}                   & \multicolumn{1}{c|}{-}                                      \\ \hline
+\end{tabular}
+\caption{Data models sections mapping}
+\label{tab:models_section_mappings}
+\end{table}
+
+The first task is to map the four main information sections across those models. Table~\ref{tab:models_section_mappings} shows the mappings when found. For the ontologies (DCAT, VoID), the first part represents the class and the part after $\rightarrow$ represents the property. For Schema.org, the first part refers to the schema and the second part after $:$ refers to the property.
 
 \afterpage{
 \newgeometry{outer=25mm,inner=5mm,vmargin=10mm,includehead,includefoot,headheight=20pt}
