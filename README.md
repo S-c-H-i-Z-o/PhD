@@ -3,9 +3,10 @@ My PhD Papers and Presentations
 
 Papers
 ======
-- What's up LOD Cloud - Observing The State of Linked Open Data Cloud Metadata [Planned for LDQ'15]
+- What's up LOD Cloud - Observing The State of Linked Open Data Cloud Metadata [Submitted LDQ'15]
 - Automatic Validation, Correction and Generation of Dataset Metadata - Enhancing Dataset Search and Spam Detection [Accepted WWW15]
-- An Extensible Framework to Asses and Build Dataset Profiles [Planned for PROFILES'15]
+- An Extensible Framework to Asses and Build Dataset Profiles [Submitted PROFILES'15]
+- HDL - Towards A Harmonized Dataset Model for Open Data Portals [Submitted PROFILES'15]
 - [What are the Important Properties of an Entity - Comparing Users and Knowledge Graph Point of View [ESWC'14]](http://2014.eswc-conferences.org/sites/default/files/eswc2014pd_submission_98.pdf)
 - [SNARC An Approach for Aggregating and Recommending Contextualized Social Content [ESWC'13]](http://link.springer.com/chapter/10.1007%2F978-3-642-41242-4_58)
 - [RUBIX A Framework for Improving Data Integration with Linked Data](http://dl.acm.org/citation.cfm?id=2422607)
