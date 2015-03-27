@@ -37,7 +37,10 @@ The jury president must be Professor.
 * Reviewer 2: Philippe Cudré-Mauroux, http://exascale.info/phil
 
 * Examiner 1: Stefan Dietze, https://stefandietze.wordpress.com/
-* Examiner 2:
+* Examiner 2: Prof from EDITE
+* Examiner 3: Prof
+
+* Guest: David Trastour
 
 ===========
 == Dates ==
