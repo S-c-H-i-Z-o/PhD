@@ -79,7 +79,7 @@ In many knowledge bases, entities are described with numerous properties. Howeve
 
 \section{Reverse Engineering the Google KG Panel}
 \label{sec:knowledge-graph}
-Web scraping is a technique for extracting data from Web pages. We aim at capturing the properties depicted in the Google Knowledge Panel (GKP) that are injected in search result pages~\cite{Bergman2012}. We have developed a Node.js application that queries all DBpedia concepts that have at least one instance which is \texttt{owl:sameAs} with a Freebase resource in order to increase the probability that the search engine result page (SERP) for this resource will contain a GKP. We assume in our experiments that the properties displayed for an entity are type and context dependent (country, time, query) which can affect the results. Moreover, we filter out generic concepts by excluding those who are direct subclasses of \texttt{owl:Thing} since they will trigger ambiguous queries. We obtained a list of $352$ concepts\footnote{See also the SPARQL query at \url{http://goo.gl/EYuGm1}}.
+Web scraping is a technique for extracting data from Web pages. We aim at capturing the properties depicted in the Google Knowledge Panel (GKP) that are injected in search result pages~\cite{Bergman:GKG:12}. We have developed a Node.js application that queries all DBpedia concepts that have at least one instance which is \texttt{owl:sameAs} with a Freebase resource in order to increase the probability that the search engine result page (SERP) for this resource will contain a GKP. We assume in our experiments that the properties displayed for an entity are type and context dependent (country, time, query) which can affect the results. Moreover, we filter out generic concepts by excluding those who are direct subclasses of \texttt{owl:Thing} since they will trigger ambiguous queries. We obtained a list of $352$ concepts\footnote{See also the SPARQL query at \url{http://goo.gl/EYuGm1}}.
 \begin{algorithm}[h]\scriptsize
 \caption{Google Knowledge Panel reverse engineering algorithm} \label{algoscrapping}
 \begin{algorithmic}[1]
@@ -142,7 +142,7 @@ With this set of 9 concepts, we are covering $301,189$ DBpedia entities that hav
 
 \paragraph{\textbf{Modeling the preferred properties with Fresnel.}}
 \label{sec:fresnel}
-Fresnel\footnote{\url{http://www.w3.org/2005/04/fresnel-info/}} is a presentation vocabulary for displaying RDF data. It specifies \textit{what} information contained in an RDF graph should be presented with the core concept \texttt{fresnel:Lens}~\cite{pietriga2006}. We use the Fresnel and PROV-O ontologies\footnote{\url{http://www.w3.org/TR/prov-o/}} to explicitly represent what properties should be depicted when displaying an entity. This dataset can now be re-used as a configuration for any consuming application.
+Fresnel\footnote{\url{http://www.w3.org/2005/04/fresnel-info/}} is a presentation vocabulary for displaying RDF data. It specifies \textit{what} information contained in an RDF graph should be presented with the core concept \texttt{fresnel:Lens}~\cite{Pietriga:ISWC:06}. We use the Fresnel and PROV-O ontologies\footnote{\url{http://www.w3.org/TR/prov-o/}} to explicitly represent what properties should be depicted when displaying an entity. This dataset can now be re-used as a configuration for any consuming application.
 \lstset{basicstyle=\scriptsize, backgroundcolor=\color{white}, frame=single, caption={Excerpt of a Fresnel lens in Turtle}, label=fresnel, captionpos=b}
 \begin{lstlisting}
 :tennisPlayerGKPDefaultLens rdf:type fresnel:Lens ;
@@ -164,7 +164,7 @@ Fresnel\footnote{\url{http://www.w3.org/2005/04/fresnel-info/}} is a presentatio
 
 \section{Conclusion and Future Work}
 \label{sec:conclusion}
-We have shown that it is possible to reveal what are the ``important'' properties of entities by reverse engineering the choices made by Google when creating knowledge graph panels and by comparing  users preferences obtained from a user survey. Our motivation is to represent this choice explicitly, using the Fresnel vocabulary, so that any application could read this configuration file for deciding which properties of an entity is worth to visualize. This is fundamentally different from the work in \cite{ThomasSteiner2012} where the authors created a generalizable approach to open up closed knowledge bases like Google's by means of crowd-sourcing the knowledge extraction task. We are aware that this knowledge is highly dynamic, the Google Knowledge Graph panel varies across geolocation and time. We have provided the code that enables to perform new calculation at run time and we aim to study the temporal evolution of what are important properties on a longer period. This knowledge which has been captured will be made available shortly in a SPARQL endpoint. We are also investigating the use of Mechanical Turk to perform a larger survey for the complete set of DBpedia classes.
+We have shown that it is possible to reveal what are the ``important'' properties of entities by reverse engineering the choices made by Google when creating knowledge graph panels and by comparing  users preferences obtained from a user survey. Our motivation is to represent this choice explicitly, using the Fresnel vocabulary, so that any application could read this configuration file for deciding which properties of an entity is worth to visualize. This is fundamentally different from the work in \cite{Steiner:IKEC:12} where the authors created a generalizable approach to open up closed knowledge bases like Google's by means of crowd-sourcing the knowledge extraction task. We are aware that this knowledge is highly dynamic, the Google Knowledge Graph panel varies across geolocation and time. We have provided the code that enables to perform new calculation at run time and we aim to study the temporal evolution of what are important properties on a longer period. This knowledge which has been captured will be made available shortly in a SPARQL endpoint. We are also investigating the use of Mechanical Turk to perform a larger survey for the complete set of DBpedia classes.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %%%  Acknowledgments  %%%
@@ -175,5 +175,5 @@ This work has been partially supported by Datalift (ANR-10-CORD-009), UCN (ANR-1
 
 \bibliographystyle{abbrv}
 \nocite{*}
-\bibliography{eswc2014-poster}
+\bibliography{../../Util/Bibliography/bibliography}
 \end{document}
