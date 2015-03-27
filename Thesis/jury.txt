@@ -33,6 +33,12 @@ The jury president must be Professor.
 * PhD Advisor: Raphaël Troncy
 * PhD Advisor: Aline Senart
 
+* Reviewer 1: Marie Aude Aufaure, http://perso.ecp.fr/~aufaurema/
+* Reviewer 2: Philippe Cudré-Mauroux, http://exascale.info/phil
+
+* Examiner 1: Stefan Dietze, https://stefandietze.wordpress.com/
+* Examiner 2:
+
 ===========
 == Dates ==
 ===========
