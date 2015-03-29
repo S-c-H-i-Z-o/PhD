@@ -70,7 +70,7 @@ For special reports (or thesis), when you have multiple `.tex` files and things 
 
 ## Environment Setup
 
-- I cannot stress enough on the importance of using a versioning system like `[git](http://git-scm.com/)` or `[svn](https://subversion.apache.org/)`. It is vital for collaborative authoring.
+- I cannot stress enough on the importance of using a versioning system like [`git`](http://git-scm.com/) or [`svn`](https://subversion.apache.org/). It is vital for collaborative authoring.
 - My development machine is a Mac running OSX Yosemite. I use [MacTEX](https://tug.org/mactex/). MacTex is an all-in-one package installing the following:
     + GUI Applications: [TeXShop](http://www.uoregon.edu/~koch/texshop/texshop.html) , [BibDesk](http://bibdesk.sourceforge.net/), [LaTeXiT](http://ktd.club.fr/programmation/latexit_en.php), [TeX Live Utility](https://code.google.com/p/mactlmgr/), the spell checker [Excalibur](http://excalibur.sourceforge.net/), and some documentation
     + Ghostscript 9.10
@@ -86,7 +86,7 @@ For special reports (or thesis), when you have multiple `.tex` files and things 
 
 I use [Sublime Text](https://www.sublimetext.com/) for nearly everything, so using it to write LaTeX was the logical choice for me. With the correct plugins it is a handy editor. You first need to make sure you have a valid TeX distribution (see above) and installed [Skim PDF Viewer](http://skim-app.sourceforge.net/). Skim is used to generate the result of the LaTeX build.
 
-Assuming you already have [package control installed](https://packagecontrol.io/installation) install the `[LaTeX Tools](https://github.com/SublimeText/LaTeXTools)` package. Now, after editing a LaTeX document, simply hit `cmd+b` to build the file and launch it in Skim.
+Assuming you already have [package control installed](https://packagecontrol.io/installation) install the [`LaTeX Tools`](https://github.com/SublimeText/LaTeXTools) package. Now, after editing a LaTeX document, simply hit `cmd+b` to build the file and launch it in Skim.
 
 **Note** Make sure you have the build settings in Sublime Text set to automatic `[tools -> Build Systems]`.
 
