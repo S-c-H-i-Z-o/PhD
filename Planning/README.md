@@ -1,6 +1,3 @@
-Squirm
-======
-
 A Framework for Generating Enhanced Dataset Descriptions 
 
 ## Basic Plan
