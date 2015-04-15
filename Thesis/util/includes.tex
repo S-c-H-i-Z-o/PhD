@@ -8,14 +8,29 @@
 \usepackage{amsmath}
 \usepackage{multirow}
 \usepackage{color}
-
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{hyperref}
 \usepackage{booktabs}
-\usepackage{longtable}
 \usepackage{pdflscape}
 \usepackage{cases}
 \usepackage{wrapfig}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{amssymb}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{subfigure}
+\usepackage{multirow}
+\usepackage{easylist}
+\usepackage{lscape}
+\usepackage{afterpage}
+\usepackage{pdflscape}
+\usepackage{caption}
+\usepackage{xcolor,colortbl}
 
-% my list of commands and defs%
+
 \def\ttbraces{\let\.=\nobreak\chardef\{=`\{\chardef\}=`\}\chardef\|=`\\}
 
 \newcommand{\TODO}[1]{\textcolor{red}{\textbf{[TODO:#1]}}}
@@ -46,7 +61,7 @@
 \addtolength{\leftskip}{-1.5ex}
 \vspace{-.1ex}}
 {\end{itemize}\addtolength{\leftskip}{1.5ex}}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand\rbeta{\to_{\beta}}
 \newcommand\rbetastar{{\to_{\beta}^*}}
 \newcommand\parbeta{\Rightarrow_{\beta}}
@@ -65,7 +80,7 @@
 \newcommand\cim{\mbox{\(\rrparenthesis\)}}
 \newcommand\imp\Rightarrow
 \newcommand\ttrapp{"}
-
+%generally used
 \newcommand\tthash{\mbox{\tt \#}}
 \newcommand\ttcirc{\mbox{\( \circ\)}}
 \newcommand\ttforall{\mbox{\( \forall \)}}
@@ -126,7 +141,6 @@
 \newcommand\ttfarrow[3]{\mbox{\(\relbar\Mapsfromchar\)}#1,#2,#3\mbox{\(\Mapstochar\to_F\)}}
 \newcommand\ttsubi{\mbox{\({}_{i}\)}}
 \newcommand \keyword[1]{\textcolor{red}{\bf{#1}}}
-
 
 \DeclareMathOperator{\futs}{futs}
 \DeclareMathOperator{\Prim}{Prim}

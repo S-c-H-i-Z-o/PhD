@@ -1,7 +1,7 @@
 \documentclass[a4paper,11pt,twoside]{ThesisStyle}
 
-\include{util/formatAndDefs}
-\include{util/myDefinitions}
+\include{util/definitions}
+\include{util/includes}
 
 \makeatletter
 \g@addto@macro{\UrlBreaks}{\UrlOrds}
@@ -14,18 +14,22 @@
 
 \pagenumbering{roman}
 
-\include{util/title}
+\include{title/title}
 \vspace{3cm}
 
-\cleardoublepage
+\clearpage
 
 
-% Acknowledgements
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  Aknowledgment  %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
 \addcontentsline{toc}{section}{Acknowledgements}
 \markboth{Acknowledgements}{Acknowledgements}
 \input{acknowledgement/acknowledgement}
 
-%% Abstract
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  Abstract  %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
 \addcontentsline{toc}{section}{Abstract}
 \markboth{Abstract}{Abstract}
 \input{abstract/abstract}
@@ -34,47 +38,72 @@
 \markboth{Contents}{Contents}
 
 \tableofcontents
-\cleardoublepage
 
-%% List of Figures
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  List of Figures  %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
 \addcontentsline{toc}{section}{List of Figures}
 \listoffigures
-\cleardoublepage
 
-%% List of Tables
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  List of Tables  %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
 \addcontentsline{toc}{section}{List of Tables}
 \listoftables
-\cleardoublepage
 
-%% Acronyms
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  Acronyms  %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
 \addcontentsline{toc}{section}{Acronyms}
 \markboth{Acronyms}{Acronyms}
 \include{acronyms/acronyms}
 \mainmatter
 
-%% Introduction
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  Introduction  %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
 \input{introduction/introduction}
 \clearpage
 
-%% Background
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  Background  %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
 \input{Background/background}
 \clearpage
 
-%% Part 1
-\part{Structuring and Linking Event-centric Data on the Web} \label{pa:part1}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  Part 1  %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\part{Open Data Integration in the Enterprise} \label{pa:opendata_in_the_enterprise}
 \input{Part1/introduction}
-\input{Part1/Chapter1/ch1}
+\input{Part1/Chapter1/main}
+\input{Part1/Chapter2/main}
 \input{Part1/conclusion}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  Part 2  %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\part{Towards A complete Dataset Profile} \label{pa:dataset_profiling}
+\input{Part2/introduction}
+\input{Part2/Chapter1/main}
+\input{Part2/Chapter2/main}
+\input{Part2/conclusion}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  Conclusion %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
 \input{conclusions/conclusions}
 
 
 \appendix
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  Publications  %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
 \input{appendix/publications}
 
 \bibliographystyle{plain}
-\bibliography{thesis}
+\bibliography{../Util/Bibliography/bibliography}
 
 \chapter*{}
 \chaptermark{}
