@@ -37,8 +37,8 @@ The jury president must be Professor.
 * Reviewer 2: Philippe Cudré-Mauroux, http://exascale.info/phil
 
 * Examiner 1: Stefan Dietze, https://stefandietze.wordpress.com/
-* Examiner 2: Prof from EDITE
-* Examiner 3: Prof
+* Examiner 2: Pierre Senellart
+* Examiner 3: Yannick Cras, https://www.linkedin.com/pub/yannick-cras/0/343/b40 OR Eric Simon, https://www.researchgate.net/profile/Eric_Simon5
 
 * Guest: David Trastour
 
