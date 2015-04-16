@@ -1,6 +1,3 @@
-Squirm
-======
-
 A Framework for Generating Enhanced Dataset Descriptions 
 
 ## Basic Plan
@@ -83,7 +80,7 @@ Currently the work we are doing is modeling the knowledge of HANA Live and creat
 ## Architecture Diagram ##
 
 ![Architecture Diagram](https://www.dropbox.com/s/gz3jmea5yq6nvft/architecture_diagram.png?dl=1)
-![Planning Diagram](https://www.dropbox.com/s/sntlawl052xawx3/whiteboard_SAP_session_15_4_15.jpg?dl=1)
+
 
 ## Thoughts to keep in mind
 - The work Florian is doing in modeling the manually curated SAP business data and combining that with the general knowledge exposed in DBpedia
