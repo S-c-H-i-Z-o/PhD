@@ -87,7 +87,7 @@ Linked Open Data (LOD) has emerged as one of the largest collections of interlin
 \label{sec:introduction}
 The Linked Open Data (LOD) cloud\footnote{The datahub.io view of the LOD cloud is at \url{http://datahub.io/dataset?tags=lod}} has grown significantly in the past years, offering various datasets covering a broad set of domains from life sciences to media and government data~\cite{Bizer:IJSWIS:09}. To maintain high quality data, publishers should comply with a set of best practices detailed in~\cite{Bizer:DB:11}. Metadata provisioning is one of those best practices requiring publishers to attach metadata needed to effectively understand and use datasets.
 
-Data portals expose metadata via various models. A model should contain the minimum amount of information that conveys to the inquirer the nature and content of its resources~\cite{Nebert:GSDI:04}. It should contain information to enable data discovery, exploration and exploitation. We divided the metadata information into the following:
+Data portals expose metadata via various models. A model should contain the minimum amount of information that conveys to the inquirer the nature and content of its resources~\cite{Nebert:GSDI:04}. It should contain information to enable data discovery, exploration and exploitation. We divided the metadata information into the following types:
 \begin{itemize}
  \item \textbf{General information}: General information about the dataset (e.g. title, description, ID). This general information is manually filled by the dataset owner. In addition to that, tags and group information is required for classification and enhancing dataset discoverability.
  \item \textbf{Access information}: Information about accessing and using the dataset. This includes the dataset URL, some license information (i.e. license title and URL) and information about the datasets resources. Each resource has generally a set of attached metadata (e.g. resource name, URL, format, size).
@@ -95,7 +95,16 @@ Data portals expose metadata via various models. A model should contain the mini
  \item \textbf{Provenance information}: Temporal and historical information on the dataset and its resources (e.g. creation and update dates, version information, version number). Most of this information can be automatically filled and tracked.
 \end{itemize}
 
-Data portals are datasets' access points providing tools to facilitate data publishing, sharing, searching and visualization. CKAN\footnote{\url{http://ckan.org}} is the world's leading open-source data portal platform powering web sites like the Datahub which hosts the LOD cloud metadata. We have created Roomba~\cite{Assaf:WWW:15}, a tool that automatically validates, corrects and generates dataset metadata. Since we are evaluating the LOD cloud metadata, we validate the datasets against the CKAN standard model\footnote{\url{http://demo.ckan.org/api/3/action/package_show?id=adur_district_spending}}. The results demonstrate that the general state of the examined datasets needs much more attention as most of the datasets suffers from bad quality metadata and lacking some informative metrics needed that would facilitate dataset search. The noisiest metadata values were access information such as licensing information and resource descriptions in addition to large numbers of resource reachability problems. We also show that the automatic corrections of the tool increase the overall quality of the datasets metadata and highlight the need for manual efforts to correct some important missing information.
+Data portals are datasets' access points providing tools to facilitate data publishing, sharing, searching and visualization. CKAN\footnote{\url{http://ckan.org}} is the world's leading open-source data portal platform powering web sites like the Datahub which hosts the LOD cloud metadata.
+
+We have created Roomba~\cite{Assaf:WWW:15}, a tool that automatically validates, corrects and generates dataset metadata for CKAN portals. The datasets are validated against the CKAN standard metadata model\footnote{\url{http://demo.ckan.org/api/3/action/package_show?id=adur_district_spending}}. The model describes four main sections in addition to the core dataset's properties. These sections are:
+\begin{itemize}
+  \item \textbf{Resources}: The actual accessible raw data. They can come in various formats (JSON, XML, RDF, etc.) and can be downloaded or accessed directly (REST API, SPARQL endpoint).
+  \item \textbf{Tags}: Provide descriptive knowledge on the dataset content and structure.
+  \item \textbf{Groups}: Used to cluster or a curate datasets based on shared themes or semantics.
+  \item \textbf{Organizations}: Organizations describe datasets solely on their association to a specific administrative party.
+\end{itemize}
+The results demonstrate that the general state of the examined datasets needs much more attention as most of the datasets suffers from bad quality metadata and lacking some informative metrics needed that would facilitate dataset search. The noisiest metadata values were access information such as licensing information and resource descriptions in addition to large numbers of resource reachability problems. We also show that the automatic corrections of the tool increase the overall quality of the datasets metadata and highlight the need for manual efforts to correct some important missing information.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %%%  2. Related Work  %%%
@@ -120,7 +129,7 @@ In this section, we describe our experiments when running the Roomba tool on the
 The current state of the LOD cloud report~\cite{Schmachtenberg:ISWC:14} indicates that there are more than 1014 datasets available. These datasets have been harvested by the LDSpider crawler~\cite{Isele:ISWC:10} seeded with 560 thousands URIs. However, since Roomba requires the datasets metadata to be hosted in a data portal where either the dataset publisher or the portal administrator can attach relevant metadata to it, we rely on the information provided by the Datahub CKAN API. We consider two possible groups: the first one tagged with ``lodcloud'' returns 259 datasets, while the second one tagged with ``lod'' returns only 75 datasets. We manually inspect these two lists and find out that the API result for the tag ``lodcloud'' is the correct one. The 259 datasets contain a total of 1068 resources. We run the instance and resource extractor from Roomba in order to cache the metadata files for these datasets locally and we launch the validation process which takes around two and a half hours on a 2.6 Ghz Intel Core i7 processor with 16GB of DDR3 memory machine.
 
 \subsection{Results and Evaluation}
-CKAN dataset metadata includes three main sections in addition to the core dataset's properties. Those are the \textbf{groups}, \textbf{tags} and \textbf{resources}. Each section contains a set of metadata corresponding to one or more metadata type. For example, a dataset resource will have general information such as the resource name, access information such as the resource url and provenance information such as creation date. The framework generates a report aggregating all the problems in all these sections, fixing field values when possible. Errors can be the result of missing metadata fields, undefined field values or field value errors (e.g. unreachable URL or incorrect email address).
+CKAN dataset metadata includes three main sections in addition to the core dataset's properties. Those are the \textbf{groups}, \textbf{tags} and \textbf{resources}. Each section contains a set of metadata corresponding to one or more metadata type. For example, a dataset resource will have general information such as the resource name, access information such as the resource url and provenance information such as creation date. The framework generates a report aggregating all the problems in all these sections, fixing field values when possible. Errors can be the result of missing metadata fields, undefined field values or field value errors (e.g. unreachable URL or syntactically incorrect email addresses).
 
 Figures \ref{fig:metadata_noise_by_section} and \ref{fig:metadata_noise_by_metadata_type} show the percentage of errors found in metadata fields by section and by information type respectively. We observe that the most erroneous information for the dataset core information is related to ownership since this information is missing or undefined for 41\% of the datasets. Datasets resources have the poorest metadata. 64\% of the general metadata, all the access information and 80\% of the provenance information contain missing or undefined values. Table \ref{tab:top_metadata_fields_errors} shows the top metadata fields errors for each metadata information type.
 
@@ -143,7 +152,7 @@ Figures \ref{fig:metadata_noise_by_section} and \ref{fig:metadata_noise_by_metad
 \cline{2-6}
  & size & 81.55\% & Resource & Undefined & Yes\tabularnewline
 \hline
-\multirow{5}{*}{Access } & cahce\_url & 96.9\% & Resource & Undefined & -\tabularnewline
+\multirow{5}{*}{Access } & cache\_url & 96.9\% & Resource & Undefined & -\tabularnewline
 \cline{2-6}
  & webstore\_url & 91.29\% & Resource & Undefined & -\tabularnewline
 \cline{2-6}
@@ -174,12 +183,12 @@ Figures \ref{fig:metadata_noise_by_section} and \ref{fig:metadata_noise_by_metad
  & author & 2.32\% & Dataset & Undefined & -\tabularnewline
 \hline
 \end{tabular}
-\captionof{table}{Top metadata fields error \% by type}
+\captionof{table}{Top metadata fields error \% by information type}
 \label{tab:top_metadata_fields_errors}
 \end{center}
 \end{table}
 
-We notice that 42.85\% of the top metadata problems can be fixed automatically. Among them, 44.44\% of these problems can be fixed by our tool while the others need tools that are plugged into the data portal. We further present and discuss the results grouped by metadata information type in the following sub-sections.
+We notice that 42.85\% of the top metadata problems shown in table~\ref{tab:top_metadata_fields_errors} can be fixed automatically. Among them, 44.44\% of these problems can be fixed by our tool while the others can be fixed by tools that should  be plugged into the data portal. We further present and discuss the results grouped by metadata information type in the following sub-sections.
 
 \subsection{General information}
 34 datasets (13.13\%) do not have valid \texttt{notes} values. \texttt{tags} information for the datasets are complete except for the \texttt{vocabulary\_id} as this is missing from all the datasets' metadata. All the datasets \texttt{groups} information are missing \texttt{display\_name, description, title, image\_display\_url, id, name}. After manual examination, we observe a clear overlap between group and organization information. Many datasets like \texttt{event-media} use the organization field to show group related information (being in the LOD Cloud) instead of the publishers details.
