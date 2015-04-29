@@ -1,11 +1,10 @@
-\chapter{Data Aggregation and Modeling}   \label{ch:data-aggregation}
+\chapter{Data Aggregation and Modeling}\label{chapter:data-aggregation3}
 \graphicspath{{Part2/Chapter2/figures/}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%     1.Introduction      %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Introduction}
-\label{sec:introduction}
 In the last few years the Semantic Web gained a momentum supported by the introduction of many related initiatives like the Linked Open Data (LOD)\footnote{\url{http://lod-cloud.net}}. From 12 datasets cataloged in 2007, the Linked Open Data cloud has grown to nearly 1000 datasets containing more than 82 billion triples. Data is being published by both public and private sectors and covers a diverse set of domains from life sciences to military. This success lies in the cooperation between data publishers and consumers where users are empowered to find, share and combine information in their applications easily.
 
 We are entering an era where open is the new default. Governments, universities, organizations and even individuals are publicly publishing huge amounts of open data. This openness should be accompanied with a certain level of trust or guarantees about the quality of data. The Linked Open Data is a gold mine for those trying to leverage external data sources in order to produce more informed business decisions~\cite{Boyd:Article:11}. However, the heterogeneous nature of sources reflects directly on the data quality as these sources often contain inconsistent as well as misinterpreted and incomplete information.
@@ -20,14 +19,12 @@ The framework we propose is based on a refinement of the data quality principles
 
 Furthermore, we surveyed the landscape of Linked Data quality tools to discover that they only cover a subset of the proposed objective quality indicators. As a result, we extend Roomba which is a framework to assess and build dataset profiles with an extensible quality measurement tool and evaluate it by measuring the quality of the LOD cloud group. The results demonstrate that the general quality of LOD cloud needs more attention as most of the datasets suffer from various quality issues.
 
-This paper is structured as follows: Section~\ref{sec:data-quality-assessment} presents the various data quality assessment methodologies. Section~\ref{sec:data-quality-classification} presents our framework with its objective quality measures and indicators. Section~\ref{sec:assessment-framework} presents our tool for evaluating those indicators. Section~\ref{sec:quality-tools} reviews the existing tools and frameworks in the Linked Open Data quality landscape. Section~\ref{sec:conclusion} presents concluding remarks and identifies future work.
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% 2. Data quality Assessment   %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Data Quality Assessment}
-\label{sec:data-quality-assessment}
+\label{section:data-quality-assessment}
 In~\cite{Zaveri:SemWebJorunal:12}, the authors present a comprehensive systematic review of data quality assessment methodologies applied to LOD. They have extracted 26 quality dimensions and a total of 110 objective and subjective quality indicators. However, some of those objective indicators are dependent on the use case thus there is no clear separation on what can be automatically measured. For example, data completeness is generally a subjective dimension. However, the authors specified that the detection of the degree on which all the real-world objects are represented, detection of number of missing values for specific property and detection of the degree to which instances in the dataset are interlinked are considered as objective indicators given the presence of a gold standard or the original data source to compare with. Moreover, lots of the defined performance dimensions like low latency, high throughput or scalability of a data source were defined as objective but are still dependent on multiple subjective factors like network congestion. In addition, there were some missing objective indicators vital to the quality of LOD e.g. indication of the openness of the dataset.
 
 The ODI certificate\footnote{\url{https://certificates.theodi.org/}} provides a description of the published data quality in plain English. It aspires to act as a mark of approval that helps publishers understand how to publish good open data and users how to use it. It gives publishers the ability to provide assurance and support on their data while encouraging further improvements through an ascending scale.
@@ -47,7 +44,7 @@ Despite all the recent efforts in providing frameworks and tools for data qualit
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Objective Linked Data Quality Classification}
-\label{sec:data-quality-classification}
+\label{section:data-quality-classification}
 The basic idea behind Linked Data is that its usefulness increases when it is more interlinked with other datasets. Tim Berners-Lee defined four main principles for publishing data that can ensure a certain level of uniformity reflecting directly data's usability~\cite{Berners-Lee:W3C:06}:
 \begin{itemize}
 \item{\bf Make the data available on the Web}: assign URIs to identify things.
@@ -281,15 +278,15 @@ Security is a quality attribute that is measured on the dataset level. It is ide
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{An Extensible Objective Quality Assessment Framework}
-\label{sec:assessment-framework}
-Roomba is built as a Command Line Interface (CLI) application using Node.js. Instructions on installing and running the framework are available on its public Github repository. Related functions are encapsulated into modules that can be easily plugged in/out the processing pipeline. Figure \ref{fig:Roomba_architecture} shows the main steps which are the following: (i) Data portal identification; (ii) metadata extraction; (iii) instance and resource extraction; (iv) profile validation (v) profile and report generation.
+\label{section:assessment-framework}
+% Roomba is built as a Command Line Interface (CLI) application using Node.js. Instructions on installing and running the framework are available on its public Github repository. Related functions are encapsulated into modules that can be easily plugged in/out the processing pipeline. Figure \ref{fig:Roomba_architecture} shows the main steps which are the following: (i) Data portal identification; (ii) metadata extraction; (iii) instance and resource extraction; (iv) profile validation (v) profile and report generation.
 
-\begin{figure}[!ht]
-  \centering
-    \includegraphics[scale=0.4]{figure-1_architecture.png}
-  \caption{Processing pipeline for objective dataset quality assessment}
-  \label{fig:Roomba_architecture}
-\end{figure}
+% \begin{figure}[!ht]
+%   \centering
+%     \includegraphics[scale=0.4]{figure-1_architecture.png}
+%   \caption{Processing pipeline for objective dataset quality assessment}
+%   \label{fig:Roomba_architecture}
+% \end{figure}
 
 For this paper, we have extended Roomba with a new quality module to measure datasets quality. We have implemented 7 submodules that will check various dataset quality indicators. Various additional quality measures can be easily plugged in/out.
 
@@ -378,7 +375,7 @@ $Q\textrm{ weightedscore}$ is an error ratio. A quality measure score should ref
 \subsection{Experiments and Analysis}
 In this section, we provide the experiments and evaluation of the proposed framework. All the experiments are reproducible by Roomba and their results are available on its Github repository. We have run the framework on the LOD cloud containing 259 datasets at the time of writing this paper. We ran the instance and resource extractor in order to cache the metadata files for these datasets locally and ran the quality assessment process which took around two hours and a half hour on a 2.6 Ghz Intel Core i7 processor with 16GB of DDR3 memory machine.
 
-\lstset{basicstyle=\small, backgroundcolor=\color{white}, breaklines=false, frame=single, caption={Excerpt of the LOD cloud group quality report}, label=report, captionpos=b}
+\lstset{basicstyle=\small, backgroundcolor=\color{white}, breaklines=false, frame=single, caption={Excerpt of the LOD cloud group quality report}, label=qualityReport, captionpos=b}
 \begin{lstlisting}
  =================================================================================
                              Dataset Quality Report
@@ -420,7 +417,7 @@ Three datasets (1.15\%) did not have a URL defined while 45 datasets (17.3\%) de
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Linked Data Quality Tools}
-\label{sec:quality-tools}
+\label{section:quality-tools}
 In this section, we present the results of our survey on the Linked Data quality tools. There exists a number of data quality frameworks and tools that are either standalone or implemented as modules in data integration tools. These approaches can be classified into automatic, semi-automatic, manual or crowdsourced approaches.
 
 \subsection{Information Quality}
@@ -520,7 +517,6 @@ These shortcomings are mainly due to the limitations in the CKAN dataset model. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Conclusions and Future Work}
-\label{sec:conclusion}
 In this paper, we have presented a comprehensive objective quality framework applied to the Linked Open Data. We have built upon previous efforts with focus on objective data quality measures. We have identified a total of 64 quality indicators that were mapped when suitable to four main categories (entity, dataset, links, models). We have also surveyed more than 30 different tools that measure different quality aspects of Linked Open Data. We identified several gaps in the current tools and identified the need for a comprehensive evaluation and assessment framework and specifically for measuring quality on the dataset level. As a result, we presented an extension of Roomba (An extensible tool to assess and generate dataset profiles) that covers 82\% of the suggested datasets objective quality indicators. Based on our experiments running Roomba on the LOD cloud, we discovered that the general state of the datasets needs attention as most of them have low completeness, provenance, licensing and comprehensibility quality scores.
 
 In future work, we plan to integrate tools assessing models quality in addition to syntactic checkers with Roomba. This will provide a complete coverage of the proposed quality indicators. We also intend to suggest ranked quality indicators to improve the quality report. We also plan to run this tool on various CKAN based data portals and schedule periodic reports to monitor their quality evolution. Finally, at some stage, we plan to extend this tool for other data portal types like DKAN and Socrata.

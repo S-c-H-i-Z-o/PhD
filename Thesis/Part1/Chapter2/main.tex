@@ -1,10 +1,9 @@
-\chapter{Data Aggregation and Modeling}   \label{ch:data-aggregation}
+\chapter{Data Aggregation and Modeling}\label{chapter:data-aggregation}
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %%%  1. Introduction  %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Introduction}
-\label{sec:introduction}
 Open data is the data that can be easily discovered, reused and redistributed by anyone. It can include anything from statistics, geographical data, meteorological data to digitized books from libraries. Open data should have both legal and technical dimensions. It should be placed in the public domain under liberal terms of use with minimal restrictions and should be available in electronic formats that are non-proprietary and machine readable. Open Data has major benefits for citizens, businesses, society and governments: it increases transparency and enables self-empowerment by improving the visibility of previously inaccessible information; it allows citizens to be better informed about policies, public spending and activities in the law making processes. Moreover, it is still considered as a gold mine for organizations which are trying to leverage external data sources in order to produce more informed business decisions~\cite{Boyd:Article:11}, despite the legal issues surrounding Linked Data licenses~\cite{Prateek:Misc:13}.
 
 The Linked Data publishing best practices~\cite{Bizer:DB:11} specifies that datasets should contain metadata needed to effectively understand and use them. \textit{Metadata} is structured information that describes, explains, locates, or otherwise makes it easier to retrieve, use, or manage an information resource~\cite{NISO:TechReport:04}. Having rich metadata helps in enabling:
@@ -23,14 +22,14 @@ Data models vary across data portals. While exhaustively surveying the range of 
  \item \emph{Provenance information}: depending on the dataset license, the data might not be legally usable if there are no information describing its authoritative and versioning information. Current models under-specify these aspects limiting the usability of many datasets.
  \end{itemize}
 
-In this paper, we perform a comprehensive survey of the main data portals and dataset models, that is: CKAN, DKAT, Public Open Data, Socrata, VoID, DCAT and Schema.org. We further analyze these models and suggest a classification for metadata information. Based on this classification, we propose HDL, an harmonized dataset model that addresses the shortcomings of existing dataset models. The remainder of the paper is structured as follows. In Section~\ref{sec:models}, we present the existing dataset models used by various data portals. In Section~\ref{sec:metadata}, we present our classification for the different metadata information. In Section~\ref{sec:hdl}, we describe our proposed model and suggest a set of best practices to ensure proper metadata presentation and we finally conclude and outline some future work in Section~\ref{sec:conclusion}.
+In this paper, we perform a comprehensive survey of the main data portals and dataset models, that is: CKAN, DKAT, Public Open Data, Socrata, VoID, DCAT and Schema.org. We further analyze these models and suggest a classification for metadata information. Based on this classification, we propose HDL, an harmonized dataset model that addresses the shortcomings of existing dataset models.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%  2. Data Portals and Dataset Models  %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Data Portals and Dataset Models}
-\label{sec:models}
+\label{section:models}
 There are many data portals that host a large number of private and public datasets. Each portal present the data based on a model used by the underlying software. In this section, we present the results of our landscape survey of the most common data portals and dataset models.
 
 \subsection{DCAT}
@@ -79,8 +78,8 @@ The POD metadata model\footnote{\url{https://project-open-data.cio.gov/v1.1/sche
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Metadata Classification}
-\label{sec:metadata}
-A dataset metadata model should contain sufficient information so that consumers can easily understand and process the data that is described. After analyzing the models described in the section~\ref{sec:models}, we find out that a dataset can contain four main sections:
+\label{section:metadata}
+A dataset metadata model should contain sufficient information so that consumers can easily understand and process the data that is described. After analyzing the models described in the section~\ref{section:models}, we find out that a dataset can contain four main sections:
 \begin{itemize}
   \item \textbf{Resources}: The actual raw data that can be downloaded or accessed directly via queryable endpoints. Resources can come in various formats such as JSON, XML or RDF.
   \item \textbf{Tags}: Descriptive knowledge about the dataset content and structure. This can range from simple textual representation to semantically rich controlled terms. Tags are the basis for datasets search and discovery.
@@ -105,7 +104,7 @@ Upon closed examination of the various data models, we group the metadata inform
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Towards A Harmonized Model}
-\label{sec:hdl}
+\label{section:hdl}
 Since establishing a common vocabulary or model is the key to communication, we identified the need for an harmonized dataset metadata model containing sufficient information so that consumers can easily understand and process datasets. To create the mappings between the different models, we performed various steps:
 \begin{itemize}
   \item Examine the model or vocabulary specification and documentation.
@@ -125,12 +124,13 @@ groups                              & groups                             & theme
 organization                        & organization                       & publisher                         & dcat:Dataset$\rightarrow$ :publisher &   void:Dataset$\rightarrow$ :publisher                                     & \multicolumn{1}{c|}{-}                   & \multicolumn{1}{c|}{-}                                      \\ \hline
 \end{tabular}
 \caption{Data models sections mapping}
-\label{tab:models_section_mappings}
+\label{table:models_section_mappings}
 \end{table}
 
-The first task is to map the four main information sections across those models. Table~\ref{tab:models_section_mappings} shows our proposed mappings. For the ontologies (DCAT, VoID), the first part represents the class and the part after $\rightarrow$ represents the property. For Schema.org, the first part refers to the schema and the second part after $:$ refers to the property.
+The first task is to map the four main information sections across those models. Table~\ref{table:models_section_mappings} shows our proposed mappings. For the ontologies (DCAT, VoID), the first part represents the class and the part after $\rightarrow$ represents the property. For Schema.org, the first part refers to the schema and the second part after $:$ refers to the property.
 
-Table~\ref{tab:harmonized_dataset_models_mappings} presents the full mappings between the models across the information groups. Entries in the CKAN marked with $\ast$ are properties from CKAN extensions and not included in the original data model. Similar to the sections mappings, for the ontologies (DCAT, VoID), the first part represents the class and the part after $\rightarrow$ represents the property. However, sometimes the part after $\rightarrow$ refers to another resource. For example, to describe the dataset's maintainer email in DCAT, the information should be presented in the \texttt{dcat:Dataset} class using the \texttt{dcat:contactPoint} property. However, the range of this property is a resource of type \texttt{vcard} which has the property \texttt{hasEmail}.
+%~\ref{}
+Table presents the full mappings between the models across the information groups. Entries in the CKAN marked with $\ast$ are properties from CKAN extensions and not included in the original data model. Similar to the sections mappings, for the ontologies (DCAT, VoID), the first part represents the class and the part after $\rightarrow$ represents the property. However, sometimes the part after $\rightarrow$ refers to another resource. For example, to describe the dataset's maintainer email in DCAT, the information should be presented in the \texttt{dcat:Dataset} class using the \texttt{dcat:contactPoint} property. However, the range of this property is a resource of type \texttt{vcard} which has the property \texttt{hasEmail}.
 
 For Schema.org, similar to the sections mapping, the first part refers to the schema and the second part after $:$ refers to the property. However, if the property is inherited from another schema we denote that by using a $\rightarrow$ as well. For example, the size of a dataset is a property for a \texttt{Dataset} schema specified in its \texttt{distribution} property. However, the type of \texttt{distribution} is \texttt{dataDownload} which is inherited from the \texttt{MediaObject} schema. The size for \texttt{MediaObject} is defined in its \texttt{contentSize} property which makes the mapping string \texttt{Dataset:distribution$\rightarrow$ DataDownload$\rightarrow$ MediaObject:contentSize}.
 
@@ -151,7 +151,6 @@ Roomba easily enables to perform such tests and to gather a detailed view about 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Conclusion and Future Work}
-\label{sec:conclusion}
 In this paper, we surveyed the landscape of various models and vocabularies that described datasets on the web. Since establishing a common vocabulary or model is the key to communication, we identified the need for an harmonized dataset metadata model containing sufficient information so that consumers can easily understand and process datasets. We have identified four main sections that should be included in the model: resources, groups, tags and organizations. Furthermore, we have classified the information to be included into eight types. Our main contribution is a set of mappings between each properties of those models. This has lead to the design of HDL, an harmonized dataset model, that takes the best out of these models and extends them to ensure complete metadata coverage to enable data discovery, exploration and reuse.
 
 At the moment, HDL is available as a hierarchical JSON file. As part of our future work, we plan to refine HDL and present it as a fully fledged OWL ontology. At the moment, HDL contains some values that were frequently defined in CKAN extras fields. However, we plan to broaden our analysis of these values by running Roomba on additional portals and present the top results as enumerations, ensuring a fine-grained representation of a dataset. We further plan to create mappings between HDL and all the various models to ensure full compatibility. These mappings, for example, can be used to extend Roomba allowing it to perform metadata profiling on other portals like DKAN. Finally, we plan to create a set of supporting tools that allow validation of generation of HDL profiles.

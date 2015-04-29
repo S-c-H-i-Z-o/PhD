@@ -7,31 +7,17 @@
 \g@addto@macro{\UrlBreaks}{\UrlOrds}
 \makeatother
 
-\setstretch{1.11}
+% \setstretch{1.11}
 \setlength{\parindent}{0.2in}
 
 \begin{document}
 
-\pagenumbering{roman}
-
 \include{title/title}
 \vspace{3cm}
 
-\clearpage
+\pagenumbering{roman}
 
-\vspace{40ex}
-\begin{flushright}
-
-\textit{To all those who helped me \\
-to make this dream coming true. } \\
-
-\textcolor{cyan}{
-\textit{``Things don't have to change \\
-the world to be important''. \\}
-     -Steve Jobs -
-}
-
-\end{flushright}
+\include{title/basmalah}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %%%  Aknowledgment  %%%
@@ -45,7 +31,9 @@ the world to be important''. \\}
 %%%%%%%%%%%%%%%%%%%%%%%%%
 \addcontentsline{toc}{section}{Abstract}
 \markboth{Abstract}{Abstract}
+\chapter*{Abstract}
 \input{abstract/abstract}
+\clearpage
 
 \addcontentsline{toc}{section}{Contents}
 \markboth{Contents}{Contents}
@@ -87,7 +75,7 @@ the world to be important''. \\}
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %%%  Part 1  %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%
-\part{Open Data Integration in the Enterprise} \label{pa:opendata_in_the_enterprise}
+\part{Open Data Integration in the Enterprise} \label{part:opendata_in_the_enterprise}
 \input{Part1/introduction}
 \input{Part1/Chapter1/main}
 \input{Part1/Chapter2/main}
@@ -96,7 +84,7 @@ the world to be important''. \\}
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %%%  Part 2  %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%
-\part{Towards A complete Dataset Profile} \label{pa:dataset_profiling}
+\part{Towards A complete Dataset Profile} \label{part:dataset_profiling}
 \input{Part2/introduction}
 \input{Part2/Chapter1/main}
 \input{Part2/Chapter2/main}
