@@ -31,31 +31,6 @@
 
 \graphicspath{{.}{images/}}
 
-% Links in pdf
-\usepackage{color}
-\definecolor{linkcol}{rgb}{0,0,0.4}
-\definecolor{citecol}{rgb}{0.5,0,0}
-
-% Change this to change the informations included in the pdf file
-% See hyperref documentation for information on those parameters
-
-\hypersetup
-{
-  bookmarksopen=true                                                                     ,
-  pdftitle="Enabling Self Service Data Provisioning Through Semantic Enrichment of Data" ,
-  pdfauthor="Ahmad A Assaf"                                                              ,
-  pdfsubject="update strategies for first class futures"                                 , % subject of the document
-  pdfmenubar=true                                                                        , % menubar shown
-  pdfhighlight=/O                                                                        , % effect of clicking on a link
-  colorlinks=true                                                                        , % hyperlinks color
-  pdfpagelayout=SinglePage                                                               , % opening simple page
-  pdffitwindow=true                                                                      , % pages ouvertes entierement dans toute la fenetre
-  linkcolor=linkcol                                                                      , % color of internal hyperlinks
-  citecolor=citecol                                                                      , % color of citations lines
-  urlcolor=linkcol                                                                         % couleur des liens pour les url
-}
-
-
 % definitions.
 
 \setcounter{secnumdepth}{3}
@@ -147,6 +122,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Centered page environment
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\Author}{Ahmad A Assaf}
+\newcommand{\Subject}{Enabling Self Service Data Provisioning Through Semantic Enrichment of Data}
+
 \newenvironment{vcenterpage}
 {\newpage\vspace*{\fill}\thispagestyle{empty}\renewcommand{\headrulewidth}{0pt}}
 {\vspace*{\fill}}
@@ -160,12 +139,10 @@
     pdftitle={My title},                  % title
     pdfauthor={Author},                   % author
     pdfsubject={Subject},                 % subject of the document
-    pdfcreator={Creator},                 % creator of the document
-    pdfproducer={Producer},               % producer of the document
-    pdfkeywords={keyword1} {key2} {key3}, % list of keywords
+    pdfcreator={Author},                  % creator of the document
     pdfnewwindow=true,                    % links in new window
     colorlinks=true,                      % false: boxed links; true: colored links
-    linkcolor=black,                      % color of internal links
+    linkcolor=black,                        % color of internal links
     citecolor=red,                        % color of links to bibliography
     filecolor=magenta,                    % color of file links
     urlcolor=blue                         % color of external links
@@ -259,5 +236,5 @@
 
 \newcolumntype{L}{>{\arraybackslash}m{13cm}}
 
-%\newcommand{\algorithmicrequire}{\textbf{Require:}}
-%\newcommand{\algorithmicensure}{\textbf{Ensure:}}
+\newcommand{\algorithmicrequire}{\textbf{Require:}}
+\newcommand{\algorithmicensure}{\textbf{Ensure:}}

@@ -1,5 +1,96 @@
 \chapter{Introduction}  \label{ch:intro}
 
-\section{Context and Motivation}      \label{sec:motivation}
+\begin{flushright}
+\textit{``More data usually beats better algorithms''}\\
+ Anand Rajaraman
 
-\textbf{Chapter~\ref{ch:conclusion}} concludes the presented work and outlines new research directions.
+\end{flushright}
+
+Business Intelligence (BI) has always been about creating new insight for business by converting data into meaning that can be shared between people to drive change in the organization. One key aspect of creating meaning is driving a common shared understanding of information also known as Semantics.
+
+Classic BI and even the newer Agile Visualization tools focus much of their selling features on attractive and unique visualizations, but preparing data for those visualizations still remains the far more challenging task in most BI projects large and small. self-service data provisioning aims at tackling this problem by providing intuitive datasets discovery, acquisition and integration techniques intuitively to the end user.
+
+\section{Context and Motivation} \label{sec:motivation}
+
+Enterprises use a wide range of heterogeneous information systems in their business activities such as Enterprise Resource Planning (ERP), Customer Relationships Management (CRM) and Supply Chain Management (SCM) systems. An enterprise distributed IT landscape contains multiple systems using different technologies and data standards~\cite{Mihindukulasooriya:COLD:13}. In addition to this heterogeneity, the amount of information in enterprise databases and on-line data stores expands exponentially each year. Enterprise Big Data isn't big in volume only, but in the associated file formats. The information is also often stored often in unstructured and unknown formats.
+
+Data integration is the problem of combining data residing at different sources, and providing the user with a unified view of these data~\cite{Lenzerini:SIGMOD:02}. In large enterprises, it is a time and resource costly task. Various approaches have been introduced to solve this integration challenge. These approaches were primarily based on XML as the data representation syntax, Web Services to provide the data exchange protocols and Service Oriented Architecture (SOA) as a holistic approach for distributed systems architecture and communication~\cite{Frischmuth:ISWC:13,Frischmuth:SemWebJorunal:12}. However, it was found that these technologies are no sufficient to solve the integration problems in large enterprises. Recently, ontology-based data integration approaches have been suggested where ontologies are used to describe the data, queries and mappings between them~\cite{Wache:IJCAI:01}. A slightly different approach is the use of the Linked Data paradigm~\cite{Bizer:IJSWIS:09} for integrating enterprise data. Enterprises like Google and Microsoft are not only using the Linked Data integration paradigm for their information systems, but are also aiming at building enterprise knowledge bases (like the Google Knowledge Graph powered in part by Freebase\footnote{\url{http://freebase.com}}) that will act as a crystallization point for their structured data.
+
+Data becomes more useful when it is open, widely available, in shareable formats and when advanced computing and analysis can yield from it. The quality and amount of structured knowledge available on the web make it now feasible for companies to mine this huge amount of public data and integrate it in their next-generation enterprise information management systems. An example of this external data is the Linked Open Data (LOD) cloud. From 12 datasets cataloged in 2007, it has grown to nearly 1000 datasets containing more than 82 billion triples\footnote{\url{http://datahub.io/dataset?tags=lod}}~\cite{Bizer:IJSWIS:09}. Data is being published by both the public and private sectors and covers a diverse set of domains from life sciences to media or government data. The LOD cloud is potentially a gold mine for organizations and individuals who are trying to leverage external data sources in order to produce more informed business decisions~\cite{Boyd:Article:11}. This external data can be accessed through public data portals like \texttt{Datahub.io} and \texttt{publicdata.eu} or private ones like \texttt{quandl.com} and \texttt{enigma.io}. Analyzing this new type of data within the context of existing enterprise data should bring them new or more accurate business insights and allow better recognition of sales and market opportunities~\cite{LaValle:MIT:11}.
+
+\section{Use Case Scenario}
+
+To enable wide scale and efficient integration of data, there are some efforts needed from various sides. In this thesis, we tackle the issues and challenges from the point of views of two personae:
+
+\begin{itemize}
+\item \textbf{Data Analyst:} A Data Analyst is an experienced professional who is able to collect and acquire data from multiple data sources, filter and clean data, interpret and analyze results and provide ongoing reports.
+\item \textbf{Data Portal Administrator:} A Data Portal Administrator monitors the overall health of the portal. He oversees the creation of users, organizations and datasets. Administrators try to ensure a certain data quality level by continuously checking for spam and manually enhancing datasets descriptions and annotations.
+\end{itemize}
+
+In our scenario, Bob is a Data Analyst working with the Ministry of Transport in France. His favorite tool for crunching, manipulating and visualizing data is SAP Lumira~\footnote{\url{http://saplumira.com/}}. Bob received a memo from the management to create a report comparing the number of car accidents that occurred in France for that year, to its counterpart in the United Kingdom (UK). In addition, he was asked also to highlight accidents related to illegal consumption of Alcohol in both countries.
+
+After examining the ministry's records, Bob was able to collect the data needed to create his report for the French side. Bob issued an official request to the Department of Transport in UK  to collect the data needed. However, he knows that the process takes long time and the management needs the report within days. Bob is familiar with the Open Data movement and starts he journey searching through different data portals in the UK.
+
+Mark is a Data Portal Administrator for the \texttt{data.gov.uk}. He continuously oversees the processes of acquiring, preparing and publishing datasets. Mark tries always to ensure that the data published is of high quality and contains sufficient attached metadata to easily enable search an discovery. Mark often receives complaints about inaccurate or spam datasets. He manually removes and fix errors while keeping open communication channels with the data-publishing departments.
+
+\section{Research Challenges} \label{sec:challenges}
+5
+In the scenario presented above, both publishers (Data Portal Administrators) and users (Data Analysts) need pragmatic solutions that help them in their tasks. To enable that, there are some challenging research questions that have to be addressed, such as the following:
+
+\begin{itemize}
+\item \textbf{Dataset Integration and Enrichment:} The enterprise heterogeneous data sources raise tremendous challenges. They have inherently different file formats, access protocols or query languages. They possess their own data model with different ways of representing and storing the data. Data across these sources may be noisy (e.g. duplicate or inconsistent), uncertain or be semantically similar yet different~\cite{Avitha:EuroJorunal:11}. Integration and provision of a unified view for these heterogeneous and complex data structures therefore require powerful tools to map and organize the data.
+\begin{itemize}
+	\item Attaching metadata and Semantic information to instances can be tricky. An entity is usually not associated with a single generic type in the knowledge base, but rather with a set of specific types which can be relevant or not given the context. The challenging task is finding the most relevant entity type within a given context.
+	\item Entities play a key role in knowledge bases in general and in the Web of Data in particular. Entities are generally described with a lot of properties, this is the case for DBpedia. It is, however, difficult to assess which ones are more ``important'' than others for particular tasks such data augmentation and visualizing the key facts of an entity.
+	\item Social Networks are not just gathering Internet users into groups of common interests, they are also helping people follow breaking news, contribute to online debates or learn from others. They are transforming Web usage in terms of users' initial entry point, search, browsing and purchasing behavior. Integrating information from these Social Networks can be tricky due to the vast amount of data available which makes hard to spot what is relevant in a timely manner.
+\end{itemize}
+\item \textbf{Dataset Discovery:} Even though popular datasets like DBPedia\footnote{\url{http://dbpedia.org}} and Freebase are well known and widely used, there are other hidden useful datasets not being used. Indeed these datasets may be useful for specialized domains, however without proper registry of topics, it is difficult for users to find them~\cite{Lalithsena:WI:13}.
+\item \textbf{Dataset Quality Control:} Linked Data consists of structured information supported by models, ontologies and vocabularies and contains query endpoints and links. This makes data quality assurance a challenge. Despite the fact that Linked Open Data quality is a trending and highly demanded topic, very few efforts are currently trying to standardize, track and formalize frameworks to issue scores or certificates that will help data consumers in their integration tasks.
+\end{itemize}
+
+\section{Thesis Contribution} \label{sec:contribution}
+
+Linked Open Data datasets are described using either the Vocabulary of Interlinked Datasets (VOID)~\cite{Cyganiak:W3C:11} or the Data Catalog Vocabulary (DCAT)~\cite{Erickson:DCV:14}. With these standards, discovery and usage of linked datasets can be performed both effectively and efficiently. In our framework, we plan to use DCAT as the common standard for homogenizing description metadata of datasets indexed by our crawler. This choice came from the fact that the Open Data Support\footnote{\url{http://opendatasupport.eu}} is promoting the DCAT-AP (and consequently DCAT) as the standard for describing datasets and catalogs in Europe.
+In order to enable self-service data provisioning, we envisage building a framework (see Figure~\ref{fig:architecture_diagram}) that will be able to provide detailed DCAT descriptions for internal and external data sources. The framework is able to provide the following services:
+
+ \begin{itemize}
+ \item {\bf Data Acquisition}: Be able to sample data from the various structured data sources like Wikipedia tables, Open data portals, etc. While these are rich sources of information, sometimes live information streamed from the Social Networks is needed. As a result, we crawl Social Networks in order to aggregate semantically related information and connect it with the right resources.
+ \item {\bf Data Preparation}: This includes data profiling and validation, de-duplicating and enhancing relevant data sets with metadata. Profiling is used to examine data to understand its content, structure and data quality dependencies. The types of profiling tasks include:
+ \begin{itemize}
+ \item Examining column data and getting statistical information such as min, max, average, median, null percentage, value distribution, pattern distribution.
+ \item Dependency tasks: Finds the values in one or more dependent columns that rely on values in a primary column
+ \item Redundancy tasks: Determine the degree of overlapping data values or duplication between two sets of columns
+ \item Uniqueness tasks: Returns the count and percentage of rows that contain non-unique data, for the set of column(s) selected.
+ \item Content type: Content type profiling provides suggested meaning based on the entities data in the columns.
+ \item Quality checks: An important aspect that we have to take into consideration while describing a dataset is its quality. For that, an objective Linked Data quality assessment framework should be created in order to issue quality profiles that extend the DCAT vocabulary. The framework helps on one hand data owners to rate the quality of their dataset and get some hints on possible improvements, and on the other hand data consumers to choose their data sources from a ranked set.
+ \end{itemize}
+ \item {\bf Dataset Classification}: Classify and organize datasets based on the input from the previous tasks.
+\end{itemize}
+
+\subsection{Contributions on Dataset Integration and Enrichment}
+Regarding this aspect of our research, we have achieved the following tasks:
+ \begin{itemize}
+ \item Building RUBIX which is a framework enabling mash-up of potentially noisy enterprise and external data.
+ \item RUBIX improves instance and schema matching by adding Semantic metadata to data at the instance level.
+ \item RUBIX improves data integration techniques by enabling clean representation of the data regardless of the languages used, existence of abbreviations, synonyms and typos.
+ \item Build a Social crawler that queries several Social endpoints and aggregates news based on a set of defined keywords.
+ \item Build a common Semantic model to represent Web documents.
+ \item Building a Semantic Social News Aggregating service (SNARC)~\cite{Assaf:ESWC:13} that aggregates relevant Social news with regards to a Web document.
+ \item Reverse engineering of Google Knowledge Graph Panel in order to define the top properties of a selected entity.
+ \item High traction from the BI organization to integrate it as a service into various offerings.
+ \item We presented RUBIX at the First International Workshop on Open Data~\cite{Assaf:WOD:12}.
+ \item SNARC has won the first place at the AI Mashup Challenge\footnote{\url{http://aimashup.org/aimashup13}} at ESWC13.
+\end{itemize}
+
+\subsection{Contributions on Dataset Quality Control}
+Concerning our contributions on Linked Data quality assessment, we have achieved the following tasks:
+\begin{itemize}
+\item We identified five principle classes to describe the quality of a particular linked dataset. For each class, we list the principles that are involved at all stages of the data management process.
+\item We have presented our Data quality principles at the Sixth IEEE International Conference on Semantic Computing~\cite{Assaf:DQMST:12}.
+\item We have surveyed the landscape of Linked Data quality assessment frameworks.
+\item We have surveyed the landscape of Linked Data quality assessment tools.
+\item We have refined the five principles in~\cite{Assaf:DQMST:12} towards a more objective framework.
+\item We have evaluated the surveyed tools with regards to the suggested framework.
+\end{itemize}
+
+\section{Thesis Outline} \label{sec:outline}
