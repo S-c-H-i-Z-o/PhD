@@ -9,7 +9,7 @@
 
 Business Intelligence (BI) has always been about creating new insight for business by converting data into meaning that can be shared between people to drive change in the organization. One key aspect of creating meaning is driving a common shared understanding of information also known as Semantics.
 
-Classic BI and even the newer Agile Visualization tools focus much of their selling features on attractive and unique visualizations, but preparing data for those visualizations still remains the far more challenging task in most BI projects large and small. self-service data provisioning aims at tackling this problem by providing intuitive datasets discovery, acquisition and integration techniques intuitively to the end user.
+Classic BI and even the newer Agile Visualization tools focus much of their selling features on attractive and unique visualizations, but preparing data for those visualizations still remains the far more challenging task in most BI projects large and small. self-service data provisioning aims at tackling this problem by providing intuitive dataset discovery, acquisition and integration techniques intuitively to the end user.
 
 \section{Context and Motivation} \label{sec:motivation}
 
@@ -25,7 +25,7 @@ To enable wide scale and efficient integration of data, there are some efforts n
 
 \begin{itemize}
 \item \textbf{Data Analyst:} A Data Analyst is an experienced professional who is able to collect and acquire data from multiple data sources, filter and clean data, interpret and analyze results and provide ongoing reports.
-\item \textbf{Data Portal Administrator:} A Data Portal Administrator monitors the overall health of the portal. He oversees the creation of users, organizations and datasets. Administrators try to ensure a certain data quality level by continuously checking for spam and manually enhancing datasets descriptions and annotations.
+\item \textbf{Data Portal Administrator:} A Data Portal Administrator monitors the overall health of the portal. He oversees the creation of users, organizations and datasets. Administrators try to ensure a certain data quality level by continuously checking for spam and manually enhancing dataset descriptions and annotations.
 \end{itemize}
 
 In our scenario, \textbf{Bob} is a Data Analyst working with the Ministry of Transport in France. His favorite tool for crunching, manipulating and visualizing data is SAP Lumira~\footnote{\url{http://saplumira.com/}}. Bob received a memo from the management to create a report comparing the number of car accidents that occurred in France for that year, to its counterpart in the United Kingdom (UK). In addition, he was asked to highlight accidents related to illegal consumption of Alcohol in both countries.
@@ -70,10 +70,10 @@ contributions of this work are as follows:
 \subsection{Contributions on Dataset Integration and Enrichment}
 Regarding this aspect of our research, we have achieved the following tasks:
  \begin{itemize}
-  \item We created a framework called RUBIX that enables mashing-up potentially noisy enterprise data and external data. The framework leverages reference knowledge bases to annotate data with a set of semantic concepts (metadata). One of the advantages of this metadata is to enhance the matching process of heterogeneous data sources \change{add section}.
+  \item We created a framework called RUBIX that enables mashing-up potentially noisy enterprise data and external data. The framework leverages reference knowledge bases to annotate data with a set of semantic concepts (metadata). One of the advantages of this metadata is to enhance the matching process of heterogeneous data sources \todo{add section}.
 	\item The attached metadata by RUBIX can be further used to enrich existing datasets. However, concepts are often represented with a large set of properties. To better recommend the top ``important'' properties for a concept, we reversed engineer the choices made by Google when creating knowledge graph panels and compared them to preferences obtained from a user survey. We further represented these choices explicitly using the Fresnel vocabulary, so that any application could read this configuration file for deciding which properties of an entity is worth to enrich\todo{add section}.
 	\item We have analyzed the landscape of dataset profiling tools and discovered gaps in the tools needed to create a profile that maps to the harmonized dataset model proposed. As a result, we propose a scalable automatic framework called Roomba for extracting, validating, correcting and generating descriptive linked dataset profiles. Roomba applies several techniques in order to check the validity of the metadata provided and to generate descriptive and statistical information for a particular dataset or for an entire data portal\todo{add section}.
-	\item We presented the results of running Roomba over various data portals. We focused on analyzing the LOD cloud group hosted in the Datahuba and discovered that the general state of the examined datasets needs attention as most of them lack informative access information and their resources suffer low availability\info{add section}.
+	\item We presented the results of running Roomba over various data portals. We focused on analyzing the LOD cloud group hosted in the Datahuba and discovered that the general state of the examined datasets needs attention as most of them lack informative access information and their resources suffer low availability\todo{add section}.
 	\item Aggregating relevant social news is not an easy task. We implemented an Application Programming Interface (API) that enables semantic social news aggregation called SNARC. we implemented a Google Chrome extension leveraging SNARC's capabilities to enable users to discover what is happening instantly and without the need to navigate away from the current page\todo{add section}.
 \end{itemize}
 
@@ -87,12 +87,13 @@ Regarding this aspect of our research, we have achieved the following tasks:
 \subsection{Contributions on Dataset Quality Control}
 Concerning our contributions on Linked Data quality assessment, we have achieved the following tasks:
 \begin{itemize}
-	\item We identified five principle classes to describe the quality of a particular linked dataset. For each class, we list the principles that are involved at all stages of the data management process.
-	\item We have presented our Data quality principles at the Sixth IEEE International Conference on Semantic Computing~\cite{Assaf:DQMST:12}.
-	\item We have surveyed the landscape of Linked Data quality assessment frameworks.
-	\item We have surveyed the landscape of Linked Data quality assessment tools.
-	\item We have refined the five principles in~\cite{Assaf:DQMST:12} towards a more objective framework.
-	\item We have evaluated the surveyed tools with regards to the suggested framework.
+	\item We proposed five principle classes to describe the quality of a particular linked dataset. For each class, we defined the principles that are involved at all stages of the data management process. We further refined these principles and propose a comprehensive objective quality framework applied to the Linked Open Data. We have built upon previous efforts with focus on objective data quality measures\todo{add section}.
+	\item We notice that there is a plethora of tools (syntactic checkers or statistical profilers) that automatically check the quality of information at the entities level. Moreover, various tools can automatically check the models against the objective quality indicators mentioned. However, we notice a lack in automatic tools to check the dataset quality especially in its completeness, licensing and provenance measures. As a result, we extended Roomba to perform a set of data quality checks on Linked datasets.Our extension covers most of the quality indicators with its focus on completeness, correctness provenance and licensing\todo{add section}.
 \end{itemize}
 
 \section{Thesis Outline} \label{sec:outline}
+The work presented in this thesis first describes a standard model to represent dataset profiles. Then it focuses on techniques to automatically generate and validate these profiles.
+
+Chapter 2 is dedicated to overview the background of our work including the research in data integration and enrichment and some paradigms related to Semantic Web. We first introduce the basic concepts in the Semantic Web and the important aspects related to (Linked) Open Data. Then, we describe the various data integration techniques and the importance of external data to the enterprise.
+
+The rest of this manuscript is composed of (N) major parts:
