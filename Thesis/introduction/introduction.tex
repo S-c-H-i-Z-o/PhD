@@ -38,13 +38,6 @@ After examining the ministry's records, Bob was able to collect the data needed 
 
 In the scenario presented above, both publishers (Data Portal Administrators) and users (Data Analysts) need pragmatic solutions that help them in their tasks. To enable that, there are some challenging research questions that have to be addressed. These challenges are organized in three main types as the following:
 
-\subsection{Dataset Maintenance \& Discovery}
-\begin{itemize}
-\item Even though popular datasets like DBPedia\footnote{\url{http://dbpedia.org}} and Freebase are well known and widely used, there are other hidden useful datasets not being used. Indeed these datasets may be useful for specialized domains, however without proper registry of topics, it is difficult for users to find them~\cite{Lalithsena:WI:13}.
-\item The growing amount of data requires rich metadata in order to reach its full potential. This metadata enables dataset discovery, understanding, integration and maintenance. Despite the various models and vocabularies describing datasets metadata, the ability to have an overview of the dataset by inspecting its metadata can be limited.
-\item Users, organizations and governments are empowered to publish datasets. However, detecting spam and maintaining high quality data requires continuous attention and increasing manual efforts from portal administrators.
-\end{itemize}
-
 \subsection{Dataset Integration and Enrichment}
 \begin{itemize}
 	\item The enterprise heterogeneous data sources raise tremendous challenges. They have inherently different file formats, access protocols or query languages. They possess their own data model with different ways of representing and storing the data. Data across these sources may be noisy (e.g. duplicate or inconsistent), uncertain or be semantically similar yet different~\cite{Avitha:EuroJorunal:11}. Integration and provision of a unified view for these heterogeneous and complex data structures therefore require powerful tools to map and organize the data.
@@ -53,50 +46,58 @@ In the scenario presented above, both publishers (Data Portal Administrators) an
 	\item Social Networks are not just gathering Internet users into groups of common interests, they are also helping people follow breaking news, contribute to online debates or learn from others. They are transforming Web usage in terms of users' initial entry point, search, browsing and purchasing behavior. Integrating information from these Social Networks can be tricky due to the vast amount of data available which makes hard to spot what is relevant in a timely manner.
 \end{itemize}
 
+\subsection{Dataset Maintenance \& Discovery}
+\begin{itemize}
+\item Even though popular datasets like DBPedia\footnote{\url{http://dbpedia.org}} and Freebase are well known and widely used, there are other hidden useful datasets not being used. Indeed these datasets may be useful for specialized domains, however without proper registry of topics, it is difficult for users to find them~\cite{Lalithsena:WI:13}.
+\item The growing amount of data requires rich metadata in order to reach its full potential. This metadata enables dataset discovery, understanding, integration and maintenance. Despite the various models and vocabularies describing datasets metadata, the ability to have an overview of the dataset by inspecting its metadata can be limited.
+\item Users, organizations and governments are empowered to publish datasets. However, detecting spam and maintaining high quality data requires continuous attention and increasing manual efforts from portal administrators.
+\end{itemize}
+
 \subsection{Dataset Quality Control:} Linked Data consists of structured information supported by models, ontologies and vocabularies and contains query endpoints and links. This makes data quality assurance a challenge. Despite the fact that Linked Open Data quality is a trending and highly demanded topic, very few efforts are currently trying to standardize, track and formalize frameworks to issue scores or certificates that will help data consumers in their integration tasks.
 
-\section{Thesis Contribution} \label{sec:contribution}
+\section{Thesis Contributions} \label{sec:contribution}
 
-In this thesis, we propose a framework (see Figure~\ref{fig:architecture_diagram}) to enable self-service data provisioning for internal and external data sources. The framework contributes to the three main challenges types as follow:
+In this thesis, we propose a framework (see Figure~\ref{fig:architecutre_diagram}) to enable self-service data provisioning for internal and external data sources. The framework contributes to the three main challenges describes above. In summary, the main
+contributions of this work are as follows:
 
- \begin{itemize}
- \item {\bf Data Acquisition}: Be able to sample data from the various structured data sources like Wikipedia tables, Open data portals, etc. While these are rich sources of information, sometimes live information streamed from the Social Networks is needed. As a result, we crawl Social Networks in order to aggregate semantically related information and connect it with the right resources.
- \item {\bf Data Preparation}: This includes data profiling and validation, de-duplicating and enhancing relevant data sets with metadata. Profiling is used to examine data to understand its content, structure and data quality dependencies. The types of profiling tasks include:
- \begin{itemize}
- \item Examining column data and getting statistical information such as min, max, average, median, null percentage, value distribution, pattern distribution.
- \item Dependency tasks: Finds the values in one or more dependent columns that rely on values in a primary column
- \item Redundancy tasks: Determine the degree of overlapping data values or duplication between two sets of columns
- \item Uniqueness tasks: Returns the count and percentage of rows that contain non-unique data, for the set of column(s) selected.
- \item Content type: Content type profiling provides suggested meaning based on the entities data in the columns.
- \item Quality checks: An important aspect that we have to take into consideration while describing a dataset is its quality. For that, an objective Linked Data quality assessment framework should be created in order to issue quality profiles that extend the DCAT vocabulary. The framework helps on one hand data owners to rate the quality of their dataset and get some hints on possible improvements, and on the other hand data consumers to choose their data sources from a ranked set.
- \end{itemize}
- \item {\bf Dataset Classification}: Classify and organize datasets based on the input from the previous tasks.
-\end{itemize}
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[scale=0.5]{architecutre_diagram.png}
+  \caption{Processing pipeline for enabling self-service data provisioning}
+  \label{fig:architecutre_diagram}
+\end{figure}
 
 \subsection{Contributions on Dataset Integration and Enrichment}
 Regarding this aspect of our research, we have achieved the following tasks:
  \begin{itemize}
- \item Building RUBIX which is a framework enabling mash-up of potentially noisy enterprise and external data.
- \item RUBIX improves instance and schema matching by adding Semantic metadata to data at the instance level.
- \item RUBIX improves data integration techniques by enabling clean representation of the data regardless of the languages used, existence of abbreviations, synonyms and typos.
- \item Build a Social crawler that queries several Social endpoints and aggregates news based on a set of defined keywords.
- \item Build a common Semantic model to represent Web documents.
- \item Building a Semantic Social News Aggregating service (SNARC)~\cite{Assaf:ESWC:13} that aggregates relevant Social news with regards to a Web document.
- \item Reverse engineering of Google Knowledge Graph Panel in order to define the top properties of a selected entity.
- \item High traction from the BI organization to integrate it as a service into various offerings.
- \item We presented RUBIX at the First International Workshop on Open Data~\cite{Assaf:WOD:12}.
- \item SNARC has won the first place at the AI Mashup Challenge\footnote{\url{http://aimashup.org/aimashup13}} at ESWC13.
+	\item We created a framework called RUBIX that enables mash-up of potentially noisy enterprise and external data.
+	\item RUBIX improves instance and schema matching by adding Semantic metadata to data at the instance level.
+	\item RUBIX improves data integration techniques by enabling clean representation of the data regardless of the languages used, existence of abbreviations, synonyms and typos.
+	\item Build a Social crawler that queries several Social endpoints and aggregates news based on a set of defined keywords.
+	\item Build a common Semantic model to represent Web documents.
+	\item Building a Semantic Social News Aggregating service (SNARC)~\cite{Assaf:ESWC:13} that aggregates relevant Social news with regards to a Web document.
+	\item Reverse engineering of Google Knowledge Graph Panel in order to define the top properties of a selected entity.
+	\item High traction from the BI organization to integrate it as a service into various offerings.
+	\item We presented RUBIX at the First International Workshop on Open Data~\cite{Assaf:WOD:12}.
+	\item SNARC has won the first place at the AI Mashup Challenge\footnote{\url{http://aimashup.org/aimashup13}} at ESWC13.
+\end{itemize}
+
+\subsection{Contributions on Dataset Maintenance \& Discovery}
+
+\begin{itemize}
+	\item We surveyed the landscape of various models and vocabularies that described datasets on the web. Since establishing a common vocabulary or model is the key to communication, we identified the need for an harmonized dataset metadata model containing sufficient information so that consumers can easily understand and process datasets (Section~\ref{section:datasetModels}).
+	\item We implemented a set of mappings between each properties of the surveyed models. This has lead to the design of HDL, a harmonized dataset model, that takes the best out of these models and extends them to ensure complete metadata coverage to enable data discovery, exploration and reuse(Section~\ref{section:hdl}).
 \end{itemize}
 
 \subsection{Contributions on Dataset Quality Control}
 Concerning our contributions on Linked Data quality assessment, we have achieved the following tasks:
 \begin{itemize}
-\item We identified five principle classes to describe the quality of a particular linked dataset. For each class, we list the principles that are involved at all stages of the data management process.
-\item We have presented our Data quality principles at the Sixth IEEE International Conference on Semantic Computing~\cite{Assaf:DQMST:12}.
-\item We have surveyed the landscape of Linked Data quality assessment frameworks.
-\item We have surveyed the landscape of Linked Data quality assessment tools.
-\item We have refined the five principles in~\cite{Assaf:DQMST:12} towards a more objective framework.
-\item We have evaluated the surveyed tools with regards to the suggested framework.
+	\item We identified five principle classes to describe the quality of a particular linked dataset. For each class, we list the principles that are involved at all stages of the data management process.
+	\item We have presented our Data quality principles at the Sixth IEEE International Conference on Semantic Computing~\cite{Assaf:DQMST:12}.
+	\item We have surveyed the landscape of Linked Data quality assessment frameworks.
+	\item We have surveyed the landscape of Linked Data quality assessment tools.
+	\item We have refined the five principles in~\cite{Assaf:DQMST:12} towards a more objective framework.
+	\item We have evaluated the surveyed tools with regards to the suggested framework.
 \end{itemize}
 
 \section{Thesis Outline} \label{sec:outline}
