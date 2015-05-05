@@ -163,7 +163,7 @@
 \setlength{\glarg}{17cm}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% JSON Listing Definition
+% Listings Definitions
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \colorlet{punct}{red!60!black}
 \definecolor{background}{gray}{0.97}
@@ -175,12 +175,35 @@
     breaklines=true,
     frame=lines,
     captionpos=b,
-    backgroundcolor=\color{background},
+    aboveskip=3mm,
+    belowskip=3mm,
+    backgroundcolor=\color{white},
     literate=
       {:}{{{\color{punct}{:}}}}{1}
       {,}{{{\color{punct}{,}}}}{1}
       {[}{{{\color{delim}{[}}}}{1}
       {]}{{{\color{delim}{]}}}}{1},
+}
+
+\renewcommand{\ttdefault}{pcr}
+\lstdefinelanguage{owl} {
+  language=xml,
+  basicstyle={\footnotesize\ttfamily},
+  numbers=none,
+  backgroundcolor=\color{white},
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  keywordstyle={\bfseries\color{blue}},
+  commentstyle={\color{red}\textit},
+  stringstyle=\color{magenta},
+  frame=lines,
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=4,
+  morekeywords={rdf,rdfs,owl},
+  moredelim=*[s][\ttfamily]{:}{:} %Newly added line
 }
 
 \listfiles
