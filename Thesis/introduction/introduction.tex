@@ -70,16 +70,11 @@ contributions of this work are as follows:
 \subsection{Contributions on Dataset Integration and Enrichment}
 Regarding this aspect of our research, we have achieved the following tasks:
  \begin{itemize}
-	\item We created a framework called RUBIX that enables mash-up of potentially noisy enterprise and external data.
-	\item RUBIX improves instance and schema matching by adding Semantic metadata to data at the instance level.
-	\item RUBIX improves data integration techniques by enabling clean representation of the data regardless of the languages used, existence of abbreviations, synonyms and typos.
-	\item Build a Social crawler that queries several Social endpoints and aggregates news based on a set of defined keywords.
-	\item Build a common Semantic model to represent Web documents.
-	\item Building a Semantic Social News Aggregating service (SNARC)~\cite{Assaf:ESWC:13} that aggregates relevant Social news with regards to a Web document.
-	\item Reverse engineering of Google Knowledge Graph Panel in order to define the top properties of a selected entity.
-	\item High traction from the BI organization to integrate it as a service into various offerings.
-	\item We presented RUBIX at the First International Workshop on Open Data~\cite{Assaf:WOD:12}.
-	\item SNARC has won the first place at the AI Mashup Challenge\footnote{\url{http://aimashup.org/aimashup13}} at ESWC13.
+  \item We created a framework called RUBIX that enables mashing-up potentially noisy enterprise data and external data. The framework leverages reference knowledge bases to annotate data with a set of semantic concepts (metadata). One of the advantages of this metadata is to enhance the matching process of heterogeneous data sources \change{add section}.
+	\item The attached metadata by RUBIX can be further used to enrich existing datasets. However, concepts are often represented with a large set of properties. To better recommend the top ``important'' properties for a concept, we reversed engineer the choices made by Google when creating knowledge graph panels and compared them to preferences obtained from a user survey. We further represented these choices explicitly using the Fresnel vocabulary, so that any application could read this configuration file for deciding which properties of an entity is worth to enrich\todo{add section}.
+	\item We have analyzed the landscape of dataset profiling tools and discovered gaps in the tools needed to create a profile that maps to the harmonized dataset model proposed. As a result, we propose a scalable automatic framework called Roomba for extracting, validating, correcting and generating descriptive linked dataset profiles. Roomba applies several techniques in order to check the validity of the metadata provided and to generate descriptive and statistical information for a particular dataset or for an entire data portal\todo{add section}.
+	\item We presented the results of running Roomba over various data portals. We focused on analyzing the LOD cloud group hosted in the Datahuba and discovered that the general state of the examined datasets needs attention as most of them lack informative access information and their resources suffer low availability\info{add section}.
+	\item Aggregating relevant social news is not an easy task. We implemented an Application Programming Interface (API) that enables semantic social news aggregation called SNARC. we implemented a Google Chrome extension leveraging SNARC's capabilities to enable users to discover what is happening instantly and without the need to navigate away from the current page\todo{add section}.
 \end{itemize}
 
 \subsection{Contributions on Dataset Maintenance \& Discovery}

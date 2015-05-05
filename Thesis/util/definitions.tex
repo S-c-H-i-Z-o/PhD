@@ -14,6 +14,15 @@
 \makenomenclature
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ToDo Code
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{xargs}
+\newcommandx{\unsure}[2][1=]{\todo[linecolor=red,backgroundcolor=red!25,bordercolor=red,#1]{#2}}
+\newcommandx{\change}[2][1=]{\todo[linecolor=blue,backgroundcolor=blue!25,bordercolor=blue,#1]{#2}}
+\newcommandx{\info}[2][1=]{\todo[linecolor=green,backgroundcolor=green!25,bordercolor=green,#1]{#2}}
+\newcommandx{\improvement}[2][1=]{\todo[linecolor=Plum,backgroundcolor=magenta!25,bordercolor=magenta,#1]{#2}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % PDF Code
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -147,18 +156,6 @@
     filecolor=magenta,                    % color of file links
     urlcolor=blue                         % color of external links
 }
-
-\newcommand{\todo}[1]{\textcolor{red}{%
-\raisebox{-0.2em}[0pt][0pt]{\makebox[0pt]{\rule{1pt}{1.1em}}\makebox[0pt][l]{\raisebox{1em}{\rule{5ex}{1pt}}}}
-\textbf{TODO:} \textit{#1}
-\raisebox{-0.2em}[0pt][0pt]{\makebox[0pt][r]{\rule{5ex}{1pt}}\makebox[0pt]{\rule{1pt}{1em}}}%
-}}
-
-\newcommand{\comments}[1]{\textcolor{blue}{%
-\raisebox{-0.2em}[0pt][0pt]{\makebox[0pt]{\rule{1pt}{1.1em}}\makebox[0pt][l]{\raisebox{1em}{\rule{5ex}{1pt}}}}
-\textbf{COMMENTS:} \textit{#1}
-\raisebox{-0.2em}[0pt][0pt]{\makebox[0pt][r]{\rule{5ex}{1pt}}\makebox[0pt]{\rule{1pt}{1em}}}%
-}}
 
 \newlength{\plarg}
 \setlength{\plarg}{16cm}
