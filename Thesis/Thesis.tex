@@ -7,7 +7,7 @@
 \g@addto@macro{\UrlBreaks}{\UrlOrds}
 \makeatother
 
-% \setstretch{1.11}
+\setstretch{1.11}
 \setlength{\parindent}{0.2in}
 
 \begin{document}
@@ -58,6 +58,13 @@
 \listoftables
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  List of Listings  %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\addcontentsline{toc}{section}{List of Listings}
+\lstlistoflistings
+\cleardoublepage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%  List of Publications  %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%
 \addcontentsline{toc}{section}{List of Publications}
@@ -87,19 +94,21 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %%%  Part 1  %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%
-\part{Open Data Integration in the Enterprise} \label{part:opendata_in_the_enterprise}
+\part{Towards A Complete Dataset Profile} \label{part:dataset_profiling}
 \input{Part1/introduction}
 \input{Part1/Chapter1/main}
 \input{Part1/Chapter2/main}
+\input{Part1/Chapter3/main}
 \input{Part1/conclusion}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %%%  Part 2  %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%
-\part{Towards A complete Dataset Profile} \label{part:dataset_profiling}
+\part{Data Integration in the Enterprise} \label{part:data_integration}
 \input{Part2/introduction}
 \input{Part2/Chapter1/main}
 \input{Part2/Chapter2/main}
+\input{Part2/Chapter3/main}
 \input{Part2/conclusion}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%

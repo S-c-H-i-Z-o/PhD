@@ -1,403 +1,345 @@
-\chapter{Data Aggregation and Modeling}\label{chapter:data-aggregation2}
+\chapter{Data Integration in the Enterprise}\label{chapter:rubix}
 \graphicspath{{Part2/Chapter1/figures/}}
-%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%  1. Introduction  %%%
-%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Introduction}
-From 12 datasets cataloged in 2007, the Linked Open Data cloud has grown to nearly 1000 datasets containing more than 82 billion triples\footnote{\url{http://datahub.io/dataset?tags=lod}}~\cite{Bizer:IJSWIS:09}. Data is being published by both the public and private sectors and covers a diverse set of domains from life sciences to media or government data. The Linked Open Data cloud is potentially a gold mine for organizations and individuals who are trying to leverage external data sources in order to produce more informed business decisions~\cite{Boyd:Article:11}. This success lies in the cooperation between data publishers and consumers. Consumers are empowered to find, share and combine information in their applications easily. However, the heterogeneous nature of data sources reflects directly on the data quality as these sources often contain inconsistent as well as misinterpreted and incomplete metadata information. Considering the significant variation in size, the languages used and the freshness of the data, one realizes that finding useful datasets without prior knowledge is increasingly complicated. This can be clearly noticed in the LOD Cloud where few datasets such as DBPedia~\cite{Bizer:WebSemJorunal:09}, Freebase~\cite{Bollacker:SIGMOD:08} and YAGO~\cite{Suchanek::WWW:07} are favored over less popular datasets that may include domain specific knowledge more suitable for the tasks at hand. For example, for the task of building context-aware recommender systems in an academic digital library over the LOD cloud, popular datasets like the Semantic Web Dog Food\footnote{\url{http://datahub.io/dataset/semantic-web-dog-food}}, DBLP\footnote{\url{http://datahub.io/dataset/dblp}} or Yovisto\footnote{\url{http://datahub.io/dataset/yovisto}} can be favored over lesser known but more specific datasets like VIAF\footnote{\url{http://datahub.io/dataset/viaf}} which links authority files of 20 national libraries, list of subject headings for public libraries in Spain\footnote{\url{http://datahub.io/dataset/lista-encabezamientos-materia}} or the French dissertation search engine\footnote{\url{http://datahub.io/dataset/thesesfr}}.
+Companies have traditionally performed business analysis based on transactional data stored in legacy relational databases. The enterprise data available for decision makers was typically relationship management or enterprise resource planning data. However social media feeds, weblogs, sensor data, or data published by governments or international organizations are nowadays becoming increasingly available~\cite{Boyd:Article:11}.
 
-Dataset discovery can be done through public data portals like Datahub\footnote{\url{http://datahub.io}} and Europe's Public Data\footnote{\url{http://publicdata.eu}} or private ones like Quandl\footnote{\url{https://quandl.com/}} and Engima\footnote{\url{http://enigma.io/}}. Private portals harness manually curated data from various sources and expose them to users either freely or through paid plans. The data available is of higher quality but lesser quantity compared to what is available in public portals. Similarly, in some public data portals, administrators manually review datasets information, validate, correct and attach suitable metadata information. This information is mainly in the form of predefined tags such as \textit{media, geography, life sciences} for organization and clustering purposes. However, the diversity of those datasets makes it harder to classify them in a fixed number of predefined tags that can be subjectively assigned without capturing the essence and breadth of the dataset~\cite{Lalithsena:WI:13}. Furthermore, the increasing number of datasets available makes the metadata review and curation process unsustainable even when outsourced to communities.
+The quality and amount of structured knowledge available make it now feasible for companies to mine this huge amount of public data and integrate it in their next-generation enterprise information management systems. Analyzing this new type of data within the context of existing enterprise data should bring them new or more accurate business insights and allow better recognition of sales and market opportunities~\cite{LaValle:MIT:11}.
 
-\textit{Data profiling} is the process of creating descriptive information and collect statistics about that data. It is a cardinal activity when facing an unfamiliar dataset~\cite{Li:WISM:12}. Data profiling reflects the importance of datasets without the need for detailed inspection of the raw data.  It also helps in assessing the importance of the dataset, improving users' ability to search and reuse part of the dataset and in detecting irregularities to improve its quality. Data profiling includes typically several tasks:
-\begin{itemize}
-  \item \textbf{Metadata profiling}: Provides general information on the dataset (dataset description, release and update dates), legal information (license information, openness), practical information (access points, data dumps), etc.
-  \item \textbf{Statistical profiling}: Provides statistical information about data types and patterns in the dataset (e.g. properties distribution, number of entities and RDF triples).
-  \item \textbf{Topical profiling}: Provides descriptive knowledge on the dataset content and structure. This can be in form of tags and categories used to facilitate search and reuse.
-\end{itemize}
+These new distributed sources, however, raise tremendous challenges. They have inherently different file formats, access protocols or query languages. They possess their own data model with different ways of representing and storing the data. Data across these sources may be noisy (e.g. duplicate or inconsistent), uncertain or be semantically similar yet different~\cite{Avitha:EuroJorunal:11}. Integration and provision of a unified view for these heterogeneous and complex data structures therefore require powerful tools to map and organize the data.
 
-In this work, we address the challenges of automatic validation and generation of descriptive datasets profiles. This paper proposes Roomba, an extensible framework consisting of a processing pipeline that combines techniques for data portals identification, datasets crawling and a set of pluggable modules combining several profiling tasks. The framework validates the provided dataset metadata against an aggregated standard set of information. Metadata fields are automatically corrected when possible (e.g. adding a missing license URL reference). Moreover, a report describing all the issues highlighting those that cannot be automatically fixed is created to be sent by email to the dataset's maintainer. There exist various statistical and topical profiling tools for both relational and Linked Data. The architecture of the framework allows to easily add them as additional profiling tasks. However, in this paper, we focus on the task of dataset metadata profiling. We validate our framework against a manually created set of profiles and manually check its accuracy by examining the results of running it on various CKAN-based data portals.
+In this paper, we present a framework that enables business users to semi-automatically combine potentially noisy data residing in heterogeneous silos. Semantically related data is identified and appropriate mappings are suggested to users. On user acceptance, data is aggregated and can be visualized directly or exported to Business Intelligence reporting tools. The framework is composed of a set of extensions to Google Refine server and a plug-in to its user interface\footnote{http://code.google.com/p/google-refine/}. Google Refine was selected for its extensibility as well as good cleansing and transformation capabilities~\cite{Bizer:IJSWIS:09}.
 
-%%%%%%%%%%%%%%%%%%%%%%%
-%%%  2. Motivation  %%%
-%%%%%%%%%%%%%%%%%%%%%%%
+We first map cell values with instances and column headers with types from popular data sets from the Linked Open Data Cloud. To perform the matching, we use the Auto Mapping Core (also called AMC~\cite{Peukert:ICDE:12}) that combines the results of various similarity algorithms. The novelty of our approach resides in our exploitation of Linked Data to improve the schema matching process. We developed specific algorithms on rich types from vector algebra and statistics. The AMC generates a list of high-quality mappings from these algorithms allowing better data integration.
 
-\section{Motivation}
-\label{section:motivation}
-Metadata provisioning is one of the Linked Data publishing best practices mentioned in~\cite{Bizer:DB:11}. Datasets should contain the metadata needed to effectively understand and use them. This information includes the dataset's license, provenance, context, structure and accessibility. The ability to automatically check this metadata helps in:
-\begin{itemize}
-  \item \textbf{Delaying data entropy}: \textit{Information entropy} refers to the degradation or loss limiting the information content in raw or metadata. As a consequence of information entropy, data complexity and dynamicity, the life span of data can be very short. Even when the raw data is properly maintained, it is often rendered useless when the attached metadata is missing, incomplete or unavailable. Comprehensive high quality metadata can counteract these factors and increase dataset longevity~\cite{Kovacs:GTOS:00}.
-  \item \textbf{Enhancing data discovery, exploration and reuse}: Users who are unfamiliar with a dataset require detailed metadata to interpret and analyze accurately unfamiliar datasets. A study conducted by the European Union commission~\cite{Graham:TechReport:11} found that both business and users are facing difficulties in discovering, exploring and reusing public data. due to missing or inconsistent metadata information.
-  \item \textbf{Enhancing spam detection}: Portals hosting public open data like Datahub allow anyone to freely publish datasets. Even with security measures like captchas and anti-spam devices, detecting spam is increasingly difficult. In addition to that, the increasing number of datasets hinders the scalability of this process, affecting the correct and efficient spotting of datasets spam.
-\end{itemize}
+First experiments show that Linked Data increases significantly the number of mappings suggested to the user. Schemas can also be discovered if column headers are not defined and can be improved when they are not named or typed correctly. Finally, data reconciliation can be performed regardless of data source languages or ambiguity. All these enhancements allow business users to get more valuable and higher-quality data and consequently to take more informed decisions.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%  3. Related Work  %%%
-%%%%%%%%%%%%%%%%%%%%%%%%%
+The rest of the paper is organized as follows. Section 2 presents some related work. Section 3 describes the framework that we have designed for business users to combine data from heterogeneous sources. Section 4 validates our approach and shows the value of the framework through experiments. Finally, Section 5 concludes the paper and discusses future work.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  Related Work  %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Related Work}
-\label{section:related-work}
-Data Catalog Vocabulary (DCAT)~\cite{Erickson:DCV:14} and the Vocabulary of Interlinked Datasets (VoID)~\cite{Cyganiak:W3C:11} are concerned with metadata about RDF datasets. There exist several tools aiming at exposing dataset metadata using these vocabularies. In~\cite{Bohm:WebSemJournal:11}, the authors generate VoID descriptions limited to a subset of properties that can be automatically deduced from resources within the dataset. However, it still provides data consumers with interesting insights. Flemming's Data Quality Assessment Tool\footnote{\url{http://linkeddata.informatik.hu-berlin.de/LDSrcAss/datenquelle.php}} provides basic metadata assessment as it computes data quality scores based on manual user input. The user assigns weights to the predefined quality metrics and answer a series of questions regarding the dataset. These include, for example, the use of obsolete classes and properties by defining the number of described entities that are assigned disjoint classes, the usage of stable URIs and whether the publisher provides a mailing list for the dataset. The ODI certificate\footnote{\url{https://certificates.theodi.org/}}, on the other hand, provides a description of the published data quality in plain English. It aspires to act as a mark of approval that helps publishers understand how to publish good open data and users how to use it. It gives publishers the ability to provide assurance and support on their data while encouraging further improvements through an ascending scale. ODI comes as an online and free questionnaire for data publishers focusing on certain characteristics about their data. Although these approaches try to perform metadata profiling, they are either incomplete or manual. In our framework, we propose a more automatized and complete approach.
 
-\textbf{Metadata profiling}: The Project Open Data Dashboard\footnote{\url{http://labs.data.gov/dashboard/}} tracks and measures how US government web sites implement the Open Data principles to understand the progress and current status of their public data listings. A validator analyzes machine readable files: e.g. JSON files for automated metrics like the resolved URLs, HTTP status and content-type. However, deep schema information about the metadata is missing like description, license information or tags. Similarly on the LOD cloud, the Datahub LOD Validator\footnote{\url{http://validator.lod-cloud.net/}} gives an overview of Linked Data sources cataloged on the Datahub. It offers a step-by-step validator guidance to check a dataset completeness level for inclusion in the LOD cloud. The results are divided into four different compliance levels from basic to reviewed and included in the LOD cloud. Although it is an excellent tool to monitor LOD compliance, it still lacks the ability to give detailed insights about the completeness of the metadata and overview on the state of the entire LOD cloud group and it is very specific to the LOD cloud group rules and regulations.
+While schema matching has always been an active research area in data integration, new challenges are faced today by the increasing size, number and complexity of data sources and their distribution over the network. Data sets are not always correctly typed or labeled and that hinders the matching process.
 
-\textbf{Statistical profiling}: Calculating statistical information on datasets is vital to applications dealing with query optimization and answering, data cleansing, schema induction and data mining~\cite{Jentzsch:ISWC:14,Frosterus:Springer:11,Lalithsena:WI:13}. Semantic sitemaps~\cite{Cyganiak:ESWC:08} and RDFStats~\cite{Lanegger:DEXA:09} are one of the first to deal with RDF data statistics and summaries. ExpLOD~\cite{Khatchadourian:ESWC:10} creates statistics on the interlinking between datasets based on \texttt{owl:sameAs} links. In~\cite{Li:WISM:12}, the author introduces a tool that induces the actual schema of the data and gather corresponding statistics accordingly. LODStats ~\cite{Auer:EKAW:12} is a stream-based approach that calculates more general dataset statistics. ProLOD++~\cite{Abedjan:ICDE:14} is a Web-based tool that allows LOD analysis via automatically computed hierarchical clustering~\cite{Bohm:ICDEW:10}. Aether~\cite{Makela:ESWC:14} generates VoID statistical descriptions of RDF datasets. It also provides a Web interface to view and compare VoID descriptions. LODOP~\cite{Forchhammer:PROFILES:14} is a MapReduce framework to compute, optimize and benchmark dataset profiles. The main target for this framework is to optimize the runtime costs for Linked Data profiling. In~\cite{Kaafer:ESWC:13} authors calculate certain statistical information for the purpose of observing the dynamic changes in datasets.
+In the past, some work has tried to improve existing data schemas~\cite{ Miller:IEEE:03} but literature mainly covers automatic or semi-automatic labeling of anonymous data sets through Web extraction. Examples include~\cite{Reis:WWW:04} that automatically labels news articles with a tree structure analysis or~\cite{Wang:WWW:03} that defines heuristics based on distance and alignment of a data value and its label. These approaches are however restricting label candidates to Web content from which the data was extracted.~\cite{DaSilva:OTM:07} goes a step further by launching speculative queries to standard Web search engines to enlarge the set of potential candidate labels. More recently,~\cite{Limaye:VLDB:10} applies machine learning techniques to respectively annotate table rows as entities, columns as their types and pairs of columns as relationships, referring to the YAGO ontology. The work presented aims however at leveraging such annotations to assist semantic search queries construction and not at improving schema matching.
 
-\textbf{Topical Profiling}: Topical and categorical information facilitates dataset search and reuse. Topical profiling focuses on content-wise analysis at the instances and ontological levels. GERBIL~\cite{Usbeck:WWW:15} is a general entity annotation framework that provides machine processable output allowing efficient querying. In addition, there exist several entity annotation tools and frameworks~\cite{Cornolti:WWW:13} but none of those systems are designed specifically for dataset annotation. In~\cite{Frosterus:ESWC:11}, the authors created a semantic portal to manually annotate and publish metadata about both LOD and non-RDF datasets. In~\cite{Lalithsena:WI:13}, the authors automatically assigned Freebase domains to extracted instance labels of some of the LOD Cloud datasets. The goal was to provide automatic domain identification, thus enabling improving datasets clustering and categorization. In~\cite{Bohm:CIKM:12}, the authors extracted dataset topics by exploiting the graph structure and ontological information, thus removing the dependency on textual labels. In ~\cite{Fetahu:ESWC:14}, the authors generate VoID and VoL descriptions via a processing pipeline that extracts dataset topic models ranked on graphical models of selected DBpedia categories.
+With the emergence of the Semantic Web, new work in the area has tried to exploit Linked Data repositories. The authors of~\cite{Syed:WebSci:10} present techniques to automatically infer a semantic model on tabular data by getting top candidates from Wikitology~\cite{Finin:AAAI:09} and classifying them with the Google page ranking algorithm. Since the authors' goal is to export the resulting table data as Linked Data and not to improve schema matching, some columns can be labeled incorrectly, and acronyms and languages are not well handled~\cite{Syed:WebSci:10}. In the Helix project~\cite{Hassanzadeh:WWW:11}, a tagging mechanism is used to add semantic information on tabular data. A sample of instances values for each column is taken and a set of tags with scores are gathered from online sources such as Freebase\footnote{http://www.freebase.com/}. Tags are then correlated to infer annotations for the column. The mechanism is quite similar to ours but the resulting tags for the column are independent of the existing column name and sampling might not always provide a representative population of the instance values.
 
-\textbf{Dataset Search}: Dataset search can be done without relying on attached metadata (tags and categories). For example, there exist several approaches to create LOD indexes. In~\cite{Alexander:LDOW:09}, the authors used VoID descriptions to optimize query processing by determining relevant query-able datasets. In~\cite{Harth:WWW:10}, the authors created an approximate index structure (QTree) and an algorithm for answering conjunctive queries over Linked Data. SchemEX~\cite{Konrath:WebSemJorunal:12} is a stream-based approach leveraging type and property information of RDF instances to create schema-level indexes.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  Proposition  %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Semantic search engines like Sindice~\cite{Delbru:ESWC:10}, Swoogle~\cite{Ding:CIKM:04} and Watson~\cite{daquin:SemWebJorunal:11} help in entities lookup but they are not designed specifically for dataset search. In~\cite{Nikolov:JIST:11}, the authors utilized the sig.ma index~\cite{Tummarello:WebSemJorunal:10} to identify appropriate data sources for interlinking. Dataset search and discovery is currently done via data portals that rely on attached metadata to provide dataset search features as they run a Solr index on the metadata schemas. Having missing or inconsistent information will affect the search results quality.
+\section{Proposition}
 
-Although the above mentioned tools are able to provide various types of information about a dataset, there exists no approach that aggregates this information and is extensible to combine additional profiling tasks. To the best of our knowledge, this is the first effort towards extensible automatic validation and generation of descriptive dataset profiles.
+Google Refine (formerly Freebase Gridworks) is a tool designed to quickly and efficiently process, clean and eventually enrich large amounts of data with existing knowledge bases such as Freebase. The tool has however some limitations: it was initially designed for data cleansing on only one data set at a time, with no possibility to compose columns from different data sets. Moreover, Google Refine has some strict assumptions over the input of spreadsheets which makes it difficult to identify primitive and complex data types.
+The AMC is a novel framework that supports the construction and execution of new matching components or algorithms. AMC contains several matching components that can be plugged and used, like string matchers (Levenshtein, JaroWinkler\dots  etc.), data types matchers and path matchers. It also provides a set of combination and selection algorithms to produce optimized results (weighted average, average, sigmoid\dots  etc.).
+In this section, we describe in detail our framework allowing data mashup from several sources. We first present our framework architecture, then the activity flow and finally our approach to schema matching.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%  4. Profiling data portals  %%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  Framework Architecture  %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Profiling Data Portals}
-\label{section:framework}
-In this section, we provide an overview of Roomba's architecture and the processing steps for validating and generating dataset profiles. Figure \ref{fig:Roomba_architecture} shows the main steps which are the following: (i) data portal identification; (ii) metadata extraction; (iii) instance and resource extraction; (iv) profile validation (v) profile and report generation.
+\subsection{Framework Architecture}
+Google Refine makes use of a modular web application framework similar to OSGi called Butterfly\footnote{http://code.google.com/p/simile-butterfly/}. The server-side written in Java maintains states of the data (undo/redo history, long-running processes, etc.) while the client-side implemented in Javascript maintains states of the user interface (facets and their selections, view pagination, etc.). Communication between the client and server is done through REST web services.
 
-Roomba is built as a Command Line Interface (CLI) application using Node.js. Instructions on installing and running the framework are available on its public Github repository\footnote{\url{https://github.com/ahmadassaf/opendata-checker}}. The various steps are explained in detail below.
-
-\begin{figure}[!ht]
+\begin{figure}[ht!]
   \centering
-  \includegraphics[scale=0.4]{figure-1_architecture.png}
-  \caption{Processing pipeline for validating and generating dataset profiles}
-  \label{fig:Roomba_architecture}
+    \includegraphics[scale=0.6]{image1.eps}
+  \caption{Framework Architecture}
+  \label{fig:framework_architecture}
 \end{figure}
 
-\subsection{Data Portal Identification}
-Data portals can be considered as data access points providing tools to facilitate data publishing, sharing, searching and visualization. CKAN\footnote{\url{http://ckan.org}} is the world's leading open-source data portal platform powering web sites like DataHub, Europe's Public Data and the U.S Government's open data. Modeled on CKAN, DKAN\footnote{\url{http://nucivic.com/dkan/}} is a standalone Drupal distribution that is used in various public data portals as well. Socrata\footnote{\url{http://www.socrata.com}} helps public sector organizations improve data-driven decision making by providing a set of solutions including an open data portal. In addition to these tradition data portals, there is a set of tools that allow exposing data directly as RESTful APIs like Datatank\footnote{\url{http://thedatatank.com}} and Database-to-API\footnote{\url{https://github.com/project-open-data/db-to-api}}.
+As depicted in \ref{fig:framework_architecture}, our framework leverages Google Refine and defines three new Butterfly modules to extend the server's functionality (namely Match, Merge and Aggregate modules) and one JavaScript extension to capture user interaction with these new data matching capabilities.
 
-Roomba should be extensible to any data portal. Since every portal has its own API and data model, identifying the software powering data portals is a vital first step. We rely on several Web scraping techniques in the identification process which includes a combination of the following:
-\begin{itemize}
-  \item \textbf{URL inspection}: Various CKAN based portals are hosted on subdomains of the \texttt{\url{http://ckan.net}}. For example, CKAN Brazil (\texttt{\url{http://br.ckan.net}}). Checking the existence of certain URL patterns can detect such cases.
-  \item \textbf{Meta tags inspection}: The \texttt{<meta>} tag provides metadata about the HTML document. They are used to specify page description, keywords, author, etc. Inspecting the \texttt{content} attribute can indicate the type of the data portal. We use CSS selectors to check the existence of these meta tags. An example of a query selector is \texttt{meta[content*=``ckan'']} (all meta tags with the attribute content containing the string $CKAN$). This selector can identify CKAN portals whereas the \texttt{meta[content*=``Drupal'']} can identify DKAN portals.
-  \item \textbf{Document Object Model (DOM) inspection}: Similar to the meta tags inspection, we check the existence of certain DOM elements or properties. For example, CKAN powered portals will have DOM elements with class names like \texttt{ckan-icon} or \texttt{ckan-footer-logo}. A CSS selector like \texttt{.ckan-icon} will be able to check if a DOM element with the class name \texttt{ckan-icon} exists.
-  The list of elements and properties to inspect is stored in a separate configurable object for each portal. This allows the addition and removal of elements as deemed necessary.
-\end{itemize}
-The identification process for each portal can be easily customized by overriding the default function. Moreover, adding or removing steps from the identification process can be easily configured.
+\subsection{Activity Flow}
+This section presents the sequence of activities and interdependencies between these activities when using our framework. \ref{fig:Activity_workflow} gives an outline of these activities.
 
-After those preliminary checks, we query one of the portal's API endpoints. For example, DataHub is identified as CKAN, so we will query the API endpoint on \texttt{\url{http://datahub.io/api/action/package\_list}}. A successful request will list the names of the site's datasets, whereas a failing request will signal a possible failure of the identification process.
-
-\subsection{Metadata Extraction}
-Data portals expose a set of information about each dataset as metadata. The model used varies across portals. However, a standard model should contain information about the dataset's title, description, maintainer email, update and creation date, etc. We divided the metadata information into the following types:
-
-\textbf{General information}: General information about the dataset. e.g., title, description, ID, etc. This general information is manually filled by the dataset owner. In addition to that, tags and group information is required for classification and enhancing dataset discoverability. This information can be entered manually or inferred modules plugged into the topical profiler.
-
-\textbf{Access information}: Information about accessing and using the dataset. This includes the dataset URL, license information i.e., license title and URL and information about the dataset's resources. Each resource has as well a set of attached metadata e.g., resource name, URL, format, size.
-
-\textbf{Ownership information}: Information about the ownership of the dataset. e.g., organization details, maintainer details, author. The existence of this information is important to identify the authority on which the generated report and the newly corrected profile will be sent to.
-
-\textbf{Provenance information}: Temporal and historical information on the dataset and its resources. For example, creation and update dates, version information, version, etc. Most of this information can be automatically filled and tracked.
-
-Building a standard metadata model is not the scope of this paper, and since we focus on CKAN-based portals, we validate the extracted metadata against the CKAN standard model\footnote{\url{http://demo.ckan.org/api/3/action/package\_show?id=adur\_district\_spending}}.
-
-After identifying the underlying portal software, we perform iterative queries to the API in order to fetch datasets metadata and persist them in a file-based cache system. Depending on the portal software, we can issue specific extraction jobs. For example, in CKAN-based portals, we are able to crawl and extract the metadata of a specific dataset, all the datasets in a specific group (e.g. LOD cloud) or all the datasets in the portal.
-
-\subsection{Instance and Resource Extraction}
-From the extracted metadata we are able to identify all the resources associated with that dataset. They can have various types like a SPARQL endpoint, API, file, visualization, etc. However, before extracting the resource instance(s) we perform the following steps:
-\begin{itemize}
-  \item \textbf{Resource metadata validation and enrichment}: Check the resource attached metadata values. Similar to the dataset metadata, each resource should include information about its mimetype, name, description, format, valid de-referenceable URL, size, type and provenance. The validation process issue an HTTP request to the resource and automatically fills up various missing information when possible, like the mimetype and size by extracting them from the HTTP response header. However, missing fields like name and description that needs manual input are marked as missing and will appear in the generated summary report.
-  \item \textbf{Format validation}: Validate specific resource formats against a linter or a validator. For example, node-csv\footnote{https://github.com/wdavidw/node-csv} for CSV files and n3\footnote{\url{https://github.com/RubenVerborgh/N3.js}} to validate N3 and Turtle RDF serializations.
-\end{itemize}
-
-Considering that certain datasets contain large amounts of resources and the limited computation power of some machines on which the framework might run on, a sampler module can be introduced to execute various sample-based strategies detailed as they were found to generate accurate results even with comparably small sample size of 10\%. These strategies introduced in~\cite{Fetahu:ESWC:14} are:
-\begin{itemize}
-  \item \textbf{Random Sampling}: Randomly selects resources instances.
-  \item \textbf{Weighted Sampling}: Weighs each resources as the ratio of the number of datatype properties used to define a resource over the maximum number of datatype properties over all the datasets resources.
-  \item \textbf{Resource Centrality Sampling}: Weighs each resource as the ration of the number of resource types used to describe a particular resource divided by the total number of resource types in the dataset. This is specific and important to RDF datasets where important concepts tend to be more structured and linked to other concepts.
-\end{itemize}
-
-However, the sampler is not restricted only to these strategies. Strategies like those introduced in~\cite{Leskovec:KDD:06} can be configured and plugged in the processing pipeline.
-
-\subsection{Profile Validation}
-A dataset profile should include descriptive information about the data examined. In our framework, we have identified three main categories of profiling information. However, the extensibility of our framework allows for additional profiling techniques to be plugged in easily (i.e. a quality profiling module reflecting the dataset quality). In this paper, we focus on the task of metadata profiling.
-
-Metadata validation process identifies missing information and the ability to automatically correct them. Each set of metadata (general, access, ownership and provenance) is validated and corrected automatically when possible. Each profiler task has a set of metadata fields to check against. The validation process check if each field is defined and if the value assigned is valid.
-
-There exist many special validation steps for various fields. For example, the email addresses and urls should be validated to ensure that the value entered is syntactically correct. In addition to that, for urls, we issue an HTTP \texttt{HEAD} request in order to check if that URL is reachable. We also use the information contained in a valid \texttt{content-header} response to extract, compare and correct some resources metadata values like \texttt{mimetype} and \texttt{size}.
-
-Despite the legal issues surrounding Linked Data licenses~\cite{Prateek:Misc:13}, it is still considered a gold mine for organizations who are trying to leverage external data sources in order to produce more informed business decisions~\cite{Boyd:Article:11}. In~\cite{Manyika:Report:13}, the authors see the potential economic effect unfolding in education, transportation, consumer products, electricity, oil and gas, health care and consumer finance. They estimate the potential annual value enabled by Open Data in these domains to be 3 trillion US Dollars across seven domains. As a result, validating license related information is vital. However, from our experiments, we found out that datasets' license information is noisy. The license names if found are not standardized. For example, Creative Commons CCZero can be also CC0 or CCZero. Moreover,the license URI if found and if de-referenceable can point to different reference knowledge bases e.g., \texttt{\url{http://opendefinition.org}}. To overcome this issue, we have manually created a mapping file standardizing the set of possible license names and the reference knowledge base\footnote{\url{https://github.com/ahmadassaf/opendata-checker/blob/master/util/licenseMappings.json}}. In addition, we have also used the open source and knowledge license information\footnote{\url{https://github.com/okfn/licenses}} to normalize the license information and add extra metadata like the domain, maintainer and open data conformance.
-
-\lstset{frame=single, caption={License mapping file sample}, label=json, captionpos=b}
-\begin{lstlisting}[language=json]
-{
-	"license_id" : ["ODC-PDDL-1.0"],
-	"disambiguations" : ["Open Data Commons Public Domain Dedication and License (PDDL)"]
-},
-{
-	"license_id" : ["CC-BY-SA-4.0", "CC-BY-SA-3.0"],
-	"disambiguations" : ["cc-by-sa", "CC BY-SA","Creative Commons Attribution Share-Alike"]
-}
-\end{lstlisting}
-
-% \textbf{Statistical profiling}
-% There exist a set of tools designed specifically to provide statistical information about a dataset (see section 2). Providing comprehensive statistical information about a dataset isn't in the scope of this paper. However, to show the extensibility of our framework we provide a simple RDF statistical profiler module that can be easily extended and configured. The information provided for each class is the number: triples, distinct objects, distinct literals, distinct IRI reference objects, distinct blank nodes objects, distinct subjects, distinct IRI reference subjects and distinct blank nodes subjects.
-
-% \textbf{Topical profiling}
-% Similar to the statistical profiler, a detailed survey of the existing tools can be found in the related work section. However, we implement a very basic topical profiler by applying Named Entity Disambiguation (NED) on the textual description and title of a dataset using DBpedia Spotlight~\cite{Mendes:ICS:11}.
-
-\subsection{Profile and Report Generation}
-The validation process highlights the missing information and presents them in a human readable report. The report can be automatically sent to the dataset maintainer email if exists in the metadata. In addition to the generated report, the enhanced profiles are represented in JSON using the CKAN data model and are publicly available\footnote{\url{https://github.com/ahmadassaf/opendata-checker/tree/master/results}}.
-
-Data portal administrators need an overall knowledge of the portal datasets and their properties. Our framework has the ability to generate numerous reports of all the datasets by passing formatted queries. There are two main sets of aggregation tasks that can be run:
-\begin{itemize}
-  \item \textbf{Aggregating meta-field values}: Passing a string that corresponds to a valid field in the metadata. The field can be flat like \texttt{license\_title} (aggregates all the license titles used in the portal or in a specific group) or nested like \texttt{resource>resource\_type} (aggregates all the resources types for all the datasets). Such reports are important to have an overview of the possible values used for each metadata field.
-  \item \textbf{Aggregating key:object meta-field values}: Passing two meta-field values separated by a colon \texttt{:} e.g., \texttt{resources>resource\_type:resources>name}. These reports are important as you can aggregate the information needed when also having the set of values associated to it printed.
-\end{itemize}
-
-For example, the meta-field value query \texttt{resource>resource\_type} run against the LODCloud group will result in an array containing $[file,api,documentation ...]$ values. These are all the resource types used to describe all the datasets of the group. However, to be able to know also what are the datasets containing resources corresponding to each type, we issue a key:object meta-field query \texttt{resource>resource\_type:name}. The result will be a JSON object having the \texttt{resource\_type} as the key and an array of corresponding datasets titles that has a resource of that type.
-
-\lstset{basicstyle=\scriptsize, backgroundcolor=\color{white}, breaklines=true, frame=single, caption={Excerpt of the DBpedia validation report}, label=report, captionpos=b}
-\begin{lstlisting}
- =======================================================================
-                          Metadata Report
- =======================================================================
-  group information is missing. Check organization information as they can be mixed sometimes
-  organization_image_url field exists but there is no value defined
- =======================================================================
-                          Tag Statistics
- =======================================================================
-  There is a total of: 21 [undefined] vocabulary_id fields  100.00%
- =======================================================================
-                          License Report
- =======================================================================
-  License information has been normalized !
- =======================================================================
-                        Resource Statistics
- =======================================================================
-  There is a total of: 10 [missing] url-type fields  100.00%
-  There is a total of: 9 [missing] created fields  90.00%
-  There is a total of: 10 [undefined] cache_last_updated fields  100.00%
-  There is a total of: 10 [undefined] size fields  100.00%
-  There is a total of: 10 [undefined] hash fields  100.00%
-  There is a total of: 10 [undefined] mimetype_inner fields  100.00%
-  There is a total of: 7 [undefined] mimetype fields  70.00%
-  There is a total of: 10 [undefined] cache_url fields  100.00%
-  There is a total of: 6 [undefined] name fields  60.00%
-  There is a total of: 9 [undefined] webstore_url fields  90.00%
-  There is a total of: 9 [undefined] last_modified fields  90.00%
-  There is one [undefined] format field  10.00%
- =======================================================================
-                   Resource Connectivity Issues
- =======================================================================
-  There are 2 connectivity issues with the following URLs:
-    - \url{http://dbpedia.org/void/Dataset}
- =======================================================================
-                     Un-Reachable URLs Types
- =======================================================================
-  There are: 1 unreachable URLs of type [file]
-\end{lstlisting}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%  5. Experiments and Evaluation  %%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{Experiments and Evaluation}
-\label{section:roomba_experiment}
-In this section, we provide the experiments and evaluation of the proposed framework. All the experiments are reproducible by our tool and their results are available in its Github repository. A CKAN dataset metadata describes four main sections in addition to the core dataset's properties. These sections are:
-\begin{itemize}
-  \item \textbf{Resources}: The distributable parts containing the actual raw data. They can come in various formats (JSON, XML, RDF, etc.) and can be downloaded or accessed directly (REST API, SPARQL endpoint).
-  \item \textbf{Tags}: Provide descriptive knowledge on the dataset content and structure. They are used mainly to facilitate search and reuse.
-  \item \textbf{Groups}: A dataset can belong to one or more group that share common semantics. A group can be seen as a cluster or a curation of datasets based on shared categories or themes.
-  \item \textbf{Organizations}: A dataset can belong to one or more organization controlled by a set of users. Organizations are different from groups as they are not constructed by shared semantics or properties, but solely on their association to a specific administration party.
-\end{itemize}
-
-Each of these sections contains a set of metadata corresponding to one or more type (general, access, ownership and provenance). For example, a dataset resource will have general information such as the resource name, access information such as the resource url and provenance information such as creation date. The framework generates a report aggregating all the problems in all these sections, fixing field values when possible. Errors can be the result of missing metadata fields, undefined field values or field value errors (e.g. unreachable URL or incorrect email addresses).
-
-\subsection{Experimental Setup}
-We ran our tool on two CAKN-based data portals. The first one is datahub.io targeting specifically the LOD cloud group. The current state of the LOD cloud report~\cite{Schmachtenberg:ISWC:14} indicates that the LOD cloud contains 1014 datasets. They were harvested via a LDSpider crawler~\cite{Isele:ISWC:10} seeded with 560 thousands URIs. Roomba, on the other hand, fetches datasets hosted in data portals where datasets have attached relevant metadata. As a result, we relied on the information provided by the Datahub CKAN API. Examining the tags available, we found two candidate groups. The first one tagged with ``lodcloud'' returned 259 datasets, while the second one tagged with ``lod'' returned only 75 datasets. After manually examining the two lists, we found out the datasets grouped with the tag ``lodcloud'' are the correct ones. To qualify other CKAN-based portals for the experiments, we use \url{http://dataportals.org/} which contains a comprehensive list of Open Data portals from around the world. In the end, we chose the Amsterdam data portal\footnote{\url{http://data.amsterdamopendata.nl/}}. The portal was commissioned in 2012 by the Amsterdam Economic Board Open Data Exchange (ODE) and covers a wide range of information domains (energy, economy, education, urban development, etc.) about Amsterdam metropolitan region.
-
-We ran our tool on two CAKN-based data portals. The first is the Datahub targeting specifically the LOD cloud group. The current state of the LOD cloud report~\cite{Schmachtenberg:ISWC:14} indicates that the LOD cloud contains 1014 datasets. They were harvested via an LDSpider crawler~\cite{Isele:ISWC:10} seeded with 560 thousands URIs. Roomba on the other hand, fetches datasets hosted in data portals where datasets have attached relevant metadata. As a result, we relied on the information provided by the Datahub CKAN API. Examining the tags available, we found two candidate groups. The first tagged with ``lodcloud'' returned 259 datasets, while the second tagged with ``lod'' returned only 75 datasets. After manually examining the two lists, we found out the datasets grouped with the tag ``lodcloud'' are the correct ones. To qualify other CKAN-based portals for the experiments, we used \texttt{dataportals.org}, which contains a comprehensive list of Open Data portals from around the world. In the end, we chose the Amsterdam data portal \footnote{\url{http://data.amsterdamopendata.nl/}}. The portal was commissioned in 2012 by the Amsterdam Economic Board Open Data Exchange (ODE), and covers a wide range of information domains (energy, economy, education, urban development, etc.) about Amsterdam metropolitan region.
-
-We ran the Roomba instance and resource extractors in order to cache the metadata files for these datasets locally and ran the validation process. The experiments were executed on a 2.6 Ghz Intel Core i7 processor with 16GB of DDR3 memory machine. The approximate execution time alongside the summary of the datasets' properties are presented in table~\ref{tab:data_portals_experiments}.
-
-\begin{table}[ht]
-\centering
-\begin{tabular}{|l|c|c|c|c|}
-\hline
-Data Portal         & \multicolumn{1}{l|}{No. Datasets} & \multicolumn{1}{l|}{No. Groups} & \multicolumn{1}{l|}{No. Resources} & \multicolumn{1}{l|}{Processing Time} \\ \hline
-LOD Cloud           & 259                               & N/A                            & 1068                               & ~140 mins                            \\ \hline
-Amsterdam Open Data & 172                               & 18                             & 480                                & ~35 mins                             \\ \hline
-\end{tabular}
-\caption{Summary of the experiments details}
-\label{tab:data_portals_experiments}
-\end{table}
-
-In our evaluation, we focused on two aspects: i)\textit{profiling correctness} which manually assesses the validity of the errors generated in the report, and ii)\textit{profiling completeness} which assesses if the profilers cover all the errors in the datasets metadata.
-
-\subsection{Profiling Correctness}
-To measure profile correctness, we need to make sure that the issues reported by Roomba are valid on the dataset, group and portal levels.
-
-On the dataset level, we choose three datasets from both the LOD Cloud and the Amsterdam data portal. The datasets details are shown in table \ref{tab:datases_experiment}.
-\begin{table}[ht]
-\centering
-\footnotesize\setlength{\tabcolsep}{1.5pt}
-\begin{tabular}{|l|c|c|c|c|}
-\hline
-\textbf{Dataset Name}          & \multicolumn{1}{l|}{\textbf{Data Portal}} & \multicolumn{1}{l|}{\textbf{Group ID}} & \multicolumn{1}{l|}{\textbf{Resources}} & \multicolumn{1}{l|}{\textbf{Tags}} \\ \hline
-dbpedia                        & Datahub                                   & lodcloud                               & 10                                      & 21                                 \\ \hline
-event-media                    & Datahub                                   & lodcloud                               & 9                                       & 15                                 \\ \hline
-bbc-music                      & Datahub                                   & lodcloud                               & 2                                       & 14                                 \\ \hline
-bevolking\_cijfers\_amsterdam  & Amsterdam                                 & bevolking                              & 6                                       & 12                                 \\ \hline
-bevolking-prognoses-amsterdam  & Amsterdam                                 & bevolking                              & 1                                       & 3                                  \\ \hline
-religieuze\_samenkomstlocaties & Amsterdam                                 & bevolking                              & 1                                       & 8                                  \\ \hline
-\end{tabular}
-\caption{Datasets chosen for the correctness evaluation}
-\label{tab:datases_experiment}
-\end{table}
-
-To measure the profiling correctness on the groups level, we selected four groups from the Amsterdam data portal containing a total of 25 datasets. The choice was made to cover groups in various domains that contain a moderate number of datasets that can be checked manually (between 3-9 datasets). Table \ref{tab:groups_experiment} summarizes the groups chosen for the evaluation.
-
-\begin{table}[ht]
-\centering
-\begin{tabular}{|l|c|c|c|c|}
-\hline
-\textbf{Group Name}      & \textbf{Domain}        & \multicolumn{1}{l|}{\textbf{Datasets}} & \multicolumn{1}{l|}{\textbf{Resources}} & \multicolumn{1}{l|}{\textbf{Tags}} \\ \hline
-bestuur-en-organisatie   & Management             & 9                                      & 45                                      & 101                                \\ \hline
-bevolking                & Population             & 3                                      & 8                                       & 23                                 \\ \hline
-geografie                & Geography              & 8                                      & 16                                      & 56                                 \\ \hline
-openbare-orde-veiligheid & Public Order \& Safety & 5                                      & 19                                      & 34                                 \\ \hline
-\end{tabular}
-\caption{Groups chosen for the correctness evaluation}
-\label{tab:groups_experiment}
-\end{table}
-
-After running Roomba and examining the results on the selected datasets and groups, we found out that our framework provides 100\% correct results on the individual dataset level and on the aggregation level over groups. Since our portal level aggregation is extended from the group aggregation, we can infer that the portal level aggregation also produces complete correct profiles. However, the lack of a standard way to create and manage collections of datasets was the source of some errors when comparing the results from these two portals. For example, in Datahub, we noticed that all the datasets \texttt{groups} information were missing, while in the Amsterdam Open Data portal, all the \texttt{organisation} information was missing. Although the error detection is correct, the overlap in the usage of group and organization can give a false indication about the metadata quality.
-
-\subsection{Profiling Completeness}
-We analyzed the completeness of our framework by manually constructing a set of profiles that act as a golden standard. These profiles cover the range of uncommon problems that can occur in a certain dataset\footnote{\url{https://github.com/ahmadassaf/opendata-checker/tree/master/test}}. These errors are:
-\begin{itemize}
- \item Incorrect \texttt{mimetype} or \texttt{size} for resources;
- \item Invalid number of tags or resources defined;
- \item Check if the license information can be normalized via the \texttt{license\_id} or the \texttt{license\_title} as well as the normalization result;
- \item Syntactically invalid \texttt{author\_email} or \texttt{maintainer\_email}.
-\end{itemize}
-
-After running our framework at each of these profiles, we measured the completeness and correctness of the results. We found out that our framework covers indeed all the metadata problems that can be found in a CKAN standard model correctly.
-
-
-\section{Experiments and Evaluation}
-\label{section:experiment}
-In this section, we describe our experiments when running the Roomba tool on the LOD cloud. All the experiments are reproducible by our tool and their results are available on its Github repository at \url{https://github.com/ahmadassaf/opendata-checker}.
-
-\subsection{Experimental Setup}
-The current state of the LOD cloud report~\cite{Schmachtenberg:ISWC:14} indicates that there are more than 1014 datasets available. These datasets have been harvested by the LDSpider crawler~\cite{Isele:ISWC:10} seeded with 560 thousands URIs. However, since Roomba requires the datasets metadata to be hosted in a data portal where either the dataset publisher or the portal administrator can attach relevant metadata to it, we rely on the information provided by the Datahub CKAN API. We consider two possible groups: the first one tagged with ``lodcloud'' returns 259 datasets, while the second one tagged with ``lod'' returns only 75 datasets. We manually inspect these two lists and find out that the API result for the tag ``lodcloud'' is the correct one. The 259 datasets contain a total of 1068 resources. We run the instance and resource extractor from Roomba in order to cache the metadata files for these datasets locally and we launch the validation process which takes around two and a half hours on a 2.6 Ghz Intel Core i7 processor with 16GB of DDR3 memory machine.
-
-\subsection{Results and Evaluation}
-CKAN dataset metadata includes three main sections in addition to the core dataset's properties. Those are the \textbf{groups}, \textbf{tags} and \textbf{resources}. Each section contains a set of metadata corresponding to one or more metadata type. For example, a dataset resource will have general information such as the resource name, access information such as the resource url and provenance information such as creation date. The framework generates a report aggregating all the problems in all these sections, fixing field values when possible. Errors can be the result of missing metadata fields, undefined field values or field value errors (e.g. unreachable URL or incorrect email address).
-
-Figures \ref{fig:metadata_noise_by_section} and \ref{fig:metadata_noise_by_metadata_type} show the percentage of errors found in metadata fields by section and by information type respectively. We observe that the most erroneous information for the dataset core information is related to ownership since this information is missing or undefined for 41\% of the datasets. Datasets resources have the poorest metadata. 64\% of the general metadata, all the access information and 80\% of the provenance information contain missing or undefined values. Table \ref{tab:top_metadata_fields_errors} shows the top metadata fields errors for each metadata information type.
-
-\begin{table}
-\begin{center}
-\begin{tabular}{|c|c|c|c|c|c|}
-\hline
-\multicolumn{2}{|c|}{Metadata Field} & Error \% & Section & Error Type & Auto Fix\tabularnewline
-\hline
-\hline
-\multirow{6}{*}{General } & group & 100\% & Dataset & Missing & -\tabularnewline
-\cline{2-6}
- & vocabulary\_id & 100\% & Tag & Undefined & -\tabularnewline
-\cline{2-6}
- & url-type & 96.82\% & Resource & Missing & -\tabularnewline
-\cline{2-6}
- & mimetype\_inner & 95.88\% & Resource & Undefined & Yes\tabularnewline
-\cline{2-6}
- & hash & 95.51\% & Resource & Undefined & Yes\tabularnewline
-\cline{2-6}
- & size & 81.55\% & Resource & Undefined & Yes\tabularnewline
-\hline
-\multirow{5}{*}{Access } & cahce\_url & 96.9\% & Resource & Undefined & -\tabularnewline
-\cline{2-6}
- & webstore\_url & 91.29\% & Resource & Undefined & -\tabularnewline
-\cline{2-6}
- & license\_url & 54.44\% & Dataset & Missing & Yes\tabularnewline
-\cline{2-6}
- & url & 30.89\% & Resource & Unreachable & -\tabularnewline
-\cline{2-6}
- & license\_title & 16.6\% & Dataset & Undefined & Yes\tabularnewline
-\hline
-\multirow{5}{*}{Provenance } & cache\_last\_updated & 96.91\% & Resource & Undefined & Yes\tabularnewline
-\cline{2-6}
- & webstore\_last\_updated & 95.88\% & Resource & Undefined & Yes\tabularnewline
-\cline{2-6}
- & created & 86.8\% & Resource & Missing & Yes\tabularnewline
-\cline{2-6}
- & last\_modified & 79.87\% & Resource & Undefined & Yes\tabularnewline
-\cline{2-6}
- & version & 60.23\% & Dataset & Undefined & -\tabularnewline
-\hline
-\multirow{5}{*}{Ownership } & maintainer\_email & 55.21\% & Dataset & Undefined & -\tabularnewline
-\cline{2-6}
- & maintainer & 51.35\% & Dataset & Undefined & -\tabularnewline
-\cline{2-6}
- & author\_email & 15.06\% & Dataset & Undefined & -\tabularnewline
-\cline{2-6}
- & organization\_image\_url & 10.81\% & Dataset & Undefined & -\tabularnewline
-\cline{2-6}
- & author & 2.32\% & Dataset & Undefined & -\tabularnewline
-\hline
-\end{tabular}
-\captionof{table}{Top metadata fields error \% by type}
-\label{tab:top_metadata_fields_errors}
-\end{center}
-\end{table}
-
-We notice that 42.85\% of the top metadata problems can be fixed automatically. Among them, 44.44\% of these problems can be fixed by our tool while the others need tools that are plugged into the data portal. We further present and discuss the results grouped by metadata information type in the following sub-sections.
-
-\subsection{General information}
-34 datasets (13.13\%) do not have valid \texttt{notes} values. \texttt{tags} information for the datasets are complete except for the \texttt{vocabulary\_id} as this is missing from all the datasets' metadata. All the datasets \texttt{groups} information are missing \texttt{display\_name, description, title, image\_display\_url, id, name}. After manual examination, we observe a clear overlap between group and organization information. Many datasets like \texttt{event-media} use the organization field to show group related information (being in the LOD Cloud) instead of the publishers details.
-
-\subsection{Access information}
-25\% of the datasets access information (being the dataset URL and any URL defined in its groups) have issues: generally missing or unreachable URLs. 3 datasets (1.15\%) do not have a URL defined (tip, uniprot\-databases, uniprot\-citations) while 45 datasets (17.3\%) defined URLs are not accessible at the time of writing this paper. One dataset does not have resources information (bio2rdf\-chebi) while the other datasets have a total of 1068 defined resources.
-
-On the datasets resources level, we notice wrong or inconsistent values in the \texttt{size} and \texttt{mimetype} fields. However, 44 datasets have valid \texttt{size} field values and 54 have valid \texttt{mimetype} field values but they were not reachable, thus providing incorrect information. 15 fields (68\%) of all the other access metadata are missing or have undefined values. Looking closely, we notice that most of these problems can be easily fixed automatically by tools that can be plugged to the data portal. For example, the top six missing fields are the \texttt{cache\_last\_updated}, \texttt{cache\_url}, \texttt{url\-type}, \texttt{webstore\_last\_updated}, \texttt{mimetype\-\_inner} and \texttt{hash} which can be computed and filled automatically. However, the most important missing information which require manual entry are the dataset's \texttt{name} and \texttt{description} which are missing from 817 (76.49\%) and 98 (9.17\%) resources respectively. A total of 334 resources (31.27\%) URLs were not reachable, thus affecting highly the availability of these datasets. CKAN resources can be of various predefined types $(file, file.upload, api, visualization, code and documentation)$. Roomba also breaks down these unreachable resources according to their types: 211 (63.17\%) resources do not have valid \texttt{resource\_type}, 112 (33.53\%) are files, 8 (2.39\%) a re metadata and one (0.029\%) are example and documentation types.
-
-To have more details about the resources URL types, we created a $key:object meta-field values$ group level report on the LOD cloud with \texttt{resources>\\format:title}. This will aggregate the resources format information for each dataset. We observe that only 161 (62.16\%) of the datasets valid URLs have SPARQL endpoints defined using the \texttt{api/sparql} resource format. 92.27\% provided RDF example links and 56.3\% provided direct links to RDF down-loadable dumps.
-
-The noisiest part of the access metadata is about license information. A total of 43 datasets (16.6\%) does not have a defined \texttt{license\_title} and \texttt{license\_id} fields, where 141 (54.44\%) have missing \texttt{license\_url} field.
-
-\begin{figure}
-\parbox{7cm}{\hspace*{-.2in}
-\includegraphics[width=.95\linewidth]{metadata_noise_by_section.png}
-\captionsetup{textfont=small,singlelinecheck=off,justification=centering}
-\caption{Error \% by section}
-\label{fig:metadata_noise_by_section}}
-\qquad
-\begin{minipage}{7cm}\hspace*{-.6in}
-\includegraphics[width=.95\linewidth]{metadata_noise_by_metadata_type.png}
-\captionsetup{textfont=small,singlelinecheck=off,justification=raggedright}
-\caption{Error \% by information type}
-\label{fig:metadata_noise_by_metadata_type}
-\end{minipage}
+\begin{figure}[ht!]
+  \centering
+    \includegraphics[scale=0.4]{image3.eps}
+  \caption{Activity Workflow}
+  \label{fig:Activity_workflow}
 \end{figure}
 
-\subsection{Ownership information}
-Ownership information is divided into direct ownership (author and maintainer) and organization information. Four fields (66.66\%) of the direct ownership information are missing or undefined. The breakdown for the missing information is: 55.21\% \texttt{maintainer\_email}, 51.35\% \texttt{maintainer}, 15.06\% \texttt{author\_email}, 2.32\% \texttt{author}. Moreover, our framework performs checks to validate existing email values. 11 (0.05\%) and 6 (0.05\%) of the defined \texttt{author\_email} and \texttt{maintainer\_email} fields are not valid email addresses respectively. For the organization information, two field values (16.6\%) were missing or undefined. 1.16\% of the \\\texttt{organization\_description} and 10.81\% of the \texttt{organization\-\_image\_url} information with two out of these URLs are unreachable.
+The data sets to match can be contained in files (e.g. csv, Excel spreadsheets, etc.) or defined in Google Refine projects (step 1). The inputs for the match module are the source and target files and/or projects that contain the data sets. These projects are imported into the internal data structure (called schema) of the AMC~\cite{Peukert:ICDE:11} (step 2). The AMC then uses a set of built-in algorithms to calculate similarities between the source and target schemas on an element basis, i.e. column names in the case of spreadsheets or relational databases. The output is a set of similarities, each containing a triple consisting of source schema element, target element, and similarity between the two.
 
-\subsection{Provenance information}
-80\% of the resources provenance information are missing or undefined. However, most of the provenance information (e.g. \texttt{metadata\_created, metadata\_modified}) can be computed automatically by tools plugged into the data portal. The only field requiring manual entry is the \texttt{version} field which was found to be missing in 60.23\% of the datasets.
+These results are presented to the user in tabular form (step 3) such that s/he can check, correct, and potentially complete the mappings (step 4).
 
-\subsection{Enriched Profiles}
-Roomba can automatically fix, when possible, the license information (title, url and id) as well as the resources mimetype and size.
+Once the user has completed the matching of columns, the merge information is sent back to Google Refine, which calls the merge module. This module creates a new project, which contains a union of the two projects where the matched columns of the target project are appended to the corresponding source columns (step 5). The user can then select the columns that s/he wants to merge and visualize by dragging and dropping the required columns onto the fields that represent the x and y axes (step 6).
 
-20 resources (1.87\%) have incorrect \texttt{mimetype} defined, while 52 resources (4.82\%) have incorrect \texttt{size} values. These values have been automatically fixed based on the values defined in the HTTP response header.
+Once the selection has been performed, the aggregation module merges the filtered columns and the result can then be visualized (step 7). As aggregation operations can quickly become complex, our default aggregation module can be replaced by more advanced analytics on tabular data. The integration of such a tool is part of future work.
 
-We have noticed that most of the issues surrounding license information are related to ambiguous entries. To resolve that, we manually created a mapping file\footnote{\url{https://github.com/ahmadassaf/opendata-checker/blob/master/util/licenseMappings.json}} standardizing the set of possible license names and urls using the open source and knowledge license information\footnote{\url{https://github.com/okfn/licenses}}. As a result, we managed to normalize 123 (47.49\%) of the datasets' license information.
+\subsection{Schema Matching }
+Schema matching is typically used in business to business integration, metamodel matching, as well as Extract, Transform, Load (ETL) processes. For non-IT specialists the typical way of comparing financial data from two different years or quarters, for example, would be to copy and paste the data from one Excel spreadsheet into another one, thus creating reduncancies and potentially introducing copy-and-paste errors. By using schema matching techniques it is possible to support this process semi-automatically, i.e. to determine which columns are similar and propose them to the user for integration. This integration can then be done with appropriate business intelligence tools to provide visualisations.
 
-To check the impact of the corrected fields, we seeded Roomba with the enriched profiles. Since Roomba uses file based cache system, we simply replaced all the datasets \texttt{json} files in the \texttt{\char`\\ cache\char`\\ datahub.io\char`\\ datasets} folder with those generated in \texttt{\char`\\ cache\char`\\ datahub.io\char`\\ enriched}. After running Roomba again on the enriched profiles, we observe that the errors percentage for missing \texttt{size} fields decreased by 32.02\% and for \texttt{mimetype} fields by 50.93\%. We also notice that the error percentage for missing \texttt{license\_urls} decreased by 2.32\%.
+One of the problems in performing the integration is the quality of data. The columns may contain data that is noisy or incorrect. There may also be no column headers to provide suitable information for matching. A number of approaches exploit the similarities of headers or similarities of types of column data. We propose a new approach that exploits semantic rich typing provided by popular datasets from the Linked Data cloud.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%  6. Conclusion and Future Work  %%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Data Reconciliation}
+Reconciliation enables entity resolution, i.e. matching cells with corresponding typed entities in case of tabular data. Google Refine already supports reconciliation with Freebase but requires confirmation from the user. For medium to large data sets, this can be very time-consuming. To reconcile data, we therefore first identify the columns that are candidates for reconciliation by skipping the columns containing numerical values or dates. We then use the Freebase search API to query for each cell of the source and target columns the list of typed entities candidates. Results are cached in order to be retrieved by our similarity algorithms.
+
+
+\subsection{Matching Unnamed and Untyped Columns}
+The AMC has the ability to combine the results of different matching algorithms. Its default built-in matching algorithms work on column headers and produce an overall similarity score between the compared schema elements. It has been proven that combining different algorithms greatly increases the quality of matching results~\cite{Peukert:ICDE:12}\cite{conf/wise/StracciaT05}. However, when headers are missing or ambiguous, the AMC can only exploit domain intersection and inclusion algorithms based on column data. We have therefore implemented three new similarity algorithms that leverage the rich types retrieved from Linked Data in order to enhance the matching results of unnamed or untyped columns. They are presented below.
+
+
+\subsubsection{Cosine Similarity}
+The first algorithm that we implemented is based on vector algebra. Let $v$ be the vector of ranked candidate types returned by Freebase for each cell value of a column. Then:
+\[v:=\sum^K_{i=1}{a_i}*\overrightarrow{t_i}\]
+where $a_i$ is the score of the entry and $\overrightarrow{t_i}$ is the type returned by Freebase. The vector notation is chosen to indicate that each distinct answer determines one dimension in the space of results.
+
+Each cell value has now a weighted result set that can be used for aggregation to produce a result vector for the whole column. The column result $V$ is then given by:
+\[V?\sum^n_{i=1}{v_i}\]
+We compare the result vector of candidate types from the source column with the result vector of candidate types from the target column. Let $W$ be the result vector for the target column, then the similarity $s$ between the columns pair can be calculated using the absolute value of the cosine similarity function:
+\[s?\frac{\left|(V*W)\right|}{\left\|V\right\|*\left\|W\right\|}\]
+
+
+\subsubsection{Pearson Product-Moment Correlation Coefficient (PPMCC)}
+
+The second algorithm that we implemented is PPMCC, a statistical measure of the linear independence between two variables $\left(x,y\right)$~\cite{Kowalski:RoyalStat:72}. In our method, x is an array that represents the total scores for the source column rich types, y is an array that represents the mapped values between the source and the target columns. The values present in x but not in y are represented by zeros. We have:
+\[SourceColumn\ \left[\left\{R_1,C_{sr1}\right\},\left\{R_2,C_{sr2}\right\},\left\{R_3,C_{sr3}\right\}\dots \ \left\{R_n,C_{srn}\right\}\right]\]
+\[TargetColumn\ \left[\left\{R_1,C_{tr1}\right\},\left\{R_2,C_{tr2}\right\},\left\{R_3,C_{tr3}\right\}\dots \ \left\{R_n,C_{trn}\right\}\right]\]
+Where $R_1,\ R_{2,}{\dots ,R}_n$ are different rich type values retrieved from Freebase, $C_{sr1},\ C_{sr2},\dots ,\ C_{srn}$ are the sum of scores for each corresponding r occurrence in the source column, and $C_{tr1},\ C_{tr2},\ \dots ,\ C_{trn}$ are the sum of scores for each corresponding r occurrence in the target column.
+
+The input for PPMC consists of two arrays that represent the values from the source and target columns, where the source column is the column with the largest set of rich types found. For example:
+\[X=\ \left[C_{sr1},C_{sr2},C_{sr4},\ \dots ,\ C_{srn}\right]\]
+\[Y=\ \left[0,C_{tr2},C_{tr4},\ \dots ,\ C_{trn}\right]\]
+Then the sample correlation coefficient (r) is calculated using:
+\[r=\ \frac{\sum^n_{i=1}{\left(x_i-\ \overline{x}\right)\left(y_{i\ }-\ \overline{y}\right)}}{\sqrt{\sum^n_{i=1}{{\left(x_i-\ \overline{x}\right)}^{2\ }}}\sqrt{\sum^n_{i=1}{{\left(y_i-\ \overline{y}\right)}^2}}}\ \]
+Based on a sample paired data$\left(x_i,y_i\right)$, the sample PPMCC is:
+\[r=\ \frac{1}{n-1}\sum^n_{i=1}{\left(\frac{x_i-\ \overline{x}}{s_x}\right)}\left(\frac{y_i-\ \overline{y}}{s_y}\right)\]
+Where $\left(\frac{x_i-\ \overline{x}}{s_x}\right),\ \overline{x\ }$and $s_x$ are the standard score, sample mean and sample standard deviation, respectively.
+
+
+\subsubsection{Spearman's Rank Correlation Coefficient}
+The last algorithm that we implemented to match unnamed and untyped columns is Spearman's rank correlation coefficient. It applies a rank transformation on the input data and computes PPMCC afterwards on the ranked data. In our experiments we used Natural Ranking with default strategies for handling ties and NaN values. The ranking algorithm is however configurable and can be enhanced by using more sophisticated measures.
+
+
+\subsection{Column Labeling}
+We showed in the previous section how to match unnamed and untyped columns. Column labeling is however beneficial as the results of our previous algorithms can be combined with traditional header matching techniques to improve the quality of matching.
+
+Rich types retrieved from Freebase are independent from each other. We need to find a method that will determine normalized score for each type in the set by balancing the proportion of high scores with the lower ones. We used Wilson score interval for a Bernoulli parameter that is presented in the following equation:
+\[w={\left(\widehat{p\ }+\ \frac{z^2_{{\alpha }/{2}}}{2n}\  \begin{array}{c}
++ \\
+- \end{array}
+z_{{\alpha }/{2}}\sqrt{{\left[\hat{p}\left(1-\ \hat{p}\right)+\ {z^2_{{\alpha }/{2}}}/{4n}\right]}/{n}}\ \ \ \right)}/{\left(1+{z^2_{{\alpha }/{2}}}/{n}\right)}\]
+Here $\hat{p}$ is the average score for each rich type, n is the total number of scores and $z_{{\alpha }/{2}}$ is the score level; in our case it is 1.96 to reflect a score level of 0.95.
+
+\subsection{Handling Non-String Values}
+So far, we have covered several methods to identify the similarity between ``String'' values, but how about other numeral values such as dates, money, distance,etc.? For this purpose, we have implemented some basic type identifier that can recognize dates, money, numerical values, numerals used as identifiers. This will help us in better match corresponding entries. Adjusting AMC's combination algorithms can be of great importance at this stage. For example, assigning weights to different matchers and tweaking the configuration can yield more accurate results.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  Experiments  %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Experiments}
+We present in this section results from experiments we conducted using the different methods described above. To appreciate the value of our approach, we have used a real life scenario that exposes common problems faced by the management in SAP. The data we have used come from two different SAP systems: the Event tracker and the Travel Expense Manager.
+
+The Event Tracker provides an overview of events (Conferences, Internal events, etc.) that SAP Research employees contribute to or host. The entries in this system contain as much information as necessary to give an overview of the activity like the activity type and title, travel destination, travel costs divided into several sub categories (conference fees, accommodation, transportation and others), and duration related information (departure, return dates). Entries in the Event Tracker are generally entered in batches as employees fill in their planned events that they wish to attend or contribute to at the beginning of each year. Afterwards, managers can either accept or reject these planned events according to their allocated budget.
+
+On the other hand, the Travel Expense Manager contains the actual expenses data for the successfully accepted events. This system is used by employees to enter their actual trip details in order to claim their expenses. It contains more detailed information and aggregated views of the events, such as the total cost, duration calculated in days, currency exchange rates and lots of internal system tags and identifiers.
+
+Matching reports from these two systems is of great benefit to managers to organize and monitor their allocated budget. They mainly want to:
+
+\begin{enumerate}
+\item  Find the number of the actual (accepted) travels compared with the total number of entered events.
+
+\item  Calculate the deviation between the estimated and actual cost of each event.
+\end{enumerate}
+
+However, matching from these two sources can face several difficulties that can be classified in two categories: column headers and cells. Global labels (or column headers as we are dealing with spreadsheet files) can have the following problems:
+
+\begin{enumerate}
+\item  Missing labels: importing files into Google Refine with empty headers will result in assigning that column a dummy name by concatenating the word ``column'' with a number starting from 0.
+
+\item  Dummy labels or semantically unrelated names: this is a common problem especially from the data coming from the Travel Expense Manager. This can be applied to columns that are labeled according to the corresponding database table (i.e. lbl\_dst to denote destination label). Moreover, column labels do not often convey the semantic type of the underlying data.
+\end{enumerate}
+
+The second category of difficulties is at cell (single entry) level:
+
+\begin{enumerate}
+\item  Detecting different date formats: we have found out that dates field coming from the two systems have different formats. Moreover, the built-in type detection in Google Refine converts detected date into another third format.
+
+\item  Entries from different people can be made in different languages.
+
+\item  Entries in the two systems can be incomplete, an entry can be shortened automatically by the system. For example, selecting a country in the Travel Expense Manager will result in filling out that country code in the exported report (i.e. France = FR).
+
+\item  Inaccurate entries: this is one of the most common problems. Users enter sometimes several values in some fields that correspond to the same entity. For example, in the destination column, users can enter the country, the airport at the destination, the city or even the exact location of the event (i.e. office location).
+\end{enumerate}
+
+The data used in our evaluation consists of around 60 columns and more than 1000 rows. Our source data set will be the data coming from Event Tracker, and our target data set will be the data from the Travel Expense Manager.
+
+By manually examining the two data sets, we have found out that most of the column headers in the source table exist and adequately present the data. However, we have noticed few missing labels in the target table and few ambiguous column headers. We have detected several entries in several languages: the main language is English but we have also identified French, German. Destination field had entries in several formats: we have noticed airport names, airports by their IATA code, country codes, and cities.
+
+Running AMC with its default matchers returns the matching results shown in Table \ref{tab:Similarity_Scores_Using_the_AMC_Default_Matching_Algorithms}.
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{|c|c|c|} \hline
+\textbf{Source Column} & \textbf{Target Column} & \textbf{Similarity Score} \\ \hline
+Reason for Trip & Reason for Trip & 1 \\ \hline
+Begins On & Trip Begins On & 0.8333334 \\ \hline
+Ends On & Trip Ends On & 0.8 \\ \hline
+Total & Total Cost & 0.7333335 \\ \hline
+Trip & Trip Destination & 0.72727275 \\ \hline
+Amount & Receipt Amount & 0.7142875 \\ \hline
+Pd by Comp & Paid by Company & 0.6904762 \\ \hline
+Period & Period Number & 0.6666667 \\ \hline
+Pers.No. & Sequential no. & 0.5555556 \\ \hline
+M/Km & Total Miles/Km & 0.55 \\ \hline
+Curr. & Currency & 0.5 \\ \hline
+Crcy & Currency & 0.5 \\ \hline
+\end{tabular}
+\caption{Similarity Scores Using the AMC Default Matching Algorithms}
+\label{tab:Similarity_Scores_Using_the_AMC_Default_Matching_Algorithms}
+\end{table}
+
+The AMC has perfectly matched the two columns labeled ``Reason for Trip'' using name and data type similarity calculations (the type here was identified as a String). Moreover, it has computed several similarities for columns based on the pre-implemented String matchers that were applied on the column headers and the primitive data types of the cells (Integer, Double, Float, etc.). However, there is no alignment found between the other columns since their headers are not related to each other, although the actual cell values can be similar. AMC's default configuration has a threshold of 50\%, so any similarity score below that will not be shown.
+
+The Cosine Similarity algorithm combined with the AMC default matchers produces the results shown in Table \ref{tab:Similarity_Scores_Using_the_AMC_Default_Matching_Algorithms_+_Cosine_Similarity_Method}.
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{|c|c|c|} \hline
+\textbf{Source Column} & \textbf{Target Column} & \textbf{Similarity Score} \\ \hline
+Reason for Trip & Reason for Trip & 1 \\ \hline
+tr\_dst &  & 0.9496432 \\ \hline
+Begins On & Trip Begins On & 0.9166667 \\ \hline
+Ends On & Trip Ends On & 0.9 \\ \hline
+Amount & Receipt Amount & 0.8571428 \\ \hline
+Curr. & Currency & 0.75 \\ \hline
+Crcy & Currency & 0.75 \\ \hline
+Total & Total Cost & 0.7333335 \\ \hline
+Trip & Trip Destination & 0.7321428 \\ \hline
+Pd by Comp & Paid by Company & 0.6904762 \\ \hline
+Period & Period Number & 0.6666667 \\ \hline
+Trip & Trip Number & 0.6666667 \\ \hline
+Pers.No. & Sequential no. & 0.5555556 \\ \hline
+M/Km & Total Miles/Km & 0.55 \\ \hline
+\end{tabular}
+\caption{Similarity Scores Using the AMC Default Matching Algorithms + Cosine Similarity Method}
+\label{tab:Similarity_Scores_Using_the_AMC_Default_Matching_Algorithms_+_Cosine_Similarity_Method}
+\end{table}
+
+
+We notice that we have an increased number of matches (+2), and that the similarity score for several matches has improved. For example, the ``tr\_dst'' column is now aligned to the blank header. This shows that our approach allows performing schema matching on columns with no headers.
+
+For simplicity reason we have used the default combination algorithm for AMC which is an average of the applied algorithms (AMC's native and Cosine). We should also note that we have configured AMC's matchers to identify a ``SIMILARTY\_UNKOWN'' value for columns that could not be matched successfully, which will allow other matchers to perform better. For example, our semantic matchers will skip columns that do not convey semantic meaning thus not affecting the score of other matchers. Moreover, the relatively high similarity score of ``tr\_dst'' column is explained by the fact that the native AMC matching algorithm has skipped that column as it does not have a valid header, and the results are solely those of the Cosine matcher. Likewise, the Cosine matcher skips checking the ``Cost'' columns as they contain numeric values, and the implemented numerical matchers with the AMC's native matcher results are taken into account. Our numerical matchers' implementation gives a perfect similarity score for columns that are identified as date or money or IDs. However, this can be improved in the future as we can have different date hierarchy and numbers as IDs can present different entities. Combining this approach with the semantic and string matchers was found to yield good matching results.
+
+The (PPMCC) Similarity algorithm combined with the AMC default matchers produces the results shown in Table \ref{tab:Similarity_Scores_Using_the_AMC_Default_Matching_Algorithms+__the_PPMCC_Similarity_Method}.
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{|c|c|c|}\hline
+\textbf{Source Column} & \textbf{Target Column} & \textbf{Similarity Score} \\ \hline
+Reason for Trip & Reason for Trip & 1 \\ \hline
+tr\_dst &  & 0.97351624 \\ \hline
+Begins On & Trip Begins On & 0.833334 \\ \hline
+Ends On & Trip Ends On & 0.8 \\ \hline
+Total & Total Cost & 0.7333335 \\ \hline
+Trip & Trip Destination & 0.7321428 \\ \hline
+Amount & Receipt Amount & 0.7142857 \\ \hline
+Curr. & Currency & 0.7041873 \\ \hline
+Crcy & Currency & 0.6931407 \\ \hline
+Pd by Comp & Paid by Company & 0.6904762 \\ \hline
+Period & Period Number & 0.6666667 \\ \hline
+Trip & Trip Number & 0.6666667 \\ \hline
+Pers.No. & Sequential no. & 0.5555556 \\ \hline
+M/Km & Total Miles/Km & 0.55 \\ \hline
+\end{tabular}
+\caption{Similarity Scores Using the AMC Default Matching Algorithms+  the PPMCC Similarity Method}
+\label{tab:Similarity_Scores_Using_the_AMC_Default_Matching_Algorithms+__the_PPMCC_Similarity_Method}
+\end{table}
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{|c|c|c|} \hline
+\textbf{Source Column} & \textbf{Target Column} & \textbf{Similarity Score} \\ \hline
+Reason for Trip & Reason for Trip & 1 \\ \hline
+Begins On & Trip Begins On & 0.8333334 \\ \hline
+Ends On & Trip Ends On & 0.8 \\ \hline
+Total & Total Cost & 0.7333335 \\ \hline
+Amount & Receipt Amount & 0.7142857 \\ \hline
+Pd by Comp & Paid by Company & 0.6904762 \\ \hline
+Currency2 & Curr. & 0.6689202 \\ \hline
+Trip & Trip Number & 0.6666667 \\ \hline
+Pers.No. & Sequential no. & 0.5555556 \\ \hline
+M/Km & Total Miles/Km & 0.55 \\ \hline
+\end{tabular}
+\caption{ Similarity Scores Using the AMC Default Matching Algorithms + Spearman Similarity Method}
+\label{tab:Similarity_Scores_Using_the_AMC_Default_Matching_Algorithms_+_Spearman_Similarity_Method}
+\end{table}
+
+We notice that by plugging the Spearman method, the number of matches and similarity results have decreased (-4). After Several experiments we have found that this method does not work well with noisy data sets. For instance, the similarity results returned by Cosine, Pearson's and Spearman's matchers for the \{tr\_dst, empty header\} pair is much higher: 95\%, 97\% and 43\% respectively.
+
+To properly measure the impact of each algorithm, we have tested the three algorithms (Cosine, PPMCC and Spearman) alone by de-activating the AMC's default matchers on the above data set. We have noticed that generally, the Cosine and PPMCC matchers perform well, resulting in more matching and better similarity score. However, the Spearman method was successful in finding more matches but with a lower similarity score than the others.
+
+To better evaluate the three algorithms, we have tested them on four different data sets extracted from the Travel Expense Manager and Event Tracker systems. We ensured that the different experiments will cover all the cases needed to properly evaluate the matcher dealing with all the problems mentioned earlier.
+
+We have found that generally the Cosine method is the best performing algorithm compared to the other two especially when dealing with noisy data sets. This was noticed particularly in our fourth experiment as the Cosine algorithm performed around 20\% better than the other two methods. After investigating the dataset, we have found that several columns contained noisy and unrelated data. For example, in a ``City'' column, we had values such as ``reference book'' or ``NOT\_KNOWN''.
+
+To gain better similarity results we decided to combine several matching algorithms together. By doing so, we would benefit from the power of the AMC's string matchers that will work on column headers and our numeral and semantic matchers.
+
+The Cosine and PPMCC Similarity algorithms combined with the AMC default matchers produces the results shown in Table \ref{tab:Similarity_Scores_Using_the_AMC_Default_Matching_Algorithms_+_Spearman_Similarity_Method}.
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{|c|c|c|} \hline
+\textbf{Source Column} & \textbf{Target Column} & \textbf{Similarity Score} \\ \hline
+Reason for Trip & Reason for Trip & 1 \\ \hline
+tr\_dst &  & 0.96351624 \\ \hline
+Curr. & Currency & 0.79221311 \\ \hline
+Crcy & Currency & 0.78173274 \\ \hline
+Begins On & Trip Begins On & 0.77777785 \\ \hline
+Ends On & Trip Ends On & 0.76666665 \\ \hline
+Amount & Receipt Amount & 0.7380952 \\ \hline
+Total & Total Cost & 0.7333335 \\ \hline
+Trip Country/Group & Ctr2 & 0.7194848 \\ \hline
+Pd by Comp & Paid by Company & 0.6904762 \\ \hline
+Period & Period Number & 0.6666667 \\ \hline
+Trip & Trip Number & 0.6666667 \\ \hline
+Pers.No. & Sequential no. & 0.5555556 \\ \hline
+M/Km & Total Miles/Km & 0.55 \\ \hline
+\end{tabular}
+\caption{Similarity Scores Using the Combination of Cosine, PPMCC and AMC's defaults}
+\label{tab:Similarity_Scores_Using_the_Combination_of_Cosine,_PPMCC_and_AMC's_defaults}
+\end{table}
+
+The combination of the above mentioned algorithms have enhanced generally the similarity scores for the group. Moreover, we notice that the column ``Trip Country/Group'' was matched with ``Ctr2''. This match was not computed singularly by any of the previous algorithms. However, we notice that the match \{Trip, Trip Destination\} is now missing, probably as the similarity score is below the defined threshold.
+
+Now, we will try and group all the mentioned algorithms. The combination of all Similarity algorithms with the AMC default matchers produces the results shown in Table \ref{tab:Similarity_Scores_Using_the_Combination_of_Cosine,_PPMCC_and_AMC's_defaults}.
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{|c|c|c|} \hline
+\textbf{Source Column} & \textbf{Target Column} & \textbf{Similarity Score} \\ \hline
+Reason for Trip & Reason for Trip & 1 \\ \hline
+tr\_dst &  & 0.8779132 \\ \hline
+Curr. & Currency & 0.80033726 \\ \hline
+Crcy & Currency & 0.79380125 \\ \hline
+Begins On & Trip Begins On & 0.7708334 \\ \hline
+Trip Country/Group & Ctr2 & 0.767311 \\ \hline
+Ends On & Trip Ends On & 0.7625 \\ \hline
+Amount & Receipt Amount & 0.7410714 \\ \hline
+Total & Total Cost & 0.7333335 \\ \hline
+Trip & Trip Destination & 0.7321428 \\ \hline
+Pd by Comp & Paid by Company & 0.6904762 \\ \hline
+Period & Period Number & 0.6666667 \\ \hline
+Trip & Trip Number & 0.6666667 \\ \hline
+Pers.No. & Sequential no. & 0.5555556 \\ \hline
+M/Km & Total Miles/Km & 0.55 \\ \hline
+\end{tabular}
+\end{table}
+
+We notice that now we have an increased number of matches (15 compared to 14 in the previous trials). The column \{Trip, Trip Destination\} is matched again and the newly previously matched column \{Trip Country/Group, Ctr2\} has a higher similarity score. We have found that combining matching algorithms resulted in higher number of matches. Several tuning methods can be applied in order to enhance the similarity score as well. Trying other combination algorithms instead of the naiive average will be an essential part of our future work. \\ \\
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  Conclusion and Future Work  %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Conclusion and Future Work}
-In this paper, we proposed a scalable automatic approach for extracting, validating, correcting and generating descriptive linked dataset profiles. This approach applies several techniques in order to check the validity of the metadata provided and to generate descriptive and statistical information for a particular dataset or for an entire data portal. Based on our experiments running the tool on the LOD cloud, we discovered that the general state of the datasets needs attention as most of them lack informative access information and their resources suffer low availability. These two metrics are of high importance for enterprises looking to integrate and use external linked data.
 
-It has been noticed that the issues surrounding metadata quality affect directly dataset search as data portals rely on such information to power their search index. We noted the need for tools that are able to identify various issues in this metadata and correct them automatically. We evaluated our framework manually against two prominent data portals and proved that we can automatically scale the validation of datasets metadata profiles completely and correctly.
-
-As part of our future work, we plan to introduce workflows that will be able to correct the rest of the metadata either automatically or through intuitive manually-driven interfaces. We also plan to integrate statistical and topical profilers to be able to generate full comprehensive profiles. We also intend to suggest a ranked standard metadata model that will help generate more accurate and scored metadata quality profiles. We also plan to run this tool on various CKAN-based data portals, schedule periodic reports to monitor the evolvement of datasets metadata. Finally, at some stage, we plan to extend this tool for other data portal types like DKAN and Socrata.
+In this paper, we presented a framework enabling mashup of potentially noisy enterprise and external data. The implementation is based on Google Refine and uses Freebase to annotate data with rich types. As a result, the matching process of heterogeneous data sources is improved. Our preliminary evaluation shows that for datasets where mappings were relevant yet not proposed, our framework provides higher quality matching results. Additionally, the number of matches discovered is increased when Linked Data is used in most datasets. We plan in future work to evaluate the framework on larger datasets using rigorous statistical analysis of~\cite{Fawcett:PatternRec:06}. We also consider integrating additional linked open data sources of semantic types such as DBpedia~\cite{Bizer:WebSemJorunal:09} or YAGO~\cite{Suchanek::WWW:07} and evaluate our matching results against instance-based ontology alignment benchmarks such as OAEI\footnote{http://oaei.ontologymatching.org/2011/instance/index.html} or ISLab\footnote{http://islab.dico.unimi.it/iimb/}. Another future work will be to generalize our approach on data schemas to data classification. The same way the AMC helps identifying the best matches for two datasets, we plan to use it for identifying the best statistical classifiers for a sole dataset, based on normalized scores.

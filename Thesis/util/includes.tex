@@ -23,6 +23,7 @@
 \usepackage{multirow}
 \usepackage{easylist}
 \usepackage{lscape}
+\usepackage{setspace}
 \usepackage{afterpage}
 \usepackage{pdflscape}
 \usepackage{caption}
@@ -154,3 +155,19 @@
 \DeclareMathOperator{\Enqueue}{Enqueue}
 \DeclareMathOperator{\findResult}{findRes}
 \DeclareMathOperator{\dom}{dom}
+
+\makeatletter
+  \newcommand\tinyv{\@setfontsize\tinyv{7.5pt}{6.5}}
+\makeatother
+
+\makeatletter
+\newcommand*{\gmshow@textheight}{\textheight}
+\newdimen\gmshow@@textheight
+\g@addto@macro\landscape{%
+  \gmshow@@textheight=\hsize
+  \renewcommand*{\gmshow@textheight}{\gmshow@@textheight}%
+}
+\def\Gm@vrule{%
+  \vrule width 0.2pt height\gmshow@textheight depth\z@
+}%
+\makeatother
