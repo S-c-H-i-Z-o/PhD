@@ -84,6 +84,12 @@ A SPARQL query consists of a set of triples where each part(subject, predicate a
 
 The traditional approach of sharing data through independent silos is diminishing with the various advancements in the Web. The Semantic Web envisages the availability of large amount of interlinked RDF data. Linked Data (LD) is a major milestone towards achieving this vision. Formally, Linked Data has been defined as about ``data published on the Web in such a way that it is machine readable, its meaning is explicitly defined, it is linked to other external datasets, and can in turn be linked to from external datasets''~\cite{Bizer:IJSWIS:09}.
 
+\begin{figure}[ht!]
+	\includegraphics[width=0.9\textwidth]{lod-cloud2007.png}
+	\caption{The LOD cloud as of May, 2007}
+	\label{fig:lodcloud2007}
+\end{figure}
+
 Linked Data follows four main principles outlined by Tim Berners-Lee~\cite{Berners-Lee:W3C:06} to publish information on the Web, which are:
 
 \begin{enumerate}
@@ -93,15 +99,11 @@ Linked Data follows four main principles outlined by Tim Berners-Lee~\cite{Berne
 	\item Include links to other URIs. so that they can discover more things.
 \end{enumerate}
 
-Linked Data is continuously evolving, started in 2007 with a dozen of datasets (see Figure~\ref{fig:lodcloud2007}) to reach thousands of datasets covering knowledge from various domains such as encyclopedic, government, geographic, entertainment, publications and so on. The datasets have tripled in size from 2011 (see Figure~\ref{fig:lodcloud2011})~\cite{Jentzsch:SOLOD:11} to 2014, with a significant growth of nearly $271\%$~\cite{Schmachtenberg:ISWC:14}. The latest version published in April 2014 contains 1014 linked datasets connected by 2909 linksets (see Figure~\ref{fig:lodcloud2014}\footnote{A more Web friendly version can be accessed at~\url{http://data.dws.informatik.uni-mannheim.de/lodcloud/2014/}}). One of the most widely used datasets is DBpedia\footnote{http://dbpedia.org}. It is a structured knowledge extracted from multilingual versions of Wikipedia~\cite{Bizer:WebSemJorunal:09}. At the time of writing, the English version of DBpedia consists of 470 millions RDF triples that describe 4.0 million things covering a wide range of topics, and contains 45 million RDF links to several hundred external datasets.
+Linked Data is continuously evolving, started in 2007 with a dozen of datasets (see Figure~\ref{fig:lodcloud2007}) to reach thousands of datasets covering knowledge from various domains such as encyclopedic, government, geographic, entertainment, publications and so on. The datasets have tripled in size from 2011 (see Figure~\ref{fig:lodcloud2011})~\cite{Jentzsch:SOLOD:11} to 2014, with a significant growth of nearly $271\%$~\cite{Schmachtenberg:ISWC:14}. The latest version published in April 2014 contains 1014 linked datasets connected by 2909 linksets (see Figure~\ref{fig:lodcloud2014}\footnote{A more Web friendly version can be accessed at~\url{http://data.dws.informatik.uni-mannheim.de/lodcloud/2014/}}).
+
+One of the most widely used datasets is DBpedia\footnote{http://dbpedia.org}. It is a structured knowledge extracted from multilingual versions of Wikipedia~\cite{Bizer:WebSemJorunal:09}. At the time of writing, the English version of DBpedia consists of 470 millions RDF triples that describe 4.0 million things covering a wide range of topics, and contains 45 million RDF links to several hundred external datasets.
 
 \begin{figure}[ht!]
-	\includegraphics[width=0.9\textwidth]{lod-cloud2007.png}
-	\caption{The LOD cloud as of May, 2007}
-	\label{fig:lodcloud2007}
-\end{figure}
-
-\begin{figure}[htbp]
 	\centering
 	\includegraphics[width=\linewidth]{lod.jpg}
 	\caption{Linked Open Data (LOD) Cloud in September 2011, by Anja Jentzsch and Richard
@@ -109,16 +111,63 @@ Linked Data is continuously evolving, started in 2007 with a dozen of datasets (
 	\label{fig:lodcloud2011}
 \end{figure}
 
-Client applications can access and use RDF links to navigate between datasets and to discover additional information. In order to be part of Linked Data, datasets need to create links to related instances in other datasets. To cope with the large amount of instances, it is a common practice to draw on automated or semi-automated tools or methods to generate links between data sources. Yet, this is still a challenging task and significant research efforts have been devoted to address it.
+In order to achieve the Linked Data vision, datasets should contain outbound links to other datasets. Significant efforts try to automatically or semi-automatically generate these link to facilitate data discovery and to attach additional information.
 
-\subsection{Open Data}
+\section{Open Data}\label{sec:openData}
 
-Open data is the data that can be easily discovered, reused and redistributed by anyone. It can include anything from statistics, geographical data, meteorological data to digitized books from libraries. Open data should have both legal and technical dimensions. It should be placed in the public domain under liberal terms of use with minimal restrictions and should be available in electronic formats that are non-proprietary and machine readable. Open Data has major benefits for citizens, businesses, society and governments: it increases transparency and enables self-empowerment by improving the visibility of previously inaccessible information; it allows citizens to be better informed about policies, public spending and activities in the law making processes. Moreover, it is still considered as a gold mine for organizations which are trying to leverage external data sources in order to produce more informed business decisions~\cite{Boyd:Article:11}, despite the legal issues surrounding Linked Data licenses~\cite{Prateek:Misc:13}.
+Open Data (OD) is the data that can be easily discovered, reused and redistributed by anyone. Open data should have both legal and technical dimensions. It should be placed in the public domain under liberal terms of use with minimal restrictions and should be available in electronic formats that are non-proprietary and machine readable. Similarly, Linked Open Data (LOD) refers to the semantically linked, machine-readable open data.
+
+Similarly to the Linked Data principles, Tim Berners-Lee~\cite{Berners-Lee:W3C:06} outlined a 5 starts scheme to evaluate the availability of Linked Data as Linked Open Data:
+
+\begin{enumerate}
+	\item Data available on the web in any format, even using PDF or image scan, but with an Open license.
+	\item Data delivered as machine-readable structured data, e.g. excel instead of image scan of a table.
+	\item Data available in a non-proprietary format, e.g. CSV instead of excel.
+	\item All the above plus, data using open standards from W3C, e.g. RDF and SPARQL, to identify things and properties, so that people can point at other data.
+	\item All the above, plus, to link data to other people's data to provide context.
+\end{enumerate}
+
+Open Data has major benefits for citizens, businesses, society and governments. It increases transparency and enables self-empowerment by improving the visibility of previously inaccessible information; allows citizens to be better informed about policies, public spending and activities in the law making processes.
+
+Open Data is considered a gold mine for organizations which are trying to leverage external data sources in order to produce more informed business decisions~\cite{Boyd:Article:11}. Despite the legal issues surrounding Open Data licenses~\cite{Prateek:Misc:13}, McKinsey~\cite{Manyika:Report:13} estimates that Open Data in the health sector alone adds up over \$300 billion to the economy every year.
+
+Going back to our scenario in~\ref{sec:scenario}, Open Data will help our analyst Bob in:
+
+\begin{itemize}
+	\item Have a transparent view on the data available by Ministry of Transport in France. This helps in preventing the possibility of wasting time and funds recollecting data that has been already collected by a different department.
+	\item Discover complementary datasets from other sources. The benefits of data transparency amplifies when it is widely adopted in all other departments and agencies.The additional data enrich reports and enable better-informed, data-driven decisions. For example, by providing extra details on traffic information at the time when accidents occurred, Bob could draw more accurate conclusions on the root cause of some of these accidents.
+\end{itemize}
+
+\subsection{Open Licenses}
+
+Project Open Data~\footnote{https://project-open-data.cio.gov} emphasizes the importance of datasets reusability as one of the main principles for Open Data. Open data should be made available under an open license. This is of high importance specially for organizations looking to integrate data for commercial use.
+
+The Open Definition~\footnote{http://opendefinition.org/} defines a license as the legal conditions under which an item or piece of knowledge (also referred to as ``work'') is made available. Domain dedications like \emph{Creative Commons Zero} satisfy this definition although not technically a ``license''.
+
+The Open Definition defines the following conditions for open licenses:
+
+\begin{itemize}
+	\item Allow free use of the work without any fee arrangement or compensation.
+	\item Allow redistribution (on its own or as part of a collection) of the work.
+	\item Allow distribution of modified work under the same license of the original.
+	\item Allow any part of the work to be freely used, distributed or modified separately.
+	\item Allow distribution of the work alongside other distinct works without placing restrictions on the additional ones.
+	\item Doesn't discriminate against any person or group.
+	\item Allow use, redistribution, modification, and compilation for any purpose.
+	\item Allow rights propagation to all to whom the work id distributed.
+\end{itemize}
+
 
 \begin{figure}[ht!]
 	\centering{
-	\includegraphics[width=0.9\textwidth]{LODcloud2014.png}
-	\caption{Linking Open Data cloud diagram 2014, by Max Schmachtenberg, Christian Bizer, Anja Jentzsch and Richard Cyganiak. \url{http://lod-cloud.net/}}
+	\includegraphics[width=0.9\textwidth]{lod14_licenses.png}
+	\caption{Linking Open Data cloud diagram 2014, by Max Schmachtenberg, Christian Bizer, Anja Jentzsch and Richard Cyganiak colored by license type. \url{http://lod-cloud.net/}}
 	\label{fig:lodcloud2014}
 	}
 \end{figure}
+
+\section{Data Profiling}\label{sec:dataPortals}
+
+\section{Data Portals}\label{sec:dataPortals}
+
+
