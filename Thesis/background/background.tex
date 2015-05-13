@@ -35,10 +35,10 @@ RDF provides an intuitive knowledge representation using directed graphs, where 
 Figure~\ref{fig:rdfGraph}~\info{Do i have to reference the image?} depicts an example of RDF graph-based representation for an address. An address is a structure that consists of different values such as a street, a city, a state and a zip-code.
 
 \begin{figure}[htbp]
- \centering
-\includegraphics[width=\linewidth]{rdf.png}
-\caption{Example of RDF representation of an address}
-\label{fig:rdfGraph}
+\centering
+	\includegraphics[width=\linewidth]{rdf.png}
+	\caption{Example of RDF representation of an address}
+	\label{fig:rdfGraph}
 \end{figure}
 
 Several methods exist for serializing the RDF data model. The most common format is RDF/XML. There exist other text-based formats introduced by W3C such as Turtle\footnote{\url{http://www.w3.org/TeamSubmission/turtle}} and N-Triples\footnote{\url{http://www.w3.org/TR/n-triples}} which are easier to read than RDF/XML.
@@ -48,8 +48,8 @@ RDF also contains data structures (containers and collections) that allow aggreg
 \subsection{RDF Schema}
 
 \begin{flushright}
-\textit{``It's impossible to get everyone everywhere to agree on a single label for every specific thing that ever was, is, or shall be''}\\
-Cambridge Semantics~\cite{Cambridge:RDF-101:13}
+	\textit{``It's impossible to get everyone everywhere to agree on a single label for every specific thing that ever was, is, or shall be''}\\
+	Cambridge Semantics~\cite{Cambridge:RDF-101:13}
 \end{flushright}
 
 RDF is a simple and flexible data model that describes resources using properties and values. Predicates in RDF are what describe and give meaning to statements. They act as a vocabulary or an ontology. An Ontology is an explicit specification of a conceptualization~\cite{Gruber:KA:93}. It is a formal way to organize knowledge and terms and reflect common understanding of a domain. Ontologies are typically represented as graphical relationships or networks as opposed to taxonomies which are usually presented hierarchically. Some core elements of an ontology are:
@@ -189,13 +189,11 @@ Data profiles reflect the importance of datasets without the need for detailed i
   \item \textbf{Topical profiling}: Provides descriptive knowledge on the dataset content and structure. This can be in form of tags and categories used to facilitate search and reuse.
 \end{itemize}
 
-Dataset profiles are collections of data describing the internal structure of the dataset. They are presented as a set of metadata in different formats such as JSON, XML and RDF.
-
-Metadata provisioning is one of the Linked Data publishing best practices mentioned in~\cite{Bizer:DB:11}. Datasets should contain the metadata needed to effectively understand and use them. This information includes the dataset's license, provenance, context, structure and accessibility. The ability to automatically check this metadata helps in:
+Dataset profiles are collections of data describing the internal structure of the dataset. They are presented as a set of metadata in different formats such as JSON, XML and RDF. The Linked Data publishing best practices~\cite{Bizer:DB:11} specifies that datasets should contain metadata needed to effectively understand and use them. \textit{Metadata} is structured information that describes, explains, locates, or otherwise makes it easier to retrieve, use, or manage an information resource~\cite{NISO:TechReport:04}. Having rich metadata helps in enabling:
 \begin{itemize}
-  \item \textbf{Delaying data entropy}: \textit{Information entropy} refers to the degradation or loss limiting the information content in raw or metadata. As a consequence of information entropy, data complexity and dynamicity, the life span of data can be very short. Even when the raw data is properly maintained, it is often rendered useless when the attached metadata is missing, incomplete or unavailable. Comprehensive high quality metadata can counteract these factors and increase dataset longevity~\cite{Kovacs:GTOS:00}.
-  \item \textbf{Enhancing data discovery, exploration and reuse}: Users who are unfamiliar with a dataset require detailed metadata to interpret and analyze accurately unfamiliar datasets. A study conducted by the European Union commission~\cite{Graham:TechReport:11} found that both business and users are facing difficulties in discovering, exploring and reusing public data due to missing or inconsistent metadata information.
-  \item \textbf{Enhancing spam detection}: Portals hosting public open data like Datahub allow anyone to freely publish datasets. Even with security measures like captchas and anti-spam devices, detecting spam is increasingly difficult. In addition to that, the increasing number of datasets hinders the scalability of this process, affecting the correct and efficient spotting of datasets spam.
+  \item \textbf{Data discovery, exploration and reuse}: In~\cite{Graham:TechReport:11}, it was found that users are facing difficulties finding and reusing publicly available datasets. Metadata provides an overview of datasets making them more searchable and accessible. High quality metadata can be at times more important than the actual raw data especially when the costs of publishing and maintaining such data is high.
+  \item \textbf{Organization and identification}: The increasing number of datasets being published makes it hard to track, organize and present them to users efficiently. Attached metadata helps in bringing similar resources together and distinguish useful links.
+  \item \textbf{Archiving and preservation}: There is a growing concern that digital resources will not survive in usable forms to the future~\cite{NISO:TechReport:04}. Metadata can ensure resources survival and continuous accessibility by providing clear provenance information to track the lineage of digital resources and detail their physical characteristics.
 \end{itemize}
 
 \section{Data Portals}\label{sec:dataPortals}

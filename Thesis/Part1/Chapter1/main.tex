@@ -1,20 +1,16 @@
-\chapter{Data Aggregation and Modeling}\label{chapter:hdl}
+\chapter{Dataset Profiles and Models}\label{chapter:hdl}
+\graphicspath{{part1/chapter1/figures/}}
 
-The Linked Data publishing best practices~\cite{Bizer:DB:11} specifies that datasets should contain metadata needed to effectively understand and use them. \textit{Metadata} is structured information that describes, explains, locates, or otherwise makes it easier to retrieve, use, or manage an information resource~\cite{NISO:TechReport:04}. Having rich metadata helps in enabling:
+The value of Open Data is recognized when it is used. To ensure that, publishers need to enable people to find datasets easily. Data portals are specifically designed for this purpose. They make it easy for individuals and organizations to store, publish and discover datasets.
+
+Data models vary across data portals. While exhaustively surveying the range of data models, we did not find any that offers enough granularity to completely describe complex datasets facilitating search, discovery and recommendation. For example, the Datahub uses an extension of the Data Catalog Vocabulary (DCAT)~\cite{Erickson:DCV:14} which prohibits a semantically rich representation of complex datasets like DBpedia\footnote{\url{http://dbpedia.org}} that has multiple endpoints and thousands of dump files with content in several languages~\cite{Brummer::ICSS:14}.
+
+From our survey, we found that a proper integration of Open Data into businesses requires datasets to include the following information:
 \begin{itemize}
-  \item \textbf{Data discovery, exploration and reuse}: In~\cite{Graham:TechReport:11}, it was found that users are facing difficulties finding and reusing publicly available datasets. Metadata provides an overview of datasets making them more searchable and accessible. High quality metadata can be at times more important than the actual raw data especially when the costs of publishing and maintaining such data is high.
-  \item \textbf{Organization and identification}: The increasing number of datasets being published makes it hard to track, organize and present them to users efficiently. Attached metadata helps in bringing similar resources together and distinguish useful links.
-  \item \textbf{Archiving and preservation}: There is a growing concern that digital resources will not survive in usable forms to the future~\cite{NISO:TechReport:04}. Metadata can ensure resources survival and continuous accessibility by providing clear provenance information to track the lineage of digital resources and detail their physical characteristics.
+	\item \emph{Access information}: a dataset is useless if it does not contain accessible data dumps or query-able endpoints;
+	\item \emph{License information}: businesses are always concerned with the legal implications of using external content. As a result, datasets should include both machine and human readable license information that indicates permissions, copyrights and attributions;
+	\item \emph{Provenance information}: depending on the dataset license, the data might not be legally usable if there are no information describing its authoritative and versioning information. Current models under-specify these aspects limiting the usability of many datasets.
 \end{itemize}
-
-The value of Open Data is recognized when it is used. To ensure that, publishers need to enable people to find datasets easily. Data portals are specifically designed for this purpose. They make it easy for individuals and organizations to store, publish and discover datasets. The data portals can be public like Datahub\footnote{\url{http://datahub.io}} and the Europe's Public Data portal\footnote{\url{http://publicdata.eu}} or private like Quandl\footnote{\url{https://quandl.com/}} and Engima\footnote{\url{http://enigma.io/}}. The data available in private portals is of higher quality as it is manually curated but in lesser quantity compared to what is available in public portals. Similarly, in some public data portals, administrators manually review datasets information, validate, correct and attach suitable metadata information.
-
-Data models vary across data portals. While exhaustively surveying the range of data models, we did not find any that offers enough granularity to completely describe complex datasets facilitating search, discovery and recommendation. For example, the Datahub uses an extension of the Data Catalog Vocabulary (DCAT)~\cite{Erickson:DCV:14} which prohibits a semantically rich representation of complex datasets like DBpedia\footnote{\url{http://dbpedia.org}} that has multiple endpoints and thousands of dump files with content in several languages~\cite{Brummer::ICSS:14}. Moreover, to properly integrate Open Data into business, a dataset should include the following information:
-\begin{itemize}
- \item \emph{Access information}: a dataset is useless if it does not contain accessible data dumps or query-able endpoints;
- \item \emph{License information}: businesses are always concerned with the legal implications of using external content. As a result, datasets should include both machine and human readable license information that indicates permissions, copyrights and attributions;
- \item \emph{Provenance information}: depending on the dataset license, the data might not be legally usable if there are no information describing its authoritative and versioning information. Current models under-specify these aspects limiting the usability of many datasets.
- \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%  2. Data Portals and Dataset Models  %%%
@@ -22,7 +18,7 @@ Data models vary across data portals. While exhaustively surveying the range of 
 
 \section{Data Portals and Dataset Models}
 \label{section:datasetModels}
-There are many data portals that host a large number of private and public datasets. Each portal present the data based on a model used by the underlying software. In this section, we present the results of our landscape survey of the most common data portals and dataset models.
+There are many data portals that host a large number of private and public datasets. Each portal present the data based on a model used by the underlying Data Management Software. In this section, we present the results of our landscape survey of the most common data portals and dataset models.
 
 \subsection{DCAT}
 The Data Catalog Vocabulary (DCAT) is a W3C recommendation that has been designed to facilitate interoperability between data catalogs published on the Web~\cite{Erickson:DCV:14}. The goal behind DCAT is to increase datasets discoverability enabling applications to easily consume metadata coming from multiple sources. Moreover, the authors foresee that aggregated DCAT metadata can facilitate digital preservation and enable decentralized publishing and federated search.
@@ -39,11 +35,18 @@ The Asset Description Metadata Schema (ADMS)~\cite{Archer:W3C:13} is also a prof
 VoID~\cite{Bohm:WebSemJournal:11} is another RDF vocabulary designed specifically to describe linked RDF datasets and to bridge the gap between data publishers and data consumers. In addition to dataset metadata, VoID describes the links between datasets. VoID defines three main classes: \texttt{void:Dataset}, \texttt{void:Linkset} and \texttt{void:subset}. We are specifically interested in the \texttt{void:Dataset} concept. VoID conceptualizes a dataset with a social dimension. A VoID dataset is a collection of raw data, talking about one or more topics, originates from a certain source or process and accessible on the web.
 
 \subsection{CKAN}
-CKAN\footnote{\url{http://ckan.org}} is the world's leading open-source data management system (DMS). It helps users from different domains (national and regional governments, companies and organizations) to easily publish their data through a set of workflows to publish, share, search and manage datasets. CKAN is the portal powering web sites like Datahub, the Europe's Public Data portal or the U.S Government's open data portal\footnote{\url{http://data.gov}}.
+CKAN helps users from different domains (national and regional governments, companies and organizations) to easily publish their data through a set of workflows to publish, share, search and manage datasets. CKAN is the portal powering web sites like Datahub, the Europe's Public Data portal or the U.S Government's open data portal\footnote{\url{http://data.gov}}.
 
 CKAN is a complete catalog system with an integrated data storage and powerful RESTful JSON API. It offers a rich set of visualization tools (e.g. maps, tables, charts) as well as an administration dashboard to monitor datasets usage and statistics. CKAN allows publishing datasets either via an import feature or through a web interface. Relevant metadata describing the dataset and its resources as well as organization related information can be added. A Solr\footnote{\url{http://lucene.apache.org/solr/}} index is built on top of this metadata to enable search and filtering.
 
 The CKAN data model\footnote{http://docs.ckan.org/en/ckan-1.8/domain-model.html} contains information to describe a set of entities (dataset, resource, group, tag and vocabulary). CKAN keeps the core metadata restricted as a JSON file, but allows for additional information to be added via ``extra'' arbitrary key/value fields. CKAN supports Linked Data and RDF as it provides a complete and functional mapping of its model to Linked Data formats.
+
+\begin{figure}[ht!]
+\centering
+	\includegraphics[width=0.7\textwidth]{ckan_model.png}
+	\caption{CKAN data model}
+	\label{fig:ckan_model}
+\end{figure}
 
 \subsection{DKAN}
 DKAN\footnote{\url{http://nucivic.com/dkan/}} is a Drupal-based DMS with a full suite of cataloging, publishing and visualization features. Built over Drupal, DKAN can be easily customized and extended. The actual data sets in DKAN can be stored either within DKAN or on external sites. DKAN users are able to explore, search and describe datasets through the web interface or a RESTful API.
@@ -137,20 +140,20 @@ After examining the results, we noticed that for OpenAfrica, 53\% of the dataset
 
 Roomba easily enables to perform such tests and to gather a detailed view about the kind of missing information data publishers require in the core model. We further plan to run Roomba on various portals to collect more information about such missing data to include it in HDL.
 
-\afterpage{
-\newgeometry{outer=25mm,inner=5mm,vmargin=10mm,includehead,includefoot,headheight=20pt}
+\newgeometry{outer=20mm,inner=20mm,vmargin=10mm,includehead,includefoot,headheight=20pt}
+\pagestyle{lscape}
 \begin{landscape}
 \Huge
 \noindent
 \setlength\LTleft{-1.7cm}
-{\tinyv
-\noindent\begin{longtable}{|p{1cm}|m{3.1cm}|m{2.4cm}|m{2.5cm}|p{3.8cm}|m{3.8cm}|m{6.5cm}|m{2.5cm}|}
+{\tiny
+\begin{longtable}{|p{1cm}|m{3.1cm}|m{2.4cm}|m{2.5cm}|p{3.8cm}|m{3.8cm}|m{5.55cm}|m{2.5cm}|}
 \caption[Harmonized Dataset Models Mappings]{Harmonized Dataset Models Mappings} \label{tab:harmonized_dataset_models_mappings} \\
 
 \hline \multicolumn{1}{|p{2cm}}{\textbf{Data Model}} & \multicolumn{1}{|c|}{\textbf{CKAN}} & \multicolumn{1}{c|}{\textbf{DKAN}} & \multicolumn{1}{c|}{\textbf{POD}} & \multicolumn{1}{c|}{\textbf{DCAT}} & \multicolumn{1}{c|}{\textbf{VoID}} & \multicolumn{1}{c|}{\textbf{Schema.org}} & \multicolumn{1}{c|}{\textbf{Socrata}}\\ \hline
 \endfirsthead
 
-\multicolumn{8}{c}%
+\multicolumn{8}{c}
 {{\bfseries \tablename\ \thetable{} Harmonized Dataset Models Mappings}} \\
 \hline \multicolumn{1}{|p{2cm}}{\textbf{Data Model}} &
 \multicolumn{1}{c|}{\textbf{CKAN}} &
@@ -162,7 +165,7 @@ Roomba easily enables to perform such tests and to gather a detailed view about 
 \multicolumn{1}{c|}{\textbf{Socrata}} \\ \hline
 \endhead
 
-\multicolumn{8}{|r|}{{Continued on next page}} \\ \hline
+\hline
 \endfoot
 
 \endlastfoot
@@ -381,6 +384,6 @@ Provenance & revision\_timestamp &  &  &  &  &  & \tabularnewline
 \end{longtable}
 }
 \end{landscape}
-\clearpage
+
 \restoregeometry
-}
+\pagestyle{standard}
