@@ -99,23 +99,25 @@ Linked Data follows four main principles outlined by Tim Berners-Lee~\cite{Berne
 	\item Include links to other URIs. so that they can discover more things.
 \end{enumerate}
 
-Linked Data is continuously evolving, started in 2007 with a dozen of datasets (see Figure~\ref{fig:lodcloud2007}) to reach thousands of datasets covering knowledge from various domains such as encyclopedic, government, geographic, entertainment, publications and so on. The datasets have tripled in size from 2011 (see Figure~\ref{fig:lodcloud2011})~\cite{Jentzsch:SOLOD:11} to 2014, with a significant growth of nearly $271\%$~\cite{Schmachtenberg:ISWC:14}. The latest version published in April 2014 contains 1014 linked datasets connected by 2909 linksets (see Figure~\ref{fig:lodcloud2014}\footnote{A more Web friendly version can be accessed at~\url{http://data.dws.informatik.uni-mannheim.de/lodcloud/2014/}}).
+Linked Data is continuously evolving, started in 2007 with a dozen of datasets (see Figure~\ref{fig:lodcloud2007}) to reach thousands of datasets covering knowledge from various domains such as encyclopedic, government, geographic, entertainment, publications and so on. The datasets have tripled in size from 2011 to 2014, with a significant growth of nearly $271\%$~\cite{Schmachtenberg:ISWC:14}. The latest version published in April 2014 contains 1014 linked datasets connected by 2909 linksets (see Figure~\ref{fig:lodcloud2014}\footnote{A more Web friendly version can be accessed at~\url{http://data.dws.informatik.uni-mannheim.de/lodcloud/2014/}}).
 
 One of the most widely used datasets is DBpedia\footnote{http://dbpedia.org}. It is a structured knowledge extracted from multilingual versions of Wikipedia~\cite{Bizer:WebSemJorunal:09}. At the time of writing, the English version of DBpedia consists of 470 millions RDF triples that describe 4.0 million things covering a wide range of topics, and contains 45 million RDF links to several hundred external datasets.
-
-\begin{figure}[ht!]
-	\centering
-	\includegraphics[width=\linewidth]{lod.jpg}
-	\caption{Linked Open Data (LOD) Cloud in September 2011, by Anja Jentzsch and Richard
-	Cyganiak~\url{http://lod-cloud.net/}}
-	\label{fig:lodcloud2011}
-\end{figure}
 
 In order to achieve the Linked Data vision, datasets should contain outbound links to other datasets. Significant efforts try to automatically or semi-automatically generate these link to facilitate data discovery and to attach additional information.
 
 \section{Open Data}\label{sec:openData}
 
-Open Data (OD) is the data that can be easily discovered, reused and redistributed by anyone. Open data should have both legal and technical dimensions. It should be placed in the public domain under liberal terms of use with minimal restrictions and should be available in electronic formats that are non-proprietary and machine readable. Similarly, Linked Open Data (LOD) refers to the semantically linked, machine-readable open data.
+Open Data (OD) is the data that can be easily discovered, accessed, reused and redistributed by anyone~\cite{Davies:Report:15}. Open data should have both legal and technical dimensions. It should be placed in the public domain under liberal terms of use with minimal restrictions and should be available in electronic formats that are non-proprietary and machine readable. Similarly, Linked Open Data (LOD) refers to the semantically linked, machine-readable open data.
+
+Businesses, citizens and governments are encouraged to publish, share and reuse data. Figure~\ref{fig:opendata_ecosystem} shows the Open Data ecosystem described by~\cite{Deloitte:Report:12}. Each party in this ecosystem supplies different types of data (e.g. Open Business Data (OBD), Open Government Data (OGD)) to different types of stakeholders.
+
+\begin{figure}[ht!]
+	\centering{
+	\includegraphics[width=0.7\textwidth]{opendata_ecosystem.png}
+	\caption{Open Data ecosystem}
+	\label{fig:opendata_ecosystem}
+	}
+\end{figure}
 
 Similarly to the Linked Data principles, Tim Berners-Lee~\cite{Berners-Lee:W3C:06} outlined a 5 starts scheme to evaluate the availability of Linked Data as Linked Open Data:
 
@@ -127,9 +129,12 @@ Similarly to the Linked Data principles, Tim Berners-Lee~\cite{Berners-Lee:W3C:0
 	\item All the above, plus, to link data to other people's data to provide context.
 \end{enumerate}
 
-Open Data has major benefits for citizens, businesses, society and governments. It increases transparency and enables self-empowerment by improving the visibility of previously inaccessible information; allows citizens to be better informed about policies, public spending and activities in the law making processes.
+Open Data has major benefits for citizens, businesses, society and governments. It increases transparency and enables self-empowerment by improving the visibility of previously inaccessible information; allows citizens to be better informed about policies, public spending and activities in the law making processes~\cite{Deloitte:Report:12, Manyika:Report:13}.
 
 Open Data is considered a gold mine for organizations which are trying to leverage external data sources in order to produce more informed business decisions~\cite{Boyd:Article:11}. Despite the legal issues surrounding Open Data licenses~\cite{Prateek:Misc:13}, McKinsey~\cite{Manyika:Report:13} estimates that Open Data in the health sector alone adds up over \$300 billion to the economy every year.
+
+These huge benefits led to a world-wide adoption of Open Data. Figure~\ref{fig:god_adoption} shows the existence and support for open data initiatives, engagement with open data from outside government, legislative frameworks that support open data and the existence of training and support for data use and innovation~\cite{Davies:Report:15}.
+Moreover, there are several reports and initiatives like Open Data Monitor\footnote{\url{http://opendatamonitor.eu}} and Global Open Data Index\footnote{\url{http://index.okfn.org/}}that aim at analyzing and monitoring the adoption of Open Data across the world.
 
 Going back to our scenario in~\ref{sec:scenario}, Open Data will help our analyst Bob in:
 
@@ -137,6 +142,14 @@ Going back to our scenario in~\ref{sec:scenario}, Open Data will help our analys
 	\item Have a transparent view on the data available by Ministry of Transport in France. This helps in preventing the possibility of wasting time and funds recollecting data that has been already collected by a different department.
 	\item Discover complementary datasets from other sources. The benefits of data transparency amplifies when it is widely adopted in all other departments and agencies.The additional data enrich reports and enable better-informed, data-driven decisions. For example, by providing extra details on traffic information at the time when accidents occurred, Bob could draw more accurate conclusions on the root cause of some of these accidents.
 \end{itemize}
+
+\begin{figure}[ht!]
+	\centering{
+	\includegraphics[width=0.9\textwidth]{god_adoption.png}
+	\caption{Heat map of Open Government Data adoption according to the Open Data Barometer 2015}
+	\label{fig:god_adoption}
+	}
+\end{figure}
 
 \subsection{Open Licenses}
 
@@ -157,17 +170,46 @@ The Open Definition defines the following conditions for open licenses:
 	\item Allow rights propagation to all to whom the work id distributed.
 \end{itemize}
 
-
 \begin{figure}[ht!]
 	\centering{
 	\includegraphics[width=0.9\textwidth]{lod14_licenses.png}
-	\caption{Linking Open Data cloud diagram 2014, by Max Schmachtenberg, Christian Bizer, Anja Jentzsch and Richard Cyganiak colored by license type. \url{http://lod-cloud.net/}}
+	\caption{Linking Open Data cloud diagram 2014, by Max Schmachtenberg, Christian Bizer, Anja Jentzsch and Richard Cyganiak colored by licensing types. \url{http://www.cosasbuenas.es/blog/how-o-is-lod-2015}}
 	\label{fig:lodcloud2014}
 	}
 \end{figure}
 
-\section{Data Profiling}\label{sec:dataPortals}
+\section{Data Profiling}\label{sec:dataProfiling}
+
+The huge amount of published data makes it difficult to discover relevant datasets through traditional inspection of the raw data. \textit{Data profiling} is the process of creating descriptive information and collect statistics about that data. It is a cardinal activity when facing an unfamiliar dataset~\cite{Li:WISM:12, Kimball:DWL:98}.
+
+Data profiles reflect the importance of datasets without the need for detailed inspection of the raw data.  It also helps in assessing the importance of the dataset, improving users' ability to search and reuse part of the dataset and in detecting irregularities to improve its quality. Data profiling includes typically several tasks:
+\begin{itemize}
+  \item \textbf{Metadata profiling}: Provides general information on the dataset (dataset description, release and update dates), legal information (license information, openness), practical information (access points, data dumps), etc.
+  \item \textbf{Statistical profiling}: Provides statistical information about data types and patterns in the dataset (e.g. properties distribution, number of entities and RDF triples).
+  \item \textbf{Topical profiling}: Provides descriptive knowledge on the dataset content and structure. This can be in form of tags and categories used to facilitate search and reuse.
+\end{itemize}
+
+Dataset profiles are collections of data describing the internal structure of the dataset. They are presented as a set of metadata in different formats such as JSON, XML and RDF.
+
+Metadata provisioning is one of the Linked Data publishing best practices mentioned in~\cite{Bizer:DB:11}. Datasets should contain the metadata needed to effectively understand and use them. This information includes the dataset's license, provenance, context, structure and accessibility. The ability to automatically check this metadata helps in:
+\begin{itemize}
+  \item \textbf{Delaying data entropy}: \textit{Information entropy} refers to the degradation or loss limiting the information content in raw or metadata. As a consequence of information entropy, data complexity and dynamicity, the life span of data can be very short. Even when the raw data is properly maintained, it is often rendered useless when the attached metadata is missing, incomplete or unavailable. Comprehensive high quality metadata can counteract these factors and increase dataset longevity~\cite{Kovacs:GTOS:00}.
+  \item \textbf{Enhancing data discovery, exploration and reuse}: Users who are unfamiliar with a dataset require detailed metadata to interpret and analyze accurately unfamiliar datasets. A study conducted by the European Union commission~\cite{Graham:TechReport:11} found that both business and users are facing difficulties in discovering, exploring and reusing public data due to missing or inconsistent metadata information.
+  \item \textbf{Enhancing spam detection}: Portals hosting public open data like Datahub allow anyone to freely publish datasets. Even with security measures like captchas and anti-spam devices, detecting spam is increasingly difficult. In addition to that, the increasing number of datasets hinders the scalability of this process, affecting the correct and efficient spotting of datasets spam.
+\end{itemize}
 
 \section{Data Portals}\label{sec:dataPortals}
 
+Data portals (or data catalogs) are the entry points to discover published datasets. They are a curated collections of datasets metadata that provide a set of complementary discovery and integrations services.
 
+Data portals can be public like \texttt{Datahub.io} (Figure~\ref{fig:datahub.io} depicts the homepage of datahub.io) and \texttt{publicdata.eu} or private ones like \texttt{quandl.com} and \texttt{enigma.io}. Private portals harness manually curated data from various sources and expose them to users either freely or through paid plans. Similarly, in some public data portals, administrators manually review datasets information, validate, correct and attach suitable metadata information. This information is mainly in the form of predefined tags such as \textit{media, geography, life sciences} for organization and clustering purposes.
+
+\begin{figure}[ht!]
+	\centering{
+	\includegraphics[width=0.7\textwidth]{datahub.png}
+	\caption{Datahub.io}
+	\label{fig:datahub.io}
+	}
+\end{figure}
+
+There are several Data Management Systems (DMS) that power public data portals. CKAN\footnote{\url{http://ckan.org}} is the world's leading open-source data portal platform powering web sites like DataHub, Europe's Public Data and the U.S Government's open data. Modeled on CKAN, DKAN\footnote{\url{http://nucivic.com/dkan/}} is a standalone Drupal distribution that is used in various public data portals as well. Socrata\footnote{\url{http://www.socrata.com}} helps public sector organizations improve data-driven decision making by providing a set of solutions including an open data portal. In addition to these tradition data portals, there is a set of tools that allow exposing data directly as RESTful APIs like \texttt{thedatatank.com}.
