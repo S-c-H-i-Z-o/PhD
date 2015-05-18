@@ -107,20 +107,19 @@ Since establishing a common vocabulary or model is the key to communication, we 
   \item Examine the source code of some portals. This was specifically the case for Socrata as their API returns the raw data serialized as JSON rather than the dataset's metadata. As a consequence, we had to investigate the Socrata Open Data API (SODA) source code\footnote{https://github.com/socrata/soda-java/tree/master/src/main/java/com/socrata/model} and check the different classes and interfaces.
 \end{itemize}
 
-\begin{table}[!htbp]
-\centering
-\tiny
-\begin{tabular}{|l|l|l|l|l|l|l|}
-\hline
-\multicolumn{1}{|c|}{\textbf{CKAN}} & \multicolumn{1}{c|}{\textbf{DKAN}} & \multicolumn{1}{c|}{\textbf{POD}} & \multicolumn{1}{c|}{\textbf{DCAT}}     & \multicolumn{1}{c|}{\textbf{VoID}}     & \multicolumn{1}{c|}{\textbf{Schema.org}} & \multicolumn{1}{c|}{\textbf{Socrata}} \\ \hline
-resources                           & resources                          & distribution                      & dcat:Distribution                      & void:Dataset$\rightarrow$ void:dataDump & Dataset:distribution                    & attachments                           \\ \hline
-tags                                & tags                               & keyword                           & dcat:Dataset$\rightarrow$ :keyword   & void:Dataset$\rightarrow$ :keyword   & CreativeWork:keywords                     & tags                                  \\ \hline
-groups                              & groups                             & theme                             & dcat:Dataset$\rightarrow$ :theme     &   \multicolumn{1}{c|}{-}                                      & CreativeWork:about                       & category                              \\ \hline
-organization                        & organization                       & publisher                         & dcat:Dataset$\rightarrow$ :publisher &   void:Dataset$\rightarrow$ :publisher                                     & \multicolumn{1}{c|}{-}                   & \multicolumn{1}{c|}{-}                                      \\ \hline
-\end{tabular}
-\caption{Data models sections mapping}
-\label{tab:models_section_mappings}
-\end{table}
+\begin{adjustwidth}{-.6in}{-.6in}
+	\tiny
+	\begin{tabular}{|l|l|l|l|l|l|l|}
+		\hline
+		\multicolumn{1}{|c|}{\textbf{CKAN}} & \multicolumn{1}{c|}{\textbf{DKAN}} & \multicolumn{1}{c|}{\textbf{POD}} & \multicolumn{1}{c|}{\textbf{DCAT}}     & \multicolumn{1}{c|}{\textbf{VoID}}     & \multicolumn{1}{c|}{\textbf{Schema.org}} & \multicolumn{1}{c|}{\textbf{Socrata}} \\ \hline
+		resources                           & resources                          & distribution                      & dcat:Distribution                      & void:Dataset$\rightarrow$ void:dataDump & Dataset:distribution                    & attachments                           \\ \hline
+		tags                                & tags                               & keyword                           & dcat:Dataset$\rightarrow$ :keyword   & void:Dataset$\rightarrow$ :keyword   & CreativeWork:keywords                     & tags                                  \\ \hline
+		groups                              & groups                             & theme                             & dcat:Dataset$\rightarrow$ :theme     &   \multicolumn{1}{c|}{-}                                      & CreativeWork:about                       & category                              \\ \hline
+		organization                        & organization                       & publisher                         & dcat:Dataset$\rightarrow$ :publisher &   void:Dataset$\rightarrow$ :publisher                                     & \multicolumn{1}{c|}{-}                   & \multicolumn{1}{c|}{-}                                      \\ \hline
+	\end{tabular}
+	% \caption{Data models sections mapping}
+	\label{tab:models_section_mappings}
+\end{adjustwidth}
 
 The first task is to map the four main information sections (resources, tags, groups and organization) across those models. Table~\ref{tab:models_section_mappings} shows our proposed mappings. For the ontologies (DCAT, VoID), the first part represents the class and the part after $\rightarrow$ represents the property. For Schema.org, the first part refers to the schema and the second part after $:$ refers to the property.
 

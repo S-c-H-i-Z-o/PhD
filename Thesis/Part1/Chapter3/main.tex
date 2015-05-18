@@ -67,6 +67,8 @@ In~\cite{Assaf:DQMST:12}, the authors identified 24 different Linked Data qualit
 
 \begin{center}
 {\footnotesize
+\setlength\LTleft{-1in}
+\setlength\LTright{-1in}
 \begin{longtable}[h]{|c|c|c|l|}
 \caption[Objective Linked Data Quality Framework]{Objective Linked Data Quality Framework} \label{DQM} \\
 
@@ -292,9 +294,7 @@ For this paper, we have extended Roomba with a new quality module to measure dat
 
 Data portals can be considered as data access points providing tools to facilitate data publishing, sharing, searching and visualization. CKAN\footnote{\url{http://ckan.org}} is the world's leading open-source data portal platform powering websites and the target of our tool. We have identified that most of the dataset quality issues can be assessed by examining the accompanying dataset metadata. Building a standard metadata model is not the scope of this paper, and since we focus on CKAN-based portals, we assess the quality issues using the CKAN standard model\footnote{\url{http://demo.ckan.org/api/3/action/package_show?id=adur_district_spending}}. Table~\ref{tab:objective-methods-ckan} shows the various quality indicators checked by our tool.
 
-\begin{table}[!ht]
-\begin{center}
-{
+\begin{adjustwidth}{-.4in}{-.4in}
 \small
 \begin{tabular}{|c|L|}
 \hline
@@ -347,11 +347,9 @@ Quality Indicator & Assessment Method\tabularnewline
 46 & Check if the dataset contain and its resources contain versioning information \texttt{version, revision\_id} \tabularnewline
 \hline
 \end{tabular}
-}
-\caption{Objective Quality Assessment Methods for CKAN\-based Data Portals}
+% \caption{Objective Quality Assessment Methods for CKAN\-based Data Portals}
 \label{tab:objective-methods-ckan}
-\end{center}
-\end{table}
+\end{adjustwidth}
 
 In our framework, we have presented 30 objective quality indicators related to dataset and links quality. The Roomba quality module is able to assess and score 23 of them. We excluded security related quality indicators as LOD cloud group members should not restrict access to their datasets.
 
