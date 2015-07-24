@@ -134,13 +134,13 @@ Open Data has major benefits for citizens, businesses, societies and governments
 Open Data is considered a gold mine for organizations which are trying to leverage external data sources in order to produce more informed business decisions~\cite{Boyd:Article:11}. Despite the legal issues surrounding Open Data licenses~\cite{Prateek:Misc:13}, McKinsey~\cite{Manyika:Report:13} estimates that Open Data in the health sector alone adds up over \$300 billion to the economy every year.
 
 These huge benefits led to a world-wide adoption of Open Data. Figure~\ref{fig:god_adoption} shows the existence and support for open data initiatives, engagement with open data from outside government, legislative frameworks that support open data and the existence of training and support for data use and innovation~\cite{Davies:Report:15}.
-Moreover, there are several reports and initiatives like Open Data Monitor\footnote{\url{http://opendatamonitor.eu}} and Global Open Data Index\footnote{\url{http://index.okfn.org/}}that aim at analyzing and monitoring the adoption of Open Data across the world.
+Moreover, there are several reports and initiatives like Open Data Barometer\footnote{\url{http://barometer.opendataresearch.org/}}, Open Data Monitor\footnote{\url{http://opendatamonitor.eu}} and Global Open Data Index\footnote{\url{http://index.okfn.org/}}that aim at analyzing and monitoring the adoption of Open Data across the world.
 
-Going back to our scenario in~\ref{sec:scenario}, Open Data will help our analyst Bob in:
+Going back to our scenario in~\ref{sec:scenario}, Open Data will help our analyst \textbf{Bob} in:
 
 \begin{itemize}
 	\item Have a transparent view on the data available by Ministry of Transport in France. This helps in preventing the possibility of wasting time and funds recollecting data that has been already collected by a different department.
-	\item Discover complementary datasets from other sources. The benefits of data transparency amplifies when it is widely adopted in all other departments and agencies.The additional data enrich reports and enable better-informed, data-driven decisions. For example, by providing extra details on traffic information at the time when accidents occurred, Bob could draw more accurate conclusions on the root cause of some of these accidents.
+	\item Discover complementary datasets from other sources. The benefits of data transparency amplifies when it is widely adopted in all other departments and agencies.The additional data enrich reports and enable better-informed, data-driven decisions. For example, by providing extra details on traffic information at the time when accidents occurred, \textbf{Bob} could draw more accurate conclusions on the root cause of some of these accidents.
 \end{itemize}
 
 \begin{figure}[ht!]
@@ -211,3 +211,15 @@ Data portals can be public like \texttt{Datahub.io} (Figure~\ref{fig:datahub.io}
 \end{figure}
 
 There are several Data Management Systems (DMS) that power public data portals. CKAN\footnote{\url{http://ckan.org}} is the world's leading open-source data portal platform powering web sites like DataHub, Europe's Public Data and the U.S Government's open data. Modeled on CKAN, DKAN\footnote{\url{http://nucivic.com/dkan/}} is a standalone Drupal distribution that is used in various public data portals as well. Socrata\footnote{\url{http://www.socrata.com}} helps public sector organizations improve data-driven decision making by providing a set of solutions including an open data portal. In addition to these tradition data portals, there is a set of tools that allow exposing data directly as RESTful APIs like \texttt{thedatatank.com}.
+
+\section{Data Integration}\label{sec:dataIntegration}
+
+\textit{Data Integration (DI)} is the process of providing the user with a unified view of data residing at different sources~\cite{Lenzerini:DIT:02}. Data Integration is a challenging task since these sources are in many real-world mutually inconsistent.
+
+Various approaches and methodologies have been proposed to solve the DI problem in the enterprise:
+\begin{itemize}
+	\item XML as a hierarchical data format can be used as a uniform standard uniform for data representation. However, extending XML to provide complex mappings and sources descriptions is difficult.
+	\item SOA can be seen as a holistic approach for distributed systems communication and architecture. In its core, SOA aims at minimizing impedance in the architecture paving the way for easier communication between data sources. However, in~\cite{Frischmuth:ISWC:13}, the authors argue that SOA is well-suited for transaction process rather than an approach for data integration.
+	\item Ontologies can be used as a rich format to describe queries and data mappings between schemas and sources. However, developing ontologies require specific skills and it is difficult to provide a complete model that captures the dynamics of the enterprise.
+	\item Linked Data paradigm is a slightly different approach from the ontology-based by exploiting Semantic Web technologies like RDF to represent enterprise taxonomies. The LD approach allows terms to be easily reused and extended.
+\end{itemize}
