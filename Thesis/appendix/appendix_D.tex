@@ -1,0 +1,47 @@
+\chapter{Installation and cutomization instructions for Roomba}
+\label{appendix:appendixD}
+
+You can either download Roomba from the Githu repo\footnote{\url{https://github.com/ahmadassaf/opendata-checker}} as a zip file or clone directly through git. Pay attention when cloning as there is a submodule defined and has to be cloned recursively as well. This can be done via:
+
+\begin{verbatim}
+git clone --recursive http://github.com/ahmadassaf/opendata-checker
+\end{verbatim}
+
+If you have cloned without \texttt{--recursive}, you may find out that some folders are empty. To fix this:
+\begin{verbatim}
+git submodule update --init
+\end{verbatim}
+
+After successfully having cloned Roomba to your local machine.
+\begin{verbatim}
+1.	Install dependencies by running the command "npm install"
+2.	Start Roomba by running "node DC.js"
+\end{verbatim}
+
+\section{Customizing Roomba}
+
+There are a set of options that you can customize. They can be edited from \texttt{options.json} file (see listing~\ref{roombaOptions})
+
+\lstset{literate=%
+{é}{{\'e}}1 {è}{{\`e}}1 {à}{{\`a}}1 {ï}{{\"i}}1 }
+
+\lstset{basicstyle=\scriptsize, backgroundcolor=\color{white}, frame=single, caption= {Roomba's customization via the options file}, label=roombaOptions, captionpos=b}
+\lstinputlisting[breaklines=true,language=json]{util/attachments/roomba_options.json}
+
+\begin{itemize}
+	\item \textbf{locale}: the language of the messages and the prompts. Default: \texttt{en}
+	\item \textbf{cacheFolderName}: The name of cache folder separated by /. Default: \texttt{/cache/}
+	\item \textbf{licensesFolder}: The location of the Open Licenses Repo\footnote{\url{https://github.com/okfn/licenses}}. It is defined as a submodule and by default it is located in \texttt{/util/licenses/}
+	\item \textbf{mappingFileName}: The name of manual license mappings. Default: \texttt{licenseMappings}
+	\item \textbf{proxy}: Proxy server e.g. \texttt{proxy:8080}. Default: \texttt{""}
+\end{itemize}
+
+\subsection{Localization}
+
+If you wish to translate the messages and prompts into other languages than English. You have to create a new language entry in the \texttt{util/messages.js} with the new locale code e.g. \texttt{fr}. Afterwards, you should keep the object keys intact by translate the values into the desired language. For example:
+
+\lstset{literate=%
+{é}{{\'e}}1 {è}{{\`e}}1 {à}{{\`a}}1 {ï}{{\"i}}1 }
+
+\lstset{basicstyle=\scriptsize, backgroundcolor=\color{white}, frame=single, caption= {Roomba's localization file example}, label=roombaLocalization, captionpos=b}
+\lstinputlisting[breaklines=true,language=json]{util/attachments/roomba_locale.json}
