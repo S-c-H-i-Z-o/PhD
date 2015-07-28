@@ -29,7 +29,7 @@ Metadata provisioning is one of the Linked Data publishing best practices mentio
 %%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Related Work}
-\label{section:related-work}
+\label{section:roomba-related-work}
 Data Catalog Vocabulary (DCAT)~\cite{Erickson:DCV:14} and the Vocabulary of Interlinked Datasets (VoID)~\cite{Cyganiak:W3C:11} are concerned with metadata about RDF datasets. There exist several tools aiming at exposing dataset metadata using these vocabularies. In~\cite{Bohm:WebSemJournal:11}, the authors generate VoID descriptions limited to a subset of properties that can be automatically deduced from resources within the dataset. However, it still provides data consumers with interesting insights. Flemming's Data Quality Assessment Tool\footnote{\url{http://linkeddata.informatik.hu-berlin.de/LDSrcAss/datenquelle.php}} provides basic metadata assessment as it computes data quality scores based on manual user input. The user assigns weights to the predefined quality metrics and answer a series of questions regarding the dataset. These include, for example, the use of obsolete classes and properties by defining the number of described entities that are assigned disjoint classes, the usage of stable URIs and whether the publisher provides a mailing list for the dataset. The ODI certificate\footnote{\url{https://certificates.theodi.org/}}, on the other hand, provides a description of the published data quality in plain English. It aspires to act as a mark of approval that helps publishers understand how to publish good open data and users how to use it. It gives publishers the ability to provide assurance and support on their data while encouraging further improvements through an ascending scale. ODI comes as an online and free questionnaire for data publishers focusing on certain characteristics about their data. Although these approaches try to perform metadata profiling, they are either incomplete or manual. In our framework, we propose a more automatized and complete approach.
 
 \textbf{Metadata profiling}: The Project Open Data Dashboard\footnote{\url{http://labs.data.gov/dashboard/}} tracks and measures how US government web sites implement the Open Data principles to understand the progress and current status of their public data listings. A validator analyzes machine readable files: e.g. JSON files for automated metrics like the resolved URLs, HTTP status and content-type. However, deep schema information about the metadata is missing like description, license information or tags. Similarly on the LOD cloud, the Datahub LOD Validator\footnote{\url{http://validator.lod-cloud.net/}} gives an overview of Linked Data sources cataloged on the Datahub. It offers a step-by-step validator guidance to check a dataset completeness level for inclusion in the LOD cloud. The results are divided into four different compliance levels from basic to reviewed and included in the LOD cloud. Although it is an excellent tool to monitor LOD compliance, it still lacks the ability to give detailed insights about the completeness of the metadata and overview on the state of the entire LOD cloud group and it is very specific to the LOD cloud group rules and regulations.
@@ -49,7 +49,7 @@ Although the above mentioned tools are able to provide various types of informat
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Profiling Data Portals}
-\label{section:framework}
+\label{section:roomba-framework}
 In this section, we provide an overview of Roomba's architecture and the processing steps for validating and generating dataset profiles. Figure \ref{fig:Roomba_architecture} shows the main steps which are the following: (i) data portal identification; (ii) metadata extraction; (iii) instance and resource extraction; (iv) profile validation (v) profile and report generation.
 
 Roomba is built as a Command Line Interface (CLI) application using Node.js allowing users to:
@@ -112,7 +112,7 @@ Considering that certain datasets contain large amounts of resources and the lim
 However, the sampler is not restricted only to these strategies. Strategies like those introduced in~\cite{Leskovec:KDD:06} can be configured and plugged in the processing pipeline.
 
 \subsection{Profile Validation}
-A dataset profile should include descriptive information about the data examined. In Roomba, we have identified three main categories of profiling information. However, the extensibility of our framework allows for additional profiling techniques to be plugged in easily (section ~\ref{section:assessment-framework} describes an extension to measure the objective qualities of datasets).
+A dataset profile should include descriptive information about the data examined. In Roomba, we have identified three main categories of profiling information. However, the extensibility of our framework allows for additional profiling techniques to be plugged in easily (section ~\ref{sec:quality-assessment-framework} describes an extension to measure the objective qualities of datasets).
 
 Metadata validation process identifies missing information and the ability to automatically correct them. Each set of metadata (general, access, ownership and provenance) is validated and corrected automatically when possible. Each profiler task has a set of metadata fields to check against. The validation process check if each field is defined and if the value assigned is valid.
 
@@ -145,43 +145,43 @@ For example, the meta-field value query \texttt{resource>resource\_type} run aga
 
 \lstset{basicstyle=\scriptsize, backgroundcolor=\color{white}, breaklines=true, frame=single, caption={Excerpt of the DBpedia validation report}, label=roomba_validation_report, captionpos=b}
 \begin{lstlisting}
- =======================================================================
-                          Metadata Report
- =======================================================================
-  group information is missing. Check organization information as they can be mixed sometimes
-  organization_image_url field exists but there is no value defined
- =======================================================================
-                          Tag Statistics
- =======================================================================
-  There is a total of: 21 [undefined] vocabulary_id fields  100.00%
- =======================================================================
-                          License Report
- =======================================================================
-  License information has been normalized !
- =======================================================================
-                        Resource Statistics
- =======================================================================
-  There is a total of: 10 [missing] url-type fields  100.00%
-  There is a total of: 9 [missing] created fields  90.00%
-  There is a total of: 10 [undefined] cache_last_updated fields  100.00%
-  There is a total of: 10 [undefined] size fields  100.00%
-  There is a total of: 10 [undefined] hash fields  100.00%
-  There is a total of: 10 [undefined] mimetype_inner fields  100.00%
-  There is a total of: 7 [undefined] mimetype fields  70.00%
-  There is a total of: 10 [undefined] cache_url fields  100.00%
-  There is a total of: 6 [undefined] name fields  60.00%
-  There is a total of: 9 [undefined] webstore_url fields  90.00%
-  There is a total of: 9 [undefined] last_modified fields  90.00%
-  There is one [undefined] format field  10.00%
- =======================================================================
-                   Resource Connectivity Issues
- =======================================================================
-  There are 2 connectivity issues with the following URLs:
-    - \url{http://dbpedia.org/void/Dataset}
- =======================================================================
-                     Un-Reachable URLs Types
- =======================================================================
-  There are: 1 unreachable URLs of type [file]
+    =======================================================================
+                             Metadata Report
+    =======================================================================
+     group information is missing. Check organization information as they can    be mixed sometimes
+     organization_image_url field exists but there is no value defined
+    =======================================================================
+                             Tag Statistics
+    =======================================================================
+     There is a total of: 21 [undefined] vocabulary_id fields  100.00%
+    =======================================================================
+                             License Report
+    =======================================================================
+     License information has been normalized !
+    =======================================================================
+                           Resource Statistics
+    =======================================================================
+     There is a total of: 10 [missing] url-type fields  100.00%
+     There is a total of: 9 [missing] created fields  90.00%
+     There is a total of: 10 [undefined] cache_last_updated fields  100.00%
+     There is a total of: 10 [undefined] size fields  100.00%
+     There is a total of: 10 [undefined] hash fields  100.00%
+     There is a total of: 10 [undefined] mimetype_inner fields  100.00%
+     There is a total of: 7 [undefined] mimetype fields  70.00%
+     There is a total of: 10 [undefined] cache_url fields  100.00%
+     There is a total of: 6 [undefined] name fields  60.00%
+     There is a total of: 9 [undefined] webstore_url fields  90.00%
+     There is a total of: 9 [undefined] last_modified fields  90.00%
+     There is one [undefined] format field  10.00%
+    =======================================================================
+                      Resource Connectivity Issues
+    =======================================================================
+     There are 2 connectivity issues with the following URLs:
+       - \url{http://dbpedia.org/void/Dataset}
+    =======================================================================
+                        Un-Reachable URLs Types
+    =======================================================================
+     There are: 1 unreachable URLs of type [file]
 \end{lstlisting}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -201,7 +201,6 @@ In this section, we provide the experiments and evaluation of Roomba. All the ex
 Each of these sections contains a set of metadata corresponding to one or more type (general, access, ownership and provenance). For example, a dataset resource will have general information such as the resource name, access information such as the resource url and provenance information such as creation date. The framework generates a report aggregating all the problems in all these sections, fixing field values when possible. Errors can be the result of missing metadata fields, undefined field values or field value errors (e.g. unreachable URL or incorrect email addresses).
 
 \subsection{Experimental Setup}
-We ran our tool on two CAKN-based data portals. The first one is datahub.io targeting specifically the LOD cloud group. The current state of the LOD cloud report~\cite{Schmachtenberg:ISWC:14} indicates that the LOD cloud contains 1014 datasets. They were harvested via a LDSpider crawler~\cite{Isele:ISWC:10} seeded with 560 thousands URIs. Roomba, on the other hand, fetches datasets hosted in data portals where datasets have attached relevant metadata. As a result, we relied on the information provided by the Datahub CKAN API. Examining the tags available, we found two candidate groups. The first one tagged with ``lodcloud'' returned 259 datasets, while the second one tagged with ``lod'' returned only 75 datasets. After manually examining the two lists, we found out the datasets grouped with the tag ``lodcloud'' are the correct ones. To qualify other CKAN-based portals for the experiments, we use \url{http://dataportals.org/} which contains a comprehensive list of Open Data portals from around the world. In the end, we chose the Amsterdam data portal\footnote{\url{http://data.amsterdamopendata.nl/}}. The portal was commissioned in 2012 by the Amsterdam Economic Board Open Data Exchange (ODE) and covers a wide range of information domains (energy, economy, education, urban development, etc.) about Amsterdam metropolitan region.
 
 We ran our tool on two CAKN-based data portals. The first is the Datahub targeting specifically the LOD cloud group. The current state of the LOD cloud report~\cite{Schmachtenberg:ISWC:14} indicates that the LOD cloud contains 1014 datasets. They were harvested via an LDSpider crawler~\cite{Isele:ISWC:10} seeded with 560 thousands URIs. Roomba on the other hand, fetches datasets hosted in data portals where datasets have attached relevant metadata. As a result, we relied on the information provided by the Datahub CKAN API. Examining the tags available, we found two candidate groups. The first tagged with ``lodcloud'' returned 259 datasets, while the second tagged with ``lod'' returned only 75 datasets. After manually examining the two lists, we found out the datasets grouped with the tag ``lodcloud'' are the correct ones. To qualify other CKAN-based portals for the experiments, we used \texttt{dataportals.org}, which contains a comprehensive list of Open Data portals from around the world. In the end, we chose the Amsterdam data portal \footnote{\url{http://data.amsterdamopendata.nl/}}. The portal was commissioned in 2012 by the Amsterdam Economic Board Open Data Exchange (ODE), and covers a wide range of information domains (energy, economy, education, urban development, etc.) about Amsterdam metropolitan region.
 
@@ -224,7 +223,7 @@ In our evaluation, we focused on two aspects: i)\textit{profiling correctness} w
 \subsection{Profiling Correctness}
 To measure profile correctness, we need to make sure that the issues reported by Roomba are valid on the dataset, group and portal levels.
 
-On the dataset level, we choose three datasets from both the LOD Cloud and the Amsterdam data portal. The datasets details are shown in table \ref{tab:datases_experiment}.
+On the dataset level, we choose three datasets from both the LOD Cloud and the Amsterdam data portal. The datasets details are shown in table \ref{tab:dataset_experiment}.
 \begin{table}[ht]
 \centering
 \footnotesize\setlength{\tabcolsep}{1.5pt}
@@ -239,7 +238,7 @@ bevolking-prognoses-amsterdam  & Amsterdam                                 & bev
 religieuze\_samenkomstlocaties & Amsterdam                                 & bevolking                              & 1                                       & 8                                  \\ \hline
 \end{tabular}
 \caption{Datasets chosen for the correctness evaluation}
-\label{tab:datases_experiment}
+\label{tab:dataset_experiment}
 \end{table}
 
 To measure the profiling correctness on the groups level, we selected four groups from the Amsterdam data portal containing a total of 25 datasets. The choice was made to cover groups in various domains that contain a moderate number of datasets that can be checked manually (between 3-9 datasets). Table \ref{tab:groups_experiment} summarizes the groups chosen for the evaluation.
@@ -261,7 +260,7 @@ openbare-orde-veiligheid & Public Order \& Safety & 5                           
 After running Roomba and examining the results on the selected datasets and groups, we found out that our framework provides 100\% correct results on the individual dataset level and on the aggregation level over groups. Since our portal level aggregation is extended from the group aggregation, we can infer that the portal level aggregation also produces complete correct profiles. However, the lack of a standard way to create and manage collections of datasets was the source of some errors when comparing the results from these two portals. For example, in Datahub, we noticed that all the datasets \texttt{groups} information were missing, while in the Amsterdam Open Data portal, all the \texttt{organisation} information was missing. Although the error detection is correct, the overlap in the usage of group and organization can give a false indication about the metadata quality.
 
 \subsection{Profiling Completeness}
-We analyzed the completeness of our framework by manually constructing a set of profiles that act as a golden standard. These profiles cover the range of uncommon problems that can occur in a certain dataset\footnote{\url{https://github.com/ahmadassaf/opendata-checker/tree/master/test}}. These errors are:
+We analyzed the completeness of our framework by manually constructing a synthetic set of profiles. These profiles cover the range of uncommon problems that can occur in a certain dataset\footnote{\url{https://github.com/ahmadassaf/opendata-checker/tree/master/test}}. These errors are:
 \begin{itemize}
  \item Incorrect \texttt{mimetype} or \texttt{size} for resources;
  \item Invalid number of tags or resources defined;
@@ -271,14 +270,16 @@ We analyzed the completeness of our framework by manually constructing a set of 
 
 After running our framework at each of these profiles, we measured the completeness and correctness of the results. We found out that our framework covers indeed all the metadata problems that can be found in a CKAN standard model correctly.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  5. Profiling data portals results  %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Analyzing Profiling Results} \label{section:running_roomba}
 
-\section{Profiling Experiments}
-\label{section:running_roomba}
 In this section, we describe our experiments when running the Roomba tool on the LOD cloud. All the experiments are reproducible by our tool and their results are available on its Github repository.
 
 Figures \ref{fig:metadata_noise_by_section} and \ref{fig:metadata_noise_by_metadata_type} show the percentage of errors found in metadata fields by section and by information type respectively. We observe that the most erroneous information for the dataset core information is related to ownership since this information is missing or undefined for 41\% of the datasets. Datasets resources have the poorest metadata. 64\% of the general metadata, all the access information and 80\% of the provenance information contain missing or undefined values. Table \ref{tab:top_metadata_fields_errors} shows the top metadata fields errors for each metadata information type.
 
-\begin{table}
+\begin{table}[ht]
 \begin{center}
 \begin{tabular}{|c|c|c|c|c|c|}
 \hline

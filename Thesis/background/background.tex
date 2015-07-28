@@ -32,7 +32,7 @@ RDF provides an intuitive knowledge representation using directed graphs, where 
 	\item \textbf{Object:} specifies the value of the property. It can be a URI of a resource, blank node or a literal.
 \end{itemize}
 
-Figure~\ref{fig:rdfGraph}~\info{Do i have to reference the image?} depicts an example of RDF graph-based representation for an address. An address is a structure that consists of different values such as a street, a city, a state and a zip-code.
+Figure~\ref{fig:rdfGraph} depicts an example of RDF graph-based representation for an address. An address is a structure that consists of different values such as a street, a city, a state and a zip-code.
 
 \begin{figure}[htbp]
 \centering
@@ -200,15 +200,7 @@ Dataset profiles are collections of data describing the internal structure of th
 
 Data portals (or data catalogs) are the entry points to discover published datasets. They are a curated collections of datasets metadata that provide a set of complementary discovery and integrations services.
 
-Data portals can be public like \texttt{Datahub.io} (Figure~\ref{fig:datahub.io} depicts the homepage of datahub.io) and \texttt{publicdata.eu} or private ones like \texttt{quandl.com} and \texttt{enigma.io}. Private portals harness manually curated data from various sources and expose them to users either freely or through paid plans. Similarly, in some public data portals, administrators manually review datasets information, validate, correct and attach suitable metadata information. This information is mainly in the form of predefined tags such as \textit{media, geography, life sciences} for organization and clustering purposes.
-
-\begin{figure}[ht!]
-	\centering{
-	\includegraphics[width=0.7\textwidth]{datahub.png}
-	\caption{Datahub.io}
-	\label{fig:datahub.io}
-	}
-\end{figure}
+Data portals can be public like \texttt{Datahub.io} and \texttt{publicdata.eu} or private ones like \texttt{quandl.com} and \texttt{enigma.io}. Private portals harness manually curated data from various sources and expose them to users either freely or through paid plans. Similarly, in some public data portals, administrators manually review datasets information, validate, correct and attach suitable metadata information. This information is mainly in the form of predefined tags such as \textit{media, geography, life sciences} for organization and clustering purposes.
 
 There are several Data Management Systems (DMS) that power public data portals. CKAN\footnote{\url{http://ckan.org}} is the world's leading open-source data portal platform powering web sites like DataHub, Europe's Public Data and the U.S Government's open data. Modeled on CKAN, DKAN\footnote{\url{http://nucivic.com/dkan/}} is a standalone Drupal distribution that is used in various public data portals as well. Socrata\footnote{\url{http://www.socrata.com}} helps public sector organizations improve data-driven decision making by providing a set of solutions including an open data portal. In addition to these tradition data portals, there is a set of tools that allow exposing data directly as RESTful APIs like \texttt{thedatatank.com}.
 

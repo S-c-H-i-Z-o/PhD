@@ -305,7 +305,7 @@ In our evaluation, we focused on two aspects: i)\textit{profiling correctness} w
 \subsection{Profiling Correctness}
 To measure profile correctness, we need to make sure that the issues reported by Roomba are valid on the dataset, group and portal levels.
 
-On the dataset level, we choose three datasets from both the LOD Cloud and the Amsterdam data portal. The datasets details are shown in table \ref{tab:datases_experiment}.
+On the dataset level, we choose three datasets from both the LOD Cloud and the Amsterdam data portal. The datasets details are shown in table \ref{tab:dataset_experiment}.
 \begin{table}[ht]
 \centering
 \footnotesize\setlength{\tabcolsep}{1.5pt}
@@ -320,7 +320,7 @@ bevolking-prognoses-amsterdam  & Amsterdam                                 & bev
 religieuze\_samenkomstlocaties & Amsterdam                                 & bevolking                              & 1                                       & 8                                  \\ \hline
 \end{tabular}
 \caption{Datasets chosen for the correctness evaluation}
-\label{tab:datases_experiment}
+\label{tab:dataset_experiment}
 \end{table}
 
 To measure the profiling correctness on the groups level, we selected four groups from the Amsterdam data portal containing a total of 25 datasets. The choice was made to cover groups in various domains that contain a moderate number of datasets that can be checked manually (between 3-9 datasets). Table \ref{tab:groups_experiment} summarizes the groups chosen for the evaluation.
@@ -342,7 +342,7 @@ openbare-orde-veiligheid & Public Order \& Safety & 5                           
 After running Roomba and examining the results on the selected datasets and groups, we found out that our framework provides 100\% correct results on the individual dataset level and on the aggregation level over groups. Since our portal level aggregation is extended from the group aggregation, we can infer that the portal level aggregation also produces complete correct profiles. However, the lack of a standard way to create and manage collections of datasets was the source of some errors when comparing the results from these two portals. For example, in Datahub, we noticed that all the datasets \texttt{groups} information were missing, while in the Amsterdam Open Data portal, all the \texttt{organisation} information was missing. Although the error detection is correct, the overlap in the usage of group and organization can give a false indication about the metadata quality.
 
 \subsection{Profiling Completeness}
-We analyzed the completeness of our framework by manually constructing a set of profiles that act as a golden standard. These profiles cover the range of uncommon problems that can occur in a certain dataset\footnote{\url{https://github.com/ahmadassaf/opendata-checker/tree/master/test}}. These errors are:
+We analyzed the completeness of our framework by manually constructing a synthetic set of profiles. These profiles cover the range of uncommon problems that can occur in a certain dataset\footnote{\url{https://github.com/ahmadassaf/opendata-checker/tree/master/test}}. These errors are:
 \begin{itemize}
  \item Incorrect \texttt{mimetype} or \texttt{size} for resources;
  \item Invalid number of tags or resources defined;

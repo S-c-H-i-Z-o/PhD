@@ -68,12 +68,13 @@ In this thesis, we propose a framework (see Figure~\ref{fig:architecutre_diagram
   \label{fig:architecutre_diagram}
 \end{figure}
 
-\subsection{Contributions on Dataset Integration and Enrichment}~\todo{Add section numbers for confributions}
+\subsection{Contributions on Dataset Integration and Enrichment}
+
 Regarding this aspect of our research, we have achieved the following tasks:
 \begin{itemize}
 	\item We created a framework called RUBIX that enables mashing-up potentially noisy enterprise data and external data. The framework leverages reference knowledge bases to annotate data with a set of semantic concepts (metadata). One of the advantages of this metadata is to enhance the matching process of heterogeneous data sources within an enterprise.
 	\item The metadata attached by RUBIX can be further used to enrich existing datasets. However, concepts are often represented with a large set of properties. To better recommend the top ``important'' properties for a concept, we reversed engineer the choices made by Google when creating knowledge graph panels and compared them to preferences obtained from a user survey. We further represented these choices explicitly using the Fresnel vocabulary, so that any application could read this configuration file for deciding which properties of an entity is worth to enrich.
-	\item We have analyzed the landscape of dataset profiling tools and discovered various gaps. As a result, we propose Roomba, a scalable automatic framework for extracting, validating, correcting and generating descriptive linked dataset profiles. Roomba applies several techniques in order to check the validity of the metadata provided and to generate descriptive and statistical information for a particular dataset or for an entire data portal. We present the results of running Roomba over various data portals while focusing on analyzing the LOD cloud group hosted in the Datahub.
+	\item We have analyzed the landscape of dataset profiling tools and discovered various gaps (see section~\ref{section:roomba-related-work}). As a result, we propose Roomba, a scalable automatic framework for extracting, validating, correcting and generating descriptive linked dataset profiles (see section~\ref{section:roomba-framework}). Roomba applies several techniques in order to check the validity of the metadata provided and to generate descriptive and statistical information for a particular dataset or for an entire data portal. We present the results of running Roomba over various data portals while focusing on analyzing the LOD cloud group hosted in the Datahub (see section~\ref{section:running_roomba}).
 	\item Aggregating relevant social news is not an easy task. We provide an Application Programming Interface (API) that enables semantic social news aggregation called SNARC. We designed a sample frontend application leveraging SNARC's capabilities to enable users to discover relevant social news instantly.
 \end{itemize}
 
@@ -81,21 +82,27 @@ Regarding this aspect of our research, we have achieved the following tasks:
 
 \begin{itemize}
 	\item We surveyed the landscape of various models and vocabularies that describe datasets on the web. Since establishing a common vocabulary or model is the key to communication, we identified the need for an harmonized dataset metadata model containing sufficient information so that consumers can easily understand and process datasets (see section~\ref{section:datasetModels}).
-	\item We implemented a set of mappings between each properties of the surveyed models. This has lead to the design of HDL, a harmonized dataset model, that takes the best out of these models and extends them to ensure complete metadata coverage to enable data discovery, exploration and reuse(see section~\ref{section:hdl}).
+	\item We implemented a set of mappings between each properties of the surveyed models. This has lead to the design of HDL, a harmonized dataset model, that takes the best out of these models and extends them to ensure complete metadata coverage to enable data discovery, exploration and reuse (see section~\ref{section:hdl}).
 \end{itemize}
 
 \subsection{Contributions on Dataset Quality Control}
 Concerning our contributions on Linked Data quality assessment, we have achieved the following tasks:
 \begin{itemize}
-	\item We propose five principle classes to describe the quality of a particular linked dataset. For each class, we define the principles that are involved at all stages of the data management process. We further refine these principles and propose a comprehensive objective quality framework applied to the Linked Open Data.
-	\item Upon surveying the landscape of data quality tools, we noticed a lack in automatic tools to check the dataset quality especially in terms of its completeness, licensing and provenance measures. As a result, we extend Roomba to perform a set of data quality checks on Linked datasets. Our extension covers most of the quality indicators with its focus on completeness, correctness, provenance and licensing.
+	\item We propose five principle classes to describe the quality of a particular linked dataset. For each class, we define the principles that are involved at all stages of the data management process. We further refine these principles and propose a comprehensive objective quality framework applied to the Linked Open Data (see section~\ref{sec:data-quality-classification}).
+	\item Upon surveying the landscape of data quality tools, we noticed a lack in automatic tools to check the dataset quality especially in terms of its completeness, licensing and provenance measures (see section~\ref{sec:quality-tools}). As a result, we extend Roomba to perform a set of data quality checks on Linked datasets. Our extension covers most of the quality indicators with its focus on completeness, correctness, provenance and licensing (see section~\ref{sec:quality-assessment-framework}).
 \end{itemize}
 
 \section{Thesis Outline} \label{sec:outline}
 The work presented in this thesis first describes a standard model to represent dataset profiles. Then it focuses on techniques to automatically generate and validate these profiles.
 
-Chapter 2 is dedicated to overview the background of our work including the research in data integration and enrichment and some paradigms related to Semantic Web. We first introduce the basic concepts in the Semantic Web and the important aspects related to (Linked) Open Data. Then, we describe the various data integration techniques and the importance of external data to the enterprise.~\info{This is not final, just a rough estimation}
+Chapter 2 is dedicated to overview the background of our work including the research in data integration and enrichment and some paradigms related to Semantic Web. We first introduce the basic concepts in the Semantic Web and the important aspects related to (Linked) Open Data. Then, we describe the various data integration techniques and the importance of external data to the enterprise.
 
 The rest of this manuscript is composed of two major parts:
 
-\todo{Add the thesis parts and chapters}
+In the first part~\ref{part:dataset_profiling}, we focus on the development of a framework that automatically validates and generates dataset profiles. We highlight the extensibility of this framework and show the results of running it across various data portals. The contributions of this part have been published in ~\cite{Assaf:WWW:15,Assaf:IJSWIS:15,Assaf:PROFILES:15,Assaf:ESWC:PROFILES:15,Assaf:ESWC:LDQ:15}
+
+\begin{itemize}
+	\item \textbf{Chapter~\ref{chapter:hdl}}, conducts a unique and comprehensive survey of seven metadata models: CKAN, DKAN, Public Open Data, Socrata, VoID, DCAT and Schema.org. We propose a Harmonized Dataset modeL (HDL) based on this survey. We describe use cases that show the benefits of providing rich metadata to enable dataset discovery, search and Spam detection.
+	\item \textbf{Chapter~\ref{chapter:roomba}}, emphasizes the need for tools that are able to identify various issues in this metadata and correct them automatically. We introduce Roomba, a scalable automatic approach for extracting, validating, correcting and generating descriptive linked dataset profiles. Afterwards, we present the results of running our framework on prominent data portals and analyze the results.
+	\item \textbf{Chapter~\ref{chapter:data-quality}}, surveys the landscape of Linked Data quality tools and build upon previous efforts with focus on objective data quality measures. We further present a comprehensive objective quality framework applied to the Linked Open Data. We identify several gaps in the current tools and find the need for a comprehensive evaluation and assessment framework for measuring quality on the dataset level. We extend Roomba to calculate 82\% of the suggested datasets objective quality indicators.
+\end{itemize}

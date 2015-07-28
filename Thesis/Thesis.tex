@@ -23,7 +23,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %%%  To Do List  %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%
-\listoftodos
+%\listoftodos
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %%%  Aknowledgment  %%%
@@ -51,12 +51,14 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%
 \addcontentsline{toc}{section}{List of Figures}
 \listoffigures
+\let\cleardoublepage\clearpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %%%  List of Tables  %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%
 \addcontentsline{toc}{section}{List of Tables}
 \listoftables
+\let\cleardoublepage\clearpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %%%  List of Listings  %%%
@@ -64,6 +66,7 @@
 \addcontentsline{toc}{section}{List of Listings}
 \lstlistoflistings
 \cleardoublepage
+\let\cleardoublepage\clearpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %%%  List of Publications  %%%
@@ -108,11 +111,11 @@
 %%%  Part 2  %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%
 \part{Open Data Integration in the Enterprise} \label{part:data_integration}
-\input{Part2/introduction}
-\input{Part2/Chapter1/main}
-\input{Part2/Chapter2/main}
-\input{Part2/Chapter3/main}
-\input{Part2/conclusion}
+% \input{Part2/introduction}
+% \input{Part2/Chapter1/main}
+% \input{Part2/Chapter2/main}
+% \input{Part2/Chapter3/main}
+% \input{Part2/conclusion}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %%%  Conclusion %%%

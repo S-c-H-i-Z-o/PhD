@@ -70,7 +70,7 @@ The framework we propose is based on a refinement of the data quality principles
 
 Furthermore, we surveyed the landscape of Linked Data quality tools to discover that they only cover a subset of the proposed objective quality indicators. As a result, we extend Roomba which is a framework to assess and build dataset profiles with an extensible quality measurement tool and evaluate it by measuring the quality of the LOD cloud group. The results demonstrate that the general quality of LOD cloud needs more attention as most of the datasets suffer from various quality issues.
 
-This paper is structured as follows: Section~\ref{sec:related-work} presents the related work in data quality assessment methodologies. Section~\ref{sec:data-quality-classification} presents our framework with its objective quality measures and indicators. Section~\ref{sec:quality-tools} reviews the existing tools and frameworks in the Linked Open Data quality landscape. Section~\ref{sec:assessment-framework} presents our tool for evaluating those indicators. Section~\ref{sec:conclusion} presents concluding remarks and identifies future work.
+This paper is structured as follows: Section~\ref{sec:related-work} presents the related work in data quality assessment methodologies. Section~\ref{sec:data-quality-classification} presents our framework with its objective quality measures and indicators. Section~\ref{sec:quality-tools} reviews the existing tools and frameworks in the Linked Open Data quality landscape. Section~\ref{sec:quality-assessment-framework} presents our tool for evaluating those indicators. Section~\ref{sec:conclusion} presents concluding remarks and identifies future work.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% 2. Data quality Assessment   %%%%
@@ -414,7 +414,7 @@ The availability of Linked Data is highly dependent on the performance qualities
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{An Extensible Objective Quality Assessment Framework}
-\label{sec:assessment-framework}
+\label{sec:quality-assessment-framework}
 
 Dataset profiles are collections of data describing the internal structure of the dataset. They are presented as a set of metadata in different formats such as JSON, XML and RDF. The Linked Data publishing best practices~\cite{Bizer:DB:11} specifies that datasets should contain metadata needed to effectively understand and use them.
 
@@ -431,7 +431,7 @@ Looking at the list of objective quality indicators, we found out that a large a
 
 In our framework, we have presented 30 objective quality indicators related to dataset and links quality. The remainder 34 indicators are related to the entities and models quality and cannot be checked through the attached metadata. Excluding security related quality indicators as LOD cloud group members should not restrict access to their datasets, the Roomba quality extension is able to assess and score 23 of them (82\%).
 
-We have extended Roomba with 7 submodules that will check various dataset quality indicators shown in table~\ref{tab:objective-methods-ckan}. Some indicators have to be examined against a finite set. For example, having different data access points is a completeness indicator. However, we need to have a defined set of access points in order to check this indicator. Since Roomba runs on CKAN-based data portals, we built our quality extension to calculate the scores against the CKAN standard model\footnote{\url{http://demo.ckan.org/api/3/action/}}.
+We have extended Roomba with 7 submodules that will check various dataset quality indicators shown in table~\ref{tab:objective-methods-ckan}. Some indicators have to be examined against a finite set. For example, to measure the quality indicator no.3 (having different data access points), we need to have a defined set of access points in order to calculate a quality score. Since Roomba runs on CKAN-based data portals, we built our quality extension to calculate the scores against the CKAN standard model\footnote{\url{http://demo.ckan.org/api/3/action/}}.
 
 \begin{table}[!ht]
 \begin{center}
@@ -495,11 +495,20 @@ Quality Indicator & Assessment Method\tabularnewline
 \end{table}
 
 \subsection{Quality Score Calculation}
+
+A CKAN dataset model describes four main sections in addition to the core dataset's properties. These sections are:
+\begin{itemize}
+  \item \textbf{Resources}: The distributable parts containing the actual raw data. They can come in various formats (JSON, XML, RDF, etc.) and can be downloaded or accessed directly (REST API, SPARQL endpoint).
+  \item \textbf{Tags}: Provide descriptive knowledge on the dataset content and structure. They are used mainly to facilitate search and reuse.
+  \item \textbf{Groups}: A dataset can belong to one or more group that share common semantics. A group can be seen as a cluster or a curation of datasets based on shared categories or themes.
+  \item \textbf{Organizations}: A dataset can belong to one or more organization controlled by a set of users. Organizations are different from groups as they are not constructed by shared semantics or properties, but solely on their association to a specific administration party.
+\end{itemize}
+
 A CKAN portal contains a set of datasets $\textbf{D} = \{D_1,...D_n\}$. We denote the set of resources $R_i = \{r_1,...,r_k\}$, groups $G_i = \{g_1,...,g_k\}$ and tags $T_i = \{t_1,...,t_k\}$ for $D_i \in \textbf{D} (i=1,...,n)$ by $  \textbf{R}=\{R_1,...,R_n\}, \textbf{G}=\{G_1,...,G_n\}$ and $\textbf{T}=\{T_1,...,t_n\}$ respectively.
 
 Our quality framework contains a set of measures $\textbf{M} = \{M_1,...,M_n\}$. We denote the set of quality indicators $Q_i = \{q_1,...,q_k\}$ for $M_i \in \textbf{M} (i=1,...,n)$ by $\textbf{Q} = \{Q_1,...,Q_n\}$. Each quality indicator has a weight, context and a score $Q_i<weight, context, score>$. In Roomba, all the weights are equal and set to 1. However, they can be adjusted manually to rank the quality indicators. Each $Q_i$ of $M_i$ (for $i$ = 1,...$n$) is applied to one or more of the resources, tags or groups. The indicator context is defined where $\exists Q_i \in \textbf{R} \cup \textbf{G} \cup \textbf{T}$.
 
-The quality indicator score is based on a ratio between the number of violations $\textbf{V}$ and the total number of instances where the rule applies $\textbf{T}$ multiplied by the specified weight for that indicator.
+The quality indicator score is based on a ratio between the number of violations $\textbf{V}$ and the total number of instances where the rule applies $\textbf{T}$ multiplied by the specified weight for that indicator. In some cases, the quality indicator score is a boolean value (0 or 1). For example, checking if there is a valid metadata file (QI.1) or checking if the \texttt{license\_url} is dereferencable (QI.22).
 
 \begin{equation}
  Q\textrm{ weightedscore} = (V/T) * Q<weight>
@@ -508,11 +517,48 @@ The quality indicator score is based on a ratio between the number of violations
 $Q\textrm{ weightedscore}$ is an error ratio. A quality measure score should reflect the alignment of the dataset with respect to the quality indicators. The quality measure score \textbf{M} is calculated by dividing the weighted quality indicator scores sum by the total number of instances in its context, as the following formula shows:
 
 \begin{equation}
- M =  1 - ((\sum_{i=1}^{n} Q\textrm{ weightedscore}) / \mid Q\textrm{ context} \mid )
+ M =  1 - ((\sum_{i=1}^{n} Q\textrm{i weightedscore}) / \mid Qi\textrm{ context} \mid )
 \end{equation}
 
+\subsection{Evaluation}
+
+In our evaluation, similarily to Roomba we focused on two aspects: i)\textit{quality profiling correctness} which manually assesses the validity of the errors generated in the report, and ii)\textit{quality profiling completeness} which assesses if Roomba covers all the quality indicators in table~\ref{tab:objective-methods-ckan}.\\
+
+\textbf{Profiling Correctness}\\
+To measure profile correctness, we need to make sure that the issues reported by Roomba are valid. On the dataset level, we chose five datasets from the LOD Cloud detailed in table~\ref{tab:datases_experiment}.
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{|l|c|c|c|c|c|}
+\hline
+\textbf{Dataset ID} & dbpedia & event-media & geolinkeddata & nytimes-linked-open-data & yovisto \\ \hline
+\textbf{Resources}  & 10      & 9           & 4             & 5                        & 6       \\ \hline
+\textbf{Tags}       & 21      & 15          & 13            & 14                       & 20      \\ \hline
+\end{tabular}
+\caption{Datasets chosen for the correctness evaluation}
+\label{tab:datases_experiment}
+\end{table}
+
+After running Roomba and examining the results on the selected datasets and groups, we found out that our framework provides 100\% correct results on the individual dataset level. Roomba's aggregation have been evaluated in~\cite{Assaf:ESWC:PROFILES:15}, thus we can infer that the quality profiler at the group and portal level also produces correct profiles.\\
+
+\textbf{Profiling Completeness}\\
+
+We analyzed the completeness of our framework by manually constructing a synthetic set of profiles\footnote{\url{https://github.com/ahmadassaf/opendata-checker/tree/master/test}}. These profiles cover the indicators in table~\ref{tab:objective-methods-ckan}. After running our framework at each of these profiles, we measured the completeness and correctness of the results. We found out that our framework covers indeed all the quality problems discussed.
+
+
 \subsection{Experiments and Analysis}
-In this section, we provide the experiments and evaluation of the proposed framework. All the experiments are reproducible by Roomba and their results are available on its Github repository. We have run the framework on the LOD cloud containing 259 datasets at the time of writing this paper. We ran the instance and resource extractor in order to cache the metadata files for these datasets locally and ran the quality assessment process which took around two hours and a half hour on a 2.6 Ghz Intel Core i7 processor with 16GB of DDR3 memory machine.
+In this section, we provide the experiments done using the proposed framework. Listing~\ref{report} shows an excerpt of the generated quality report. All the experiments are reproducible by Roomba and their results are available on its Github repository. We have run the framework on the LOD cloud containing 259 datasets at the time of writing this paper. We ran the instance and resource extractor in order to cache the metadata files for these datasets locally and ran the quality assessment process which took around two hours on a 2.6 Ghz Intel Core i7 processor with 16GB of DDR3 memory machine.
+
+We found out that licensing, availability and comprehensibility had the worst quality measures scores: 19.59\%, 26.22\% and 31.62\% respectively. On the other hand, the LOD cloud datasets have good quality scores for freshness, correctness and provenance as most of the datasets have an average of ~75\% for each one of those measures.
+
+\begin{figure}[ht]
+  \centering
+    \includegraphics[height=6.5cm, width=12cm]{LOD_quality_indicators_grouped.png}
+  \caption{Average Error \% per quality indicator for LOD group}
+  \label{fig:average-error-lod-group}
+\end{figure}
+
+Figure \ref{fig:average-error-lod-group} shows the average errors percentage in quality indicators grouped by the corresponding measures. The error percentage is the inverse quality. For example, 86.3\% of the datasets resources do not have information about its size, which means that only 13.7\% of the datasets are considered in good quality for this indicator. After examining the results, we notice that the worst quality indicators scores are for the comprehensibility measure where 99.61\% of the datasets did not have valid exemplary RDF file (QI.37) and did not define valid point of contact (QI.40). Moreover, we noticed that 96.41\% of the datasets queryable endpoints (SPARQL endpoints) failed to respond to direct queries (QI.19). After careful examination, we found that the cause was incorrect assignment for metadata fields. Data publishers specified the resource \texttt{format} field as an \texttt{api} instead of the specifying the \texttt{resource\_type} field.
 
 \lstset{basicstyle=\small, backgroundcolor=\color{white}, breaklines=false, frame=single, caption={Excerpt of the LOD cloud group quality report}, label=report, captionpos=b}
 \begin{lstlisting}
@@ -537,17 +583,6 @@ In this section, we provide the experiments and evaluation of the proposed frame
  Quality Indicator : Existence of descriptions about its structure: 83.67%
 \end{lstlisting}
 
-We found out that licensing, availability and comprehensibility had the worst quality measures scores: 19.59\%, 26.22\% and 31.62\% respectively. On the other hand, the LOD cloud datasets have good quality scores for freshness, correctness and provenance as most of the datasets have an average of ~75\% for each one of those measures.
-
-\begin{figure}[ht]
-  \centering
-    \includegraphics[height=6.5cm, width=12cm]{LOD_quality_indicators_grouped.png}
-  \caption{Average Error \% per quality indicator for LOD group}
-  \label{fig:average-error-lod-group}
-\end{figure}
-
-Figure \ref{fig:average-error-lod-group} shows the average errors percentage in quality indicators grouped by the corresponding measures. After examining the results, we notice that the worst quality indicators scores are for the comprehensibility measure where 99.61\% of the datasets did not have valid exemplary RDF file (QI.37) and did not define valid point of contact (QI.40). Moreover, we noticed that 96.41\% of the datasets queryable endpoints (SPARQL endpoints) failed to respond to direct queries (QI.19). After careful examination, we found that the cause was incorrect assignment for metadata fields. Data publishers specified the resource \texttt{format} field as an \texttt{api} instead of the specifying the \texttt{resource\_type} field.
-
 To drill down more on the availability issues, we generated a metadata profile assessment report using Roomba's metadata profiler. We found out that 25\% of the datasets access information (being the dataset URL and any URL defined in its groups) has issues related to them (missing or unreachable URLs).
 Three datasets (1.15\%) did not have a URL defined while 45 datasets (17.3\%) defined URLs were not accessible at the time writing this paper. Out of the 1068 defined resources 31.27\% were not reachable. All these issues resulted in a 26.22\% average availability score. This can highly affect the usability of those datasets especially in an enterprise context.
 
@@ -555,7 +590,7 @@ Three datasets (1.15\%) did not have a URL defined while 45 datasets (17.3\%) de
 
 \textbf{Summary}
 
-\indent We notice that there is a plethora of tools (syntactic checkers or statistical profilers) that automatically check the quality of information at the entities level. Moreover, various tools can automatically check the models against the objective quality indicators mentioned. OOPS! covers all of them with additional support for the other common modeling pitfalls in~\cite{Maria:KEOD:13}. PoolParty covers also a wide set of those indicators but it targets SKOS vocabularies only. However, we notice a lack in automatic tools to check the dataset quality especially in its completeness, licensing and provenance measures. Table 3 summarizes the automatic dataset quality approaches that have implemented tools (full circle denotes full quality indicator assessment, while half circle denoted partial assessment). As can be seen in this table Roomba covers most of the quality indicators with its focus on completeness, correctness provenance and licensing. Roomba is not able to check the existence of information about the kind and number of used vocabularies (QI.8), license permissions, copyrights and attributes (QI.23), exemplary SPARQL query (QI.38), usage of provenance vocabulary (QI.45) and is not able to check the dataset for syntactic errors (QI.27).
+\indent We notice that there is a plethora of tools (syntactic checkers or statistical profilers) that automatically check the quality of information at the entities level. Moreover, various tools can automatically check the models against the objective quality indicators mentioned. OOPS! covers all of them with additional support for the other common modeling pitfalls in~\cite{Maria:KEOD:13}. PoolParty covers also a wide set of those indicators but it targets SKOS vocabularies only. However, we notice a lack in automatic tools to check the dataset quality especially in its completeness, licensing and provenance measures. Table~\ summarizes the automatic dataset quality approaches that have implemented tools (full circle denotes full quality indicator assessment, while half circle denoted partial assessment). As can be seen in this table~\ref{tab:quality_tools_comparison_table} Roomba covers most of the quality indicators with its focus on completeness, correctness provenance and licensing. Roomba is not able to check the existence of information about the kind and number of used vocabularies (QI.8), license permissions, copyrights and attributes (QI.23), exemplary SPARQL query (QI.38), usage of provenance vocabulary (QI.45) and is not able to check the dataset for syntactic errors (QI.27).
 
 These shortcomings are mainly due to the limitations in the CKAN dataset model. However, syntactic checkers and additional modules to examine vocabularies usage could be easily integrated in Roomba to fix QI.27, QI.8 and QI.45. Roomba's metadata quality profiler can fix QI.23 as we have manually created a mapping file standardizing the set of possible license names and their information\footnote{\url{https://github.com/ahmadassaf/opendata-checker/blob/master/util/licenseMappings.json}}. We have also used the open source and knowledge license information\footnote{\url{https://github.com/okfn/licenses}} to normalize license information and add extra metadata like the domain, maintainer and open data conformance.
 
@@ -581,6 +616,7 @@ Roomba & \ding{108} & \ding{108} & \ding{108} & \ding{108} & \ding{108} & \ding{
 \hline
 \end{tabular}
 \caption{Functional Comparison of Automatic Linked Data quality Tools}
+\label{tab:quality_tools_comparison_table}
 \end{table}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
