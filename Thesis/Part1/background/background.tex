@@ -182,11 +182,14 @@ The Open Definition defines the following conditions for open licenses:
 
 The huge amount of published data makes it difficult to discover relevant datasets through traditional inspection of the raw data. \textit{Data profiling} is the process of creating descriptive information and collect statistics about that data. It is a cardinal activity when facing an unfamiliar dataset~\cite{Li:WISM:12, Kimball:DWL:98}.
 
+Data profiling is a vital task to monitor the quality of internal data in the enterprise. Halo BI report~\cite{Halo:TechReport:13} states that nearly 40\% of company's data is found to be inaccurate. 25\% of which is considered critical data.
+
 Data profiles reflect the importance of datasets without the need for detailed inspection of the raw data.  It also helps in assessing the importance of the dataset, improving users' ability to search and reuse part of the dataset and in detecting irregularities to improve its quality. Data profiling includes typically several tasks:
 \begin{itemize}
   \item \textbf{Metadata profiling}: Provides general information on the dataset (dataset description, release and update dates), legal information (license information, openness), practical information (access points, data dumps), etc.
   \item \textbf{Statistical profiling}: Provides statistical information about data types and patterns in the dataset (e.g. properties distribution, number of entities and RDF triples).
   \item \textbf{Topical profiling}: Provides descriptive knowledge on the dataset content and structure. This can be in form of tags and categories used to facilitate search and reuse.
+  \item \textbf{Quality profiling}: Discovers inconsistencies and anomalies in the data. Data is considered of high quality if is appropriate for use and if it correctly represents the world constructs to which it refers~\cite{Juran:McGraw:99}.
 \end{itemize}
 
 Dataset profiles are collections of data describing the internal structure of the dataset. They are presented as a set of metadata in different formats such as JSON, XML and RDF. The Linked Data publishing best practices~\cite{Bizer:DB:11} specifies that datasets should contain metadata needed to effectively understand and use them. \textit{Metadata} is structured information that describes, explains, locates, or otherwise makes it easier to retrieve, use, or manage an information resource~\cite{NISO:TechReport:04}. Having rich metadata helps in enabling:
