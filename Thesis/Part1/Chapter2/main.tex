@@ -5,6 +5,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Introduction}
+
 Data is being published by both the public and private sectors and covers a diverse set of domains from life sciences to media or government data. The Linked Open Data cloud is potentially a gold mine for organizations and individuals who are trying to leverage external data sources in order to produce more informed business decisions~\cite{Boyd:Article:11}. This success lies in the cooperation between data publishers and consumers. Consumers are empowered to find, share and combine information in their applications easily. However, the heterogeneous nature of data sources reflects directly on the data quality as these sources often contain inconsistent as well as misinterpreted and incomplete metadata information. Considering the significant variation in size, the languages used and the freshness of the data, one realizes that finding useful datasets without prior knowledge is increasingly complicated. This can be clearly noticed in the LOD Cloud where few datasets such as DBPedia~\cite{Bizer:WebSemJorunal:09}, Freebase~\cite{Bollacker:SIGMOD:08} and YAGO~\cite{Suchanek::WWW:07} are favored over less popular datasets that may include domain specific knowledge more suitable for the tasks at hand. For example, for the task of building context-aware recommender systems in an academic digital library over the LOD cloud, popular datasets like the Semantic Web Dog Food\footnote{\url{http://datahub.io/dataset/semantic-web-dog-food}}, DBLP\footnote{\url{http://datahub.io/dataset/dblp}} or Yovisto\footnote{\url{http://datahub.io/dataset/yovisto}} can be favored over lesser known but more specific datasets like VIAF\footnote{\url{http://datahub.io/dataset/viaf}} which links authority files of 20 national libraries, list of subject headings for public libraries in Spain\footnote{\url{http://datahub.io/dataset/lista-encabezamientos-materia}} or the French dissertation search engine\footnote{\url{http://datahub.io/dataset/thesesfr}}.
 
 Dataset discovery can be done through public data portals like Datahub\footnote{\url{http://datahub.io}} and Europe's Public Data\footnote{\url{http://publicdata.eu}} or private ones like Quandl\footnote{\url{https://quandl.com/}} and Engima\footnote{\url{http://enigma.io/}}. Private portals harness manually curated data from various sources and expose them to users either freely or through paid plans. The data available is of higher quality but lesser quantity compared to what is available in public portals. Similarly, in some public data portals, administrators manually review datasets information, validate, correct and attach suitable metadata information. This information is mainly in the form of predefined tags such as \textit{media, geography, life sciences} for organization and clustering purposes. However, the diversity of those datasets makes it harder to classify them in a fixed number of predefined tags that can be subjectively assigned without capturing the essence and breadth of the dataset~\cite{Lalithsena:WI:13}. Furthermore, the increasing number of datasets available makes the metadata review and curation process unsustainable even when outsourced to communities.
@@ -16,7 +17,7 @@ In this chapter, we address the challenges of automatic validation and generatio
 %%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Motivation}
-\label{section:motivation}
+
 Metadata provisioning is one of the Linked Data publishing best practices mentioned in~\cite{Bizer:DB:11}. Datasets should contain the metadata needed to effectively understand and use them. This information includes the dataset's license, provenance, context, structure and accessibility. The ability to automatically check this metadata helps in:
 \begin{itemize}
   \item \textbf{Delaying data entropy}: \textit{Information entropy} refers to the degradation or loss limiting the information content in raw or metadata. As a consequence of information entropy, data complexity and dynamicity, the life span of data can be very short. Even when the raw data is properly maintained, it is often rendered useless when the attached metadata is missing, incomplete or unavailable. Comprehensive high quality metadata can counteract these factors and increase dataset longevity~\cite{Kovacs:GTOS:00}.
@@ -112,7 +113,7 @@ Considering that certain datasets contain large amounts of resources and the lim
 However, the sampler is not restricted only to these strategies. Strategies like those introduced in~\cite{Leskovec:KDD:06} can be configured and plugged in the processing pipeline.
 
 \subsection{Profile Validation}
-A dataset profile should include descriptive information about the data examined. In Roomba, we have identified three main categories of profiling information. However, the extensibility of our framework allows for additional profiling techniques to be plugged in easily (section ~\ref{sec:quality-assessment-framework} describes an extension to measure the objective qualities of datasets).
+A dataset profile should include descriptive information about the data examined. In Roomba, we have identified three main categories of profiling information. However, the extensibility of our framework allows for additional profiling techniques to be plugged in easily (section ~\ref{section:quality-assessment-framework} describes an extension to measure the objective qualities of datasets).
 
 Metadata validation process identifies missing information and the ability to automatically correct them. Each set of metadata (general, access, ownership and provenance) is validated and corrected automatically when possible. Each profiler task has a set of metadata fields to check against. The validation process check if each field is defined and if the value assigned is valid.
 
@@ -204,7 +205,7 @@ Each of these sections contains a set of metadata corresponding to one or more t
 
 We ran our tool on two CAKN-based data portals. The first is the Datahub targeting specifically the LOD cloud group. The current state of the LOD cloud report~\cite{Schmachtenberg:ISWC:14} indicates that the LOD cloud contains 1014 datasets. They were harvested via an LDSpider crawler~\cite{Isele:ISWC:10} seeded with 560 thousands URIs. Roomba on the other hand, fetches datasets hosted in data portals where datasets have attached relevant metadata. As a result, we relied on the information provided by the Datahub CKAN API. Examining the tags available, we found two candidate groups. The first tagged with ``lodcloud'' returned 259 datasets, while the second tagged with ``lod'' returned only 75 datasets. After manually examining the two lists, we found out the datasets grouped with the tag ``lodcloud'' are the correct ones. To qualify other CKAN-based portals for the experiments, we used \texttt{dataportals.org}, which contains a comprehensive list of Open Data portals from around the world. In the end, we chose the Amsterdam data portal \footnote{\url{http://data.amsterdamopendata.nl/}}. The portal was commissioned in 2012 by the Amsterdam Economic Board Open Data Exchange (ODE), and covers a wide range of information domains (energy, economy, education, urban development, etc.) about Amsterdam metropolitan region.
 
-We ran the Roomba instance and resource extractors in order to cache the metadata files for these datasets locally and ran the validation process. The experiments were executed on a 2.6 Ghz Intel Core i7 processor with 16GB of DDR3 memory machine. The approximate execution time alongside the summary of the datasets' properties are presented in table~\ref{tab:data_portals_experiments}.
+We ran the Roomba instance and resource extractors in order to cache the metadata files for these datasets locally and ran the validation process. The experiments were executed on a 2.6 Ghz Intel Core i7 processor with 16GB of DDR3 memory machine. The approximate execution time alongside the summary of the datasets' properties are presented in table~\ref{table:data_portals_experiments}.
 
 \begin{table}[ht]
 \centering
@@ -215,7 +216,7 @@ LOD Cloud           & 259                               & N/A                   
 Amsterdam Open Data & 172                               & 18                             & 480                                & ~35 mins                             \\ \hline
 \end{tabular}
 \caption{Summary of the experiments details}
-\label{tab:data_portals_experiments}
+\label{table:data_portals_experiments}
 \end{table}
 
 In our evaluation, we focused on two aspects: i)\textit{profiling correctness} which manually assesses the validity of the errors generated in the report, and ii)\textit{profiling completeness} which assesses if the profilers cover all the errors in the datasets metadata.
@@ -223,7 +224,7 @@ In our evaluation, we focused on two aspects: i)\textit{profiling correctness} w
 \subsection{Profiling Correctness}
 To measure profile correctness, we need to make sure that the issues reported by Roomba are valid on the dataset, group and portal levels.
 
-On the dataset level, we choose three datasets from both the LOD Cloud and the Amsterdam data portal. The datasets details are shown in table \ref{tab:dataset_experiment}.
+On the dataset level, we choose three datasets from both the LOD Cloud and the Amsterdam data portal. The datasets details are shown in table \ref{table:dataset_experiment}.
 \begin{table}[ht]
 \centering
 \footnotesize\setlength{\tabcolsep}{1.5pt}
@@ -238,10 +239,10 @@ bevolking-prognoses-amsterdam  & Amsterdam                                 & bev
 religieuze\_samenkomstlocaties & Amsterdam                                 & bevolking                              & 1                                       & 8                                  \\ \hline
 \end{tabular}
 \caption{Datasets chosen for the correctness evaluation}
-\label{tab:dataset_experiment}
+\label{table:dataset_experiment}
 \end{table}
 
-To measure the profiling correctness on the groups level, we selected four groups from the Amsterdam data portal containing a total of 25 datasets. The choice was made to cover groups in various domains that contain a moderate number of datasets that can be checked manually (between 3-9 datasets). Table \ref{tab:groups_experiment} summarizes the groups chosen for the evaluation.
+To measure the profiling correctness on the groups level, we selected four groups from the Amsterdam data portal containing a total of 25 datasets. The choice was made to cover groups in various domains that contain a moderate number of datasets that can be checked manually (between 3-9 datasets). Table \ref{table:groups_experiment} summarizes the groups chosen for the evaluation.
 
 \begin{table}[ht]
 \centering
@@ -254,7 +255,7 @@ geografie                & Geography              & 8                           
 openbare-orde-veiligheid & Public Order \& Safety & 5                                      & 19                                      & 34                                 \\ \hline
 \end{tabular}
 \caption{Groups chosen for the correctness evaluation}
-\label{tab:groups_experiment}
+\label{table:groups_experiment}
 \end{table}
 
 After running Roomba and examining the results on the selected datasets and groups, we found out that our framework provides 100\% correct results on the individual dataset level and on the aggregation level over groups. Since our portal level aggregation is extended from the group aggregation, we can infer that the portal level aggregation also produces complete correct profiles. However, the lack of a standard way to create and manage collections of datasets was the source of some errors when comparing the results from these two portals. For example, in Datahub, we noticed that all the datasets \texttt{groups} information were missing, while in the Amsterdam Open Data portal, all the \texttt{organisation} information was missing. Although the error detection is correct, the overlap in the usage of group and organization can give a false indication about the metadata quality.
@@ -277,7 +278,7 @@ After running our framework at each of these profiles, we measured the completen
 
 In this section, we describe our experiments when running the Roomba tool on the LOD cloud. All the experiments are reproducible by our tool and their results are available on its Github repository.
 
-Figures \ref{fig:metadata_noise_by_section} and \ref{fig:metadata_noise_by_metadata_type} show the percentage of errors found in metadata fields by section and by information type respectively. We observe that the most erroneous information for the dataset core information is related to ownership since this information is missing or undefined for 41\% of the datasets. Datasets resources have the poorest metadata. 64\% of the general metadata, all the access information and 80\% of the provenance information contain missing or undefined values. Table \ref{tab:top_metadata_fields_errors} shows the top metadata fields errors for each metadata information type.
+Figures \ref{fig:metadata_noise_by_section} and \ref{fig:metadata_noise_by_metadata_type} show the percentage of errors found in metadata fields by section and by information type respectively. We observe that the most erroneous information for the dataset core information is related to ownership since this information is missing or undefined for 41\% of the datasets. Datasets resources have the poorest metadata. 64\% of the general metadata, all the access information and 80\% of the provenance information contain missing or undefined values. Table \ref{table:top_metadata_fields_errors} shows the top metadata fields errors for each metadata information type.
 
 \begin{table}[ht]
 \begin{center}
@@ -330,7 +331,7 @@ Figures \ref{fig:metadata_noise_by_section} and \ref{fig:metadata_noise_by_metad
 \hline
 \end{tabular}
 \captionof{table}{Top metadata fields error \% by type}
-\label{tab:top_metadata_fields_errors}
+\label{table:top_metadata_fields_errors}
 \end{center}
 \end{table}
 
@@ -348,19 +349,11 @@ To have more details about the resources URL types, we created a $key:object met
 
 The noisiest part of the access metadata is about license information. A total of 43 datasets (16.6\%) does not have a defined \texttt{license\_title} and \texttt{license\_id} fields, where 141 (54.44\%) have missing \texttt{license\_url} field.
 
-\begin{figure}
-\parbox{7cm}{\hspace*{-.2in}
-\includegraphics[width=.95\linewidth]{metadata_noise_by_section.png}
-\captionsetup{textfont=small,singlelinecheck=off,justification=centering}
-\caption{Error \% by section}
-\label{fig:metadata_noise_by_section}}
-\qquad
-\begin{minipage}{7cm}\hspace*{-.6in}
-\includegraphics[width=.95\linewidth]{metadata_noise_by_metadata_type.png}
-\captionsetup{textfont=small,singlelinecheck=off,justification=raggedright}
-\caption{Error \% by information type}
-\label{fig:metadata_noise_by_metadata_type}
-\end{minipage}
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[scale=0.8]{metadata_noise_by_section.png}
+  \caption{LOD Cloud error \% by section}
+  \label{fig:metadata_noise_by_section}
 \end{figure}
 
 \subsection{Ownership information}
@@ -378,8 +371,15 @@ We have noticed that most of the issues surrounding license information are rela
 
 To check the impact of the corrected fields, we seeded Roomba with the enriched profiles. Since Roomba uses file based cache system, we simply replaced all the datasets \texttt{json} files in the \texttt{\char`\\ cache\char`\\ datahub.io\char`\\ datasets} folder with those generated in \texttt{\char`\\ cache\char`\\ datahub.io\char`\\ enriched}. After running Roomba again on the enriched profiles, we observe that the errors percentage for missing \texttt{size} fields decreased by 32.02\% and for \texttt{mimetype} fields by 50.93\%. We also notice that the error percentage for missing \texttt{license\_urls} decreased by 2.32\%.
 
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[scale=0.7]{metadata_noise_by_metadata_type.png}
+  \caption{LOD Cloud error \% by information type}
+  \label{fig:metadata_noise_by_metadata_type}
+\end{figure}
+
 \section{Summary}
-\label{sec:roomba_summary}
+\label{section:roomba_summary}
 In this chapter, we proposed a scalable automatic approach for extracting, validating, correcting and generating descriptive linked dataset profiles. This approach applies several techniques in order to check the validity of the metadata provided and to generate descriptive and statistical information for a particular dataset or for an entire data portal.
 
 It has been noticed that the issues surrounding metadata quality affect directly dataset search as data portals rely on such information to power their search index. We noted the need for tools that are able to identify various issues in this metadata and correct them automatically. We evaluated our framework manually against two prominent data portals and proved that we can automatically scale the validation of datasets metadata profiles completely and correctly.

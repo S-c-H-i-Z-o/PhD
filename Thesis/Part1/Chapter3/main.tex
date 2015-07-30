@@ -43,7 +43,7 @@ Despite all the recent efforts in providing frameworks and tools for data qualit
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Objective Linked Data Quality Classification}
-\label{sec:data-quality-classification}
+\label{section:data-quality-classification}
 
 The basic idea behind Linked Data is that its usefulness increases when it is more interlinked with other datasets. Tim Berners-Lee defined four main principles for publishing data that can ensure a certain level of uniformity reflecting directly data's usability~\cite{Berners-Lee:W3C:06}:
 
@@ -292,7 +292,7 @@ Security is a quality attribute that is measured on the dataset level. It is ide
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Linked Data Quality Tools}
-\label{sec:quality-tools}
+\label{section:quality-tools}
 
 In this section, we present the results of our survey on the Linked Data quality tools. There exists a number of data quality frameworks and tools that are either standalone or implemented as modules in data integration tools. These approaches can be classified into automatic, semi-automatic, manual or crowdsourced approaches.
 
@@ -308,7 +308,7 @@ Reusing existing ontologies is a common practice that Linked Data publishers are
 DL-Learner~\cite{Lehmann:MLResearch:09} uses supervised machine learning techniques to learn concepts from user-provided examples. CROCUS~\cite{Cherix:WASABI:14} applies a cluster-based approach for instance-level error detection. It validates identified errors by non-expert users and iterate to reach higher quality ontologies that can be safely used in industrial environments.
 
 \subsubsection{Automatic Approaches}
-qSKOS\footnote{\url{https://github.com/cmader/qSKOS}}~\cite{Mader:TBDL:12} scans SKOS vocabularies to provide reports on vocabulary resources and relations that are problematic. PoolParty checker\footnote{http://www.poolparty.biz/} is an online service based on qSKOS. Skosify~\cite{Suominen:IKEM:12} supports OWL and RDFS ontologies by converting them into well-structured SKOS vocabularies. It includes automatic correction abilities for quality issues that have been observed by reviewing vocabularies on the Web. The OOPS! pitfall scanner~\cite{PovedaVillalon:EKAW:12} evaluates OWL ontologies against a rules catalog and provides the user with a set of guidelines to solve them. ASKOSI\footnote{\url{http://www.w3.org/2001/sw/wiki/ASKOSI}} retrieves vocabularies from different sources, stores and displays the usage frequency of the different concepts used by different applications. It promotes reusing existing information systems by providing better management and presentation tools.
+qSKOS\footnote{\url{https://github.com/cmader/qSKOS}}~\cite{Mader:TBDL:12} scans SKOS vocabularies to provide reports on vocabulary resources and relations that are problematic. PoolParty checker\footnote{\url{http://www.poolparty.biz/}} is an online service based on qSKOS. Skosify~\cite{Suominen:IKEM:12} supports OWL and RDFS ontologies by converting them into well-structured SKOS vocabularies. It includes automatic correction abilities for quality issues that have been observed by reviewing vocabularies on the Web. The OOPS! pitfall scanner~\cite{PovedaVillalon:EKAW:12} evaluates OWL ontologies against a rules catalog and provides the user with a set of guidelines to solve them. ASKOSI\footnote{\url{http://www.w3.org/2001/sw/wiki/ASKOSI}} retrieves vocabularies from different sources, stores and displays the usage frequency of the different concepts used by different applications. It promotes reusing existing information systems by providing better management and presentation tools.
 
 Some errors in RDF will only appear after reasoning (incorrect inferences). In~\cite{Sirin:OWLED:08,Tao:HICSS:09} the authors perform quality checking on OWL ontologies using integrity constraints involving the Unique Name Assumption (UNA) and the Closed World Assumption (CWA). Pellet\footnote{\url{http://clarkparsia.com/pellet}} provides reasoning services for OWL ontologies. It incorporates a number of heuristics to detect and repair quality issues among disjoint properties, negative property assertions and reflexive, irreflexive, symmetric, and anti-symmetric properties. Eyeball\footnote{\url{http://jena.sourceforge.net/Eyeball/}} provides quality inspection for RDF models (including OWL). It provides checks for a variety of problems including the usage of unknown predicates, classes, poorly formed namespaces, literal syntax validation, type consistency and other heuristics. RDF:Alerts\footnote{\url{http://swse.deri.org/RDFAlerts/}} provides validation for many issues highlighted in~\cite{Hogan:LDOW:10} like misplaced, undefined or deprecated classes or properties.
 
@@ -362,13 +362,13 @@ The availability of Linked Data is highly dependent on the performance qualities
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{An Extensible Objective Quality Assessment Framework}
-\label{sec:quality-assessment-framework}
+\label{section:quality-assessment-framework}
 
 Looking at the list of objective quality indicators, we found out that a large amount of those indicators can be examined automatically from attached datasets metadata found in data portals. As a result, we have chosen to extend Roomba as it performs the preprocessing steps needed to objectively measure datasets quality.
 
 In our framework, we have presented 30 objective quality indicators related to dataset and links quality. The remainder 34 indicators are related to the entities and models quality and cannot be checked through the attached metadata. Excluding security related quality indicators as LOD cloud group members should not restrict access to their datasets, the Roomba quality extension is able to assess and score 23 of them (82\%).
 
-We have extended Roomba with 7 submodules that will check various dataset quality indicators shown in table~\ref{tab:objective-methods-ckan}. Some indicators have to be examined against a finite set. For example, to measure the quality indicator no.3 (having different data access points), we need to have a defined set of access points in order to calculate a quality score. Since Roomba runs on CKAN-based data portals, we built our quality extension to calculate the scores against the CKAN standard model (see section~\ref{section:datasetModels}).
+We have extended Roomba with 7 submodules that will check various dataset quality indicators shown in table~\ref{table:objective-methods-ckan}. Some indicators have to be examined against a finite set. For example, to measure the quality indicator no.3 (having different data access points), we need to have a defined set of access points in order to calculate a quality score. Since Roomba runs on CKAN-based data portals, we built our quality extension to calculate the scores against the CKAN standard model (see section~\ref{section:datasetModels}).
 
 \begin{table}[ht]
 \centering
@@ -427,7 +427,7 @@ Quality Indicator & Assessment Method\tabularnewline
 \end{tabular}
 \end{adjustwidth}
 \caption{Objective Quality Assessment Methods for CKAN-based Data Portals}
-\label{tab:objective-methods-ckan}
+\label{table:objective-methods-ckan}
 \end{table}
 
 \subsection{Quality Score Calculation}
@@ -449,10 +449,10 @@ M =  1 - ((\sum_{i=1}^{n} Q\textrm{i weightedscore}) / \mid Qi\textrm{ context} 
 
 \subsection{Evaluation}
 
-In our evaluation, similarily to Roomba we focused on two aspects: i)\textit{quality profiling correctness} which manually assesses the validity of the errors generated in the report, and ii)\textit{quality profiling completeness} which assesses if Roomba covers all the quality indicators in table~\ref{tab:objective-methods-ckan}.\\
+In our evaluation, similarily to Roomba we focused on two aspects: i)\textit{quality profiling correctness} which manually assesses the validity of the errors generated in the report, and ii)\textit{quality profiling completeness} which assesses if Roomba covers all the quality indicators in table~\ref{table:objective-methods-ckan}.\\
 
 \textbf{Profiling Correctness}\\
-To measure profile correctness, we need to make sure that the issues reported by Roomba are valid. On the dataset level, we chose five datasets from the LOD Cloud detailed in table~\ref{tab:quality_dataset_experiment}.
+To measure profile correctness, we need to make sure that the issues reported by Roomba are valid. On the dataset level, we chose five datasets from the LOD Cloud detailed in table~\ref{table:quality_dataset_experiment}.
 
 \begin{table}[ht]
 \centering
@@ -465,14 +465,14 @@ To measure profile correctness, we need to make sure that the issues reported by
 \end{tabular}
 \end{adjustwidth}
 \caption{Datasets chosen for the correctness evaluation}
-\label{tab:quality_dataset_experiment}
+\label{table:quality_dataset_experiment}
 \end{table}
 
 After running Roomba and examining the results on the selected datasets and groups, we found out that our framework provides 100\% correct results on the individual dataset level. Roomba's aggregation have been evaluated in~\cite{Assaf:ESWC:PROFILES:15}, thus we can infer that the quality profiler at the group and portal level also produces correct profiles.\\
 
 \textbf{Profiling Completeness}\\
 
-We analyzed the completeness of our framework by manually constructing a synthetic set of profiles\footnote{\url{https://github.com/ahmadassaf/opendata-checker/tree/master/test}}. These profiles cover the indicators in table~\ref{tab:objective-methods-ckan}. After running our framework at each of these profiles, we measured the completeness and correctness of the results. We found out that our framework covers indeed all the quality problems discussed.
+We analyzed the completeness of our framework by manually constructing a synthetic set of profiles\footnote{\url{https://github.com/ahmadassaf/opendata-checker/tree/master/test}}. These profiles cover the indicators in table~\ref{table:objective-methods-ckan}. After running our framework at each of these profiles, we measured the completeness and correctness of the results. We found out that our framework covers indeed all the quality problems discussed.
 
 \subsection{Experiments and Analysis}
 
@@ -517,7 +517,7 @@ Three datasets (1.15\%) did not have a URL defined while 45 datasets (17.3\%) de
 
 \section{Roomba vs. state of the art}
 
-Looking at section~\ref{sec:quality-tools} we notice that there is a plethora of tools (syntactic checkers or statistical profilers) that automatically check the quality of information at the entities level. Moreover, various tools can automatically check the models against the objective quality indicators mentioned. OOPS! covers all of them with additional support for the other common modeling pitfalls in~\cite{Maria:KEOD:13}. PoolParty covers also a wide set of those indicators but it targets SKOS vocabularies only. However, we notice a lack in automatic tools to check the dataset quality especially in its completeness, licensing and provenance measures. Table~\ summarizes the automatic dataset quality approaches that have implemented tools (full circle denotes full quality indicator assessment, while half circle denoted partial assessment). As can be seen in this table~\ref{tab:quality_tools_comparison_table} Roomba covers most of the quality indicators with its focus on completeness, correctness provenance and licensing. Roomba is not able to check the existence of information about the kind and number of used vocabularies (QI.8), license permissions, copyrights and attributes (QI.23), exemplary SPARQL query (QI.38), usage of provenance vocabulary (QI.45) and is not able to check the dataset for syntactic errors (QI.27).
+Looking at section~\ref{section:quality-tools} we notice that there is a plethora of tools (syntactic checkers or statistical profilers) that automatically check the quality of information at the entities level. Moreover, various tools can automatically check the models against the objective quality indicators mentioned. OOPS! covers all of them with additional support for the other common modeling pitfalls in~\cite{Maria:KEOD:13}. PoolParty covers also a wide set of those indicators but it targets SKOS vocabularies only. However, we notice a lack in automatic tools to check the dataset quality especially in its completeness, licensing and provenance measures. Table~\ summarizes the automatic dataset quality approaches that have implemented tools (full circle denotes full quality indicator assessment, while half circle denoted partial assessment). As can be seen in this table~\ref{table:quality_tools_comparison_table} Roomba covers most of the quality indicators with its focus on completeness, correctness provenance and licensing. Roomba is not able to check the existence of information about the kind and number of used vocabularies (QI.8), license permissions, copyrights and attributes (QI.23), exemplary SPARQL query (QI.38), usage of provenance vocabulary (QI.45) and is not able to check the dataset for syntactic errors (QI.27).
 
 These shortcomings are mainly due to the limitations in the CKAN dataset model. However, syntactic checkers and additional modules to examine vocabularies usage could be easily integrated in Roomba to fix QI.27, QI.8 and QI.45. Roomba's metadata quality profiler can fix QI.23 as we have manually created a mapping file standardizing the set of possible license names and their information\footnote{\url{https://github.com/ahmadassaf/opendata-checker/blob/master/util/licenseMappings.json}}. We have also used the open source and knowledge license information\footnote{\url{https://github.com/okfn/licenses}} to normalize license information and add extra metadata like the domain, maintainer and open data conformance.
 
@@ -545,7 +545,7 @@ Roomba & \ding{108} & \ding{108} & \ding{108} & \ding{108} & \ding{108} & \ding{
 \end{tabular}
 \end{adjustwidth}
 \caption{Functional Comparison of Automatic Linked Data quality Tools}
-\label{tab:quality_tools_comparison_table}
+\label{table:quality_tools_comparison_table}
 \end{table}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

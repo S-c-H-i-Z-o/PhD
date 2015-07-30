@@ -135,12 +135,12 @@ Since establishing a common vocabulary or model is the key to communication, we 
 		organization                        & organization                       & publisher                         & dcat:Dataset$\rightarrow$ :publisher &   void:Dataset$\rightarrow$ :publisher                                     & \multicolumn{1}{c|}{-}                   & \multicolumn{1}{c|}{-}                                      \\ \hline
 	\end{tabular}
 	% \caption{Data models sections mapping}
-	\label{tab:models_section_mappings}
+	\label{table:models_section_mappings}
 \end{adjustwidth}
 
-The first task is to map the four main information sections (resources, tags, groups and organization) across those models. Table~\ref{tab:models_section_mappings} shows our proposed mappings. For the ontologies (DCAT, VoID), the first part represents the class and the part after $\rightarrow$ represents the property. For Schema.org, the first part refers to the schema and the second part after $:$ refers to the property.
+The first task is to map the four main information sections (resources, tags, groups and organization) across those models. Table~\ref{table:models_section_mappings} shows our proposed mappings. For the ontologies (DCAT, VoID), the first part represents the class and the part after $\rightarrow$ represents the property. For Schema.org, the first part refers to the schema and the second part after $:$ refers to the property.
 
-Table~\ref{tab:harmonized_dataset_models_mappings} presents the full mappings between the models across the information groups. Entries in the CKAN marked with $\ast$ are properties from CKAN extensions and not included in the original data model. Similar to the sections mappings, for the ontologies (DCAT, VoID), the first part represents the class and the part after $\rightarrow$ represents the property. However, sometimes the part after $\rightarrow$ refers to another resource. For example, to describe the dataset's maintainer email in DCAT, the information should be presented in the \texttt{dcat:Dataset} class using the \texttt{dcat:contactPoint} property. However, the range of this property is a resource of type \texttt{vcard} which has the property \texttt{hasEmail}.
+Table~\ref{table:harmonized_dataset_models_mappings} presents the full mappings between the models across the information groups. Entries in the CKAN marked with $\ast$ are properties from CKAN extensions and not included in the original data model. Similar to the sections mappings, for the ontologies (DCAT, VoID), the first part represents the class and the part after $\rightarrow$ represents the property. However, sometimes the part after $\rightarrow$ refers to another resource. For example, to describe the dataset's maintainer email in DCAT, the information should be presented in the \texttt{dcat:Dataset} class using the \texttt{dcat:contactPoint} property. However, the range of this property is a resource of type \texttt{vcard} which has the property \texttt{hasEmail}.
 
 For Schema.org, similar to the sections mapping, the first part refers to the schema and the second part after $:$ refers to the property. However, if the property is inherited from another schema we denote that by using a $\rightarrow$ as well. For example, the size of a dataset is a property for a \texttt{Dataset} schema specified in its \texttt{distribution} property. However, the type of \texttt{distribution} is \texttt{dataDownload} which is inherited from the \texttt{MediaObject} schema. The size for \texttt{MediaObject} is defined in its \texttt{contentSize} property which makes the mapping string \texttt{Dataset:distribution$\rightarrow$ DataDownload$\rightarrow$ MediaObject:contentSize}.
 
@@ -183,7 +183,7 @@ Examining the different models, we noticed a lack of a complete model that cover
 \setlength\LTleft{-1.7cm}
 {\tiny
 \begin{longtable}{|p{1cm}|m{3.1cm}|m{2.4cm}|m{2.5cm}|p{3.8cm}|m{3.8cm}|m{5.55cm}|m{2.5cm}|}
-\caption[Harmonized Dataset Models Mappings]{Harmonized Dataset Models Mappings} \label{tab:harmonized_dataset_models_mappings} \\
+\caption[Harmonized Dataset Models Mappings]{Harmonized Dataset Models Mappings} \label{table:harmonized_dataset_models_mappings} \\
 
 \hline \multicolumn{1}{|p{2cm}}{\textbf{Data Model}} & \multicolumn{1}{|c|}{\textbf{CKAN}} & \multicolumn{1}{c|}{\textbf{DKAN}} & \multicolumn{1}{c|}{\textbf{POD}} & \multicolumn{1}{c|}{\textbf{DCAT}} & \multicolumn{1}{c|}{\textbf{VoID}} & \multicolumn{1}{c|}{\textbf{Schema.org}} & \multicolumn{1}{c|}{\textbf{Socrata}}\\ \hline
 \endfirsthead
@@ -424,5 +424,5 @@ Provenance & revision\_timestamp &  &  &  &  &  & \tabularnewline
 \pagestyle{standard}
 
 \section{Summary}
-\label{sec:hdl_summary}
+\label{section:hdl_summary}
 In this chapter, we surveyed the landscape of various models and vocabularies that described datasets on the web. Since establishing a common vocabulary or model is the key to communication, we identified the need for a harmonized dataset metadata model containing sufficient information so that consumers can easily understand and process datasets. We have identified four main sections that should be included in the model: resources, groups, tags and organizations. Furthermore, we have classified the information to be included into eight types. Our main contribution is a set of mappings between each properties of those models. This has lead to the design of HDL, an harmonized dataset model, that takes the best out of these models and extends them to ensure complete metadata coverage to enable data discovery, exploration and reuse.

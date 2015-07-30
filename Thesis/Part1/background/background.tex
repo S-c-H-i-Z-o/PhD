@@ -1,7 +1,7 @@
-\chapter{Background} \label{ch:background}
-\graphicspath{{Background/figures/}}
+\chapter{Background} \label{chapter:part1-background}
+\graphicspath{{Part1/Background/figures/}}
 
-\section{Semantic Web} \label{sec:sematic-web}
+\section{Semantic Web} \label{section:sematic-web}
 
 The web can be seen as a worldwide, distributed system of interconnected documents that humans can read, exchange and discuss. The original model behind the web can be roughly summarized as a way to publish documents represented in a standard way (e.g. HTML), containing links to other documents accessible through standard protocols (e.g. HTTP).
 
@@ -105,7 +105,7 @@ One of the most widely used datasets is DBpedia\footnote{http://dbpedia.org}. It
 
 In order to achieve the Linked Data vision, datasets should contain outbound links to other datasets. Significant efforts try to automatically or semi-automatically generate these link to facilitate data discovery and to attach additional information.
 
-\section{Open Data}\label{sec:openData}
+\section{Open Data}\label{section:openData}
 
 Open Data (OD) is the data that can be easily discovered, accessed, reused and redistributed by anyone~\cite{Davies:Report:15}. Open data should have both legal and technical dimensions. It should be placed in the public domain under liberal terms of use with minimal restrictions and should be available in electronic formats that are non-proprietary and machine readable. Similarly, Linked Open Data (LOD) refers to the semantically linked, machine-readable open data.
 
@@ -136,7 +136,7 @@ Open Data is considered a gold mine for organizations which are trying to levera
 These huge benefits led to a world-wide adoption of Open Data. Figure~\ref{fig:god_adoption} shows the existence and support for open data initiatives, engagement with open data from outside government, legislative frameworks that support open data and the existence of training and support for data use and innovation~\cite{Davies:Report:15}.
 Moreover, there are several reports and initiatives like Open Data Barometer\footnote{\url{http://barometer.opendataresearch.org/}}, Open Data Monitor\footnote{\url{http://opendatamonitor.eu}} and Global Open Data Index\footnote{\url{http://index.okfn.org/}}that aim at analyzing and monitoring the adoption of Open Data across the world.
 
-Going back to our scenario in~\ref{sec:scenario}, Open Data will help our analyst \textbf{Bob} in:
+Going back to our scenario in~\ref{section:scenario}, Open Data will help our analyst \textbf{Bob} in:
 
 \begin{itemize}
 	\item Have a transparent view on the data available by Ministry of Transport in France. This helps in preventing the possibility of wasting time and funds recollecting data that has been already collected by a different department.
@@ -178,7 +178,7 @@ The Open Definition defines the following conditions for open licenses:
 	}
 \end{figure}
 
-\section{Data Profiling}\label{sec:dataProfiling}
+\section{Data Profiling}\label{section:dataProfiling}
 
 The huge amount of published data makes it difficult to discover relevant datasets through traditional inspection of the raw data. \textit{Data profiling} is the process of creating descriptive information and collect statistics about that data. It is a cardinal activity when facing an unfamiliar dataset~\cite{Li:WISM:12, Kimball:DWL:98}.
 
@@ -196,22 +196,10 @@ Dataset profiles are collections of data describing the internal structure of th
   \item \textbf{Archiving and preservation}: There is a growing concern that digital resources will not survive in usable forms to the future~\cite{NISO:TechReport:04}. Metadata can ensure resources survival and continuous accessibility by providing clear provenance information to track the lineage of digital resources and detail their physical characteristics.
 \end{itemize}
 
-\section{Data Portals}\label{sec:dataPortals}
+\section{Data Portals}\label{section:dataPortals}
 
 Data portals (or data catalogs) are the entry points to discover published datasets. They are a curated collections of datasets metadata that provide a set of complementary discovery and integrations services.
 
 Data portals can be public like \texttt{Datahub.io} and \texttt{publicdata.eu} or private ones like \texttt{quandl.com} and \texttt{enigma.io}. Private portals harness manually curated data from various sources and expose them to users either freely or through paid plans. Similarly, in some public data portals, administrators manually review datasets information, validate, correct and attach suitable metadata information. This information is mainly in the form of predefined tags such as \textit{media, geography, life sciences} for organization and clustering purposes.
 
 There are several Data Management Systems (DMS) that power public data portals. CKAN\footnote{\url{http://ckan.org}} is the world's leading open-source data portal platform powering web sites like DataHub, Europe's Public Data and the U.S Government's open data. Modeled on CKAN, DKAN\footnote{\url{http://nucivic.com/dkan/}} is a standalone Drupal distribution that is used in various public data portals as well. Socrata\footnote{\url{http://www.socrata.com}} helps public sector organizations improve data-driven decision making by providing a set of solutions including an open data portal. In addition to these tradition data portals, there is a set of tools that allow exposing data directly as RESTful APIs like \texttt{thedatatank.com}.
-
-\section{Data Integration}\label{sec:dataIntegration}
-
-\textit{Data Integration (DI)} is the process of providing the user with a unified view of data residing at different sources~\cite{Lenzerini:DIT:02}. Data Integration is a challenging task since these sources are in many real-world mutually inconsistent.
-
-Various approaches and methodologies have been proposed to solve the DI problem in the enterprise:
-\begin{itemize}
-	\item XML as a hierarchical data format can be used as a uniform standard uniform for data representation. However, extending XML to provide complex mappings and sources descriptions is difficult.
-	\item SOA can be seen as a holistic approach for distributed systems communication and architecture. In its core, SOA aims at minimizing impedance in the architecture paving the way for easier communication between data sources. However, in~\cite{Frischmuth:ISWC:13}, the authors argue that SOA is well-suited for transaction process rather than an approach for data integration.
-	\item Ontologies can be used as a rich format to describe queries and data mappings between schemas and sources. However, developing ontologies require specific skills and it is difficult to provide a complete model that captures the dynamics of the enterprise.
-	\item Linked Data paradigm is a slightly different approach from the ontology-based by exploiting Semantic Web technologies like RDF to represent enterprise taxonomies. The LD approach allows terms to be easily reused and extended.
-\end{itemize}

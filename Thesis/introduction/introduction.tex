@@ -1,4 +1,4 @@
-\chapter{Introduction}  \label{ch:intro}
+\chapter{Introduction}  \label{chapter:introduction}
 \graphicspath{{introduction/figures/}}
 
 \begin{flushright}
@@ -11,7 +11,7 @@ Business Intelligence (BI) has always been about creating new insight for busine
 
 Classic BI and even the newer Agile Visualization tools focus much of their selling features on attractive and unique visualizations. Preparing data for those visualizations however still remains the far more challenging task in most BI projects large and small. The ultimate goal of BI is to facilitate efficient decisions while eliminating some of the IT headache. Traditionally, BI approaches have been controlled by a centralized version of truth with a wall between IT and the business. Self-service data provisioning aims at removing this wall by providing intuitive dataset discovery, acquisition and integration techniques intuitively to the end user.
 
-\section{Context and Motivation} \label{sec:motivation}
+\section{Context and Motivation} \label{section:motivation}
 
 Enterprises use a wide range of heterogeneous information systems in their business activities such as Enterprise Resource Planning (ERP), Customer Relationships Management (CRM) and Supply Chain Management (SCM) systems. An enterprise distributed IT landscape contains multiple systems using different technologies and data standards~\cite{Mihindukulasooriya:COLD:13}. In addition to this heterogeneity, the amount of information in enterprise databases and on-line data stores expands exponentially each year. Enterprise Big Data isn't big in volume only, but in the associated file formats. The information is also often stored in unstructured and unknown formats.
 
@@ -19,7 +19,7 @@ Data integration is challenging as it requires combining data residing at differ
 
 Data becomes more useful when it is open, widely available, in shareable formats and when advanced computing and analysis can yield from it. The quality and amount of structured knowledge available on the web make it now feasible for companies to mine this huge amount of public data and integrate it in their next-generation enterprise information management systems. An example of this external data is the Linked Open Data (LOD) cloud. From 12 datasets cataloged in 2007, it has grown today to nearly 1000 datasets containing more than 82 billion triples\footnote{\url{http://datahub.io/dataset?tags=lod}}~\cite{Bizer:IJSWIS:09}. Data is being published by both the public and private sectors and covers a diverse set of domains from life sciences to media or government data. The LOD cloud is potentially a gold mine for organizations and individuals who are trying to leverage external data sources in order to produce more informed business decisions~\cite{Boyd:Article:11}. This external data can be accessed through public data portals like \texttt{datahub.io} and \texttt{publicdata.eu} or private ones like \texttt{quandl.com} and \texttt{enigma.io}. Analyzing this new type of data within the context of existing enterprise data should bring them new or more accurate business insights and allow better recognition of sales and market opportunities~\cite{LaValle:MIT:11}.
 
-\section{Use Case Scenario}\label{sec:scenario}
+\section{Use Case Scenario}\label{section:scenario}
 
 To enable wide scale and efficient integration of data, there are some efforts needed from various sides. In this thesis, we tackle the issues and challenges from the point of views of two personae:
 
@@ -36,7 +36,7 @@ After examining the ministry's records, Bob was able to collect the data needed 
 
 \textbf{Mark} is a Data Portal Administrator for the \texttt{data.gov.uk}. He continuously oversees the processes of acquiring, preparing and publishing datasets. Mark always tries to ensure that the data published is of high quality and contains sufficient attached metadata to easily enable search and discovery. Mark often receives complaints about inaccurate or spam datasets. He manually removes and fix errors while keeping open communication channels with the data-publishing departments.
 
-\section{Research Challenges} \label{sec:challenges}
+\section{Research Challenges} \label{section:challenges}
 
 In the scenario presented above, both publishers (Data Portal Administrators) and users (Data Analysts) need pragmatic solutions that help them in their tasks. To enable that, there are some challenging research questions that have to be addressed. These challenges are organized in three main types as the following:
 
@@ -57,7 +57,7 @@ In the scenario presented above, both publishers (Data Portal Administrators) an
 
 \subsection{Dataset Quality:} Linked Data consists of structured information supported by models, ontologies and vocabularies and contains query endpoints and links. This makes data quality assurance a challenge. Despite the fact that Linked Open Data quality is a trending and highly demanded topic, very few efforts are currently trying to standardize, track and formalize frameworks to issue scores or certificates that will help data consumers in their integration tasks. Data portal administrators like \textbf{Mark} to have an overall view of their portals quality and want to incorporate such metrics in the existing dataset profiles. On the other hand, data analysts and users like \textbf{Bob} want to know beforehand if the dataset on hand is of a certain degree of quality to be used in their reports.
 
-\section{Thesis Contributions} \label{sec:contribution}
+\section{Thesis Contributions} \label{section:contribution}
 
 In this thesis, we propose a framework (see Figure~\ref{fig:architecutre_diagram}) to enable self-service data provisioning for internal and external data sources. The framework contributes to the three main challenges described above. In summary, the main contributions of this work are as follows:
 
@@ -88,20 +88,19 @@ Regarding this aspect of our research, we have achieved the following tasks:
 \subsection{Contributions on Dataset Quality Control}
 Concerning our contributions on Linked Data quality assessment, we have achieved the following tasks:
 \begin{itemize}
-	\item We propose five principle classes to describe the quality of a particular linked dataset. For each class, we define the principles that are involved at all stages of the data management process. We further refine these principles and propose a comprehensive objective quality framework applied to the Linked Open Data (see section~\ref{sec:data-quality-classification}).
-	\item Upon surveying the landscape of data quality tools, we noticed a lack in automatic tools to check the dataset quality especially in terms of its completeness, licensing and provenance measures (see section~\ref{sec:quality-tools}). As a result, we extend Roomba to perform a set of data quality checks on Linked datasets. Our extension covers most of the quality indicators with its focus on completeness, correctness, provenance and licensing (see section~\ref{sec:quality-assessment-framework}).
+	\item We propose five principle classes to describe the quality of a particular linked dataset. For each class, we define the principles that are involved at all stages of the data management process. We further refine these principles and propose a comprehensive objective quality framework applied to the Linked Open Data (see section~\ref{section:data-quality-classification}).
+	\item Upon surveying the landscape of data quality tools, we noticed a lack in automatic tools to check the dataset quality especially in terms of its completeness, licensing and provenance measures (see section~\ref{section:quality-tools}). As a result, we extend Roomba to perform a set of data quality checks on Linked datasets. Our extension covers most of the quality indicators with its focus on completeness, correctness, provenance and licensing (see section~\ref{section:quality-assessment-framework}).
 \end{itemize}
 
-\section{Thesis Outline} \label{sec:outline}
+\section{Thesis Outline} \label{section:outline}
 The work presented in this thesis first describes a standard model to represent dataset profiles. Then it focuses on techniques to automatically generate and validate these profiles.
-
-Chapter 2 is dedicated to overview the background of our work including the research in data integration and enrichment and some paradigms related to Semantic Web. We first introduce the basic concepts in the Semantic Web and the important aspects related to (Linked) Open Data. Then, we describe the various data integration techniques and the importance of external data to the enterprise.
 
 The rest of this manuscript is composed of two major parts:
 
 In the first part~\ref{part:dataset_profiling}, we focus on the development of a framework that automatically validates and generates dataset profiles. We highlight the extensibility of this framework and show the results of running it across various data portals. The contributions of this part have been published in ~\cite{Assaf:WWW:15,Assaf:IJSWIS:15,Assaf:PROFILES:15,Assaf:ESWC:PROFILES:15,Assaf:ESWC:LDQ:15}
 
 \begin{itemize}
+  \item \textbf{Chapter~\ref{chapter:part1-background}}, overviews the background of our work including the research in data integration and enrichment and some paradigms related to Semantic Web. We first introduce the basic concepts in the Semantic Web and the important aspects related to (Linked) Open Data. Then, we describe the concepts of data profiling and data quality.
 	\item \textbf{Chapter~\ref{chapter:hdl}}, conducts a unique and comprehensive survey of seven metadata models: CKAN, DKAN, Public Open Data, Socrata, VoID, DCAT and Schema.org. We propose a Harmonized Dataset modeL (HDL) based on this survey. We describe use cases that show the benefits of providing rich metadata to enable dataset discovery, search and Spam detection.
 	\item \textbf{Chapter~\ref{chapter:roomba}}, emphasizes the need for tools that are able to identify various issues in this metadata and correct them automatically. We introduce Roomba, a scalable automatic approach for extracting, validating, correcting and generating descriptive linked dataset profiles. Afterwards, we present the results of running our framework on prominent data portals and analyze the results.
 	\item \textbf{Chapter~\ref{chapter:data-quality}}, surveys the landscape of Linked Data quality tools and build upon previous efforts with focus on objective data quality measures. We further present a comprehensive objective quality framework applied to the Linked Open Data. We identify several gaps in the current tools and find the need for a comprehensive evaluation and assessment framework for measuring quality on the dataset level. We extend Roomba to calculate 82\% of the suggested datasets objective quality indicators.
