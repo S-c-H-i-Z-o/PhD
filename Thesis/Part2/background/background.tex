@@ -64,6 +64,13 @@ SAP High Performance Analytic Appliance (HANA)\footnote{\url{http://hana.sap.com
 	\item \textbf{Predictive and Text analysis on Big Data}: Provides the ability to perform predictive and text analysis on large volumes of data in real-time. It does this through the power of its in-database predictive algorithms and its R integration capability. With its text search/analysis capabilities SAP HANA also provides a robust way to leverage unstructured data.
 \end{itemize}
 
+\begin{figure}[ht]
+\centering
+	\includegraphics[scale=0.5]{hana_architecture.png}
+	\caption{SAP's High Performance Analytic Appliance (HANA) in SAP BI suite}
+	\label{fig:hana_architecture}
+\end{figure}
+
 HANA has both columns and rows stores for data storage, the user specifies on which data store he wishes to put his data; row stores are fit for traditional transaction systems (traditional databases) when transactions are done on row level; however BI queries or analytical queries are done on subsets of columns; so the database does not need to access all the elements in a row in order to fetch the required data.
 
 HANA has mainly three views on data:
@@ -78,14 +85,7 @@ HANA has mainly three views on data:
 
 Consuming data from HANA needs a lot of pre-configuration; to ease this process the XS-Engine was created to act as Lightweight Application Server within HANA DB; its a presentation logic on client sides that encapsulated control flow logic and calculation logic providing REST and ODATA interfaces.
 
-\begin{figure}[htbp]
-\centering
-	\includegraphics[scale=0.5]{hana_architecture.png}
-	\caption{SAP's High Performance Analytic Appliance (HANA) in SAP BI suite}
-	\label{fig:hana_architecture}
-\end{figure}
-
-\subsection{Active Information Store (AIS)}
+\subsection{Active Information Store (AIS)} \label{ais}
 
 The Active Information Store (AIS) is a graph engine built on top of HANA. AIS provides storage and query services on graphs. AIS offers a flexible data representation model (see figure~\ref{fig:ais}) that contains:
 

@@ -1,97 +1,121 @@
 \chapter{Semantic Social News Aggregation}\label{chapter:snarc}
+\graphicspath{{Part2/Chapter2/figures/}}
 
-In many knowledge bases, entities are described with numerous properties. However, not all properties have the same importance. Some properties are considered as keys for performing instance matching tasks while other properties are generally chosen for quickly providing a summary of the key facts attached to an entity. Our motivation is to provide a method enabling to select what properties should be used when depicting the summary of an entity, for example in a multimedia question answering system such as QakisMedia\footnote{\url{http://qakis.org/}} or in a second screen application providing more information about a particular TV program\footnote{\url{http://www.linkedtv.eu/demos/linkednews/}}. Our approach consists in: (i) reverse engineering the Google Knowledge Panel by extracting the properties that Google considers as sufficiently important to show (Section~\ref{sec:knowledge-graph}), and (ii) analyzing users' preferences by conducting a user survey and comparing the results (Section~\ref{sec:evaluation}). We finally show how we can explicitly represent this knowledge of preferred properties to attach to an entity using the Fresnel vocabulary before concluding (Section \ref{sec:conclusion}).
-\vspace{-0.4cm}
+\section{Introduction}
+With the rapid advances of the Internet, social media become more and more intertwined with our daily lives. The ubiquitous nature of Web-enabled devices, especially mobile phones, enables users to participate and interact in many different forms like photo and video sharing platforms, forums, newsgroups, blogs, micro-blogs, bookmarking services, and location-based services. Social networks are not just gathering Internet users into groups of common interests, they are also helping people follow breaking news, contribute to online debates or learn from others. They are transforming Web usage in terms of users' initial entry point, search, browsing and purchasing behavior~\cite{Bakshy:WWW:12}.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%  2. Reverse Engineering the Google Knowledge Graph Panel  %%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+A common scenario that often happens while reading an interesting article, coming across a nice video or participating in a discussion in a forum is the growing interest to check related material around the information read. To do so, users might go to Twitter\footnote{\url{http://www.twitter.com}}, Google+\footnote{\url{http://plus.google.com}} or YouTube\footnote{\url{http://www.youtube.com}}. They can try several times with several keywords to obtain the desired results. In the end, they might end up with several browser tabs opened and get distracted by the information overload from all these resources. The same happens in companies when business users are interested in information provided by corporate web applications like enterprise communities. SNARC is a semantic social news aggregator that leverages live rich data that social networks provide to build an interactive rich experience on the Internet. The service retrieves news related to the current page from popular platforms like Twitter, Google+, YouTube, Vimeo\footnote{\url{http://www.vimeo.com}}, Slideshare\footnote{\url{http://www.slideshare.com}}, Stackoverflow\footnote{http://www.stackoverflow.com}and the Web. As a possible front-end implementation, we have created a Google Chrome extension (visit http://ahmadassaf.com/snarc) which enriches the user experience by augmenting related contextual information to entities on the page itself, as well as displaying related social news on a floating sidebar.
 
-\section{Reverse Engineering the Google KG Panel}
-\label{sec:knowledge-graph}
-Web scraping is a technique for extracting data from Web pages. We aim at capturing the properties depicted in the Google Knowledge Panel (GKP) that are injected in search result pages~\cite{Bergman:GKG:12}. We have developed a Node.js application that queries all DBpedia concepts that have at least one instance which is \texttt{owl:sameAs} with a Freebase resource in order to increase the probability that the search engine result page (SERP) for this resource will contain a GKP. We assume in our experiments that the properties displayed for an entity are type and context dependent (country, time, query) which can affect the results. Moreover, we filter out generic concepts by excluding those who are direct subclasses of \texttt{owl:Thing} since they will trigger ambiguous queries. We obtained a list of $352$ concepts\footnote{See also the SPARQL query at \url{http://goo.gl/EYuGm1}}.
-\begin{algorithm}[h]\scriptsize
-\caption{Google Knowledge Panel reverse engineering algorithm} \label{algoscrapping}
-\begin{algorithmic}[1]
-    \STATE INITIALIZE $equivalentClasses(DBpedia,Freebase) $ AS $vectorClasses$
-    \STATE Upload $vectorClasses$ for querying processing
-    \STATE Set $n$ AS number-of-instances-to-query
-    \FOR {each $conceptType \in vectorClasses$}
-	\STATE SELECT $n$ instances
-	\STATE $listInstances \leftarrow$ SELECT-SPARQL($conceptType$, $n$)
-		\FOR {each $instance \in listInstances$}
-			\STATE CALL http://www.google.com/search?q=$instance$
-			\IF {$knowledgePanel$ exists}
-				\STATE SCRAP GOOGLE KNOWLEDGE PANEL
-			\ELSE
-				\STATE CALL http://www.google.com/search?q=$instance + conceptType$
- 				\STATE SCRAP GOOGLE KNOWLEDGE PANEL
-			\ENDIF
-			\STATE $gkpProperties \leftarrow$ GetData(DOM, EXIST(GKP))
+The remainder of this paper is split into three main sections. The first talks about the underlying mechanism of the service, splitting the functionalities into three main subsections. The second describes the front-end implementation, and the last talks about our conclusion and future work.
 
-		\ENDFOR
-	\STATE COMPUTE occurrences for each $prop \in gkpProperties$
-    \ENDFOR
-    \STATE $gkpProperties$
-\end{algorithmic}
-\end{algorithm}
-\normalsize
-For each of these concepts, we retrieve $n$ instances (in our experiment, $n$ was equal to 100 random instances). For each of these instances, we issue a search query to Google containing the instance label. Google does not serve the GKP for all user agents and we had to mimic a browser behavior by setting the $User-Agent$ to a particular browser. We use CSS selectors to check the existence of and to extract data from a GKP. An example of a query selector is $.\_om$ (all elements with class name $\_om$) which returns the property DOM element(s) for the concept described in the GKP. From our experiments, we found out that we do not always get a GKP in a SERP. If this happens, we try to disambiguate the instance by issuing a new query with the concept type attached. However, if no GKP was found again, we capture that for manual inspection later on. Listing~\ref{algoscrapping} gives the high level algorithm for extracting the GKP. The full implementation can be found at \url{https://github.com/ahmadassaf/KBE}. We finally observe that this experiment is only valid for the English Google.com search results since GKP varies according to top level names.
-\vspace{-0.6cm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  Underlying Mechanism %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%
-%%%  3. Evaluation  %%%
-%%%%%%%%%%%%%%%%%%%%%%%
+\section{Underlying Mechanism}
+The back-end of SNARC consists of three major components: a document handler that creates a ``Semantic Model'' that represents any web resource, a query layer that is responsible for disseminating queries to the supported social services and a data parser which processes the search results, wraps them in a common social model and generates the desired output.
 
-\section{Evaluation}
-\label{sec:evaluation}
-We conducted a user survey in order to compare what users think should be the important properties to display for a particular entity and what the GKP shows.
+\subsection{Document Handler}
+The main idea behind SNARC is to provide a uniform model for web entities, whether they are blog entries, multimedia objects or micro-posts. To do so, SNARC creates a ``Semantic Model'' containing all the annotations and meta-data needed to query and reconcile social results.
 
-{\textbf{User survey.}}
-\label{sec:survey}
+\begin{figure}[!ht]
+  \centering
+    \includegraphics[scale=0.8]{architecture_document_handler.png}
+  \caption{SNARC's Document Handler}
+  \label{fig:architecture_document_handler}
+\end{figure}
 
-We set up a survey\footnote{The survey is at \url{http://eSurv.org?u=entityviz}} on February 25th, 2014 and for three weeks in order to collect the preferences of users in term of the properties they would like to be shown for a particular entity. We select only one representative entity for nine classes: \texttt{TennisPlayer}, \texttt{Museum}, \texttt{Politician}, \texttt{Company}, \texttt{Country}, \texttt{City}, \texttt{Film}, \texttt{SoccerClub} and \texttt{Book}. 152 participants have provided answers, 72\% from academia, 20\% coming from the industry and 8\% having not declared their affiliation. 94\% of the respondents have heard about the Semantic Web while 35\% were not familiar with specific visualization tools. The detailed results\footnote{\url{https://github.com/ahmadassaf/KBE/blob/master/results/agreement-gkp-users.xls}} show the ranking of the top properties for each entity. We only keep the properties having received at least 10\% votes for comparing with the properties depicted in a KGP. We observe that users do not seem to be interested in the \texttt{INSEE code} identifying a French city while they expect to see the \texttt{population} or the \texttt{points of interest} of this city.
+The Semantic Model is created by the Document Handler (see \ref{fig:architecture_document_handler}) which receives a web page URL and performs these three main steps:
 
-\paragraph{\textbf{Comparison with the Knowledge Graphs.}}
-\label{sec:comparison}
+\begin{enumerate}
 
-The results of the Google Knowledge Panel (GKP) extraction\footnote{\url{https://github.com/ahmadassaf/KBE/blob/master/results/survey.json}} clearly show a long tail distribution of the properties depicted by Google, with a top N properties (N being 4, 5 or 6 depending on the entity) counting for 98\% of the properties shown for this type. We compare those properties with the ones revealed by the user study. Table~\ref{tab:agreement} shows the agreement between the users and the choices made by Google in the GKP for the 9 classes. The highest agreement concerns the type \texttt{Museum} (66.97\%) while the lowest one is for the \texttt{TennisPlayer} (20\%) concept. We think properties for museums or books are more stable than for types such as person/agent which vary significantly. We acknowledge the fact that more than one instance should be tested in order to draw meaningful conclusion regarding what are the important properties for a type.
-\begin{table}[!htp]
-\centering{\scriptsize
-\begin{tabular}{lccccccccc}
-\hline
- \textbf{Classes}	& TennisPlayer 	& Museum & Politician & Company & Country & City & Film & SoccerClub & Book	 \\ \hline
- \textbf{Agr.}& 20\%  & 66.97\% & 50\% & 40\% & 60\% & 60\% & 60\% & 50\% & 60\% \\ \hline
-\end{tabular}
-\caption{Agreement on properties between users and the Knowledge Graph Panel}
-\label{tab:agreement}
-}
-\end{table}\normalsize
-\vspace{-0.5cm}
-With this set of 9 concepts, we are covering $301,189$ DBpedia entities that have an existence in Freebase, and for each of them, we can now empirically define the most important properties when there is an agreement between one of the biggest knowledge base (Google) and users preferences.
+\item {\bf Text Extraction:} Fetch the webpage that corresponds to the received URL and extract the textual content using a set of heuristics. These latter identify the main content of the page by stripping unwanted HTML tags and rank the different sections based on their semantics, class names and order. In the beginning we have used Alchemy API\footnote{\url{http://www.alchemyapi.com}} to perform text extraction; but we have chosen to implement a simpler method ourselves which saved us an extra API call.
 
-\paragraph{\textbf{Modeling the preferred properties with Fresnel.}}
-\label{sec:fresnel}
-Fresnel\footnote{\url{http://www.w3.org/2005/04/fresnel-info/}} is a presentation vocabulary for displaying RDF data. It specifies \textit{what} information contained in an RDF graph should be presented with the core concept \texttt{fresnel:Lens}~\cite{Pietriga:ISWC:06}. We use the Fresnel and PROV-O ontologies\footnote{\url{http://www.w3.org/TR/prov-o/}} to explicitly represent what properties should be depicted when displaying an entity. This dataset can now be re-used as a configuration for any consuming application.
-\lstset{basicstyle=\scriptsize, backgroundcolor=\color{white}, frame=single, caption={Excerpt of a Fresnel lens in Turtle}, label=fresnel, captionpos=b}
-\begin{lstlisting}
-:tennisPlayerGKPDefaultLens rdf:type fresnel:Lens ;
-  fresnel:purpose fresnel:defaultLens ;
-  fresnel:classLensDomain dbpedia-owl:TennisPlayer ;
-  fresnel:group :tennisPlayerGroup ;
-  fresnel:showProperties (dbpedia-owl:abstract dbpedia-owl:birthDate
-    dbpedia-owl:birthPlace dbpprop:height dbpprop:weight
-    dbpprop:turnedpro dbpprop:siblings) ;
-  prov:wasDerivedFrom
-    <http://www.google.com/insidesearch/features/search/knowledge.html> .
-\end{lstlisting}
-\normalsize
-\vspace{-0.6cm}
+\item {\bf Language Detection:} Detect the web page language using the Language Detection service of Alchemy API. This is necessary to match the desired language with compatible services like Twitter, YouTube, etc.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%  4. Conclusion and Future Work  %%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item {\bf Semantic Annotation:} Annotating the extracted text is the most important step in this process. We use Zemanta Suggest\footnote{\url{http://developer.zemanta.com/docs/suggest/}} and Alchemy API in order to extract:
 
-\section{Conclusion and Future Work}
-\label{sec:conclusion}
-We have shown that it is possible to reveal what are the ``important'' properties of entities by reverse engineering the choices made by Google when creating knowledge graph panels and by comparing  users preferences obtained from a user survey. Our motivation is to represent this choice explicitly, using the Fresnel vocabulary, so that any application could read this configuration file for deciding which properties of an entity is worth to visualize. This is fundamentally different from the work in~\cite{Steiner:IKEC:12} where the authors created a generalizable approach to open up closed knowledge bases like Google's by means of crowd-sourcing the knowledge extraction task. We are aware that this knowledge is highly dynamic, the Google Knowledge Graph panel varies across geolocation and time. We have provided the code that enables to perform new calculation at run time and we aim to study the temporal evolution of what are important properties on a longer period. This knowledge which has been captured will be made available shortly in a SPARQL endpoint. We are also investigating the use of Mechanical Turk to perform a larger survey for the complete set of DBpedia classes.
+\begin{itemize}
+\item {\bf Tags:} These are the finest-grained queryable ``keywords'' that we use to retrieve the social results. From our experiments, combining tags results in better findings than using entities or concepts. However, we plan to evaluate the combination of keywords, entities and concepts in order to find the top-queryable terms that will retrieve the most relevant results on different abstraction levels.
+
+Tags retrieved from these services are ranked by confidence values calculated by their internal algorithms, these values are normalized for each service. According to our experiments we have found that Alchemy's Keywords Extraction API returns a large set of closely related keywords (i.e. Android, Android Phone, Android Tablet, ...). To construct a good query we therefore need to provide a certain level of abstraction.We perform a cleaning process on those keywords by applying the Levenshtein distance to rule out closely related keywords by disregarding those with lower confidences. We perform a similar process on the result of the union between the keywords returned by Alchemy and Zemanta to ensure a sparse keywords set.
+
+\item {\bf Semantic Entities:} Entities provide a higher abstraction level of the document. They are used to reconcile the social results in order to maintain relevancy with the document. Similar to the keywords extraction services, the entities retrieved are ranked and contain outbound links to the matched entity on dbpedia, Wikipedia, Freebase, etc. A union is made between the results from Alchemy and Zemanta to ensure a wider coverage of entities. When a match is found, we merge the links from the two sources to ensure that we include all the resources that can be used to augment extra information about that entity in the document.
+\item {\bf Categories:} These are high-level taxonomies that can generally describe the document's content. A taxonomy is used to narrow down our query scope when targeting services like YouTube. In our Semantic Document model we define two possible category sets, one retrieved from Alchemy's Text Categorization API\footnote{http://www.alchemyapi.com/api/categ/categs.html} and the other retrieved from Zemanta Suggest API that follows the DMOZ categorization scheme\footnote{\url{http://www.dmoz.org/desc/Top}}.
+\end{itemize}
+\end{enumerate}
+
+At the end of this process, we will have constructed the needed elements (keywords, entities and high level categories) wrapped in our Semantic Model to be passed to the query generator. For example, a summary of the Semantic Model for a web page titled ``Turkey protests: Erdogan in `final' warning\footnote{\url{http://www.bbc.co.uk/news/world-europe-22889060}}'' looks like:
+\begin{enumerate}
+\item {\bf Categories:} Culture\_Politics, Regional and Society
+\item {\bf Keywords:} Taksim Square, Protesters, Gezi Park, Mr Erdogan, Istanbul ...
+\item {\bf Entities:} Gezi Park, Recep Tayyip Erdogan, Taksim Square, Justice and Development Party (Turkey), Police of Turkey ...
+\end{enumerate}
+
+\subsection{Query Layer}
+In this component, the calls to the social services are made. SNARC uses the extracted keywords from the Semantic Document in order to construct the queries and disseminate them to the appropriate services. \ref{fig:architecture_query_layer} shows the different steps in order to retrieve a set of social results.
+
+\begin{figure}[!ht]
+  \centering
+    \includegraphics[scale=0.75]{architecture_query_layer.png}
+  \caption{SNARC's Query Layer}
+  \label{fig:architecture_query_layer}
+\end{figure}
+
+\begin{enumerate}
+\item {\bf Query Builder:} Responsible for identifying targeted services and building tailored queries for each service. For example, if the processed document is categorized as a computer or technology related one, Stackoverflow service will be targeted with the queries constructed. However, other categories will correspond to different services from the Stack Exchange websites\footnote{\url{http://stackexchange.com/sites}}.
+\item {\bf Query Federator:} Responsible for federating the queries identified in the previous step to the corresponding services. To enhance performance, we tried to reduce the number of external calls. Yahoo Query Language (YQL)\footnote{\url{http://developer.yahoo.com/yql/}} helped us in minimizing the number of calls and batching them into a single one. It is an expressive SQL-like language that lets you query, filter, and join data across Web services. However, we have found that we cannot fully rely on YQL due to their API calls limit and the restriction on the query execution time that is set to 30 seconds. To overcome this, we have implemented a fallback mechanism that federates the queries to the selected social services and groups the result to be passed afterwards to the parser.
+
+To further optimize the number of calls, we have decided to take the top two ranked keywords. We do not apply logical operator (AND/OR) in our queries; instead, we perform one-to-one mapping between each keyword and query. Indeed, we have found that gathering keywords even if semantically related might bring up noise in the results. However, as mentioned earlier, a part of the future work will be investigating the best method to construct the most relevant queryable entity using different logical operators.
+
+\item {\bf Caching:}The main setback in the query layer was the variable limited number of calls we can make to external APIs. To overcome this, we have implemented a simple cache mechanism that saves the results on disk up to an hour. There are several cache levels; the first is a URL level one where the results of the parsed queries are cached. For example, if a user visited a certain article on the CNN webpage the results might take up to 15 seconds to appear, whereas a second user visiting the same article minutes afterwards will have the cached results in few seconds. The second level is keyword and service specific. This can be very helpful as users generally browse articles of related topics or interests (semantic concepts), so for each user we can end up with the same high level concepts being requested frequently. An important thing to note is that the caching is done on the server side and is disk-based.
+\end{enumerate}
+
+The social services queried can be grouped as follows:
+
+\begin{enumerate}
+\item {\bf Multimedia Services:} They include Slideshare, Vimeo and YouTube. Slideshare and YouTube allow the results to be fetched in a specific language that was detected in the previous step. In addition to that, YouTube search services are called twice; the first call is done to the YouTube V2 API\footnote{\url{https://developers.google.com/youtube/2.0/}} where we specify in addition to the keywords a high level category to be targeted. To do so, we have manually created a category mapping file that maps the high-levels categories of Alchemy’s API and DMOZ to those provided by YouTube. The second call is done to YouTube V3 API\footnote{\url{https://developers.google.com/youtube/v3/}}. The new feature provided by Google in this version is the ability to search using a semantic concept that corresponds to a Freebase concept ID; it proves to retrieve better results that the normal search. Freebase concept calls are cached for longer periods as they are less prone to changes.
+
+\item {\bf Micro-posts Services:} They include Twitter, Google+ and Stackoverflow. Language filtering is done where applicable.
+\item {\bf General Search:} This includes similar results found via Google search or those retrieved from the Zemanta API call. They are general articles or blog posts related to the current active page.
+\end{enumerate}
+
+\subsection{Data Parser}
+This is the last step where the results and unified and wrapped in a single social model. \ref{fig:architecture_data_parser} shows the different steps needed to produce the final parsed results that will be pushed back to the front-end.
+
+\begin{figure}[!ht]
+  \centering
+    \includegraphics[scale=0.8]{architecture_data_parser.png}
+  \caption{SNARC's Data Parser}
+  \label{fig:architecture_data_parser}
+\end{figure}
+
+\begin{enumerate}
+\item {\bf Live Reconciliator:} Social (or folksonomic) tagging has become a trending method to describe, search and discover content on the web. Folksonomies empower users by giving them total freedom in choosing their categories and keywords that they think describe best the content. This contrasts with taxonomies that over-impose hierarchical categorization of content~\cite{Zanardi:RecSys:08}. However, in services like Twitter and Google+, tagging has been abused in a way that increased noise in the stream of results. To overcome this problem, we align the incoming stream of posts with the set of semantic concepts or keywords that describe the document. There are several approaches and tools like~\cite{Cantador:EC-WEB:11,Ernesto:RecSys:12,Preotiuc-Pietro:ICWSM:12,Zanardi:RecSys:08} that aim at solving this problem. In SNARC we rely on two levels of reconciliation: one uses the high-level taxonomy (categories); and the other uses the vector of entities defined in the Semantic Document. For example, if SNARC wants to reconcile a blog post result retrieved from a general search, it constructs a Semantic Document Model for that result and applies the Cosine Similarity on the vector of ranked entities for each Semantic Model. Currently, we only reconcile against blog posts as it is very straightforward to construct a Semantic Document Model for them. However, an integral part of the future work will be the integration of SNARC's model to micro-posts and video search services.
+
+\item {\bf Social Modeler:} Every social network has its own underlying data model. To overcome this problem, we need to present the social results in a common wrapper. To do so, we have created an optimized universal social model that contains all the necessary data to model social information and can be reused in other projects. The model contains service related attributes like the service name and type, general post information like the author's name, profile link, image and geo-location information and post-specific information like the title, thumbnail, embed code, main content and link.
+\item {\bf Time Sorter and Results Shuffler:} To better display the results on the front-end, we unify the time representation and sort the results based on it. Afterwards we pick the top N results and shuffle them to generate a random order.
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  Front-End %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Front-End}
+SNARC is a service that generates a JSON file containing the results wrapped in our universal social model. We have implemented a chrome extension that loads SNARC on any web page or application (see \ref{fig:SNARC_UI_annotated}). This UI implementation offers more flexibility to users by loading related social news anytime on any webpage or application. The results are visualized using jQuery templates as a sliding panel on one of the screen edges, extracted entities are highlighted in the page itself and a short excerpt is displayed when hovering over them.
+
+\begin{figure}[!ht]
+  \centering
+    \includegraphics[scale=0.45]{SNARC_UI_annotated.png}
+  \caption{SNARC's UI - The Google Chrome Extension}
+  \label{fig:SNARC_UI_annotated}
+\end{figure}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  Conclusions and Future Work %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Conclusions and Future Work}
+
+Aggregating relevant social news is not an easy task. SNARC performs the task in a nice and intuitive way that allows the user to discover what is happening instantly and without the need to navigate away from the current page. One of the important things to consider for the future is the integration of better reconciliation features and tools to ensure the display of relevant social posts. Moreover, real-time feature that can also push new related posts would be a great addition. We would also want to test SNARC on business web applications. It can be a good fit to perform brand monitoring especially after plugging a sentiment analysis component. We would also like to evaluate the necessity to use a content scrapping API like Alchemy’s as a fallback for our text extraction mechanism.

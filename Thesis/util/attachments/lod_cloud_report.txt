@@ -1,6 +1,6 @@
-================================================================================
-                              Metadata Report
-================================================================================
+---------------------------------------------------------------
+                                       Metadata Report
+---------------------------------------------------------------
 @[259]@ !group! information is missing. Check organization information as they can be mixed sometimes
 @[133]@ !maintainer! field exists but there is no value defined
 @[143]@ !maintainer_email! field exists but there is no value defined
@@ -17,9 +17,9 @@
 @[3]@ !organization_description! field exists but there is no value defined
 @[3]@ !url! field exists but there is no value defined
 @[2]@ The organization !image_url! defined for this dataset is not reachable
-================================================================================
-                              Dataset Statistics
-================================================================================
+---------------------------------------------------------------
+                                   Dataset Statistics
+---------------------------------------------------------------
 There is a total of: @259@ [*missing*] !group! fields  @100.00%@
 There is @one@ [*missing*] tag field  @0.39%@
 There is a total of: @224@ [*missing*] !resources! fields  @86.49%@
@@ -32,9 +32,9 @@ There is a total of: @28@ [*undefined*] !organization_image_url! fields  @10.81%
 There is a total of: @34@ [*undefined*] !notes! fields  @13.13%@
 There is a total of: @3@ [*undefined*] !organization_description! fields  @1.16%@
 There is a total of: @3@ [*undefined*] !url! fields  @1.16%@
-================================================================================
+--------------------------------------------------------------------------------------
                               Dataset Connectivity Issues
-================================================================================
+--------------------------------------------------------------------------------------
 There are @44@ connectivity issues with the following URLs:
    - http://id.loc.gov/authorities/
    - http://libris.kb.se
@@ -42,33 +42,33 @@ There are @44@ connectivity issues with the following URLs:
    - http://www4.wiwiss.fu-berlin.de/eures/
    - http://www.linkedopenservices.org/services/geo/SpatialResources/point/ICAO/
    ...
-================================================================================
-                              Tag Report
-================================================================================
+--------------------------------------------------------------------------------------
+                                   Tag Report
+--------------------------------------------------------------------------------------
 @[3220]@ !vocabulary_id! field exists but there is no value defined
-================================================================================
-                              Tag Statistics
-================================================================================
+--------------------------------------------------------------------------------------
+                                   Tag Statistics
+--------------------------------------------------------------------------------------
 There is a total of: @3220@ [*undefined*] !vocabulary_id! fields  @100.00%@
 Total elements count: 3220
-================================================================================
-                              License Report
-================================================================================
+--------------------------------------------------------------------------------------
+                                  License Report
+--------------------------------------------------------------------------------------
 @[142]@ !license_url! field is *missing*
 @[136]@ We could not normalize the license information as no valid mapping was found
 @[123]@ License information has been normalized
 @[43]@ !license_title! field exists but there is no value defined
 @[43]@ !license_id! field exists but there is no value defined
-================================================================================
-                              License Statistics
-================================================================================
+--------------------------------------------------------------------------------------
+                                 License Statistics
+--------------------------------------------------------------------------------------
 There is a total of: @141@ [*missing*] !license_url! fields  @54.44%@
 There is a total of: @43@ [*undefined*] !license_title! fields  @16.60%@
 There is a total of: @43@ [*undefined*] !license_id! fields  @16.60%@
 Total elements count: @259@
-================================================================================
-                              Resource Report
-================================================================================
+--------------------------------------------------------------------------------------
+                                 Resource Report
+--------------------------------------------------------------------------------------
 @[1035]@ !cache_last_updated! field exists but there is no value defined
 @[1024]@ !webstore_last_updated! field exists but there is no value defined
 @[871]@ !size! field exists but there is no value defined
@@ -89,9 +89,9 @@ Total elements count: @259@
 @[53]@ !mimetype! value defined where the resource is not reachable
 @[44]@ !size! value defined where the resource is not reachable
 @[20]@ The !mimeType! for resource is not defined correctly
-================================================================================
+--------------------------------------------------------------------------------------
                               Resource Statistics
-================================================================================
+--------------------------------------------------------------------------------------
 There is a total of: @1035@ [*undefined*] !cache_last_updated! fields  @96.91%@
 There is a total of: @1024@ [*undefined*] !webstore_last_updated! fields  @95.88%@
 There is a total of: @871@ [*undefined*] !size! fields  @81.55%@
@@ -108,9 +108,9 @@ There is a total of: @98@ [*undefined*] !description! fields  @9.18%@
 There is a total of: @1034@ [*missing*] !url!-type fields  @96.82%@
 There is a total of: @927@ [*missing*] !created! fields  @86.80%@
 Total elements count: 1068
-================================================================================
+--------------------------------------------------------------------------------------
                               Resource Connectivity Issues
-================================================================================
+--------------------------------------------------------------------------------------
 There are @330@ connectivity issues with the following URLs:
    - http://www.data.gov/semantic/data/alpha
    - http://www.data.gov/catalog/raw
@@ -120,9 +120,9 @@ There are @330@ connectivity issues with the following URLs:
    - http://www.london-gazette.co.uk/issues/59535/notices/1196300
    - http://www.idref.fr/027182800/id
    .....
-================================================================================
+--------------------------------------------------------------------------------------
                               Un-Reachable URLs Types
-================================================================================
+--------------------------------------------------------------------------------------
 There are: @212@ unreachable URLs of type ![null]!
 There are: @8@ unreachable URLs of type ![api]!
 There are: @112@ unreachable URLs of type ![file]!
