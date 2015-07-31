@@ -134,7 +134,48 @@ Despite the legal issues surrounding Linked Data licenses~\cite{Prateek:Misc:13}
 \end{lstlisting}
 
 \subsection{Profile and Report Generation}
-The validation process highlights the missing information and presents them in a human readable report (see appendix~\ref{appendix:appendixE}). The report can be automatically sent to the dataset maintainer email if exists in the metadata. In addition to the generated report, the enhanced profiles are represented in JSON using the CKAN data model and are publicly available\footnote{\url{https://github.com/ahmadassaf/opendata-checker/tree/master/results}}.
+The validation process highlights the missing information and presents them in a human readable report (see appendix~\ref{appendix:appendixE}). The report can be automatically sent to the dataset maintainer email if exists in the metadata. In addition to the generated report, the enhanced profiles are represented in JSON using the CKAN data model and are publicly available\footnote{\url{https://github.com/ahmadassaf/opendata-checker/tree/master/results}}.\\
+
+\lstset{basicstyle=\scriptsize, backgroundcolor=\color{white}, breaklines=true, frame=single, caption={Excerpt of the DBpedia validation report}, label=roomba_validation_report, captionpos=b}
+\begin{lstlisting}
+ =============================================================================
+                            Metadata Report
+ =============================================================================
+  group information is missing. Check organization information as they can be mixed sometimes
+  organization_image_url field exists but there is no value defined
+ =============================================================================
+                            Tag Statistics
+ =============================================================================
+  There is a total of: 21 [undefined] vocabulary_id fields  100.00%
+ =============================================================================
+                             License Report
+ =============================================================================
+  License information has been normalized !
+ =============================================================================
+                            Resource Statistics
+ =============================================================================
+  There is a total of: 10 [missing] url-type fields  100.00%
+  There is a total of: 9 [missing] created fields  90.00%
+  There is a total of: 10 [undefined] cache_last_updated fields  100.00%
+  There is a total of: 10 [undefined] size fields  100.00%
+  There is a total of: 10 [undefined] hash fields  100.00%
+  There is a total of: 10 [undefined] mimetype_inner fields  100.00%
+  There is a total of: 7 [undefined] mimetype fields  70.00%
+  There is a total of: 10 [undefined] cache_url fields  100.00%
+  There is a total of: 6 [undefined] name fields  60.00%
+  There is a total of: 9 [undefined] webstore_url fields  90.00%
+  There is a total of: 9 [undefined] last_modified fields  90.00%
+  There is one [undefined] format field  10.00%
+ =============================================================================
+                         Resource Connectivity Issues
+ =============================================================================
+  There are 2 connectivity issues with the following URLs:
+    - \url{http://dbpedia.org/void/Dataset}
+ =============================================================================
+                            Un-Reachable URLs Types
+ =============================================================================
+ There are: 1 unreachable URLs of type [file]
+\end{lstlisting}
 
 Data portal administrators need an overall knowledge of the portal datasets and their properties. Our framework has the ability to generate numerous reports of all the datasets by passing formatted queries. There are two main sets of aggregation tasks that can be run:
 \begin{itemize}
@@ -143,47 +184,6 @@ Data portal administrators need an overall knowledge of the portal datasets and 
 \end{itemize}
 
 For example, the meta-field value query \texttt{resource>resource\_type} run against the LODCloud group will result in an array containing $[file,api,documentation ...]$ values. These are all the resource types used to describe all the datasets of the group. However, to be able to know also what are the datasets containing resources corresponding to each type, we issue a key:object meta-field query\\ \texttt{resource>resource\_type:name}. The result will be a JSON object having the \texttt{resource\_type} as the key and an array of corresponding datasets titles that has a resource of that type.
-
-\lstset{basicstyle=\scriptsize, backgroundcolor=\color{white}, breaklines=true, frame=single, caption={Excerpt of the DBpedia validation report}, label=roomba_validation_report, captionpos=b}
-\begin{lstlisting}
-    =======================================================================
-                             Metadata Report
-    =======================================================================
-     group information is missing. Check organization information as they can    be mixed sometimes
-     organization_image_url field exists but there is no value defined
-    =======================================================================
-                             Tag Statistics
-    =======================================================================
-     There is a total of: 21 [undefined] vocabulary_id fields  100.00%
-    =======================================================================
-                             License Report
-    =======================================================================
-     License information has been normalized !
-    =======================================================================
-                           Resource Statistics
-    =======================================================================
-     There is a total of: 10 [missing] url-type fields  100.00%
-     There is a total of: 9 [missing] created fields  90.00%
-     There is a total of: 10 [undefined] cache_last_updated fields  100.00%
-     There is a total of: 10 [undefined] size fields  100.00%
-     There is a total of: 10 [undefined] hash fields  100.00%
-     There is a total of: 10 [undefined] mimetype_inner fields  100.00%
-     There is a total of: 7 [undefined] mimetype fields  70.00%
-     There is a total of: 10 [undefined] cache_url fields  100.00%
-     There is a total of: 6 [undefined] name fields  60.00%
-     There is a total of: 9 [undefined] webstore_url fields  90.00%
-     There is a total of: 9 [undefined] last_modified fields  90.00%
-     There is one [undefined] format field  10.00%
-    =======================================================================
-                      Resource Connectivity Issues
-    =======================================================================
-     There are 2 connectivity issues with the following URLs:
-       - \url{http://dbpedia.org/void/Dataset}
-    =======================================================================
-                        Un-Reachable URLs Types
-    =======================================================================
-     There are: 1 unreachable URLs of type [file]
-\end{lstlisting}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%  5. Experiments and Evaluation  %%%
@@ -351,7 +351,7 @@ The noisiest part of the access metadata is about license information. A total o
 
 \begin{figure}[!ht]
   \centering
-  \includegraphics[scale=0.8]{metadata_noise_by_section.png}
+  \includegraphics[scale=0.7]{metadata_noise_by_section.png}
   \caption{LOD Cloud error \% by section}
   \label{fig:metadata_noise_by_section}
 \end{figure}
