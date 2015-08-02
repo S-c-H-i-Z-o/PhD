@@ -474,9 +474,20 @@ After running Roomba and examining the results on the selected datasets and grou
 
 We analyzed the completeness of our framework by manually constructing a synthetic set of profiles\footnote{\url{https://github.com/ahmadassaf/opendata-checker/tree/master/test}}. These profiles cover the indicators in table~\ref{table:objective-methods-ckan}. After running our framework at each of these profiles, we measured the completeness and correctness of the results. We found out that our framework covers indeed all the quality problems discussed.
 
+\begin{figure}[ht]
+  \centering
+    \includegraphics[height=6.5cm, width=12cm]{LOD_quality_indicators_grouped.png}
+  \caption{Average Error \% per quality indicator for LOD group}
+  \label{fig:average-error-lod-group}
+\end{figure}
+
 \subsection{Experiments and Analysis}
 
 In this section, we provide the experiments done using the proposed framework. Listing~\ref{qualityReport} shows an excerpt of the generated quality report (see appendix~\ref{appendix:appendixE} for full report). All the experiments are reproducible by Roomba and their results are available on its Github repository. We have run the framework on the LOD cloud containing 259 datasets at the time of writing this paper. We ran the instance and resource extractor in order to cache the metadata files for these datasets locally and ran the quality assessment process which took around two hours on a 2.6 Ghz Intel Core i7 processor with 16GB of DDR3 memory machine.
+
+We found out that licensing, availability and comprehensibility had the worst quality measures scores: 19.59\%, 26.22\% and 31.62\% respectively. On the other hand, the LOD cloud datasets have good quality scores for freshness, correctness and provenance as most of the datasets have an average of ~75\% for each one of those measures.
+
+Figure \ref{fig:average-error-lod-group} shows the average errors percentage in quality indicators grouped by the corresponding measures. The error percentage is the inverse quality. For example, 86.3\% of the datasets resources do not have information about its size, which means that only 13.7\% of the datasets are considered in good quality for this indicator. After examining the results, we notice that the worst quality indicators scores are for the comprehensibility measure where 99.61\% of the datasets did not have valid exemplary RDF file (QI.37) and did not define valid point of contact (QI.40). Moreover, we noticed that 96.41\% of the datasets queryable endpoints (SPARQL endpoints) failed to respond to direct queries (QI.19). After careful examination, we found that the cause was incorrect assignment for metadata fields. Data publishers specified the resource \texttt{format} field as an \texttt{api} instead of the specifying the \texttt{resource\_type} field.
 
 \lstset{basicstyle=\footnotesize, backgroundcolor=\color{white}, breaklines=false, frame=single, caption={Excerpt of the LOD cloud group quality report}, label=qualityReport, captionpos=b}
 \begin{lstlisting}
@@ -500,17 +511,6 @@ Quality Indicator : Uses datasets description vocabularies: 88.80%
 Quality Indicator : Existence of descriptions about its size: 86.30%
 Quality Indicator : Existence of descriptions about its structure: 83.67%
 \end{lstlisting}
-
-We found out that licensing, availability and comprehensibility had the worst quality measures scores: 19.59\%, 26.22\% and 31.62\% respectively. On the other hand, the LOD cloud datasets have good quality scores for freshness, correctness and provenance as most of the datasets have an average of ~75\% for each one of those measures.
-
-\begin{figure}[ht]
-  \centering
-    \includegraphics[height=6.5cm, width=12cm]{LOD_quality_indicators_grouped.png}
-  \caption{Average Error \% per quality indicator for LOD group}
-  \label{fig:average-error-lod-group}
-\end{figure}
-
-Figure \ref{fig:average-error-lod-group} shows the average errors percentage in quality indicators grouped by the corresponding measures. The error percentage is the inverse quality. For example, 86.3\% of the datasets resources do not have information about its size, which means that only 13.7\% of the datasets are considered in good quality for this indicator. After examining the results, we notice that the worst quality indicators scores are for the comprehensibility measure where 99.61\% of the datasets did not have valid exemplary RDF file (QI.37) and did not define valid point of contact (QI.40). Moreover, we noticed that 96.41\% of the datasets queryable endpoints (SPARQL endpoints) failed to respond to direct queries (QI.19). After careful examination, we found that the cause was incorrect assignment for metadata fields. Data publishers specified the resource \texttt{format} field as an \texttt{api} instead of the specifying the \texttt{resource\_type} field.
 
 To drill down more on the availability issues, we generated a metadata profile assessment report using Roomba's metadata profiler. We found out that 25\% of the datasets access information (being the dataset URL and any URL defined in its groups) has issues related to them (missing or unreachable URLs).
 Three datasets (1.15\%) did not have a URL defined while 45 datasets (17.3\%) defined URLs were not accessible at the time writing this paper. Out of the 1068 defined resources 31.27\% were not reachable. All these issues resulted in a 26.22\% average availability score. This can highly affect the usability of those datasets especially in an enterprise context.
