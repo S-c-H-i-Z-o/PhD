@@ -1,6 +1,6 @@
----------------------------------------------------------------
+--------------------------------------------------------------------------------------
                                        Metadata Report
----------------------------------------------------------------
+--------------------------------------------------------------------------------------
 @[259]@ !group! information is missing. Check organization information as they can be mixed sometimes
 @[133]@ !maintainer! field exists but there is no value defined
 @[143]@ !maintainer_email! field exists but there is no value defined
@@ -17,9 +17,9 @@
 @[3]@ !organization_description! field exists but there is no value defined
 @[3]@ !url! field exists but there is no value defined
 @[2]@ The organization !image_url! defined for this dataset is not reachable
----------------------------------------------------------------
+--------------------------------------------------------------------------------------
                                    Dataset Statistics
----------------------------------------------------------------
+--------------------------------------------------------------------------------------
 There is a total of: @259@ [*missing*] !group! fields  @100.00%@
 There is @one@ [*missing*] tag field  @0.39%@
 There is a total of: @224@ [*missing*] !resources! fields  @86.49%@
@@ -41,7 +41,6 @@ There are @44@ connectivity issues with the following URLs:
    - http://www.london-gazette.co.uk/mashup/gazettesdata.htm
    - http://www4.wiwiss.fu-berlin.de/eures/
    - http://www.linkedopenservices.org/services/geo/SpatialResources/point/ICAO/
-   ...
 --------------------------------------------------------------------------------------
                                    Tag Report
 --------------------------------------------------------------------------------------

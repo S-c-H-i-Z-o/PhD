@@ -144,11 +144,4 @@
         <rdfs:subClassOf rdf:resource="http://dbpedia.org/ontology/Event"/>
         <rdfs:subClassOf rdf:resource="http://schema.org/Festival"/>
     </owl:Class>
-    <owl:Class rdf:about="http://dbpedia.org/ontology/SpaceShuttle">
-        <rdfs:label xml:lang="en">space shuttle</rdfs:label>
-        <rdfs:label xml:lang="fr">navette spatiale</rdfs:label>
-        <rdfs:label xml:lang="el">διαστημικό λεωφορείο</rdfs:label>
-        <rdfs:label xml:lang="ko">우주 왕복선</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://dbpedia.org/ontology/MeanOfTransportation"/>
-    </owl:Class>
 </rdf:RDF>
