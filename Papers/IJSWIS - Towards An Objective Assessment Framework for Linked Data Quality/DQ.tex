@@ -1,3 +1,8 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  IJSWIS Special Issue on Dataset Profiling and Federated Search for Linked Data  %%%
+%%%  An Objective Assessment Framework & Tool for Linked Data Quality                %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \documentclass[onecolumn, crcready]{../../Util/LaTEX/iosart2c}
 \usepackage{graphicx}
 \usepackage[ampersand]{easylist}
@@ -72,9 +77,9 @@ Furthermore, we surveyed the landscape of Linked Data quality tools to discover 
 
 This paper is structured as follows: Section~\ref{sec:related-work} presents the related work in data quality assessment methodologies. Section~\ref{sec:data-quality-classification} presents our framework with its objective quality measures and indicators. Section~\ref{sec:quality-tools} reviews the existing tools and frameworks in the Linked Open Data quality landscape. Section~\ref{sec:quality-assessment-framework} presents our tool for evaluating those indicators. Section~\ref{sec:conclusion} presents concluding remarks and identifies future work.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% 2. Data quality Assessment   %%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% 2. Related Work   %%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Related Work}
 \label{sec:related-work}
@@ -92,13 +97,12 @@ In~\cite{Anisa:LDQ:14}, the authors propose a methodology for assessing Linked D
 
 Despite all the recent efforts in providing frameworks and tools for data quality in Linked Open Data, there is still no automatic framework for the objective assessment of Linked Data quality.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%    3.Objective Linked Data Quality Classification      %%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Objective Linked Data Quality Classification}
 \label{sec:data-quality-classification}
-
 The basic idea behind Linked Data is that its usefulness increases when it is more interlinked with other datasets. Tim Berners-Lee defined four main principles for publishing data that can ensure a certain level of uniformity reflecting directly data's usability~\cite{Berners-Lee:W3C:06}:
 
 \begin{itemize}
@@ -340,9 +344,9 @@ Coherence is the ability to interpret data as expected by the publisher or vocab
 \subsection{Security}
 Security is a quality attribute that is measured on the dataset level. It is identified if the publishers use login credentials, SSL or SSH to provide access to their dataset, or if they only grant access to specific users~\cite{Zaveri:SemWebJorunal:12}.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%       5.Linked Data Quality Tools      %%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%       4. Linked Data Quality Tools      %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Linked Data Quality Tools}
 \label{sec:quality-tools}
@@ -409,9 +413,9 @@ Sindice~\cite{Tummarello:ISWC:07} uses a set of techniques to rank Web data. The
 The availability of Linked Data is highly dependent on the performance qualities of its queryable end-points. The standard query language for Semantic Web resources is SPARQL. As a result, we focus on tools measuring the quality of SPARQL endpoints. In~\cite{BuilAranda:ISWC:13}\footnote{\url{http://labs.mondeca.com/sparqlEndpointsStatus/}} the authors present their findings to measure the discoverability of SPARQL endpoints by analyzing how they are located and the metadata used to describe them. In addition to that, they also analyze endpoints interoperability by identifying features of SPARQL 1.0 and SPARQL 1.1 that are supported. The authors tackled the endpoints efficiency by testing the time taken to answer generic, content-agnostic SPARQL queries over HTTP.
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%     4.An Extensible Objective Quality Assessment Framework      %%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%     5. An Extensible Objective Quality Assessment Framework      %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{An Extensible Objective Quality Assessment Framework}
 \label{sec:quality-assessment-framework}
@@ -620,7 +624,7 @@ Roomba & \ding{108} & \ding{108} & \ding{108} & \ding{108} & \ding{108} & \ding{
 \end{table}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%       6.Conclusions and Future Work     %%%
+%%%       6. Conclusions and Future Work     %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Conclusions and Future Work}
@@ -631,7 +635,4 @@ In future work, we plan to integrate tools assessing models quality in addition 
 
 \bibliographystyle{abbrv}
 \bibliography{../../Util/Bibliography/bibliography}
-
 \end{document}
-
-
