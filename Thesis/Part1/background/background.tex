@@ -3,7 +3,7 @@
 
 \section{Semantic Web} \label{section:sematic-web}
 
-The web can be seen as a worldwide, distributed system of interconnected documents that humans can read, exchange and discuss. The original model behind the web can be roughly summarized as a way to publish documents represented in a standard way (e.g. HTML), containing links to other documents accessible through standard protocols (e.g. HTTP).
+The web can be seen as a worldwide, distributed system of interconnected documents that humans can read, exchange and discuss. The original model behind the web can be roughly summarized as a way to publish documents represented in a standard way (e.g., HTML), containing links to other documents accessible through standard protocols (e.g., HTTP).
 
 The great advantage of the web is that it abstracts the physical storage and network layers involved in the information exchange between machines. This enables documents to appear directly connected to one another. However, in this paradigm machines are not able to achieve tasks based on automated data processing such as search and query answering. To overcome this limitation, research fields such as Information Retrieval (IR), Machine Learning (ML), and Natural Language Processing (NLP) produced complex systems trying to automatically extract meaning from unstructured data. A typical example would be search engines such as Yahoo\footnote{\url{http://www.yahoo.com}} and Google\footnote{\url{http://www.google.com}}. Despite their success, there is still a semantic gap between what the machine understands and how the user perceives the data~\cite{Mika:book:07}. This is where Semantic Web intervenes trying to fill the knowledge gap. In the same way that original Web abstracted away the network and physical layers, the Semantic Web abstracts away the document and application layers involved in the exchange of information. The Semantic Web connects facts, so that rather than linking to a specific document or application, you can instead refer to a specific piece of information contained in that document or application. Berners-Lee et al.~\cite{BernersLee:ScientificAmerican:01} provide the following definition for the Semantic Web:
 
@@ -22,7 +22,7 @@ Resource Description Framework (RDF)~\cite{Lassila:RDF:99} is a recommendation o
 
 Semantic Web resources can be anything that has an identity, they can be a person, document, image, location, etc. Each resource is assigned a Universal Resource Identifier (URI)~\cite{Berners:RFC:05} which is a Unicode string to identify an abstract or physical resource. The most common type of URI is the Universal Resource Locator (URL) which is used to identify Web resources. A special case of a resource is a blank node for which no URI or literal is given. Blank nodes denote the existence of resources with specific attributes but without providing any information about their identity or reference.
 
-Resources can have atomic values named literal. They are simple Strings that describe data values that do not have a separate existence. They can be plain (simple string combined with an optional language tag (e.g. "thesis"@en)) or typed (string combined with a datatype URI and an optional language tag e.g. "0.99"\char`\^\char`\^datatypeURI). RDF reuses the  XML Schema (W3C) datatypes\footnote{\url{http://www.w3.org/TR/xmlschema-2}} which can be string, integer, float, double or date, as defined by the XML Schema Datatype specification.
+Resources can have atomic values named literal. They are simple Strings that describe data values that do not have a separate existence. They can be plain (simple string combined with an optional language tag (e.g., "thesis"@en)) or typed (string combined with a datatype URI and an optional language tag e.g., "0.99"\char`\^\char`\^datatypeURI). RDF reuses the  XML Schema (W3C) datatypes\footnote{\url{http://www.w3.org/TR/xmlschema-2}} which can be string, integer, float, double or date, as defined by the XML Schema Datatype specification.
 
 RDF provides an intuitive knowledge representation using directed graphs, where the subjects and objects (resources) are the nodes and the predicates (properties) are the edges of that graph, this is referred to as an RDF Triple. Note that a property is a specific aspect, characteristic, attribute, or relation used to describe a resource~\cite{Lassila:RDF:99}. Resources can be described and linked by other set of statements forming a larger graph or a semantic network. An atomic RDF statement is a triple which is usually denoted as $<s,p,o>$ and composed of:
 
@@ -72,13 +72,13 @@ RDFS as a modeling language allows for: 1) definition of classes and their insta
 
 \subsection{Web Ontology Language}
 
-RDFS provides basic hierarchies associated with simple restrictions. This limited expressivity triggered the need to define an explicit formal description of concepts in complex domains. As a result, the Web Ontology Language (OWL)~\cite{W3C:OWL:12} which adds more vocabulary for describing properties and classes on top of RDF is the current markup language endorsed by W3C. It provides more relations between classes (e.g. \emph{disjointWith}), logical properties (e.g. \emph{intersectionOf}, \emph{sameAs}) and enumerations (e.g. \emph{oneOf}, \emph{allValuesFrom}), among others.
+RDFS provides basic hierarchies associated with simple restrictions. This limited expressivity triggered the need to define an explicit formal description of concepts in complex domains. As a result, the Web Ontology Language (OWL)~\cite{W3C:OWL:12} which adds more vocabulary for describing properties and classes on top of RDF is the current markup language endorsed by W3C. It provides more relations between classes (e.g., \emph{disjointWith}), logical properties (e.g., \emph{intersectionOf}, \emph{sameAs}) and enumerations (e.g., \emph{oneOf}, \emph{allValuesFrom}), among others.
 
 \subsection{SPARQL Query Language}
 
 Relational databases can be efficient for semantic databases. However, in practice, they are designed for a different type of workload. The fundamental operation of semantic databases is join, which is naturally expensive in relational databases. Given that we have our data modeled as RDF regardless of the underlying database choice, it is now possible to query and ask questions about our data in a very powerful way. Protocol and RDF Query Language (SPARQL)~\cite{Prud:SPARQL:08} is the standardized query language for RDF.
 
-A SPARQL query consists of a set of triples where each part (subject, predicate and/or object) can consist of variables alongside a set of conjunctions (e.g. logical ``and'') or disjunctions (e.g. logical ``or''). It works by matching the triples in the query with the existing RDF triples and find solutions to the variables.
+A SPARQL query consists of a set of triples where each part (subject, predicate and/or object) can consist of variables alongside a set of conjunctions (e.g., logical ``and'') or disjunctions (e.g., logical ``or''). It works by matching the triples in the query with the existing RDF triples and find solutions to the variables.
 
 \subsection{Linked Data}
 
@@ -109,7 +109,7 @@ In order to achieve the Linked Data vision, datasets should contain outbound lin
 
 Open Data (OD) is the data that can be easily discovered, accessed, reused and redistributed by anyone~\cite{Davies:Report:15}. Open data should have both legal and technical dimensions. It should be placed in the public domain under liberal terms of use with minimal restrictions and should be available in electronic formats that are non-proprietary and machine readable. Similarly, Linked Open Data (LOD) refers to the semantically linked, machine-readable open data.
 
-Businesses, citizens and governments are encouraged to publish, share and reuse data. Figure~\ref{fig:opendata_ecosystem} shows the Open Data ecosystem described by~\cite{Deloitte:Report:12}. Each party in this ecosystem supplies different types of data (e.g. Open Business Data (OBD), Open Government Data (OGD)) to different types of stakeholders.
+Businesses, citizens and governments are encouraged to publish, share and reuse data. Figure~\ref{fig:opendata_ecosystem} shows the Open Data ecosystem described by~\cite{Deloitte:Report:12}. Each party in this ecosystem supplies different types of data (e.g., Open Business Data (OBD), Open Government Data (OGD)) to different types of stakeholders.
 
 \begin{figure}[ht!]
 	\centering{
@@ -123,9 +123,9 @@ Similarly to the Linked Data principles, Tim Berners-Lee~\cite{Berners-Lee:W3C:0
 
 \begin{enumerate}
 	\item Data available on the web in any format, even using PDF or image scan, but with an Open license.
-	\item Data delivered as machine-readable structured data, e.g. excel instead of image scan of a table.
-	\item Data available in a non-proprietary format, e.g. CSV instead of excel.
-	\item All the above plus, data using open standards from W3C, e.g. RDF and SPARQL, to identify things and properties, so that people can point at other data.
+	\item Data delivered as machine-readable structured data, e.g., excel instead of image scan of a table.
+	\item Data available in a non-proprietary format, e.g., CSV instead of excel.
+	\item All the above plus, data using open standards from W3C, e.g., RDF and SPARQL, to identify things and properties, so that people can point at other data.
 	\item All the above, plus, to link data to other people's data to provide context.
 \end{enumerate}
 
@@ -187,7 +187,7 @@ Data profiling is a vital task to monitor the quality of internal data in the en
 Data profiles reflect the importance of datasets without the need for detailed inspection of the raw data.  It also helps in assessing the importance of the dataset, improving users' ability to search and reuse part of the dataset and in detecting irregularities to improve its quality. Data profiling includes typically several tasks:
 \begin{itemize}
   \item \textbf{Metadata profiling}: Provides general information on the dataset (dataset description, release and update dates), legal information (license information, openness), practical information (access points, data dumps), etc.
-  \item \textbf{Statistical profiling}: Provides statistical information about data types and patterns in the dataset (e.g. properties distribution, number of entities and RDF triples).
+  \item \textbf{Statistical profiling}: Provides statistical information about data types and patterns in the dataset (e.g., properties distribution, number of entities and RDF triples).
   \item \textbf{Topical profiling}: Provides descriptive knowledge on the dataset content and structure. This can be in form of tags and categories used to facilitate search and reuse.
   \item \textbf{Quality profiling}: Discovers inconsistencies and anomalies in the data. Data is considered of high quality if is appropriate for use and if it correctly represents the world constructs to which it refers~\cite{Juran:McGraw:99}.
 \end{itemize}
