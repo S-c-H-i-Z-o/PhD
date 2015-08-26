@@ -18,7 +18,9 @@
 
 \pagenumbering{roman}
 
+\include{title/separator}
 \include{title/basmalah}
+\include{title/separator}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %%%  To Do List  %%%
@@ -28,10 +30,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %%%  Aknowledgment  %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%
+\let\cleardoublepage\clearpage
 \addcontentsline{toc}{section}{Acknowledgements}
 \markboth{Acknowledgements}{Acknowledgements}
-%\input{acknowledgement/acknowledgement}
-
+\input{acknowledgement/acknowledgement}
+\include{title/separator}
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %%%  Abstract  %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%
@@ -39,7 +42,6 @@
 \markboth{Abstract}{Abstract}
 \chapter*{Abstract}
 \input{abstract/abstract}
-\clearpage
 
 \addcontentsline{toc}{section}{Contents}
 \markboth{Contents}{Contents}
@@ -65,7 +67,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%
 \addcontentsline{toc}{section}{List of Listings}
 \lstlistoflistings
-\cleardoublepage
 \let\cleardoublepage\clearpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
@@ -91,6 +92,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %%%  Part 1  %%%
+
 %%%%%%%%%%%%%%%%%%%%%%%%%
 \let\cleardoublepage\clearpage
 \part{Towards A Complete Dataset Profile} \label{part:dataset_profiling}
@@ -115,9 +117,21 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %%%  Conclusion %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%
+\bookmarksetup{startatroot}
 \input{conclusions/conclusions}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  Bibliography %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\bibliographystyle{plain}
+\bibliography{../Util/Bibliography/bibliography}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  Appendix %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\part}[1]{\addcontentsline{toc}{part}{#1}}
+\let\cleardoublepage\clearpage
+\part{Appendix} \label{part:appendix}
 \appendix
 \include{appendix/appendix_A}
 \include{appendix/appendix_D}
@@ -125,9 +139,6 @@
 \include{appendix/appendix_B}
 \include{appendix/appendix_F}
 \include{appendix/appendix_C}
-
-\bibliographystyle{plain}
-\bibliography{../Util/Bibliography/bibliography}
 
 \chapter*{}
 \chaptermark{}

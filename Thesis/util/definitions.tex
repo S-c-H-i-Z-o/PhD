@@ -34,11 +34,11 @@
 \ifpdf
   \usepackage[pdftex]{graphicx}
   \DeclareGraphicsExtensions{.jpg}
-  \usepackage[hyperindex=true]{hyperref}
+  \usepackage{bookmark, hyperref}
 \else
   \usepackage{graphicx}
   \DeclareGraphicsExtensions{.ps,.eps}
-  \usepackage[dvipdfm,hyperindex=true]{hyperref}
+  \usepackage[dvipdfm]{bookmark, hyperref}
 \fi
 
 \graphicspath{{.}{images/}}
@@ -56,7 +56,7 @@
 \def\argmin{\operatornamewithlimits{arg\,min}}
 \def\diag{\operatorname{Diag}}
 \newcommand{\eqRef}[1]{(\ref{#1})}
-
+\renewcommand\contentsname{Table of Contents}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Fancy Header Style Options
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -175,6 +175,7 @@
     pdfmenubar=true,                      % show Acrobat?s menu?
     pdffitwindow=false,                   % window fit to page when opened
     pdfstartview={FitH},                  % fits the width of the page to the window
+    plainpages=false,
     pdftitle={My title},                  % title
     pdfauthor={Author},                   % author
     pdfsubject={Subject},                 % subject of the document
