@@ -25,7 +25,7 @@ $.harubixMatch.WebContent.DbpediaLib.queryEntitiesWithTypes(query,fuzzyStr, limi
 \end{verbatim}
 \normalsize
 
-This will query for a searchword in the \textbf{TYPES} table. It returns a JSON object. More specific, it will return an array containing all found entities (called entities). For each element of entities the text search score (\texttt{txtScore}) and the number of incoming associations (\texttt{incomingNo}) is returned, as well as an array of the associated types (\texttt{types}). Each element in types has a name and an order. Each element of entities also has a \texttt{finalScore}, but this is set to zero and will be calculated in the method getEntitiesWithTypes
+This will query for a search word in the \textbf{TYPES} table. It returns a JSON object. More specifically, it will return an array containing all found entities (called \texttt{entities}). For each element of entities the text search score (\texttt{txtScore}) and the number of incoming associations (\texttt{incomingNo}) is returned, as well as an array of the associated types (\texttt{types}). Each element in types has a name and an order. Each element of entities also has a \texttt{finalScore}, but this is set to zero and will be calculated in the method \texttt{getEntitiesWithTypes}.
 
 Generally, you should not use this method at all, as it is a helper method for \texttt{getEntitiesWithTypes}
 
@@ -61,7 +61,7 @@ fuzzy, multilang, verbose)
 \end{verbatim}
 \normalsize
 
-A small method to only return entities and no types.
+This is a small method to only return entities and no types.
 
 \scriptsize
 \begin{verbatim}
@@ -70,7 +70,7 @@ orderWeight, fuzzy, multilang, verbose)
 \end{verbatim}
 \normalsize
 
-Here, only categories are returned. The order of the categories is determined by the \texttt{finalScore} of the entity they belong to and their order. The higher the order, the less specific the category is. The parameter orderWeight influences how much is subtracted from the finalScore in case the value of order exceeds 1.
+Here, only categories are returned. The order of the categories is determined by the \texttt{finalScore} of the entity they belong to and their order. The higher the order, the less specific the category is. The parameter \texttt{orderWeight} influences how much is subtracted from the finalScore in case the value of order exceeds 1.
 
 Table match for example uses this function for every cell value:
 
@@ -92,7 +92,7 @@ $.harubixMatch.WebContent.DBpediaLib.getCategories(tables[i].getColumn(j).getCel
 
 \subsubsection{Enrich Entity (\texttt{enrich.xsjs})}
 
-\lstset{basicstyle=\scriptsize, backgroundcolor=\color{white}, frame=single, caption= {API call paramteres for entity enrichment}, label="API call paramteres for entity enrichment", captionpos=b}
+\lstset{basicstyle=\scriptsize, backgroundcolor=\color{white}, frame=single, caption= {API call parameters for entity enrichment}, label="API call parameters for entity enrichment", captionpos=b}
 \lstinputlisting[breaklines=true,language=json]{util/attachments/seed_enrich_params.json}
 
 \lstset{basicstyle=\scriptsize, backgroundcolor=\color{white}, frame=single, caption= {Entity enrichment API call return values sample}, label="Entity enrichment API call return values sample", captionpos=b}
@@ -100,7 +100,7 @@ $.harubixMatch.WebContent.DBpediaLib.getCategories(tables[i].getColumn(j).getCel
 
 \subsection{Entity Disambiguation (\texttt{disambiguate.xsjs})}
 
-\lstset{basicstyle=\scriptsize, backgroundcolor=\color{white}, frame=single, caption= {API call paramteres for entity disambiguation}, label="API call paramteres for entity disambiguation", captionpos=b}
+\lstset{basicstyle=\scriptsize, backgroundcolor=\color{white}, frame=single, caption= {API call parameters for entity disambiguation}, label="API call parameters for entity disambiguation", captionpos=b}
 \lstinputlisting[breaklines=true,language=json]{util/attachments/seed_disambiguate_params.json}
 
 \lstset{basicstyle=\scriptsize, backgroundcolor=\color{white}, frame=single, caption= {Entity disambiguation API call return values sample}, label="Entity disambiguation API call return values sample", captionpos=b}
@@ -109,7 +109,7 @@ $.harubixMatch.WebContent.DBpediaLib.getCategories(tables[i].getColumn(j).getCel
 
 \subsection{Schema Matching (\texttt{matchTables.xsjs})}
 
-\lstset{basicstyle=\scriptsize, backgroundcolor=\color{white}, frame=single, caption= {API call paramteres for schema matching}, captionpos=b, label="API call paramteres for schema matching"}
+\lstset{basicstyle=\scriptsize, backgroundcolor=\color{white}, frame=single, caption= {API call parameters for schema matching}, captionpos=b, label="API call parameters for schema matching"}
 \lstinputlisting[breaklines=true,language=json]{util/attachments/seed_match_params.json}
 
 \lstset{basicstyle=\scriptsize, backgroundcolor=\color{white}, frame=single, caption= {Schema matching API call return values sample}, captionpos=b, label="Schema matching API call return values sample"}

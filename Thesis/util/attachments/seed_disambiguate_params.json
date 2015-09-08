@@ -1,5 +1,5 @@
 {
-    query: Give a query , // Mandatory
+    query: Give a query ,
     entityMode: Switch between returning entities or categories {
         values: true or false
         default: true
@@ -26,7 +26,7 @@
     },
     context: Give context as a JSON array {
         values: {
-            context: [“entity”: ”SAP_AG”]
+            context: [{"entity": ""}]
         }
         default: {}
     },
