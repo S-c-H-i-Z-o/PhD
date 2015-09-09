@@ -13,10 +13,10 @@ There are several Data Management Systems (DMS) that power public data portals. 
 %%%  2. Data Portals and Dataset Models  %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Data Portals and Dataset Models}
+\section{Data Management Systems and Dataset Models}
 \label{section:datasetModels}
 
-There are many data portals that host a large number of private and public datasets. Each portal present the data based on a model used by the underlying Data Management Software. In this section, we present the results of our landscape survey of the most common data portals and dataset models.
+There are many data portals that host a large number of private and public datasets. Each portal present the data based on a model used by the underlying Data Management Software. In this section, we present the results of our landscape survey of the most common data management systems and dataset models.
 
 \subsection{DCAT}
 The Data Catalog Vocabulary (DCAT) is a W3C recommendation that has been designed to facilitate interoperability between data catalogs published on the Web~\cite{Erickson:DCV:14}. The goal behind DCAT is to increase datasets discoverability enabling applications to easily consume metadata coming from multiple sources. Moreover, the authors foresee that aggregated DCAT metadata can facilitate digital preservation and enable decentralized publishing and federated search.
@@ -441,7 +441,7 @@ Publication with total count of: 1
 Dataset with total count of: 1
 \end{lstlisting}
 
-After examining the results, we noticed that for OpenAfrica, 53\% of the datasets contained additional information about the geographical coverage of the dataset (e.g., spatial-reference-system, spatial\_harvester, bbox-east-long, bbox-north-long, bbox-south-long, bbox-west-long). In addition, 16\% of the datasets have additional provenance and ownership information (e.g frequency-of-update, dataset-reference-date). For the LOD cloud, the main information embedded in the extras fields are about the structure and statistical distribution of the dataset (e.g., namespace, number of triples and links). The OpenAfrica resources did not specify any extra resource types. However, in the LOD cloud, we observe that multiple resources define additional types (e.g., example, api/sparql, publication, example).
+After examining the results, we noticed that for OpenAfrica, 53\% of the datasets contained additional information about the geographical coverage of the dataset (e.g., \texttt{spatial-reference-system}, \texttt{spatial\_harvester}, \texttt{bbox-east-long}, \texttt{bbox-north-long}, \texttt{bbox-south-long}, \texttt{bbox-west-long}). In addition, 16\% of the datasets have additional provenance and ownership information (e.g \texttt{frequency-of-update}, \texttt{dataset-reference-date}). For the LOD cloud, the main information embedded in the extras fields are about the structure and statistical distribution of the dataset (e.g., \texttt{namespace}, \texttt{number\_of\_triples} and \texttt{links}). The OpenAfrica resources did not specify any extra resource types. However, in the LOD cloud, we observe that multiple resources define additional types (e.g., \texttt{example}, \texttt{api/sparql}, \texttt{publication}, \texttt{example}).
 
 \section{Summary}
 \label{section:hdl_summary}
@@ -450,9 +450,9 @@ Data models vary across data portals. In this chapter, we surveyed the landscape
 
 From our survey, we found that a proper integration of Open Data into businesses requires datasets to include the following information:
 \begin{itemize}
-	\item \emph{Access information}: a dataset is useless if it does not contain accessible data dumps or query-able endpoints;
-	\item \emph{License information}: businesses are always concerned with the legal implications of using external content. As a result, datasets should include both machine and human readable license information that indicates permissions, copyrights and attributions;
-	\item \emph{Provenance information}: depending on the dataset license, the data might not be legally usable if there are no information describing its authoritative and versioning information. Current models under-specify these aspects limiting the usability of many datasets.
+	\item \textbf{Access information}: a dataset is useless if it does not contain accessible data dumps or query-able endpoints;
+	\item \textbf{License information}: businesses are always concerned with the legal implications of using external content. As a result, datasets should include both machine and human readable license information that indicates permissions, copyrights and attributions;
+	\item \textbf{Provenance information}: depending on the dataset license, the data might not be legally usable if there are no information describing its authoritative and versioning information. Current models under-specify these aspects limiting the usability of many datasets.
 \end{itemize}
 
-Since establishing a common vocabulary or model is the key to communication, we identified the need for a harmonized dataset metadata model containing sufficient information so that consumers can easily understand and process datasets. We have identified four main sections that should be included in the model: resources, groups, tags and organizations. Furthermore, we have classified the information to be included into eight types. Our main contribution is a set of mappings between each properties of those models. This has lead to the design of HDL, an harmonized dataset model, that takes the best out of these models and extends them to ensure complete metadata coverage to enable data discovery, exploration and reuse.
+Since establishing a common vocabulary or model is the key to communication, we identified the need for a harmonized dataset metadata model containing sufficient information so that consumers can easily understand and process datasets. We have identified four main sections that should be included in the model: resources, groups, tags and organizations. Furthermore, we have classified the information to be included into eight types. Our main contribution is a set of mappings between each properties of those models. This has lead to the design of HDL, a harmonized dataset model, that takes the best out of these models and extends them to ensure complete metadata coverage to enable data discovery, exploration and reuse.
