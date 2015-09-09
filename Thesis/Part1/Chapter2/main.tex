@@ -110,7 +110,7 @@ After identifying the underlying portal software, The Metadata Extractor perform
 \subsection{Instance and Resource Extraction}
 From the extracted metadata, the Instance and Resource Extractor (component (iii)) is able to identify all the resources associated with that dataset. They can have various types like a SPARQL endpoint, API, file, visualization, etc. However, before extracting the resource instance(s), the extractor performs the following steps:
 \begin{itemize}
-  \item \textbf{Resource metadata validation and enrichment}: Check the resource attached metadata values. Similar to the dataset metadata, each resource should include information about its mimetype, name, description, format, valid de-referenceable URL, size, type and provenance. The validation process issues an HTTP request to the resource and automatically fills up various missing information when possible, like the mimetype and size by extracting them from the HTTP response header. However, missing fields like name and description that needs manual input are marked as missing and will appear in the generated summary report.
+  \item \textbf{Resource metadata validation and enrichment}: Check the resource attached metadata values. Similar to the dataset metadata, each resource should include information about its MIME-type, name, description, format, valid de-referenceable URL, size, type and provenance. The validation process issues an HTTP request to the resource and automatically fills up various missing information when possible, like the MIME-type and size by extracting them from the HTTP response header. However, missing fields like name and description that needs manual input are marked as missing and will appear in the generated summary report.
   \item \textbf{Format validation}: Validate specific resource formats against a linter or a validator. For example, node-csv\footnote{https://github.com/wdavidw/node-csv} for CSV files and n3\footnote{\url{https://github.com/RubenVerborgh/N3.js}} to validate N3 and Turtle RDF serializations.
 \end{itemize}
 
@@ -219,7 +219,7 @@ Each of these sections contains a set of metadata corresponding to one or more t
 
 We ran our tool on two CKAN-based data portals. The first is the Datahub targeting specifically the LOD cloud group. The current state of the LOD cloud report~\cite{Schmachtenberg:ISWC:14} indicates that the LOD cloud contains 1014 datasets. They were harvested via an LDSpider crawler~\cite{Isele:ISWC:10} seeded with 560 thousands URIs. Roomba on the other hand, fetches datasets hosted in data portals where datasets have attached relevant metadata. As a result, we relied on the information provided by the Datahub CKAN API. Examining the tags available, we found two candidate groups. The first tagged with ``lodcloud'' returned 259 datasets, while the second tagged with ``lod'' returned only 75 datasets. After manually examining the two lists, we found out the datasets grouped with the tag ``lodcloud'' are the correct ones as they contained more recent and accurate metadata. To qualify other CKAN-based portals for the experiments, we used \texttt{dataportals.org}, which contains a comprehensive list of Open Data portals from around the world. We chose the Amsterdam data portal \footnote{\url{http://data.amsterdamopendata.nl/}} as it is updated frequently and highly maintained. The portal was commissioned in 2012 by the Amsterdam Economic Board Open Data Exchange (ODE), and covers a wide range of information domains (energy, economy, education, urban development, etc.) about Amsterdam metropolitan region.
 
-The experiments were executed on a 2.6 Ghz Intel Core i7 processor with 16GB of DDR3 memory machine. The approximate execution time alongside the summary of the datasets' properties are presented in table~\ref{table:data_portals_experiments}.
+The experiments were executed on a 2.6 Ghz Intel Core i7 processor with 16GB of DDR3 memory machine. The approximate execution time alongside the summary of the datasets' properties are presented in Table~\ref{table:data_portals_experiments}.
 
 \begin{table}[ht]
 \centering
@@ -238,7 +238,7 @@ In our evaluation, we focused on two aspects: i)\textit{profiling correctness} w
 \subsection{Profiling Correctness}
 To measure profile correctness, we need to make sure that the issues reported by Roomba are valid on the dataset, group and portal levels.
 
-On the dataset level, we choose three datasets from both the LOD Cloud and the Amsterdam data portal. The datasets details are shown in table \ref{table:dataset_experiment}.
+On the dataset level, we choose three datasets from both the LOD Cloud and the Amsterdam data portal. The datasets details are shown in Table \ref{table:dataset_experiment}.
 \begin{table}[ht]
 \centering
 \footnotesize\setlength{\tabcolsep}{1.5pt}
@@ -377,7 +377,7 @@ Ownership information is divided into direct ownership (author and maintainer) a
 80\% of the resources provenance information are missing or undefined. However, most of the provenance information (e.g., \texttt{metadata\_created, metadata\_modified}) can be computed automatically by tools plugged into the data portal. The only field requiring manual entry is the \texttt{version} field which was found to be missing in 60.23\% of the datasets.
 
 \subsection{Enriched Profiles}
-Roomba can automatically fix, when possible, the license information (title, url and id) as well as the resources mimetype and size.
+Roomba can automatically fix, when possible, the license information (title, url and id) as well as the resources MIME-type and size.
 
 20 resources (1.87\%) have incorrect \texttt{mimetype} defined, while 52 resources (4.82\%) have incorrect \texttt{size} values. These values have been automatically fixed based on the values defined in the HTTP response header.
 
@@ -401,4 +401,4 @@ It has been noticed that the issues surrounding metadata quality affect directly
 
 We presented the results of running Roomba over the LOD cloud group hosted in the Datahub. We discovered that the general state of the examined datasets needs attention as most of them lack informative access information and their resources suffer low availability. These two metrics are of high importance for enterprises looking to integrate and use external linked data. We found out that the most erroneous information for the dataset core information are ownership related since this information is missing or undefined for 41\% of the datasets. Datasets resources have the poorest metadata: 64\% of the general metadata, all the access information and 80\% of the provenance information contained missing or undefined values. We also showed that the automatic correction process can effectively enhance the quality of some information. We believe there is a need to have a community effort to manually correct missing important information like ownership information (maintainer, author, and maintainer and author emails).
 
-Visiting back our use case scenario, Roomba gives our data portal administrator \textbf{Paul} the ability to discover potential spam datasets by generating flexible report covering the whole range of published datasets. Roomba also ensures that datasets published on his portal contain sufficient attached metadata allowing users like \textbf{Dan} to easily search and discover related datasets.
+% Visiting back our use case scenario, Roomba gives our data portal administrator \textbf{Paul} the ability to discover potential spam datasets by generating flexible report covering the whole range of published datasets. Roomba also ensures that datasets published on his portal contain sufficient attached metadata allowing users like \textbf{Dan} to easily search and discover related datasets.
