@@ -246,6 +246,19 @@
   moredelim=*[s][\ttfamily]{:}{:} %Newly added line
 }
 
+%% define N3 look and feel
+\lstdefinelanguage{N3}{
+      frame=lines,
+      keywordstyle={\bfseries\color{red}},
+      commentstyle={\color{blue}\textit},
+      stringstyle=\color{magenta},
+      morekeywords=[1]{@prefix, a },
+      morestring=[b]",
+      morecomment=[s]{<}{>}, % missusing comments for URIrefs
+      otherkeywords={^, [, ], (, )},%
+      sensitive=false%
+}[keywords,comments,strings]
+
 \listfiles
 
 \newcommand\CyrGuillemot{%
