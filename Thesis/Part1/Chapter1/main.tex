@@ -26,6 +26,9 @@ DCAT is an RDF vocabulary defining three main classes: \texttt{dcat:Catalog},\\\
 \subsection{DCAT-AP}
 The DCAT application profile for data portals in Europe (DCAT-AP)\footnote{\url{https://joinup.ec.europa.eu/asset/dcat\_application\_profile/description}} is a specialization of DCAT to describe public sector datasets in Europe. It defines a minimal set of properties that should be included in a dataset profile by specifying mandatory and optional properties. The main goal behind it is to enable cross-portal search and enhance discoverability. DCAT-AP has been promoted by the Open Data Support\footnote{\url{http://opendatasupport.eu}} to be the standard for describing datasets and catalogs in Europe.
 
+\subsection{Dataset Usage Vocabulary}
+The Dataset Usage Vocabulary (DUV)~\cite{Loscio:DUV:15} focuses on capturing the experience of using datasets. Publishers often lack feedback on how their datasets are being used and consumers lack an effective method to communicate their experiences. DUV basically aims at filling these gaps by describing consumers experiences, citations and feedback about a dataset.
+
 \subsection{ADMS}
 The Asset Description Metadata Schema (ADMS)~\cite{Archer:W3C:13} is also a profile of DCAT. It is used to semantically describe assets. An asset is broadly defined as something that can be opened and read using familiar desktop software (e.g. code lists, taxonomies, dictionaries, vocabularies) as opposed to something that needs to be processed like raw data. While DCAT is designed to facilitate interoperability between data catalogs, ADMS is focused on the assets within a catalog.
 
@@ -38,6 +41,8 @@ CKAN helps users from different domains (national and regional governments, comp
 CKAN is a complete catalog system with an integrated data storage and powerful RESTful JSON API. It offers a rich set of visualization tools (e.g. maps, tables, charts) as well as an administration dashboard to monitor datasets usage and statistics. CKAN allows publishing datasets either via an import feature or through a web interface. Relevant metadata describing the dataset and its resources as well as organization related information can be added. A Solr\footnote{\url{http://lucene.apache.org/solr/}} index is built on top of this metadata to enable search and filtering.
 
 The CKAN data model\footnote{\url{http://docs.ckan.org/en/ckan-1.8/domain-model.html}} (see Figure~\ref{fig:ckan_model}) contains information to describe a set of entities (dataset, resource, group, tag and vocabulary). CKAN keeps the core metadata restricted as a JSON file, but allows for additional information to be added via ``extra'' arbitrary key/value fields. CKAN supports Linked Data and RDF as it provides a complete and functional mapping of its model to Linked Data formats. An extension called ckanext-dcat\footnote{\url{https://github.com/ckan/ckanext-dcat}} provides plugins that allow CKAN to expose and consume metadata from other catalogs using DCAT as their model.
+
+The Open Data Companion Kit\footnote{http://www.socrata.com/open-data-field-guide/open-data-field-kit/} is a mobile application the provides a unified data access point for over 100 of open data portals. The application basically aims at CKAN-based portals providing a unique experience to mobile users.
 
 \begin{figure}[ht!]
 \centering
@@ -55,8 +60,6 @@ The DKAN data model\footnote{\url{http://docs.getdkan.com/dkan-documentation/dka
 Socrata\footnote{\url{http://socrata.com}} is a commercial platform to streamline data publishing, management, analysis and reusing. It empowers users to review, compare, visualize and analyze data in real time. Datasets hosted in Socrata can be accessed using RESTful API that facilitates search and data filtering.
 
 Socrata allows flexible data management by implementing various data governance models and ensuring compliance with metadata schema standards. It also enables administrators to track data usage and consumption through dashboards with real-time reporting. Socrata is very flexible when it comes to customizations. It has a consumer-friendly experience giving users the opportunity to tell their story with data. Socrata's data model is designed to represent tabular data: it covers a basic set of metadata properties and has good support for geospatial data.
-
-Recently,
 
 \subsection{Junar}
 Junar\footnote{\url{http://junar.com/}} adopts the Software-as-a-Service (SaaS) approach for data collection, enrichment, analysis and collaboration. Junar provides various functionalities that allow collaboration with colleagues to manage Open Data projects. Users are allowed to attach metadata to the information they publish to enhance search and discoverability.
@@ -455,4 +458,4 @@ From our survey, we found that a proper integration of Open Data into businesses
 	\item \textbf{Provenance information}: depending on the dataset license, the data might not be legally usable if there are no information describing its authoritative and versioning information. Current models under-specify these aspects limiting the usability of many datasets.
 \end{itemize}
 
-Since establishing a common vocabulary or model is the key to communication, we identified the need for a harmonized dataset metadata model containing sufficient information so that consumers can easily understand and process datasets. We have identified four main sections that should be included in the model: resources, groups, tags and organizations. Furthermore, we have classified the information to be included into eight types. Our main contribution is a set of mappings between each properties of those models. This has lead to the design of HDL, a harmonized dataset model, that takes the best out of these models and extends them to ensure complete metadata coverage to enable data discovery, exploration and reuse.
+Since establishing a common vocabulary or model is the key to communication, we identified the need for a harmonized dataset metadata model containing sufficient information so that consumers can easily understand and process datasets. We have identified four main sections that should be included in the model: resources, groups, tags and organizations. Furthermore, we have classified the information to be included into eight types. Our main contribution is a set of mappings between each properties of those models. This has lead to the design of HDL, a harmonized dataset model, that takes the best out of these models to ensure complete metadata coverage to enable data discovery, exploration and reuse.

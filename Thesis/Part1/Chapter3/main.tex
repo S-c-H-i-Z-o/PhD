@@ -519,6 +519,8 @@ Looking at Section~\ref{section:quality-tools} we notice that there is a plethor
 
 These shortcomings are mainly due to the limitations in the CKAN dataset model. However, syntactic checkers and additional modules to examine vocabularies usage could be easily integrated in Roomba to fix QI.27, QI.8 and QI.45. Roomba's metadata quality profiler can fix QI.23 as we have manually created a mapping file standardizing the set of possible license names and their information\footnote{\url{https://github.com/ahmadassaf/opendata-checker/blob/master/util/licenseMappings.json}}. We have also used the open source and knowledge license information\footnote{\url{https://github.com/okfn/licenses}} to normalize license information and add extra metadata like the domain, maintainer and open data conformance.
 
+The quality report is currently generated in a JSON format. Leveraging quality vocabularies like the Data Quality Vocabulary (DQV)~\cite{Debattista:DQV:15} allows us to expose this data in a machine readable format so that they can be automatically consumed by various applications.
+
 \begin{table}[htp]
 \centering
 \begin{adjustwidth}{-.4in}{-.4in}
