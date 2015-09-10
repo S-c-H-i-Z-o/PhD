@@ -40,16 +40,9 @@ CKAN helps users from different domains (national and regional governments, comp
 
 CKAN is a complete catalog system with an integrated data storage and powerful RESTful JSON API. It offers a rich set of visualization tools (e.g. maps, tables, charts) as well as an administration dashboard to monitor datasets usage and statistics. CKAN allows publishing datasets either via an import feature or through a web interface. Relevant metadata describing the dataset and its resources as well as organization related information can be added. A Solr\footnote{\url{http://lucene.apache.org/solr/}} index is built on top of this metadata to enable search and filtering.
 
-The CKAN data model\footnote{\url{http://docs.ckan.org/en/ckan-1.8/domain-model.html}} (see Figure~\ref{fig:ckan_model}) contains information to describe a set of entities (dataset, resource, group, tag and vocabulary). CKAN keeps the core metadata restricted as a JSON file, but allows for additional information to be added via ``extra'' arbitrary key/value fields. CKAN supports Linked Data and RDF as it provides a complete and functional mapping of its model to Linked Data formats. An extension called ckanext-dcat\footnote{\url{https://github.com/ckan/ckanext-dcat}} provides plugins that allow CKAN to expose and consume metadata from other catalogs using DCAT as their model.
+The CKAN data model\footnote{\url{http://docs.ckan.org/en/ckan-1.8/domain-model.html}} contains information to describe a set of entities (dataset, resource, group, tag and vocabulary). CKAN keeps the core metadata restricted as a JSON file, but allows for additional information to be added via ``extra'' arbitrary key/value fields. CKAN supports Linked Data and RDF as it provides a complete and functional mapping of its model to Linked Data formats. An extension called ckanext-dcat\footnote{\url{https://github.com/ckan/ckanext-dcat}} provides plugins that allow CKAN to expose and consume metadata from other catalogs using DCAT as their model.
 
 The Open Data Companion Kit\footnote{http://www.socrata.com/open-data-field-guide/open-data-field-kit/} is a mobile application the provides a unified data access point for over 100 of open data portals. The application basically aims at CKAN-based portals providing a unique experience to mobile users.
-
-\begin{figure}[ht!]
-\centering
-	\includegraphics[width=0.7\textwidth]{ckan_model.png}
-	\caption{CKAN data model}
-	\label{fig:ckan_model}
-\end{figure}
 
 \subsection{DKAN}
 DKAN\footnote{\url{http://nucivic.com/dkan/}} is a Drupal-based DMS with a full suite of cataloging, publishing and visualization features. Built over Drupal, DKAN can be easily customized and extended. The actual datasets in DKAN can be stored either within DKAN or on external sites. DKAN users are able to explore, search and describe datasets through the web interface or a RESTful API.
@@ -402,11 +395,205 @@ Provenance & revision\_timestamp &  &  &  &  &  & \tabularnewline
 %%%  5. Towards A Harmonised Model  %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Towards A Harmonized Model}
+\section{Towards A Harmonized Model (HDL)}
 \label{section:hdl}
 
 Examining the different models and their mappings in Table~\ref{table:harmonized_dataset_models_mappings}, we noticed a lack of a complete model that covers all the information types. There is an abundance of extensions and application profiles that try to fill in those gaps, but they are usually domain specific addressing specific issues like geographic or temporal information. To the best of our knowledge, there is still no complete model that encompasses all the described information types. In this section, we present HDL, a harmonized dataset model that aims at filling this gap by taking the best from these models.
 
+In addition to the core dataset metadata, HDL describes the four common sections of datasets described in Section~\ref{section:harmonized_metadata} (see Figure~\ref{fig:ckan_model}).
+
+
+\begin{figure}[ht!]
+\centering
+	\includegraphics[width=0.8\textwidth]{ckan_model.png}
+	\caption{CKAN data model}
+	\label{fig:ckan_model}
+\end{figure}
+
+Table~\ref{table:common_sections_metadata} describes the required fields across all the sections of a dataset and its core metadata.
+
+\begin{table}[ht!]
+\centering
+\begin{adjustwidth}{-.5in}{-.5in}
+\small
+\begin{tabular}{|l|p{2cm}|p{9cm}|c|}
+\hline
+\multicolumn{1}{|c|}{{\bf Field}} & \multicolumn{1}{c|}{{\bf Label}} & \multicolumn{1}{c|}{{\bf Description}}                                                                                                        & {\bf Required} \\ \hline
+id                                & Unique Identifier                & A dataset unique identification                                                                                                               & Yes            \\ \hline
+name                              & Name                             & Machine-readable name of the asset                                                                                                            & Yes            \\ \hline
+title                             & Title                            & Human-readable name of the asset. Should be in plain English and include sufficient detail to facilitate search and discovery                 & Yes            \\ \hline
+description                       & Description                      & Human-readable description (e.g., an abstract) with sufficient detail to enable a user to quickly understand whether the asset is of interest & Yes            \\ \hline
+created                           & Creation Date                    & Date on which the dataset was created                                                                                                         & Yes            \\ \hline
+modified                          & Last Modification Date           & Most recent date on which the dataset was changed, updated or modified                                                                        & Yes            \\ \hline
+\end{tabular}
+\caption{Common required metadata fields for all the datasets sections}
+\label{table:common_sections_metadata}
+\end{adjustwidth}
+\end{table}
+
+Table~\ref{table:ownership_metadata_fields} describes the authorship information that can be included in different sections. For example, a group has a required \texttt{administrator} field. A group administrator inherits all the fields mentioned in this table, meaning that he must have an \texttt{id, name, email} and an optional \texttt{role} within the organization.
+
+\begin{table}[hb]
+\centering
+\begin{adjustwidth}{-.4in}{-.4in}
+\small
+\begin{tabular}{|l|p{2cm}|p{9cm}|c|}
+\hline
+\multicolumn{1}{|c|}{{\bf Field}} & \multicolumn{1}{c|}{{\bf Label}} & \multicolumn{1}{c|}{{\bf Description}}                                                                                        & {\bf Required} \\ \hline
+id                                & Unique Identifier                & A person unique identification                                                                                                & Yes            \\ \hline
+name                              & Name                             & Human-readable name of the person                                                                                             & Yes            \\ \hline
+email                             & E-mail                           & A valid electronic mail address for the person                                                                                & Yes            \\ \hline
+role                              & Role                             & Human-readable name of the asset. Should be in plain English and include sufficient detail to facilitate search and discovery & No             \\ \hline
+\end{tabular}
+\caption{Metadata fields for ownership information}
+\label{table:ownership_metadata_fields}
+\end{adjustwidth}
+\end{table}
+
+\subsection{Resources}
+
+Resources are the main data containers of a dataset, they are a vital part of the dataset metadata as they are the facade on which users will interact with. Many of the core dataset metadata as we will see in Section~\ref{core-metadata} have an aggregate value of some resources fields. In addition to the common core metadata field described in Table~\ref{table:common_sections_metadata}, Table~\ref{table:resources_metadata_fields} described the resources metadata fields.
+
+\begin{center}
+{\footnotesize
+\setlength\LTleft{-1in}
+\setlength\LTright{-1in}
+\begin{longtable}[h]{|l|p{2cm}|p{9cm}|c|}
+
+\hline \multicolumn{1}{|c|}{\textbf{Field}} & \multicolumn{1}{c|}{\textbf{Label}} & \multicolumn{1}{c|}{\textbf{Description}} & \multicolumn{1}{c|}{\textbf{Required}} \\ \hline
+\endfirsthead
+
+\multicolumn{4}{c}%
+{{\bfseries \tablename\ \thetable{} Metadata fields for resources information section}} \\
+\hline \multicolumn{1}{|c|}{\textbf{Field}} &
+\multicolumn{1}{c|}{\textbf{Label}} & \textbf{Description} &
+\multicolumn{1}{c|}{\textbf{Required}} \\ \hline
+\endhead
+
+\multicolumn{4}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\endlastfoot
+type                              & Type                             & The human-readable format of the resource                                                                                                                                                      & \multicolumn{1}{l|}{Yes}            \\ \hline
+download\_url                     & Download URL                     & URL providing direct access to a resource, for example via API or a graphical interface                                                                                                         & \multicolumn{1}{l|}{Yes}            \\ \hline
+access\_url                       & Access URL                       & URL providing indirect access to a resource. For example, the Web page on which the \texttt{download\_url} is available at                                                                    & \multicolumn{1}{l|}{Yes}            \\ \hline
+format                            & Format                           & A human-readable description of the file format of a distribution                                                                                                                              & \multicolumn{1}{l|}{Yes}            \\ \hline
+hash                              & Hash                             & Automatically generated unique md5 or sha-1 hash. Mainly used for indexing purposes.                                                                                                           & \multicolumn{1}{l|}{Yes}            \\ \hline
+state                             & State                            & The state of the current resource e.g. published, draft, under revision                                                                                                                        & \multicolumn{1}{l|}{Yes}            \\ \hline
+access\_level                     & Access Level                     & The degree to which this resource could be made publicly-available, e.g., public, restricted public, private                                                                                   & \multicolumn{1}{l|}{Yes}            \\ \hline
+mimetype                          & MIME-type                        & Machine-readable file format that conforms to the IANA Media Types \footnote{\url{http://www.iana.org/assignments/media-types/media-types.xhtml}}                                           & \multicolumn{1}{l|}{Yes}            \\ \hline
+size                              & Size                             & Actual size (content-length) of the resource in bytes                                                                                                                                          & \multicolumn{1}{l|}{Yes}            \\ \hline
+described\_by                     & Described By                     & URL to the data dictionary for the distribution found at the \texttt{download\_url}                                                                                                          & \multicolumn{1}{l|}{Yes}            \\ \hline
+conforms\_to                      & Conforms To                      & URI used to identify a standardized specification the distribution conforms to                                                                                                                 & \multicolumn{1}{l|}{No}             \\ \hline
+rating                            & Rating                           & Normalized score of the resource rating by users                                                                                                                                               & \multicolumn{1}{l|}{Yes}            \\ \hline
+data\_quality                     & Data Quality                     & The resource objective quality score                                                                                                                                                           & \multicolumn{1}{l|}{Yes}            \\ \hline
+cache\_url                        & Cache URL                        & A URL of the resource cached version (used for portals with build in cloud storage)                                                                                                            & \multicolumn{1}{l|}{Yes}            \\ \hline
+temporal\_granularity             & Temporal Granulairty             & The detail levels associated with the temporal information of the dataset                                                                                                                      & \multicolumn{1}{l|}{If-Applicable}  \\ \hline
+temporal\_coverage\_from          & Temporal Coverage Starting Range & Start date of applicability for the data                                                                                                                                                       & \multicolumn{1}{l|}{If-Applicable}  \\ \hline
+temporal\_coverage\_to            & Temporal Coverage End Range      & End date of applicability for the data                                                                                                                                                         & \multicolumn{1}{l|}{If-Applicable}  \\ \hline
+spatial\_text                     & Spatial Text                     & A textual information about the range of spatial applicability of a dataset. e.g., named place like London, United Kingdom.                                                                    & \multicolumn{1}{l|}{If-Applicable}  \\ \hline
+spatial\_granularity              & Spatial Granularity              & The detail levels associated with the spatial coverage of the dataset                                                                                                                          & \multicolumn{1}{l|}{If-Applicable}  \\ \hline
+bbox                              & Bounding Box                     & An area defined by two longitudes and two latitudes e.g., -0.489|51.28|0.236|51.686                                                                                                            & \multicolumn{1}{l|}{If-Applicable}  \\ \hline
+layers                            & Layers                           & A slice  of the geographic coverage in a particular area. For example, on a road map roads, national parks, and rivers might be considered as different layers.                                & \multicolumn{1}{l|}{If-Applicable}  \\ \hline
+cache\_modified                   & Cache Modified                   & Most recent date on which the resource cache was changed, updated or modified                                                                                                                  & \multicolumn{1}{l|}{Yes}            \\ \hline
+revision\_id                      & Revision ID                      & Latest revision ID for the resource                                                                                                                                                            & \multicolumn{1}{l|}{Yes}            \\ \hline
+revision\_timestamp               & Revision Timestamp               & Latest timestamp for the resource revision                                                                                                                                                     & \multicolumn{1}{l|}{Yes}            \\ \hline
+license\_id                       & License ID                       & The normalized license ID with which the resource has been published. If the license is open, the ID should conform to one available at \url{https://github.com/okfn/licenses}         & \multicolumn{1}{l|}{Yes}            \\ \hline
+license\_title                    & License Title                    & The normalized human-readable title of the resource license. If the license is open, the title should conform to one available at \url{https://github.com/okfn/licenses}                        & \multicolumn{1}{l|}{Yes}            \\ \hline
+license\_url                      & License URL                      & The normalized URL of the resource license. If the license is open, the URL should conform to one available at \url{https://github.com/okfn/licenses}                                             & \multicolumn{1}{l|}{Yes}            \\ \hline
+attribution\_text                 & Attribution Text                 & The attribution text that should be inserted based on the accompanying license guidelines if applicable.,The text is provided by the original author.                                          & \multicolumn{1}{l|}{If-Applicable}  \\ \hline
+attribution\_link                 & Attribution Link                 & The attribution link to the original source if applicable                                                                                                                                      & \multicolumn{1}{l|}{If-Applicable}  \\ \hline
+rights                            & Rights                           & Information regarding access or restrictions based on privacy, security, or other policies. If the access is restricted, should also include information on how to ask for access information. & Yes                                 \\ \hline
+
+\caption[Metadata fields for resources information section]{Metadata fields for resources information section} \label{table:resources_metadata_fields} \\
+
+\end{longtable}
+}
+\end{center}
+
+
+\subsection{Groups}
+In addition to the metadata fields in Table~\ref{table:common_sections_metadata}, a group must also include information about an author in an \texttt{administrator} field. This means that he inherits all the fields mentioned in Table~\ref{table:ownership_metadata_fields}. In addition to that, a group can be part of a larger group, thus a \texttt{subGroupOf} field is required when applicable to denote the \texttt{id} of the parent group.
+
+\subsection{Tags}
+One extra field is required in addition to those mentioned in Table~\ref{table:common_sections_metadata} which is \texttt{vocabulary\_id}. This fields represents a unique identifier referring to the vocabulary (if used) controlling the tag. For example, if a dataset defines a geographical coverage, then a possible tag vocabulary would be to add a \texttt{Country Code} field with values such as \texttt{en, fr, ar}, etc. This field is optional, however, its existence enforce restrictions and provide semantic grouping and clustering of datasets in portals.
+
+\subsection{Organization}
+
+Table~\ref{table:organization_metadata_fields} describes the required field to describe the organization information section in addition to those in Table~\ref{table:common_sections_metadata}. Those fields are mainly inspired by the Organization Ontology~\cite{Reynolds:W3C:14}.
+
+\begin{table}[ht]
+\centering
+\begin{adjustwidth}{-.5in}{-.5in}
+\small
+\begin{tabular}{|l|p{2cm}|p{7cm}|c|}
+\hline
+\multicolumn{1}{|c|}{{\bf Field}} & \multicolumn{1}{c|}{{\bf Label}} & \multicolumn{1}{c|}{{\bf Description}}                                                                                                   & \multicolumn{1}{c|}{{\bf Required}} \\ \hline
+sub\_organization\_of             & Sub Organization Of              & Represents hierarchical containment of organizations by Indicating if an organization is a sub-part or child of another organization     & If-Applicable                       \\ \hline
+based\_at                         & Based At                         & Indicates the site at which an organization is based. This does not restrict the possibility for an organization to be at multiple sites & Yes                                 \\ \hline
+has\_site                         & Has Site                         & human-readable address for the company's site                        &
+																		\\ \hline
+location                          & Location                         & Location description for the organization e.g. lat, long coordinates                                                                     & Yes                                 \\ \hline
+\end{tabular}
+\caption{Metadata fields for organization information section}
+\label{table:organization_metadata_fields}
+\end{adjustwidth}
+\end{table}
+
+\subsection{Core Metadata}\label{core-metadata}
+
+In addition to the common metadata fields described in Table~\ref{table:common_sections_metadata}, Table~\ref{table:core_metadata_fields} describes the core metadata fields of every dataset. In addition to those, two authorship related fields are also required: \texttt{maintainer} and \texttt{owner}. Both fields inherit the authorship properties described in Table~\ref{table:ownership_metadata_fields}.
+
+\begin{center}
+{\footnotesize
+\setlength\LTleft{-1in}
+\setlength\LTright{-1in}
+\begin{longtable}[h]{|l|p{2cm}|p{9cm}|c|}
+
+\hline \multicolumn{1}{|c|}{\textbf{Field}} & \multicolumn{1}{c|}{\textbf{Label}} & \multicolumn{1}{c|}{\textbf{Description}} & \multicolumn{1}{c|}{\textbf{Required}} \\ \hline
+\endfirsthead
+
+\multicolumn{4}{c}%
+{{\bfseries \tablename\ \thetable{} Dataset core metadata fields}} \\
+\hline \multicolumn{1}{|c|}{\textbf{Field}} &
+\multicolumn{1}{c|}{\textbf{Label}} & \textbf{Description} &
+\multicolumn{1}{c|}{\textbf{Required}} \\ \hline
+\endhead
+
+\multicolumn{4}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\endlastfoot
+access                            & Download URL                     & URL providing direct access to a dataset, for example via API or a graphical interface. The access method should aggregate all the dataset resources available.                                                         & Yes                                 \\ \hline
+access\_url                       & Access URL                       & URL providing indirect access to a dataset. For example, the Web page on which the \texttt{download\_url} is available at                                                                                             & Yes                                 \\ \hline
+state                             & State                            & The state of the current dataset e.g. published, draft, under revision                                                                                                                                                  & Yes                                 \\ \hline
+access\_level                     & Access Level                     & The degree to which this dataset could be made publicly-available, e.g., public, restricted public, private                                                                                                             & Yes                                 \\ \hline
+rating                            & Rating                           & Normalized score of the average resources rating                                                                                                                                                                        & Yes                                 \\ \hline
+data\_quality                     & Data Quality                     & The average quality score of the dataset resources                                                                                                                                                                      & Yes                                 \\ \hline
+revision\_id                      & Revision ID                      & Latest revision ID for the resource                                                                                                                                                                                     & Yes                                 \\ \hline
+revision\_timestamp               & Revision Timestamp               & Latest timestamp for the resource revision                                                                                                                                                                              & Yes                                 \\ \hline
+license\_id                       & License ID                       & The normalised license ID(s) with which the dataset resources has been published. If the license is open, the ID should conform to one available at \url{https://github.com/okfn/licenses}                            & Yes                                 \\ \hline
+license\_title                    & License Title                    & The normalised human-readable title(s) of the dataset resources licenses. If the license is open, the title should conform to one available at \url{https://github.com/okfn/licenses}                                 & Yes                                 \\ \hline
+license\_url                      & License URL                      & The normalised URL of the license used. If the license is open, the URL should conform to one available at \url{https://github.com/okfn/licenses}                                                                     & Yes                                 \\ \hline
+attribution\_text                 & Attribution Text                 & The attribution text that should be inserted based on the accompanying license guidelines if applicable.,The text is provided by the original author.                                                                   & If-Applicable                       \\ \hline
+attribution\_link                 & Attribution Link                 & The attribution link to the original source if applicable                                                                                                                                                               & If-Applicable                       \\ \hline
+rights                            & Rights                           & An aggregate information regarding the dataset access or restrictions based on privacy, security, or other policies. If the access is restricted, should also include information on how to ask for access information. & Yes                                 \\ \hline
+language                          & Language                         & The aggregate set of languages used in the dataset resources                                                                                                                                                            & Yes                                 \\ \hline
+language\_code                    & Language Code                    & The aggregate set of machine-readable language codes used in the dataset resources, e.g., \texttt{en, fr}                                                                                                             & Yes                                 \\ \hline
+metadata\_created                 & Metadata Creation Date           & The creation date of the dataset metadata                                                                                                                                                                               & Yes                                 \\ \hline
+metadata\_modified                & Metadata Modification Date       & Most recent date on which the dataset metadata was changed, updated or modified                                                                                                                                         & Yes                                 \\ \hline
+is\_part\_of                      & Is Part of                       & The unique identifier of a dataset of which the dataset is a subset                                                                                                                                                     & Yes                                 \\ \hline
+has\_part                         & Has Part                         & The unique identifier of a dataset which is a part of the current dataset                                                                                                                                               & Yes                                 \\ \hline
+number\_of\_resources             & Number of Resources              & Total number of resources for the dataset                                                                                                                                                                               & Yes                                 \\ \hline
+number\_of\_tags                  & Number of Tags                   & Total number of tags for the dataset                                                                                                                                                                                    & Yes                                 \\ \hline
+
+\caption[Dataset core metadata fields]{Dataset core metadata fields} \label{table:core_metadata_fields} \\
+
+\end{longtable}
+}
+\end{center}
+
+\subsection{Controlling Field Values}
 Various models control the set of values used to describe some of the model's properties. For example, CKAN model controls values for the \texttt{resource\_type} property and restrict them to: file: \texttt{direct accessible bitstream}, \texttt{file.upload}, \texttt{api}, \texttt{visualization}, \texttt{code} and \texttt{documentation}. However, dataset publishers do not always conform to these predefined values and can add additional values. In order to know the set of values in these fields we examined the models of several CKAN datasets with a tool called Roomba. Roomba is a scalable automatic approach for extracting, validating, correcting and generating descriptive linked dataset profiles (see Chapter~\ref{chapter:roomba}).
 
 We created two main reports with Roomba. The first aims to list the file types specified for resources using the query string \texttt{resources>resource\_type:resources>name} (see Listing~\ref{lodcloud_resource_type__report}) and the second one to collect the list of \texttt{extras} values using the query string \texttt{extras>key:extras>value} (see Listing~\ref{lodcloud_extras_report} and Listing~\ref{openafrica_extras_report}). We ran the report generation process on two prominent data portals: the Linked Open Data (LOD) cloud hosted on the Datahub containing 259 datasets and the Africa's largest open data portal, OpenAfrica\footnote{\url{http://africaopendata.org/}} that contains 1653 datasets.
@@ -444,7 +631,9 @@ Publication with total count of: 1
 Dataset with total count of: 1
 \end{lstlisting}
 
-After examining the results, we noticed that for OpenAfrica, 53\% of the datasets contained additional information about the geographical coverage of the dataset (e.g., \texttt{spatial-reference-system}, \texttt{spatial\_harvester}, \texttt{bbox-east-long}, \texttt{bbox-north-long}, \texttt{bbox-south-long}, \texttt{bbox-west-long}). In addition, 16\% of the datasets have additional provenance and ownership information (e.g \texttt{frequency-of-update}, \texttt{dataset-reference-date}). For the LOD cloud, the main information embedded in the extras fields are about the structure and statistical distribution of the dataset (e.g., \texttt{namespace}, \texttt{number\_of\_triples} and \texttt{links}). The OpenAfrica resources did not specify any extra resource types. However, in the LOD cloud, we observe that multiple resources define additional types (e.g., \texttt{example}, \texttt{api/sparql}, \texttt{publication}, \texttt{example}).
+After examining the results, we noticed that for OpenAfrica, 53\% of the datasets contained additional information about the geographical coverage of the dataset (e.g., \texttt{spatial-reference-system}, \texttt{spatial\_harvester}, \texttt{bbox-east-long}, \texttt{bbox-north-long}, \texttt{bbox-south-long}, \texttt{bbox-west-long}). In addition, 16\% of the datasets have additional provenance and ownership information (e.g., \texttt{frequency\\-of-update}, \texttt{dataset-reference-date}). For the LOD cloud, the main information embedded in the extras fields are about the structure and statistical distribution of the dataset (e.g., \texttt{namespace}, \texttt{number\_of\_triples} and \texttt{links}). The OpenAfrica resources did not specify any extra resource types. However, in the LOD cloud, we observe that multiple resources define additional types (e.g., \texttt{example}, \texttt{api/sparql}, \texttt{publication}, \texttt{example}).
+
+At the moment, HDL does not control the metadata field values. However, restricting those values to a finite set as shown above pave the way to achieve better data harmonization across portals.
 
 \section{Summary}
 \label{section:hdl_summary}
