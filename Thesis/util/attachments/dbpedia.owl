@@ -1,147 +1,118 @@
-<rdf:RDF xml:base="http://dbpedia.org/ontology/" xmlns="http://dbpedia.org/ontology/" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
-    <owl:Ontology rdf:about="">
-        <owl:versionInfo xml:lang="en">Version 3.8</owl:versionInfo>
-    </owl:Ontology>
-    <owl:Class rdf:about="http://dbpedia.org/ontology/BasketballLeague">
-        <rdfs:label xml:lang="el">Ομοσπονδία Καλαθοσφαίρισης</rdfs:label>
-        <rdfs:label xml:lang="fr">ligue de basketball</rdfs:label>
-        <rdfs:label xml:lang="en">basketball league</rdfs:label>
-        <rdfs:label xml:lang="it">lega di pallacanestro</rdfs:label>
-        <rdfs:label xml:lang="ja">バスケットボールリーグ</rdfs:label>
-        <rdfs:comment xml:lang="en">a group of sports teams that compete against each other in Basketball</rdfs:comment>
-        <rdfs:subClassOf rdf:resource="http://dbpedia.org/ontology/SportsLeague"/>
-    </owl:Class>
-    <owl:Class rdf:about="http://dbpedia.org/ontology/LunarCrater">
-        <rdfs:label xml:lang="en">lunar crater</rdfs:label>
-        <rdfs:label xml:lang="fr">cratère lunaire</rdfs:label>
-        <rdfs:label xml:lang="el">Σεληνιακός κρατήρας</rdfs:label>
-        <rdfs:label xml:lang="nl">maankrater</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://dbpedia.org/ontology/NaturalPlace"/>
-    </owl:Class>
-    <owl:Class rdf:about="http://dbpedia.org/ontology/MotorsportSeason">
-        <rdfs:label xml:lang="en">motorsport season</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://dbpedia.org/ontology/SportsSeason"/>
-    </owl:Class>
-    <owl:Class rdf:about="http://dbpedia.org/ontology/MilitaryPerson">
-        <rdfs:label xml:lang="el">στρατιωτικός</rdfs:label>
-        <rdfs:label xml:lang="fr">militaire</rdfs:label>
-        <rdfs:label xml:lang="en">military person</rdfs:label>
-        <rdfs:label xml:lang="it">militare</rdfs:label>
-        <rdfs:label xml:lang="nl">militair</rdfs:label>
-        <rdfs:label xml:lang="ko">군인</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://dbpedia.org/ontology/Person"/>
-    </owl:Class>
-    <owl:Class rdf:about="http://dbpedia.org/ontology/TimePeriod">
-        <rdfs:label xml:lang="el">χρονική περίοδος</rdfs:label>
-        <rdfs:label xml:lang="fr">période temporelle</rdfs:label>
-        <rdfs:label xml:lang="en">time period</rdfs:label>
-        <rdfs:label xml:lang="nl">tijdvak</rdfs:label>
-        <rdfs:label xml:lang="es">periodo temporal</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-        <owl:disjointWith rdf:resource="http://dbpedia.org/ontology/Person"/>
-    </owl:Class>
-    <owl:Class rdf:about="http://dbpedia.org/ontology/AutomobileEngine">
-        <rdfs:label xml:lang="el">κινητήρας αυτοκινήτου</rdfs:label>
-        <rdfs:label xml:lang="fr">moteur d'automobile</rdfs:label>
-        <rdfs:label xml:lang="en">automobile engine</rdfs:label>
-        <rdfs:label xml:lang="it">motore d'automobile</rdfs:label>
-        <rdfs:label xml:lang="ja">内燃機関</rdfs:label>
-        <rdfs:label xml:lang="pt">motor de automóvel</rdfs:label>
-        <rdfs:label xml:lang="de">Fahrzeugmotor</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://dbpedia.org/ontology/Device"/>
-    </owl:Class>
-    <owl:Class rdf:about="http://dbpedia.org/ontology/Enzyme">
-        <rdfs:label xml:lang="el">ένζυμο</rdfs:label>
-        <rdfs:label xml:lang="en">enzyme</rdfs:label>
-        <rdfs:label xml:lang="it">enzima</rdfs:label>
-        <rdfs:label xml:lang="ja">酵素</rdfs:label>
-        <rdfs:label xml:lang="nl">enzym</rdfs:label>
-        <rdfs:label xml:lang="de">enzym</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://dbpedia.org/ontology/Biomolecule"/>
-    </owl:Class>
-    <owl:Class rdf:about="http://dbpedia.org/ontology/TelevisionShow">
-        <rdfs:label xml:lang="el">τηλεοπτική σειρά</rdfs:label>
-        <rdfs:label xml:lang="fr">émission de télévision</rdfs:label>
-        <rdfs:label xml:lang="en">television show</rdfs:label>
-        <rdfs:label xml:lang="ja">テレビ番組</rdfs:label>
-        <rdfs:label xml:lang="sl">televizijska oddaja</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://dbpedia.org/ontology/Work"/>
-    </owl:Class>
-    <owl:Class rdf:about="http://dbpedia.org/ontology/LaunchPad">
-        <rdfs:label xml:lang="en">launch pad</rdfs:label>
-        <rdfs:label xml:lang="el">ράμπα φορτώσεως</rdfs:label>
-        <rdfs:label xml:lang="fr">rampe de lancement</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://dbpedia.org/ontology/Infrastructure"/>
-    </owl:Class>
-    <owl:Class rdf:about="http://dbpedia.org/ontology/CyclingLeague">
-        <rdfs:label xml:lang="en">cycling league</rdfs:label>
-        <rdfs:label xml:lang="el">Ομοσπονδία Ποδηλασίας</rdfs:label>
-        <rdfs:label xml:lang="fr">ligue de cyclisme</rdfs:label>
-        <rdfs:comment xml:lang="en">a group of sports teams that compete against each other in Cycling</rdfs:comment>
-        <rdfs:subClassOf rdf:resource="http://dbpedia.org/ontology/SportsLeague"/>
-    </owl:Class>
-    <owl:Class rdf:about="http://dbpedia.org/ontology/Territory">
-        <rdfs:label xml:lang="en">territory</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://dbpedia.org/ontology/PopulatedPlace"/>
-    </owl:Class>
-    <owl:Class rdf:about="http://dbpedia.org/ontology/MusicFestival">
-        <rdfs:label xml:lang="el">φεστιβάλ μουσικής</rdfs:label>
-        <rdfs:label xml:lang="fr">festival de musique</rdfs:label>
-        <rdfs:label xml:lang="en">music festival</rdfs:label>
-        <rdfs:label xml:lang="nl">muziekfestival</rdfs:label>
-        <rdfs:label xml:lang="ko">음악제</rdfs:label>
-        <rdfs:label xml:lang="es">festival de música</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://dbpedia.org/ontology/Event"/>
-        <rdfs:subClassOf rdf:resource="http://schema.org/Festival"/>
-    </owl:Class>
-    <owl:Class rdf:about="http://dbpedia.org/ontology/Tax">
-        <rdfs:label xml:lang="el">φόρος</rdfs:label>
-        <rdfs:label xml:lang="fr">taxe</rdfs:label>
-        <rdfs:label xml:lang="en">tax</rdfs:label>
-        <rdfs:label xml:lang="ja">租税</rdfs:label>
-        <rdfs:label xml:lang="nl">belasting</rdfs:label>
-        <rdfs:label xml:lang="es">impuesto</rdfs:label>
-        <rdfs:label xml:lang="de">Steuer</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-    </owl:Class>
-    <owl:Class rdf:about="http://dbpedia.org/ontology/IceHockeyPlayer">
-        <rdfs:label xml:lang="en">ice hockey player</rdfs:label>
-        <rdfs:label xml:lang="el">παίκτης χόκεϋ</rdfs:label>
-        <rdfs:label xml:lang="fr">joueur de hockey sur glace</rdfs:label>
-        <rdfs:label xml:lang="nl">ijshockeyspeler</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://dbpedia.org/ontology/Athlete"/>
-    </owl:Class>
-    <owl:Class rdf:about="http://dbpedia.org/ontology/BloodType">
-        <rdfs:label xml:lang="el">ομάδα αίματος</rdfs:label>
-        <rdfs:label xml:lang="en">academic journal</rdfs:label>
-        <rdfs:label xml:lang="ja">血液型</rdfs:label>
-        <rdfs:label xml:lang="nl">bloedgroep</rdfs:label>
-        <rdfs:label xml:lang="pt">tipo sanguíneo</rdfs:label>
-        <rdfs:label xml:lang="de">Blutgruppe</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-    </owl:Class>
-    <owl:Class rdf:about="http://dbpedia.org/ontology/FootballMatch">
-        <rdfs:label xml:lang="en">football match</rdfs:label>
-        <rdfs:label xml:lang="el">αγώνας ποδοσφαίρου</rdfs:label>
-        <rdfs:label xml:lang="pl">mecz piłki nożnej</rdfs:label>
-        <rdfs:label xml:lang="es">partido de fútbol</rdfs:label>
-        <rdfs:comment xml:lang="en">a competition between two football teams</rdfs:comment>
-        <rdfs:subClassOf rdf:resource="http://dbpedia.org/ontology/SportsEvent"/>
-    </owl:Class>
-    <owl:Class rdf:about="http://dbpedia.org/ontology/MilitaryConflict">
-        <rdfs:label xml:lang="en">military conflict</rdfs:label>
-        <rdfs:label xml:lang="el">στρατιωτική σύγκρουση</rdfs:label>
-        <rdfs:label xml:lang="fr">conflit militaire</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://dbpedia.org/ontology/Event"/>
-    </owl:Class>
-    <owl:Class rdf:about="http://dbpedia.org/ontology/FilmFestival">
-        <rdfs:label xml:lang="el">φεστιβάλ κινηματογράφου</rdfs:label>
-        <rdfs:label xml:lang="fr">festival du film</rdfs:label>
-        <rdfs:label xml:lang="en">film festival</rdfs:label>
-        <rdfs:label xml:lang="ja">映画祭</rdfs:label>
-        <rdfs:label xml:lang="nl">filmfestival</rdfs:label>
-        <rdfs:label xml:lang="ko">영화제</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://dbpedia.org/ontology/Event"/>
-        <rdfs:subClassOf rdf:resource="http://schema.org/Festival"/>
-    </owl:Class>
-</rdf:RDF>
+@prefix ns1: <http://www.w3.org/2004/09/fresnel#> .
+@prefix ns2: <http://www.w3.org/ns/prov#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://data.eurecom.fr/id/fresnel/academicjournalGKPDefaultLens> a ns1:Lens ;
+    ns1:classLensDomain <http://dbpedia.org/ontology/AcademicJournal> ;
+    ns1:group <http://data.eurecom.fr/id/fresnel/group/academicjournalGroup> ;
+    ns1:purpose ns1:defaultLens ;
+    ns1:showProperties <http://data.eurecom.fr/def/eip#relatedtopics>,
+        <http://data.eurecom.fr/def/eip#seeresultsabout> ;
+    ns2:wasDerivedFrom <http://www.google.com/insidesearch/features/search/knowledge.html> .
+
+<http://data.eurecom.fr/id/fresnel/actorGKPDefaultLens> a ns1:Lens ;
+    ns1:classLensDomain <http://dbpedia.org/ontology/Actor> ;
+    ns1:group <http://data.eurecom.fr/id/fresnel/group/actorGroup> ;
+    ns1:purpose ns1:defaultLens ;
+    ns1:showProperties <http://data.eurecom.fr/def/eip#albums>,
+        <http://data.eurecom.fr/def/eip#awards>,
+        <http://data.eurecom.fr/def/eip#books>,
+        <http://data.eurecom.fr/def/eip#born>,
+        <http://data.eurecom.fr/def/eip#children>,
+        <http://data.eurecom.fr/def/eip#died>,
+        <http://data.eurecom.fr/def/eip#education>,
+        <http://data.eurecom.fr/def/eip#filmmusiccredits>,
+        <http://data.eurecom.fr/def/eip#height>,
+        <http://data.eurecom.fr/def/eip#movies>,
+        <http://data.eurecom.fr/def/eip#moviesandtvshows>,
+        <http://data.eurecom.fr/def/eip#nationality>,
+        <http://data.eurecom.fr/def/eip#nominations>,
+        <http://data.eurecom.fr/def/eip#parents>,
+        <http://data.eurecom.fr/def/eip#partner>,
+        <http://data.eurecom.fr/def/eip#peoplealsosearchfor>,
+        <http://data.eurecom.fr/def/eip#seeresultsabout>,
+        <http://data.eurecom.fr/def/eip#siblings>,
+        <http://data.eurecom.fr/def/eip#spouse>,
+        <http://data.eurecom.fr/def/eip#tvshows>,
+        <http://data.eurecom.fr/def/eip#upcomingmovie> ;
+    ns2:wasDerivedFrom <http://www.google.com/insidesearch/features/search/knowledge.html> .
+
+<http://data.eurecom.fr/id/fresnel/administrativeregionGKPDefaultLens> a ns1:Lens ;
+    ns1:classLensDomain <http://dbpedia.org/ontology/AdministrativeRegion> ;
+    ns1:group <http://data.eurecom.fr/id/fresnel/group/administrativeregionGroup> ;
+    ns1:purpose ns1:defaultLens ;
+    ns1:showProperties <http://data.eurecom.fr/def/eip#area>,
+        <http://data.eurecom.fr/def/eip#collegesanduniversities>,
+        <http://data.eurecom.fr/def/eip#countyseat>,
+        <http://data.eurecom.fr/def/eip#founded>,
+        <http://data.eurecom.fr/def/eip#islandgroup>,
+        <http://data.eurecom.fr/def/eip#localtime>,
+        <http://data.eurecom.fr/def/eip#peoplealsosearchfor>,
+        <http://data.eurecom.fr/def/eip#population>,
+        <http://data.eurecom.fr/def/eip#rivers>,
+        <http://data.eurecom.fr/def/eip#seeresultsabout>,
+        <http://data.eurecom.fr/def/eip#unemploymentrate>,
+        <http://data.eurecom.fr/def/eip#university>,
+        <http://data.eurecom.fr/def/eip#weather> ;
+    ns2:wasDerivedFrom <http://www.google.com/insidesearch/features/search/knowledge.html> .
+
+<http://data.eurecom.fr/id/fresnel/adultactorGKPDefaultLens> a ns1:Lens ;
+    ns1:classLensDomain <http://dbpedia.org/ontology/AdultActor> ;
+    ns1:group <http://data.eurecom.fr/id/fresnel/group/adultactorGroup> ;
+    ns1:purpose ns1:defaultLens ;
+    ns1:showProperties <http://data.eurecom.fr/def/eip#awards>,
+        <http://data.eurecom.fr/def/eip#books>,
+        <http://data.eurecom.fr/def/eip#born>,
+        <http://data.eurecom.fr/def/eip#children>,
+        <http://data.eurecom.fr/def/eip#died>,
+        <http://data.eurecom.fr/def/eip#education>,
+        <http://data.eurecom.fr/def/eip#height>,
+        <http://data.eurecom.fr/def/eip#movies>,
+        <http://data.eurecom.fr/def/eip#moviesandtvshows>,
+        <http://data.eurecom.fr/def/eip#parents>,
+        <http://data.eurecom.fr/def/eip#peoplealsosearchfor>,
+        <http://data.eurecom.fr/def/eip#seeresultsabout>,
+        <http://data.eurecom.fr/def/eip#siblings>,
+        <http://data.eurecom.fr/def/eip#spouse>,
+        <http://data.eurecom.fr/def/eip#tvshows> ;
+    ns2:wasDerivedFrom <http://www.google.com/insidesearch/features/search/knowledge.html> .
+
+<http://data.eurecom.fr/id/fresnel/aircraftGKPDefaultLens> a ns1:Lens ;
+    ns1:classLensDomain <http://dbpedia.org/ontology/Aircraft> ;
+    ns1:group <http://data.eurecom.fr/id/fresnel/group/aircraftGroup> ;
+    ns1:purpose ns1:defaultLens ;
+    ns1:showProperties <http://data.eurecom.fr/def/eip#cruisespeed>,
+        <http://data.eurecom.fr/def/eip#designer>,
+        <http://data.eurecom.fr/def/eip#enginetype>,
+        <http://data.eurecom.fr/def/eip#firstflight>,
+        <http://data.eurecom.fr/def/eip#introduced>,
+        <http://data.eurecom.fr/def/eip#length>,
+        <http://data.eurecom.fr/def/eip#manufacturer>,
+        <http://data.eurecom.fr/def/eip#manufacturers>,
+        <http://data.eurecom.fr/def/eip#range>,
+        <http://data.eurecom.fr/def/eip#retired>,
+        <http://data.eurecom.fr/def/eip#seeresultsabout>,
+        <http://data.eurecom.fr/def/eip#topspeed>,
+        <http://data.eurecom.fr/def/eip#unitcost>,
+        <http://data.eurecom.fr/def/eip#weight>,
+        <http://data.eurecom.fr/def/eip#wingspan> ;
+    ns2:wasDerivedFrom <http://www.google.com/insidesearch/features/search/knowledge.html> .
+
+<http://data.eurecom.fr/id/fresnel/airlineGKPDefaultLens> a ns1:Lens ;
+    ns1:classLensDomain <http://dbpedia.org/ontology/Airline> ;
+    ns1:group <http://data.eurecom.fr/id/fresnel/group/airlineGroup> ;
+    ns1:purpose ns1:defaultLens ;
+    ns1:showProperties <http://data.eurecom.fr/def/eip#ceo>,
+        <http://data.eurecom.fr/def/eip#founded>,
+        <http://data.eurecom.fr/def/eip#founder>,
+        <http://data.eurecom.fr/def/eip#founders>,
+        <http://data.eurecom.fr/def/eip#headquarters>,
+        <http://data.eurecom.fr/def/eip#peoplealsosearchfor>,
+        <http://data.eurecom.fr/def/eip#recentposts>,
+        <http://data.eurecom.fr/def/eip#seeresultsabout>,
+        <http://data.eurecom.fr/def/eip#stockprice>,
+        <http://data.eurecom.fr/def/eip#trackflightstatus> ;
+    ns2:wasDerivedFrom <http://www.google.com/insidesearch/features/search/knowledge.html> .

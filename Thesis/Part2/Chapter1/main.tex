@@ -7,7 +7,7 @@ The quality and amount of structured knowledge available make it now feasible fo
 
 These new distributed sources, however, raise tremendous challenges. They have inherently different file formats, access protocols or query languages. They possess their own data model with different ways of representing and storing the data. Data across these sources may be noisy (e.g. duplicate or inconsistent), uncertain or be semantically similar yet different. Integration and provision of a unified view for these heterogeneous and complex data structures therefore require powerful tools to map and organize the data.
 
-Establishing data knowledge bases in the enterprise can facilitate data integration services~\cite{Frischmuth:SemWebJorunal:12}. In this chapter, we present our work in integrating DBpedia as an internal knowledge base. We further present a set of services we implemented on top of DBpedia that allow entity disambiguation and enhance schema matching. These services enable business users to semi-automatically combine potentially noisy data residing in heterogeneous silos. Semantically related data is identified and appropriate mappings are suggested to users. On user acceptance, data is aggregated and can be visualized directly or exported to Business Intelligence reporting tools. Finally, we perform a reverse engineering of the Google Knowledge graph panel to find out what are the most ``important'' properties for an entity according to Google. We compare these results with a survey we conducted on 152 users and show how we can represent and explicit this knowledge using the Fresnel vocabulary.
+Establishing data knowledge bases in the enterprise can facilitate the provision of data integration services~\cite{Frischmuth:SemWebJorunal:12}. In this chapter, we present our work in using DBpedia as an internal knowledge base. We further present a set of services that we implemented on top of DBpedia allowing entity disambiguation and enhancing schema matching. These services enable business users to semi-automatically combine potentially noisy data residing in heterogeneous silos. Semantically related data is identified and appropriate mappings are suggested to users. On user acceptance, data is aggregated and can be visualized directly or exported to Business Intelligence reporting tools. Finally, we perform a reverse engineering of the Google Knowledge graph panel to find out what are the most relevant properties for an entity. We compare these results with a survey we conducted on 152 users and show how we can represent and explicit this knowledge using the Fresnel vocabulary.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%  SAP DBpedia %%%
@@ -15,30 +15,19 @@ Establishing data knowledge bases in the enterprise can facilitate data integrat
 
 \section{Enterprise Knowledge Bases}
 
-A Knowledge Base (KB) is a large repository of structured and unstructured information representing facts about the general world or specific domains. DBpedia~\footnote{\url{http://dbpedia.org}} is an example of a general knowledge base that will be used in this chapter. It is a crowd-sourced community effort to extract information from Wikipedia and present it in structured accessible formats~\cite{Bizer:WebSemJorunal:09}.
+A Knowledge Base (KB) is a large repository of structured and unstructured information representing facts about the general world or specific domains. DBpedia\footnote{\url{http://dbpedia.org}} is an example of a general knowledge base that will be used in this chapter as an illustration. It is a crowd-sourced community effort to extract information from Wikipedia and present it in structured accessible formats~\cite{Bizer:WebSemJorunal:09}.
 
-DBpedia provides dumps which are split into several parts making it easy to import and experiment with the data. In this part, we are mainly interested in the following datasets:
+DBpedia provides dumps which are split into several parts making it easy to import and experiment with the data. In this part, we are mainly interested in the following datasets that hold the main core information of DBpedia:
 
 \begin{itemize}
-	\item \textbf{Mapping-based Types}: Contains triples that assign types from the DBpedia ontology to the entities extracted from Wikipedia.
+	\item \textbf{Mapping-based Types}: Contains types assignment from the DBpedia ontology to the entities extracted from Wikipedia.
 	\item \textbf{Mapping-based Properties}: Contains properties extracted from Wikipedia. Since we can have different names for the same attribute (e.g. \texttt{birthplace} and \texttt{placeofbirth}), DBpedia uses a mapping-based approach to unify these attributes and generate high quality linked data.
 	\item \textbf{Extended Abstracts}: Contains the first section of Wikipedia articles.
 	\item \textbf{Images}: Images and their corresponding thumbnails together with a link to the license.
 	\item \textbf{Inter-language Links}: Links between IRIs from different languages to the English IRI.
 \end{itemize}
 
-DBpedia is a modeled as an RDF graph. A natural way to import DBpedia into SAP HANA would have been to its graph engine, AIS. To do that, we would need to map the RDF triples to the AIS data model (see section~\ref{ais}). To do that, we need to:
-
-\begin{itemize}
-	\item Create a new Term for every triple's distinct predicate. If the object of the triple is not a subject but a literal, the Term gets a technical type corresponding to the datatype (if not known the the type string is used). If the object refers to another Info Item, the Term gets the technical type for being an Association.
-	\item Create a new Info Item for each distinct RDF subject.
-	\item Store all literals as Attributes that assigned to the Info Item which corresponds to the subject of the triple.
-	\item Create Associations to the subject's Info Item that point to the Info Item which has the URI of the object of the triple.
-\end{itemize}
-
-However, since AIS is still under major development, various limitations and performance issues prevented us to import a reliable and functional version of DBpeida. As a result, we decided to import DBpedia into HANA's column store. Table~\ref{dbpedia_tables_hana} shows the tables structure used.
-
-\begin{table}
+\begin{table}[hb]
 \centering
 \begin{tabular}{|c|l|}
 \hline
@@ -53,19 +42,24 @@ However, since AIS is still under major development, various limitations and per
 \label{dbpedia_tables_hana}
 \end{table}
 
-\subsection{Entity Disambiguation with DPbedia in SAP HANA}\label{section:disamigutation_HANA}
+DBpedia is modeled as an RDF graph. A natural way to import DBpedia into SAP HANA would have been to its graph engine, namely AIS. To do that, we would need to map the RDF triples to the AIS data model (see Section~\ref{ais}). This requires to:
 
-After successfully, importing DBpedia into HANA's column store, we would like to create a service that is able to disambiguate a query string (Full documentation of the API is found in appendix~\ref{appendix:appendixF}). HANA has a built-in (fuzzy) text search function that can be used. However, relying on string matching only is not sufficient. We have combined an page-rank-like approach that takes into account the number of incoming associations as shown in equation~\ref{equation:equation_1}. While the number of outgoing associations can vary from entity to entity and is rather an indicator for how well described an entity in DBpedia is, the number of incoming associations is less dependent on one single entity. It takes into account how many other entities link to the entity. The more entities link to an entity, the more popular it is.
+\begin{itemize}
+	\item Create a new Term for every triple's distinct predicate. If the object of the triple is not a subject but a literal, the Term gets a technical type corresponding to the datatype (if not known the the type string is used). If the object refers to another Info Item, the Term gets the technical type for being an Association.
+	\item Create a new Info Item for each distinct RDF subject.
+	\item Store all literals as Attributes that assigned to the Info Item which corresponds to the subject of the triple.
+	\item Create Associations to the subject's Info Item that point to the Info Item which has the URI of the object of the triple.
+\end{itemize}
 
-\begin{equation}\label{equation:equation_1}
-\frac{incomingWeight}{largestIncomingNo} \times incomingNo + txtScore
-\end{equation}
+However, since AIS is still under major development, various limitations and performance issues prevented us to import a reliable and functional version of DBpedia. As a result, we decided to import DBpedia into HANA's column store. Table~\ref{dbpedia_tables_hana} shows the tables structure used.
 
+\subsection{Entity Disambiguation with DBpedia in SAP HANA}\label{section:disamigutation_HANA}
 
-Table~\ref{tab:text_search_combined_incoming_associations} shows the results of combining HANA's fuzzy text search score with the entity link-based rank with an \texttt{incomingWeight} parameter of 0.15 for query string "apple". From these results, we notice that a very high text score directly affects the overall score even if it has zero incoming associations compared to entities with significant number of incoming associations. To overcome this downfall, we need to use our incomingNoWeight to also decrease the combined score if an entity has very few or no incoming associations as shown in equation~\ref{equation:equation_2}. Table~\ref{tab:text_search_combined_incoming_associations_enhanced} shows the enhanced results using this equation.
+After successfully, importing DBpedia into HANA's column store, we need to create a service that is able to disambiguate a query string (full documentation of the API is found in appendix~\ref{appendix:appendixF}). HANA has a built-in (fuzzy) text search function that can be used. However, relying on string matching only is not sufficient. To better rank the search results, we combined a link-based rank approach that takes into account the number of incoming associations as shown in Equation~\ref{equation:equation_1}.
 
-\begin{table}
+\begin{table}[hb]
 \centering
+\scalebox{0.9}{
 \begin{tabular}{|l|c|c|c|}
 \hline
 \multicolumn{1}{|c|}{{\bf URI}} & {\bf Text Search Score} & {\bf No. of Incoming} & {\bf Combined Score} \\ \hline
@@ -79,17 +73,25 @@ Fiona\_Apple                    & 0.70711                 & 39                  
 Apple\_IIe                      & 0.70711                 & 12                    & 0.71169              \\ \hline
 Apple\_Hong                     & 0.70711                 & 7                     & 0.70978              \\ \hline
 Apple\_DOS                      & 0.70711                 & 6                     & 0.70940              \\ \hline
-\end{tabular}
+\end{tabular}}
 \caption{Results of combining text search score with the number of incoming associations for query "apple"}
 \label{tab:text_search_combined_incoming_associations}
 \end{table}
+
+While the number of outgoing associations can vary between entities,it is rather considered as an indicator for how well described an entity in DBpedia is. The number of incoming associations is less dependent on one single entity, it takes into account how many other entities link to the entity thus reflecting its popularity.
+
+\begin{equation}\label{equation:equation_1}
+\frac{incomingWeight}{largestIncomingNo} \times incomingNo + txtScore
+\end{equation}
 
 \begin{equation}\label{equation:equation_2}
 \frac{incNoWeight}{largestIncNo} \left ( incNo - \left ( largestIncNo - incNo \right ) \right )  + txtScore
 \end{equation}
 
+
 \begin{table}
 \centering
+\scalebox{0.9}{
 \begin{tabular}{|l|c|c|c|}
 \hline
 \multicolumn{1}{|c|}{{\bf URI}} & {\bf Text Search Score} & {\bf No. of Incoming} & {\bf Combined Score} \\ \hline
@@ -103,88 +105,11 @@ Fiona\_Apple                    & 0.70711                 & 39                  
 Apple\_IIe                      & 0.70711                 & 12                    & 0.56627              \\ \hline
 Apple\_Hong                     & 0.70711                 & 7                     & 0.56245              \\ \hline
 Apple\_DOS                      & 0.70711                 & 6                     & 0.70940              \\ \hline
-\end{tabular}
+\end{tabular}}
 \caption{Results of the enhanced equation~\ref{equation:equation_2} and its affect on the overall score for query "apple"}
 \label{tab:text_search_combined_incoming_associations_enhanced}
 \end{table}
 
-\subsection{Important Properties for Entities}\label{Section:EKG}
-
-Entities are generally described with a lot of properties. However, not all properties have the same importance. Some properties are considered as keys for performing instance matching tasks while other properties are generally chosen for quickly providing a summary of the key facts attached to an entity. In contrast to entities, It is difficult to assess which ones are more ``important''.
-
-In this section we provide a method enabling to select what properties should be used when depicting the summary of an entity, for example in a multimedia question answering system such as QakisMedia\footnote{\url{http://qakis.org/}} or in a second screen application providing more information about a particular TV program\footnote{\url{http://www.linkedtv.eu/demos/linkednews/}}. We reverse engineered the Google Knowledge graph panel (see figure~\ref{fig:gkb}) to find out what are the most ``important'' properties for an entity according to Google. We compare these results with a survey we conducted on 152 users.
-
-\begin{wrapfigure}{r}{0.5\textwidth}
-  \begin{center}
-    \includegraphics[width=0.48\textwidth]{GKB.png}
-  \end{center}
-  \caption{Google knowledge graph panel for the city of Nice, France}
-  \label{fig:gkb}
-\end{wrapfigure}
-
-\subsubsection{Reverse Engineering the Google KG Panel}
-\label{sec:knowledge-graph}
-
-Web scraping is a technique for extracting data from Web pages. We aim at capturing the properties depicted in the Google Knowledge Panel (GKP) that are injected in search result pages~\cite{Bergman:GKG:12}. We have developed a Node.js application that queries all DBpedia concepts that have at least one instance which is \texttt{owl:sameAs} with a Freebase resource in order to increase the probability that the search engine result page (SERP) for this resource will contain a GKP. We assume in our experiments that the properties displayed for an entity are type and context dependent (country, time, query) which can affect the results. Moreover, we filter out generic concepts by excluding those who are direct subclasses of \texttt{owl:Thing} since they will trigger ambiguous queries. We obtained a list of $352$ concepts\footnote{See also the SPARQL query at \url{http://goo.gl/EYuGm1}}.
-
-\begin{algorithm}[ht]\scriptsize
-\caption{Google Knowledge Panel reverse engineering algorithm} \label{algoscrapping}
-\begin{algorithmic}[1]
-    \STATE INITIALIZE $equivalentClasses(DBpedia,Freebase) $ AS $vectorClasses$
-    \STATE Upload $vectorClasses$ for querying processing
-    \STATE Set $n$ AS number-of-instances-to-query
-    \FOR {each $conceptType \in vectorClasses$}
-	\STATE SELECT $n$ instances
-	\STATE $listInstances \leftarrow$ SELECT-SPARQL($conceptType$, $n$)
-		\FOR {each $instance \in listInstances$}
-			\STATE CALL http://www.google.com/search?q=$instance$
-			\IF {$knowledgePanel$ exists}
-				\STATE SCRAP GOOGLE KNOWLEDGE PANEL
-			\ELSE
-				\STATE CALL http://www.google.com/search?q=$instance + conceptType$
- 				\STATE SCRAP GOOGLE KNOWLEDGE PANEL
-			\ENDIF
-			\STATE $gkpProperties \leftarrow$ GetData(DOM, EXIST(GKP))
-
-		\ENDFOR
-	\STATE COMPUTE occurrences for each $prop \in gkpProperties$
-    \ENDFOR
-    \STATE $gkpProperties$
-\end{algorithmic}
-\end{algorithm}
-
-\normalsize
-For each of these concepts, we retrieve $n$ instances (in our experiment, $n$ was equal to 100 random instances). For each of these instances, we issue a search query to Google containing the instance label. Google does not serve the GKP for all user agents and we had to mimic a browser behavior by setting the $User-Agent$ to a particular browser. We use CSS selectors to check the existence of and to extract data from a GKP. An example of a query selector is $.\_om$ (all elements with class name $\_om$) which returns the property DOM element(s) for the concept described in the GKP. From our experiments, we found out that we do not always get a GKP in a SERP. If this happens, we try to disambiguate the instance by issuing a new query with the concept type attached. However, if no GKP was found again, we capture that for manual inspection later on. Listing~\ref{algoscrapping} gives the high level algorithm for extracting the GKP. The full implementation can be found at \url{https://github.com/ahmadassaf/KBE}. Instructions for installing and running the tool are available in section~\ref{section:installation_KGB}. We finally observe that this experiment is only valid for the English Google.com search results since GKP varies according to top level names.
-
-\subsubsection{Evaluation}
-
-We conducted a user survey in order to compare what users think should be the important properties to display for a particular entity and what the GKP shows.
-
-\paragraph{\textbf{User survey\\}}
-
-We set up a survey\footnote{The survey is at \url{http://eSurv.org?u=entityviz}} on February 25th, 2014 and for three weeks in order to collect the preferences of users in term of the properties they would like to be shown for a particular entity. We select only one representative entity for nine classes: \texttt{TennisPlayer}, \texttt{Museum}, \texttt{Politician}, \texttt{Company}, \texttt{Country}, \texttt{City}, \texttt{Film}, \texttt{SoccerClub} and \texttt{Book}. 152 participants have provided answers, 72\% from academia, 20\% coming from the industry and 8\% having not declared their affiliation. 94\% of the respondents have heard about the Semantic Web while 35\% were not familiar with specific visualization tools. The detailed results\footnote{\url{https://github.com/ahmadassaf/KBE/blob/master/results/agreement-gkp-users.xls}} show the ranking of the top properties for each entity. We only keep the properties having received at least 10\% votes for comparing with the properties depicted in a KGP. We observe that users do not seem to be interested in the \texttt{INSEE code} identifying a French city while they expect to see the \texttt{population} or the \texttt{points of interest} of this city.
-
-\paragraph{\textbf{Comparison with the Knowledge Graphs\\}}
-
-The results of the Google Knowledge Panel (GKP) extraction\footnote{\url{https://github.com/ahmadassaf/KBE/blob/master/results/survey.json}} clearly show a long tail distribution of the properties depicted by Google, with a top N properties (N being 4, 5 or 6 depending on the entity) counting for 98\% of the properties shown for this type. We compare those properties with the ones revealed by the user study. Table~\ref{tab:agreement} shows the agreement between the users and the choices made by Google in the GKP for the 9 classes. The highest agreement concerns the type \texttt{Museum} (66.97\%) while the lowest one is for the \texttt{TennisPlayer} (20\%) concept. We think properties for museums or books are more stable than for types such as person/agent which vary significantly. We acknowledge the fact that more than one instance should be tested in order to draw meaningful conclusion regarding what are the important properties for a type.
-
-\begin{table}[!htp]
-\centering{\scriptsize
-\begin{tabular}{lccccccccc}
-\hline
- \textbf{Classes}	& TennisPlayer 	& Museum & Politician & Company & Country & City & Film & SoccerClub & Book	 \\ \hline
- \textbf{Agr.}& 20\%  & 66.97\% & 50\% & 40\% & 60\% & 60\% & 60\% & 50\% & 60\% \\ \hline
-\end{tabular}
-\caption{Agreement on properties between users and the Knowledge Graph Panel}
-\label{tab:agreement}
-}
-\end{table}\normalsize
-
-With this set of 9 concepts, we are covering $301,189$ DBpedia entities that have an existence in Freebase, and for each of them, we can now empirically define the most important properties when there is an agreement between one of the biggest knowledge base (Google) and users preferences.
-
-\paragraph{\textbf{Modeling the preferred properties with Fresnel\\}}
-
-Fresnel\footnote{\url{http://www.w3.org/2005/04/fresnel-info/}} is a presentation vocabulary for displaying RDF data. It specifies \textit{what} information contained in an RDF graph should be presented with the core concept \texttt{fresnel:Lens}~\cite{Pietriga:ISWC:06}. We use the Fresnel and PROV-O ontologies\footnote{\url{http://www.w3.org/TR/prov-o/}} to explicitly represent what properties should be depicted when displaying an entity. This dataset can now be re-used as a configuration for any consuming application (see Appendix~\ref{appendix:appendixB} for a snippet of the generated Fresnel file).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%  Enhancing Schema Matching  %%%
@@ -192,9 +117,9 @@ Fresnel\footnote{\url{http://www.w3.org/2005/04/fresnel-info/}} is a presentatio
 
 \section{Enhancing Schema Matching}
 
-Schema matching is typically used in business to business integration, metamodel matching, as well as ETL processes. For non-IT specialists the typical way of comparing financial data from two different years or quarters, for example, would be to copy and paste the data from one Excel spreadsheet into another one, thus creating redundancies and potentially introducing copy-and-paste errors. By using schema matching techniques it is possible to support this process semi-automatically, i.e. to determine which columns are similar and propose them to the user for integration. This integration can then be done with appropriate business intelligence tools to provide visualizations.
+Schema matching is typically used in business to business integration, metamodel matching, as well as ETL processes. For non-IT specialists the typical way of comparing financial data from two different years or quarters, for example, would be to copy and paste the data from one Excel spreadsheet into another one, thus creating redundancies and potentially introducing copy-and-paste errors. By using schema matching techniques it is possible to support this process semi-automatically, i.e. to determine which columns are similar and propose them to the user for integration. This integration can then be done with appropriate business intelligence tools that provide visualizations.
 
-One of the problems in performing the integration is the quality of data. The columns may contain data that is noisy or incorrect. There may also be no column headers to provide suitable information for matching. A number of approaches exploit the similarities of headers or similarities of types of column data. In this section, we propose a new approach that exploits semantic rich typing provided by popular datasets from the Linked Data cloud.
+One of the problems in performing the integration is the quality of data. The columns may contain data that is noisy or incorrect. There may also be no column headers to provide suitable information for matching. A number of approaches exploit the similarities of headers or similarities of types of column data. In this section, we propose a new approach that exploits semantic rich typing provided by our entity disambiguation API in Section~\ref{section:disamigutation_HANA}.
 
 \subsection{Related Work}
 
@@ -210,47 +135,47 @@ With the emergence of the Semantic Web, new work in the area has tried to exploi
 
 \subsection{Proposition}\label{Section:RUBIX}
 
-Open Refine (formerly Google Refine)~\footnote{\url{http://openrefine.org/}} is a tool designed to quickly and efficiently process, clean and eventually enrich large amounts of data with existing knowledge bases such as Freebase. The tool has however some limitations: it was initially designed for data cleansing on only one data set at a time, with no possibility to compose columns from different datasets. Moreover, Open Refine has some strict assumptions over the input of spreadsheets which makes it difficult to identify primitive and complex data types.
+Open Refine (formerly Google Refine)~\footnote{\url{http://openrefine.org/}} is a tool designed to quickly and efficiently process, clean and eventually enrich large amounts of data with existing knowledge bases such as Freebase. The tool has however some limitations: it was initially designed for data cleansing on only one data set at a time, with no possibility to compose columns from different datasets. Moreover, Open Refine has some strict assumptions over the input of spreadsheets which make it difficult to identify primitive and complex data types.
 
-The Automapping Core (AMC)~\cite{Peukert:ICDE:12} is a novel framework that supports the construction and execution of new matching components or algorithms. AMC contains several matching components that can be plugged and used, like string matchers (Levenshtein, JaroWinkler, etc.), data types matchers and path matchers. It also provides a set of combination and selection algorithms to produce optimized results (weighted average, average, sigmoid,  etc.).
+Open Refine makes use of a modular web application framework similar to OSGi called Butterfly\footnote{\url{http://code.google.com/p/simile-butterfly/}}. The server-side written in Java maintains states of the data (undo/redo history, long-running processes, etc.) while the client-side implemented in JavaScript maintains states of the user interface (facets and their selections, view pagination, etc.). Communication between the client and server is done through REST web services.
 
-Open Refine makes use of a modular web application framework similar to OSGi called Butterfly\footnote{\url{http://code.google.com/p/simile-butterfly/}}. The server-side written in Java maintains states of the data (undo/redo history, long-running processes, etc.) while the client-side implemented in Javascript maintains states of the user interface (facets and their selections, view pagination, etc.). Communication between the client and server is done through REST web services.
+The AutoMapping Core (AMC)~\cite{Peukert:ICDE:12} is a novel framework that supports the construction and execution of new matching components or algorithms. AMC contains several matching components that can be plugged and used, like string matchers (Levenshtein, JaroWinkler, etc.), data types matchers and path matchers. It also provides a set of combination and selection algorithms to produce optimized results (weighted average, average, sigmoid,  etc.).
 
 RUBIX is the framework we created to enable business users to semi-automatically combine potentially noisy data residing in heterogeneous silos. Semantically related data is identified and appropriate mappings are suggested to users. On user acceptance, data is aggregated and can be visualized directly or exported to Business Intelligence reporting tools. We first map cell values with instances and column headers with types from popular datasets from the Linked Open Data Cloud. RUBIX leverages Open Refine and defines three new Butterfly modules to extend the server's functionality (namely Match, Merge and Aggregate modules) and one JavaScript extension to capture user interaction with these new data matching capabilities.
 
 \subsection{Activity Flow}
-This section presents the sequence of activities and interdependencies between these activities when using our framework. \ref{fig:Activity_workflow} gives an outline of these activities.
+This section presents the sequence of activities and interdependencies between these activities when using our framework that is built on top of the entity disambiguation API in Section~\ref{section:disamigutation_HANA}. Figure~\ref{figure:Activity_workflow} gives an outline of these activities.
 
 \begin{figure}[ht!]
   \centering
     \includegraphics[scale=0.6]{workflow.png}
   \caption{RUBIX Activity Workflow}
-  \label{fig:Activity_workflow}
+  \label{figure:Activity_workflow}
 \end{figure}
 
-The datasets to match can be contained in files (e.g., csv, Excel spreadsheets, etc.) or defined in Open Refine projects (step 1). The inputs for the match module are the source and target files and/or projects that contain the datasets. These projects are imported into the internal data structure (called schema) of the AMC~\cite{Peukert:ICDE:11} (step 2). The AMC then uses a set of built-in algorithms to calculate similarities between the source and target schemas on an element basis, i.e. column names in the case of spreadsheets or relational databases. The output is a set of similarities, each containing a triple consisting of source schema element, target element, and similarity between the two. These results are presented to the user in tabular form (step 3) such that s/he can check, correct, and potentially complete the mappings (step 4) as shown in figure~\ref{fig:rubix_screenshot}.
+The datasets to match can be contained in files (e.g., CSV, Excel spreadsheets, etc.) or defined in Open Refine projects (step 1). The inputs for the match module are the source and target files and/or projects that contain the datasets. These projects are imported into the internal data structure (called schema) of the AMC~\cite{Peukert:ICDE:11} (step 2). The AMC then uses a set of built-in algorithms to calculate similarities between the source and target schemas on an element basis, i.e. column names in the case of spreadsheets or relational databases. The output is a set of similarities, each containing a triple consisting of source schema element, target element, and similarity between the two. These results are presented to the user in tabular form (step 3) such that s/he can check, correct, and potentially complete the mappings (step 4) as shown in Figure~\ref{figure:rubix_screenshot}.
 
 \begin{figure}[ht!]
   \centering
     \includegraphics[scale=0.5]{rubix_screenshot.png}
   \caption{Screenshot showing the results mapping view in RUBIX}
-  \label{fig:rubix_screenshot}
+  \label{figure:rubix_screenshot}
 \end{figure}
 
-Once the user has completed the matching of columns, the merge information is sent back to Open Refine, which calls the merge module. This module creates a new project, which contains a union of the two projects where the matched columns of the target project are appended to the corresponding source columns (step 5). The user can then select the columns that s/he wants to merge and visualize by dragging and dropping the required columns onto the fields that represent the x and y axes (step 6).
+Once the user has completed the matching of columns, the merge information is sent back to Open Refine, which calls the merge module. This module creates a new project, which contains the union of the two projects where the matched columns of the target project are appended to the corresponding source columns (step 5). The user can then select the columns that s/he wants to merge and visualize by dragging and dropping the required columns (step 6).
 
 Once the selection has been performed, the aggregation module merges the filtered columns and the result can then be visualized (step 7). As aggregation operations can quickly become complex, our default aggregation module can be replaced by more advanced analytics on tabular data. The integration of such a tool is part of future work.
 
 \subsection{Data Reconciliation}
-Reconciliation enables entity resolution, i.e. matching cells with corresponding typed entities in case of tabular data. Google Refine already supports reconciliation with Freebase but requires confirmation from the user. For medium to large datasets, this can be very time-consuming. To reconcile data, we therefore first identify the columns that are candidates for reconciliation by skipping the columns containing numerical values or dates. We then use the disambiguation API in section~\ref{section:disamigutation_HANA} to query for each cell of the source and target columns the list of typed entities candidates. Results are cached in order to be retrieved by our similarity algorithms.
+Reconciliation enables entity disambiguation, i.e. matching cells with corresponding typed entities in case of tabular data. Google Refine already supports reconciliation with Freebase but requires confirmation from the user. For medium to large datasets, this can be very time-consuming. To reconcile data, we therefore first identify the columns that are candidates for reconciliation by skipping the columns containing numerical values or dates. We then use the disambiguation API in section~\ref{section:disamigutation_HANA} to query for each cell of the source and target columns the list of typed entities candidates. Results are cached in order to be retrieved by our similarity algorithms.
 
 \subsection{Matching Unnamed and Untyped Columns}
 
 The AMC has the ability to combine the results of different matching algorithms. Its default built-in matching algorithms work on column headers and produce an overall similarity score between the compared schema elements. It has been proven that combining different algorithms greatly increases the quality of matching results~\cite{Peukert:ICDE:12}\cite{conf/wise/StracciaT05}. However, when headers are missing or ambiguous, the AMC can only exploit domain intersection and inclusion algorithms based on column data. We have therefore implemented three new similarity algorithms that leverage the rich types retrieved from Linked Data in order to enhance the matching results of unnamed or untyped columns. They are presented below.
 
 
-\subsubsection{Cosine Similarity}
-The first algorithm that we implemented is based on vector algebra. Let $v$ be the vector of ranked candidate types returned by Freebase for each cell value of a column. Then:
+\subsubsection{Vector-based Similarity}
+The first algorithm that we implemented is based on vector algebra. Let $v$ be the vector of ranked candidate types returned by the disambiguation API for each cell value of a column. Then:
 
 \begin{equation}\label{equation:equation_3}
 v:=\sum^K_{i=1}{a_i}*\overrightarrow{t_i}
@@ -261,13 +186,13 @@ where $a_i$ is the score of the entry and $\overrightarrow{t_i}$ is the type ret
 Each cell value has now a weighted result set that can be used for aggregation to produce a result vector for the whole column. The column result $V$ is then given by:
 
 \begin{equation}\label{equation:equation_4}
-V?\sum^n_{i=1}{v_i}
+V:=\sum^n_{i=1}{v_i}
 \end{equation}
 
 We compare the result vector of candidate types from the source column with the result vector of candidate types from the target column. Let $W$ be the result vector for the target column, then the similarity $s$ between the columns pair can be calculated using the absolute value of the cosine similarity function:
 
 \begin{equation}\label{equation:equation_5}
-s?\frac{\left|(V*W)\right|}{\left\|V\right\|*\left\|W\right\|}
+s:=\frac{\left|(V*W)\right|}{\left\|V\right\|*\left\|W\right\|}
 \end{equation}
 
 
@@ -336,7 +261,7 @@ So far, we have covered several methods to identify the similarity between ``Str
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Experiments}
-We present in this section results from experiments we conducted using the different methods described above. To appreciate the value of our approach, we have used a real life scenario that exposes common problems faced by the management in SAP. The data we have used come from two different SAP systems: the Event tracker and the Travel Expense Manager.
+We present in this section results from experiments we conducted using the different methods described above. To appreciate the value of our approach, we have used a real life scenario that exposes common problems faced by the management in SAP. The data we have used come from two different SAP systems: the Event Tracker and the Travel Expense Manager.
 
 The Event Tracker provides an overview of events (Conferences, Internal events, etc.) that SAP Research employees contribute to or host. The entries in this system contain as much information as necessary to give an overview of the activity like the activity type and title, travel destination, travel costs divided into several sub categories (conference fees, accommodation, transportation and others), and duration related information (departure, return dates). Entries in the Event Tracker are generally entered in batches as employees fill in their planned events that they wish to attend or contribute to at the beginning of each year. Afterwards, managers can either accept or reject these planned events according to their allocated budget.
 
@@ -378,6 +303,7 @@ Running AMC with its default matchers returns the matching results shown in Tabl
 
 \begin{table}[ht]
 \centering
+\scalebox{0.9}{
 \begin{tabular}{|c|c|c|}
 \hline
 {\bf Source Column} & {\bf Target Column} & {\bf Similarity Score} \\ \hline
@@ -393,7 +319,7 @@ Pers.No.                       & Sequential no.                 & 0.5555556     
 M/Km                           & Total Miles/Km                 & 0.55                              \\ \hline
 Curr.                          & Currency                       & 0.5                               \\ \hline
 Crcy                           & Currency                       & 0.5                               \\ \hline
-\end{tabular}
+\end{tabular}}
 \caption{Similarity Scores Using the AMC Default Matching Algorithms}
 \label{tab:Similarity_Scores_Using_the_AMC_Default_Matching_Algorithms}
 \end{table}
@@ -404,6 +330,7 @@ The Cosine Similarity algorithm combined with the AMC default matchers produces 
 
 \begin{table}[ht]
 \centering
+\scalebox{0.9}{
 \begin{tabular}{|c|c|c|}
 \hline
 {\bf Source Column} & {\bf Target Column} & {\bf Similarity Score} \\ \hline
@@ -421,7 +348,7 @@ Period                         & Period Number                  & 0.6666667     
 Trip                           & Trip Number                    & 0.6666667                         \\ \hline
 Pers.No.                       & Sequential no.                 & 0.5555556                         \\ \hline
 M/Km                           & Total Miles/Km                 & 0.55                              \\ \hline
-\end{tabular}
+\end{tabular}}
 \caption{Similarity Scores Using the AMC Default Matching Algorithms + Cosine Similarity Method}
 \label{tab:Similarity_Scores_Using_the_AMC_Default_Matching_Algorithms_+_Cosine_Similarity_Method}
 \end{table}
@@ -435,6 +362,7 @@ The (PPMCC) Similarity algorithm combined with the AMC default matchers produces
 
 \begin{table}[ht]
 \centering
+\scalebox{0.9}{
 \begin{tabular}{|c|c|c|}
 \hline
 {\bf Source Column} & {\bf Target Column} & {\bf Similarity Score} \\ \hline
@@ -452,13 +380,14 @@ Period                         & Period Number                  & 0.6666667     
 Trip                           & Trip Number                    & 0.6666667                         \\ \hline
 Pers.No.                       & Sequential no.                 & 0.5555556                         \\ \hline
 M/Km                           & Total Miles/Km                 & 0.55                              \\ \hline
-\end{tabular}
+\end{tabular}}
 \caption{Similarity Scores Using the AMC Default Matching Algorithms+  the PPMCC Similarity Method}
 \label{tab:Similarity_Scores_Using_the_AMC_Default_Matching_Algorithms+__the_PPMCC_Similarity_Method}
 \end{table}
 
 \begin{table}[ht]
 \centering
+\scalebox{0.9}{
 \begin{tabular}{|c|c|c|}
 \hline
 {\bf Source Column} & {\bf Target Column} & {\bf Similarity Score} \\ \hline
@@ -472,7 +401,7 @@ Currency2                      & Curr.                          & 0.6689202     
 Trip                           & Trip Number                    & 0.6666667                         \\ \hline
 Pers.No.                       & Sequential no.                 & 0.5555556                         \\ \hline
 M/Km                           & Total Miles/Km                 & 0.55                              \\ \hline
-\end{tabular}
+\end{tabular}}
 \caption{ Similarity Scores Using the AMC Default Matching Algorithms + Spearman Similarity Method}
 \label{tab:Similarity_Scores_Using_the_AMC_Default_Matching_Algorithms_+_Spearman_Similarity_Method}
 \end{table}
@@ -491,6 +420,7 @@ The Cosine and PPMCC Similarity algorithms combined with the AMC default matcher
 
 \begin{table}[ht]
 \centering
+\scalebox{0.9}{
 \begin{tabular}{|c|c|c|}
 \hline
 {\bf Source Column} & {\bf Target Column} & {\bf Similarity Score} \\ \hline
@@ -508,7 +438,7 @@ Period                         & Period Number                  & 0.6666667     
 Trip                           & Trip Number                    & 0.6666667                         \\ \hline
 Pers.No.                       & Sequential no.                 & 0.5555556                         \\ \hline
 M/Km                           & Total Miles/Km                 & 0.55                              \\ \hline
-\end{tabular}
+\end{tabular}}
 \caption{Similarity Scores Using the Combination of Cosine, PPMCC and AMC's defaults}
 \label{tab:Similarity_Scores_Using_the_Combination_of_Cosine,_PPMCC_and_AMC's_defaults}
 \end{table}
@@ -519,6 +449,7 @@ Now, we will try and group all the mentioned algorithms. The combination of all 
 
 \begin{table}[ht]
 \centering
+\scalebox{0.9}{
 \begin{tabular}{|c|c|c|}\hline
 {\bf Source Column} & {\bf Target Column} & {\bf Similarity Score} \\ \hline
 Reason for Trip                & Reason for Trip                & 1                                 \\ \hline
@@ -536,11 +467,89 @@ Period                         & Period Number                  & 0.6666667     
 Trip                           & Trip Number                    & 0.6666667                         \\ \hline
 Pers.No.                       & Sequential no.                 & 0.5555556                         \\ \hline
 M/Km                           & Total Miles/Km                 & 0.55                              \\ \hline
-\end{tabular}
+\end{tabular}}
 \end{table}
 
 We notice that now we have an increased number of matches (15 compared to 14 in the previous trials). The column \{Trip, Trip Destination\} is matched again and the newly previously matched column \{Trip Country/Group, Ctr2\} has a higher similarity score. We have found that combining matching algorithms resulted in higher number of matches. Several tuning methods can be applied in order to enhance the similarity score as well. Trying other combination algorithms instead of the naiive average will be an essential part of our future work.
 
+
+\section{Important Properties for Entities}\label{Section:EKG}
+
+Entities are generally described with a lot of properties. However, not all properties have the same importance. Some properties are considered as keys for performing instance matching tasks while other properties are generally chosen for quickly providing a summary of the key facts attached to an entity. In contrast to entities, it is difficult to assess which properties are more ``important''.
+
+In this section we provide a method enabling business users to select what properties should be used when depicting the summary of an entity. For example, when our analyst \textbf{Dan} wishes to enrich his reports with external data, he is overwhelmed by the number of dimensions he can add. We reverse engineered the Google Knowledge graph panel (see Figure~\ref{fig:gkb}) to find out what are the most ``important'' properties for an entity according to Google that can be used to enrich business reports. We compare these results with a survey we conducted on 152 users.
+
+\begin{wrapfigure}{r}{0.5\textwidth}
+  \begin{center}
+    \includegraphics[width=0.48\textwidth]{GKB.png}
+  \end{center}
+  \caption{Google knowledge graph panel for the city of Nice, France}
+  \label{fig:gkb}
+\end{wrapfigure}
+
+\subsection{Reverse Engineering the Google KG Panel}
+\label{sec:knowledge-graph}
+
+Web scraping is a technique for extracting data from Web pages. We aim at capturing the properties depicted in the Google Knowledge Panel (GKP) that are injected in search result pages~\cite{Bergman:GKG:12}. We have developed a Node.js application that queries all DBpedia concepts that have at least one instance which is \texttt{owl:sameAs} with a Freebase resource (since Freebase is the knowledge base behind the graph panel) in order to increase the probability that the search engine result page (SERP) for this resource will contain a GKP. We assume in our experiments that the properties displayed for an entity are type and context dependent (country, time, query) which can affect the results. Moreover, we filter out generic concepts by excluding those who are direct subclasses of \texttt{owl:Thing} since they will trigger ambiguous queries. We obtained a list of $352$ concepts\footnote{\url{https://github.com/ahmadassaf/KBE/blob/master/results/dbpediaConcepts.json}}.
+
+\begin{algorithm}[ht]\scriptsize
+\caption{Google Knowledge Panel reverse engineering algorithm} \label{algoscrapping}
+\begin{algorithmic}[1]
+    \STATE INITIALIZE $equivalentClasses(DBpedia,Freebase) $ AS $vectorClasses$
+    \STATE Upload $vectorClasses$ for querying processing
+    \STATE Set $n$ AS number-of-instances-to-query
+    \FOR {each $conceptType \in vectorClasses$}
+	\STATE SELECT $n$ instances
+	\STATE $listInstances \leftarrow$ SELECT-SPARQL($conceptType$, $n$)
+		\FOR {each $instance \in listInstances$}
+			\STATE CALL http://www.google.com/search?q=$instance$
+			\IF {$knowledgePanel$ exists}
+				\STATE SCRAP GOOGLE KNOWLEDGE PANEL
+			\ELSE
+				\STATE CALL http://www.google.com/search?q=$instance + conceptType$
+ 				\STATE SCRAP GOOGLE KNOWLEDGE PANEL
+			\ENDIF
+			\STATE $gkpProperties \leftarrow$ GetData(DOM, EXIST(GKP))
+
+		\ENDFOR
+	\STATE COMPUTE occurrences for each $prop \in gkpProperties$
+    \ENDFOR
+    \STATE $gkpProperties$
+\end{algorithmic}
+\end{algorithm}
+
+\normalsize
+For each of these concepts (e.g., \texttt{Band}, \texttt{Organization}, \texttt{ArchitecturalStructure}), we retrieve $n$ instances (in our experiment, $n$ was equal to 100 random instances). For example, for the concept \texttt{Band} we retrieved: \texttt{!Action\_Pact!}, \texttt{12\_Stones}, \texttt{20\_Fingers}, etc. For each of these instances we issue a search query to Google containing the instance label. Google does not serve the GKP for all user agents and we had to mimic a browser behavior by setting the $User-Agent$ to a particular browser. We use CSS selectors to check the existence of and to extract data from a GKP. An example of a query selector is $.\_om$ (all elements with class name $\_om$) which returns the property DOM element(s) for the concept described in the GKP. From our experiments, we found out that we do not always get a GKP in a SERP. If this happens, we try to disambiguate the instance by issuing a new query with the concept type attached. However, if no GKP was found again, we capture that for manual inspection later on. Listing~\ref{algoscrapping} gives the high level algorithm for extracting the GKP. The full implementation can be found at \url{https://github.com/ahmadassaf/KBE}. Instructions for installing and running the tool are available in section~\ref{section:installation_KGB}. We finally observe that this experiment is only valid for the English Google.com search results since GKP varies according to top level names.
+
+\subsection{Evaluation}
+
+We conducted a user survey in order to compare what users think should be the important properties to display for a particular entity and what the GKP shows.
+
+\subsubsection{User survey}
+
+We set up a survey\footnote{The survey is at \url{http://eSurv.org?u=entityviz}} on February 25th, 2014 and for three weeks in order to collect the preferences of users in term of the properties they would like to be shown for a particular entity. We selected only one representative entity for nine classes: \texttt{TennisPlayer}, \texttt{Museum}, \texttt{Politician}, \texttt{Company}, \texttt{Country}, \texttt{City}, \texttt{Film}, \texttt{SoccerClub} and \texttt{Book}. 152 participants have provided answers, 72\% from academia, 20\% coming from the industry and 8\% having not declared their affiliation. 94\% of the respondents have heard about the Semantic Web while 35\% were not familiar with specific visualization tools. The detailed results\footnote{\url{https://github.com/ahmadassaf/KBE/blob/master/results/agreement-gkp-users.xls}} show the ranking of the top properties for each entity. We only keep the properties having received at least 10\% votes for comparing with the properties depicted in a KGP. We observe that users do not seem to be interested in the \texttt{INSEE code} identifying a French city while they expect to see the \texttt{population} or the \texttt{points of interest} of this city.
+
+\subsubsection{Comparison with Google Knowledge Graph}
+
+The results of the Google Knowledge Panel (GKP) extraction\footnote{\url{https://github.com/ahmadassaf/KBE/blob/master/results/survey.json}} clearly show a long tail distribution of the properties depicted by Google, with a top N properties (N being 4, 5 or 6 depending on the entity) counting for 98\% of the properties shown for this type. We compare those properties with the ones revealed by the user study. Table~\ref{tab:agreement} shows the agreement between the users and the choices made by Google in the GKP for the 9 classes. The highest agreement concerns the type \texttt{Museum} (66.97\%) while the lowest one is for the \texttt{TennisPlayer} (20\%) concept. We think properties for museums or books are more stable than for types such as person/agent which vary significantly. We acknowledge the fact that more than one instance should be tested in order to draw meaningful conclusions regarding what are the important properties for a type.
+
+\begin{table}[!htp]
+\centering{\scriptsize
+\begin{tabular}{lccccccccc}
+\hline
+ \textbf{Classes}	& TennisPlayer 	& Museum & Politician & Company & Country & City & Film & SoccerClub & Book	 \\ \hline
+ \textbf{Agr.}& 20\%  & 66.97\% & 50\% & 40\% & 60\% & 60\% & 60\% & 50\% & 60\% \\ \hline
+\end{tabular}
+\caption{Agreement on properties between users and the Knowledge Graph Panel}
+\label{tab:agreement}
+}
+\end{table}\normalsize
+
+With this set of 9 concepts, we are covering $301,189$ DBpedia entities that have an existence in Freebase, and for each of them, we can now empirically define the most important properties when there is an agreement between one of the biggest knowledge base (Google) and users preferences.
+
+\subsubsection{Modeling the preferred properties with Fresnel}
+
+Fresnel\footnote{\url{http://www.w3.org/2005/04/fresnel-info/}} is a presentation vocabulary for displaying RDF data. It specifies \textit{what} information contained in an RDF graph should be presented with the core concept \texttt{fresnel:Lens}~\cite{Pietriga:ISWC:06}.PROV-O\footnote{\url{http://www.w3.org/TR/prov-o/}} is a vocabulary to describe semantically rich metadata with focus on providing detailed provenance, license and access information.  We use those two vocabularies to explicitly represent what properties should be depicted when displaying an entity\footnote{\url{https://github.com/ahmadassaf/KBE/blob/master/results/results.n3}}. This dataset can now be re-used as a configuration for any consuming application (see Appendix~\ref{appendix:appendixB} for a snippet of the generated Fresnel file).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%  Conclusion and Future Work  %%%
@@ -548,4 +557,4 @@ We notice that now we have an increased number of matches (15 compared to 14 in 
 
 \section{Summary}
 
-In this chapter, we presented a framework enabling mashup of potentially noisy enterprise and external data. The implementation is based on Open Refine and uses a dedicated service built on top of SAP HANA to annotate data with rich types. As a result, the matching process of heterogeneous data sources is improved. Our preliminary evaluation shows that for datasets where mappings were relevant yet not proposed, our framework provides higher quality matching results. Additionally, the number of matches discovered is increased when Linked Data is used in most datasets. In addition, we have shown that it is possible to reveal what are the ``important'' properties of entities by reverse engineering the choices made by Google when creating knowledge graph panels and by comparing  users preferences obtained from a user survey. This is fundamentally different from the work in~\cite{Steiner:IKEC:12} where the authors created a generalizable approach to open up closed knowledge bases like Google's by means of crowd-sourcing the knowledge extraction task. We are aware that this knowledge is highly dynamic, the Google Knowledge Graph panel varies across geolocation and time.
+In this chapter, we presented an entity disambiguation API built on top of SAP HANA. We used this service in a framework to enable mashup of potentially noisy enterprise and external data. The API is used to annotate business reports with rich types. As a result, the matching process of heterogeneous data sources is improved. Our preliminary evaluation shows that for datasets where mappings were relevant yet not proposed, our framework provides higher quality matching results. Additionally, the number of matches discovered is increased when Linked Data is used in most datasets. In addition, we have shown that it is possible to reveal what are the ``important'' properties of entities by reverse engineering the choices made by Google when creating knowledge graph panels and by comparing  users preferences obtained from a user survey. This is fundamentally different from the work in~\cite{Steiner:IKEC:12} where the authors created a generalizable approach to open up closed knowledge bases like Google's by means of crowd-sourcing the knowledge extraction task. We are aware that this knowledge is highly dynamic, the Google Knowledge Graph panel varies across geolocation and time.
