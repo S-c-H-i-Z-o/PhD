@@ -1,27 +1,25 @@
-\documentclass[onecolumn, crcready]{../../Util/LaTEX/iosart2c}
-\usepackage{graphicx}
-\usepackage[ampersand]{easylist}
-\usepackage{amssymb}
-\usepackage{lscape}
-\usepackage{multirow}
-\usepackage{longtable}
-\usepackage{tikz}
-\usepackage{array}
-\usepackage{booktabs}
-\usepackage{float}
-\usepackage{rotating}
-\usepackage{listings}
-\usepackage{pifont}
-\usepackage{url}
-\usepackage{changepage}
-\usepackage{amsmath}
-\usepackage{algorithmic}
+\documentclass[a4paper,11pt,twoside]{ThesisStyle}
+\usepackage{etex}
 
-\graphicspath{{figures/}}
+\include{util/definitions}
+\include{util/includes}
+
+\makeatletter
+\g@addto@macro{\UrlBreaks}{\UrlOrds}
+\makeatother
+
+\setstretch{1.1}
+\setlength{\parindent}{0.2in}
 
 \begin{document}
 
-\title{Enabling Self-Service Data Provisioning Through Semantic Enrichment of Data}
+\include{title/title}
+\vspace{3cm}
+
+\tableofcontents
+
+\let\cleardoublepage\clearpage
+\chapter{Introduction}
 
 Business Intelligence (BI) has always been about creating new insight for business by converting data into meaning that can be shared between people to drive change in the organization. One key aspect of creating meaning is to have a common shared understanding of information also known as Semantics.
 
@@ -92,7 +90,7 @@ In this thesis, we propose a framework to enable self-service data provisioning 
 \begin{adjustwidth}{-.4in}{-.4in}
 	\begin{figure}[!ht]
 	  \centering
-	  \includegraphics[scale=0.4]{architecutre_diagram.png}
+	  \includegraphics[scale=0.4]{figures/architecutre_diagram.png}
 	  \caption{Architecture diagram for enabling self-service data provisioning}
 	  \label{fig:architecutre_diagram}
 	\end{figure}
@@ -125,14 +123,14 @@ Regarding this aspect of our research, we have achieved the following tasks:
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %%%  Towards A Complete Dataset Profile  %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{Towards A Complete Dataset Profile}\label{part1}
+\let\cleardoublepage\clearpage\let\cleardoublepage\clearpage
+\chapter{Towards A Complete Dataset Profile}\label{chapter:1}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %%%  Dataset Profiles and Models  %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Dataset Profiles and Models}\label{chapter:hdl}
+\section{Dataset Profiles and Models}\label{chapter:hdl}
 
 The value of Open Data is recognized when it is used. To ensure that, publishers need to enable people to find datasets easily. Data portals are specifically designed for this purpose. They make it easy for individuals and organizations to store, publish and discover datasets.
 
@@ -187,7 +185,7 @@ The heterogeneous nature of data sources reflects directly on the data quality a
 
 Users explore datasets in data portals relying on the metadata information attached by either the dataset owner or the data portal administrator. This information is mainly in form of predefined tags such as \textit{media, geography, life sciences} that are used for organization and clustering purposes. However, the increasing diversity of those datasets makes it harder to classify them in a fixed number of tags that are subjectively assigned without capturing the essence and breadth of the dataset~\cite{Lalithsena:WI:13}. Furthermore, the increasing number of datasets available makes the manual review and curation of metadata unsustainable even when outsourced to communities.
 
-Roomba is a tool we build to address the challenges of automatic validation and generation of descriptive datasets profiles. It is an extensible framework consisting of a processing pipeline that combines techniques for data portals identification, datasets crawling and a set of pluggable modules combining several profiling tasks. The framework validates the provided dataset metadata against an aggregated standard set of information. Metadata fields are automatically corrected when possible (e.g., adding a missing license URL reference). Moreover, a report describing all the issues that cannot be automatically fixed is created to be sent by email to the dataset's maintainer. There exist various statistical and topical profiling tools for both relational and Linked Data. The architecture of the framework allows to easily add them as additional profiling tasks. However, in this chapter, we focus on the task of dataset metadata profiling, ignoring the tasks of statistical and topical profiling. We validate our framework against a manually created set of profiles and manually check the accuracy by examining the results of running it on various CKAN-based data portals.
+Roomba is a tool we build to address the challenges of automatic validation and generation of descriptive datasets profiles. It is an extensible framework consisting of a processing pipeline that combines techniques for data portals identification, datasets crawling and a set of pluggable modules combining several profiling tasks. The framework validates the provided dataset metadata against an aggregated standard set of information. Metadata fields are automatically corrected when possible (e.g., adding a missing license URL reference). Moreover, a report describing all the issues that cannot be automatically fixed is created to be sent by email to the dataset's maintainer. There exist various statistical and topical profiling tools for both relational and Linked Data. The architecture of the framework allows to easily add them as additional profiling tasks. However, in this section, we focus on the task of dataset metadata profiling, ignoring the tasks of statistical and topical profiling. We validate our framework against a manually created set of profiles and manually check the accuracy by examining the results of running it on various CKAN-based data portals.
 
 Roomba is built as a Command Line Interface (CLI) application using Node.js and is available on the tools Github repository\footnote{\url{https://github.com/ahmadassaf/opendata-checker/tree/master/test}}. Roomba allows data portal administrators like \textbf{Dan} to:
 
@@ -218,7 +216,7 @@ In our evaluation, we focused on two aspects: i)\textit{profiling correctness} w
 
 Our evaluation showed that Roomba has complete correctness and completeness for the properties examined. As a result, we ran Roomba over the LOD cloud group hosted in the Datahub. We discovered that the general state of the examined datasets needs attention as most of them lack informative access information and their resources suffer low availability. These two metrics are of high importance for enterprises looking to integrate and use external linked data. We found out that the most erroneous information for the dataset core information are ownership related since this information is missing or undefined for 41\% of the datasets. Datasets resources have the poorest metadata: 64\% of the general metadata, all the access information and 80\% of the provenance information contained missing or undefined values. We also showed that the automatic correction process can effectively enhance the quality of some information. We believe there is a need to have a community effort to manually correct missing important information like ownership information (maintainer, author, and maintainer and author emails).
 
-\subsection{Objective Linked Data Quality Assessment}\label{chapter:data-quality}
+\section{Objective Linked Data Quality Assessment}\label{chapter:data-quality}
 
 We are entering an era where open is the new default. Governments, universities, organizations and even individuals are publicly publishing huge amounts of open data. This openness should be accompanied with a certain level of trust or guarantees about the quality of data. The Linked Open Data is a gold mine for those trying to leverage external data sources in order to produce more informed business decisions~\cite{Boyd:Article:11}. However, the heterogeneous nature of sources reflects directly on the data quality as these sources often contain inconsistent as well as misinterpreted and incomplete information.
 
@@ -264,14 +262,16 @@ Table~\ref{DQM} lists the refined measures alongside their objective quality ind
 
 \begin{center}
 {\footnotesize
+\setlength\LTleft{-.5in}
+\setlength\LTright{-.5in}
 \begin{longtable}[h]{|c|c|c|l|}
-\caption[Objective Linked Data Quality Framework]{Objective Linked Data Quality Framework} \label{DQM} \\
+\caption[Objective Linked Data quality framework]{Objective Linked Data quality framework} \label{DQM} \\
 
 \hline \multicolumn{1}{|c|}{\textbf{Quality Attribute}} & \multicolumn{1}{c|}{\textbf{Quality Category}} & \multicolumn{1}{c|}{\textbf{ID}} & \multicolumn{1}{c|}{\textbf{Quality Indicator}} \\ \hline
 \endfirsthead
 
 \multicolumn{4}{c}%
-{{\bfseries \tablename\ \thetable{} Objective Linked Data Quality Framework}} \\
+{{\bfseries \tablename\ \thetable{} Objective Linked Data quality framework}} \\
 \hline \multicolumn{1}{|c|}{\textbf{Quality Attribute}} &
 \multicolumn{1}{c|}{\textbf{Quality Category}} & \textbf{ID} &
 \multicolumn{1}{c|}{\textbf{Quality Indicator}} \\ \hline
@@ -452,42 +452,43 @@ Roomba covers 82\% of the suggested datasets objective quality indicators. Based
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %%%  Towards Enriched Enterprise Data  %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%
+\let\cleardoublepage\clearpage
+\chapter{Towards Enriched Enterprise Data}\label{chapter:2}
 
-\section{Towards Enriched Enterprise Data}\label{chapter:rubix}
-
+\section{Data Integration in the Enterprise}\label{chapter:rubix}
 Companies have traditionally performed business analysis based on transactional data stored in legacy relational databases. The enterprise data available for decision makers was typically relationship management or enterprise resource planning data. However social media feeds, weblogs, sensor data, or data published by governments or international organizations are nowadays becoming increasingly available~\cite{Boyd:Article:11}.
 
 The quality and amount of structured knowledge available make it now feasible for companies to mine this huge amount of public data and integrate it in their next-generation enterprise information management systems. Analyzing this new type of data within the context of existing enterprise data should bring them new or more accurate business insights and allow better recognition of sales and market opportunities~\cite{LaValle:MIT:11}.
 
 These new distributed sources, however, raise tremendous challenges. They have inherently different file formats, access protocols or query languages. They possess their own data model with different ways of representing and storing the data. Data across these sources may be noisy (e.g. duplicate or inconsistent), uncertain or be semantically similar yet different. Integration and provision of a unified view for these heterogeneous and complex data structures therefore require powerful tools to map and organize the data.
 
-Establishing data knowledge bases in the enterprise can facilitate the provision of data integration services~\cite{Frischmuth:SemWebJorunal:12}. In this chapter, we present our work in using DBpedia as an internal knowledge base. We further present a set of services that we implemented on top of DBpedia allowing entity disambiguation and enhancing schema matching. These services enable business users to semi-automatically combine potentially noisy data residing in heterogeneous silos. Semantically related data is identified and appropriate mappings are suggested to users. On user acceptance, data is aggregated and can be visualized directly or exported to Business Intelligence reporting tools. Finally, we perform a reverse engineering of the Google Knowledge graph panel to find out what are the most relevant properties for an entity. We compare these results with a survey we conducted on 152 users and show how we can represent and explicit this knowledge using the Fresnel vocabulary.
+Establishing data knowledge bases in the enterprise can facilitate the provision of data integration services~\cite{Frischmuth:SemWebJorunal:12}. In this section, we present our work in using DBpedia as an internal knowledge base. We further present a set of services that we implemented on top of DBpedia allowing entity disambiguation and enhancing schema matching. These services enable business users to semi-automatically combine potentially noisy data residing in heterogeneous silos. Semantically related data is identified and appropriate mappings are suggested to users. On user acceptance, data is aggregated and can be visualized directly or exported to Business Intelligence reporting tools. Finally, we perform a reverse engineering of the Google Knowledge graph panel to find out what are the most relevant properties for an entity. We compare these results with a survey we conducted on 152 users and show how we can represent and explicit this knowledge using the Fresnel vocabulary.
 
 Schema matching is typically used in business to business integration, metamodel matching, as well as ETL processes. For non-IT specialists the typical way of comparing financial data from two different years or quarters, for example, would be to copy and paste the data from one Excel spreadsheet into another one, thus creating redundancies and potentially introducing copy-and-paste errors. By using schema matching techniques it is possible to support this process semi-automatically, i.e. to determine which columns are similar and propose them to the user for integration. This integration can then be done with appropriate business intelligence tools that provide visualizations.
 
-One of the problems in performing the integration is the quality of data. The columns may contain data that is noisy or incorrect. There may also be no column headers to provide suitable information for matching. A number of approaches exploit the similarities of headers or similarities of types of column data. We proposed a new approach that exploits semantic rich typing provided by our entity disambiguation.\\
+One of the problems in performing the integration is the quality of data. The columns may contain data that is noisy or incorrect. There may also be no column headers to provide suitable information for matching. A number of approaches exploit the similarities of headers or similarities of types of column data. We proposed a new approach that exploits semantic rich typing provided by our entity disambiguation.
 
-\textbf{Data Reconciliation}\\ \\
-Reconciliation enables entity disambiguation, i.e. matching cells with corresponding typed entities in case of tabular data. Google Refine already supports reconciliation with Freebase but requires confirmation from the user. For medium to large datasets, this can be very time-consuming. To reconcile data, we therefore first identify the columns that are candidates for reconciliation by skipping the columns containing numerical values or dates. We then use the disambiguation API to query for each cell of the source and target columns the list of typed entities candidates. Results are cached in order to be retrieved by our similarity algorithms. \\
+\subsection{Data Reconciliation}
+Reconciliation enables entity disambiguation, i.e. matching cells with corresponding typed entities in case of tabular data. Google Refine already supports reconciliation with Freebase but requires confirmation from the user. For medium to large datasets, this can be very time-consuming. To reconcile data, we therefore first identify the columns that are candidates for reconciliation by skipping the columns containing numerical values or dates. We then use the disambiguation API to query for each cell of the source and target columns the list of typed entities candidates. Results are cached in order to be retrieved by our similarity algorithms.
 
-\textbf{Matching Unnamed and Untyped Columns}\\ \\
+\subsection{Matching Unnamed and Untyped Columns}
 The AMC has the ability to combine the results of different matching algorithms. Its default built-in matching algorithms work on column headers and produce an overall similarity score between the compared schema elements. It has been proven that combining different algorithms greatly increases the quality of matching results~\cite{Peukert:ICDE:12}\cite{conf/wise/StracciaT05}. However, when headers are missing or ambiguous, the AMC can only exploit domain intersection and inclusion algorithms based on column data. We have therefore implemented three new similarity algorithms that leverage the rich types retrieved from Linked Data in order to enhance the matching results of unnamed or untyped columns. They are presented below.
 
 \begin{itemize}
 	\item \textbf{Cosine Similarity}: We compare the result vector of candidate types from the source column with the result vector of candidate types from the target column. The similarity $s$ between the columns pair can be calculated using the absolute value of the cosine similarity function.
 	\item \textbf{Pearson Product-Moment Correlation Coefficient (PPMCC)}: The second algorithm that we implemented is PPMCC, a statistical measure of the linear independence between two variables $\left(x,y\right)$~\cite{Kowalski:RoyalStat:72}. The input for PPMC consists of two arrays that represent the values from the source and target columns, where the source column is the column with the largest set of rich types found.
-	\item \textbf{Spearman's Rank Correlation Coefficient}: The last algorithm that we implemented to match unnamed and untyped columns is Spearman's rank correlation coefficient. It applies a rank transformation on the input data and computes PPMCC afterwards on the ranked data. In our experiments we used Natural Ranking with default strategies for handling ties and NaN values. The ranking algorithm is however configurable and can be enhanced by using more sophisticated measures. \\
+	\item \textbf{Spearman's Rank Correlation Coefficient}: The last algorithm that we implemented to match unnamed and untyped columns is Spearman's rank correlation coefficient. It applies a rank transformation on the input data and computes PPMCC afterwards on the ranked data. In our experiments we used Natural Ranking with default strategies for handling ties and NaN values. The ranking algorithm is however configurable and can be enhanced by using more sophisticated measures.
 \end{itemize}
 
-\textbf{Column Labeling}\\
+\subsection{Column Labeling}
 
 We showed in the previous section how to match unnamed and untyped columns. Column labeling is however beneficial as the results of our previous algorithms can be combined with traditional header matching techniques to improve the quality of matching.
 
-Rich types retrieved from Freebase are independent from each other. We need to find a method that will determine normalized score for each type in the set by balancing the proportion of high scores with the lower ones using Wilson score interval for a Bernoulli parameter.\\
+Rich types retrieved from Freebase are independent from each other. We need to find a method that will determine normalized score for each type in the set by balancing the proportion of high scores with the lower ones using Wilson score interval for a Bernoulli parameter.
 
-\textbf{Handling Non-String Values}\\
+\subsection{Handling Non-String Values}
 
-So far, we have covered several methods to identify the similarity between ``String'' values, but how about other numeral values such as dates, money, distance, etc. ? For this purpose, we have implemented some basic type identifier that can recognize dates, money, numerical values, numerals used as identifiers. This will help us in better match corresponding entries. Adjusting AMC's combination algorithms can be of great importance at this stage. For example, assigning weights to different matchers and tweaking the configuration can yield more accurate results.
+So far, we have covered several methods to identify the similarity between ``String'' values, but how about other numeral values such as dates, money, distance, etc. For this purpose, we have implemented some basic type identifier that can recognize dates, money, numerical values, numerals used as identifiers. This will help us in better match corresponding entries. Adjusting AMC's combination algorithms can be of great importance at this stage. For example, assigning weights to different matchers and tweaking the configuration can yield more accurate results.
 
 \subsection{Important Properties for Entities}\label{Section:EKG}
 
@@ -526,11 +527,11 @@ Web scraping is a technique for extracting data from Web pages. We aim at captur
 Fresnel\footnote{\url{http://www.w3.org/2005/04/fresnel-info/}} is a presentation vocabulary for displaying RDF data. It specifies \textit{what} information contained in an RDF graph should be presented with the core concept \texttt{fresnel:Lens}~\cite{Pietriga:ISWC:06}.PROV-O\footnote{\url{http://www.w3.org/TR/prov-o/}} is a vocabulary to describe semantically rich metadata with focus on providing detailed provenance, license and access information.  We use those two vocabularies to explicitly represent what properties should be depicted when displaying an entity\footnote{\url{https://github.com/ahmadassaf/KBE/blob/master/results/results.n3}}. This dataset can now be re-used as a configuration for any consuming application for a snippet of the generated Fresnel file).
 
 
-\subsection{Semantic Social News Aggregation}\label{chapter:snarc}
+\section{Semantic Social News Aggregation}\label{chapter:snarc}
 
 With the rapid advances of the Internet, social media become more and more intertwined with our daily lives. The ubiquitous nature of Web-enabled devices, especially mobile phones, enables users to participate and interact in many different forms like photo and video sharing platforms, forums, newsgroups, blogs, micro-blogs, bookmarking services, and location-based services. Social networks are not just gathering Internet users into groups of common interests, they are also helping people follow breaking news, contribute to online debates or learn from others. They are transforming Web usage in terms of users' initial entry point, search, browsing and purchasing behavior~\cite{Bakshy:WWW:12}.
 
-A common scenario that often happens while reading an interesting article, coming across a nice video or participating in a discussion in a forum is the growing interest to check related material around the information read. To do so, users might go to Twitter, Google+ or YouTube. They can try several times with several keywords to obtain the desired results. In the end, they might end up with several browser tabs opened and get distracted by the information overload from all these resources. The same happens in companies when business users are interested in information provided by corporate web applications like enterprise communities. In this chapter, we present SNARC, a semantic social news aggregator that leverages live rich data that social networks provide to build an interactive rich experience on both the Internet and Intranets. The service retrieves news related to the current page from popular platforms like Twitter, Google+, YouTube, Vimeo, Slideshare, StackExchange and the Web. As a possible front-end implementation, we have created a Google Chrome extension which enriches the user experience by augmenting related contextual information to entities on the page itself, as well as displaying related social news on a floating sidebar.
+A common scenario that often happens while reading an interesting article, coming across a nice video or participating in a discussion in a forum is the growing interest to check related material around the information read. To do so, users might go to Twitter, Google+ or YouTube. They can try several times with several keywords to obtain the desired results. In the end, they might end up with several browser tabs opened and get distracted by the information overload from all these resources. The same happens in companies when business users are interested in information provided by corporate web applications like enterprise communities. In this section, we present SNARC, a semantic social news aggregator that leverages live rich data that social networks provide to build an interactive rich experience on both the Internet and Intranets. The service retrieves news related to the current page from popular platforms like Twitter, Google+, YouTube, Vimeo, Slideshare, StackExchange and the Web. As a possible front-end implementation, we have created a Google Chrome extension which enriches the user experience by augmenting related contextual information to entities on the page itself, as well as displaying related social news on a floating sidebar.
 
 The back-end of SNARC consists of three major components: a document handler that creates a ``Semantic Model'' representing any web resource, a query layer that is responsible for disseminating queries to the supported social services and a data parser which processes the search results, wraps them in a common social model and generates the desired output.
 
@@ -538,33 +539,30 @@ The back-end of SNARC consists of three major components: a document handler tha
 %%%  perspectives  %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Achievements}
+\chapter{Achievements}
 
 This thesis thoroughly describes the different steps aiming at realizing the vision of enabling self service data provisioning in the enterprise. The work presented is beneficial to both our personae introduced. The contributions made are: \\
 
-\textbf{Contributions for Data Portals Administrators}
-\vspace{1mm}
-\\
+\section{Contributions for Data Portals Administrators}
 
-Our data portal administrator \textbf{Paul} is always looking to expand his portals in terms of the number of datasets hosted, without compromising in their portal's data quality. In Chapter~\ref{chapter:hdl}, we surveyed the landscape of various models and vocabularies that described datasets on the web. We found a shortcoming when it comes to having a complete descriptive dataset model taking into account access, license and provenance information. As a result, we proposed a Harmonized Dataset Model (HDL) that \textbf{Paul} will use as a basis to extend and present the datasets he controls. \textbf{Paul} now also knows what are the major dataset models out there, and what kind of metadata data owners need to fully represent their dataset. The mappings proposed will allow him to easily integrate data from various data management systems into his own.
+Our data portal administrator \textbf{Paul} is always looking to expand his portals in terms of the number of datasets hosted, without compromising in their portal's data quality. In Section~\ref{chapter:hdl}, we surveyed the landscape of various models and vocabularies that described datasets on the web. We found a shortcoming when it comes to having a complete descriptive dataset model taking into account access, license and provenance information. As a result, we proposed a Harmonized Dataset Model (HDL) that \textbf{Paul} will use as a basis to extend and present the datasets he controls. \textbf{Paul} now also knows what are the major dataset models out there, and what kind of metadata data owners need to fully represent their dataset. The mappings proposed will allow him to easily integrate data from various data management systems into his own.
 
-In Chapter~\ref{chapter:roomba}, we proposed Roomba, an automatic dataset profiles generation and validation tool that can be easily extended to perform various profiling tasks. Out of the box, \textbf{Paul} can use Roomba to automatically fix datasets metadata issues, and notify the datasets owners of the other issues to be manually fixed.
+In Section~\ref{chapter:roomba}, we proposed Roomba, an automatic dataset profiles generation and validation tool that can be easily extended to perform various profiling tasks. Out of the box, \textbf{Paul} can use Roomba to automatically fix datasets metadata issues, and notify the datasets owners of the other issues to be manually fixed.
 
-In Chapter~\ref{chapter:data-quality}, we proposed a comprehensive objective quality framework applied to the Linked Open Data. Moreover, after surveying the landscape of existing data quality tools, we identified several gaps and the need for a comprehensive evaluation and assessment framework and specifically for measuring quality on the dataset level. As a result, we presented an extension of Roomba that covers 82\% of the suggested datasets objective quality indicators. \textbf{Paul} will be able now to identify spam and low quality datasets. In addition to that, data available in his portal will now have rich semantic information attached to it. For example, temporal and spatial information extracted will be assigned into the corresponding fields in HDL. As an exemplary result, various datasets will be easily identifiable to cover various parts of the UK.\\
+In Section~\ref{chapter:data-quality}, we proposed a comprehensive objective quality framework applied to the Linked Open Data. Moreover, after surveying the landscape of existing data quality tools, we identified several gaps and the need for a comprehensive evaluation and assessment framework and specifically for measuring quality on the dataset level. As a result, we presented an extension of Roomba that covers 82\% of the suggested datasets objective quality indicators. \textbf{Paul} will be able now to identify spam and low quality datasets. In addition to that, data available in his portal will now have rich semantic information attached to it. For example, temporal and spatial information extracted will be assigned into the corresponding fields in HDL. As an exemplary result, various datasets will be easily identifiable to cover various parts of the UK.
 
-\textbf{Contributions for Data Analysts}
-\vspace{1mm}\\
+\section{Contributions for Data Analysts}
 
 Our data analyst \textbf{Dan} believes that ``more data beats better algorithms'' and is always hunting for high quality data to produce accurate reports to the management team. By examining the rich datasets metadata presented in HDL he will be able to make fast decisions whether the dataset examined is suitable or not. He will also have vital information about the licensing and limitations for using this data internally. He will also have assurances on the dataset quality, which will help choose the best candidates out of ranked list.
 
 \textbf{Dan} will be able to have direct access to rich and high-quality dataset descriptions generated by Roomba. Moreover, the topical profilers in Roomba will be able to identify occurrences of alcohol related terms like ``wine'' in various datasets. Query expansion methods can be used to relate alcohol to wine allowing him to find the datasets he wants.
 
-In Chapter~\ref{chapter:rubix}, we presented an entity disambiguation API built on top of SAP HANA. This API is used in RUBIX, a framework we proposed to enable mashup of potentially noisy enterprise and external data.
+In Section~\ref{chapter:rubix}, we presented an entity disambiguation API built on top of SAP HANA. This API is used in RUBIX, a framework we proposed to enable mashup of potentially noisy enterprise and external data.
 \textbf{Dan} now has access to various datasets that he found matching his query to the portal administered by \textbf{Paul}. He will be also able to use the schema matching services to find and merge those datasets in his reports.
 
 Having imported those dataset into Lumira, he will be also able to use the internal knowledge base to apply various semantic enrichments on this data.
 
-In Chapter~\ref{chapter:snarc}, we proposed SNARC, a semantic social news aggregation service that allows the user to explore relevant news from internal or external sources. \textbf{Dan} is also a modern person, who is always trying to fresh information and believes in the wisdom of the crowd. Having SNARC services integrated with Lumira, he is also able to see a feed of relevant social media items that can be of interest to him. He actually follows a link in some tweet that he saw and was able to find relevant pieces of pointers that he would like to investigate further.
+In Section~\ref{chapter:snarc}, we proposed SNARC, a semantic social news aggregation service that allows the user to explore relevant news from internal or external sources. \textbf{Dan} is also a modern person, who is always trying to fresh information and believes in the wisdom of the crowd. Having SNARC services integrated with Lumira, he is also able to see a feed of relevant social media items that can be of interest to him. He actually follows a link in some tweet that he saw and was able to find relevant pieces of pointers that he would like to investigate further.
 
 In summary, the contributions above pave the way to build a set of smart services to enable analysts easily find relevant pieces of information and administrators fight spam and be able to maintain high quality data portals. The work presented in this thesis goes beyond the fact that attaching metadata to datasets is vital, but propose a set of services that can automatically achieve that in seamless manner.
 
@@ -584,6 +582,11 @@ Ensuring data quality in Linked Open Data is a complex process as it consists of
 \subsection{Enterprise Data Integration}
 A vital component to Data Integration in the enterprise is the existence of enterprise knowledge bases. Integrating additional linked open data sources of semantic types such as YAGO and evaluate our matching results against instance-based ontology alignment benchmarks such as OAEI\footnote{http://oaei.ontologymatching.org/2011/instance/index.html} or ISLab\footnote{http://islab.dico.unimi.it/iimb/} are possible future directions. Moreover, our work can be generalized to data classification. The same way the AMC helps identifying the best matches for two datasets, we plan to use it for identifying the best statistical classifiers for a sole dataset, based on normalized scores.
 
-\bibliographystyle{abbrv}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  Bibliography %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\bibliographystyle{plain}
 \bibliography{../../Util/Bibliography/bibliography}
+
+\vspace{-15ex}
 \end{document}
