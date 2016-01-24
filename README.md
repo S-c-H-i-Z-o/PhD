@@ -1,10 +1,8 @@
 My PhD Papers and Presentations
 ===
 
-Thesis
-======
 
-## Enabling Self-Service Data Provisioning Through Semantic Enrichment of Enterprise Data [link](https://github.com/ahmadassaf/PhD/blob/master/Thesis/Thesis.pdf)
+## Thesis: Enabling Self-Service Data Provisioning Through Semantic Enrichment of Enterprise Data 
 
 Enterprises use a wide range of heterogeneous information systems in their business activities such as Enterprise Resource Planning (ERP), Customer Relationships Management (CRM) and Supply Chain Management (SCM) systems. In addition to the large amounts of heterogeneous data produced by those systems, external data is an important resource that can be leveraged to enable taking quick and rational business decisions.
 Classic Business Intelligence (BI) and even the newer Agile Visualization tools focus much of their selling features on attractive and unique visualizations. Preparing data for those visualizations still remains the far most challenging task in most BI projects large and small. Self-service data provisioning aims at tackling this problem by providing intuitive datasets discovery, data acquisition and integration techniques to the end user.
@@ -22,6 +20,7 @@ Traditional data quality is a thoroughly researched field with several benchmark
 
 Finally, the Internet has created a paradigm shift in how we consume and disseminate information. Data nowadays is spread over heterogeneous silos of archived and live data. People willingly share data on social media by posting news, views, presentations, pictures and videos. We propose a service that brings relevant, live and archived information to the business user. The key advantage is an instantaneous access to complementary information without the need to search for it. Information appears when it is relevant enabling the user to focus on what is really important.
 
+[link](https://github.com/ahmadassaf/PhD/blob/master/Thesis/Thesis.pdf)
 
 Papers
 ======
