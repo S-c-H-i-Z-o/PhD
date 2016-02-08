@@ -1,0 +1,111 @@
+let\cleardoublepage\clearpage
+\chapter{Introduction}
+
+Business Intelligence (BI) has always been about creating new insight for business
+by converting data into meaning that can be shared between people to drive change
+in the organization. One key aspect of creating meaning is to have a common shared
+understanding of information also known as Semantics.
+
+La Business Intelligence (BI) avait toujours commme usage  été sur la création d'un nouvel aperçu des affaires par la conversion des données en ce sens qu'il peut être partagé entre les gens à conduire le 
+changement dans l'organisation. Un aspect clé de la création de sens est d'avoir une compréhension commune et partagée des informations aussi connu comme Sémantique.
+
+Classique BI et même les nouveaux outils de visualisation Agile concentrent une grande partie de leurs caractéristiques de vente sur des visualisations attrayantes et uniques.
+ Préparation des données pour ces visualisations cependant reste la tâche beaucoup plus difficile dans la plupart des projets BI, grandes et petites. 
+ Le but ultime de la BI est de faciliter les décisions efficaces tout en éliminant certains des maux de tête IT. 
+ Traditionnellement, les approches BI ont été contrôlés par une version centralisée de la vérité avec un mur entre l'informatique et l'entreprise. 
+ Données provisioning en libre-service vise à éliminer ce mur grâce à des techniques de découverte du jeu de données, acquisition et d'intégration intuitives intuitivement à l'utilisateur final.
+
+\section{Contexte et Motivation} \label{section:motivation}
+
+Les entreprises utilisent un large éventail de systèmes d'information hétérogènes dans leurs activités commerciales telles que la planification des ressources d'entreprise (ERP), de gestion des relations client (CRM) et Supply Chain Management (SCM) systèmes. Une entreprise distribuée paysage informatique contient plusieurs systèmes utilisant différentes technologies et des normes de données~\cite{Mihindukulasooriya:COLD:13}. En plus de cette hétérogénéité, la quantité d'informations dans des bases de données de l'entreprise et sur les magasins en ligne de données augmente de façon exponentielle chaque année. Enterprise Big Data est pas grand volume seulement, mais dans les formats de fichiers associés. L'information est également souvent stockées dans des formats non structurés et inconnus.
+
+L'intégration des données est difficile car elle nécessite la combinaison de données résidant à différentes sources, et fournir à l'utilisateur une vue unifiée de ces données~\cite{Lenzerini:SIGMOD:02}. Dans les grandes entreprises, il ya un temps et des ressources tâche coûteuse. Diverses approches ont été proposées pour résoudre ce défi d'intégration. Ces approches ont été principalement basées sur XML comme la syntaxe de représentation de données, services Web pour fournir les protocoles d'échange de données et Service-Oriented Architecture (SOA) comme une approche holistique de l'architecture de systèmes distribués et de la communication. Cependant, il a été constaté que ces technologies ne sont pas suffisantes pour résoudre les problèmes d'intégration dans les grandes entreprises~\cite{Frischmuth:ISWC:13,Frischmuth:SemWebJorunal:12}. Récemment, des approches d'intégration de données basés sur l'ontologie ont été suggérées où ontologies sont utilisés pour décrire les données, des requêtes et des correspondances entre elles~\cite{Wache:IJCAI:01}. Une approche légèrement différente est l'utilisation du paradigme Linked Data~\cite{Bizer:IJSWIS:09} pour l'intégration de données d'entreprise. Entreprises comme Google et Microsoft ne sont pas seulement utilisent le paradigme de l'intégration de données liées à leurs systèmes d'information, mais visent également à renforcer les bases de connaissances de l'entreprise (comme le Knowledge Graph Google alimenté en partie par Freebase \ footnote {\ url {http: // freebase .com}}) qui agissent comme un point de leurs données structurées de cristallisation.
+
+Les données devient plus utile quand il est ouvert, largement disponibles dans des formats partageables et quand Advanced Computing et l'analyse peut donner d'elle. La qualité et la quantité de connaissance structurée disponible sur le web le rendent désormais possible pour les entreprises de la mienne cette énorme quantité de données publiques et de l'intégrer dans leurs systèmes de gestion d'information d'entreprise de prochaine génération. Un exemple de ces données externe est le nuage Linked Open Data (LOD). A partir de 12 ensembles de données cataloguées en 2007, il a grandi aujourd'hui pour près de 1000 jeux de données contenant plus de 82 milliards de triplets\footnote{\url{http://datahub.io/dataset?tags=lod}}~\cite{Bizer:IJSWIS:09}. Les données sont publiées par les secteurs tant public que privé, et couvre un ensemble diversifié de domaines de sciences de la vie aux médias ou les données du gouvernement. Le LOD nuage est potentiellement une mine d'or pour les organisations et les individus qui cherchent à tirer parti de sources de données externes afin de produire des décisions d'affaires plus éclairées~\cite{Boyd:Article:11}. Ces données externes peuvent être accessibles via des portails de données publiques comme \texttt {datahub.io} et \texttt {publicdata.eu} ou privés comme \texttt{quandl.com} et \texttt{enigma.io}. L'analyse de ce nouveau type de données dans le contexte des données d'entreprise existantes devrait leur apporter de nouvelles ou plus précises des analyses commerciales et permettre une meilleure reconnaissance du chiffre d'affaires et des opportunités de marché~\cite{LaValle:MIT:11}.
+
+\section{Scénario d'utilisation}\label{section:scenario}
+
+Pour permettre à grande échelle et l'intégration efficace des données, il ya quelques efforts nécessaires de divers côtés. Dans cette thèse, nous abordons les enjeux et les défis du point de vue de deux personnages:
+
+\begin{itemize}
+	\item \textbf{Analyste de données:} Un analyste de données est un professionnel expérimenté qui est en mesure de recueillir et d'acquérir des données provenant de multiples sources de données, filtrer et nettoyer les données, interpréter et analyser les résultats et fournir des rapports en cours.
+	\item \textbf{Administrateur du portail de données:} Un administrateur du portail de données surveille la santé globale d'un portail. Il supervise la création des utilisateurs, des organisations et des ensembles de données. Les administrateurs tentent d'assurer un niveau de qualité de certaines données en vérifiant en permanence pour le spam et l'amélioration d'ensembles de données manuellement descriptions et annotations.
+\end{itemize}
+
+Tout au long de cette thèse, nous allons présenter un scénario de cas d'utilisation impliquant les deux personae pour illustrer les défis et les solutions que nous fournissons.
+
+Dans notre scénario, \textbf{Dan} est un analyste de données en collaboration avec le ministère des Transports en France. Son outil de prédilection pour les calculs, la manipulation et la visualisation de données SAP est Lumira\footnote{\url{http://saplumira.com/}}, un outil de visualisation de données en libre-service qui le rend facile pour importer des données provenant de sources multiples, effectuer visuelle analyse BI à l'aide de tableaux de bord intuitifs, des cartes interactives, des graphiques, et des infographies. Dan reçoit une note de sa direction pour créer un rapport comparant le nombre d'accidents de voiture qui ont eu lieu en France pour cette année, à son homologue du Royaume-Uni (UK). En outre, il est demandé de mettre en évidence les accidents liés à la consommation illégale d'alcool dans les deux pays.
+
+Après avoir examiné les dossiers du ministère, Dan est en mesure de recueillir les données nécessaires pour créer son rapport pour la partie française. Dan publie également une demande officielle au ministère des Transports au Royaume-Uni pour collecter les données nécessaires. Cependant, Dan sait que le processus prend beaucoup de temps et sa gestion doit le rapport dans quelques jours. Dan est familier avec le mouvement Open Data et commence son voyage à travers différents portails de recherche de données au Royaume-Uni.
+
+\textbf{Paul} est un administrateur du portail de données pour le \texttt{data.gov.uk}. Il supervise en permanence les processus d'acquisition, préparer et de publier des ensembles de données. Paul essaie toujours de veiller à ce que les données publiées est de haute qualité et contient des métadonnées joint suffisante pour permettre facilement la recherche et de la découverte. Paul reçoit souvent des plaintes au sujet des ensembles de données inexactes ou spam. Il supprime manuellement et corrige les erreurs tout en gardant les canaux de communication ouverts avec les services de données de publication.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  Research Challenges  %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Défis de la Recherche} \label{section:challenges}
+
+Dans le scénario présenté ci-dessus, les deux éditeurs (Portail administrateurs de données) et les utilisateurs (analystes de données) ont besoin de solutions pragmatiques qui les aident dans leurs tâches. Pour permettre cela, il ya quelques questions de recherche difficiles qui doivent être abordées. Ces défis sont organisés en trois grandes catégories comme suit:
+
+\subsection{Intégration et l'enrichissement de Données}
+
+\begin{itemize}
+	\item Les Sources de données hétérogènes entreprise posent des défis énormes. Ils ont fondamentalement différents formats de fichiers, les protocoles d'accès ou des langages de requête. Ils possèdent leur propre modèle de données avec différentes façons de représenter et stocker les données. Données à travers ces sources peuvent être bruyant (par exemple, dupliquer ou incompatibles), incertain ou sémantiquement similaire mais pourtant différent.\textbf{Paul} besoin d'outils puissants pour cartographier et organiser les données afin d'avoir une vue unifiée pour ces structures de données hétérogènes et complexes.
+	\item Fixation des métadonnées et des informations sémantiques aux instances peut être délicat. Une entité est généralement pas associée à un type générique unique dans la base de connaissances, mais plutôt à un ensemble de types spécifiques qui peuvent être pertinents ou non compte tenu du contexte. \textbf{Paul} est contestée à trouver le type de l'entité la plus pertinente dans un contexte donné.
+	\item Entités jouent un rôle clé dans les bases de connaissances en général et dans le Web de données en particulier. Entités comme ceux de DBpedia, sont généralement décrits avec beaucoup de propriétés. Cependant, il est difficile pour \textbf{Dan} d'évaluer celles qui sont plus  ``importantes'' que d'autres pour des tâches particulières telles l'augmentation des données et de visualiser les principaux faits d'une entité.
+	\item Les réseaux sociaux ne sont pas seulement rassemblent les utilisateurs d'Internet en groupes d'intérêts communs, ils aident aussi les gens suivre les nouvelles de rupture, contribuer aux débats en ligne ou apprendre des autres. Ils sont en train de transformer l'utilisation du Web en termes de comportement point d'entrée, la recherche, la navigation et l'achat initial des utilisateurs. Cependant, l'intégration des informations de ces réseaux sociaux peut être difficile à \textbf{Paul} en raison de la grande quantité de données disponibles ce qui rend difficile à repérer ce qui est pertinent en temps opportun.
+\end{itemize}
+
+\subsection{Maintenance et Découverte de Données}
+
+\begin{itemize}
+	\item Même si les ensembles de données populaires comme DBPedia\footnote{\url{http://dbpedia.org}} Freebase et sont bien connus et largement utilisé, il existe d'autres données utiles caché ensembles ne sont pas utilisés. En effet, ces ensembles de données peuvent être utiles pour les domaines spécialisés, sans toutefois bon registre de sujets, il est difficile pour les analystes de données comme \textbf{Dan} de les trouver~\cite{Lalithsena:WI:13}.
+	\item Til quantité croissante de données nécessite des métadonnées riches pour atteindre son plein potentiel. Ces métadonnées permet la découverte de données, la compréhension, l'intégration et la maintenance. Malgré les différents modèles et des vocabulaires décrivant les ensembles de données des métadonnées, la capacité d'avoir un aperçu de l'ensemble de données en inspectant il est métadonnées peut être limité. Par example, \textbf{Dan} a des difficultés à trouver des ensembles de données avec une couverture géographique spécifique, car cette information est manquante à partir de presque tous les profils jeux de données examinés.
+	\item Les utilisateurs, les organisations et les gouvernements sont habilités à publier des ensembles de données. Toutefois, les administrateurs du portail de données comme \textbf{Paul} besoin de vérifier en permanence et manuellement portails pour détecter le spam et maintenir des données de haute qualité.
+\end{itemize}
+
+\subsection{Qualité de Données}
+
+Lié données se compose de l'information structurée soutenue par des modèles, des ontologies et des vocabulaires et contient paramètres de la requête et des liens. Cela rend l'assurance de la qualité des données d'un défi. Malgré le fait que la qualité Linked Open Data est une tendance et le sujet très demandé, très peu d'efforts sont en train d'essayer de normaliser, de suivre et de formaliser les cadres de délivrer des certificats ou des scores qui aideront les consommateurs de données dans leurs tâches d'intégration. Les administrateurs de portail de données comme \textbf{Paul} besoin d'avoir une vision globale de la qualité de leurs portails et que vous voulez intégrer ces paramètres dans les profils d'ensembles de données existants. D'autre part, les analystes de données et les utilisateurs comme \textbf{Dan} veulent savoir à l'avance si l'ensemble de données sur la main est d'un certain degré de qualité pour être utilisé dans leurs rapports.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  Thesis Contributions  %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Contributions de Thèse} \label{section:contribution}
+
+Dans cette thèse, nous proposons un cadre pour permettre la fourniture de données en libre-service pour les sources de données internes et externes à l'entreprise. Le cadre contribue aux trois principaux défis décrits ci-dessus. En résumé, les principales contributions de ce travail sont les suivants:
+
+\begin{adjustwidth}{-.4in}{-.4in}
+	\begin{figure}[!ht]
+	 \centering
+	 \includegraphics[scale=0.4]{figures/architecutre_diagram.png}
+	 \caption{Schéma de l'architecture des données pour permettre l'approvisionnement en libre-service}
+	 \label{fig:architecutre_diagram}
+	\end{figure}
+\end{adjustwidth}
+
+\subsection{Contributions sur Maintenance et Découverte de Données}
+
+En ce qui concerne cet aspect de notre recherche, nous avons accompli les tâches suivantes:
+\begin{itemize}
+	\item Nous avons interrogé le paysage de différents modèles et des vocabulaires qui décrivent des ensembles de données sur le web. Depuis la création d'un vocabulaire commun ou le modèle est la clé de la communication, nous avons identifié le besoin d'un modèle de métadonnées de jeu de données harmonisée contenant suffisamment d'informations afin que les consommateurs peuvent facilement comprendre et ensembles de données de processus. Premièrement, nous avons mis en place un ensemble de correspondances entre chacune des propriétés des modèles étudiés. Ceci a conduit à la conception de HDL, un modèle de données harmonisée, qui prend le meilleur sur ces modèles et les étend à assurer une couverture complète de métadonnées pour permettre la découverte de données, l'exploration et la réutilisation.
+	\item Nous avons analysé le paysage des outils de profilage des ensembles de données et découvert diverses lacunes. En conséquence, nous avons proposé Roomba, un cadre évolutif pour extraire automatique, la validation, la création et de générer des profils d'ensembles de données liées descriptives. Roomba applique plusieurs techniques afin de vérifier la validité des métadonnées fournies et pour générer des informations descriptives et statistiques pour un ensemble de données particulier ou pour un portail de données entière.
+\end{itemize}
+
+\subsection{Contributions sur la Qualité de Données}
+Concernant nos contributions sur l'évaluation de la qualité Linked Data, nous avons accompli les tâches suivantes:
+\begin{itemize}
+	\item Nous avons proposé un cadre d'évaluation de la qualité des données liées concentrant sur les mesures objectives des données. Nous avons identifié un total de 64 indicateurs de qualité qui ont été mappés lorsque approprié pour quatre catégories principales (entité, DataSet liens, modèles) correspondant aux principes de la publication de données de base lié.
+	\item Sur l'arpentage du paysage des outils de qualité de données, nous avons remarqué un manque dans les outils automatiques pour vérifier les paramètres de qualité de l'ensemble de données proposées dans notre cadre. En conséquence, nous avons étendu Roomba pour effectuer une série de contrôles de qualité des données sur les ensembles de données liés. Notre extension couvre la plupart des indicateurs de qualité proposés avec un accent sur l'exhaustivité, l'exactitude, la provenance et les licences.
+\end{itemize}
+
+\subsection{Contributions sur l'intégration et l'enrichissement de Données}
+
+En ce qui concerne cet aspect de notre recherche, nous avons accompli les tâches suivantes:
+\begin{itemize}
+	\item Nous avons créé un cadre appelé RUBIX qui permet de données d'entreprise potentiellement bruyants brassage-up et des données externes. Le cadre exploite des bases de connaissances de référence pour annoter des données avec un ensemble de concepts sémantiques (métadonnées). Un des avantages de ces métadonnées est d'améliorer le processus d'appariement des sources de données hétérogènes au sein d'une entreprise.
+	\item Les métadonnées attachée par RUBIX peut encore être utilisé pour enrichir les ensembles de données existants. Toutefois, les concepts sont souvent représentés avec un grand ensemble de propriétés. Pour mieux recommander le haut ``importants'' propriétés d'un concept, nous inversés ingénieur les choix faits par Google lors de la création des panneaux de graphes de connaissances et présentés ces choix en utilisant explicitement le vocabulaire de Fresnel, de sorte que toute application peut lire ce fichier de configuration pour décider qui propriétés d'une entité qui est intéressant à enrichir.
+	\item Agrégation nouvelles sociale pertinente est pas une tâche facile. Nous fournissons une Application Programming Interface (API) qui permet l'agrégation de nouvelles sociale sémantique appelé SNARC. Nous avons conçu un exemple d'application frontend tirant parti des capacités de SNARK pour permettre aux utilisateurs de découvrir instantanément les nouvelles sociale pertinente.
+\end{itemize}
