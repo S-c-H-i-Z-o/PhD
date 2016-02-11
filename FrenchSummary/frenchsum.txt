@@ -64,13 +64,6 @@ Après avoir examiné les dossiers du ministère, Dan est en mesure de rassemble
 au ministère des Transports au Royaume-Uni pour collecter les données nécessaires. Cependant, Dan sait que le processus prend beaucoup de temps et la direction veut avoir le rapport dans quelques jours. 
 Dan est familier avec le mouvement Open Data et commence se balader à travers différents les portails de recherche de données au Royaume-Uni.
 
-Paul is a Data Portal Administrator for the data.gov.uk. He continuously oversees
-the processes of acquiring, preparing and publishing datasets. Paul always tries
-to ensure that the data published is of high quality and contains sucient attached
-metadata to easily enable search and discovery. Paul often receives complaints about
-inaccurate or spam datasets. He manually removes and xes errors while keeping
-open communication channels with the data-publishing departments.
-
 \textbf{Paul} est un administrateur du portail de données pour le \texttt{data.gov.uk}. Il supervise en permanence les processus d'acquisition, de préparation et de publication des ensembles de données. 
 Paul essaie toujours de veiller à ce que les données publiées soient de haute qualité et qui contiennent des métadonnées suffisantes pour faciliter la recherche et de la découverte. 
 Paul reçoit souvent des plaintes par rapport a des ensembles de données imprecis ou des spams. Il supprime et corrige manuellement les erreurs tout en gardant les canaux de communication ouverts
@@ -82,45 +75,46 @@ avec les services de données de publication.
 
 \section{Défis de la Recherche} \label{section:challenges}
 
-Dans le scénario présenté ci-dessus, les deux éditeurs (Portail administrateurs de données) et les utilisateurs (analystes de données) ont besoin de solutions pragmatiques qui les aident dans leurs
- tâches. Pour permettre cela, il ya quelques questions de recherche difficiles qui doivent être abordées. Ces défis sont organisés en trois grandes catégories comme suit:
+Dans le scénario présenté ci-dessus, les deux intervenants, les éditeurs (administrateurs du portail de données) et les utilisateurs (analystes de données) ont besoin de solutions pragmatiques qui les aident dans leurs
+ tâches. Pour permettre cela, il ya quelques questions de recherche complexes qui doivent être abordées. Ces défis sont organisés en trois grandes catégories comme suit:
 
-\subsection{Intégration et l'enrichissement de Données}
+\subsection{Intégration et enrichissement de Données}
 
 \begin{itemize}
-	\item Les Sources de données hétérogènes entreprise posent des défis énormes. Ils ont fondamentalement différents formats de fichiers, les protocoles d'accès ou des langages de requête. 
-	Ils possèdent leur propre modèle de données avec différentes façons de représenter et stocker les données. Données à travers ces sources peuvent être bruyant (par exemple, dupliquer ou incompatibles),
-	incertain ou sémantiquement similaire mais pourtant différent.\textbf{Paul} besoin d'outils puissants pour cartographier et organiser les données afin d'avoir une vue unifiée pour ces structures de
+	\item Les Sources de données d'entreprise hétérogènes posent des défis énormes. Ils ont fondamentalement différents; formats de fichiers, protocoles d'accès ou langages de requête. 
+	Ils possèdent leur propre modèle de données avec différentes façons de représentation et de stockage de données. Ayant toutes ces sources de donnees peut ramener a avoir du bruit (des donnees dupliquees ou incompatibles),
+	des donnees incertaines ou des donnees sémantiquement similaires mais pourtant différentes.\textbf{Paul} a besoin d'outils tres perfomants pour mapper et organiser les données afin d'avoir une vue unifiée pour ces structures de
 	données hétérogènes et complexes.
-	\item Fixation des métadonnées et des informations sémantiques aux instances peut être délicat. Une entité est généralement pas associée à un type générique unique dans la base de connaissances,
-	mais plutôt à un ensemble de types spécifiques qui peuvent être pertinents ou non compte tenu du contexte. \textbf{Paul} est contestée à trouver le type de l'entité la plus pertinente dans un 
+	\item Rajouter des métadonnées et des informations sémantiques aux instances peut être délicat. Une entité est généralement non associée à un type générique unique dans la base de connaissances,
+	mais plutôt à un ensemble de types spécifiques qui peuvent être pertinents ou pas compte tenu du contexte. \textbf{Paul} a donc un defi qui consiste à trouver le type de d'entité la plus pertinent dans un 
 	contexte donné.
-	\item Entités jouent un rôle clé dans les bases de connaissances en général et dans le Web de données en particulier. Entités comme ceux de DBpedia, sont généralement décrits avec beaucoup de
-	propriétés. Cependant, il est difficile pour \textbf{Dan} d'évaluer celles qui sont plus  ``importantes'' que d'autres pour des tâches particulières telles l'augmentation des données et de visualiser
-	les principaux faits d'une entité.
-	\item Les réseaux sociaux ne sont pas seulement rassemblent les utilisateurs d'Internet en groupes d'intérêts communs, ils aident aussi les gens suivre les nouvelles de rupture, contribuer aux débats 
-	en ligne ou apprendre des autres. Ils sont en train de transformer l'utilisation du Web en termes de comportement point d'entrée, la recherche, la navigation et l'achat initial des utilisateurs.
+	\item Les entités jouent un rôle clé dans les bases de connaissances en général et dans le Web de Données en particulier. Les entités comme ceux de DBpedia, sont généralement décrits avec beaucoup de
+	propriétés. Cependant, il est difficile pour \textbf{Dan} d'évaluer celles qui sont les plus ``importantes'' pour des tâches particulières, telles l'augmentation des données et de visualiser
+	les faits principaux d'une entité.
+	\item Les réseaux sociaux ne rassemblent pas seulement les utilisateurs d'Internet en groupes ayant d'intérêts communs, ils aident aussi les gens suivre les dernieres infos, contribuer aux débats 
+	en ligne ou apprendre des autres. Ils sont en train de transformer l'utilisation du Web en termes de point d'entrée intiales des utilisateurs, de la recherche, de la navigation et l'achat en ligne.
 	Cependant, l'intégration des informations de ces réseaux sociaux peut être difficile à \textbf{Paul} en raison de la grande quantité de données disponibles ce qui rend difficile à repérer ce qui est pertinent en temps opportun.
 \end{itemize}
 
 \subsection{Maintenance et Découverte de Données}
 
 \begin{itemize}
-	\item Même si les ensembles de données populaires comme DBPedia\footnote{\url{http://dbpedia.org}} Freebase et sont bien connus et largement utilisé, il existe d'autres données utiles caché ensembles
-	ne sont pas utilisés. En effet, ces ensembles de données peuvent être utiles pour les domaines spécialisés, sans toutefois bon registre de sujets, il est difficile pour les analystes de données comme \textbf{Dan} de les trouver~\cite{Lalithsena:WI:13}.
-	\item Til quantité croissante de données nécessite des métadonnées riches pour atteindre son plein potentiel. Ces métadonnées permet la découverte de données, la compréhension, l'intégration et la
-	maintenance. Malgré les différents modèles et des vocabulaires décrivant les ensembles de données des métadonnées, la capacité d'avoir un aperçu de l'ensemble de données en inspectant il est métadonnées peut être limité. Par example, \textbf{Dan} a des difficultés à trouver des ensembles de données avec une couverture géographique spécifique, car cette information est manquante à partir de presque tous les profils jeux de données examinés.
-	\item Les utilisateurs, les organisations et les gouvernements sont habilités à publier des ensembles de données. Toutefois, les administrateurs du portail de données comme \textbf{Paul} besoin 
-	de vérifier en permanence et manuellement portails pour détecter le spam et maintenir des données de haute qualité.
+	\item Même si les ensembles de données les plus populaires comme DBPedia\footnote{\url{http://dbpedia.org}} et Freebase sont bien connus et largement utilisés, il existe d'autres ensembles de données utiles caché 
+	qui ne sont pas utilisés. En effet, ces ensembles de données peuvent être utiles pour les domaines spécialisés, mais sans avoir une visibilite sur leurs sujets, il est difficile pour les analystes de données comme \textbf{Dan} de les trouver~\cite{Lalithsena:WI:13}.
+	\item La de données qui ne cesse d'augmenter nécessite des métadonnées riches pour atteindre son vrai potentiel. Ces métadonnées permet la découverte de données, la compréhension, l'intégration et la
+	maintenance. Malgré les différents modèles et les différents vocabulaires décrivant les ensembles de données des métadonnées, la capacité d'avoir un aperçu de l'ensemble de données en inspectant ses métadonnées peut être limité. 
+	Par example, \textbf{Dan} a des difficultés à trouver des ensembles de données ayant une couverture géographique spécifique, car cette information n'existe pas presque dans tous les profils de jeux de données examinés.
+	\item Les utilisateurs, les organisations et les gouvernements sont habilités à publier des ensembles de données. Toutefois, les administrateurs du portail de données comme \textbf{Paul} ont besoin 
+	de vérifier manuellement et en permanence les portails pour détecter les spams et pour maintenir des données de haute qualité.
 \end{itemize}
 
 \subsection{Qualité de Données}
 
-Lié données se compose de l'information structurée soutenue par des modèles, des ontologies et des vocabulaires et contient paramètres de la requête et des liens. Cela rend l'assurance de la qualité des
- données d'un défi. Malgré le fait que la qualité Linked Open Data est une tendance et le sujet très demandé, très peu d'efforts sont en train d'essayer de normaliser, de suivre et de formaliser les 
- cadres de délivrer des certificats ou des scores qui aideront les consommateurs de données dans leurs tâches d'intégration. Les administrateurs de portail de données comme \textbf{Paul} besoin d'avoir
- une vision globale de la qualité de leurs portails et que vous voulez intégrer ces paramètres dans les profils d'ensembles de données existants. D'autre part, les analystes de données et les 
- utilisateurs comme \textbf{Dan} veulent savoir à l'avance si l'ensemble de données sur la main est d'un certain degré de qualité pour être utilisé dans leurs rapports.
+Le Web de Donnees se compose de l'information structurée soutenue par des modèles, des ontologies et des vocabulaires, et contient les liens et les points d'entrees des requestes. Cela rend l'assurance de la qualité des
+ données comme un défi. Malgré le fait que la qualité de la Linked Open Data est une tendance et le sujet est d'actualite, il n'y a pas beaucoup d'efforts pour essayer de normaliser, de suivre et de formaliser les 
+ des certificats ou des scores qui aideront les consommateurs de données dans leurs tâches d'intégration. Les administrateurs de portail de données comme \textbf{Paul} ont besoin d'avoir
+ une vision globale de la qualité de leurs portails et que ils voulent bien intégrer ces paramètres dans les profils d'ensembles de données existants. D'autre part, les analystes de données et les 
+ utilisateurs comme \textbf{Dan} veulent savoir à l'avance si l'ensemble de données qu'ils ont a certain degré de qualité pour être utilisé dans leurs rapports.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %%%  Thesis Contributions  %%%
