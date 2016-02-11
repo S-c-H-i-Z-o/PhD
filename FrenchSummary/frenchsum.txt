@@ -125,14 +125,13 @@ Le Web de Données se compose de l'information structurée soutenue par des mod�
 
 \section{Contributions de Thèse} \label{section:contribution}
 
-Dans cette thèse, nous proposant un framework(une structure) permettant le provisionnement de données en libre-service pour les sources de données interne et externe dans l'entreprise. Le cadre 
-contribue aux trois principaux défis décrits ci-dessus. En résumé, les principales contributions de ce travail se présentent comme suit:
+Dans cette thèse, nous proposant un framework(une structure) permettant le provisionnement de données en libre-service pour les sources de données interne et externe dans l'entreprise. Le framework(La structure) contribue aux trois principaux défis décrits ci-dessus. En résumé, les principales contributions de ce travail se présentent comme suit:
 
 \begin{adjustwidth}{-.4in}{-.4in}
 	\begin{figure}[!ht]
 	 \centering
 	 \includegraphics[scale=0.4]{figures/architecutre_diagram.png}
-	 \caption{ Schéma de l'architecture permettant le provisionnement des données en libre-service}
+	 \caption{Schéma de l'architecture permettant le provisionnement des données en libre-service}
 	 \label{fig:architecutre_diagram}
 	\end{figure}
 \end{adjustwidth}
@@ -141,35 +140,22 @@ contribue aux trois principaux défis décrits ci-dessus. En résumé, les princ
 
 Concernant cet aspect de notre recherche, nous avons accompli les tâches suivantes:
 \begin{itemize}
-	\item Nous avons mené une enquête sur les différents modèles et vocabulaires qui décrivent les ensembles de données sur le web. Sachant que la création d'un vocabulaire commun ou d’un modèle
-	constitue la clé de la communication, nous avons identifié le besoin d'un modèle harmonisé de métadonnées de l’ensemble de données. Ce modèle permettra aux consommateurs de comprendre et traiter
-	plus facilement l’ensemble des données. Premièrement, nous avons mis en place un ensemble de correspondances entre les propriétés des modèles étudiés. Ceci a mené à la conception de HDL, un modèle
-	harmonisé de l’ensemble de données, qui prend le meilleur sur ces modèles et l’étend afin d’assurer une couverture complète de métadonnées permettant ainsi la découverte, l'exploration et la
-	réutilisation de ces données.
-	\item Nous avons analysé l’ensemble des outils de profilage des ensembles de données et nous avons découvert plusieurs lacunes. En conséquence, nous avons proposé Roomba, un cadre évolutif et
-	automatique pour l’extraction, la validation, la correction et la génération des descriptions des profils liés d'ensembles de données. Roomba applique plusieurs techniques afin de vérifier la
-	validité des métadonnées fournies et de générer des informations descriptives et statistiques pour un ensemble de données particulier ou pour un portail entier de données.
+	\item Nous avons mené une enquête sur les différents modèles et vocabulaires qui décrivent les ensembles de données sur le web. Sachant que la création d'un vocabulaire commun ou d’un modèle constitue la clé de la communication, nous avons identifié le besoin d'un modèle harmonisé de métadonnées de l’ensemble de données. Ce modèle permettra aux consommateurs de comprendre et traiter plus facilement l’ensemble des données. Premièrement, nous avons mis en place un ensemble de correspondances entre les propriétés des modèles étudiés. Ceci a mené à la conception de HDL, un modèle harmonisé de l’ensemble de données, qui prend le meilleur sur ces modèles et l’étend afin d’assurer une couverture complète de métadonnées. Ceci permets la découverte, l'exploration et la réutilisation de ces données.
+	\item Nous avons analysé l’ensemble des outils de profilage des ensembles de données et nous avons découvert plusieurs lacunes. En conséquence, nous avons proposé Roomba, un framework(une structure) évolutif et automatique pour l’extraction, la validation, la correction et la génération des descriptions des profils liés d'ensembles de données. Roomba applique plusieurs techniques afin de vérifier la validité des métadonnées fournies et de générer des informations descriptives et statistiques pour un ensemble de données particulier ou pour un portail entier de données.
 \end{itemize}
 
 \subsection{Contributions sur le Control de la Qualité de l’ensemble des Données}
 Concernant nos contributions sur l'évaluation de la qualité des données liées, nous avons accompli les tâches suivantes:
 \begin{itemize}
-	\item Nous avons proposé un framework (une structure) d'évaluation de la qualité des données liées focalisant  sur les mesures objectives de l’ensemble des données. Nous avons identifié un total de 
-	64 indicateurs de qualité qui ont été mappés, une fois approprié, dans quatre catégories principales (entité, ensemble de données, liens, modèles) correspondant aux principes de la publication de 
-	données de base liées.
-	\item Lors de l'arpentage de l’ensemble des outils de qualité de données, nous avons constaté un manque dans les outils automatiques pour vérifier les paramètres de qualité de l'ensemble de données
-	proposé dans notre cadre. En conséquence, nous avons étendu Roomba  afin d’effectuer une série de contrôles de qualité des données sur les ensembles de données liés. Notre extension couvre la plupart
-	des indicateurs de qualité proposés en mettant l'accent sur l'exhaustivité, l'exactitude, la provenance et les licences.
+	\item Nous avons proposé un framework (une structure) d'évaluation de la qualité des données liées focalisant  sur les mesures objectives de l’ensemble des données. Nous avons identifié un total de 64 indicateurs de qualité qui ont été mappés, une fois approprié, dans quatre catégories principales (entité, ensemble de données, liens, modèles) correspondant aux principes de la publication de données de base liées.
+	\item Lors de l'arpentage de l’ensemble des outils de qualité de données, nous avons constaté un manque dans les outils automatiques pour vérifier les paramètres de qualité de l'ensemble de données proposé dans notre framework(structure). En conséquence, nous avons étendu Roomba  afin d’effectuer une série de contrôles de qualité des données sur les ensembles de données liés. Notre extension couvre la plupart des indicateurs de qualité proposés en mettant l'accent sur l'exhaustivité, l'exactitude, la provenance et les licences.
 \end{itemize}
 
 \subsection{Contributions sur l'intégration et l'enrichissement des Données}
+
 En ce qui concerne cet aspect de notre recherche, nous avons accompli les tâches suivantes:
 \begin{itemize}
-	\item Nous avons créé un framework( une structure) appelé RUBIX qui permet le brassage des données potentiellement bruyants d'entreprise et des données externes. Le framework(La structure) exploite
-	des bases de connaissances de référence pour annoter des données avec un ensemble de concepts sémantiques (métadonnées). Un des avantages de ces métadonnées est d'améliorer le processus d'appariement des sources de données hétérogènes au sein d'une entreprise.
-	\item Les métadonnées attachées par RUBIX peuvent aussi être utilisées pour enrichir les ensembles de données existants. Toutefois, les concepts sont souvent représentés avec un grand ensemble de
-	propriétés. Pour mieux recommander les plus ``importantes'' propriétés d'un concept, nous avons inversé la conception des choix faits par Google lors de la création des groupes spéciaux de graphes
-	de connaissances et nous avons présenté explicitement ces choix en utilisant le vocabulaire de Fresnel, de sorte que toute application peut lire ce fichier de configuration pour décider laquelle des
-	propriétés d'une entité mérite d’être enrichie.
+	\item Nous avons créé un framework( une structure) appelé RUBIX qui permet le brassage des données potentiellement bruyants d'entreprise et des données externes. Le framework(La structure) exploite des bases de connaissances de référence pour annoter des données avec un ensemble de concepts sémantiques (métadonnées). Un des avantages de ces métadonnées est d'améliorer le processus d'appariement des sources de données hétérogènes au sein d'une entreprise.
+	\item Les métadonnées attachées par RUBIX peuvent aussi être utilisées pour enrichir les ensembles de données existants. Toutefois, les concepts sont souvent représentés avec un grand ensemble de propriétés. Pour mieux recommander les plus ``importantes'' propriétés d'un concept, nous avons inversé la conception des choix faits par Google lors de la création des groupes spéciaux de graphes de connaissances et nous avons présenté explicitement ces choix en utilisant le vocabulaire de Fresnel, de sorte que toute application peut lire ce fichier de configuration afin de décider laquelle des propriétés d'une entité mérite d’être enrichie.
 	\item L'agrégation des actualités sociales pertinentes n'est pas une tâche facile. Nous fournissons une Interface d’Application Programmable (API), appelée SNARC,  permettant l'agrégation des actualités sociales sémantiques. Nous avons conçu un exemple d'application frontend tirant parti des capacités de SNARK pour permettre aux utilisateurs de découvrir instantanément les actualités sociales pertinentes.
 \end{itemize}
