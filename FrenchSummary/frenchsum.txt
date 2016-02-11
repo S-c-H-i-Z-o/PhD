@@ -41,33 +41,40 @@ Les données sont publiées par les secteurs public et privé, et couvre un ense
 
 \section{Scénario d'utilisation}\label{section:scenario}
 
-Pour permettre à grande échelle et l'intégration efficace des données, il ya quelques efforts nécessaires de divers côtés. Dans cette thèse, nous abordons les enjeux et les défis du point de vue
+Pour permettre une intégration efficace et à grande échelle des données, il ya quelques efforts nécessaires de plusieurs côtés. Dans cette thèse, nous abordons les enjeux et les défis du point de vue
  de deux personnages:
 
 \begin{itemize}
 	\item \textbf{Analyste de données:} Un analyste de données est un professionnel expérimenté qui est en mesure de recueillir et d'acquérir des données provenant de multiples sources de données,
-	filtrer et nettoyer les données, interpréter et analyser les résultats et fournir des rapports en cours.
-	\item \textbf{Administrateur du portail de données:} Un administrateur du portail de données surveille la santé globale d'un portail. Il supervise la création des utilisateurs, des organisations 
-	et des ensembles de données. Les administrateurs tentent d'assurer un niveau de qualité de certaines données en vérifiant en permanence pour le spam et l'amélioration d'ensembles de données
-	manuellement descriptions et annotations.
+	filtrer et nettoyer les données, interpréter et analyser les résultats et fournir des rapports de progression.
+	\item \textbf{Administrateur du portail de données:} Un administrateur du portail de données surveille le status globale d'un portail. Il supervise la création des utilisateurs, des organisations 
+	et des ensembles de données. Les administrateurs essayent d'assurer un niveau de qualité de certaines données en vérifiant en permanence la presence de spam et l'amélioration manuelle 
+	de la descriptions et l'annotations des ensembles de données
 \end{itemize}
 
-Tout au long de cette thèse, nous allons présenter un scénario de cas d'utilisation impliquant les deux personae pour illustrer les défis et les solutions que nous fournissons.
+Tout au long de cette thèse, nous allons présenter un scénario de cas d'utilisation impliquant les deux personnages afin d'illustrer les défis et les solutions que nous fournissons.
 
-Dans notre scénario, \textbf{Dan} est un analyste de données en collaboration avec le ministère des Transports en France. Son outil de prédilection pour les calculs, la manipulation et la visualisation
- de données SAP est Lumira\footnote{\url{http://saplumira.com/}}, un outil de visualisation de données en libre-service qui le rend facile pour importer des données provenant de sources multiples,
- effectuer visuelle analyse BI à l'aide de tableaux de bord intuitifs, des cartes interactives, des graphiques, et des infographies. Dan reçoit une note de sa direction pour créer un rapport comparant
- le nombre d'accidents de voiture qui ont eu lieu en France pour cette année, à son homologue du Royaume-Uni (UK). En outre, il est demandé de mettre en évidence les accidents liés à la consommation 
- illégale d'alcool dans les deux pays.
+Dans notre scénario, \textbf{Dan} est un analyste de données qui collabore avec le ministère des Transports en France. Son outil prefere pour les calculs, la manipulation et la visualisation
+de données est SAP Lumira\footnote{\url{http://saplumira.com/}}, qui est un outil de visualisation de données en libre-service qui facilite, l'import des données provenant de plusieurs sources,
+l'analyse BI visuelle à l'aide de tableaux de bord intuitifs, des cartes interactives, des graphiques, et des infographies. Dan reçoit une note de sa direction pour créer un rapport comparant
+le nombre d'accidents de voiture qui ont eu lieu cette année en France, à son homologue du Royaume-Uni (UK). En outre, il est demandé de mettre en évidence les accidents liés à la consommation 
+illégale d'alcool dans les deux pays.
 
-Après avoir examiné les dossiers du ministère, Dan est en mesure de recueillir les données nécessaires pour créer son rapport pour la partie française. Dan publie également une demande officielle 
-au ministère des Transports au Royaume-Uni pour collecter les données nécessaires. Cependant, Dan sait que le processus prend beaucoup de temps et sa gestion doit le rapport dans quelques jours. 
-Dan est familier avec le mouvement Open Data et commence son voyage à travers différents portails de recherche de données au Royaume-Uni.
+Après avoir examiné les dossiers du ministère, Dan est en mesure de rassembler les données nécessaires pour créer son rapport pour la partie française. Dan publie également une demande officielle 
+au ministère des Transports au Royaume-Uni pour collecter les données nécessaires. Cependant, Dan sait que le processus prend beaucoup de temps et la direction veut avoir le rapport dans quelques jours. 
+Dan est familier avec le mouvement Open Data et commence se balader à travers différents les portails de recherche de données au Royaume-Uni.
 
-\textbf{Paul} est un administrateur du portail de données pour le \texttt{data.gov.uk}. Il supervise en permanence les processus d'acquisition, préparer et de publier des ensembles de données. 
-Paul essaie toujours de veiller à ce que les données publiées est de haute qualité et contient des métadonnées joint suffisante pour permettre facilement la recherche et de la découverte. 
-Paul reçoit souvent des plaintes au sujet des ensembles de données inexactes ou spam. Il supprime manuellement et corrige les erreurs tout en gardant les canaux de communication ouverts
- avec les services de données de publication.
+Paul is a Data Portal Administrator for the data.gov.uk. He continuously oversees
+the processes of acquiring, preparing and publishing datasets. Paul always tries
+to ensure that the data published is of high quality and contains sucient attached
+metadata to easily enable search and discovery. Paul often receives complaints about
+inaccurate or spam datasets. He manually removes and xes errors while keeping
+open communication channels with the data-publishing departments.
+
+\textbf{Paul} est un administrateur du portail de données pour le \texttt{data.gov.uk}. Il supervise en permanence les processus d'acquisition, de préparation et de publication des ensembles de données. 
+Paul essaie toujours de veiller à ce que les données publiées soient de haute qualité et qui contiennent des métadonnées suffisantes pour faciliter la recherche et de la découverte. 
+Paul reçoit souvent des plaintes par rapport a des ensembles de données imprecis ou des spams. Il supprime et corrige manuellement les erreurs tout en gardant les canaux de communication ouverts
+avec les services de données de publication.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %%%  Research Challenges  %%%
